@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>Gramene genomic comparative analyses</title>
+</head>
+
+<body>
+
+<h2>Genomic Alignments</h2>
+   
+<p id="blastz"><h3><font>BlastZ-net Pairwise Alignment Analysis</font></h3></p>
+
+<p>BlastZ-net (<a href="http://www.genome.org/cgi/content/abstract/13/1/103">Schwartz
+S et al., Genome Res.;13(1):103-7</a>, <a href="http://www.pnas.org/cgi/content/full/100/20/11484">Kent
+WJ et al., Proc Natl Acad Sci U S A., 2003;100(20):11484-9</a>)
+alignments are provided for closely related pairs of species. The
+alignments are the results of post-processing the raw BlastZ results.
+In the first step, original blocks are chained according to their
+location in both genomes. The netting process chooses for the reference
+species the best sub-chain in each region. The reference species in the
+BlastZ-net alignments is in bold:</p>
+
+<table class="data-table" style="width:auto">
+
+<tr>
+<td class="bg3 left"><b><i>Oryza sativa Japonica</i></b></td>
+<th class="bg4 center" style="width:5em"><i>O.jap</i></th>
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza sativa Indica</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+
+<th class="bg1 center" style="width:5em"><i>O.ind</i></th>
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Sorghum bicolor</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">-</td><!-- O.ind -->
+<th class="bg4 center" style="width:5em"><i>S.bic</i></th>
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Brachypodium distachyon</i></b></td>
+
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center"><font>YES</font></td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<th class="bg1 center" style="width:5em"><i>B.dis</i></th>
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Arabidopsis thaliana</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center"><font>YES</font></td><!-- O.ind -->
+<td class="bg4 center"><font>YES</font></td><!-- S.bic -->
+<td class="bg3 center"><font>YES</font></td><!-- B.dis -->
+<th class="bg4 center" style="width:5em"><i>A.tha</i></th>
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Arabidopsis lyrata</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Vitis vinifera</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">-</td><!-- O.ind -->
+<td class="bg4 center">-</td><!-- S.bic -->
+<td class="bg3 center">-</td><!-- B.dis -->
+<td class="bg4 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Populus trichocarpa</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Physcomitrella patens</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">YES</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza barthii 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza brachyantha</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza minuta BB 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza minuta CC 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza nivara 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+<tr>
+<td class="bg1 left"><b><i>Oryza officinalis 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza punctata 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza rufipogon 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center">-</td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza glaberrima</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Glycine max</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Chlamydomonas reinhardtii</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Selaginella moellendorffii</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Cyanidioschyzon merolae</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Brassica rapa</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Solanum lycopersicum</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+
+
+<tr>
+<td class="bg1 left"><b><i>Setaria italica</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>YES</font></td><!-- A.tha -->
+</tr>
+<tr>
+<td class="bg1 left"><b><i>Oryza glumaepatula 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>-</font></td><!-- A.tha -->
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Oryza meridionalis 3s</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg1 center">-</td><!-- O.ind -->
+<td class="bg3 center">-</td><!-- S.bic -->
+<td class="bg1 center">-</td><!-- B.dis -->
+<td class="bg3 center"><font>-</font></td><!-- A.tha -->
+</tr>
+
+</table>
+
+<br>
+<p>
+
+<p id="blastz"><h3><font>EPO Multiple Alignment Analysis</font></h3></p>
+
+<p>The new EPO 
+(Enredo, Pecan, Ortheus) pipeline is a three steps pipeline for whole-genome
+multiple alignments. Enredo produces colinear segments from 
+extant genomes handling both rearrangements, deletions and duplications. 
+Pecan, as described above, is used to align these segments. Finally, Ortheus 
+is used to create genome-wide ancestral sequence reconstructions.
+Further details on these methods can be found at:</p>
+<ul>
+<li><a href="http://dx.doi.org/10.1101/gr.076554.108">Enredo and Pecan: Genome-wide mammalian consistency-based multiple alignment with paralogs</a></li>
+<li><a href="http://dx.doi.org/10.1101/gr.076521.108">Genome-wide nucleotide-level mammalian ancestor reconstruction</a></li>
+
+</ul>
+
+<h4>8 plant EPO</h4><h5>(method_link_type="EPO" : species_set_name="plant")</h5>
+Rice Japonica (Oryza sativa Japonica)<br />
+Rice Indica (Oryza sativa Indica) <br />
+Brachypodium (Brachypodium distachyon)<br />
+Sorghum (Sorghum bicolor)<br />
+Arabidopsis thaliana <br />
+Arabidopsis lyrata <br />
+Grape (Vitis vinifera)<br />
+Poplar (Populus trichocarpa)<br />
+
+
+<p id="synteny"><h2>Synteny Analysis</h2></p>
+<p>Syntenic genes and regions were calculated using gene orthologues predicted from Gramene Protein Compara analysis.  DAGchainer was used to identify colinear chains (<a href="http://bioinformatics.oxfordjournals.org/cgi/content/abstract/bth397?ijkey=67szHzzlMzCQz&keytype=ref">Haas BJ, et al. 2004. Bioinformatics 20(18):3643-6 </a>).  To increase sensitivity, chaining was created on the basis of gene order, excluding positions of non-orthologous genes,rather than using gene coordinates.  Chains were required to have at least five colinear genes with no more than ten intervening genes between neighbors.  Resulting gene-pairs were classified as"syntenic:colinear".  Next, we searched for additional syntenies among non-colinear genes to account for small-scale rearrangements and assembly errors.  This also allowed members of tandemly duplicated clusters to be classified as syntenic, as they were often missed when strict colinearity was enforced.  For a non-colinear gene in species1, nearest flanking colinear anchors were identified and mapped to the irrespective positions in species2. If the non-colinear ortholog in species2 was located within five genes of either anchor, then the non-colinear pair of genes was classified as "syntenic:in-range".  Most of these occurred within already defined colinear chains.  The coordinates of colinear chains was used to define syntenic regions.</p>
+
+<p id="monocot"><h4>Monocot</h4></p>
+<table class="data-table" style="width:auto">
+
+<tr>
+<td class="bg3 left"><b><i>Oryza sativa Japonica</i></b></td>
+<th class="bg4 center" style="width:5em"><i>O.jap</i></th>
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Sorghum bicolor</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- S.boc -->
+<th class="bg1 center" style="width:5em"><i>S.bic</i></th>
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Zea mays</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">YES</td><!-- S.bic -->
+<th class="bg4 center" style="width:5em"><i>Z.may</i></th>
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Brachypodium distachyon</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">YES</td><!-- S.bic -->
+<td class="bg3 center">-</td><!-- Z.mays -->
+<th class="bg4 center" style="width:5em"><i>B.dis</i></th>
+</tr>
+
+</table>
+
+
+<p id="dicot"><h4>Dicot</h4></p>
+
+<table class="data-table" style="width:auto">
+
+<tr>
+<td class="bg3 left"><b><i>Arabidopsis thaliana</i></b></td>
+<th class="bg4 center" style="width:5em"><i>A.tha</i></th>
+</tr>
+
+<tr>
+<td class="bg1 left"><b><i>Arabidopsis lyrata</i></b></td>
+<td class="bg3 center"><font>YES</font></td><!-- S.boc -->
+<th class="bg1 center" style="width:5em"><i>A.lyr</i></th>
+</tr>
+
+<tr>
+<td class="bg3 left"><b><i>Poplar trichocarpa</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">YES</td><!-- S.bic -->
+<th class="bg4 center" style="width:5em"><i>P.tri</i></th>
+</tr>
+
+
+<tr>
+<td class="bg3 left"><b><i>Vitis vinifera</i></b></td>
+<td class="bg4 center"><font>YES</font></td><!-- O.jap -->
+<td class="bg3 center">YES</td><!-- S.bic -->
+<td class="bg3 center">YES</td><!-- Z.mays -->
+<th class="bg4 center" style="width:5em"><i>V.vin</i></th>
+</tr>
+
+</table>
+
+</body>
+</html>

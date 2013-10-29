@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Maize Rice Synteny</title>
+ <link rel="stylesheet" href="/EnsEMBL.css">
+</head>
+<body>
+<h3>Estimation of Syntenic Spans between Maize and Rice</h3>
+
+The source data for the analysis were;<p/>
+
+<ul>
+ <li> Zea mays Agarose FPC Map </li> 
+ <ul><li> <a href="http://www.genome.arizona.edu/fpc/maize/">AGI 25 Oct 2004 release</a> </li></ul>
+ <p/>
+ <li> Oryza sativa (japonica) pseudomolecule assembly </li>
+ <ul><li> <a href="http://www.tigr.org/tdb/e2k1/osa1/pseudomolecules/info.shtml">TIGR release 3</a> </li></ul>
+ <p/>
+ <li>Zea mays EST sequences</li>
+ <ul><li>Retrieved from <a href="http://www.ncbi.nlm.nih.gov/Genbank/">GenBank</a></li></ul>
+ <p/>
+ <li>Zea mays clustered EST sequences (unigenes)</li>
+ <ul><li>DuPont/MMP/Incyte <a href="http://www.agron.missouri.edu/files_dl/MMP/Cornsensus/">'Cornsensus'</a></li></ul>
+</ul>
+
+EST clusters and EST singletons attached to the maize FPC map were
+identified via correspondence with <a
+href="http://www.genome.arizona.edu/fpc/maize/#info">overgos</a>
+placed on the map as physical markers. Of these sequences, only those
+that hit an FPContig through multiple clones (BACs) were considered
+for further analysis.<br>&nbsp;<br>
+
+The sequences associated with the resulting list of overgos were
+aligned to the rice pseudomolecule assembly using BLAT (with
+parameters -minIdentity=50 followed by PslReps with -singleHit). The
+alignments were further filtered using the following criteria;<br>
+<ul><li> Alignment length was greater than 150 basepairs and, </li>
+    <li> Sequences with more than 3 hits to the genome of equal 
+         value were discarded.</li></ul>
+
+The alignments were used to construct a sorted pairwise list of
+locations on the maize FPC map and their corresponding locations on
+the rice genome. For each location on a given maize FPContig, if the
+distance between adjacent points on rice fell within a distance of
+300kb, a syntenic span was constructed.<p/>
+
+
+</body>
+</html>

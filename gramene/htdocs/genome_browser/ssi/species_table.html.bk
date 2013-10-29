@@ -1,0 +1,186 @@
+<h2>browse a genome</h2>
+<div class="col-wrapper">
+
+  <!-- Start Oryzae column -->
+  <div class="narrow3">
+    <h3 class="boxed">Oryzae</h3>
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_sativa_japonica"><img src="/images/species/rice4.jpg" width="60" height="60" alt="Browse Oryza sativa Japonica Group" title="Browse Oryza sativa Japonica Group (japonica rice)" class="sp-thumb" /><i><b> Oryza sativa Japonica Group</b></i></a> </dt> 
+
+      <dd><i> (japonica rice) </i><br/> [TIGR&nbsp;5]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_sativa_msu6"><img src="/images/species/rice4.jpg" width="60" height="60" alt="Browse Oryza sativa Japonica Group MSU6" title="Browse Oryza sativa Japonica Group (japonica rice) MSU6" class="sp-thumb" /><i><b> Oryza sativa Japonica Group MSU6</b></i></a> </dt>
+
+      <dd><i> (msu japonica rice) </i><br/> [MSU&nbsp;6]</dd>
+    </dl>
+    <!-- end species entry -->
+
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_sativa_indica"><img src="/images/species/rice_indica.jpg" width="60" height="60" alt="Browse Oryza sativa Indica Group" title="Browse Oryza sativa Indica Group (indica rice)" class="sp-thumb" /><i><b> Oryza sativa Indica Group</b></i></a> </dt> 
+      <dd><i> (indica rice) </i><br/> [BGI&nbsp;2005]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_glaberrima"><img src="/images/species/rice_glaberrima.jpg" width="60" height="60" alt="Browse Oryza glaberrima" title="Browse Oryza glaberrima" class="sp-thumb" /><i><b> Oryza glaberrima</b></i></a> </dt> 
+      <dd><i> (African rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_glaberrima3s"><img src="/images/species/rice_glaberrima.jpg" width="60" height="60" alt="Browse Oryza glaberrima3s" title="Browse Oryza glaberrima3s" class="sp-thumb" /><i><b> Oryza glaberrima chromosome 3 short arm</b></i></a> </dt>
+      <dd><i> (African rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_barthii"><img src="/images/species/rice_barthii.jpg" width="60" height="60" alt="Browse Oryza barthii" title="Browse Oryza barthii" class="sp-thumb" /><i><b> Oryza barthii</b></i></a> </dt>
+      <dd><i> (wild rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <!--
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_brachyantha"><img src="/images/species/rice_brachyantha.jpg" width="60" height="60" alt="Browse Oryza brachyantha" title="Browse Oryza brachyantha" class="sp-thumb" /><i><b> Oryza brachyantha</b></i></a> </dt>
+      <dd><i> (wild rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+    
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_nivara"><img src="/images/species/rice_nivara.jpg" width="60" height="60" alt="Browse Oryza nivara" title="Browse Oryza nivara" class="sp-thumb" /><i><b> Oryza nivara</b></i></a> </dt>
+      <dd><i> (wild rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_rufipogon3s"><img src="/images/species/rufipogon.jpg" width="60" height="60" alt="Browse Oryza rufipogon3s" title="Browse Oryza rufipogon3s" class="sp-thumb" /><i><b> Oryza rufipogon chr3 short arm</b></i></a> </dt>
+      <dd><i> (wild rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+   -->
+
+    <!--dl class="species-list">
+      <dt>
+        <a href="/Oryza_punctata"><img src="/images/species/punctata.jpg" width="60" height="60" alt="Browse Oryza punctata" title="Browse Oryza punctata" class="sp-thumb" /><i><b> Oryza punctata </b></i></a> </dt> 
+
+      <dd>[OMAP&nbsp;OP__B_final]</dd>
+    </dl-->
+        
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_rufipogon"><img src="/images/species/rufipogon.jpg" width="60" height="60" alt="Browse Oryza rufipogon" title="Browse Oryza rufipogon" class="sp-thumb" /><i><b> Oryza rufipogon </b></i></a> </dt> 
+
+      <dd><i> (red rice) </i><br/> [OMAP&nbsp;OR_CBa]</dd>
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Oryza_minuta"><img src="/images/species/rice_barthii.jpg" width="60" height="60" alt="Browse Oryza minuta Genome" title="Browse Oryza minuta" class="sp-thumb" /><i><b> Oryza minuta </b></i></a> </dt>
+      <dd><i> (wild rice) </i><br/> [OMAP&nbsp;Short&nbsp;Arm]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    </dl>
+        
+  </div>
+
+  <!-- start Poaceae column -->
+  <div class="narrow3">
+    <h3 class="boxed">Other Poaceae</h3>
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Zea_mays"><img src="http://www.maizesequence.org/images/maize_logo.png" width="60" height="60" alt="Browse Zea mays (maize)" title="Browse Zea mays (maize)" class="sp-thumb" /><i><b> Zea mays <small>(MaizeSequence.org)</small></b></i></a> </dt> 
+
+      <dd><!--i> (maize) </i--><br>[Collaborator web site]</br> </dd>
+    </dl>
+    <!-- end species entry -->
+        
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Zea_mays2"><img src="http://www.maizesequence.org/images/maize_logo.png" width="60" height="60" alt="Browse Zea mays (maize)" title="Browse Zea mays (maize)" class="sp-thumb" /><i><b> Zea mays <small>(MaizeSequence.org)</small></b></i></a> </dt> 
+
+      <dd><!--i> (maize) </i--><br>[Collaborator web site]</br> </dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Sorghum_bicolor"><img src="/images/species/sorghum.jpg" width="60" height="60" alt="Browse Sorghum bicolor" title="Browse Sorghum bicolor" class="sp-thumb" /><i><b> Sorghum bicolor</b></i></a> </dt> 
+      <dd><i> (Sorghum) </i><br/> [JGI&nbsp;1.4]</dd>
+    </dl>
+    <!-- end species entry -->
+
+  </div>
+  <!-- end Poaceae column -->
+
+  <!-- start Other plant column -->
+  <div class="narrow3">
+    <h3 class="boxed">Other Plant</h3>
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Arabidopsis_thaliana"><img src="/gfx/atensembl.gif" width="60" height="60" alt="Browse Arabidopsis thaliana" title="Browse Arabidopsis thaliana" class="sp-thumb" /><i><b> Arabidopsis thaliana </b></i></a> </dt> 
+      <dd><i> &nbsp; </i><br/> [TAIR&nbsp;8] </dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Vitis_vinifera"><img src="/images/species/grape.png" width="60" height="60" alt="Browse Vitis vinifera" title="Browse Vitis vinifera" class="sp-thumb" /><i><b> Vitis vinifera</b></i></a> </dt> 
+      <dd><i> (Wine grape) </i><br/> [IGGP&nbsp;1]</dd>
+    </dl>
+    <!-- end species entry -->
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/Populus_trichocarpa"><img src="/images/species/poplar.jpg" width="60" height="60" alt="Browse Populus trichocarpa" title="Browse Populus trichocarpa" class="sp-thumb" /><i><b> Populus trichocarpa</b></i></a> </dt> 
+      <dd><i> (Black cottonwood) </i><br/> [JGI&nbsp;1.1]</dd>
+    </dl>
+    <!-- end species entry -->
+
+
+    <!-- start species entry -->
+    <dl class="species-list">
+      <dt>
+        <a href="/organelles"><img src="/gfx/organelles_logo.gif" width="60" height="60" alt="Browse organelles" title="Browse organelles" class="sp-thumb" /><i><b> Organelles </b></i></a> </dt> 
+    </dt>
+    <!-- end species entry -->
+
+        
+  </div>
+  <!-- end Other Plant column -->
+
+
+
+</div>
+            

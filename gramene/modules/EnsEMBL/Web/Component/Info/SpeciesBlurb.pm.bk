@@ -1,0 +1,26 @@
+package EnsEMBL::Web::Component::Info::SpeciesBlurb;
+
+sub content {
+  my $self        = shift;
+  my $hub         = $self->hub;
+  my $species     = $hub->species;
+  my $site        = $hub->species_defs->SPECIES_DATASET($species);
+  my $type        = lc($hub->species_defs->ENSEMBL_SITETYPE);
+  $type =~ s/^ensembl\s*//g;
+  my $common_name = $hub->species_defs->SPECIES_COMMON_NAME;
+  my $ensembl_version = $hub->species_defs->EG_SITE_RELEASE_VERSION; #$hub->species_defs->SITE_RELEASE_VERSION;
+  my $file        = "/ssi/species/about_$species.html";
+  my $html = EnsEMBL::Web::Controller::SSI::template_INCLUDE($self, $file); 
+
+  ## Link to FTP site
+ if ($hub->species_defs->ENSEMBL_SITETYPE ne 'Pre' 
+     && $species !~ /(Leersia_perrieri)|(Oryza_(barthii|glumaepatula|granulata|longistaminata|meridionalis|minuta|nivara|officinalis|punctata|rufipogon))/i){
+  my $ftp_url = qq{ftp://ftp.ensemblgenomes.org/pub/$type/release-$ensembl_version/fasta/} . lc($species) . '/dna/';
+  $html .= qq(<p style="margin-top:1em"><a href=$ftp_url"><img src="/i/helix.gif" alt="" /></a>
+                <a href="$ftp_url">Download $common_name genome sequence</a> (FASTA)</p>);
+  }
+  
+  return $html;
+}
+
+1;

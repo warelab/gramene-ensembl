@@ -1,0 +1,6 @@
+
+User-agent: *
+Disallow:   /
+
+User-Agent: W3C-checklink
+Allow: /info

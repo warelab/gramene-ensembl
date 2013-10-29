@@ -1,0 +1,73 @@
+<h3>Estimation of Syntenic Spans between <i>Oryza sativa</i> and other species of the <i>Oryza</i> Genus</h3>
+
+<h4>Step 1 - Loading the FPContig Map</h4>
+
+ The OMAP HME FPC map for O.rufipogon was loaded into the Gramene
+ 'mappings' relational database such that the data model captured the
+ locations of FPContigs on chromosomes, and clones on FPContigs.</p>
+ 
+<h4> Step 2 - Sequence Loading </h4>
+
+ All GenBank GSS sequences for O.rufipogon were loaded into the 'mappings'
+ database, and cross references were made between the sequence entries and
+ their parent clones. Pairs of clone end reads could therefore be readily
+ identified. </p>
+ 
+<h4> Step 3 - Sequence Alignment </h4>
+
+ The GSS sequences were aligned to the O.sativa pseudomolecules (TIGR v4
+ assembly) using blat. The standard blat parameters were used, and the
+ alignments from the top 10 scoring hits loaded into the database. </p>
+ 
+<h4> Step 4 - Clone Mapping </h4>
+
+ Mappings between clones and the O. sativa genome were inferred where both
+ ends of a given clone aligned and were within two standard deviations of the
+ mean clone size.  The mean clone size was determined by examining the band
+ counts for the clones in the FPC map and extrapolating the clone size in
+ base pairs using an estimated band size of 1195 bp.  The BES for a clone
+ could map in either the same or different orientations to account for
+ possible inversions, but could not be mapped to different chromosomes or to
+ regions on the same chromosome that fell outside of the expected clone size
+ region (+/- 2 std dev. from the mean clone size).  Clones could map to
+ multiple regions of the genome if the score for the hits in the region were
+ the same (multiple top hits).</h4>
+
+<h4> Step 5 - FPContig Mapping </h4>
+
+ FPContigs mappings on the genome were inferred where three or more
+ overlapping clones on a given contig were located.  The start and end of the
+ clones became the start and end points of each region.  If a gap existed,
+ another region would be formed by the clones in that region.  Discrete
+ sections of each FPContig were free to map to multiple locations on the
+ genome. </p>
+ 
+<h4> Step 6 - O.rufipogon Genome Database </h4>
+
+ A representation of the O.rufipogon FPC map was transferred from the
+ 'mappings' database to an 'ensembl-core' database. The
+ FPContig-to-chromosome locations were represented as the 'assembly', and
+ the clone locations as features annotated on the assembly. The annotated
+ assembly can be viewed using Gramene's Genome Browser. Clones whose
+ mapping to the O.sativa genome was supported by adjacent clones are
+ outlined in red (synteny_group). Clones that were placed without support
+ are outlined in green (synteny_singleton), and clones that could not be
+ located are outlined in grey (no_synteny). </p>
+ 
+<h4> Step 7 - O.sativa Genome Database </h4>
+
+ The O.rufipogon GSS sequence to O.sativa pseudomolecule alignments were
+ transferred to the existing Gramene 'ensembl-core' database as features
+ annotated on the pseudomolecules. The clone to pseudomolecule locations
+ were similarly transferred. The GSS and clone annotations can be viewed as
+ tracks on Gramene's Oryza sativa Genome Browser.</p>
+
+<h4> Step 8 - Compara Database </h4>
+
+ The sections of O.rufipogon FPContigs that were located on the O.sativa
+ pseudomolecules were used directly as syntenic anchors between the
+ assemblies in the respective genome databases, and loaded accordingly into
+ the 'ensembl-compara' database. These annotations can be viewed as tracks
+ on each Genome Browser, or as whole-chromosome overviews from the
+ Browser's SyntenyView application.
+

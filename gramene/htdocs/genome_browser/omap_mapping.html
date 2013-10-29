@@ -1,0 +1,57 @@
+<h3>Estimation of syntenic spans between the <i>Oryza sativa</i> genome and FPContigs from other species of the <i>Oryza</i> Genus</h3>
+
+<h4>Step 1 - Loading the FPContig Map</h4>
+
+ The OMAP FPC maps for the wild rice species were loaded into the Gramene
+ 'mappings' relational database such that the data model captured the
+ locations of clones on FPContigs as designated in the FPC map.</p> 
+ 
+<h4> Step 2 - Sequence Loading </h4>
+
+ All GenBank GSS BAC end sequences (BES) for the wild rice species were 
+ loaded into the 'mappings' database, and cross references were made 
+ between the sequence entries and their parent clones. Pairs of clone end 
+ reads could therefore be readily identified. </p>
+ 
+<h4> Step 3 - Sequence Alignment </h4>
+
+ The BAC end sequences were aligned to the O.sativa pseudomolecules (TIGR v4
+ assembly) using blat. The standard blat parameters were used, and the
+ alignments from the top 10 scoring hits loaded into the database. </p>
+ 
+<h4> Step 4 - Clone Mapping </h4>
+
+ Mappings between clones and the O. sativa genome were inferred where both
+ ends of a given clone aligned and were within two standard deviations of the
+ mean clone size.  The mean clone size was determined by examining the band
+ counts for the clones in the FPC map and extrapolating the clone size in
+ base pairs using an estimated band size of 1195 bp.  The BES for a clone
+ could map in either the same or different orientations to account for
+ possible inversions, but could not be mapped to different chromosomes or to
+ regions on the same chromosome that fell outside of the expected clone size
+ region (+/- 2 std dev. from the mean clone size).  Clones could map to
+ multiple regions of the genome if the score for the hits in the region were
+ the same (multiple top hits).</h4>
+
+<h4> Step 5 - FPContig Mapping </h4>
+
+ FPContigs mappings on the genome were inferred where three or more
+ overlapping clones on a given contig were located.  The start and end of the
+ clones became the start and end points of each region.  If a gap existed,
+ another region would be formed by the clones in that region.  Discrete
+ sections of each FPContig were free to map to multiple locations on the
+ genome. </p>
+ 
+<h4> Step 6 - Ordered OMAP FPC maps </h4>
+
+ Sections of the wild rice FPContigs that were located on the O.sativa
+ pseudomolecules were used to directly anchor syntenic regions between 
+ the contigs on the FPC map to the O. sativa pseudomolecules (TIGR v4
+ assembly).  The anchored FPContigs from each wild rice species were then 
+ ordered and stacked along the syntenic chromosome to create a map that 
+ could be viewed side by side with the associated chromosome map from
+ O. sativa in CMap.  From these views the user can drill down to the 
+ associated clone and BAC end sequence positions that the FPContig mappings
+ are derived from. 
+
+

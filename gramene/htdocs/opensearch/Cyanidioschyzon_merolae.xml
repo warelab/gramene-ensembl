@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription
+      xmlns="http://a9.com/-/spec/opensearch/1.1/">
+ <ShortName>Ensembl (C.mer)</ShortName>
+ <Description>Search Ensembl - Cyanidioschyzon merolae - Cyanidioschyzon merolae</Description>
+ <InputEncoding>UTF-8</InputEncoding>
+ <Tags>Ensembl genome browser Ensembl Cyanidioschyzon merolae Cyanidioschyzon merolae</Tags>
+ <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
+ <Url type="text/html"
+      template="http://dev.gramene.org/Cyanidioschyzon_merolae/psychic?q={searchTerms};site=ensembl"/>
+</OpenSearchDescription>
