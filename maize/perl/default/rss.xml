@@ -1,0 +1,42 @@
+use EnsEMBL::Web::RegObj;
+
+my $release_id   = $SiteDefs::VERSION;
+
+print <<XML
+<rss version="2.0">
+  <channel>
+    <language>en</language>
+    <category>Bioinformatics</category>
+    <category>Genomics</category>
+    <category>Genome Browsers</category>
+    <copyright>Copyright 2007 The Ensembl webteam</copyright>
+    <managingEditor>helpdesk\@ensembl.org</managingEditor>
+    <webMaster>webmaster\@ensembl.org</webMaster>
+    <title>Ensembl release $release_id</title>
+    <link>http://dev.ensembl.org/</link>
+    <generator>Ensembl web API</generator>
+    <image>
+      <url>http://dev.ensembl.org/img/e-rss.png</url>
+      <title>Ensembl release $release_id</title>
+      <link>http://dev.ensembl.org/</link>
+    </image>
+    <ttl>1440</ttl>
+    <description>
+      Ensembl is a joint project between EMBL - EBI and the Sanger Institute
+      to develop a software system which produces and maintains automatic
+      annotation on selected eukaryotic genomes. Ensembl is primarily
+      funded by the Wellcome Trust. The site provides free access to all
+      the data and software from the Ensembl project. Click on a species
+      name to browse the data.
+    </description>
+    <language>en-gb</language>
+    <item>
+      <title>TITLE</title>
+      <description>DESCRIPTION</description>
+     <link>http://www.ensembl.org</link>
+    </item>
+  </channel>
+</rss>
+XML
+
+1;

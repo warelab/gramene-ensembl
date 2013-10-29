@@ -1,0 +1,29 @@
+use Bio::EnsEMBL::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+
+my $def_user = 'maize_rw';
+my $def_pass = 'z3@m@ys';
+my $def_host = 'ascutney.cshl.edu';
+my $def_port = 3306;
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => "39",
+    '-group'   => "core",
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => 'zea_mays_core_39_fpc1_temp',
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => "30",
+    '-group'   => "core",
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => 'zea_mays_core_30_fpc',
+);
+
+1;

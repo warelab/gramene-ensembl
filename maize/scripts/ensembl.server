@@ -1,0 +1,154 @@
+#!/bin/sh
+
+default_version=45
+default_prefix=/usr/local
+default_apache1_httpd=/usr/local/apache/bin/httpd
+default_apache2_httpd=/usr/local/apache2/bin/httpd
+default_httpd_user=nobody
+
+function assert_path {
+    if [ ! -d "$ENSEMBL_HOME" ]; then
+        echo "Cannot find Ensembl version for '$version' in $ENSEMBL_HOME";
+        exit 1;
+    fi
+}
+
+function stop_ensembl {
+    assert_path
+    get_pid
+    if [ -z "$pid" ]; then
+        echo "[$version] Server is not running"
+    else
+        echo "[$version] Stopping version"
+        sudo kill $pid
+        sudo rm $ENSEMBL_HOME/conf/config.packed
+        pid_file="$ENSEMBL_HOME/logs/httpd.pid"
+        if [ -e $pid_file ]; then
+            echo "PID file still exists: $pid_file"
+            sudo rm $pid_file
+        fi
+    fi
+}
+
+function start_ensembl {
+    assert_path
+    get_pid
+    if [ -z "$ENSEMBL_HTTPD" ]; then
+        # EnsEMBL made the switch to Apache2 at v. 43
+    	if [ ${version/[^0-9]*.*/} -ge 43 ]; then
+    	    ENSEMBL_HTTPD=$default_apache2_httpd
+    	else
+    	    ENSEMBL_HTTPD=$default_apache1_httpd
+    	fi
+    fi
+    if [ -z "$ENSEMBL_HTTPD_USER" ]; then
+        ENSEMBL_HTTPD_USER=$default_httpd_user
+    fi
+    if [ ! -e "$ENSEMBL_HTTPD" ]; then
+        echo "ERROR: $ENSEMBL_HTTPD does not exist"
+        exit 1;
+    fi
+    if [ ! -x "$ENSEMBL_HTTPD" ]; then
+        echo "ERROR: Cannot execute $ENSEMBL_HTTPD"
+        exit 1;
+    fi
+    if [ ! -z "$pid" ] && kill -0 $pid 2>/dev/null; then
+        echo "[$version] Server appears to be already running ($pid)"
+    else
+        echo "[$version] Starting version: $ENSEMBL_HOME"
+        command="sudo -u $ENSEMBL_HTTPD_USER $ENSEMBL_HTTPD -d $ENSEMBL_HOME"
+        echo "   Running Command <$command>"
+        $command
+    fi
+}
+
+function show_status {
+    assert_path
+    get_pid
+    if [ -z "$pid" ]; then
+        echo "[$version] No Server PID"
+    else
+    if kill -0 $pid 2>/dev/null; then
+            echo "[$version] Server PID: $pid"
+        else
+            echo "[$version] PID file exists but no process $pid"
+        fi
+    fi
+}
+
+function get_pid {
+    pid=`cat $ENSEMBL_HOME/logs/httpd.pid 2> /dev/null`
+}
+
+function usage_and_exit {
+        cat <<__END_USAGE__
+DESCRIPTION
+    Controls instances of the Ensembl web server. Requires 'sudo' privileges.
+
+USAGE
+    $0 [stop|start|restart|status] [version]
+
+OPTIONS
+    version : (optional) Ensembl version. Will look for EnsEMBL version in
+              \$PREFIX/ensembl-[version]. DEFAULT: \$ENSEMBL_VERSION or \
+$default_version
+
+ENVIRONMENT
+    The script optionally relies on the following environment variables:
+    
+    PREFIX             : Path prefix to Ensembl server(s).
+                         DEFAULT: $default_prefix
+    ENSEMBL_HTTPD      : Path to Apache server daemon
+                         DEFAULT: $default_apache1_httpd
+    ENSEMBL_HTTPD_USER : Web user for instantiating Apache servers
+                         DEFAULT: $default_httpd_user
+    ENSEMBL_VERSION    : The numerical version of EnsEMBL. Overridden by
+                         command line.
+                         DEFAULT: $default_version
+__END_USAGE__
+    exit 0
+}
+
+version=$2
+operation=$1
+if [ -z "$version" ]; then
+    if [ -z "$ENSEMBL_VERSION" ]; then
+        version=$default_version
+    else
+        version=$ENSEMBL_VERSION
+    fi
+fi
+
+if [ -z "$PREFIX" ]; then
+    PREFIX=$default_prefix
+fi
+
+ENSEMBL_HOME=${PREFIX}/ensembl-$version
+cat <<__ENSEMBL_HOME_PRINT__
+(ENSEMBL_HOME=$ENSEMBL_HOME)
+
+__ENSEMBL_HOME_PRINT__
+
+case "$operation" in
+    stop)
+        stop_ensembl
+        ;;
+    start)
+        start_ensembl
+        ;;
+    restart)
+        stop_ensembl
+        sleep 2
+        start_ensembl
+        ;;
+    status)
+        show_status
+        ;;
+    help)
+        usage_and_exit
+        ;;
+    *)
+        echo "Unrecognized option(s) $@!"
+        usage_and_exit
+        ;;
+esac

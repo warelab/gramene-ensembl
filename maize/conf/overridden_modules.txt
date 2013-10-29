@@ -1,0 +1,195 @@
+date:   2007-08-23
+module: Bio::EnsEMBL::DBSQL::AnalysisAdaptor
+since:  Ensembl 46
+reason: Fix SQL query that causes huge performance bottleneck, particularly in contigview. No need to join the analysis table in the query if it's only looking for the actual value of the foreign key itself.
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::DBSQL::AssemblyExceptionFeatureAdaptor
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::ExternalData::DAS::DAS
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::Pgeneric_match
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::Videogram
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::Vsupercontigs
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::Vsynteny
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::bac_map
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::contig
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::generic_match
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::generic_synteny
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::generic_transcript
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::marker
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::sub_repeat
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::supercontigs
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::tilepath
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: Bio::EnsEMBL::GlyphSet::tilepath2
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::BlastView::BlastDefs
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-06-22
+module: EnsEMBL::Web::Component::Chromosome
+since:  Ensembl 45
+reason: Worked on 'synteny_map' module to allow species aliases (so that 'otherspecies=Oryza_sativa' is accepted for 'Oryza_sativa_japonica', the alias in SiteDefs.pm)
+==============================================================================
+date:   2007-09-12
+module: EnsEMBL::Web::Component::Location
+since:  Ensembl 46
+reason: cytoview_config now has the same structure as contigviewbottom_config in order to avoid an error on Cytoview
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Component::Search
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Configuration::Location
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Configuration::UniSearch
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::ColourChanger
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::DropDown::Menu::Compara
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::DropDown::Menu::DAS
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::DropDown::Menu::ImageSize
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::DropDown::Menu::Options
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Document::HTML::Null
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-09-12
+module: EnsEMBL::Web::Document::Popup
+since:  Ensembl 46
+reason: To call 'extra_configuration' so that other stylesheets may be loaded.
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::Object::Gene
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::Vkaryotype
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::Vmapview
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::chromosome
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::contigviewbottom
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::contigviewtop
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::cytoview
+since:  Ensembl 46
+reason:   
+==============================================================================
+date:   2007-08-23
+module: EnsEMBL::Web::UserConfig::protview
+since:  Ensembl 46
+reason:   
+==============================================================================

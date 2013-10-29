@@ -1,0 +1,1520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+        <h3 id="Synopsis">
+            Synopsis
+        </h3>
+        <ul>
+            <li>
+                <a href="#Synopsis">Synopsis</a>
+            </li>
+            <li>
+                <a href="#Introduction">Introduction</a>
+            </li>
+            <li>
+                <a href="#Chromosome">Chromosome</a>
+            </li>
+            <li>
+                <a href="#Overview">Overview</a>
+            </li>
+            <li>
+                <a href="#DetailedView">Detailed View</a>
+                <ul>
+                    <li>
+                        <a href="#MenuBar">Menu Bar</a>
+                        <ul>
+                            <li>
+                                <a href="#FeaturesMenu">Features</a>
+                            </li>
+                            <li>
+                                <a href="#GenesMenu">Genes</a>
+                            </li>
+                            <li>
+                                <a href="#ESTsMenu">ESTs</a>
+                            </li>
+                            <li>
+                                <a href="#GSSsMenu">GSSs</a>
+                            </li>
+                            <li>
+                                <a href="#FSTsMenu">FSTs</a>
+                            </li>
+                            <li>
+                                <a href="#ArraysMenu">Arrays</a>
+                            </li>
+                            <li>
+                                <a href="#RepeatsMenu">Repeats</a>
+                            </li>
+                            <li>
+                                <a href="#MDRsMenu">MDRs</a>
+                            </li>
+                            <li>
+                                <a href="#MarkersMenu">Markers</a>
+                            </li>
+                            <li>
+                                <a href="#DASSourcesMenu">DAS</a>
+                            </li>
+                            <li>
+                                <a href="#OptionsMenu">Options</a>
+                            </li>
+                            <li>
+                                <a href="#ImageSizeMenu">Image</a>
+                            </li>
+                            <li>
+                                <a href="#HelpMenu">Help</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#NavigationBar">Navigation Bar</a>
+                    </li>
+                    <li>
+                        <a href="#FeatureTracks">Feature Tracks</a>
+                    </li>
+                    <li>
+                        <a href="#contig">DNA:contig</a>
+                    </li>
+                    <li>
+                        <a href="#Transcripts">Transcripts and Genes</a>
+                        <ul>
+                            <li>
+                                <a href="#Fgenesh">Fgenesh Models</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#ProteinHomologyEvidence">Protein Homology Evidence</a>
+                        <ul>
+                            <li>
+                                <a href="#swall">UniProt Proteins</a>
+                            </li>
+                            <li>Species-specific sub-sets
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#mRNAHomologyEvidence">mRNA Homology Evidence</a>
+                        <ul>
+                            <li>
+                                <a href="#vertrna">EMBL mRNA</a>
+                            </li>
+                            <li>Species-specific sub-sets
+                            </li>
+                            <li>
+                                <a href="#cdna_updates">cDNA Updates</a>
+                            </li>
+                            <li>
+                                <a href="#unigene">UniGene</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#ESTHomologyEvidence">EST Homology Evidence</a>
+                    </li>
+                    <li>
+                        <a href="#trna">tRNA</a>
+                    </li>
+                    <li>
+                        <a href="#rfam">Rfam</a>
+                    </li>
+                    <li>
+                        <a href="#eponine">Eponine</a>
+                    </li>
+                    <li>
+                        <a href="#first_ef">First Exon Finder (First EF)</a>
+                    </li>
+                    <li>
+                        <a href="#MicroarrayProbeSets">Microarray Probe Sets</a>
+                    </li>
+                    <li>
+                        <a href="#variation_affy100">Affy 100 SNP</a>
+                    </li>
+                    <li>
+                        <a href="#variation_affy500">Affy 500 SNP</a>
+                    </li>
+                    <li>
+                        <a href="#compara_alignment">Whole genome similarity matches</a>
+                    </li>
+                    <li>
+                        <a href="#markers">Markers</a>
+                    </li>
+                    <li>
+                        <a href="#qtl">Quantitative Trait Loci (QTL)</a>
+                    </li>
+                    <li>
+                        <a href="#cpg">CpG islands</a>
+                    </li>
+                    <li>
+                        <a href="#fg_regulatory_features">Regulatory Features</a>
+                    </li>
+                    <li>
+                        <a href="#ctcf">CTCF</a>
+                    </li>
+                    <li>
+                        <a href="#regulatory_regions">cisRED/miRanda/FlyReg</a>
+                    </li>
+                    <li>
+                        <a href="#variation">Single Nucleotide Polymorphisms (SNPs)</a>
+                    </li><!--        <li><a href="#haplotype">Haplotypes</a></li> -->
+                    <li>
+                        <a href="#Repeats">Repeats</a>
+                    </li>
+                    <li>
+                        <a href="#tilepath">Tile Path</a>
+                    </li><!--        <li><a href="#vega_clones">Vega clones</a></li> -->
+                    <li>
+                        <a href="#gap">Gaps</a>
+                    </li>
+                    <li>
+                        <a href="#gcplot">%GC</a>
+                    </li>
+                    <li>
+                        <a href="#das">DAS Sources</a>
+                    </li>
+                    <li>
+                        <a href="#urlfeature">URL Sources</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#BasepairView">Basepair View</a>
+                <ul>
+                    <li>
+                        <a href="#sequence">Sequence</a>
+                    </li>
+                    <li>
+                        <a href="#codonseq">Amino acids</a>
+                    </li>
+                    <li>
+                        <a href="#codons">Start/Stop Codons</a>
+                    </li>
+                    <li>
+                        <a href="#RestrictionEnzymeSites">Restriction Enzyme Sites</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#PopUpMenus">"Pop-up" menus in Detailed View</a>
+            </li><!--    <li><a href="#customize">Customizing the display</a></li>-->
+        </ul>
+        <h3 id="Introduction">
+            Introduction
+        </h3>
+        <p>
+            Ensembl '<a href="HELP_contigview_HELP">ContigView</a>' is the principal data visualisation tool for genome sequence annotation information. It provides a high level view of the contig sequences that form the genome sequence assembly, and of genes and other features that have been placed on it.
+        </p>
+        <p>
+            '<a href="HELP_contigview_HELP">ContigView</a>' can be customised to suit you. More information can be added or the displays can be simplified to make browsing faster. Please look at the '<a href="#MenuBar">Menu Bar</a>' section for details. <!--
+Please look at the
+<a href="#customize">options for customising the display</a>.
+-->
+        </p>
+        <p>
+            The page is split into four sections representing different levels of zooming into the chromosome:
+        </p>
+        <ol>
+            <li>The entire <a href="#Chromosome">chromosome</a> or a scaffold as an alternative sequence block for species with pre-chromosome assemblies.
+            </li>
+            <li>An '<a href="#Overview">Overview</a>' panel displaying a chromosome region of up to 1 Mb.
+            </li>
+            <li>The main '<a href="#DetailedView">Detailed View</a>' panel showing a broad range of features.
+            </li>
+            <li>A '<a href="#BasepairView">Basepair View</a>' panel showing within a small assembly region of up to 500 bases the actual sequence, six frame translations and restriction endonuclease recognition sites.
+            </li>
+        </ol>
+        <p>
+            The red boxes in the '<a href="#Chromosome">Chromosome</a>', '<a href="#Overview">Overview</a>' and '<a href="#DetailedView">Detailed View</a>' panels represent the regions shown at higher magnification in the panel following below. The absolute base pair location of the region displayed in '<a href="#DetailedView">Detailed View</a>' is indicated in the '<a href="#NavigationBar">Navigation Bar</a>' at the top of the panel. You can use this bar to navigate along any chromosome by entering a new chromosome and location. Physical map locations may be directly specified entering base pair coordinates or numbers with 'kb' or 'Mb' as suffix.
+        </p>
+        <h3 id="Chromosome">
+            Chromosome
+        </h3>
+        <p>
+            The '<a href="#Chromosome">Chromosome</a>' panel displays an ideogram of an entire chromosome together with its cytogenetic banding pattern. Maps of cytogenetic bands to the genome sequence allow for rather crude orientation and are not available for all species. For all those species with genome sequence assemblies in a pre-chromosome stage, Ensembl displays other 'top-level' sequence entities such as '<a href="/info/glossary#Scaffold">scaffolds</a>'.
+        </p>
+        <p>
+            The red box illustrates the extent of the region displayed in the '<a href="#Overview">Overview</a>' panel below and can be moved by clicking anywhere on the chromosome. The '<a href="#Chromosome">Chromosome</a>' display can be turned on or off using the plus [+] or minus [-] boxes, respectively.
+        </p>
+        <h3 id="Overview">
+            Overview
+        </h3>
+        <p>
+            The '<a href="#Overview">Overview</a>' panel displays a larger section of a chromosome together with its basic annotation. Usually the range is set to 1 Mb but can be smaller for species with genomes of higher density.
+        </p>
+        <p>
+            The panel displays the following information:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <b>Chromosome bands</b> - Cytogenetic chromosome band(s) that map to a particular region allow for crude orientation on the genome sequence. Data sets mapping cytogenetic bands to genome sequence coordinates are currently not available for all species displayed in Ensembl.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Scale bar</b> - A scale bar illustrates the physical map coordinates this particular region falls into. Generally, Ensembl displays the genome sequence in standard notation from the p-telomere to the q-telomere. Since estimated gap sizes are included in the physical map, coordinates might change between genome sequence assembly builds.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>DNA (contigs)</b> - The individual contig sequences that form the genome sequence assembly in this particular region are depicted in alternating dark and light blue colour. Where no blue contig is shown, this indicates a gap in the assembly.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Markers</b> - The positions of Sequence Tagged Sites (<a href="/info/glossary.html#STS">STS</a>) markers are indicated in magenta directly under the contig map ideogram.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Ensembl genes</b> - Coloured boxes represent automatically annotated Ensembl genes. Thereby 'Ensembl known genes', which correlate to species-specific entries in public sequence databases are red, 'Ensembl novel genes' are black and 'Ensembl pseudogenes' are drawn in grey.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>ncRNA genes</b> - Several classes of hand checked RNA genes are also drawn if available for the organism-specific data set.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Vega Havana genes</b> - Manually curated genes from the <a href="http://vega.sanger.ac.uk/">Vega</a> database (<a href="/info/publications.html#Nucleic_Acids_Res_D459">Ashurst, et al., 2005</a>) annotated by the <a href="http://www.sanger.ac.uk/HGP/havana/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Havana</a> group at the <a href="http://www.wellcome.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Wellcome Trust</a> <a href="http://www.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Sanger Institute</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Vega External genes</b> - Manually curated genes from the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> database (<a href="/info/publications.html#Nucleic_Acids_Res_D459">Ashurst, et al., 2005</a>) annotated by other <a href="http://vega.sanger.ac.uk/info/acknowledgements/Homo_sapiens.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">groups</a> than <a href="http://www.sanger.ac.uk/HGP/havana/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Havana</a>. The group responsible for annotating the gene is indicated by the prefix of the gene name.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Gene legend</b> - The color coding of all types of genes is dynamically shown at the bottom of the '<a href="#Overview">Overview</a>' panel in the 'Gene legend' track. For additional information about the categories of genes displayed, see <a href="#Transcripts">transcript information</a> below.
+                </p>
+            </li>
+        </ul>
+        <p>
+            The red box illustrates the extent of the region displayed in the subsequent '<a href="#DetailedView">Detailed View</a>' panel below. You may click anywhere in the '<a href="#Overview">Overview</a>' panel to re-centre the red box at that point on the contig map. The '<a href="#DetailedView">Detailed View</a>' display below will change accordingly. Except for re-centring the display, contigs and genes are not clickable in the '<a href="#Overview">Overview</a>' display, but they are selectable in the '<a href="#DetailedView">Detailed View</a>' panel below. The '<a href="#Overview">Overview</a>' display can be turned on or off using the plus [+] or minus [-] button, respectively.
+        </p>
+        <h3 id="DetailedView">
+            Detailed View
+        </h3>
+        <p>
+            The third panel '<a href="#DetailedView">Detailed View</a>' shows smaller regions of chromosomes and provides more detailed insight into genome annotation. Features are annotated in tracks along the genome sequence assembly in its standard notation from the p-telomere to the q-telomere. The genomic DNA sequence is generally assembled from smaller sequence-level entities (BAC clones, whole genome sequencing scaffolds or contig sequences in general), which are represented by alternating dark and light blue blocks. Colour-coded features <b>above</b> the contigs are positioned on the <b>forward</b> strand, while those <b>below</b> are on the <b>reverse</b> strand, respectively.
+        </p>
+        <p>
+            The entire '<a href="#DetailedView">Detailed View</a>' display panel can be turned on or off using the plus [+] or minus [-] button, respectively.
+        </p>
+        <p>
+            <a name="pull_down" id="pull_down"></a><!-- ContigView Help menu option -->
+        </p>
+        <h4 id="MenuBar">
+            Menu Bar
+        </h4>
+        <p>
+            The '<a href="#MenuBar">Menu Bar</a>' and the '<a href="#NavigationBar">Navigation Bar</a>' on top of the '<a href="#DetailedView">Detailed View</a>' panel are the main tools to customise this display. A set of pull-down menus is available and allows upon opening selection of options via check boxes. Changes take effect by clicking at the '<i>Close menu</i>' option at bottom of the menus. The following menus are available:
+        </p>
+        <ul>
+            <li id="FeaturesMenu">
+                <p>
+                    <strong>Features</strong> - Genes, transcripts, markers and features in general that are annotated on the genome sequence are organised into tracks. Some feature tracks are not displayed by default, but can be added. Turning off unwanted features and functions will not only make the web pages download and render faster but also make it easier to see the features of interest.
+                </p>
+                <p>
+                    Generally, Ensembl annotates a broad variety of features. Some of them may be species-specific. A more detailed description of feature tracks and the underlying data sets follows below.
+                </p>
+            </li>
+            <li id="GenesMenu">
+                <p>
+                    <strong>Genes</strong> - Gene tracks (e.g. <a href="#Fgenesh">Fgenesh Models</a>) display several gene categorizations, distinguished by color. The "Genes" menu provides the ability to control the display of specific categories of genes. Checking off categories turns off the display of their color-coded genes. Gene categories are defined by the specific analysis method that generates the genes or the data set on which the genes are annotated. Please see <a href="#Transcripts">Transcripts and Genes</a> for specific information about gene categories. By default, all gene categories are displayed.
+                </p>
+            </li>
+            <li id="ComparativeMenu">
+                <p>
+                    <strong>Comparative</strong> - Ensembl provides both pairwise and multiple whole genome alignments. This menu provides a list of tracks that can be added to the display. Please see the '<a href="#compara_alignment">Whole Genome Similarity Matches</a>' section for a detailed description of the calculation method. The following naming convention is in use:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            <strong>Species</strong> - We use the common name (e.g. Human for <i>Homo sapiens</i>, Cat for <i>Felis catus</i>, ...) or the abbreviated form of the scientific name when the common name is not suitable (C.intestinalis for <i>Ciona intestinalis</i> or C.savignyi for <i>Ciona savignyi</i>)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Conservation</strong> - Ensembl compares the genomes of species pairs within phyla (<i>e. g.</i> vertebrates or arthropods) where significant homology can be expected. The <strong>conservation</strong> (cons) track annotates the results of this comparison. For closely releated species pairs the initial conservation information is then re-scored into a second levels of conservation, which is annotated by the <strong>high conservation</strong> (high cons) track.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Algorithm</strong> - Ensembl may compare species pairs with two or more different algorithms. In these cases the algorithm is indicated in full (<i>e. g.</i> BLAT) or abbreviated form (<i>e. g.</i> bz for BLASTz). Please see the '<a href="#compara_alignment">Whole Genome Similarity Matches</a>' section for more details.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>Constrained elements</strong>
+                        <p>
+                            Constrained elements are displayed in dark pink (available for the 10 way Pecan multiple alignments only). These are stretches of the multiple alignment where the sequences are highly conserved according to the score calculated using Gerp (<a href="http://www.genome.org/cgi/content/abstract/15/7/901" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Cooper GM <i>et al.</i></a>).
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li id="DASSourcesMenu">
+                <p>
+                    <strong>DAS Sources</strong> - While all features are part of the underlying Ensembl databases, the Distributed Annotation System (DAS) provides a way to display Ensembl-external data sets in the genome browser. Ensembl provides already a set of pre-configured data sources, which can be added by selecting from the check boxes. Others data sets be added and configured in Ensembl '<a href="HELP_dasconfview_HELP">DasConfView</a>', which is available via the 'Manage sources ...' option in this menu.
+                </p>
+            </li>
+            <li id="RepeatsMenu">
+                <p>
+                    <strong>Repeats</strong> - Ensembl characterises and annotates several classes of repetitive sequences in <a href="#repeat_lite">repeats</a> tracks. Options in this menu allow annotation of individual or all classes simultaneously.
+                </p>
+            </li>
+            <li id="OptionsMenu">
+                <p>
+                    <strong>Options</strong> are properties of the assembly or display, rather than features located on the assembly.
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            <strong>Half-height glyphs</strong> - It is also possible to set the display to show most of the features at half their normal height.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Show empty tracks</strong> - This option will cause an information message to be displayed for a feature type, even when no features of that type appear in the current view. You may prefer this to the default behaviour, whereby the track is not displayed at all when there are no features to display.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Quality Scores Gridlines</strong> - This option toggles horizontal gridlines at quality score levels 30, 60, and 90.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Quality Score Line Plot</strong> - This option controls whether the plot is drawn as a line plot (<strong>on</strong>) or as an area plot (<strong>off</strong>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Gene legend</strong> - Unchecking this option will remove the descriptive legend explaining the colour-coding of different gene and transcript types.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Show register lines</strong> - Unchecking this option will remove the evenly spaced vertical lines.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Show pop-up menus</strong> - For most features in the '<a href="#DetailedView">Detailed View</a>' panel, extra information and links can be displayed in pop-up text windows by pointing at features.
+                        </p>
+                        <p>
+                            The pop-up menu function can be turned off entirely by unchecking this option. This may speed your browsing. You will still be able to click on a feature to go to the corresponding information page. An alternative way of using the pop-up windows is also available: you can choose to have pop-up menus appear only when you click on a feature, by check ing the '<b>... popup on click</b>' option. However, if you plan to use Ensembl regularly it is well worth getting used to the default behaviour of the pop-up menus.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Clones</strong> -
+                        </p>
+                        <p>
+                            <b>Tile path</b> - The tile path track in human Ensembl shows the tiling path (i. e. the locations) of BAC clones that form the current genome sequence assembly (the "golden path"). The different colours of red, orange and gold are only used to help distinguish between clones in the display. Pink clones are still in the phase1Ac stage. The name of the clone will be displayed if there is room in the display. Clones for which fluorescence <i>in situ</i> hybridisation (FISH) mapping information is available are marked with a black triangle in the top left corner. Where a clone is shown in outline, the mapping of the clone to the sequence assembly is problematic and the true length is not displayed. <a href="#mouse">Mouse-over</a> brings up information about a particular clone and an option to re-centre the display around its location.
+                        </p>
+                        <p>
+                            <b>1 Mb Clone Set</b> - The 1 Mb clone set has been developed as a resource to aid the identification of breakpoints in chromosome rearrangements. The clones were selected to provide a set spaced at approximately 1 Mb intervals across the entire genome. Clones for which FISH-mapping data is available are marked in the top left corner with a black triangle. Dark and light green are only used to help distinguish between clones in the display. The name of the clone will be displayed if there is room in the display. Pointing at a clone will display a pop-up window with information about the clone and a clickable link to re-centre the clone.
+                        </p>
+                        <p>
+                            <b>32k Clone Set</b> - Clones from the human genome high-resolution BAC re-arrayed <a href="http://bacpac.chori.org/pHumanMinSet.htm" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">32k clone set</a> mapped to the genome sequence. The 32k clone set and individual clones from it are available via the <a href="http://bacpac.chori.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">BAC-PAC</a> resource.
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li id="ExportMenu">
+                <p>
+                    <strong>Export</strong> - This pull-down menu gives several options for downloading the data represented in the '<a href="#DetailedView">Detailed View</a>' panel.
+                </p>
+                <p>
+                    '<b>Flat file</b>', '<b>FASTA</b>' and '<b>Image</b>' will redirect you to an '<a href="HELP_exportview_HELP">ExportView</a>' page preset to the extent of genome sequence displayed in '<a href="#DetailedView">Detailed View</a>' and to the kind of download you have requested.
+                </p>
+                <p>
+                    Ensembl gene list, EST gene list, Vega gene list and SNP list will redirect you to the <a href="HELP_martview_HELP">BioMart</a> data mining system, with the displayed region and choice of focus already selected.
+                </p>
+            </li><!--
+<li id="JumpToMenu">
+<p>
+<strong>Jump to ...</strong> -
+Options on this pull-down menu allow you to jump to the same region displayed in Ensembl
+'<a href="HELP_cytoview_HELP">CytoView</a>', view direct comparisions to other species in Ensembl
+'<a href="HELP_multicontigview_HELP">MultiContigView</a>', or to jump to Ensembl
+'<a href="HELP_mapview_HELP">MapView</a>'.
+You can also view the same region in the
+<a href="http://genome.cse.ucsc.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UCSC</a>
+<a href="http://genome.ucsc.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Genome Browser</a> or in
+<a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a>
+<a href="http://www.ncbi.nlm.nih.gov/mapview/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Map Viewer</a> provided that these browsers display the same genome sequence assembly version as Ensembl does.
+</p>
+</li>
+-->
+            <li id="ImageSizeMenu">
+                <p>
+                    <strong>Image Size</strong> - By default, the overall image size is set to a width of 700 pixels. This is appropriate for standard-sized screens. The '<b>Image size</b>' pull-down menu on the gold bar allows you to adjust the width up to 2000 pixels.
+                </p>
+            </li>
+            <li id="HelpMenu">
+                <p>
+                    <strong>Help</strong> - An additional pull-down menu on the menu bar gives you the option to jump directly to help sections on '<a href="#DetailedView">Detailed View</a>' display <a href="#pull_down">configuration</a>, description of <!-- anchors should change: pull_down to contigview#MenuBar and _dassources_ to contigview#DASSources -->
+                     '<a href="HELP_dassources_HELP">DAS Sources</a>', this general help page for '<a href="HELP_contigview_HELP">ContigView</a>' and to a page for sending questions or comments to the <strong>Helpdesk</strong>.
+                </p>
+            </li>
+        </ul>
+        <h4 id="NavigationBar">
+            Navigation Bar
+        </h4>
+        <p>
+            The '<a href="#NavigationBar">Navigation Bar</a>' and the '<a href="#MenuBar">Menu Bar</a>' on top of the '<a href="#DetailedView">Detailed View</a>' panel are the main tools to customise this display. The following navigation functions are available:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <strong>Horizontal Scrolling</strong> - Navigation buttons allow horizontal scrolling of the display for <strong>1</strong>, <strong>2</strong> and <strong>5</strong> Mb to the <strong>left</strong> or <strong>right</strong>. As the '<a href="#Overview">Overview</a>' panel displays 1 Mb sequence these buttons shift the entire display for multiples of this panel. Window buttons move the display only 80% to the left or right, preserving 20% of the display to facilitate orientation.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Zooming Buttons</strong> - By default, the '<a href="#DetailedView">Detailed View</a>' panel shows a region of 1 Mb. Clicking the <strong>plus</strong> or <strong>minus</strong> buttons zooms into or out of the region by a factor of approximately 2, respectively. Both buttons allow zooming in a range of as little as 1 bp and as much as 1 Mb.
+                </p>
+                <p>
+                    You can also navigate by clicking on the scale bars at the top and bottom of the '<a href="#DetailedView">Detailed View</a>' panel. This brings up a clickable <a href="#PopUpMenus">pop-up menu</a> that lets you zoom or re-centre the '<a href="#DetailedView">Detailed View</a>' display.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Zooming Ladder</strong> - The zooming ladder restricts or expands the field of view to a scale suitable to view any feature of interest. Individual steps of the ramp represent 1, 5, 10, 50, 100, 200, 500 kb or 1 Mb sequence, respectively. Regions larger than 1 Mb up to an entire chromosome are best viewed in Ensembl '<a href="HELP_cytoview_HELP">CytoView</a>'.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Physical Coordinates</strong> - The physical coordinates of the sequence region displayed in the '<a href="#DetailedView">Detailed View</a>' panel are indicated in the '<a href="#NavigationBar">Navigation Bar</a>'. To move to a different chromosome or to specify a new chromosomal location in base pairs, enter numbers in the appropriate boxes and click the <i>Refresh</i> button.
+                </p>
+                <p>
+                    To specify a region between two generic features such as cytogentic bands or STS markers, use Ensembl '<a href="HELP_mapview_HELP">MapView</a>'.
+                </p>
+            </li>
+        </ul>
+        <h4 id="FeatureTracks">
+            Feature Tracks
+        </h4>
+        <p>
+            Feature tracks are named at the left side of the '<a href="#DetailedView">Detailed View</a>' panel. Clicking a track name will directly link to a description in Ensembl '<a href="HELP_helpview_HELP">HelpView</a>'. Black track names represent Ensembl-internal feature tracks, while blue names indicate tracks served via the Distributed Annotation System from external <a href="#das">DAS sources</a>. Tracks may be turned on or off and <a href="#customize">customized</a> to suit your requirements. Pointing the mouse to a feature will bring up a pop-up window showing the feature identifier together with links to more detailed information whenever available. Pop-up menus can be turned off by un-checking 'show pop-up menus' in the 'Options' pull-down menu. A single click on most features will take you to an appropriate page with more information on that particular feature, unless the '... pop-up on click' option from the <a href="#OptionsMenu">Options menu</a> has been selected. (See <a href="#customize">customizing the display</a> for more details.)
+        </p>
+        <ul>
+            <li id="quality_score">
+                <p>
+                    <strong>Quality Scores track</strong> This track displays a score plot of the raw <a href="http://www.phrap.org/phredphrapconsed.html#block_phred" title="Phred">Phred</a> quality scores. Quality values range between 0 and 90 and are associated with individual bases. They express the log probability that the base was called incorrectly. The quality scores track provides a visual cue for the confidence in predicted and computational annotations in the sequence region. The quality scores track is available on both the '<a href="#DetailedView">Detailed View</a>' and '<a href="#BasepairView">Basepair View</a>'
+                </p>
+                <p>
+                    Several options provide greater control over the Quality Scores track and are available in the <a href="#OptionsMenu">Options menu</a>
+                </p>
+                <p>
+                    Clicking on any point on the score plot shows a context menu with the raw Phred score at that point.
+                </p>
+            </li>
+            <li id="improved_sequence">
+                <p>
+                    <strong>Improved Regions track</strong> This track displays regions within BAC contigs that were tagged by the sequence finishing team for further work. These features are only annotated on BAC clones with the <a href="http://www.ncbi.nlm.nih.gov/HTGS/faq.html#keywords">HTGS_IMPROVED</a> status designation. The DNA sequence contained within these regions are generally of higher quality.
+                </p>
+                <p>
+                    Because of the nature of the sequencing project, maize BAC clones will likely not reach beyond <a href="http://www.ncbi.nlm.nih.gov/HTGS/" title="HTGS">GenBank Phase I</a>. In order to maximize the quality of the generated sequence, problematic regions are tagged in several stages and specific sequence reads are then called. An automated two-phase approach is used for identifying such regions. First, sequences with less desirable qualities are mined for high repeat content. Next, GSS and GLL reads are aligned within those regions in order to "rescue" regions that are then further sequenced.
+                </p>
+                <p>
+                    It is important to note that while sequences within improved regions are believed to be of high quality, this does not preclude non-improved regions from being of high quality as well. Improved regions are specifically targeted at problematic regions that are thought to contain biologically meaningful markers.
+                </p>
+            </li>
+        </ul>
+        <h4 id="contig">
+            DNA:contigs
+        </h4>
+        <p>
+            The 'DNA (contigs)' track shows a representation of the genomic sequence assembly. Alternating light and dark blue blocks represent individual contig sequences in the genome sequence assembly. Small arrows near sequence identifiers represent the relative orientation of a particular contig sequence within the genome assembly in standard notation. Where no blue contig is shown, there is a gap in the assembly.
+        </p><!--
+<p>
+More specific information on genome sequencing strategies and genome sequencing assemblies is available from the
+<a href="HELP_assemblies_HELP">assemblies</a> document.
+</p>
+-->
+        <p>
+            Pointing at a contig sequence representation in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the complete Ensembl sequence identifier (e.g. AC120349.5.1.183055) at the top. Sequence identifiers regularly include an <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> accession number whenever available, as well as a sequence version, a start and an end coordinate ([EMBL accession number].[sequence version].[start].[end]). Since Ensembl is designed to use several coordinate systems like 'contigs', 'clones', 'supercontigs', 'scaffolds', 'chunks' or 'chromosomes' in parallel, corresponding sequence regions in other coordinate systems will be listed. Links in the pop-up windows allow for export of the sequence region or for centring the '<a href="#DetailedView">Detailed View</a>' panel on a particular sequence region. For BAC clones, Ensembl will provide an "EMBL source file" link to the underlying sequence database record in the pop-up window.
+        </p>
+        <p>
+            Clicking on a contig sequence representation in the '<a href="#DetailedView">Detailed View</a>' track will immediately centre on the sequence region.
+        </p>
+        <h4 id="Transcripts">
+            Transcripts and Genes
+        </h4>
+        <p>
+            '<a href="#DetailedView">Detailed View</a>' does not display genes as such but rather as their individual transcripts. Transcripts shown <b>above</b> the <a href="#contig">DNA:contig</a> bar are transcribed in the <b>forward direction</b> (left to right), while transcripts shown <b>below</b> the bar are transcribed in the <b>reverse direction</b> (right to left). Ensembl considers genes as a collection of exons, which may form several transcripts. A colored box represents each exon, while angled lines represent introns joining all exons in a transcript. 5' and 3' untranslated regions of the transcript (UTRs) are shown as coloured outlines, while the predicted coding regions are shown in solid colour. This distinction is seen best when viewing relatively small regions of a chromosome.
+        </p>
+        <p>
+            If there are several transcripts displayed on different lines at the same point on the sequence, then that gene has been assessed as producing multiple alternatively spliced transcripts.
+        </p>
+        <p>
+            Several transcript types are available within the Ensembl system:
+        </p>
+        <ul>
+            <li id="Fgenesh">
+                <p>
+                    <b>Fgenesh Models</b> - This track shows gene models predicted by <a href="http://www.softberry.com/" title="Fgenesh">Fgenesh</a> (<a href="http://www.genome.org/cgi/content/abstract/10/4/516">Salamov, A., Solovyev, V., 2000</a>), an <em>ab initio</em> gene prediction algorithm. The gene predictions are classified based on their similarity to the <a href="http://www.ncbi.nlm.nih.gov" title="NCBI">non-redundant GenBank protein set</a>. Similarity is computed using protein-protein BLAST (<a href="http://www.cs.umd.edu/~wu/paper/blast_ref.pdf" title="Basic Local Alignment Search Tool">Altschul, S. et al, 1990</a>). The track distinguishes these classifications as color-coded gene objects:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            <b style="color: #0000cd">Protein-coding genes</b> are predicted models that have a significant protein alignment to a known protein.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b style="color: #999">Hypothetical genes</b> are predicted models that do not align significantly to any known proteins.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b style="color: #b03060">Transposon-like genes</b> are predicted models that have a significant alignment to known transposable elements. The list of transposable elements is a carefully-annotated subset of the full NR data set.
+                        </p>
+                    </li>
+                </ul>
+                <p>
+                    Pointing at an Fgenesh model in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the stable transcript identifier (e.g. AC211704.1_FGT029) or an assigned gene symbol at the top. Additional identifiers link to '<a href="HELP_geneview#EnsemblGeneReport_HELP">Ensembl Gene Report</a>', '<a href="HELP_transview#EnsemblTranscriptReport_HELP">Ensembl Transcript Report</a>' and '<a href="HELP_protview#EnsemblProteinReport_HELP">Ensembl Protein Report</a>' pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively.
+                </p>
+                <p>
+                    Clicking on a transcript in the '<a href="#DetailedView">Detailed View</a>' track will directly lead to the corresponding Ensembl '<a href="HELP_geneview#EnsemblGeneReport_HELP">Ensembl Gene Report</a>' page.
+                </p>
+            </li>
+            <li id="evega_transcript">
+                <p>
+                    <b>Vega Havana Transcripts</b> - This track shows a set of manually curated transcripts from the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> database (<a href="/info/publications.html#Nucleic_Acids_Res_D459">Ashurst, et al., 2005</a>) annotated by the <a href="http://www.sanger.ac.uk/HGP/havana/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Havana</a> group at the <a href="http://www.wellcome.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Wellcome Trust</a> <a href="http://www.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Sanger Institute</a>. Since manual curation is very labour intensive, manually curated genes and transcripts are currently limited to certain chromosomes of popular research organisms. An extensive list of manually annotated sets and credits for the annotation are available directly from the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> genome browser.
+                </p>
+                <p>
+                    'Curated Transcripts' are shown in shades of <b>blue</b>, <b>purple</b> and <b>grey</b> and the colour coding is summarised at the bottom of the '<a href="#Overview">Overview</a>' panel. Generally, Vega transcripts are either labelled with gene symbols or identifiers derived from international BAC clone names (e.g. RP11-217H1), gene and transcript numbers (e. g. RP11-217H1.1-001). When the track is expanded the <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Transcript class</a> is shown below the transcript, when the track is condensed the <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Gene type</a> is shown instead.
+                </p>
+                <p>
+                    These transcripts are the results of comprehensive manual annotation and a detailed description of the different categories of Vega genes and transcripts is given in the corrsponding <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega gene classification</a> help document.
+                </p><!--
+<p>
+These transcripts are the results of comprehensive manual annotation and a brief summary of the different categories of Vega genes and transcripts is given below.
+</p>
+
+<ul>
+
+<li>
+<p>
+<b>Curated known genes:</b>
+Known genes are identical to known human complementary DNA or protein sequences.
+All known genes are in the
+<a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a>
+<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=gene" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Gene</a> database.
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated novel CDS:</b>
+Novel genes are those that have an open reading frame (ORF), are identical to human ESTs that splice into two or more exons, and/or have homology to known genes or proteins in all species.
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated novel transcript:</b>
+Novel transcripts are genes that fit the criteria of novel genes with the exception that a unique ORF cannot be determined.
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated putative:</b>
+Putative genes are sequences identical to human ESTs that splice into two or more exons but without an ORF.
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated pseudogene:</b>
+Pseudogenes are homologous to known genes and proteins but with a disrupted ORF.
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated immunoglobulin segments</b>
+</p>
+</li>
+
+<li>
+<p>
+<b>Curated immunoglobulin pseudogenes</b>
+</p>
+</li>
+
+</ul>
+-->
+                <p>
+                    Clicking on a Vega transcript in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the assigned name at the top, followed by the <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Transcript class</a>, <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Gene type</a> and the Vega group responsible for the annotation. Additional identifiers link to '<a href="HELP_geneview#VegaGeneReport_HELP">Vega Gene Report</a>', '<a href="HELP_transview#VegaTranscriptReport_HELP">Vega Transcript Report</a>' and '<a href="HELP_protview#VegaProteinReport_HELP">Vega Protein Report</a>' pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively. The 'View in Vega' link leads to the Vega Transcript Report in the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> genome browser.
+                </p>
+            </li>
+            <li id="merged_havana_transcripts">
+                <p>
+                    <b>Merged Havana Transcripts</b> - For human, full length CDS (ATG-Stop) transcripts from havana have been merged into the ensembl set. Where havana and ensembl genes overlap a merged gene is created (gold genes in overview panel on contigview). Where the havana transcript is identical to an ensembl transcript (all exon boundaries including UTR exons) a merged transcript is created (gold transcripts in detail panel of contigview). Where the only differences between havana and ensembl transcripts with the same CDS are the outer boundaries of the 5' and 3' UTR exons the transcript with the longer UTR is retained and the other removed. If the havana transcript is unique (no ensembl equivalent) it is added to the ensembl gene.
+                </p>
+            </li>
+            <li id="evega_external_transcript">
+                <p>
+                    <b>Vega External Transcripts</b> - This track shows a set of manually curated transcripts from the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> database (<a href="/info/publications.html#Nucleic_Acids_Res_D459">Ashurst, et al., 2005</a>) annotated by the other groups than the <a href="http://www.sanger.ac.uk/HGP/havana/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Havana</a> group. Since manual curation is very labour intensive, manually curated genes and transcripts are currently limited to certain chromosomes of popular research organisms. An extensive list of manually annotated sets and credits for the annotation are available directly from the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> genome browser.
+                </p>
+                <p>
+                    'Curated Transcripts' are shown in shades of <b>orange</b> and <b>grey</b> and the colour coding is summarised at the bottom of the '<a href="#Overview">Overview</a>' panel. Generally, Vega transcripts are either labelled with gene symbols or identifiers derived from international BAC clone names (e.g. RP11-217H1), gene and transcript numbers (e. g. RP11-217H1.1-001). When the track is expanded the <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Transcript class</a> is shown below the transcript, when the track is condensed the <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Gene type</a> is shown instead.
+                </p>
+                <p>
+                    These transcripts are the results of comprehensive manual annotation and a detailed description of the different categories of Vega genes and transcripts is given in the corrsponding <a href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega gene classification</a> help document.
+                </p>
+                <p>
+                    Clicking on a Vega transcript in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the assigned name at the top, followed by the Transcript class, Gene type and the Vega group responsible for the annotation. Additional identifiers link to '<a href="HELP_geneview#VegaGeneReport_HELP">Vega Gene Report</a>', '<a href="HELP_transview#VegaTranscriptReport_HELP">Vega Transcript Report</a>' and '<a href="HELP_protview#VegaProteinReport_HELP">Vega Protein Report</a>' pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively. The 'View in Vega' link leads to the Vega Transcript Report in the <a href="http://vega.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Vega</a> genome browser.
+                </p>
+            </li>
+            <li id="rna_transcript">
+                <p>
+                    <b>ncRNA</b> - Non-coding RNAs are identified through conserved patterns of secondary structure. We use cmsearch to search the genome using RFAM covariance models. Because of compute intensive nature of covariance model searching an initial BLAST step against RFAMSEQ identifies the regions of the genome to search.
+                </p>
+                <p>
+                    Unlike most ncRNAs, miRNAs show very high sequence conservation across species, subsequently we take a different approach to identify them. MicroRNA precursor sequences from <a href="http://microrna.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">miRBase</a> are aligned to the genome using BLAST. The resulting alignments are assessed to ensure they encompass the mature miRNA sequence and RNAfold is used to confirm that the precursor sequence can fold into a hairpin structure.
+                </p>
+                <p>
+                    Ensembl also includes a set of hand-checked non-coding RNA genes provided by <a href="http://selab.janelia.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Sean Eddy</a> and Tom Jones. The <a href="ftp://selab.janelia.org/pub/annotation/human-hg16/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">ncRNA set</a>, as well as a detailed <a href="ftp://selab.janelia.org/pub/annotation/human-chr2+4/methods-hg16_chr2+4" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">description</a> of the annotation methods can be obtained from <a href="ftp://selab.janelia.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">ftp://selab.janelia.org/</a>.
+                </p>
+                <p>
+                    The following non-coding RNA gene types are annotated:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            <b>tRNA</b> - Nuclear transfer RNA (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Mt-tRNA</b> - Mitochondrially-derived tRNA pseudogenes located in nuclear genome.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>rRNA</b> - Ribosomal RNA (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>scRNA</b> - Small cytoplasmic RNA (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>snRNA</b> - Small nuclear RNA (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>snoRNA</b> - Small nucleolar RNA (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>miRNA</b> - microRNA precursors (or pseudogene).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>misc_RNA</b> - Miscellaneous other RNA, such as Xist (or pseudogene).
+                        </p>
+                    </li>
+                </ul>
+            </li>
+            <li id="est_transcript">
+                <p>
+                    <b>EST Transcripts</b> displays transient transcript predictions annotated by the Ensembl analysis and annotation pipeline using EST evidence alone (<a href="/info/publications.html#Genome_Res_14_976">Eyras et al., 2004</a>). You may wish to compare these predictions with those in the <a href="#ensembl_transcript">Ensembl</a> or <a href="#evega_transcript">Vega</a> transcript tracks.
+                </p>
+                <p>
+                    Pointing at an EST transcript in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the <b>non-stable</b> EST transcript identifier (e.g. ENSESTT12345678901) at the top. Additional identifiers link to '<a href="HELP_transview#ESTTranscriptReport_HELP">EST Transcript Report</a>' and '<a href="HELP_protview#ESTProteinReport_HELP">EST Protein Report</a>' pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively.
+                </p>
+                <p>
+                    Clicking on a EST transcript in the '<a href="#DetailedView">Detailed View</a>' track will directly lead to the corresponding Ensembl '<a href="HELP_transview#ESTTranscriptReport_HELP">EST Transcript Report</a>' page.
+                </p>
+            </li>
+            <li id="genscan">
+                <p>
+                    <b>GENSCAN</b> tracks display transcripts predicted <i>ab initio</i> by the <a href="http://genes.mit.edu/GENSCAN.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">GENSCAN</a> gene prediction programme. GENSCAN is run on individual contigs, so that predictions do not span more than one contig.
+                </p>
+                <p>
+                    Pointing at a GENSCAN transcript in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the <b>non-stable</b> GENSCAN transcript identifier (e.g. GENSCAN12345678901) at the top. Additional identifiers link to <a href="HELP_transview#GENSCANTranscriptReport_HELP">GENSCAN Transcript Report</a> and <a href="HELP_protview#GENSCANProteinReport_HELP">GENSCAN Protein Report</a> pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively.
+                </p>
+                <p>
+                    Clicking on a GENSCAN transcript in the '<a href="#DetailedView">Detailed View</a>' track will directly lead to the corresponding '<a href="HELP_transview#GENSCANTranscriptReport_HELP">GENSCAN Transcript Report</a>' page.
+                </p>
+                <p>
+                    GENSCAN information is also available via flat file export by selecting 'Prediction Features' on the '<a href="HELP_exportview#FlatFile_HELP">Flat File</a>' tab on Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages. Complete sets of GENSCAN-predicted transcripts or peptides can be found in 'abinitio' files in 'cdna' or 'peptide' directories in the Ensembl <a href="/info/data/download.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Download</a> area.
+                </p>
+            </li>
+            <li id="snap">
+                <p>
+                    <b>SNAP</b> tracks display transcripts predicted <i>ab initio</i> by the Semi-HMM-based Nucleic Acid Parser (<a href="http://homepage.mac.com/iankorf/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">SNAP</a>). Like GENSCAN, it predicts transcripts solely on the basis of the underlying genomic sequence and does not take any experimental evidence into account. The SNAP track is not available for all species, but SNAP performs better than GENSCAN in some species.
+                </p>
+                <p>
+                    Pointing at a SNAP transcript in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the <b>non-stable</b> SNAP transcript identifier (e.g. SNAP12345678901) at the top. Additional identifiers link to '<a href="HELP_transview#SNAPTranscriptReport_HELP">SNAP Transcript Report</a>' and '<a href="HELP_protview#SNAPProteinReport_HELP">SNAP Protein Report</a>' pages. 'Export cDNA' and 'Export peptide' links lead to Ensembl '<a href="HELP_exportview_HELP">ExportView</a>' pages, allowing cDNA or protein sequence export for this particular transcript in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a>, respectively.
+                </p>
+                <p>
+                    Clicking on a SNAP transcript in the '<a href="#DetailedView">Detailed View</a>' track will directly lead to the corresponding '<a href="HELP_transview#SNAPTranscriptReport_HELP">SNAP Transcript Report</a>' page.
+                </p>
+            </li>
+            <li id="slam">
+                <p>
+                    <b>SLAM</b> tracks display transcripts predicted by this comparative-based tool for syntenic genomic sequences. <a href="http://baboon.math.berkeley.edu/~syntenic/about.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">SLAM</a> predicts gene structures for any suitably related pair of organisms (<i>e. g.</i> human and mouse or human and rat).
+                </p>
+            </li>
+            <li id="genefinder">
+                <p>
+                    <b>Genefinder</b> systematically uses statistical criteria (primarily log likelihood ratios, or LLRs) to attempt to identify likely genes within a region of genomic sequence. Candidate genes are evaluated on the basis of scores that reflect their splice site, translation start site, and coding potential LLRs, and intron sizes. A dynamic programming algorithm is used to find the set of non-overlapping candidate genes (on a given strand) having the highest total score (among all such sets). <a href="http://ftp.genome.washington.edu/cgi-bin/Genefinder" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Genefinder</a> is an unpublished work of Colin Wilson, LaDeana Hilyer, and Phil Green. The source code is freely available for research and educational purposes.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Displays of gene and transcript predictions from NCBI and other groups may be available as <a href="#das">DAS sources</a>.
+                </p>
+            </li>
+        </ul>
+        <h4 id="ProteinHomologyEvidence">
+            Protein Homology Evidence
+        </h4>
+        <p>
+            Protein homology evidence tracks display protein sequence entries from various databases aligned against the genome sequence. Evidence for Ensembl gene predictions, taken from protein sequence entries in databases. The presence of an entry in an evidence track shows that it has significant homology with at least one of the exons displayed in an <a href="#ensembl_transcript">Ensembl</a> or <a href="#genscan">GENSCAN</a> transcript. The data sets displayed differ for the different Ensembl species.
+        </p>
+        <ul>
+            <li>
+                <a name="sptr" id="sptr"></a> <a name="swall" id="swall"></a>
+                <p>
+                    <b>Proteins</b> - Hits to protein sequence database entries from <a href="http://www.ebi.ac.uk/swissprot/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UniProt/Swiss-Prot</a>, <a href="http://www.ebi.ac.uk/trembl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UniProt/TrEMBL</a> and proteins annotated as CDS features in <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> nucleotide sequence records.
+                </p><!--
+<p>
+Alignments in this track are based on BLASTP comparisions of protein records from biological sequence databases against a protein set obtained from an <i>ab initio</i> predictor like 
+<a href="#genscan">GENSCAN</a> or 
+<a href="#snap">SNAP</a>.
+</p>
+-->
+            </li>
+            <li>
+                <a name="human_protein" id="human_protein"></a> <a name="mouse_protein" id="mouse_protein"></a> <a name="mouse_refseq" id="mouse_refseq"></a> <!-- Mouse RefSeq PROTEINS! -->
+                 <a name="rodent_protein" id="rodent_protein"></a> <a name="chicken_protein" id="chicken_protein"></a>
+                <p>
+                    <b>Species-specific Proteins</b> - Alignments of species-specific sub-sets of the above databases are provided.
+                </p><!--
+<p>
+Alignments of species-specific proteins result from the targetted gene build stage.
+</p>
+-->
+            </li><!--
+<li>
+<p>
+<b>Other Proteins<b> -
+Other protein alignments result from the similarity build stage of the Ensembl gene building procedure.
+</p>
+</li>
+-->
+        </ul>
+        <p>
+            Pointing at a protein sequence representation in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the external database accession number and a clickable link to a <a href="http://www.ebi.ac.uk/swissprot/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UniProt/Swiss-Prot</a> or <a href="http://www.ebi.ac.uk/trembl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UniProt/TrEMBL</a> display of this entry. The same database record is also reached by directly clicking on the feature.
+        </p>
+        <p>
+            Please note that a maximum of seven entries is displayed in any one position, although more entries may have been mapped to this location. (All protein entries mapped to a certain genome position can be retrieved from the 'protein_align_feature' tables in species-specific Ensembl 'core' databases.) Those entries that were actually used during the building of an Ensembl transcript can be seen in more detail by examining the '<a href="HELP_exonview#SupportingEvidence_HELP">Supporting Evidence</a>' section on Ensembl '<a href="HELP_exonview_HELP">ExonView</a>' pages.
+        </p>
+        <p>
+            <a name="mRNA" id="mRNA"></a> <a name="mouse_mrna" id="mouse_mrna"></a> <a name="other_mrna" id="other_mrna"></a>
+        </p>
+        <h4 id="mRNAHomologyEvidence">
+            mRNA Homology Evidence
+        </h4>
+        <p>
+            Evidence for Ensembl gene predictions, taken from mRNA sequence entries in databases. The presence of an entry in an evidence track shows that it has significant homology with at least one of the exons displayed in an Ensembl or GENSCAN transcript (except for the ESTs track and the human cDNA track which show all above-threshold hits to the assembly - see below). The data sets that were used for the gene predictions and that are displayed in '<a href="HELP_contigview_HELP">ContigView</a>' differ for the different Ensembl species.
+        </p>
+        <p>
+            Pointing at a cDNA sequence representation in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the external database accession number and a clickable link to an <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> display of this entry. The same database record is also reached by directly clicking on the feature.
+        </p>
+        <p>
+            Please note that a maximum of seven entries is displayed in any one position, although more entries may have been mapped to this location. (All mRNA entries mapped to a certain genome position can be retrieved from the 'dna_align_feature' tables in species-specific Ensembl 'core' databases.) Those entries that were actually used during the building of an Ensembl transcript can be seen in more detail by examining the '<a href="HELP_exonview#SupportingEvidence_HELP">Supporting Evidence</a>' section on Ensembl '<a href="HELP_exonview_HELP">ExonView</a>' pages.
+        </p>
+        <ul>
+            <li id="vertrna">
+                <p>
+                    <b>EMBL mRNAs</b> - Hits to vertebrate mRNA sequences deposited in the <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL Nucleotide Sequence Database</a>. Pointing at an alignment repesentation will display a <a href="#PopUpMenus">pop-up menu</a>, which will show the EMBL ID and a clickable link to this EMBL entry. This entry can also be reached by directly clicking on the feature. A maximum of seven entries are displayed in any one position although more entries may have been mapped to this location. The '<a href="HELP_exonview#SupportingEvidence_HELP">Supporting Evidence</a>' section on Ensembl '<a href="HELP_exonview_HELP">ExonView</a>' pages displays those entries that were actually used during the building of an Ensembl transcript.
+                </p>
+            </li>
+            <li>
+                <a name="human_cdna" id="human_cdna"></a> <a name="human_refseq" id="human_refseq"></a> <a name="mouse_cdna" id="mouse_cdna"></a> <a name="zfish_cdna" id="zfish_cdna"></a> <a name="rat_cdna" id="rat_cdna"></a> <a name="chicken_cdna" id="chicken_cdna"></a> <a name="celegans_mrna" id="celegans_mrna"></a> <a name="cbriggsae_mrna" id="cbriggsae_mrna"></a>
+                <p>
+                    <b>Species-specific cDNAs</b> - Hits to species-specific mRNAs deposited in the EMBL Nucleotide Sequence Database are displayed in dark green, and to the mRNA class ('NM_' prefixed accession numbers) of <a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a> <a href="http://www.ncbi.nlm.nih.gov/RefSeq/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">RefSeq</a> entries in light green.
+                </p>
+                <p>
+                    <!--
+For human Ensembl, this track now shows all cDNAs that were stringently mapped to the assembly, not just those that correspond to exon predictions.
+-->
+                     Those entries that were actually used during the building of an Ensembl transcript can be seen by examining the '<a href="HELP_exonview#SupportingEvidence_HELP">Supporting Evidence</a> section for that transcript in '<a href="HELP_exonview_HELP">ExonView</a>'.
+                </p>
+            </li>
+            <li id="cdna_updates">
+                <p>
+                    <strong>cDNA Updates</strong> - While all other biological evidence tracks show alignments of biological sequences to the genome that have been calculated as the basis for every new gene-build procedure, these cDNA tracks are updated with every Ensembl release. The aim is to display the current state of biological evidence as all cDNAs that have become available from source databases after the gene-build procedure has been completed will be included in this track.
+                </p>
+            </li>
+            <li id="unigene">
+                <p>
+                    <b>UniGene</b> - Hits to <a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a> <a href="http://www.ncbi.nlm.nih.gov/UniGene/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UniGene</a> clusters of <a href="http://www.ncbi.nlm.nih.gov/Genbank/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">GenBank</a> nucleotide sequence database entries.
+                </p>
+                <p>
+                    Pointing at a sequence representation in '<a href="#DetailedView">Detailed View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the <b>non-stable</b> UniGene Cluster ID and a clickable link to the database at the <a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a>. The same database record is also reached by directly clicking on the feature.
+                </p>
+                <p>
+                    Please note that a maximum of seven entries is displayed in any one position, although more entries may have been mapped to this location. (All nucleotide entries mapped to a certain genome position can be retrieved from the 'dna_align_feature' tables in species-specific Ensembl 'core' databases.)
+                </p>
+            </li>
+        </ul>
+        <p>
+            <a name="est_human_est_exonerate" id="est_human_est_exonerate"></a> <a name="est_mouse_est" id="est_mouse_est"></a> <a name="other_fish_ests" id="other_fish_ests"></a> <a name="human_orestes" id="human_orestes"></a> <a name="z_dbest" id="z_dbest"></a>
+        </p>
+        <h4 id="ESTHomologyEvidence">
+            EST Homology Evidence
+        </h4>
+        <ul>
+            <li id="est">
+                <p>
+                    <b>EST</b> - This track displays hits to species-specific Expressed Sequence Tags (ESTs). Please note that this does not represent the complete set of ESTs available from public sequence databases but rather a stringently filtered set. Only ESTs better than 97% identical to the genome over more than 90% of their length are included.
+                </p>
+                <p>
+                    In human and mouse Ensembl, this track shows the evidence on which <a href="#est_transcript">EST transcripts</a> are based. <a href="#PopUpMenus">Mouse-over</a> will show the <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> accession number and a clickable link to the database entry. The entry is also reached by directly clicking on the feature. A maximum of seven entries are displayed in any one position although more entries may have been mapped to this location. Unlike the other 'evidence' tracks, the EST track shows ESTs mapped by homology to the all of the genomic sequence, instead of just to predicted exon regions.
+                </p>
+            </li><!-- Danio rerio EST clusters DOCUMENTATON MISSING! -->
+            <li id="drerio_estclust">
+                <p>
+                    <b><i>Danio rerio</i> EST Clusters</b> shows EST assemblies from <a href="http://www.wustl.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Washington University</a> <a href="http://zfish.wustl.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Zebrafish Genome Resources Project</a>. Note that these are not generated in the same way as the Ensembl EST transcripts displayed in human and mouse Ensembl.
+                </p>
+            </li>
+        </ul>
+        <h4 id="trna">
+            tRNA
+        </h4>
+        <p>
+            Indicates the location of tRNA genes, predicted by the <a href="http://rna.wustl.edu/tRNAscan-SE/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">tRNAscan-SE</a> program.
+        </p>
+        <p>
+            Todd M. Lowe and Sean R. Eddy<br>
+            <b>tRNAscan-SE: a program for improved detection of transfer RNA genes in genomic sequence.</b><br>
+            Nucleic Acids Res. 1997 Mar 1;25(5):955-964<br>
+            [<a href="http://nar.oxfordjournals.org/cgi/content/abstract/25/5/955" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Abstract</a>] [<a href="http://nar.oxfordjournals.org/cgi/content/full/25/5/955" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Full text</a>]
+        </p>
+        <p>
+            <b>Warning</b> In the mouse and rat genomes, tRNAscan is currently unable to distinguish reliably between functional tRNAs, pseudogenes, and tRNA-related SINE repeats. The tRNA track in these species will therefore show a mixture of these elements.
+        </p>
+        <h4 id="rfam">
+            Rfam
+        </h4>
+        <p>
+            Indicates non-coding RNA families from <a href="http://www.sanger.ac.uk/Software/Rfam/index.shtml" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Rfam</a> (RNA families database of alignments and CMs).
+        </p>
+        <p>
+            <b>Rfam: an RNA family database.</b><br>
+            Sam Griffiths-Jones, Alex Bateman, Mhairi Marshall, Ajay Khanna and Sean R. Eddy.<br>
+            Nucleic Acids Research, 2003, 31, 1, 439-441.
+        </p>
+        <h4 id="eponine">
+            Eponine
+        </h4>
+        <p>
+            <a href="http://www.sanger.ac.uk/Users/td2/eponine/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Eponine</a> is an algorithm that predicts transcription start sites in mammalian genomic DNA, based on the linear combination of weight matrices. Although Ensembl annotates <a href="http://www.sanger.ac.uk/Users/td2/eponine/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Eponine</a> transcription start site (TSS) predictions on the genomic sequence, its predictions are presently not used to artificially extend Ensembl gene model predictions beyond solid biological evidence.
+        </p>
+        <p>
+            Thomas A. Down and Tim J. P. Hubbard<br>
+            <b>Computational detection and location of transcription start sites in mammalian genomic DNA.</b><br>
+            Genome Res. 2002 Mar;12(3):458-461.<br>
+            [<a href="http://www.genome.org/cgi/content/abstract/12/3/458" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Abstract</a>] [<a href="http://www.genome.org/cgi/content/full/12/3/458" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Full text</a>]
+        </p>
+        <h4 id="first_ef">
+            First Exon Finder
+        </h4>
+        <p>
+            The First Exon Finder <a href="http://rulai.cshl.org/tools/FirstEF/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FirstEF</a> is a 5' terminal exon and promoter prediction program. It implements a decision tree based on discriminant functions that can recognise structural and compositional features such as CpG islands, promoter regions and first splice-donor sites. The probabilistic models are optimised to find potential first donor sites and CpG-related and non-CpG-related promoter regions based on discriminant analysis. For every potential first donor site (GT) and an upstream promoter region, FirstEF decides whether or not the intermediate region can be a potential first exon, based on a set of quadratic discriminant functions.
+        </p>
+        <p>
+            Ramana V. Davuluri, Ivo Grosse and Michael Q. Zhang<br>
+            <b>Computational identification of promoters and first exons in the human genome.</b><br>
+            Nat Genet. 2001 Dec;29(4):412-417.<br>
+            <a href="http://dx.doi.org/10.1038/ng780" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">doi:10.1038/ng780</a>
+        </p><!--
+<p>
+<b>
+The following features are strand independent and are shown at the bottom of the
+'<a href="#DetailedView">Detailed View</a>' panel.
+Only 'Markers', 'QTLs' 'SNPs' and 'Haplotypes' have clickable links.
+</b>
+</p>
+-->
+        <!-- List of Homo sapiens arrays -->
+        <p>
+            <a name="hg_u95a" id="hg_u95a"></a> <a name="hg_u95av2" id="hg_u95av2"></a> <a name="hg_u95b" id="hg_u95b"></a> <a name="hg_u95c" id="hg_u95c"></a> <a name="hg_u95d" id="hg_u95d"></a> <a name="hg_u95e" id="hg_u95e"></a> <a name="hg_u133_plus_2" id="hg_u133_plus_2"></a> <a name="hg_u133a" id="hg_u133a"></a> <a name="hg_u133a_2" id="hg_u133a_2"></a> <a name="hg_u133b" id="hg_u133b"></a> <a name="u133_x3p" id="u133_x3p"></a> <a name="hugenefl" id="hugenefl"></a> <a name="hg_focus" id="hg_focus"></a> <a name="hc_g110" id="hc_g110"></a> <!-- List of Mus musculus arrays -->
+             <a name="mouse430_2" id="mouse430_2"></a> <a name="mouse430a_2" id="mouse430a_2"></a> <a name="mg_u74av2" id="mg_u74av2"></a> <a name="mg_u74bv2" id="mg_u74bv2"></a> <a name="mg_u74cv2" id="mg_u74cv2"></a>
+        </p>
+        <h4 id="MicroarrayProbeSets">
+            Microarray Probe Sets
+        </h4>
+        <p>
+            Ensembl annotates microarray probe sets on the genome sequences if manufacturers disclosed individual probe set sequences for a particular micro array. The mapping process is a two step procedure out-lined in the <a href="/info/data/docs/microarray_probe_set_mapping.html">Microarry Probe Set Mapping</a> document.
+        </p>
+        <h4 id="compara_alignment">
+            Whole Genome Similarity Matches
+        </h4>
+        <p>
+            Tracks displaying whole genome similarity matches to other genomes in Ensembl are available from the 'Compara' menu. The track names include a four-letter abbreviation of the systematic species name and the method used for characterising the whole genome similarity matches.
+        </p>
+        <p>
+            An overview <a href="/info/data/compara/index.html">document</a> lists species pairs and methods involved in the comparison.
+        </p>
+        <p>
+            The following tracks are available:
+        </p>
+        <ul>
+            <li id="Gerp">
+                <p>
+                    <b>Conservation</b> - we use Gerp to calculate conservation scores and call constrained elements on the 10 way multiple alignments (see below). Conservation scores are estimated on a column-by-column basis. Constrained elements are stretches of the multiple alignment where the sequences are highly conserved according to the previous score.
+                </p>
+                <p>
+                    This track is collapsed by default, when expanded (click on the [+]) a conservation plot is displayed within a dynamic scale defined by the window shown.
+                </p>
+                <p>
+                    Gregory M. Cooper, Eric A. Stone, George Asimenos, NISC Comparative Sequencing Program, Eric D. Green, Serafim Batzoglou and Arend Sidow<br>
+                    <b>Distribution and intensity of constraint in mammalian genomic sequence.</b><br>
+                    Genome Res. 2005 Jul;15(7):901-913.<br>
+                    [<a href="http://www.genome.org/cgi/content/abstract/15/7/901" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Abstract</a>] [<a href="http://www.genome.org/cgi/content/full/15/7/901" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Full Text</a>]
+                </p>
+            </li>
+            <li id="Pecan">
+                <p>
+                    <b>Pecan</b> - The Pecan algorithm is used to obtain global multiple genomic alignments. First, co-linear regions are defined with <a href="http://hanuman.math.berkeley.edu/~cdewey/mercator/">Mercator</a> and then Pecan builds alignments in these syntenic regions. Please, refer to this <a href="/info/data/compara/index.html">document</a> for an up-to-date list of pecan alignments.
+                </p>
+                <p>
+                    Pecan is a global multiple sequence alignment program that makes practical the probabilistic consistency methodology for significant numbers of sequences of practically arbitrary length. As input it takes a set of sequences and a phylogenetic tree. The parameters and heuristics it employs are highly user configurable, it is written entirely in Java and also requires the installation of Exonerate. <a href="http://www.ebi.ac.uk/~bjp/pecan/">Read more about Pecan</a>.
+                </p>
+            </li>
+            <li id="ConservedRegions">
+                <p>
+                    <b>BlastZ-net</b> - Untranslated whole genome comparisons by <a href="http://www.bx.psu.edu/miller_lab/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">BLASTz</a> are performed for <a href="/info/data/compara/index.html">species pairs</a>, which are thought to be similar enough to be able to detect homology directly at the DNA level. Some of the BLASTz data were obtained from the <a href="http://www.ucsc.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UCSC</a> <a href="http://www.cbse.ucsc.edu/research/bioinfo.shtml" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Genome Bioinformatics</a> group. After running BLASTz, the alignments are cleaned and grouped into 'chains' using the 'AxtChain' algorithm. See the <a href="http://www.ucsc.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">UCSC</a> <a href="http://genome.ucsc.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Genome Browser</a> for complete details of the parameters used for each of the species pairs. When Ensembl and the UCSC Genome Browser are out of sync with the genome sequence assemblies, or the Genome Bioinformatics group has not performed a comparison that is of interest to the Ensembl user, we run BLASTz comparisons in house using the same procedure.
+                </p>
+                <p>
+                    Scott Schwartz, W. James Kent, Arian Smit, Zheng Zhang, Robert Baertsch, Ross C. Hardison, David Haussler and Webb Miller<br>
+                    <b>Human-Mouse Alignments with BLASTZ.</b><br>
+                    Genome Res. 2003 Jan;13(1):103-107.<br>
+                    [<a href="http://www.genome.org/cgi/content/abstract/13/1/103" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Abstract</a>] [<a href="http://www.genome.org/cgi/content/full/13/1/103" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Full Text</a>]
+                </p>
+            </li>
+            <li id="TranslatedBLAT">
+                <p>
+                    <b>Translated BLAT</b> - The translated BLAT algorithm is used to compare genomes from more evolutionarily distant species, at the amino acid level. Thus regions of similarity will be biased towards those that code for proteins, although highly conserved non-coding regions might be detected as well.
+                </p>
+                <p>
+                    The soft masked database sequence is translated in all six reading frames and stored in memory as an index of non-overlapping amino acid pentamers. These pentamers are then compared to the query sequence, also translated in all six reading frames, to find regions of likely similarity, which are then extended into full un-gapped alignments. The scoring matrix is a simple +2/-1 matrix, which also helps to speed up the querying.
+                </p>
+                <p>
+                    W. James Kent<br>
+                    <b>BLAT - The BLAST-Like Alignment Tool.</b><br>
+                    Genome Res. 2002 Apr;12(4):656-664.<br>
+                    [<a href="http://www.genome.org/cgi/content/abstract/12/4/656" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Abstract</a>] [<a href="http://www.genome.org/cgi/content/full/12/4/656" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Full Text</a>]
+                </p>
+            </li>
+        </ul>
+        <p>
+            Clicking the red plus [+] or minus [-] box to the left of the track toggles whole genome alignment tracks between <b>expanded</b> and <b>collapsed</b> display, respectively.
+        </p>
+        <p>
+            When the matches are shown as <b>expanded</b>, individual high scoring pairs (HSPs) of identical orientation are joined by horizontal lines and the minus [-] box is shown. Pointing at the track produces pop-up windows with the coordinates of the assembly segment from the matching species, the relative orientation and a link to see that segment in '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=contigview">ContigView</a>'.
+        </p>
+        <p>
+            When the matches are shown as <b>collapsed</b>, individual high scoring pairs (HSPs) on the same region of the chromosome or scaffold are <b>not</b> joined by horizontal lines and the plus [+] button is shown. Pointing at a hit provides a pop up window with links to the pairwise alignment in Ensembl '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=alignview">AlignView</a>', a dot matrix display of the aligned region from the two species in '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=dotterview">DotterView</a>' and an option to display genomic regions from both species simultaneously in '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=multicontigview">MultiContigView</a>'. Alternativelly you can display the alignments in '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=alignsliceview">AlignSliceView</a>' by selecting the "View alignment with..." option in the left hand side menu. There is also a link to the corresponding '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=contigview">ContigView</a>' display for the other species.
+        </p>
+        <p>
+            <b>N. B.</b> All similarity matches are strand independent tracks and are therefore displayed at the top of the '<a href="#DetailedView">Detailed View</a>' panel. For more information about regions of conserved synteny, consult Ensembl '<a href="/Homo_sapiens/helpview?se=1;ref=;kw=syntenyview">SyntenyView</a>'.
+        </p>
+        <h4 id="markers">
+            Markers
+        </h4>
+        <p>
+            <a href="#PopUpMenus">Mouse-over</a> will show the marker identifier and an option to view details and synonyms in '<a href="HELP_markerview_HELP">MarkerView</a>'. Note that only a sub-set of the markers stored in the Ensembl databases are displayed. Information about other markers may be found via the text search box near the top of almost any Ensembl page. For detailed instructions see the Ensembl '<a href="HELP_textview_HELP">TextView</a>' page.
+        </p>
+        <h4 id="qtl">
+            Quantitative Trait Loci (QTL)
+        </h4>
+        <p>
+            Only a preliminary mapping of <i>Rattus norvegicus</i> Quantitative Trait Loci (QTLs) is available at present. Loci are mapped onto the genome sequence assembly via mapping of QTL-defining sequence tagged sites (STS) markers. Because some markers could not be mapped to the assembly by the Ensembl analysis and annotation pipeline, some QTLs may be represented by just one marker, while others are not shown at all. The loci are annotated as red blocks, with the name of the trait displayed on the block if there is enough space. Where only one of the defining markers could be mapped, a red block of arbitrary size 1 Mb is drawn around it. Pointing to a block produces a pop-up menu with the name of the trait and a link to either the Rat Genome Database (<a href="http://www.rgd.mcw.edu/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">RGD</a>) or the <a href="http://ratmap.gen.gu.se/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">RatMap</a> resource for further information.
+        </p>
+        <h4 id="cpg">
+            CpG Islands
+        </h4>
+        <p>
+            Indicates a CpG island. Pointing with the mouse over an island provides the score and the location as additional information. The Ensembl analysis and annotation pipeline uses the cpg program for the definition of CpG islands. This programme was developed by Gos Micklem and is essentially identical to the <a href="http://emboss.sourceforge.net/apps/newcpgreport.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">newcpgreport</a> programme in the <a href="http://emboss.sourceforge.net/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBOSS</a> package.
+        </p>
+        <p>
+            For the inclusion of CpG islands into the Ensembl database we require a minimum length of 1000 bp, a minimal observed/expected ratio of 0.6 and a minimal GC content of 50%, for human. For other species, the length cutoff may be different.
+        </p>
+        <h4 id="fg_regulatory_features">
+            Regulatory Features
+        </h4>
+        <p>
+            The regulatory build provides a single "best guess" set of regulatory elements. These elements are based on the information contained within the ensembl-functional genomics database.
+        </p>
+        <p>
+            Regulatory features are built as a composite set of annotations based on co-occurence analysis and classification of multiple genome wide epigenomic data sets. Each feature was built on some or all of the following data sets:
+        </p>
+        <table border="1">
+            <tr>
+                <th align='left'>
+                    Anchor/Focus Sets
+                </th>
+                <th>
+                    Data type
+                </th>
+                <th>
+                    Source
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    DNase1 Hypersensitivity site
+                </td>
+                <td>
+                    ChIP-Seq
+                </td>
+                <td>
+                    1
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CCCTC-binding factor (CTCF)
+                </td>
+                <td>
+                    ChIP-Chip*
+                </td>
+                <td>
+                    2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Histone 3 Lysine 4 Tri-Methylation (H3K4me3)
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+        </table>
+        <table border="1">
+            <tr>
+                <th>
+                    Supporting Sets
+                </th>
+                <th>
+                    Data type
+                </th>
+                <th>
+                    Source
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    H4K20me3
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    H3K27me3
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    H3K36me3
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    H3K79me3
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    H3K9me3
+                </td>
+                <td>
+                    ChIP-Chip
+                </td>
+                <td>
+                    3
+                </td>
+            </tr>
+        </table>
+        <p>
+            The anchor/focus sets were chosen to define a set of regions as potentially regulatory and for their previously known specific properties including DNaseI as a marker of open chromatin, H4K4me3 association with active promoters, and CTCF's association with "insulator regions."
+        </p>
+        <p>
+            In short, the Regulatory Build process performs an overlap analysis on each anchor/focus set with respect to each other and each of the supporting sets. The result of this analysis was then combined into one 'RegulatoryFeature' set, merging constituent feature boundaries up to a maximium of 4KB and integrating information on proximity (&lt;2.5KB) to transcription start and end sites. The 4KB limit was chosen to avoid chaining of large regulatory regions (e.g the Hox cluster) in an attempt to provide more granularity over regions of interest. On breach of the 4KB maximum length limit, features were broken down into H3K4me3 elements, or CTCF elements where appropriate.
+        </p>
+        <p>
+            The composite regulatory features were then classified by the patterns of data sets observed across each regulatory feature. Some preliminary analysis has identified the following combinations that are common and strongly associated with other annotated features in Ensembl:
+        </p>
+        <ul>
+            <li>non-gene-associated = DNaseI, H3K79me3, not H3K4me3 and either (not H3K27me3 or not H3K9me3)
+            </li>
+            <li>gene-associated = DNaseI and either (H3K4me3 or H3K79me3)
+            </li>
+            <li>gene-associated = DNaseI H3K4me3 and either (CTCF or H3K36me3)
+            </li>
+            <li>promoter-associated = DNaseI H3K36me3
+            </li>
+        </ul>
+        <p>
+            We have used these patterns of the basis of annotations used in this version of the Ensembl Regulatory Build.
+        </p>
+        <p>
+            Data source citations:
+        </p>
+        <p>
+            1. Genome-wide identification of DNaseI hypersensitive sites was performed by Greg Crawford and Terry Furey (Duke University) using a whole genome DNase-sequencing protocol (Crawford et al., Genome Research 2006).<br>
+            DNase-sequencing was performed using the Illumina (Solexa) sequencing by synthesis method from a DNase treated library generated from the GM06990 cell line (Crawford and Furey, unpublished). A Parzen density estimator used density of sequences in regions to generate scores indicating the presence of DNaseI hypersensitive sites.
+        </p>
+        <p>
+            2. Kim, T.H.; Abdullaev, Z.K.; Smith, A.D.; Ching, K.A.; Loukinov, D.I.; Green, R.D.; Zhang, M.Q.; Lobanenkov, V.V. &amp; Ren, B.<br>
+            <b>Analysis of the vertebrate insulator protein CTCF-binding sites in the human genome.</b><br>
+            Cell, 2007 , 128 , 1231-1245
+        </p>
+        <p>
+            3. Hirst, M; Hurd, P.J.; Bainbridge, M.; Robertson, G.; Kirmizis, A.; Nelson, C.; Zhao, Y.; Zeng, T.; Pandoh, P.; Tam, A.; Prabhu, A.; Dhalla, N.; Sa, D.; Delaney, A.; Bilenky, M.; Jones, S.; Kouzarides, T.; Marra, M. (In preparation)
+        </p>
+        <p>
+            * The CTCF data was processed with the Nessie HMM (Flicek, unpublished).
+        </p>
+        <h4 id="ctcf">
+            CTCF
+        </h4>
+        <p>
+            Enriched sites were identified by the nessie algorithm for ChIP-chip data analysis (Flicek, unpublished). For this analysis, nessie uses a two-state hidden Markov Model.
+        </p>
+        <p>
+            Raw data from tiling array experiments is normalised and displayed as simple wiggle tracks. This data is supplied to support and give a visual reference for the associated annotated features track. The default normalisation of the data uses the VSN (Variance Stabilisation Normalisation) package from Bioconductor, which performs a generalised log transformation. This roughly equates to the difference between the control and experimental value at low signal and smoothly transforms to the ratio between the values at high signals i.e. significant signal. This has the effect of minimising anomalies arising from low signals pairs giving high ratio scores.
+        </p>
+        <p>
+            The CTCF data source is:
+        </p>
+        <p>
+            Kim, T.H.; Abdullaev, Z.K.; Smith, A.D.; Ching, K.A.; Loukinov, D.I.; Green, R.D.; Zhang, M.Q.; Lobanenkov, V.V. &amp; Ren, B.<br>
+            <b>Analysis of the vertebrate insulator protein CTCF-binding sites in the human genome.</b><br>
+            Cell, 2007 , 128 , 1231-1245
+        </p>
+        <h4 id="regulatory_regions">
+            cisRED/miRanda/FlyReg
+        </h4>
+        <p>
+            For human this track displays regulatory features imported from the <a href="http://www.cisred.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">cisRED</a> database and microRNA regulatory features resulting from the <a href="%20http://www.microrna.org/miranda_new.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">miRanda</a> analyis performed by <a href="http://www.sanger.ac.uk/Teams/Team101/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Anton Enright's group</a> at the <a href="http://www.wellcome.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Wellcome Trust</a> <a href="http://www.sanger.ac.uk/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Sanger Institute</a>.
+        </p>
+        <p>
+            Those regions of the genome that were subjected to cisRED analysis are indicated in the track 'cisRED search regions'.
+        </p>
+        <p>
+            For fly this track displays regulatory features based on a curated set of transcription factor binding sites imported from the <a href="http://flyreg.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"><i>Drosophila</i> DNase I Footprint Database</a> and a set of 120 likely transcription factor binding sites identified from a large set of <i>Drosophila</i> promoter regions, using the <a href="http://servlet.sanger.ac.uk/tiffin/index.jsp" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Tiffin</a> pipeline.
+        </p>
+        <p>
+            Many of these motifs could be correlated to patterns of embryonic gene expression. Regulatory regions on the <i>Drosophila melanogaster</i> genome are predicted using a phylogenetic HMM, then scanned using the motif set to identify probable transcription factor binding sites.
+        </p>
+        <p>
+            <a name="genotyped_variation_line" id="genotyped_variation_line"></a>
+        </p>
+        <h4 id="variation">
+            Single Nucleotide Polymorphisms (SNPs)
+        </h4>
+        <p>
+            Single Nucleotide Polymorphisms and other sequence variations are mapped to the genome sequence. Small insertions and deletions (in-dels) are annotated with small triangles, while SNPs are represented by vertical bars and colour-coded as follows:
+        </p>
+        <ul>
+            <li>Red: Coding (within the coding sequence of an exon)
+            </li>
+            <li>Orange: UTR (within a 5' or 3' untranslated region of an exon)
+            </li>
+            <li>Dark Blue: Intron (within an intron of a gene)
+            </li>
+            <li>Mid Blue: Flanking (within 10 kb 5' of a transcript start, or 10 kb 3' of a transcript end)
+            </li>
+            <li>Grey: Other (not in any of the above categories - not in or flanking a gene)
+            </li>
+        </ul>
+        <p>
+            When zoomed in on a small region, as in the '<a href="#BasepairView">Basepair View</a>' panel, the <a href="HELP_snpview#IUPACAmbiguityCodes_HELP">ambiguity code</a> for the SNP polymorphism is displayed.
+        </p>
+        <p>
+            Pointing at a genetic variation representation in '<a href="#DetailedView">Detailed View</a>' or '<a href="#BasepairView">Basepair View</a>' will display a <a href="#PopUpMenus">pop-up menu</a> with the SNP identifier at the top and clickable 'SNP properties' link to Ensembl '<a href="HELP_snpview_HELP">SNPView</a>'. Depending on the source of the variation data, a summary about variation properties and links to <b>HGBASE data</b>, <b>TSC-CSHL data</b> and <b>dbSNP data</b> are available. Ensembl '<a href="HELP_snpview_HELP">SNPView</a>' is also reached by directly clicking on the feature.
+        </p>
+        <p>
+            Please note that alleles and <a href="HELP_snpview#IUPACAmbiguityCodes_HELP">ambiguity codes</a> for genetic variations shown in '<a href="HELP_contigview_HELP">ContigView</a>' and '<a href="HELP_snpview_HELP">SNPView</a>' is identical to the <a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a> <a href="http://www.ncbi.nlm.nih.gov/SNP/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">dbSNP</a> entry. To see the alleles and effects as appropriate to a transcript or protein, look at the SNP information in '<a href="HELP_transview_HELP">TransView</a>' and '<a href="HELP_protview_HELP">ProteinView</a>'.
+        </p><!--
+<h4 id="haplotype">Haplotypes</h4>
+
+<p>
+A haplotype is a group of several SNPs linked physically on a single chromosome.
+Haplotype blocks are currently shown for chromosome 22 only.
+A block is shown as a red line, with triangles marking the positions of the SNPs at the ends of the block.
+Click at any point in the block, or use the pop-up menu, to go to the corresponding Ensembl
+<a href="HELP_haploview_HELP">HaploView</a> display with additional information.
+</p>
+-->
+        <h4 id="Repeats">
+            Repeats
+        </h4>
+        <p id="repeat_lite">
+            <b>Repeats</b> - Repetitive sequence regions of all classes are annotated in this track. Most tracks are characterised by running the <a href="http://www.repeatmasker.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">RepeatMasker</a> program, while the <a href="http://tandem.bu.edu/trf/trf.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Tandem Repeats Finder</a> generates the 'tandem repeats' track. <a href="#PopUpMenus">Mouse-over</a> on an individual repeat element brings up additional information. Tracks may be switched on or off using the '<a href="#RepeatsMenu">Repeats</a>' pull-down menu on the '<a href="#MenuBar">menu bar</a>'.
+        </p>
+        <p id="sub_repeat">
+            <b>Repeat Sub-Classes</b> - Sub-classes of repeats like Dust, LTRs, Low complexity regions, simple repeats, RNA repeats can be selected from the '<a href="#RepeatsMenu">Repeats</a>' pull-down menu on the '<a href="#MenuBar">menu bar</a>'.
+        </p>
+        <p>
+            <a name="tp32k" id="tp32k"></a> <a name="bacs" id="bacs"></a>
+        </p>
+        <h4>
+            Tile Path and other Clone Sets
+        </h4>
+        <p id="tilepath">
+            <b>Tile path</b> - The tile path track in human Ensembl shows the location of BAC clones within the current genome sequence assembly. Clones for which fluorescence <i>in situ</i> hybridisation (FISH) mapping information is available are marked with a black triangle in the top left corner. Where a clone is shown in outline, the mapping of the clone to the sequence assembly is problematic and the true length is not displayed. <a href="#PopUpMenus">Mouse-over</a> brings up information about a particular clone. More information about clones is available from Ensembl '<a href="HELP_cytoview_HELP">CytoView</a>', which can be reached via the 'Jump to...' menu on the menu bar above the '<a href="#DetailedView">Detailed View</a>' panel.
+        </p>
+        <p id="tilepath2">
+            <b>Acc clones</b> - The accessioned clones track displays BAC clones for which some sequence has been deposited in the nucleotide sequence databases. Coloured bars represent BAC clones and pointing at them displays a pop-up window with more information about the clone, including its <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> nucleotide sequence database accession number, sequencing status and estimated length. The segment of the sequence assembly to which the clone has been mapped can be exported by going to <a href="HELP_exportview_HELP">ExportView</a>, selecting 'Sequence ID' in the Feature section, and entering the <a href="http://www.ncbi.nlm.nih.gov/genome/clone/nomen.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">international clone name</a> or its accession number. To retrieve the actual sequence deposited in the sequence databases, use <a href="http://www.ebi.ac.uk/embl/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">EMBL</a> or <a href="http://www.ncbi.nlm.nih.gov/Genbank/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">GenBank</a> directly. Note that these clones represent only a small proportion of the BAC clones positioned on the complete FPC-based clone map. To view other clones, go to Ensembl <a href="HELP_cytoview_HELP">CytoView</a> using the 'Jump to' pull-down menu on the menu bar above the '<a href="#DetailedView">Detailed View</a>' panel.
+        </p>
+        <p>
+            Vertical black lines at the left or right ends of a clone indicate that the BAC end sequence of that end has been matched to this point on the assembly. The length of the black line underneath a clone indicates its length estimated by fingerprinting. The line length may differ from the length of the coloured bar, because the clone lengths as shown by bars have been adjusted so that the entire FPC map will fit around the points at which clones on the map have been matched to the assembly. If the BAC is represented by an outline instead of a coloured bar, the adjusted clone length is unrealistically large and should be treated with caution. The different length estimates are shown in the pop-up window list.
+        </p>
+        <p id="fosmid_map">
+            <b>Fosmid Map</b> - For mouse, end sequences of <a href="http://bacpac.chori.org/library.php?id=274" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">WIBR-1 fosmid library</a> clones have been mapped to the genome sequence.
+        </p>
+        <h4 id="gap">
+            Gaps
+        </h4>
+        <p>
+            Shows gaps in the current sequence assembly. Where possible, gaps are categorised as:
+        </p>
+        <ul>
+            <li>
+                <b>Inter super-contig</b> - All gaps between two <a href="http://www.ncbi.nlm.nih.gov/RefSeq/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">RefSeq</a> 'NT_' contigs that form the biggest units in <a href="http://www.ncbi.nlm.nih.gov/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">NCBI</a> assemblies are displayed as grey blocks.
+            </li>
+            <li>
+                <b>Inter-clone</b> - Gaps within an 'NT_' contig, which are not covered by a sequenced clone are shown as small grey blocks.
+            </li>
+            <li>
+                <b>Intra-clone</b> - Gaps between contigs within an unfinished BAC clone are generally represented by 100 Ns in the sequence and shown as black boxes.
+            </li>
+            <li>
+                <b>End gaps</b> - Gaps in telomere regions are classified as end gaps.
+            </li>
+        </ul>
+        <p>
+            Pointing with the mouse shows the category, and the size and position of the gap in the assembly.
+        </p>
+        <h4 id="gcplot">
+            %GC
+        </h4>
+        <p>
+            The plot shows the relative content of the nucleotides G+C along the genome sequence. The horizontal red line indicates 50% G+C.
+        </p>
+        <h4 id="das">
+            DAS Sources
+        </h4><!--
+<p>
+See additional information on
+<a href="HELP_mousecontig#das_HELP">mouse</a> DAS displays.
+</p>
+-->
+        <p>
+            The <a href="http://www.biodas.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Distributed Annotation System</a> (DAS) provides a way of displaying external annotation.
+        </p>
+        <p>
+            A pre-configured, species-specific set of external data sources is available from the '<b>DAS sources</b>' pull-down menu. Tick to select individual sources. The selected tracks will then be displayed after the menu has been closed. Brief descriptions for pre-configured DAS sources are available from the 'Apropos: Genome DAS' document.
+        </p>
+        <p>
+            In addition to the pre-configured sources it is also possible to add DAS sources from external DAS servers via the '<a href="HELP_dassources_HELP">Manage sources</a>' option in the '<a href="#DASSourcesMenu">DAS Sources</a>' menu.
+        </p>
+        <p>
+            You can also upload your own data sets into a DAS server provided by Ensembl using the '<a href="HELP_dasconfview#Upload_HELP">Upload data</a>' menu item.
+        </p>
+        <p>
+            Generally, all DAS tracks in Ensembl '<a href="HELP_contigview_HELP">ContigView</a>' and '<a href="HELP_cytoview_HELP">CytoView</a>' panels have blue names labels. Pointing to features in most DAS tracks will produce a pop-up menu showing an identifier, and one or more links to view an associated sequence in <a href="http://www.ebi.ac.uk/help/formats.html#fasta" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">FASTA format</a> if appropriate. Ensembl '<a href="HELP_fastaview_HELP">FASTAView</a>' pages also provide, where possible, a brief description of the data source and a link to a web page from the group that provided the data for the DAS track.
+        </p><!--
+<p>
+The sources shown by default in the human DAS menu may include:
+</p>
+
+<ul>
+<li>RefSeq entries from NCBI mapped onto the assembly by Ensembl</li>
+<li>Transcript predictions from other groups (NCBI, Acembly, Fgenesh+, Geneid, SLAM, Twinscan)</li>
+<li>BAC ends</li>
+<li>Microarray probe sequences mapped to the genome sequence assembly (Affymetrix, Sanger)</li>
+</ul>
+-->
+        <h4 id="urlfeature">
+            URL Sources
+        </h4>
+        <p>
+            Ensembl allows for attachment and display of smaller user data sets via the simple URL souce mechanism. Thereby, data sets obeying simple formatting rules are generally placed within user directories that are exported via web servers. URLs corresponding to these data files could be attached from the "URL-based data" option in the <a href="#DASSourcesMenu">DAS Sources menu</a>. Ensembl will then query the corresponding third party web server before rendering the page.
+        </p>
+        <p>
+            Detailed data set formatting rules can be found in the corresponding <a href="HELP_urlsource_HELP">help page</a>.
+        </p>
+        <h3 id="BasepairView">
+            Basepair View
+        </h3>
+        <p>
+            The fourth panel is used to show features on a small segment of the assembly. By default, '<a href="#BasepairView">Basepair View</a>', shows a region of 100 bp, taken from the centre of the '<a href="#DetailedView">Detailed View</a>' panel. The display can be zoomed in or out, and moved left or right, using navigation controls similar to those of the '<a href="#DetailedView">Detailed View</a>' panel. Clicking the <strong>plus</strong> or <strong>minus</strong> buttons zooms into or out of the region by a factor of approximately 2. These buttons allow zooming from as little as 1 bp up to 500 bp. The zooming ladder restricts or expands the field of view to a scale suitable to view any feature of interest. Individual steps of the ramp represent 25, 50, 100, 200, 300 and 500 bp sequence, respectively. Regions larger than 500 bp can only be seen in the '<a href="#DetailedView">Detailed View</a>' panel.
+        </p>
+        <p>
+            The '<a href="#BasepairView">Basepair View</a>' panel can be turned on or off using the plus [+] or minus [-] button. The tracks can be switched off or on using the 'Options' pull-down menu on the gold bar of the '<a href="#DetailedView">Detailed View</a>' panel. '<a href="#BasepairView">Basepair View</a>' displays some of the tracks from '<a href="#DetailedView">Detailed View</a>' like <a href="#contig">DNA (contigs)</a>, <a href="#Transcripts">Transcripts and Genes</a>, repeats and tile path) plus the following additional features:
+        </p>
+        <h4 id="sequence">
+            Sequence
+        </h4>
+        <p>
+            The forward strand of the genomic sequence is displayed above the DNA (contigs) track, the reverse strand below. Each ribonucleoside has a different background colour, to make it easier to visualise runs of bases:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    green: adenine (A)
+                </p>
+            </li>
+            <li>
+                <p>
+                    blue: cytosine (C)
+                </p>
+            </li>
+            <li>
+                <p>
+                    yellow: guanine (G)
+                </p>
+            </li>
+            <li>
+                <p>
+                    red: thymidine (T)
+                </p>
+            </li>
+        </ul>
+        <p>
+            The <a href="http://www.iupac.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">IUPAC</a> <a href="http://www.chem.qmul.ac.uk/iupac/misc/naabb.html#p3" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">single letter codes</a> for ribonucleosides are shown when there is room for display.
+        </p>
+        <h4 id="codonseq">
+            Amino acids
+        </h4>
+        <p>
+            Raw translations of the assembled genome sequence. All three possible reading frames are shown, above the <a href="#contig">DNA (contigs)</a> bar for the forward strand, below it for the reverse strand. Each amino acid has a different background colour, and amino acids with related physico-chemical properties have related shades:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    green: hydrophobic (A, G, I, L, M, P, V)
+                </p>
+            </li>
+            <li>
+                <p>
+                    blue: large hydrophobic (F, H, W, Y)
+                </p>
+            </li>
+            <li>
+                <p>
+                    gold: negative charge (D, E)
+                </p>
+            </li>
+            <li>
+                <p>
+                    pink: positive charge (K, R)
+                </p>
+            </li>
+            <li>
+                <p>
+                    purple: polar (N, Q, S, T)
+                </p>
+            </li>
+            <li>
+                <p>
+                    yellow: cysteine (C)
+                </p>
+            </li>
+            <li>
+                <p>
+                    red: stop codon (*)
+                </p>
+            </li>
+        </ul>
+        <p>
+            The <a href="http://www.iupac.org/" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">IUPAC</a> <a href="http://www.chem.qmul.ac.uk/iupac/AminoAcid/A2021.html" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">single letter codes</a> for the amino acids are shown when there is room for display.
+        </p>
+        <h4 id="codons">
+            Start/Stop Codons
+        </h4>
+        <p>
+            The positions of potential start and stop codons are displayed, only when a region less than 50 kb is displayed in '<a href="#DetailedView">Detailed View</a>'.
+        </p>
+        <h4 id="RestrictionEnzymeSites">
+            Restriction Enzymes
+        </h4>
+        <p>
+            This track shows the sequence of potential restriction endonuclease cleavage sites together with the name of the enzyme. Enzymes that cut the DNA strands in a staggered fashion to produce '<b>sticky ends</b>' are drawn in <b>blue</b>. Sites in <b>green</b> denote enzymes that cut the DNA strands at the same point to produce '<b>blunt ends</b>'. Red vertical lines mark the expected cleavage positions, joined by horizontal lines to the recognition site where the cleavage site does not overlap the recognition site. Pointing to a site produces a pop-up window with the name of the enzyme and its general recognition sequence.
+        </p>
+        <h3 id="PopUpMenus">
+            Pop-up Menus
+        </h3>
+        <p>
+            For most features in the '<a href="#DetailedView">Detailed View</a>' panel, you can display extra information and links with the mouse pointer. Putting the mouse pointer over a feature ("mouse-over") brings up a pop-up menu window. The top menu item is a name or database identifier in bold text. Below this may be one or more information points (text in grey and not clickable), and one or more clickable links (text in colour).
+        </p>
+        <p>
+            So that the display does not become cluttered, the pop-up text windows stay on the screen for only about 6 seconds. Click on the <b>X</b> at top-right or the title bar to close the menu window immediately. The window will also disappear if you move the pointer onto a different feature. To re-display, move the pointer off the feature and then point again. To click on a displayed link, move the mouse pointer down the menu - the hand link symbol will appear when you are over a clickable link.
+        </p>
+        <p>
+            <b>Hints:</b> Does the pop-up window disappear when you try to move the pointer onto it? You have probably moved through another feature without realising it. Try moving slowly onto a feature and stop moving when the text appears. If you keep having problems, zoom in on the region you are exploring, so that features are not so close together. You can also click directly on most features to go straight to a default link.
+        </p>
+        <p>
+            The pop-up menus can be turned off by unchecking the '<b>show popup menus</b>' option on the '<a href="#OptionsMenu">Options</a>' pull-down menu in the '<a href="#DetailedView">Detailed View</a>' '<a href="#MenuBar">Menu Bar</a>'. This may speed your browsing. You will still be able to click on a feature to go to an appropriate information page. An alternative way of using the pop-up windows is also available. To have pop-up menus appearing only when clicking on a feature, check the '<b>... popup on click</b>' option in the '<a href="#OptionsMenu">Options</a>' menu. However, if you plan to use Ensembl regularly it is well worth getting used to the default behaviour of the pop-up menus.
+        </p>
+        <hr>
+        <p>
+            The search box at the top of the page allows you to search for any identifier present in Ensembl. For detailed instructions see the Ensembl '<a href="HELP_textview_HELP">TextView</a>' page.
+        </p><!--END-->
+    </body>
+</html>

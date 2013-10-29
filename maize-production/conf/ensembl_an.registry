@@ -1,0 +1,15 @@
+use Bio::EnsEMBL::DBSQL::DBAdaptor; 
+use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'Zea_mays', 
+    '-group'   => 'core', 
+    '-port'    => '3306',
+    '-host'    => 'ascutney.cshl.edu', 
+    '-user'    => 'maize_rw', 
+    '-pass'    => 'z3@m@ys',
+    '-dbname'  => 'zea_mays_core_43_fpc', ); 
+
+Bio::EnsEMBL::Registry->add_alias("Zea_mays","maize");
+1;

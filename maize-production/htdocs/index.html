@@ -1,0 +1,52 @@
+<head>
+    <title>The Maize Genome Browser</title>
+    <script type="text/javascript">
+       var blindDuration = 0.5;
+       function toggle(item) {
+           var shortDiv = item + "_short"
+           var longDiv  = item + "_long"
+           new Effect.toggle(shortDiv, 'blind', { duration: 0 });
+           new Effect.toggle(longDiv, 'blind',  { duration: blindDuration });
+       }
+    </script>
+</head>
+<body>
+<div id="intro" class="box">
+  <div class="announcement">
+      <p class="announce_date">September 20, 2007</p>
+      <p class="headline">Improved Regions in BAC Sequence Views</p>
+      <div id="news_item_improved_region_short"><p>We have decided to remove the display of improved regions from the BAC Sequence Views. [<a href="javascript:toggle('news_item_improved_region')" style="font-size: 8pt">more</a>]</p></div>
+      <div id="news_item_improved_region_long" style="display: none"><p>We have decided to remove the display of improved regions from the BAC Sequence Views. They were visualized as vertical green bars on ContigView. Improved regions are areas of <tt>HTGS_IMPROVED</tt> BAC sequences targeted by sequence finishers for further manual work. Visualizing these regions is misleading, since non-improved regions may already be of high quality. We are considering other ways of visualizing all regions of high quality on the clone views. Please use the <a href="/perl/feedback">feedback form</a> to contact us with comments or questions.</p> <p>In the meantime, improved regions can be turned back on by selecting them from the 'Options' menu on the Detailed View. [<a href="javascript:toggle('news_item_improved_region');" style="font-size: 8pt">less</a>]</p></div>
+  </div>
+    <h2>Welcome to MaizeSequence.org!</h2>
+
+    <p>This site provides sequence and annotation of the <i>Zea mays</i> ssp. <i>mays</i> genome resulting from the Maize Genome Sequencing Project. The browser is based on the July 2005 release of the <a href="http://www.genome.arizona.edu/fpc/maize/">AGI Agarose FPC Map</a> and on BAC clone sequences contained therein.</p>
+
+    <p>Sequencing of the B73 cultivar commenced in November 2005 as part of a 3-year multi-institutional collaboration funded jointly by the <a href="http://www.nsf.gov/" title="US NSF - National Science Foundation">NSF</a>, <a href="http://www.usda.gov/" title="United States Department of Agriculture - Home">USDA</a>, and <a href="http://www.energy.gov/" title="Department of Energy - Homepage">DOE</a>. The strategy is to individually sequence a set BAC clones across a minimal-tiling path. Gene space will be identified and sequenced to finished quality. Read <a href="/overview.html">more about the Maize Genome Project</a> or view the <a href="/sequence_status.html">current sequencing progress</a>.</p>
+
+    <p>Our goal is to provide full and up-to-date access to all sequenced maize data. In addition to the latest sequenced BAC clones, the site presents preliminary annotations that are computationally derived from the sequence data. Annotations include predicted genes, markers, repeats, and expressed and conserved regions.</p>
+    
+    <p>The site presents convenient entry points into the maize genome:
+      <ul>
+        <li><strong>Browse</strong> the genome visually through the <a href="http://www.ensembl.org/" title="Ensembl Genome Browser">EnsEMBL</a> genome browser [<a href="browser_views.html" style="font-size:smaller">More Information</a>].</li>
+        <li><strong>Search</strong> for specific maize data through a unified feature name search (top-right-hand corner) or through our <a href="/Multi/blastview">BLAST</a> server.</li>
+        <li><strong>Download</strong> entire data sets via <a href="http://ftp.maizesequence.org/" title="MaizeSequence.org FTP Site">FTP</a>.</li>
+        <li><strong>Get notified</strong> when new data arrives through our <a href="/perl/notification">RSS notification system</a>.</li>
+    </ul>
+    
+    <p>As we strive to improve <strong>MaizeSequence.org</strong> and turn it into an invaluable community resource, we invite users to provide us with <a href="/perl/feedback">feedback</a> about the site. We welcome any comment, question, or feature request that you may have.</p>
+</div>
+
+<div id="whats_new" class="box">
+    <h3>What's New</h3>
+    <p class="date">August, 2007</p>
+    <ul>
+        <li>Download entire data sets through our new <a href="http://ftp.maizesequence.org">FTP server</a></li>
+        <li><a href="http://127.0.0.1:8081/perl/notification" title="Notification">Subscribe</a> to a customizable <a href="http://en.wikipedia.org/wiki/RSS_(file_format)" title="RSS - Wikipedia, the free encyclopedia">RSS</a> feed of a specific region of interest.</li>
+        <li><a href="/Multi/blastview">BLAST</a> specific data sets, such as HTGS_IMPROVED bacs, BAC-end sequences, or predicted gene translations</li>
+        <li>Access earlier versions of BAC clones to monitor how a clone and its underlying annotations have evolved over time.</li>
+        </ul>
+    <p style="font-size: 8pt; text-align: center">As always, we would like to get your <a href="/perl/feedback">feedback</a> about both new and existing features to the site.</p>
+    </ul>
+</div>
+</body>

@@ -1,0 +1,76 @@
+<head>
+    <title>Frequently Asked Questions</title>
+</head>
+<script type="text/javascript">
+   var expanded = null;
+   var blindDuration = 0.5;
+   function toggle_answer(item) {
+     var elementName = 'answer' + item;
+     if (Element.visible(elementName)) {
+       new Effect.BlindUp(elementName, { duration: blindDuration });
+     } else {
+       new Effect.BlindDown(elementName, { duration: blindDuration });
+     }
+   }
+</script>
+
+
+<h2>Frequently Asked Questions</h2>
+<div id="faq">
+<div id="question1" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(1)">Why is the FPC map in genomic coordinates?</a></div>
+<div id="answer1" class="answer" style="display: none"><strong>A:</strong> We have transformed the FPC bands to genomic coordinates using a conversion factor of 4900 bases per band. This number, however, should be treated as an approximation.</div>
+
+<div id="question2" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(2)">Can I get my region sequenced first?</a></div>
+<div id="answer2" class="answer" style="display: none"><strong>A:</strong> No. BAC clones are selected uniformly across the 550 FPC contigs. Seeds have been selected and clones are walked off of these seeds.</div>
+
+
+<div id="question3" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(3)">How were tile seeds selected?</a></div>
+<div id="answer3" class="answer" style="display: none"><strong>A:</strong> There are 3400 seed clones selected based on several criteria. They must:
+        <ul>
+            <li>be identified by both the agarose and <a href="http://www.genome.arizona.edu/fpc_hicf/maize/" alt="High-Information Content Fingerprint">HICF</a> FPC maps</li>
+            <li>be associated with at least one overgo marker</li>
+            <li>have at least one BAC end sequence</li>
+            <li>be at least 800kb apart</li>
+        </ul>
+        More information is available at Arizona Genomics Institute's <a href="http://www.genome.arizona.edu/fpc/maize/">Maize FPC Map</a> page.
+</div>
+
+<div id="question4" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(4)">Why are all the BACs only in Phase I?</a></div>
+<div id="answer4" class="answer" style="display: none"><strong>A:</strong> Since the project aims to sequence the maize <em>genespace</em>, it is expected that regions on BACs that do not contain genes will not be sequenced to a finished quality. For more information, read about the various <a href="/sequence_status.html">maize sequencing statuses</a>.</div>
+
+<div id="question5" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(5)">The view has too many features. Can I turn off certain tracks?</a></div>
+<div id="answer5" class="answer" style="display: none"><strong>A:</strong> Yes. The menu above the browser window lets you control which tracks are visible and which are not. Furthermore, the browser uses cookies to remember the decision for 2 months.</div>
+
+<div id="question6" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(6)">Can I view aligned features that are stored in an external data source?</a></div>
+<div id="answer6" class="answer" style="display: none"><strong>A:</strong> Yes. The Ensembl browser supports <a href="http://biodas.org/">DAS</a> (Distributed Annotation System). Simply configure a URL to your custom data source (either through a pull-down menu or from the sidebar) and a dedicated track should appear. We now provide pre-configured tracks for maize TwinScan transcripts produced by <a href="http://www.danforthcenter.org">the Danforth Center</a>.</div>
+
+<div id="question7" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(7)">What are virtual bins and how were they constructed?</a></div>
+<div id="answer7" class="answer" style="display: none"><strong>A:</strong> Virtual bins are computational representations of genetic bins found on the maize genetic maps.  We developed virtual bins by generating  correspondences between the <a href="http://www.genome.arizona.edu/fpc/maize/">AGI FPC map</a> and the <a href="http://www.maizegdb.org/map.php">IBM2 Neighbors map</a>. Markers common to both maps on the same chromosome were then assigned chromosomal positions based on the AGI approximation of 4900 basepairs per fingerprint contig band and then clustered with respect to maize bin. For any given bin, those markers outside of three deviations from the mean were discounted as spurious. Virtual bin boundaries were automatically calculated from the remaining minimum and maximum positions of markers in a cluster. Following automatic generation, we manually curated bin positions to assure no overlaps.</div>
+
+<div id="question8" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(8)">What are MDR tracks (e.g. MDR repeats=10)?</a></div>
+<div id="answer8" class="answer" style="display: none"><strong>A:</strong> Mathematically defined repeat (MDR) tracks indicate regions of repetitive DNA.  The frequency of each constituent 20-mer along the BAC sequence was determined within the raw reads of the maize whole genome shotgun sequence (DOE Joint Genome Institute).  The numeric portion of the track name indicates the minimum frequency required for a region to be highlighted. Thus, highlighting in the "MDR repeats=2" track indicates regions over which 20-mers occurred two or more times;  The "MDR repeats=10" indicates regions over which 20-mers occurred ten or more times;  "MDR repeats=100", one hundred or more times; and "MDR repeats=1000", one thousand or more times.  The most repetitive regions correspond to highlighted regions in the MDR repeat=1000 track.  The least repetitive regions correspond to non-highlighted areas in the MDR repeat=2 track. </div>
+
+<div id="question9" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(9)">How are FGENESH gene predictions classified?</a></div>
+<div id="answer9" class="answer" style="display: none"><strong>A:</strong> Predicted peptides are screened to distinguish those encoded by transposable elements (TE). Sequences are aligned to the NCBI non-redundant protein database using BLASTP. Those that align to transposable element sequences, as specified within a curated database, are classified as TE and are color-coded maroon within the browser's ContigView. Those not classified as TE are color-coded blue. FGENESH can predict coding sequences that incorrectly contain components of two genes. Approximately 3% of genes classified as TE are "fusions" that contain portions of non-TE genes.
+</div>
+
+<div id="question10" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(10)">The browser indicates that a gene's translation has "No NRAA alignments." But when I BLAST the peptide through the BLAST web interface, I see valid hits. What gives?</a></div>
+<div id="answer10" class="answer" style="display: none"><strong>A:</strong> Prediction translations are run through NCBI BLASTP using the default parameters. By default, the BLAST low-complexity filter is on. The website, on the other hand, turns off the filter by default, showing alignments which are considered unreliable for our classification purposes.</div>
+
+<div id="question11" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(11)">Why do improved BACs on ContigView seem to have shuffled contigs?</a></div>
+<div id="answer11" class="answer" style="display: none"><p><strong>A:</strong> The <a href="/sequence_status.html">improved</a> clone sequences furnished by the browser are a direct representation of GenBank accession records. As such, the coordinates of the sequences and their underlying features have not been altered in any way. The highly-repetitive nature of the sequences makes it difficult to elucidate further contig order and orientation at this time.</p>
+    <p>We have gone to great lengths to ensure consistency and to prevent any incongruence between the data available at NCBI and the data we provide. We hope to make our approach to analyzing the emerging maize genome sequence as transparent as possible.</p></div>
+
+<div id="question12" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(12)">How often is the data on the browser updated?</a></div>
+<div id="answer12" class="answer" style="display: none"><strong>A:</strong> Sequenced BAC updates are provided on a weekly basis (Mondays). We regularly download BAC sequences, run them through our automated annotation pipeline, and validate the quality of analysis. All data produced by our pipelines can be easily exported. Most other data sets, such as reference feature maps, will remain relatively unchanged. We intend in the future to assess and enrich the maize FPC map by integrating sequence-based annotations.</div>
+
+<div id="question14" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(14)">How is this browser related to Gramene?</a></div>
+<div id="answer14" class="answer" style="display: none"><strong>A:</strong> MaizeSequence.org is a replacement the maize browser on <a href="http://www.gramene.org">Gramene</a>. Because the maize browser and the annotation pipeline are an integral part of the Maize Genome Sequencing Project and track its progress, data such as clones and underlying annotations is produced more rapidly. The browser therefore warrants its own website. Nevertheless, all cereal features between Gramene and MaizeSequence.org are deeply linked, and users should be able to navigate seamlessly between different genome maps provided by both browsers. Aside from an extensive set of enhancements, users should feel no different.</div>
+
+
+<div id="question13" class="question"><strong>Q:</strong> <a href="javascript:toggle_answer(13)">I have a question that is not addressed in this FAQ. How can I have my question answered?</a></div>
+<div id="answer13" class="answer" style="display: none"><strong>A:</strong> We strive to provide as much information on this site as possible. If a question does not appear in this FAQ, please use <a href="/perl/feedback">our feedback form</a> to contact us. We will try our best to respond. If the question is general enough, and it usually is, we will post it on the FAQ.</div>
+
+
+
+</div>

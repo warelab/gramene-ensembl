@@ -1,0 +1,121 @@
+body {
+    font: 10pt sans-serif;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+.logo {
+    background-color: #808FAA; text-align: center;
+}
+#annotations, .reference, #faq, .stats {
+    background-color: #FFFFFF;
+}
+#annotations td, #annotations th,
+.reference td, .reference th,
+#faq td, #faq th,
+.stats td, .stats th {
+    border: 2px solid white;
+    padding: 3px;
+    vertical-align: top;
+}
+#annotations td.level, #annotations td.stage,
+#annotations td.cycle, #annotations td.browser,
+#faq .question, #faq .answer,
+#whats_new {
+    padding: 5px;
+    margin: 2px;
+    color: black;
+}
+.reference td, #annotations td, #faq .question, #whats_new {
+    background-color: #CCCCFF;
+}
+#faq .question, #whats_new {
+    border: 1px solid #AAAACC;
+}
+#whats_new h3 {
+    margin-top: 0;
+    padding: 3px;
+    margin: -5px;
+    background-color: #808FAA;
+    color: white;
+    font-size: 10pt;
+}
+#whats_new .date {
+    width: 100%;
+    text-align: right;
+    font-style: italic;
+    font-size: 9pt;
+    color: #808FAA;
+}
+.reference th, #annotations th, #faq .answer {
+    background-color: #CCCCCC;
+}
+#faq .answer {
+    border: 1px solid #AAAAAA;
+}
+.reference a {
+    text-decoration: none;
+}
+.announcement, #feedback_disclaimer {
+    color: black;
+    font-size: 9pt;
+    padding: 5px;
+    width: 400px;
+    background-color: lightgreen;
+    border: 1px solid green;
+    margin-bottom: 5px;
+}
+.urgent {
+    border: 1px solid red;
+    background-color: pink;
+}
+.announcement p {
+    margin: 0;
+    padding-top: 0.5em;
+}
+.announcement a {
+    color: darkgreen;
+}
+.urgent a {
+    color: darkred;
+}
+.announcement .announce_date {
+    font-size: 8pt;
+    color: green;
+    font-style: italic;
+    padding-top: 0;
+}
+.urgent .announce_date {
+    color: red;
+}
+.announcement .headline {
+    font-weight: bold;
+    padding-top: 0;
+}
+#browser_description blockquote {
+    font-size: 14pt;
+    margin-left: 30px;
+    padding-left: 10px;
+    border-left: 5px solid lightgray;
+}
+#browser_description {
+    font-size: 12pt;
+}
+#feedback_success {
+    font-size: 16pt;
+}
+#feedback_disclaimer {
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+#feedback_success #jumpto_link {
+    font-size: 12pt;
+    text-align: center;
+}
+.alert {
+    background: transparent;
+}

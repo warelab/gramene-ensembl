@@ -1,0 +1,20 @@
+#annotations, .reference, #faq {
+    background-color: #FFFFFF;
+}
+#annotations td, #annotations th,
+.reference td, .reference th, #faq td, #faq th {
+    border: 2px solid white;
+    padding: 3px;
+    vertical-align: top;
+    
+}
+#annotations td.level, #annotations td.stage,
+#annotations td.cycle, #annotations td.browser,
+.reference td,
+#faq th.question, #faq td.question {
+    background-color: #CCCCFF;
+}
+#annotations th, .reference th,
+#faq th.answer, #faq td.answer {
+    background-color: #CCCCCC;
+}

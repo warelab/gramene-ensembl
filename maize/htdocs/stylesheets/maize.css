@@ -1,0 +1,201 @@
+body {
+    font: 8pt sans-serif;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+.logo {
+    background-color: #808FAA; text-align: center;
+}
+#annotations, .reference, #faq, .stats {
+    background-color: #FFFFFF;
+}
+#annotations td, #annotations th,
+.reference td, .reference th,
+#faq td, #faq th,
+.stats td, .stats th {
+    border: 2px solid white;
+    padding: 3px;
+    vertical-align: top;
+}
+#annotations td.level, #annotations td.stage,
+#annotations td.cycle, #annotations td.browser,
+#faq .question, #faq .answer{
+    padding: 5px;
+    color: black;
+}
+.reference td, #annotations td, #faq .question {
+    background-color: #CCCCFF;
+}
+#faq * {
+    font-size: 8pt;
+}
+#faq .question {
+    border: 1px solid #AAAACC;
+}
+.reference th, #annotations th, #faq .answer {
+    background-color: #CCCCCC;
+}
+#faq .answer {
+    border: 1px solid #AAAAAA;
+}
+#faq {
+    padding-right: 20px;
+}
+.reference a {
+    text-decoration: none;
+}
+.announcement, #feedback_disclaimer {
+    color: black;
+    font-size: 9pt;
+    padding: 5px;
+    width: 400px;
+    background-color: lightgreen;
+    border: 1px solid green;
+    margin-bottom: 5px;
+}
+.urgent {
+    border: 1px solid red;
+    background-color: pink;
+}
+.announcement p {
+    margin: 0;
+    padding-top: 0.5em;
+}
+.announcement a {
+    color: darkgreen;
+}
+.urgent a {
+    color: darkred;
+}
+.announcement .announce_date {
+    font-size: 8pt;
+    color: green;
+    font-style: italic;
+    padding-top: 0;
+}
+.urgent .announce_date {
+    color: red;
+}
+.announcement .headline {
+    font-weight: bold;
+    padding-top: 0;
+}
+#browser_description blockquote {
+    font-size: 14pt;
+    margin-left: 30px;
+    padding-left: 10px;
+    border-left: 5px solid lightgray;
+}
+#browser_description {
+    font-size: 12pt;
+}
+#feedback_success {
+    font-size: 16pt;
+}
+#feedback_disclaimer {
+    margin-top: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+#feedback_success #jumpto_link {
+    font-size: 12pt;
+    text-align: center;
+}
+.alert {
+    background: transparent;
+}
+td#news {
+    width: 200px;
+    background-color: #F2F0E9;
+    border-left: 1px solid #DAD4C5;
+    border-bottom: 1px solid #DAD4C5;
+    padding: 20px;
+    font-size: 8pt;
+}
+td#news ul li, td#news ul {
+    list-style-position: inside;
+    padding: 0 0 5px 0;
+    margin: 0;
+}
+td#news h3 {
+    margin-top: 0;
+    padding: 3px;
+    margin: -5px;
+    font-size: 10pt;
+}
+td#news h3, #related h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+td#news h3, td#news .date, td#news a, h2.breadcrumbs, .panel h2 {
+    color: #862126;
+}
+h2.breadcrumbs {
+    text-transform: uppercase;
+    letter-spacing: 3pt;
+}
+.red-button {
+    font-style: normal;
+}
+#related h2 {
+    border: none;
+    background: transparent url('/images/nav-head-bg.png') repeat-x;
+/*    border-top: 1px solid #AAA;*/
+    font-size: 8pt;
+    color: #862126;
+    display: block;
+    margin: 0;
+}
+#related a {
+    font-weight: normal;
+    font-size: 8pt;
+}
+#related h6 {
+    font-weight: normal;
+}
+#related-box {
+    border-right: 1px solid #DAD4C5;
+}
+#help a {
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 8pt;
+    padding: 0 1px 0 5px;
+    text-transform: lowercase;
+}
+#search .right, #closewindow {
+    font-size: 8pt;
+}
+.navbox * {
+    font-size: 8pt;
+}
+#related ul {
+    margin-top: 0;
+}
+#related li.bullet {
+    padding-top: 0;
+    padding-bottom: 4px;
+}
+#project-overview {
+    background: transparent url('/images/maize_logo_bg.png') no-repeat;
+    background-position: center right;
+}
+#nav-coordinates {
+    font-family: "Lucida Grande", sans-serif;
+    letter-spacing: 0;
+    font-weight: normal;
+}
+#main {
+    padding-right: 10px;
+}
+#related li.bullet.dropdown ul {
+    border: 1px solid #DAD4C5;
+}
+#related li.m {
+    border: none;
+}

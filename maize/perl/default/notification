@@ -1,0 +1,50 @@
+#!/usr/local/bin/perl
+
+package notification;
+
+use strict;
+use warnings;
+use Data::Dumper qw(Dumper); # For debug
+no warnings "uninitialized";
+
+use EnsEMBL::Web::Document::WebPage;
+
+my $webpage = new EnsEMBL::Web::Document::WebPage(
+						  'scriptname' => 'notification',
+						  'objecttype' => 'Rss',
+						  );
+
+if ($webpage->has_a_problem) {
+    $webpage->render_error_page;
+} 
+
+else {
+    my $object = $webpage->dataObjects->[0];
+
+    $webpage->configure($object, 'configure_rss', 'context_menu');
+    
+    if ($object->has_problem_type('redirect')) {
+        $webpage->redirect($object->problem->[0]->name);
+    } 
+
+    # go to the entry page if nothing submitted
+    elsif (! defined ($object->param('action'))){
+	$webpage->render;
+    }
+    
+    # Build the RSS URL
+    else {
+	my $script = 'rss';
+	my $URL = sprintf( "/%s/%s?chromosome=%s&start=%d&end=%d&action=%s",
+			   $ENV{'ENSEMBL_SPECIES'},
+			   $script,
+			   $object->param('chromosome'),
+			   $object->param('start'),
+			   $object->param('end'),
+			   $object->param('action'),
+			   );
+	$webpage->redirect($URL);
+    }
+}
+
+1;

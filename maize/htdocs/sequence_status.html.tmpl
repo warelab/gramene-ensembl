@@ -1,0 +1,45 @@
+<head>
+    <title>Clone Sequence Status</title>
+</head>
+<body id="sequence_status" onload="">
+    <h2>Clone Sequence Status</h2>
+    <p>Sequenced maize clones are associated with sequencing status, encoded within the <a href="http://www.ncbi.nlm.nih.gov/">GenBank</a> submission record as a reserved keyword. The following table describes the keywords that can be attributed to maize clones, along with their clone count.</p>
+    <p style="font-size: 8pt"><em>Click on the clone number to view the relevant GenBank query results.</em></p>
+    <table cellspacing="0" cellpadding="0" class="reference">
+        <tr>
+            <th>Keyword</th>
+            <th>Description</th>
+            <th>Clones*</th>
+        </tr>
+
+        <tr>
+            <td>HTGS_FULLTOP</td>
+            <td>2 x 384 paired-end attempts (6X coverage); completed shotgun phase; initial assembly</td>
+            <td style="text-align: right"><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nuccore&amp;cmd=Search&amp;term=Zea+mays%5BORGN%5D+AND+HTGS_FULLTOP%5BKYWD%5D+AND+Wilson%5BAUTHOR%5D"><TMPL_VAR NAME="FULLTOP"></a></td>
+        </tr>
+
+        <tr>
+            <td>HTGS_PREFIN</td>
+            <td>Completed automated improvement phase (AutoFinish)</td>
+            <td style="text-align: right"><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nuccore&amp;cmd=Search&amp;term=Zea+mays%5BORGN%5D+AND+HTGS_PREFIN%5BKYWD%5D+AND+Wilson%5BAUTHOR%5D"><TMPL_VAR NAME="PREFIN"></a></td>
+        </tr>
+
+        <tr>
+            <td>HTGS_ACTIVEFIN</td>
+            <td>Active work being done by a finisher</td>
+            <td style="text-align: right"><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nuccore&amp;cmd=Search&amp;term=Zea+mays%5BORGN%5D+AND+HTGS_ACTIVEFIN%5BKYWD%5D+AND+Wilson%5BAUTHOR%5D"><TMPL_VAR NAME="ACTIVEFIN"></a></td>
+        </tr>
+
+        <tr>
+            <td>HTGS_IMPROVED</td>
+            <td>Finished sequence in gene regions; improved regions will be indicated; once order and orientation of improved segments are confirmed, a comment will be added to indicate this</td>
+            <td style="text-align: right"><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nuccore&amp;cmd=Search&amp;term=Zea+mays%5BORGN%5D+AND+HTGS_IMPROVED%5BKYWD%5D+AND+Wilson%5BAUTHOR%5D"><TMPL_VAR NAME="IMPROVED"></a></td>
+        </tr>
+	<tr>
+	    <th colspan="2"><div style="font-size: 8pt">
+	            <strong>*</strong>&nbsp;as of <strong><TMPL_VAR NAME="LAST_UPDATED"></strong></div></td>
+	    <th style="text-align: right"><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=nuccore&amp;cmd=Search&amp;term=Zea+mays%5BORGN%5D+AND+HTG%5BKYWD%5D+AND+Wilson%5BAUTHOR%5D"
+	        ><TMPL_VAR NAME="TOTAL"></a></td>
+	</tr>
+    </table><!-- Status Table -->
+</body>

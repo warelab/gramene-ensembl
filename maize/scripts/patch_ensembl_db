@@ -1,0 +1,68 @@
+#!/bin/bash
+
+default_ensembl_home="/usr/local/ensembl-$ENSEMBL_VERSION"
+function usage_and_exit {
+    status="$1"
+    if [ -z "$status" ]; then
+        status=0
+    fi
+    cat <<USAGE
+$0 <db_name>
+
+    Will patch to the latest version of the EnsEMBL schema. The script will
+    attempt to guess the starting version based on the 'meta.schema_version'
+    key in the supplied database and the ending version based on the name of
+    the supplied database.
+
+    Environment:
+        ENSEMBL_HOME
+            The Ensembl home containing the SQL patch files (Default: $default_ensembl_home -- controlled via \$ENSEMBL_VERSION)
+            
+        MYSQL_OPTS
+            MySQL options to be fed into the mysql command
+USAGE
+    exit $status;
+}
+
+db_name=$1
+
+if [ -z "$db_name" ]; then
+    echo "<db_name> is required";
+    usage_and_exit;
+fi
+
+if [ -z "$ENSEMBL_HOME" ]; then
+    ENSEMBL_HOME=$default_ensembl_home
+fi
+
+patch_path="$ENSEMBL_HOME/ensembl/sql";
+
+mysql $MYSQL_OPTS $db_name -e 'show tables' >& /dev/null
+if [ "$?" -eq 1 ]; then
+    echo "Cannot connect to database '$db_name'! Check MYSQL_OPTS environment."
+    usage_and_exit 1
+fi
+
+start_version=`mysql $MYSQL_OPTS --skip-column-names $db_name -e "select meta_value from meta where meta_key = 'schema_version'"`
+if [ -z "$start_version" ]; then
+    echo "Unable to deduce start version from $db_name.meta.schema_version!"
+    usage_and_exit 1
+fi
+
+end_version=`echo $db_name | sed 's/[A-Za-z_]//g'`
+if [ -z "$end_version" ]; then
+    echo "Unable to deduce end version from DB name!"
+    usage_and_exit 1
+fi
+
+echo "[Patching from version $start_version to $end_version]"
+
+version=$start_version
+while [ $version -lt $end_version ]; do
+    next_version=$(($version+1))
+    for patch in $patch_path/patch_${version}_${next_version}*; do
+        mysql -v $MYSQL_OPTS $db_name < $patch
+    done
+    version=$next_version
+done
+
