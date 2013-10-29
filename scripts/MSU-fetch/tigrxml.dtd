@@ -1,0 +1,743 @@
+<!--
+###################################################################################################################### 
+
+    tigrxml.dtd
+    DTD for XML format presented by TIGR to release the genome annotation data
+    to the scientific community.
+
+    Brian Haas 02/13/2001
+
+    This DTD continues to be under development.  The current formatting described will be retained in future versions of this DTD.  
+    Future additions to the DTD will be made to extend the information content and will be specified below.
+
+  -update 03192004 
+            -made LOCUS optional., ALT_LOCUS? changed to ALT_LOCUS*
+
+   -update 03092004 (bhaas)
+             -added GENE_NAME element, COM_NAME refers to gene product name (protein name), allow for multiple instances of GENE_NAME, COM_NAME, EC_NUM, GENE_SYM, and an IS_PRIMARY attribute was added to each element to differentiate the primary values from secondary values (ie. gene alias').
+
+
+   -update (bhaas)
+            -Revamped the CDNA_SUPPORT section to include ESTs as well as fl-cdnas, including the status of the incorporation and any associated comments.
+
+
+    -update 01212003
+            -ACCESSION attribute of SEQ_ELEMENT was changed from type NMTOKEN to CDATA to allow '|' in accession.
+
+
+    -update 07202002 
+             -PUB_LOCUS added as an optional element under MODEL; allows for the exact identification of alternative splicing isoforms of a single gene (TU).
+	     -URL element added to gene to link to the gene report page.  This URL element has just have a single attribute URLNAME providing a token identifier and it provides the complete URL to a page associated with that token.
+
+
+    -update 07/15/2002
+            -CDNA_SUPPORT added as a sub-element to MODEL, indicating which complete cDNA supports the annotated CDS structure, hence the protein sequence.
+
+    -update 05/29/2002 (bsuh)
+            -MODEL_ATTRIBUTE element (new!) added to MODEL
+            -ATTRIBUTE_TYPE element (new!) added to MODEL_ATTRIBUTE
+            -added description of XML representation of MODEL_ATTRIBUTEs: SignalP and TMHMM
+
+    -update 04/30/2002 (bsuh)
+            -FUNCT_ANNOT_EVIDENCE element added to GENE_INFO
+            -TYPE attribute added to FUNCT_ANNOT_EVIDENCE
+            -ASSIGN_TYPE attribute removed from ASSIGN_ACC
+
+    -update 04/28/2002 (bsuh)
+             -MODEL_EVIDENCE element added to MODEL
+             -COMMENT element (from ident.comment) added to GENE_INFO
+             -ASSIGN_METHOD attribute added to ASSIGN_ACC
+             -Various small changes to DTD syntax
+
+    -update 12/19/2001
+             -PUB_LOCUS element added to the RNA genes. (optional).
+	     -ROLE_INFO becomes deprecated due to Gene Ontology.  
+	     -GENE_ONTOLOGY added to GENE_INFO.
+
+    -update 08/09/2001
+             -ALT_LOCUS added under GENE_INFO to identify alternate bac-based identifiers for a gene.
+	     -FROM_OVERLAP_TYPE and TO_OVERLAP_TYPE added under TILING_PATH to describe the quality of the overlaps between adjacent assemblies in the tiling path.
+	     -SEQ_LAST_TOUCHED added as an element under HEADER to identify the date in which the assembly sequence was last manipulated.  
+
+    -update 06/11/2001 (began tracking updates).
+             -CLONE_NAME added as an attribute of ASMBL_ID, LEFT_ASMBL, RIGHT_ASMBL.  It preexists as an element under HEADER, and that will remain.
+	     -GENE_SYNONYM and CHROMO_LINK added as an element under TU and MODEL.
+	     -TRANSCRIPT_SEQUENCE (as well as CDS_SEQUENCE and PROTEIN_SEQUENCE) are optional.
+
+
+	     
+######################################################################################################################
+-->
+
+
+<!-- 
+   Root element for XML is TIGR.  TIGR contains at least one ASSEMBLY element.
+-->
+
+<!ELEMENT TIGR (PSEUDOCHROMOSOME | ASSEMBLY)* >
+
+<!ELEMENT PSEUDOCHROMOSOME (SCAFFOLD, ASSEMBLY) >
+
+<!--
+   The ASSEMBLY element is the parent element referring to an individual nucleotide assembly.
+   Often, the nucleotide assembly represents a single BAC (bacterial artificial chromosome) sequence.
+   This element houses the annotation for the sequence unit.
+
+   The unique index to the TIGR annotation database is the ASMBL_ID.
+   CLONE_ID is for TIGR's tracking purposes only.
+   DATABASE references the TIGR annotation database name.  ie. ATH1:Arabidopsis, OSA1:Rice.
+   CURRENT_DATE : the date the xml was created.
+   COORDSET: represents the coordinates for which information is provided for the assembly.  If the
+   entire assembly is described, then the coordset will be from position 1 to the length of the assembly.
+
+-->
+
+<!ELEMENT ASSEMBLY ( ASMBL_ID, COORDSET, HEADER, TILING_PATH?, GENE_LIST, MISC_INFO?, REPEAT_LIST?, ASSEMBLY_SEQUENCE ) >
+
+
+<!ATTLIST ASSEMBLY CLONE_ID        NMTOKEN    #REQUIRED >
+<!ATTLIST ASSEMBLY DATABASE        NMTOKEN    #REQUIRED >
+<!ATTLIST ASSEMBLY CHROMOSOME      NMTOKEN    #IMPLIED  >
+<!ATTLIST ASSEMBLY CURRENT_DATE    CDATA      #REQUIRED >
+
+<!ELEMENT ASMBL_ID (#PCDATA) >
+<!ATTLIST ASMBL_ID  CLONE_NAME     CDATA  #IMPLIED>
+
+
+<!--
+   GENE_LIST contains all gene features broken down into two parent nodes: the protein coding
+   genes and the RNA genes.
+-->
+
+<!ELEMENT GENE_LIST (PROTEIN_CODING, RNA_GENES)>
+
+
+
+
+<!--
+    Element RNA_GENES contains each of the non-protein coding genes that TIGR may provide annotation for.
+    These include tRNAs (see PRE-TRNA), small nuclear RNAs (see SNRNA), small nucleolar RNAs (see SNORNA), 
+    and ribosomal RNAs (see RRNA).
+--> 
+
+<!ELEMENT RNA_GENES (PRE-TRNA*, SNRNA*, SNORNA*, RRNA*) >
+
+
+
+<!-- 
+    FEAT_NAME represents a temporary identifier assigned to each gene component.  The only stable reference
+    to a gene is the LOCUS or PUB_LOCUS (see GENE_INFO).
+-->
+
+<!ELEMENT FEAT_NAME (#PCDATA) >
+
+
+
+<!--
+    DATE represents the date in which a feature was created or modified.  This element is useful for synchronization
+    of the annotation data with external databases.
+-->
+
+<!ELEMENT DATE (#PCDATA) >
+
+
+<!--
+    PROTEIN_CODING genes are represented by at least four components: TU, MODEL, EXON, CDS. 
+    The TU represents the transcriptional unit and is the highest order component of the gene.
+    A TU can encode multiple gene MODELs only in cases where alternative splicing exists.
+    A gene MODEL encapsulates all of the coding and non-coding structures of an individual splicing isoform.
+    Each gene MODEL can encode several mRNA EXONS and represent the spliced, intronless portions of the gene.
+    An mRNA EXON may only partially code for a protein; exactly the case where upstream or downstream untranslated
+    regions exist.  The protein coding portion of an individual EXON is represented by the CDS element.  The CDS element
+    will also encode the stop codon.  The gene components are not ordered based on their coordinates.
+    For regions in which untranslated regions exist, UTR(s) will present.  UTR(s) represent the non-protein-coding portions
+    of the RNA EXON(s).  UTRs are not currently supported TIGR data types outside of this DTD and they exist here only
+    to facilitate external data analysis.
+
+    Each gene component has a coordinate set associated with it (see COORDS).  The following illustration should clarify
+    the role of each element and its coordinates:
+
+    TU        {=============================================================================}
+              |                                                                             |
+    MODEL     |       {============================================================}        |
+              |       |                                                            |        |
+    EXON(s)   {=============}        {========================}    {========================}
+              |      ||              |                        |    |               ||       |
+    CDS(s)    |      |{=====}        {========================}    {===============}|       |
+              |      |                                                              |       |
+    UTR(s)    {======}                                                              {=======}
+
+-->
+    
+
+<!ELEMENT PROTEIN_CODING (TU*) >
+
+<!ELEMENT TU (FEAT_NAME, GENE_SYNONYM*, CHROMO_LINK*, DATE, GENE_INFO, COORDSET, MODEL+, TRANSCRIPT_SEQUENCE?, GENE_EVIDENCE?, URL*) >
+
+<!ELEMENT MODEL (FEAT_NAME, PUB_LOCUS?, CDNA_SUPPORT?, GENE_SYNONYM*, CHROMO_LINK*, DATE, COORDSET, MODEL_ATTRIBUTE?, MODEL_EVIDENCE?, EXON+, CDS_SEQUENCE?, PROTEIN_SEQUENCE?) >
+<!ATTLIST MODEL CURATED          NMTOKEN    #IMPLIED >  <!-- flag indicates a TIGR curator has approved the gene structure, or supported by a full-length cDNA  -->
+<!ATTLIST MODEL COMMENT          CDATA      #IMPLIED >
+
+
+<!ELEMENT EXON (FEAT_NAME, DATE, COORDSET, CDS?, UTRS?) >
+
+<!ELEMENT CDS  (FEAT_NAME, DATE, COORDSET) >
+
+<!--
+     MODEL_ATTRIBUTE provides annotation info regarding the "attributes" of a model.
+     Some sample attributes are Molecular Weight, PI, Cellular Localization, Transmembrane Domains, etc.
+     Listed below are the specifics/examples for some important attributes...
+
+     *) Transmembrane domains
+          <ATTRIBUTE_TYPE METHOD="TMHMM2.0">	                    (Prediction via TMHMM version 2.0)
+               <ATT_SCORE DESC="count">2</ATT_SCORE>                (Number of predicted helices, in this case 2)
+               <ATT_SCORE DESC="coords">182:201,265:287</ATT_SCORE> (Coordinates of predicted helices, in this case 182-201 and 265-287)
+          </ATTRIBUTE_TYPE>
+
+     *) Signal Peptide (3 cases with different ATT_SCORE tags)
+          <ATTRIBUTE_TYPE METHOD="signalP&#x2D;2.0 HMM">                        (Prediction via SignalP HMM ver 2.0)
+               <ATT_SCORE DESC="HMM&#x2D;prediction">Signal peptide</ATT_SCORE> (Prediction = Signal peptide)
+               <ATT_SCORE DESC="HMM&#x2D;position">20</ATT_SCORE>               (Predicted cleavage site)
+               <ATT_SCORE DESC="HMM&#x2D;SPprob">0.874</ATT_SCORE>              (Signal peptide probability)
+          </ATTRIBUTE_TYPE>
+
+          <ATTRIBUTE_TYPE METHOD="signalP&#x2D;2.0 HMM">                                    (Prediction via SignalP HMM ver 2.0)
+               <ATT_SCORE DESC="HMM&#x2D;prediction">Non&#x2D;secretory protein</ATT_SCORE> (Prediction = Non-secretory protein)
+          </ATTRIBUTE_TYPE>
+
+          <ATTRIBUTE_TYPE METHOD="signalP&#x2D;2.0 HMM">                       (Prediction via SignalP HMM ver 2.0)
+               <ATT_SCORE DESC="HMM&#x2D;prediction">Signal anchor</ATT_SCORE> (Prediction = Signal anchor)
+               <ATT_SCORE DESC="HMM&#x2D;SAprob">0.768</ATT_SCORE>             (Signal anchor probability)
+          </ATTRIBUTE_TYPE>
+     
+-->
+
+<!ELEMENT MODEL_ATTRIBUTE (ATTRIBUTE_TYPE*)>
+<!ELEMENT ATTRIBUTE_TYPE (ATT_SCORE*)>
+<!ATTLIST ATTRIBUTE_TYPE METHOD CDATA #REQUIRED>
+
+<!ELEMENT ATT_SCORE (#PCDATA)>
+<!ATTLIST ATT_SCORE DESC CDATA #REQUIRED>
+
+
+<!-- CDNA_SUPPORT provides the accessions (mostly gi-numbers) of complete cDNAs which support the annotated 
+     CDS structure for the gene model, and hence the annotated protein sequence.
+-->
+
+<!ELEMENT CDNA_SUPPORT (ACCESSION+) >
+<!ELEMENT ACCESSION (#PCDATA)> <!-- pcdata now holds comments -->
+<!ATTLIST ACCESSION DBXREF CDATA #IMPLIED> <!-- contains genbank accession for fl-cdna or est -->
+<!ATTLIST ACCESSION IS_FLI NMTOKEN #IMPLIED> <!-- flag 1=full-length, 0=not full-length (ie. est) -->
+<!ATTLIST ACCESSION UNIQUE_TO_ISOFORM NMTOKEN #IMPLIED> <!-- flag 1=unique, 0=shared between isoforms  -->
+<!ATTLIST ACCESSION ANNOT_INCORP NMTOKEN #IMPLIED> <!-- flag 1=incorporated into gene model verified, 0=incorporation not verified  -->
+
+
+<!-- 
+     GENE_EVIDENCE provides all annotation data that may support the gene structure for the corresponding transcriptional unit (TU) 
+-->
+
+
+<!ELEMENT GENE_EVIDENCE (EVIDENCE_TYPE)>
+
+<!ELEMENT MODEL_EVIDENCE (EVIDENCE_TYPE)>
+
+<!ELEMENT EVIDENCE_TYPE (SEQUENCE_DB_MATCH*,  COMPUT_PREDICTION*)>
+
+<!ELEMENT SEQUENCE_DB_MATCH (SEARCH_DB*)>
+
+<!ELEMENT SEARCH_DB (SEQ_ELEMENT*)>
+<!ATTLIST SEARCH_DB  DB_NAME CDATA  #REQUIRED>
+<!ATTLIST SEARCH_DB  DB_TYPE CDATA  #REQUIRED>
+
+<!ELEMENT COMPUT_PREDICTION (PREDICTION_SET*)>
+
+<!ELEMENT PREDICTION_SET (SEQ_ELEMENT*) >
+<!ATTLIST PREDICTION_SET PREDICTION_TOOL CDATA #REQUIRED>
+<!ATTLIST PREDICTION_SET PREDICTION_TYPE CDATA #REQUIRED>
+
+<!-- 
+     SEQ_ELEMENT(s) represent features that provide evidence for the existing annotation and can include gene predictions,
+     splice site predictions, or database matches.  Each match segment or predicted exon is considered an individual
+     sequence element and has a pair of coordinates referential to the parent nucleotide assembly (ASMBL_COORDS)
+     or to the element itself (MATCH_COORDS).
+-->
+     
+
+<!ELEMENT SEQ_ELEMENT (ASMBL_COORDS?, MATCH_COORDS?, RELATIVE_COORDS?)>
+<!ATTLIST SEQ_ELEMENT  FEAT_TYPE      NMTOKEN    #REQUIRED>
+<!ATTLIST SEQ_ELEMENT  METHOD         CDATA      #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  ACCESSION      CDATA      #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  DESCRIPTION    CDATA      #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  PER_ID         NMTOKEN    #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  SCORE          CDATA      #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  E_VALUE        NMTOKEN    #IMPLIED>
+<!ATTLIST SEQ_ELEMENT  ELEMENT_NUM    NMTOKEN    #IMPLIED>
+
+
+
+<!-- describe the coordinates within the ASSEMBLY (also the default behaviour for the COORDSET element)-->
+<!ELEMENT ASMBL_COORDS (COORDSET)>
+
+
+<!-- describe the coordinates within the search database sequence -->
+<!ELEMENT MATCH_COORDS (COORDSET)>
+
+
+<!-- describe the coordinates relative to the sequence being analysed; protein or nucleotide sequence of an annotated gene.-->
+<!ELEMENT RELATIVE_COORDS (COORDSET)>
+
+
+<!-- GENE_SYNONYM explained:
+     Within the overlapping regions of bacs, a gene may exist  either compeletely or partially on both bacs, 
+     and represent the single canonical gene only after a merging operation has taken place.  For the purpose 
+     of generating a non-redundant gene set, all gene synonyms are merged with their sibling gene synonyms.  
+-->
+
+<!ELEMENT GENE_SYNONYM (#PCDATA) >
+
+
+<!-- CHROMO_LINK explained:
+     Pseudo-chromosomes are constructed based on the tiling path containing individual bacs.  The annotation along the
+     bac sequences are propagated from the bac to the pseudochromosome.  The genes on the pseudo-chromosome are given
+     new temporary feat_name identifiers that differ from the bac genes from which they were derived.  The CHROMO_LINK
+     provides a link between the temporary feat_name of the pseudochromosome gene set to the feat_names of the genes
+     along the bacs.
+-->
+
+
+<!ELEMENT CHROMO_LINK (#PCDATA) >
+
+
+
+
+<!-- 
+    UTRS specify each UTR or untranslated region.
+    There can be more than one if it's a single exon gene: ie. 
+              5'                                                  3'
+     EXON:      {===============================================}
+     CDS :      |   |{============================}|            |
+     LEFT_UTR:  {===}                              |            |
+     RIGHT_UTR:                                    {============}
+            
+     
+
+     If no portion of the EXON is translated, then we have an EXTENDED_UTR, which
+     is includes the full length of the EXON.
+
+
+
+-->
+
+<!ELEMENT UTRS (LEFT_UTR | RIGHT_UTR | EXTENDED_UTR)* >
+
+<!ELEMENT LEFT_UTR (COORDSET) >
+
+<!ELEMENT RIGHT_UTR (COORDSET) >
+
+<!ELEMENT EXTENDED_UTR (COORDSET) >
+
+
+<!-- 
+    Gene Sequences Described:
+    TRANSCRIPT_SEQUENCE: provides the unspliced genomic nucleotide sequence representing the entire transcribed
+    region of the gene.
+    CDS_SEQUENCE: The nucleotide sequence which encodes the protein sequence directly.
+    PROTEIN_SEQUENCE: the peptide sequence representing the translation of the CDS_SEQUENCE.
+-->
+
+<!ELEMENT TRANSCRIPT_SEQUENCE (#PCDATA) >
+
+<!ELEMENT CDS_SEQUENCE (#PCDATA) >
+
+<!ELEMENT PROTEIN_SEQUENCE (#PCDATA) >
+
+
+<!--
+    COORDSET contains child elements END5 and END3 and provides the sequence-based (see ASSEMBLY_SEQUENCE) coordinates for all elements
+    containing it. The sequence begins at position 1.  END5 and END3 represent the exact coordinates of the feature within the
+    sequence provided (positive orientation).  If END5 < END3, then the positive strand orientation is specified; therefore, 
+    if END5 > END3, the negative strand orientation is referenced.
+    
+-->
+
+<!ELEMENT COORDSET (END5, END3) >
+
+<!ELEMENT END5 (#PCDATA)>
+
+<!ELEMENT END3 (#PCDATA)>
+
+
+
+
+
+<!--
+    GENE_INFO contains the gene name, locus, and functional category role assignment information.  The LOCUS in many
+    instances represents the assembly (ie. BAC)-based gene identifier.  The PUB_LOCUS represents a publication-based
+    locus; possibly representing a chromosomal locus identifier.  In overlapping regions of assembly tiling paths, the
+    same gene may be represented on both overlapping assemblies with different LOCUS values but identical PUB_LOCUS values.
+    In chromosome-based data sets, this gene in overlapping assemblies will be represented singly under the PUB_LOCUS identifier, 
+    the LOCUS identifiers from the derived genes are presented in the LOCUS and ALT_LOCUS fields for the chromosomal gene.
+
+    This is confusing, so here's an illustration:
+	    
+           (gene on BAC-1)                                                                                 Chromosome
+	   pub_locus = At1g1                                                                              pub_locus = At1g1
+           locus = A                                                                                      locus = A
+           {====}                                                                                         alt_locus = B
+    ________________________                                                                               {====}
+           ______________________________         In the assembled chromosome sequence:       _________________________________
+	   {====}
+           (gene on BAC-2)
+	   pub_locus = At1g1
+	   locus = B
+
+
+
+    EC_NUM provides an enzyme commission number.
+    GENE_SYM provides the gene symbol conventionally given by experimentalists; ie. alcohol dehydrogenase: ADH
+    COM_NAME represents the gene name. IS_PSEUDOGENE is a toggle to indicate whether or not the gene is a pseudogene{1=true|0=false}
+
+-->
+
+<!ELEMENT GENE_INFO (LOCUS?, ALT_LOCUS*, PUB_LOCUS?, GENE_NAME*, COM_NAME+, COMMENT?, PUB_COMMENT?, EC_NUM*, GENE_SYM*, IS_PSEUDOGENE, FUNCT_ANNOT_EVIDENCE*, DATE, GENE_ONTOLOGY?, ROLE_LIST?) >
+
+<!ELEMENT LOCUS (#PCDATA) >
+
+<!ELEMENT PUB_LOCUS (#PCDATA) >
+
+<!ELEMENT ALT_LOCUS (#PCDATA) >
+
+<!ELEMENT COM_NAME (#PCDATA) >
+<!ATTLIST COM_NAME CURATED NMTOKEN #IMPLIED> <!-- flag indicates a TIGR curator has approved the gene name -->
+<!ATTLIST COM_NAME IS_PRIMARY NMTOKEN #IMPLIED>
+
+<!ELEMENT GENE_NAME (#PCDATA) >
+<!ATTLIST GENE_NAME IS_PRIMARY NMTOKEN #IMPLIED>
+
+
+
+<!ELEMENT COMMENT (#PCDATA) >
+
+<!ELEMENT PUB_COMMENT (#PCDATA) >
+
+<!ELEMENT EC_NUM (#PCDATA) >
+<!ATTLIST EC_NUM IS_PRIMARY NMTOKEN #IMPLIED>
+
+<!ELEMENT GENE_SYM (#PCDATA) >
+<!ATTLIST GENE_SYM IS_PRIMARY NMTOKEN #IMPLIED>
+
+<!ELEMENT IS_PSEUDOGENE (#PCDATA) >
+
+<!--
+       FUNCT_ANNOT_EVIDENCE describes the information from which the functional assignment (aka com_name) for a TU is based upon.
+       Attribute TYPE indicates the type of assignment made: manually curated (CURATED) or automatically assigned (AUTO)
+
+       Element ASSIGN_ACC cites the database accession used
+           The format of the accession is: db:id_num:desc
+               where db is the database id (GP = GenPept, EGAD = TIGR EGAD, etc)
+               where id is the id number of the accession
+               where desc is the description of the accession
+       Attribute ASSIGN_METHOD indicates the method used. Some possibilities include BER, autoBYOB.
+--> 
+
+<!ELEMENT FUNCT_ANNOT_EVIDENCE (ASSIGN_ACC*) >
+<!ATTLIST FUNCT_ANNOT_EVIDENCE  TYPE  NMTOKEN  #REQUIRED >
+
+<!ELEMENT ASSIGN_ACC (#PCDATA) >
+<!ATTLIST ASSIGN_ACC  ASSIGN_METHOD  NMTOKEN  #REQUIRED >
+
+<!--
+   ROLE_LIST contains each of the functional role category assignments for the gene.
+   COMPARTMENT indicates the role assignment class being used; examples include microbial, plant, GO (gene ontology), etc.
+   The roles are classifications that become more specific via the SUBROLE_* elements.
+-->
+
+<!ELEMENT ROLE_LIST (ROLE_INFO+) >  <!-- ROLE_INFO has been deprecated.  Gene Ontology assignments are now employed. -->
+
+<!ELEMENT ROLE_INFO (COMPARTMENT, DATE, MAIN_ROLE,  SUBROLE_1?, SUBROLE_2?, SUBROLE_3?, SUBROLE_4?) >
+
+<!ELEMENT COMPARTMENT (#PCDATA) >
+
+<!ELEMENT MAIN_ROLE (#PCDATA) >
+
+<!ELEMENT SUBROLE_1 (#PCDATA) >
+
+<!ELEMENT SUBROLE_2 (#PCDATA) >
+
+<!ELEMENT SUBROLE_3 (#PCDATA) >
+
+<!ELEMENT SUBROLE_4 (#PCDATA) >
+
+
+<!-- GENE_ONTOLOGY The controlled nomenclature for classifying genes.  Please visit http://www.geneontology.org
+ 
+-->     
+<!ELEMENT GENE_ONTOLOGY (GO_ID*)>
+
+<!-- 
+GO_ID is the identifier of a particular molecular function, biological process or cellular component that describes a gene product.
+
+--> 
+<!ELEMENT GO_ID (DATE, GO_TERM, GO_TYPE, GO_EVIDENCE*)>
+<!ATTLIST GO_ID  ASSIGNMENT     CDATA  #REQUIRED>
+
+<!ELEMENT GO_TERM (#PCDATA) > <!-- The term associated with the go_id -->
+<!ELEMENT GO_TYPE (#PCDATA) > <!-- Process, Function, or Component -->
+
+
+<!-- 
+     GO_EVIDENCE is a reference (usually to a database entry) that supports the assignment of the GO ID. 
+     EV_CODE is a three-letter code that represents the type of evidence being cited as supporting the assignment of the GO ID.
+     WITH_EV is the entity with which the gene product interacts. 
+--> 
+
+<!ELEMENT GO_EVIDENCE (EV_CODE, EVIDENCE, WITH_EV?)>
+<!ELEMENT EV_CODE  EMPTY>
+<!ATTLIST EV_CODE CODE NMTOKEN #REQUIRED> 
+
+<!ELEMENT EVIDENCE (#PCDATA) >
+<!ELEMENT WITH_EV  (#PCDATA) >
+
+
+<!--
+    URL provides a complete URL to information about a topic specified in the XML document.
+    The URLNAME attribute provides a simple token to establish the class of the URL.
+-->
+
+<!ELEMENT URL (#PCDATA) >
+<!ATTLIST URL URLNAME NMTOKEN #REQUIRED>
+
+
+
+<!--
+    REPEAT_LIST contains REPEAT elements.  A repeat is a repetitive nucleotide sequence and could represent
+    simple repeats (AT-rich regions) to complex repeats (retroelements, rRNA sequences).  Currently, rRNA
+    sequences are being specified here.  Eventually, they will be specified in the RRNA element (see RRNA).
+-->
+
+<!ELEMENT REPEAT_LIST (REPEAT*) >
+
+<!ELEMENT REPEAT (FEAT_NAME, DATE, COORDSET, REPEAT_TYPE) >
+
+<!ELEMENT REPEAT_TYPE (#PCDATA) >
+
+
+
+<!--
+   RRNA encompasses ribosomal RNA genes.
+-->
+
+<!ELEMENT RRNA (PUB_LOCUS?, FEAT_NAME, DATE, COORDSET, COM_NAME) >
+
+
+<!--
+   SNRNA encompasses small nuclear RNA genes.
+-->
+
+<!ELEMENT SNRNA (PUB_LOCUS?, FEAT_NAME, DATE, COORDSET, COM_NAME) >
+
+
+<!--
+    SNORNA encompasses small nucleolar RNA genes.
+-->
+
+<!ELEMENT SNORNA (PUB_LOCUS?, FEAT_NAME, DATE, COORDSET, COM_NAME) >
+
+
+
+<!--
+    TRNA genes are represented by multiple components.  The structure is analogous to that 
+    provided for protein coding genes (see PROTEIN_CODING).  The major difference is the lack
+    of a CDS, since no protein is encoded by tRNA genes.
+    The analogies are presented as follows:
+        PRE-TRNA ~ TU
+	TRNA ~ MODEL
+	RNA-EXON ~ EXON
+
+-->
+
+<!ELEMENT PRE-TRNA (PUB_LOCUS?, FEAT_NAME, DATE, COORDSET, TRNA) >
+
+<!ELEMENT TRNA (FEAT_NAME, DATE, COORDSET, COM_NAME, RNA-EXON+) >
+<!ATTLIST TRNA ANTICODON         NMTOKEN    #REQUIRED >
+
+
+<!ELEMENT RNA-EXON (FEAT_NAME, DATE, COORDSET)>
+
+
+
+<!--
+    TILING_PATH provides all of the information required to position the current ASSEMBLY in the 
+    context of it's neighboring ASSEMBLY(s).  Each element and attribute is described as follows:
+    ORIENTATION : [+|-] the strand orientation in the pseudo-chromosome.
+    LEFT_ASMBL : identifies the ASMBL_ID (see ASSEMBLY) of the preceding neighbor in the tiling path.
+    RIGHT_ASMBL : identifies the ASMBL_ID of the succeeding neighbor in the tiling path.
+    FROM_CONNECT : [1|0] toggle which identifies if there is a sequence joining between the preceding sequence and current sequence.
+    TO_CONNECT : [1|0] toggle ... analogous to FROM_CONNECT except that it refers to the joining of the current assemlby and the succeeding one.
+    FROM_OVERLAP_SIZE : indicates the number of nucleotides that the current bac overlaps with the preceding bac.
+    FROM_OVERHANG_SIZE : indicates the sequence length of non-overlapping sequence of the current sequence with the preceding sequence.
+    TO_OVERHANG_SIZE : indicates the length of non-overlapping sequence of the current bac with the preceding bac.
+    FROM_OVERLAP_TYPE and TO_OVERLAP_TYPE : describes the quality of the overlap between the adjacent assemblies.
+
+
+
+    Interpretation of this data:  The data presented above is essentialy a single node in a linked list.  To build the 
+    pseudo-chromosome, the first step is to identify the head-asmbl_id which should have a FROM_OVERLAP = 0.  From that 
+    element, you can identify the TO_ASMBL that overlaps it.
+    Once an overlapping assembly is identified, prior to doing anything else, you must flip the assembly to the proper orientation (+).
+    Then, you can align the assembly to the previous one via the overlap information.
+
+    Here's an illustration:
+                                           ASMBL_ID 23
+
+                               \__________________________________/
+		    ___________________
+		                       \
+		         ASMBL_ID 1
+  
+
+               properties of ASMBL_ID 1 (ORIENTATION = '+', FROM_CONNECT = 0, TO_CONNECT = 1, RIGHT_ASMBL = 23, TO_OVERHANG_SIZE = 50).
+	       properties of ASMBL_ID 23 (ORIENTATION = '+', FROM_CONNECT = 1, FROM_OVERHANG_SIZE = 120, FROM_OVERLAP_SIZE = 1000, TO_OVERHANG_SIZE = 140)
+
+	       The FROM_OVERHANG_SIZE indicates the (\) portion of ASMBL_ID 23 in which non-overlapping sequence exists (ie. untrimmed vector).
+	       The FROM_OVERLAP_SIZE indicates that 1000 nt's overlap ASMBL_ID 1.  Summing up both pieces of information for ASMBL_ID 23, coordinates 1 to 120
+	       do not overlap, coordinates 121 to 1121 do overlap ASMBL_ID 1.
+	       If size N = length (ASMBL_ID 1), then ASMBL_ID 23 overlaps ASMBL_ID 1 between (N-50-1000) to (N-50), taking into account 
+	       the non-overlapping sequence of ASMBL_ID 1.
+
+	       If either assembly was in the reverse orientation (ORIENTATION = '-'), then the first step would be to reverse complement the sequence.  The
+	       remainder of the protocol remains identical.
+
+	       MOST OF THE TIME, the non-overlapping end sequences OVERHANG_SIZE(s) will be = 0 because the assemblies should be trimmed of vector prior 
+	       to entering either genbank or TIGR's annotation database.  Although, there may be some exceptions, and this specification prepares for it.
+
+-->
+
+
+<!ELEMENT TILING_PATH (LEFT_ASMBL, RIGHT_ASMBL, FROM_CONNECT, TO_CONNECT, ORIENTATION, FROM_OVERLAP_SIZE, FROM_OVERHANG_SIZE, TO_OVERHANG_SIZE, FROM_OVERLAP_TYPE, TO_OVERLAP_TYPE, DATE) >
+
+
+
+<!ELEMENT LEFT_ASMBL (#PCDATA) >
+<!ATTLIST LEFT_ASMBL CLONE_NAME     CDATA  #IMPLIED>
+
+<!ELEMENT RIGHT_ASMBL (#PCDATA) >
+<!ATTLIST RIGHT_ASMBL CLONE_NAME    CDATA  #IMPLIED>
+
+<!ELEMENT FROM_CONNECT (#PCDATA)>
+
+<!ELEMENT ORIENTATION (#PCDATA) >
+
+<!ELEMENT TO_CONNECT (#PCDATA) >
+
+<!ELEMENT FROM_OVERLAP_SIZE (#PCDATA) >
+
+<!ELEMENT FROM_OVERHANG_SIZE (#PCDATA) >
+
+<!ELEMENT TO_OVERHANG_SIZE (#PCDATA) >
+
+<!ELEMENT FROM_OVERLAP_TYPE (#PCDATA) >
+
+<!ELEMENT TO_OVERLAP_TYPE (#PCDATA) >
+
+
+
+<!--
+    SCAFFOLD is composed of SCAFFOLD_COMPONENT(s).  Each SCAFFOLD_COMPONENT indicates the portion of a given nucleotide 
+    assembly (ie. BAC) from which a segment of the pseudochromosome was constructed.  By joining each of the SCAFFOLD_COMPONENT(s),
+    the entire pseudo-chromosome nucleotide sequence can be constructed.
+
+-->
+
+
+
+<!ELEMENT SCAFFOLD (SCAFFOLD_COMPONENT*) >
+
+<!ELEMENT SCAFFOLD_COMPONENT (ASMBL_ID, CHR_LEFT_COORD, CHR_RIGHT_COORD, ASMBL_LEFT_COORD, ASMBL_RIGHT_COORD, ORIENTATION, DATE) >
+
+<!ELEMENT CHR_LEFT_COORD (#PCDATA) >
+
+<!ELEMENT CHR_RIGHT_COORD (#PCDATA) >
+
+<!ELEMENT ASMBL_LEFT_COORD (#PCDATA) >
+
+<!ELEMENT ASMBL_RIGHT_COORD (#PCDATA) >
+
+
+
+
+<!-- 
+
+   MISC_INFO is the component in which we can store any comments regarding the ASSEMBLY.  The FEATURE_DESC element
+   contains the feature description text, and a COORDSET element identifies the position the comment is referring to.
+-->
+
+<!ELEMENT MISC_INFO ( MISC_FEATURE+ ) >
+
+<!ELEMENT MISC_FEATURE (COORDSET, DATE, FEATURE_DESC) >
+
+<!ELEMENT FEATURE_DESC (#PCDATA) >
+
+
+
+<!--
+    The HEADER element contains some basic attributes of the nucleotide assembly, including the identity of the
+    organism from which it was derived, the lineage, the group that sequenced the assembly, and information that is
+    provided to genbank within TIGR's annotation submissions.
+    The SEQ_LAST_TOUCHED field contains the date in which this sequence was last manipulated, which may or may not 
+    include actual sequence changes.
+
+-->
+
+<!ELEMENT HEADER ( CLONE_NAME, SEQ_LAST_TOUCHED, GB_ACCESSION, ORGANISM, LINEAGE, SEQ_GROUP, KEYWORDS*, GB_DESCRIPTION*, GB_COMMENT*, AUTHOR_LIST ) >
+
+<!ELEMENT CLONE_NAME (#PCDATA) >
+
+<!ELEMENT SEQ_LAST_TOUCHED (DATE) >
+
+<!ELEMENT GB_ACCESSION (#PCDATA) >
+
+<!ELEMENT ORGANISM (#PCDATA) >
+
+<!ELEMENT LINEAGE (#PCDATA) >
+
+<!ELEMENT SEQ_GROUP (#PCDATA)>
+
+<!ELEMENT KEYWORDS (#PCDATA) >
+
+<!ELEMENT GB_DESCRIPTION (#PCDATA) >
+
+<!ELEMENT GB_COMMENT (#PCDATA) >
+
+<!ELEMENT AUTHOR_LIST ( AUTHOR*) >
+<!ATTLIST AUTHOR_LIST CONTACT      CDATA    #IMPLIED >
+
+<!ELEMENT AUTHOR EMPTY>
+<!ATTLIST AUTHOR FNAME      CDATA      #IMPLIED >
+<!ATTLIST AUTHOR LNAME      CDATA      #REQUIRED >
+<!ATTLIST AUTHOR MNAME      CDATA      #IMPLIED >
+<!ATTLIST AUTHOR SUFFIX     CDATA      #IMPLIED >
+
+
+<!-- 
+    ASSEMBLY_SEQUENCE contains the entire nucleotide sequence of the ASSEMBLY.  The sequence begins at position 1 in our coordinate space and is
+    assumed to exist in the positive strand orientation.  No whitespace should interrupt the sequence; it should exist
+    as one loooooooong string.
+-->
+
+<!ELEMENT ASSEMBLY_SEQUENCE (#PCDATA) >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

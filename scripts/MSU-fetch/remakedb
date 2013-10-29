@@ -1,0 +1,93 @@
+#!/bin/ksh
+
+function usage {
+    print -u2 "Usage: $0 Species_in_ensembl_registry coord_system_version (such as MSU6.0) genbank_file"
+    exit 1;
+}
+
+
+if [[ ! (-n "$1" && -n "$2" && -n "$3" ) ]]; then usage; fi
+
+if [[ ! -s $3 ]]; then echo "file $3 is empty"; usage; fi
+
+species=$1
+coord_sys=$2
+needed_gb=$3
+
+GrameneEnsemblDir=/usr/local/gramene/scripts/ensembl/
+EnsemblDir=/usr/local/ensembl-live/
+dbcommand=$($GrameneEnsemblDir/scripts/get_dbconnection --species=$species)
+if [[ ! -n $1 || ! -n $dbcommand ]]; then usage; fi
+
+
+date
+
+$dbcommand <$EnsemblDir/ensembl/sql/table.sql
+#$dbcommand <$GrameneEnsemblDir/load-scripts/analyses.sql
+#$dbcommand <$GrameneEnsemblDir/load-scripts/analysis_db.sql
+#$dbcommand <$GrameneEnsemblDir/load-scripts/analysis_gff.sql
+#$dbcommand <$GrameneEnsemblDir/load-scripts/ids.sql
+
+# ?? $dbcommand <$GrameneEnsemblDir/genbank-fetch/rice_meta.sql 
+
+date
+$GrameneEnsemblDir/genbank-fetch/parse_genbank.pl --species=$species --coord_system_version=$coord_sys \
+ $needed_gb 
+
+grep ACCESSION needed.gb | perl -nle 's/ACCESSION\s+//; print' | cut -d" " -f1 | grep [^:space:] | sort > needed.list
+
+
+date
+
+$dbcommand <$GrameneEnsemblDir/genbank-fetch/rice_meta.sql
+$dbcommand <$GrameneEnsemblDir/tigr-fetch/fix_clone.sql 
+
+
+$dbcommand <<SQL_END
+select 'Duplicate Clones in Ensembl DB';
+select sra1.value,sr1.name,sr2.name 
+from 
+    attrib_type at
+    ,seq_region_attrib sra1
+    ,seq_region_attrib sra2
+    ,seq_region sr1
+    ,seq_region sr2
+
+where at.code='clone' 
+  and at.attrib_type_id=sra1.attrib_type_id
+  and at.attrib_type_id=sra2.attrib_type_id
+  and sra1.value=sra2.value
+  and sra1.seq_region_id<sra2.seq_region_id
+  and sr1.seq_region_id=sra1.seq_region_id
+  and sr2.seq_region_id=sra2.seq_region_id
+;
+
+SQL_END
+
+#print -u2 "this script Needs something to replace the obsolete $GrameneEnsemblDir/tigr-fetch/checks.sql"
+print -u2 "\nQuery from ensembl database accessions loaded succesfully, save result in loaded-ensembl_acc"
+
+$dbcommand -e \
+ "select sr.name from 
+seq_region sr, coord_system cs 
+where sr.coord_system_id = cs.coord_system_id and
+cs.name = 'clone' order by name
+;" | grep -v name | grep [^:space:]>  loaded-ensembl_acc
+
+diff needed.list loaded-ensembl_acc > needed-dif-loaded
+
+if [[ -s needed-dif-loaded ]]
+    then print "Discrepency between needed.list and loaded-ensembl_acc, please check in file needed-dif-loaded"
+    exit 1
+fi
+
+
+date
+
+#>clones_to_map.fasta 2>clones_to_map.load
+
+#$GrameneEnsemblDir/genbank-fetch/parse_genbank.pl --species=$species \
+#batchseq_tigr.txt >assembly_clones.fasta 2>assembly_clones.load
+
+
+

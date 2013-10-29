@@ -1,0 +1,1568 @@
+<?xml version = "1.0"?>
+<!DOCTYPE TIGR SYSTEM "ftp://ftp.tigr.org/pub/data/DTDs/tigrxml.dtd">
+<TIGR>
+	<ASSEMBLY CLONE_ID = "2500" DATABASE = "ATH1" CHROMOSOME = "1" CURRENT_DATE = "Tue Mar  8 19:16:15 EST 2005">
+		<ASMBL_ID CLONE_NAME = "F8G22">60000</ASMBL_ID>
+		<COORDSET>
+			<END5>1</END5>
+			<END3>42801</END3>
+		</COORDSET>
+		<HEADER>
+			<CLONE_NAME>F8G22</CLONE_NAME>
+			<SEQ_LAST_TOUCHED>
+				<DATE>May  3 2000 12:27PM</DATE>
+			</SEQ_LAST_TOUCHED>
+			<GB_ACCESSION>AC079677</GB_ACCESSION>
+			<ORGANISM>Arabidopsis thaliana</ORGANISM>
+			<LINEAGE>Eukaryota ; Viridiplantae ; Embryophyta ; Tracheophyta ; Spermatophyta ; Magnoliophyta ; eudicotyledons ; core eudicots ; Rosidae ; eurosids II ; Brassicales ; Brassicaceae ; Arabidopsis</LINEAGE>
+			<SEQ_GROUP>TIGR</SEQ_GROUP>
+			<KEYWORDS>Arabidopsis, genome sequencing, HTG</KEYWORDS>
+			<GB_DESCRIPTION>Arabidopsis thaliana chromosome 1 BAC F8G22 genomic sequence.</GB_DESCRIPTION>
+			<GB_COMMENT>Address all correspondence to:at@tigr.org~~BAC clone F8G22 is from Arabidopsis thaliana chromosome 1 ~The orientation of the sequence is from SP6 to T7 end of the BAC clone.~Genes were identified by a combination of several methods: Gene prediction programs including Genscan+ (Chris Burge, http://CCR-081.mit.edu/GENSCAN.html), GeneMarkHMM (Mark Borodovsky, http://genemark.biology.gatech.edu/GeneMark/), GlimmerA (a variant of GlimmerM, see Mihaela Pertea, http://www.tigr.org/softlab/glimmerm_htm/glimmerm.html, and GeneSplicer (Mihaela Pertea and Steven Salzberg, contact mpertea@tigr.org), searches of the complete sequence against a peptide database and the plant EST database at TIGR (http://www.tigr.org/tdb/tgi.shtml). Annotated genes are named to indicate the level of evidence for their annotation. Genes with similarity to other proteins are named after the database hits. Genes without significant peptide similarity but with EST similarity are named as &quot;unknown&quot; proteins. Genes without protein or EST similarity, that are predicted by more than two gene prediction programs over most of their length are annotated as &quot;hypothetical&quot; proteins. Genes encoding tRNAs are predicted by tRNAscan-SE (Sean Eddy, http://genome.wustl.edu/eddy/tRNAscan-SE/). Simple repeats are identified by repeatmasker (Arian Smit, http://ftp.genome.washington.edu/RM/RepeatMasker.html). </GB_COMMENT>
+			<AUTHOR_LIST CONTACT = "cdtown@tigr.org">
+				<AUTHOR LNAME = "Lin" FNAME = "Xiaoying" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Kaul" FNAME = "Samir" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Town" FNAME = "Christopher" MNAME = "D" SUFFIX = ""/>
+				<AUTHOR LNAME = "Benito" FNAME = "Maria-Ines" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Creasy" FNAME = "Todd" MNAME = "H" SUFFIX = ""/>
+				<AUTHOR LNAME = "Haas" FNAME = "Brian" MNAME = "J" SUFFIX = ""/>
+				<AUTHOR LNAME = "Wu" FNAME = "Dongying" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Maiti" FNAME = "Rama" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Ronning" FNAME = "Catherine" MNAME = "M" SUFFIX = ""/>
+				<AUTHOR LNAME = "Koo" FNAME = "Hean" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Fujii" FNAME = "Claire" MNAME = "Y" SUFFIX = ""/>
+				<AUTHOR LNAME = "Utterback" FNAME = "Teresa" MNAME = "R" SUFFIX = ""/>
+				<AUTHOR LNAME = "Barnstead" FNAME = "Mary" MNAME = "E" SUFFIX = ""/>
+				<AUTHOR LNAME = "Bowman" FNAME = "Cheryl" MNAME = "L" SUFFIX = ""/>
+				<AUTHOR LNAME = "White" FNAME = "Owen" MNAME = "" SUFFIX = ""/>
+				<AUTHOR LNAME = "Nierman" FNAME = "William" MNAME = "C" SUFFIX = ""/>
+				<AUTHOR LNAME = "Fraser" FNAME = "Claire" MNAME = "M" SUFFIX = ""/>
+			</AUTHOR_LIST>
+		</HEADER>
+		<TILING_PATH>
+			<LEFT_ASMBL CLONE_NAME = "F2G19">68129</LEFT_ASMBL>
+			<RIGHT_ASMBL CLONE_NAME="T3F24">51775</RIGHT_ASMBL>
+			<FROM_CONNECT>1</FROM_CONNECT>
+			<TO_CONNECT>1</TO_CONNECT>
+			<ORIENTATION>-</ORIENTATION>
+			<FROM_OVERLAP_SIZE>11269</FROM_OVERLAP_SIZE>
+			<FROM_OVERHANG_SIZE>2666</FROM_OVERHANG_SIZE>
+			<TO_OVERHANG_SIZE>0</TO_OVERHANG_SIZE>
+			<FROM_OVERLAP_TYPE>H:11269, HL length:2666, matches: 2665</FROM_OVERLAP_TYPE>
+			<TO_OVERLAP_TYPE>625, perfect match</TO_OVERLAP_TYPE>
+			<DATE>May 22 2002 10:19AM</DATE>
+		</TILING_PATH>
+		<GENE_LIST>
+			<PROTEIN_CODING>
+				<TU>
+					<FEAT_NAME>60000.t00002</FEAT_NAME>
+					<DATE>May  3 2000 12:29PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.1</LOCUS>
+						<PUB_LOCUS>At1g47270</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >F-box family protein / tubby family protein</COM_NAME>
+						<COMMENT>AUTOUPDATE: Updated structure of 60000.m00020. ;</COMMENT>
+						<PUB_COMMENT>contains Pfam profiles: PF00646 F-box domain, PF01167 Tub family; similar to Chain A, C-Terminal Domain Of Mouse Brain Tubby Protein Length(GI:6730158) (Mus musculus); similar to phosphodiesterase (GI:467578) (Mus musculus); similar to Tubby protein homolog (Swiss-Prot:O88808) (Rattus norvegicus)</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Aug 28 2003  2:30PM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0003700">
+								<DATE>Feb  9 2004  3:33PM</DATE>
+								<GO_TERM>transcription factor activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR000007</WITH_EV>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>NCBI_gi:6730158</WITH_EV>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>PMID:11118137</EVIDENCE>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TAIR:Publication:1345963</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0008081">
+								<DATE>Aug 28 2003  2:32PM</DATE>
+								<GO_TERM>phosphoric diester hydrolase activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>NCBI_gi:467578</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>3767</END5>
+						<END3>1595</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00020</FEAT_NAME>
+						<PUB_LOCUS>At1g47270.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|8695811|gb|AV535528.1|AV535528" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+							<ACCESSION DBXREF="gi|8704452|gb|AV542692.1|AV542692" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+							<ACCESSION DBXREF="gi|19743139|gb|AU228492.1|AU228492" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+							<ACCESSION DBXREF="gi|8738876|gb|AV567422.1|AV567422" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+							<ACCESSION DBXREF="gi|2756738|gb|T14132.1|T14132" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+							<ACCESSION DBXREF="gi|19876596|gb|AU237427.1|AU237427" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Gene merged with EST assembly is no different from the original gene.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>May  3 2000 12:29PM</DATE>
+						<COORDSET>
+							<END5>3495</END5>
+							<END3>1759</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09751</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>3767</END5>
+								<END3>3475</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00114</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>3495</END5>
+									<END3>3475</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>3767</END5>
+										<END3>3496</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09752</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>3280</END5>
+								<END3>3237</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00115</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>3280</END5>
+									<END3>3237</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09753</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>3165</END5>
+								<END3>2835</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00116</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>3165</END5>
+									<END3>2835</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09754</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>2760</END5>
+								<END3>2673</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00117</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>2760</END5>
+									<END3>2673</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09755</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>2591</END5>
+								<END3>2459</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00118</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>2591</END5>
+									<END3>2459</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09756</FEAT_NAME>
+							<DATE>Jan 31 2003  9:26PM</DATE>
+							<COORDSET>
+								<END5>2383</END5>
+								<END3>1595</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00119</FEAT_NAME>
+								<DATE>Jan 31 2003  9:26PM</DATE>
+								<COORDSET>
+									<END5>2383</END5>
+									<END3>1759</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>1758</END5>
+										<END3>1595</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00005</FEAT_NAME>
+					<DATE>Oct 13 2003 12:02PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.3</LOCUS>
+						<PUB_LOCUS>At1g47250</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >20S proteasome alpha subunit F2 (PAF2) (PRC2B) (PRS1)</COM_NAME>
+						<COMMENT>AUTOUPDATE: Updated structure of 60000.m00023. ; AUTOUPDATE: Updated structure of 60000.m00023. ;</COMMENT>
+						<PUB_COMMENT>identical to GB:AAC32063 from (Arabidopsis thaliana) (Genetics 149 (2), 677-692 (1998)); identical to cDNA proteasome subunit prc2b
+GI:2511585</PUB_COMMENT>
+						<GENE_SYM IS_PRIMARY="1" >PAF2/PRS1/PRC2B</GENE_SYM>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Dec 23 2003 10:56AM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0005839">
+								<DATE>Dec 27 2001  5:06PM</DATE>
+								<GO_TERM>proteasome core complex (sensu Eukaryota)</GO_TERM>
+								<GO_TYPE>cellular_component</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "TAS"/>
+									<EVIDENCE>PMID:9373170</EVIDENCE>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "TAS"/>
+									<EVIDENCE>PMID:9611183</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0006511">
+								<DATE>Dec 27 2001  5:05PM</DATE>
+								<GO_TERM>ubiquitin-dependent protein catabolism</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "TAS"/>
+									<EVIDENCE>PMID:10363660</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0008233">
+								<DATE>Dec 27 2001  5:07PM</DATE>
+								<GO_TERM>peptidase activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR001353</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>11146</END5>
+						<END3>8663</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00023</FEAT_NAME>
+						<PUB_LOCUS>At1g47250.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|507038|gb|Z34688.1|Z34688" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8721093|gb|AV549680.1|AV549680" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19862196|gb|AV820237.1|AV820237" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8703515|gb|AV541756.1|AV541756" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|9778974|gb|BE520996.1|BE520996" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|32882358|gb|CB257585.1|CB257585" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|17617|gb|Z18497.1|Z18497" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|16323090|gb|AY057649.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTPGH27ZC10" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19826137|gb|AV792154.1|AV792154" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8727179|gb|AV555764.1|AV555764" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|3421093|gb|AF043527.1|AF043527" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|3449556|gb|AI099817.1|AI099817" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19871577|gb|AV829517.1|AV829517" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|498534|gb|Z34177.1|Z34177" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19840581|gb|AV806596.1|AV806596" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|2511585|emb|Y13182.1|ATY13182" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|28951875|gb|BQ834560.1|BQ834560" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8728558|gb|AV557143.1|AV557143" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8716813|gb|AV545399.1|AV545399" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8727470|gb|AV556055.1|AV556055" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|22655335|gb|AY141996.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19807606|gb|AV788816.1|AV788816" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>May  3 2000 12:29PM</DATE>
+						<COORDSET>
+							<END5>11103</END5>
+							<END3>9423</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09842</FEAT_NAME>
+							<DATE>Oct 13 2003 12:02PM</DATE>
+							<COORDSET>
+								<END5>11146</END5>
+								<END3>10753</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00120</FEAT_NAME>
+								<DATE>Oct 13 2003 12:02PM</DATE>
+								<COORDSET>
+									<END5>11103</END5>
+									<END3>10753</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>11146</END5>
+										<END3>11104</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09843</FEAT_NAME>
+							<DATE>Oct 13 2003 12:02PM</DATE>
+							<COORDSET>
+								<END5>9905</END5>
+								<END3>8663</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00121</FEAT_NAME>
+								<DATE>Oct 13 2003 12:02PM</DATE>
+								<COORDSET>
+									<END5>9905</END5>
+									<END3>9423</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>9422</END5>
+										<END3>8663</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00015</FEAT_NAME>
+					<DATE>Nov 17 2001  2:25PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.2</LOCUS>
+						<PUB_LOCUS>At1g47260</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >bacterial transferase hexapeptide repeat-containing protein</COM_NAME>
+						<COMMENT>AUTOUPDATE: Updated structure of 60000.m00107. ; CMR</COMMENT>
+						<PUB_COMMENT>contains Pfam profile PF00132: Bacterial transferase hexapeptide (four repeats)</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Nov 19 2003  8:26AM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0000004">
+								<DATE>Aug 25 2003  1:02PM</DATE>
+								<GO_TERM>biological_process unknown</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ND"/>
+									<EVIDENCE>GO_REF:nd</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0005554">
+								<DATE>Aug 25 2003  1:02PM</DATE>
+								<GO_TERM>molecular_function unknown</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ND"/>
+									<EVIDENCE>GO_REF:nd</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0008372">
+								<DATE>Aug 25 2003  1:02PM</DATE>
+								<GO_TERM>cellular_component unknown</GO_TERM>
+								<GO_TYPE>cellular_component</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ND"/>
+									<EVIDENCE>GO_REF:nd</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>6839</END5>
+						<END3>9715</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00107</FEAT_NAME>
+						<PUB_LOCUS>At1g47260.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|19803239|gb|AV784449.1|AV784449" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8736414|gb|AV564979.1|AV564979" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|507038|gb|Z34688.1|Z34688" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8721093|gb|AV549680.1|AV549680" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19862196|gb|AV820237.1|AV820237" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8703515|gb|AV541756.1|AV541756" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|17617|gb|Z18497.1|Z18497" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19826137|gb|AV792154.1|AV792154" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8727179|gb|AV555764.1|AV555764" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|13507024|gb|AF249876.1|AF249876" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|9782886|gb|BE524908.1|BE524908" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|15028352|gb|AY045979.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|3449556|gb|AI099817.1|AI099817" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19840581|gb|AV806596.1|AV806596" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|21280964|gb|AY113936.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19865535|gb|AV823476.1|AV823476" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|28951875|gb|BQ834560.1|BQ834560" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8728558|gb|AV557143.1|AV557143" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|5840007|gb|AI993102.1|AI993102" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8716813|gb|AV545399.1|AV545399" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|8727470|gb|AV556055.1|AV556055" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTPGH57ZD01" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19807606|gb|AV788816.1|AV788816" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Nov 17 2001  2:25PM</DATE>
+						<COORDSET>
+							<END5>6976</END5>
+							<END3>8939</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09727</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>6839</END5>
+								<END3>7090</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00090</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>6976</END5>
+									<END3>7090</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>6839</END5>
+										<END3>6975</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09728</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>7239</END5>
+								<END3>7382</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00091</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>7239</END5>
+									<END3>7382</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09729</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>7643</END5>
+								<END3>7768</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00092</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>7643</END5>
+									<END3>7768</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09730</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>7871</END5>
+								<END3>8022</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00093</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>7871</END5>
+									<END3>8022</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09731</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>8640</END5>
+								<END3>9715</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00094</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>8640</END5>
+									<END3>8939</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>8940</END5>
+										<END3>9715</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00014</FEAT_NAME>
+					<GENE_SYNONYM SYN_TYPE="default">68129.t00045</GENE_SYNONYM>
+					<DATE>Oct 23 2001  2:41PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.9</LOCUS>
+						<PUB_LOCUS>At1g47200</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >MFP1 attachment factor, putative</COM_NAME>
+						<PUB_COMMENT>contains similarity to MFP1 attachment factor 1 GI:7546725 from (Lycopersicon esculentum) similar to MFP1 attachment factor 1 (Glycine max) gi|7546729|gb|AAF63659</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Jun 26 2003  2:45PM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0005554">
+								<DATE>Oct  1 2003 11:47AM</DATE>
+								<GO_TERM>molecular_function unknown</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ND"/>
+									<EVIDENCE>GO_REF:nd</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>31506</END5>
+						<END3>32284</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00106</FEAT_NAME>
+						<PUB_LOCUS>At1g47200.1</PUB_LOCUS>
+						<GENE_SYNONYM SYN_TYPE="default">68129.m00296</GENE_SYNONYM>
+						<DATE>Oct 23 2001  2:41PM</DATE>
+						<COORDSET>
+							<END5>31600</END5>
+							<END3>32142</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e00296</FEAT_NAME>
+							<DATE>Oct 23 2001  2:41PM</DATE>
+							<COORDSET>
+								<END5>31506</END5>
+								<END3>32284</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00074</FEAT_NAME>
+								<DATE>Oct 23 2001  2:41PM</DATE>
+								<COORDSET>
+									<END5>31600</END5>
+									<END3>32142</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>31506</END5>
+										<END3>31599</END3>
+									</COORDSET>
+								</LEFT_UTR>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>32143</END5>
+										<END3>32284</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00012</FEAT_NAME>
+					<DATE>Oct 24 2003 11:03AM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.5</LOCUS>
+						<PUB_LOCUS>At1g47230</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >cyclin, putative</COM_NAME>
+						<COMMENT>AUTOUPDATE: Added alt splice isoform 60000.m05087 ; AUTOUPDATE: Updated structure of 60000.m00094. ; AUTOUPDATE: Updated structure of 60000.m00094. ;</COMMENT>
+						<PUB_COMMENT>similar to cyclin A-like protein (Nicotiana tabacum) GI:1064931, A-type cyclin (Catharanthus roseus) GI:2190259; contains Pfam profiles PF00134: Cyclin, N-terminal domain, PF02984: Cyclin, C-terminal domain</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Apr 16 2003 10:13AM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0000074">
+								<DATE>Aug 26 2003  7:18AM</DATE>
+								<GO_TERM>regulation of cell cycle</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0016538">
+								<DATE>Aug 26 2003  7:18AM</DATE>
+								<GO_TERM>cyclin-dependent protein kinase regulator activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>23749</END5>
+						<END3>21089</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00094</FEAT_NAME>
+						<PUB_LOCUS>At1g47230.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|19830339|gb|AV796356.1|AV796356" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTLS4ZC09QP" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTFB68ZA02" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|21406366|gb|AY087628.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTFB14ZA09" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19801493|gb|AV782703.1|AV782703" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTLS10ZB07" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19864102|gb|AV822070.1|AV822070" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTLS38ZA08" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Aug 22 2001  7:58PM</DATE>
+						<COORDSET>
+							<END5>23571</END5>
+							<END3>21736</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09844</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>23749</END5>
+								<END3>23251</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00122</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>23571</END5>
+									<END3>23251</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>23749</END5>
+										<END3>23572</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09845</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22978</END5>
+								<END3>22746</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00123</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22978</END5>
+									<END3>22746</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09846</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22648</END5>
+								<END3>22496</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00124</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22648</END5>
+									<END3>22496</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09847</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22395</END5>
+								<END3>22362</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00125</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22395</END5>
+									<END3>22362</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09848</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22271</END5>
+								<END3>22122</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00126</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22271</END5>
+									<END3>22122</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09849</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22039</END5>
+								<END3>21905</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00127</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22039</END5>
+									<END3>21905</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09850</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>21819</END5>
+								<END3>21089</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00128</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>21819</END5>
+									<END3>21736</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>21735</END5>
+										<END3>21089</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+					<MODEL CURATED="0">
+						<FEAT_NAME>60000.m05087</FEAT_NAME>
+						<PUB_LOCUS>At1g47230.2</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|19830339|gb|AV796356.1|AV796356" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="GSLTPGH32ZB10" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19864102|gb|AV822070.1|AV822070" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19801493|gb|AV782703.1|AV782703" IS_FLI="0" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Oct 24 2003 11:03AM</DATE>
+						<COORDSET>
+							<END5>23571</END5>
+							<END3>21736</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09851</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>23746</END5>
+								<END3>23251</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00129</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>23571</END5>
+									<END3>23251</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>23746</END5>
+										<END3>23572</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09852</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22978</END5>
+								<END3>22746</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00130</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22978</END5>
+									<END3>22746</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09853</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22651</END5>
+								<END3>22496</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00131</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22651</END5>
+									<END3>22496</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09854</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22395</END5>
+								<END3>22362</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00132</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22395</END5>
+									<END3>22362</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09855</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22271</END5>
+								<END3>22122</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00133</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22271</END5>
+									<END3>22122</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09856</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>22039</END5>
+								<END3>21905</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00134</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>22039</END5>
+									<END3>21905</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09857</FEAT_NAME>
+							<DATE>Oct 24 2003 11:03AM</DATE>
+							<COORDSET>
+								<END5>21819</END5>
+								<END3>21089</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00135</FEAT_NAME>
+								<DATE>Oct 24 2003 11:03AM</DATE>
+								<COORDSET>
+									<END5>21819</END5>
+									<END3>21736</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>21735</END5>
+										<END3>21089</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00008</FEAT_NAME>
+					<DATE>May  3 2000 12:30PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.6</LOCUS>
+						<PUB_LOCUS>At1g47220</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >cyclin, putative</COM_NAME>
+						<PUB_COMMENT>similar to cyclin A-like protein (Nicotiana tabacum) GI:1064931, A-type cyclin (Catharanthus roseus) GI:2190259; contains Pfam profiles PF00134: Cyclin, N-terminal domain, PF02984: Cyclin, C-terminal domain</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Apr 16 2003  9:50AM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0000074">
+								<DATE>Aug 26 2003  7:18AM</DATE>
+								<GO_TERM>regulation of cell cycle</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0016538">
+								<DATE>Aug 26 2003  7:18AM</DATE>
+								<GO_TERM>cyclin-dependent protein kinase regulator activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>26647</END5>
+						<END3>25126</END3>
+					</COORDSET>
+					<MODEL CURATED="0">
+						<FEAT_NAME>60000.m00044</FEAT_NAME>
+						<PUB_LOCUS>At1g47220.1</PUB_LOCUS>
+						<DATE>Aug  3 2000 10:39AM</DATE>
+						<COORDSET>
+							<END5>26647</END5>
+							<END3>25126</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e00034</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>26647</END5>
+								<END3>26444</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00059</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>26647</END5>
+									<END3>26444</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00033</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>26270</END5>
+								<END3>26038</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00060</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>26270</END5>
+									<END3>26038</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00032</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>25934</END5>
+								<END3>25782</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00061</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>25934</END5>
+									<END3>25782</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00031</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>25701</END5>
+								<END3>25518</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00062</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>25701</END5>
+									<END3>25518</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00030</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>25419</END5>
+								<END3>25285</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00063</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>25419</END5>
+									<END3>25285</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00029</FEAT_NAME>
+							<DATE>May  3 2000 12:29PM</DATE>
+							<COORDSET>
+								<END5>25200</END5>
+								<END3>25126</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00064</FEAT_NAME>
+								<DATE>Aug  3 2000 10:39AM</DATE>
+								<COORDSET>
+									<END5>25200</END5>
+									<END3>25126</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00013</FEAT_NAME>
+					<DATE>Aug 22 2001  9:52PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.8</LOCUS>
+						<PUB_LOCUS>At1g47210</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >cyclin family protein</COM_NAME>
+						<COMMENT>AUTOUPDATE: Updated structure of 60000.m00109. ;</COMMENT>
+						<PUB_COMMENT>similar to A-type cyclin (Catharanthus roseus) GI:2190259; contains Pfam profile PF00134: Cyclin, N-terminal domain</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Dec 23 2003  8:36AM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0000074">
+								<DATE>Aug 25 2003  2:06PM</DATE>
+								<GO_TERM>regulation of cell cycle</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0004693">
+								<DATE>Aug 25 2003  2:06PM</DATE>
+								<GO_TERM>cyclin-dependent protein kinase activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>INTERPRO:IPR004367</WITH_EV>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>29372</END5>
+						<END3>27457</END3>
+					</COORDSET>
+					<MODEL CURATED="1" COMMENT = ";supported by gene predictions and protein sequence alignments">
+						<FEAT_NAME>60000.m00109</FEAT_NAME>
+						<PUB_LOCUS>At1g47210.2</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|21360410|gb|AY113013.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19837404|gb|AV803419.1|AV803419" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">Failed validation: Contains 4 UTR exons, greater than the 2 allowed.</ACCESSION>
+							<ACCESSION DBXREF="gi|18086354|gb|AY064987.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|1268157|gb|N96374.1|N96374" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">Failed validation: Contains 4 UTR exons, greater than the 2 allowed.</ACCESSION>
+							<ACCESSION DBXREF="GSLTPGH1ZB04" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|21403634|gb|AY084924.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="0">Failed validation: Contains 4 UTR exons, greater than the 2 allowed.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Dec  7 2001 11:10AM</DATE>
+						<COORDSET>
+							<END5>29287</END5>
+							<END3>27739</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09745</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>29367</END5>
+								<END3>28946</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00108</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>29287</END5>
+									<END3>28946</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>29367</END5>
+										<END3>29288</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09746</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>28864</END5>
+								<END3>28632</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00109</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>28864</END5>
+									<END3>28632</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09747</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>28547</END5>
+								<END3>28395</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00110</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>28547</END5>
+									<END3>28395</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09748</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>28309</END5>
+								<END3>28126</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00111</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>28309</END5>
+									<END3>28126</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09749</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>28027</END5>
+								<END3>27893</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00112</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>28027</END5>
+									<END3>27893</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09750</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>27810</END5>
+								<END3>27457</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00113</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>27810</END5>
+									<END3>27739</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>27738</END5>
+										<END3>27457</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+					<MODEL CURATED="1" COMMENT = ";supported by full-length cDNA: Ceres:121607.">
+						<FEAT_NAME>60000.m00095</FEAT_NAME>
+						<PUB_LOCUS>At1g47210.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|21403634|gb|AY084924.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="0" ANNOT_INCORP="0">Failed validation: Contains 4 UTR exons, greater than the 2 allowed.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Aug 22 2001  9:52PM</DATE>
+						<COORDSET>
+							<END5>29287</END5>
+							<END3>28628</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e00247</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>29372</END5>
+								<END3>28946</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00072</FEAT_NAME>
+								<DATE>Aug 22 2001  9:52PM</DATE>
+								<COORDSET>
+									<END5>29287</END5>
+									<END3>28946</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>29372</END5>
+										<END3>29288</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00248</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>28864</END5>
+								<END3>28628</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00073</FEAT_NAME>
+								<DATE>Aug 22 2001  9:52PM</DATE>
+								<COORDSET>
+									<END5>28864</END5>
+									<END3>28628</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00249</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>28543</END5>
+								<END3>28395</END3>
+							</COORDSET>
+							<UTRS>
+								<EXTENDED_UTR>
+									<COORDSET>
+										<END5>28543</END5>
+										<END3>28395</END3>
+									</COORDSET>
+								</EXTENDED_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00250</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>28309</END5>
+								<END3>28126</END3>
+							</COORDSET>
+							<UTRS>
+								<EXTENDED_UTR>
+									<COORDSET>
+										<END5>28309</END5>
+										<END3>28126</END3>
+									</COORDSET>
+								</EXTENDED_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00251</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>28027</END5>
+								<END3>27893</END3>
+							</COORDSET>
+							<UTRS>
+								<EXTENDED_UTR>
+									<COORDSET>
+										<END5>28027</END5>
+										<END3>27893</END3>
+									</COORDSET>
+								</EXTENDED_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e00252</FEAT_NAME>
+							<DATE>Aug 22 2001  9:52PM</DATE>
+							<COORDSET>
+								<END5>27810</END5>
+								<END3>27498</END3>
+							</COORDSET>
+							<UTRS>
+								<EXTENDED_UTR>
+									<COORDSET>
+										<END5>27810</END5>
+										<END3>27498</END3>
+									</COORDSET>
+								</EXTENDED_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+				<TU>
+					<FEAT_NAME>60000.t00016</FEAT_NAME>
+					<DATE>Nov 17 2001  4:38PM</DATE>
+					<GENE_INFO>
+						<LOCUS>F8G22.4</LOCUS>
+						<PUB_LOCUS>At1g47240</PUB_LOCUS>
+						<COM_NAME CURATED="1" IS_PRIMARY="1" >NRAMP metal ion transporter 2, putative (NRAMP2)</COM_NAME>
+						<COMMENT>AUTOUPDATE: Updated structure of 60000.m00108. ;</COMMENT>
+						<PUB_COMMENT>similar to metal transporter Nramp3 (Arabidopsis thaliana) gi|6468012|gb|AAF13278; member of the natural resistance-associated macrophage protein (NRAMP) metal transporter family, PMID:11500563</PUB_COMMENT>
+						<IS_PSEUDOGENE>0</IS_PSEUDOGENE>
+						<FUNCT_ANNOT_EVIDENCE TYPE="CURATED">
+						</FUNCT_ANNOT_EVIDENCE>
+						<DATE>Sep  9 2002  3:12PM</DATE>
+						<GENE_ONTOLOGY>
+							<GO_ID ASSIGNMENT = "GO:0006875">
+								<DATE>Sep  9 2002  3:12PM</DATE>
+								<GO_TERM>metal ion homeostasis</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "NAS"/>
+									<EVIDENCE>PMID:11500563</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0008372">
+								<DATE>Sep  9 2002  3:12PM</DATE>
+								<GO_TERM>cellular_component unknown</GO_TERM>
+								<GO_TYPE>cellular_component</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "TAS"/>
+									<EVIDENCE>PMID:11500563</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0015103">
+								<DATE>Aug 27 2002 12:00AM</DATE>
+								<GO_TERM>inorganic anion transporter activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TAIR:Communication:1674994</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0030001">
+								<DATE>Sep  9 2002  3:13PM</DATE>
+								<GO_TERM>metal ion transport</GO_TERM>
+								<GO_TYPE>biological_process</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>NCBI_gi:6468012</WITH_EV>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "NAS"/>
+									<EVIDENCE>PMID:11500563</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+							<GO_ID ASSIGNMENT = "GO:0046873">
+								<DATE>Sep  9 2002  3:13PM</DATE>
+								<GO_TERM>metal ion transporter activity</GO_TERM>
+								<GO_TYPE>molecular_function</GO_TYPE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "ISS"/>
+									<EVIDENCE>TIGR_Ath1:annotation</EVIDENCE>
+									<WITH_EV>NCBI_gi:6468012</WITH_EV>
+								</GO_EVIDENCE>
+								<GO_EVIDENCE>
+									<EV_CODE CODE = "NAS"/>
+									<EVIDENCE>PMID:11500563</EVIDENCE>
+								</GO_EVIDENCE>
+							</GO_ID>
+						</GENE_ONTOLOGY>
+					</GENE_INFO>
+					<COORDSET>
+						<END5>18926</END5>
+						<END3>21520</END3>
+					</COORDSET>
+					<MODEL CURATED="1">
+						<FEAT_NAME>60000.m00108</FEAT_NAME>
+						<PUB_LOCUS>At1g47240.1</PUB_LOCUS>
+						<CDNA_SUPPORT>
+							<ACCESSION DBXREF="gi|19830339|gb|AV796356.1|AV796356" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19804071|gb|AV785281.1|AV785281" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|15294257|gb|AF410320.1|AF410320" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|19866184|gb|AV824124.1|AV824124" IS_FLI="0" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|20857009|gb|AY102128.1|" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+							<ACCESSION DBXREF="gi|5231116|gb|AF141204.1|AF141204" IS_FLI="1" UNIQUE_TO_ISOFORM="1" ANNOT_INCORP="1">-Matching gene and cDNA alignment are identical.</ACCESSION>
+						</CDNA_SUPPORT>
+						<DATE>Nov 17 2001  4:38PM</DATE>
+						<COORDSET>
+							<END5>19015</END5>
+							<END3>21280</END3>
+						</COORDSET>
+						<EXON>
+							<FEAT_NAME>60000.e09734</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>18926</END5>
+								<END3>19586</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00097</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>19015</END5>
+									<END3>19586</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<LEFT_UTR>
+									<COORDSET>
+										<END5>18926</END5>
+										<END3>19014</END3>
+									</COORDSET>
+								</LEFT_UTR>
+							</UTRS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09735</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>19957</END5>
+								<END3>20093</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00098</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>19957</END5>
+									<END3>20093</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09736</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>20182</END5>
+								<END3>20834</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00099</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>20182</END5>
+									<END3>20834</END3>
+								</COORDSET>
+							</CDS>
+						</EXON>
+						<EXON>
+							<FEAT_NAME>60000.e09737</FEAT_NAME>
+							<DATE>Jan 31 2003  9:25PM</DATE>
+							<COORDSET>
+								<END5>21050</END5>
+								<END3>21520</END3>
+							</COORDSET>
+							<CDS>
+								<FEAT_NAME>60000.c00100</FEAT_NAME>
+								<DATE>Jan 31 2003  9:25PM</DATE>
+								<COORDSET>
+									<END5>21050</END5>
+									<END3>21280</END3>
+								</COORDSET>
+							</CDS>
+							<UTRS>
+								<RIGHT_UTR>
+									<COORDSET>
+										<END5>21281</END5>
+										<END3>21520</END3>
+									</COORDSET>
+								</RIGHT_UTR>
+							</UTRS>
+						</EXON>
+					</MODEL>
+				</TU>
+			</PROTEIN_CODING>
+			<RNA_GENES>
+			</RNA_GENES>
+		</GENE_LIST>
+		<ASSEMBLY_SEQUENCE>
+GAATTCATTCAAACGTTTGAGCTCTCCATTTTGATGGTCCACAATGGCTTTAACCACATCAACCATAGAGATCAGTCCCACTATCTTTCCGTCAATCACCGGTACATGCCTTATGTGATTCTCTACATCATTTAAAAAAAACACAATTTTCTTTTGTCAATTTCAAAACATAATTTACAATTTGGATTAGATATATATATATATATATATGTAAGTATATATAGTAAATTACCTGACATAAGCTGCATTGCTTTGATTATGTTTGTCCCAGATGAAACAGTAACCAACTTGCTCTGGCCAAAATCATTTCCAATTCTTTTACTTAAAATTACGAAAATTTACAAAATGAAAAATTAACTTGAGAGTTTTATCTTTTGTTTATTCTGACCTCGTCTGTCATAACTTCTCCAACTTTTGTAAGCTTTGATGATCTTCCTGCCCCAATGATCTTTTTCATATAGTCTGTTTCATTTTGTGATGATAATTAGTCACAAAATGAAGAACCCTTCTTAATAAATTGTGTGTTTTAACTGTTAACTACAACATTCAAGGTATTGGGTGATCATATTCATAACTCCTTTTTTTTGGTATTTTTCCGTAGAAAGAACATTATTAAAGAAAGCTTATATATACCTCTCTCTGTGACAATTCCTGCTATATATTGTTGGTCTCCAGGTTCTAACACGACCAACGATCCAATATTATGCTTTGCCATCTGTTTTTTGTTTTTAACACGACCAACGAGATTAGTGGTCTACGCATATATCTTATATATGCATGACAAATTGACATAATATACAAATATGTGTGCTTTACTTATTATACATAAAATAGAAATATATCTCGAAAACATTGGTCTGATTTACAATTTGACATATACATACGTGTATACATGACACATTGACATAAACTACATATAGGTATTATATTGCACCGAATGTGGAAATTAATCACGTCTTATTTTATTAGCTGGGACATAGAACAACGTGGAGTAGGCAACGAACCTAACATTAATAAGTAAATAAAATAGTTCTTGTATGAGTTTTTAGTTCGAGATTTATAGACTTATGGCAGCTTAAATGTCCAAAGGTAAAGAATTGTACCCCAAAAACATATTAAGCTAACTAATGCCATAAAATTGATACATTGTTTTAAAAATCTCGTTTTCATGGGTACTAATTGATGCGTGTGTAACGTGATGAGCAAACAATAAAAACGGAGAAAAAGAAAGAAGTTTGAACGAACATTTTTAACAGCGTCAGAAACAGTGTCATTCGTACGGCACGAGATCCACGTATCAATGTCAGTATCCTTCGTGGAGAGCACATCCGCCACCGTCAGATTCTCCAACCCTTTCTCCGGCGGCGGAGGCGAAGTTAAGCAACCAAAACCGGCCGATACCTTCCTCTGATGAATCTTTGGGACCTCATTAGCTCTTGCTAATAGTCCTCTCACAAAAGCTTTCATTATATAATCTTATTAGGTTCAAAATTGTACTTTTTGCAAAAATAAATGAAACAGAGATTGGGTTTTGTAATAAAGGAAAGGTGATGACTCTTTGCTTCCAATGAAAGACTAAAACATACCTTACCTTAACCAAACGTTAATTACTTTTAATTAAAAAATTAAGAAGAAATTAAAGTTTTTAGAATGAAAAAAAAGATCTGATTGTTTGATTGCTCCAAGAGGGAAAAGTATGTACATTAAACCACACAAACTGCAAATAGAAGAATATAATTTGATATGATATGTTTTGCTTCATTCGCAGACTGGCTTCGTGTCGAAGCTGCTTAAACAAATAGCAAAAGCTTGGAATGCAGAGATCGGGTAACGATAATCCATTGTGAAAATGTCTTTGCCTATCTTCCCAAACTGTAATATCACTCTATCTTGTTCCTCTTCTGGTATGTTCATGTTCTTCCCTGCTTCTGCAGCAGCTGCCACTAGCTGGAAGTTTTTCACCGAGGCGACTGTGACTCGACCTTTGAAGTTTAGACACCAGCACTGAAGCTGTTCGTGCCATCTCGGCGACTTGTTTTTCAGAATTAATGGTTCTTTTATAACGGATTCTCCTCCCAGGTTCCCTGAGCAGAAATCCATCAGCGGCTTCTTCTTCTTCTTTCCTTGGTTTGTGAACTCCGTTGGCGACTGGATTTTGCCGCCTTCTTGAATCGCTGAAATCGGGATACTGTGCATTATACATTGCATTCTTCTTGGACCTCTGGTTCTCAGAACATTCAGCTCATACAAGATTGAAGCTATGTTGTAACTACTAGATGACGACGATACCCATGGAGACACTTGCATCGATGGTGGGAGCTTTCGGTTAAACGGAGGAGGTTGGTTTTCGTAGACTGTGAACTTCGTTCCCAGGAAATTTGATCTGTCCACCACACACAACAAGACTTATAATAGATGGGCATGGTGATCATATAGAACAAAAAGAAGAAGACTTTACCTCAGTTTTCCTATGTAATTACTACTACTTCTCGAGAAGTCATTCCCCGATAACGATACAACAAACTCCGCACCCGTCGCTCTCCTGACTCTCTTTGCAGATAACAACAACTTACTCTTGTCACCGGAAAGAGCTATAAGAAGACGAATGTGATATATAAAACAGTCCAAACTCAATTCATAAGAGGTTCTTAAGGTGAACTAGTAAAACTAACCAGGGCTTAAACCAAGATAGAGACGGTATATCCCCGTAGCTCTTTCACGTTTAATAAAGCATTGAATTGGAGCATCTCTAGGTCCAGGCTAAGCCAAACAAAACCAATGTTTTAGACACAATGATAATCGATTATAAGACAAACTGGTCAAGAGTAACAAACCTGTCTTAAAGAAATCGGAAACGTGATCAAACCAGAGAGCTCAGGAACTTTAACAACTTCTTTAGTCATCTCCCTCCATGACTTACAAACCGAAGCACAAGCAACAACATCTCTCCTCCCCGGCCATAAACTCTGTTCAGACTCAATCCTTTGGATTATATCAAGAAGTAACTCTGGAGGCAAATCAACCCAAATACTCTGGTTTAAACCTTCATTAGTTGATAAAGAAGAAGACACAGATGATCCTTCTGGTGCAATGTGTGACCTCCCTCTTCTACCAATAGCTTTGTATTTGTTCTTCACTATGTTCTTCAATGACATTGCTACTCTGCTACAAACAAAACTATTATAATTTCTGTAATTGAGAGTTTGAGAGACCAAATCAAAAACCCTAATTTGTACCTGATTTTATCTGCTCCCCCAGAAATTTCCCAGCTCCGTTTTGGCTGATGATGAACAAAGTAAATCAACAGAAATGTCTCAGTATTCACCAAAGAGAAACTTTATTCATTGGAGAAAGCAAAATCATGAAAAGAGCATGGATCCGGCTTCTCCGGCAATATCGTGAAGAGTTCGAGAAAGTTTTAAATAAACAAAACATCGAGAAACGAGAAAGAGAGGAAGAGAGAATTATTGTTACCAACAAAAGCGACAAATCCATGGGGAAGCACAATTATATTTCTGCAGATGAGATAAGTTTTTGGATTCTTCTTCTTCCGATGAAGACGAAGAAGAAGAAGAAAAATTCAGCGAGGAATTTGAAATTAAAAGCCTTCTCTTCTCGAAAATGTTAAGTTAAATGAACCACCAACACCAACACCTCTCCGATGCCGTTACTGTCGCCGTCGTGAGCTTCGATTCCGAAGAGGAGAGGAAGGAGGAAGACGACAGTAACCGCAATGATTTCGAGGAGGAAGAAGAAAAAGAGAAGACAGATGGGTTTTTTTCTTTTAATTAGTAAAACGGAAAAAGACTAAGCGCGGCTCATGTTTTTCAATTGAAATTAGTAAATTACTCAAAATAGGATTTTTTTTTTGTAAAACTATTTATTAGCTGATAATTTTTGCTTTTTTGAGAGTTAATTACAACTGGATTTTTTTAAAATTTTATTAATTGGCACGAAATATGATATTTGAAGGTGTATTTTAAATTTTTAGTAAATTTACAAAGAAATTAATAATAAGAAATATTACGTATCAGGTTATTTTATTGTGTATGTTAAATTGAATTATATGTAACTAAGTAAATACAAGAATTTGATGTTGTTTTTTTTTTTGCCAAAAGGTGTTGTTATTTATATGAAATATTGTACAAACATCCATGATACAGAGATGATATTACACATTACAAAGACGTCTATATAAAAAGATTGAACATGAACTTTTAAAAGACTGAATCAAGGTTCATGTACAAAACAGAAGGATCAGGATGCTAGAAGATCAACTACCAAAGGAGAAGGTAGAAGCCCTGGCAGCAGTGTTGAAAGACAAACATCTTGACTTCTCAATAAGAACAGGAAACGAAAACTAAGTTTCGCATCTGAACTTATAGCTTCCATCTTATGCTTATGTCAAGAGAGCTTCTTACTTACCAACGTATCAACCAACCATAAGTAGTAGTAGAAGATTGAAACCGTCCTATAAACCCTTCAAGTTTATACCCATCAAACTGCAACACTTAAAACTAAAAAGGACAGTAACTCGAAACAATCCAAGATAGATTGTTCAGCCAAAAGCAGTAAACACTAAAAGGAGTTATGATTCCTAAGCAGCTATAGACATTCCAAAAAAACAAACCTTACCCCAAAAAGTTGAATTCACAGAGTATAAGGGTAGATTATACTCACATTTGTAGACACAATTTTTCGAGATCTTATCCTCACAATGAAAACAAAAAAACTCATAGCATACTCTAAGTATCATGCAAATATTTTATTAGTCGGTGGCATCAAACCACCTAAGGCTCAAAATATCCCCTCTAGTAACCAACTTTCGTTACAAATTTCAGGATTAAGGCTCCAACTCGGAAAGAGCATATTCGATGTTCTCTTCAGCTCGCGACACATATATCGATTCCACCTCACAAATCACTCAAACCGAGCTCATCTCATGATGCATAAGTTGGGTTTACTTCGCAATCACTTGAACTAAGTCCTTCTCACGGCGTATTTGTCAGGTCACCTCGCAACTACTTAATCCAAATTCATATCCAACAGCATTACAAGAATATTAGTCTTCAAGCAAATAACCTTACTCAAAGAACTCAAGCTTATGTTGATACCGGATCGCGCACGACAAATCCATCTTACGCATCCAAGTTCCATCACTTTACAGAGCAAAGAATGTACATCTTGCATAAGAAAGGTGGTTAAATCTTGATATTAATTTGTGATTAAATTTATGAATTAATGGTCATGGTTTAAGGAGTAAACTTGCCATTCAAGTTTACGAATTAATTATGAGAGTTATTTTATGAGCTAGATATGTACCTAATGGCCAAATAAAGATACATAGGAGGAAGGAAAAGACTATAAAGAGAGGTGGAGACCCTAAGAAAAGAGACTCCATCTTTTTTTTTGTAAAATGGTTTTCAATGTTATAAATAAGGTCCAATGGACTATTTCCGGATTTAGGCTCATACATTTTCCCTTAGACTCAATCCACTTACATATAACCAGACTAAACCATCTATTACAAAACCGATCTAAACCGAAAGTTGAAAATCCTAATCTCATATCGTAAAACACGATCTGAGCCGCCGTCCAAGAATTGCAGAATCTCACCGGAACAGAAACCCTTTGGGGAGCCTAGACGAGATTCGTCGAACGGAGATGGTAATTCAGGATCCGTTGTCCTCCTGCCACCGTAGAGCAGTTTTGAGGAGGAAGAGGCGATCCGGGTTGCCATAGTCATGAATCTCATAGCTCAGTCGAGAGAGTTGACGGCAGTAGTGAGTAGATCTCAAGACCATCGACGGTGGTAAAGCCTCACCGAAGCGGAGTCGACCTCCCCCATCAAGCGGCGACCCAATGAAACCTCCAGAATCTTTAGACTTCCGACCTAACCGCCGTCAGCCCTTGTTCTTCACTGTGAAGTCTCATCCTTCCTCTCCGTGAAGCCACACCACCGATATAGCTCTTACCGACAGTGTCTCGCATAATCTTCTCCCCTCCACCAGGGCCAACTCAATATATTCTCTGTCACTGTACAAATTTTCAAATTTAGCCCTTTTATACTAAATATTTTGAGTTTGGCCCTTACATTTAGTTAAAATTTTATTATGGCCCTCAGATTTAGTCAAAATTATCTTTTTGACCTCAAATTTGATAAATTTTTTTATTTTACCCTTTAATTTTGATCAAATAATTTTTGGATCCTGTGCAATTGCTCCTCTTGCACTCCCCTAATGCCGCATTTGCCCTCCACTGCTCCCTTGATTTTGAATAGATTGAATTGCCGAGAAGATGTAGCGGATCACGGTTGAAGCACCATGTCCCAATGGGTTTCTTCGTCGCTGGAGTCAACGAAAAAACTTATTGACGGAACAAGAGATTGTGATTATAAGAAGAAAAAAATTTGAGAGAGAAATCGCCCACGCGTAAATATCACTTGCCCGACTTCTTTCTAGTATAACTCCAAGAAAAACACCCAAGAAACTCCATCTTCTACATTCTTGACCCCATTTTAGATACAAACAATGTTTTTTCCAATCCTTATACTAAAAACTATTTCTTTGCTTTATGCAATACTTCCAATATCCAATGCACAATATAAGCTAATATCTCTATTTTTATCTCTTTATTTTCTTTGCTAAATTATATTAATTATTTTACTCATTTTTGTGTTTGTCTCCTGAAAGCTTTGTTCCATCTCCTTACATTGCAAAACGAATCTATCCGGATTTTGTATTCACAATCTCTGTAAGTCCAACCAATAAATTTCGGTTTGGTTTAGCTTACCAGTTACCACTCCATACTCTAAAAATTTAGAGGTCAACAAAATAAACGAACTCACTCGAGTTAAAAAAAAAAATCCTCCCATCAATACGCCTCCATAAACCTCTCTCTATCTGGTGGAGCGACACCAAAAACAACAAAGCCTTCTCATTTTCACACTTTGGGTAATCGGAGAATCACAAAAAAATGGGAACCCTAGGACGAGCAATTTACACTGTGGGTAACTGGATTCGTGGAACTGGTCAAGCTCTTGATCGCGTTGGTTCTCTTCTTCAAGGAAGTCACCGTATCGAGGAACATCGTAAGCTTCCAGATCCTTCCACTTAATACTCTCTATTGAAACCCTAGATCCAATTCGTTATCTCTAATTTGTGTCTTCACCTTTGATTGGAGAAATTTGTGGCTTAGATTGAAAAAATTTGATTCGAGAAATTTGTGTTTGTTTTCAGTGTCGAGGCATCGGACGTTGATGAATGTGTTTGATAAATCACCATTGGTGGATAAAGATGTGTTTGTGGCTCCGAGTGCTTCTGTTATTGGTGATGTTCAGATCGGAAAAGGCTCGTCGATTTGGTATGGCTGTGTTCTTCGAGGTGAGGCTTTATTACTTCTAGAAAGTCTTAATGGCCTTTGGTTCGATAGAAGTACCAAATTTTGCAGCAGTATATTGTGCAAAGTAGTCATAGTTTAGTTTTAGGAAATGAAGTTCTCTTTACCTTCTAATAATCTTGTATCGCTGTTATACGTTACTGTCCTGATCATTGGACATAGATTTATTGTACTGTCGATAAAATGTGTCATGAAGTAGCTGTGAAACTTATTGTATGTTAATCTGGGTTTCTAACTTGTGCAGGTGATGTGAATAACATCAGTGTTGGATCTGGGACGAATATCCAAGATAATACGCTTGTACATGTTGCAAAGACCAACATAAGTGGCAAGGTTCTACCTACTCTGATTGGGGACAATGTAACAGTAGGTAAACCTTAAAAAGCGATTTATCAGTTTTGAAGTATCTGTTTTTATGTTGTGTTACACGATTGTTAGTTAAAGGTTTTGTTTGTAAAATGAAACGGAGCAGGTCACAGTGCTGTCATTCATGGGTGTACTGTTGAGGATGATGCTTTTGTTGGTATGGGAGCAACACTACTTGATGGTGTGGTGGTTGAGAAACATGCCATGGTTGCTGCTGGTTCTCTTGTGAAACAGAACACGCGAATCCCTTCTGGAGAGGTTTCTTTCTTTCCACTTTATCTTTTCTGGTTTACTGCTTACGGAGTTTGTGATAAGACTGGAACTGGAAACTGCTTTATTTCTCACTAAACTGAACGAGAAAATCCAAAGTATCAAGAACCAAAAATAGAACTCTAGCTAGGTTTACTTATCACGGACCCTGAAGCTCTACCAAGCCTAATAACGAACTGCTAATTAACCAAGTAATAGCAGCTGTAGTCTGCTGCATTTAGTCCTACGCTGACCTGTAGCTAAGGCTTGACCAGCTGAACTTCTTCAAGTAGATCCACTTTTGCTTTGCTTACAATTTAGTTGATACAGAATTAGTTAATGAAATGATATGCCTGTAAATTGTATTATATTTTGATCAAAAAGAAGAGTAAATAGTATTTATATATCGTCTAAATCTGAGAACCACCTTTGTTTCCGTTGCAATTCTACTTGTATATGAAACAAGGGTGAGTTGGGAGTAACAGAGGGTTCTTGTGTTTCCAATGTTTTATGAGGAATTAGACGGATTTCTTATATCGCTATGCTTTTGAACTACTTTCTTCAACCGTCAACCTGAGAATATATTTACAAGGACATATCTATAAGTTATCAGTTTCATGTGGCAGGTGTGGGGAGGAAATCCAGCAAAGTTCATGAGAAAGTTAACAGATGAAGAGATAGTATACATCTCACAGTCAGCAAAGAATTACATCAATCTCGCACAGATTCACGCCTCAGAGAATTCAAAGTCATTTGAGCAGATCGAGGTTGAGAGAGCGCTTAGGAAGAAGTATGCACGCAAGGACGAGGATTACGATTCAATGCTTGGGATTACCCGTGAAACTCCACCGGAGTTGATTCTTCCCGACAATGTCTTACCAGGTGGTAAACCCGTCGCCAAGGTTCCGTCTACTCAGTACTTCTAATTCCAATCTCAGGTTGTTTTTGTGTGTTGAAATCATTTCAAGACAGGATTGATTCTCTGGAAGGTCAAGAGAGATATTATTTTGGTTTTAACTTTTCTTCCGAGCAAGCAGGAGATTTATCATCCTTGCTCAATAATGTATGGTTGCATTATGAAGTCATTTCTTCGAGGAACAATTTGCAGAAAGAGAAACAAAGTTGGATTAATCTTTCATTCTTTCTCTCGCTGTTTCTCTCATTCAAAATGGTGTCTGTTTGATACACTCTCTAGGTTGGCGATTCGCCGATTATTATTATCATGTGACAGATTTGACTTAAGTAGGACTAAACATAAGCTAGTGGCACTCAATAACTCCTTGTTCCAAGCTGTTAAATAAACAAAGCCGAATAAAAACCACAATTGTACTTGGAAGTTGGAACATATCAAAGAGCTACACACAAGAAAATTGGTTAGAAAATCCAACTTTGAACTCATTCCCTCTTGCTCAAATTTCCATTGGTGCAACATCTTGATCACCTGAACCACCTTGTTCACCAGTTCCAGCAGCACCAGGAGCAGCTTCGGGTTCGGCCTCACCCTCACCAGCATCTTCCTCTTCCTCAGGAACCTTCTCAAACGTATCAATCACCTTTTGAATGCTTTCCTGGTCCAAGAAATGGAATGGTTCATCGACTCCTAGAACAGAAACAGTGCAGAGCGAGCTCTTCAGTGTTTCCCCTTGCAAAGTTTCCCTTATGGCCATAATAGCATCTTTTATCAGATCTTCTTTTGATGATTCTTGGAAGCTCTCGAATTTGCGCTCCAGATAGGTTTTCGCAGCTTGTGAACGAGACCCGATAGCGAATGCTTGATATTCAAAGTAGTTTCCGCTAGGGCAGTTGTAGTAGAGGTGAGCTCCTGACTCGTCCAATCCACCTACCAGCAAACCCACACCATAAGGCCGTTTCCATGATCGTTGGGTACATACCTGCTCAAAGATAATTTATGAAGATGTTTAATACAAGACAAACAAATGACTTAACATTTGAATGAAATCAGAGTGTTGTTCAAACTACAAGACTGATATCAATACGTTCTCAGAAATCAATTGAAAATGTAGATACAGCAGCTAACTTAATTTTTGACAGACATGAAAGTAAGTGGGACGTAGCAATCAAACCTTTTAAAAATTGTGAACACATCATCTAACTTGAGAACACTACGTTTAACACCAAAAGTAGTGAACATGTAGCACAAATTTCTATCACAACTGTAAACCAACATCTTACTGAAAATATACTTCATTAGGCAAGTAAATAAAGTGGCCAGGACATACTACAACTACAAGTAAGTAAACAAATGCAAAGTAATACAAGTCAAAACCACAAAACCAAAAAGAGATCAACAAAGACGTATATTTATTCTAGAATTGCAAGCAAAAACAACTCTATCAAGCAAAGAGAACAGACGATGACAACACAGAAACAACCAAACGACCAAAATCATCACATTCTTATACACTTCTATCGTCAAAGTGGGTATACAGGTTAACTCTTTCTAATCGGATTAAGCAACTAGCAACAGAACTGGATATGATTAACAACACAAGAATCTCTAATTCCCAATCACTAAGACTTGATCACAAACCAATATCACTACTTGCATAACAACACACACATTCTACAAATAAAATTGGCCACATTGCTAATAAAAACCTAAACTTTACTCCAATTACATAAAGCTTCAAACTTTCAGATACTCACACATCATAAAACTAAACCCTTTAGCAAATTCTAGGTCAAAATTCAAAAGTTAACCCAAAAATCTCAATTTACCTGAGCTTTATCAGCAAGATGAACAACAAGACGACCAACAGGAAGAGGAGACTCATAAGTAAAAGAGTGATTAATAGACTCAGATCTCATATATCGAGAGAGAACACGACCATCAGCAGTGAGACCAGCAATAGCAACACCAATATGATCATCGACTTTAAAGATCTTCCTTTGATGAGAAGAGAGCTCTGATTGTGCTTTGTTGACACAAGCGAGGACGACATGAGAGCGAGATCTGAGTCCTATTGCTGCGGAGCCTTGTTTCACAGCTTCCATGGCGTATTCGACTTGGAATAGTCGACCTGTGGGACTCCATGTTGTCACATCTGTGTCGTACTGGTTCCTGAACATCTTTCTTCTTCTTGTTCCTCTGTTCTTCAAAAGCTTTTCGTTTGCTTCAAGCTAGAGGAGGATGGTCTCTCTTATAGAGCTTAGAAGAAGAAAGTAAAGATTGTCAAAAAAAAGAGAAAGAAGACAGTAGAGTAAAATGGGCTTATGAAACTTAATGGGCTGGGTTTAATTATCCATTACTCTTTATTATTTTTTACACATTTAAAAGGATTATAATTTTATAAATAAATACTTAGCATTATATTATTTCTTTTTATAGTAATTAATTTAATTCATAATTTAACATTTGCAGTTTCAATTGGTTTTACATTATTTATTTACACATTTTTCACTACACTGATTATAAATTTACTATTCCCTCTGATCCTAAAACAATGATATTTTGGATTTTTCACAAATTAAAAAAAATAACTTTTATATTATTTTTATTGTTTTTTCTTACTGCAAACTATGTTTTAATCTATGAATGTAGATCATTACAGAGAAGGTTTTTGAACCAAATTGGCTCGTTCCTAAAGTCTGCTTTGAACACAGAAATCGTAAAAATTGGGGAAGCAAAATAGTCCGCTTAAAACACAAAAATCGTAAAATTAGGAAAACTAAATGGTGAGCTATACTATTACAAAGACGTTTTGTGAAAGTAAATACAATAGATGAAAATCTGAAGACCAATACTCTAAATCTAGAAGTAAATTAGCAATTTTACTTCTATTAGACTTGCCATTGATGGTTTTAATGAGGACTTCGCAATCTCTTTGGAATTGTACTTTCTTGTATTTTTGTATCCAAATTTGTTGCATCGCCACAAGTAACGCTTTCGTCTCAGCCTTTAGGAGAGTGTTGACATGATCTAAAATTGAAGATCCTCATGTGTTTGCTATCCCTTCATGGTCTCGTATAATCCATCCACCCGTACTTTAAGTACTATTCCTGTGTAAGTCCGCATCGAAATTGCACTTGACAAAAGAAACTGTCGGTTTTCTCCATGAAGTATTTTCCGATGATGGTGCTCTTGTTGTAGTAGTTTTTTCTTGCCTCCCTCTCGTGTTTATAATTCATTTATTATTTTTTTAATTAATTTAATAATATCAGTTCTACTTTTTTTCCTTTCTCTATTGATCACTAATGAAAATAATATTAATTTAAAACATCAACTTTTGTGAAACAAAAGTAAAATTTAAAACATCAAACTTCATGGACTAGAGGGAATTACAAGTTATTGTATTTTATTATTTCTAATTTTATGAAAATTAATAATTTAGCATGTGTAGTTTAAATTGGTTTGGAATAAAATTAATTTAGAAATCTAAACAAATAAAGTCACATGTTATTAGATTTTTAATTTGATATTTTGTTTTTGATAAAATCTTGTATTATTTGGTTGGAAACAAAGAGTATTAAAATTGTGTCAATTAGCTAACTAGCCAAATTCGACATACAAATTAGCAAAATAGTCATACGTCAGAAAACTTTAGTAAATAGTTTTTTCTTGGGGTGTAAAATAACCAAAATAACCTGGAAAAATAGACGGGAACTCGTGAGTTCCGACACTAGGTGTCTATATGTAGGGAACATAAACATGCGTAGGTAATGAGTAACCCGTTTTATTTATAAAACACACGCCATTTATATATGTTTTTGTTCCTGATGAGCCACATAACTTATAGATTTCAATTACCAATGAGAACATAAACATGCGTAGATAATGAGTAACCTGCTTTATTTATTAAACACACGATATATATAGATGTATTTGTTCATTTTTTTCTTAATTCTATAAACCACATACCTTTTAGATTTTACAGATGCATTTGATATTTAAACACTAACTTATATCACTAAATATGTCAAAAACGGACCATATATATATACAGATGTTTGCTTTGTATGCGACTAGTTATTCAATGGAGACTAACAGATAAAAAGGTCAATGGTAACTGTAACATAGAATGTTATTTAAAAACAACACATGTAATTCCTATATGCATACGCTGTATGAAAACAATGGGCGTGAGTTGGAAATTGTGTATTGGGCAATAAACTCGGCAAAGTATCAACTTATAGAGATCATACATTACATGCAATGTTTCGTTATATCAGTAATCATTAGTATGCAACTTGCTACATAATATGGTCGCCAAATCTTATTTGCGATTTGACAATGTAAATCTATCCGTAGGAAAATATTTGATACGTATCTATTGCATTAAATGCGGCGACAGTGTTATATACGAGTTCCAATGTTGCATTGGGGGAAGGGGTGAAACAAATTCCAAAAACAACGTGTTTCGTATAAATATAACATAGGATAACCACTAAGCATCCACCAGATAAACGACACGTCGCGCATGACGTCTGCGATAATGTTAAAACACATGAATTATTGTGGTTATGCATGTAATTCAAATACAATTCAGTTATATGTTTGATGCGACATTTACAGAAGCGACAGATTCCATCGATTAGCAGCCCTTCGAGAGTTTGGAGGGAAATCATAATTATTCAATATTATGTGGCTTAAAAGCTTGTAAGCACTGTTGCGGAAAATGTCTTAATATATTGTAGCCCTACTTCGTAGCAAAAGATTCCACATATAACAGGAGAGATGAGTAGCATTTAAAACACACGATAATGAGTAACCCGCTTTATTTATAAAACACACGCCATCTATATATGGCGTTGTTCTGGATGAGCCACATAACTTATAGATTTCAATTACTAATGAGAACGTAAACATGCGTAGGTAATGAGTAATCCGCTTTATTTATAAAACACACGATATATATATATATATATATATATATATATATATATATATGTATTTGTTCCTTCTTTTTTTTTTAATTCTATAAACCACATACTTTCAATTACAGATGCATTTGATATTTAAACCCTAACTTATATCACTAGATATGCCAAAAACGGACCATATATATAGAGATGTTTACTTTGTATGCGACTAGTTATTTAATGAAGACTAACAGATAAAAAGGTCATTGGTAACTGTAAAATAGAACGTTATTTAAAAACAACTCATGTAATTCCTATATGCAAACGCGGTATGAAAAGAATAGGCCTGAGTTGGAAATTGTGTATTGGGTTATAGCCTCGGCAAAGTATCAACTTGTAGAGATCATACATTACATGAAATGTTTGGTAATAGCAGTAATCATTAGTATGCAACTTGCTATATAATCTAGTCGGCACATTTTATTTGCGATTTGACAATGTAAAGAGTCCGTAGGAAAATATTTGATATGTATCCATTGCCTTAAATGCGGTGATAGTGTTATATACGGGTTCCAATGTTGCATTGGGGGAAGGGGTGGAACAAAGGCCAGAAACAACATGTTTCGTATAAATATAACAAAGGAGAATCACTAACCATCCACCAGATTGACGACACGTCGCGCATGACGTATGTGCTAGTGTTAAAAAACATGATTTATTGTTGTTATGCATGCAATTTTAATACAATTCAGTAATAAGTTTGATGACGACTGCTTCCGTCGATTAGCAGCCCTGCGAGAGCTTAGAGGAAAATCATAATTATTCAAAATTATGTGGCTTAAAAGCTTGTCAGCACTGTTGCCCAAAAATATTTTAGTATATTGTAGCCCTACTTGTTATCGAGACATTCCCAATATAATAAGAGAGATGAGTAGCATTTAACGATCACACCACTTCCTCTTTGAAAAAATTAAAAGGAACAAGTATACAACAAAGGAGAAAGACAAGTTACAGCAATACTAGGTATGCCATTAATGATAGATTTGTTTTACAGAGTACCATGTAAAATAGAACGTTATATAAGAACAACTCATGTAATTTCTGTATGTAAACGAAGTTATACTGACGAATTTGAAAACAATAGGCTTGAGTTAGAAATTTTGTATTGGGCTTGATGTTATTCATTCGGTTATAAGCTCGACAAAGTATCAATTTATAGGTATCATACATTACATGAAATGTTTGGTTATATCAGTAATCATCATTATGCAACTTGCTACATAATTGGATTGACACATTTTATTTGCGATTTGACAAAATGAACAGTCTGTTGGAAAATATTAGATACGTGTTTACTACATTAAATGCGGCGACAGTATTATATACTGGTTCCAATGTTGCATTTGGGTAAAGGGTGAAAGAAAGTGTAGAAACAACATGTTTCTTATAAGTATAACAAAGGAGGACAACATGATGCACTCCCCAGCGAGTCACCATTAACTTCTCCACTGAGAATATAGACAACATTGGTCTAGAAAAACACCAAGTGAAACAACAACGTTAAGAAAATGATATACTGGAAAAAGCATGTCTCCATTATATTAGTTTTTCACTCTATAGAAAGTAGTTCACCTCTGGAAATTTGAAAAAAAAAACATGAATTTAAGAAGAAACTCGATAGGGATTATTGTCAATATGAAAATAGAGAAACCAAGCAACCAATTTAAAATTGTTTTCAATTACATAATACTAAACCCTAAGATAATATATAGGGAACGCAAGCAACCAATTTTATAGATTTTTTTTGAGAAAAATCCAAAACATACAACGGATAGAAAACACTGAAATTTGAAAGAAAAACATGAATTTAAGAGGAAACTAGATAGGGATTACTGTCAATATGAGAATAGGGAACACAAGCAACCAATTTAAAATTGTTTTCAATTACATAATACTAAACCCTAAGATAATAAATAGGGAACCCAAGCAACCAATTTTATAAAAAATTTTGAGAAAAATCCAGTTTTAATTATATATATATATATATATGCATGTATATAAATATGTATTTGTGTAGTTATATCACTGGATCCGAAAATCAACTCAAACACATCTCGATCCCTTTTTAAAGGTATAAAAGTATAAAATCTAAAATGAAAACATAGTATACAGATAAATCAATGACTATAAATAACAAGCATCATTATAGAAAAACACCTTATAGAATAAACATAGCATGTTATCTATATAAAATACATGAACCAGCTATAAATAACATGCATAATATGAACAAACCTCTTCTTCTTTTTTTAACCCCTAAACGGACGAAAAAGAATCCACAAAATTTGAGGAAATTTCCAGATCTCGCCTTATCTAACTTCATGTAGAGAGATTAAGAAAAAATTGAGGGTTAGTAGAGACTAAATAAAAAAGAACCAAAACTTAGATCTGGACACAATCGGTAAGAACTCTATGTAGGATACTTATGTAAGTATACATGGGAAGAAATAGAAGAAGACACAGATAAATAATCGGAAACCCAGGACTGAACTTACCAGATTCATTGGCGAATACCAGATTGGATAGGAGGAGAACGAATTAAAACTTCTCTCGCAAACGGCAAAAGAAGGAAAAAAAGATTAGCAGCTATATAAAACACATACAAAAAACTATAAAACAAATGCAAACAAATGAAATAACAGAGTACTTAATGGCAGACCAAAAGGTATAAAAGCATGAAATTTAAAATGAAAACATATTATAGAGAGAAACCAATTAGTCAAAATAACAAGCATCATTATACAAGAACACATTATAGAGTAGACATAACATGTTATCTATATAAAATACATGAACCAACTATAAATAACATGCAAAATATGAACAAACCTCTTGTTTTTAAACAAAAACCCTAGACGGACGAAGCAGAATCCAAAGAGTTTGAGGAAATTCCCAGATCTCGCCTTATCTAACTTCATGTAGAGAGATTAAGAAAAAATTGAGGGTTAGTAGAGAATAAATAAAAAAGAATCAAAACTTAGATCTGGACACAACAGGTAAGAACCCTATGCAAGATACTTATGGAAGTATACATGGGAAGAAATAGAAGAAGATATAGATAGAGGGAAAAAAGAACCGAACTTTAGATCTGGCCACAATCGTTATTTTCTATGCAATTGAAGTATAAAGGGGAAGAAATAGAAGAAGATCGGCGATAAATAAACGAAAATGAATGGAACGTAAGACGTTCAAAATCCTCGATATCGCCGAATCTGCAGTCATGGAACGTAAGACGTTCAAAATTTGGGTTAGTATAGTATAAAAGAGAACAGATCAAAAGACAATATTTACAAACCTCAAGTGTTTTTCAAACAAAACCCACAGCGTCAGCCACAAAAGCCTCCGATATCGCCTAATCTTCTTTCGTGAATAGTAAGAGACAAAAAATGGGTTAGTTGCATGTAAGAAACACAGATAAAGGACGCAATATCTACAAACCTCGTGGGTTATTCAAACAAAGCACATCAATATTTACAAACCTCATGTGTTTTCCAAAAAAGCACAGAAGGATTCCCAAAAAAAAAACAGAGACTTTAGCCGCAAACTCTCGATGGTCGCCTAACTTTCATTCATCAACAGTACACGAAACAAAATTAGGGTTAGTTAACAACGAACCGAACTTTAGATCTAGACACAAGCGATGATTGACATGCAATTAAAGGTATAGGGGAAGAGAAATAAGAAGAGCAACTGTAAATAATCGGAAATCAGTGGTTCTACTTACCCAAATCGTCGGCGAGGGAAGACCAAAAATTAATCCTTCGATTGTCACCGGCGACTGCAACGAGAAGACGATTTGAAAAGGATAATCGGAAACACAATCAATTTCTAGAAACAACTACTACTTGGATCGAAAAGATGAGAGCAACGACGATGAAATTAATCGCCGCCGAGAGAGGTTTTTTCGGTGAGAAAAATTTTTTTTTTTTTTTTTTTTTTTAATTTTAGGGTTATTACTTTGGTCGTGAGACAAACTTGGGCCGAATAATGCAATAGAATTCAAATTTCAAACCCAGAATCATACGCTCCCCAAACAGTGTCTTGTCGCTTTGATGTCTAAGGTTATACATGTAAAATTACATGTGTTTCCGACTTACCCCTGTAGCTCATGGCTATTCTCTTAATTTTTTTTGAATCCATGGCTATTTTATGTAGATACTCATTGAAATATGGTAAAAGAAGGTACAGTAGAAATACTAATTATGTTCATGCTTGAAAGTTGAAACACACAAAAAAAACGAATAACATGTTTTTATGATTTAAATAATGAGTGATGAAAACACACATGAAGGGATTGACAAAAATACTAGTCACTAAATATCCTCATGATACAAAAAAAAAAGAAAAAAAGAAAAATAGTCACTAAATATTCACTTAACTAAAAATCCTCATGATTTGTTCACTTTGGAAAATTCAGCAAAAAAATTTAGTAAGCTTATTGAATGTAAACCAGTAATTTCTGATGAGATTAAAACTGAGTTCTAGTTAAAAGACTTTCGGATGAGGAGGTTAAATTTTCATAATTTGCATCGCATCAAAAAAAAAAAAACATTTTATCAATGGTTGAGTTTCTGCTCATAAATTTTTGGAATGTGAGTAATACAATCATATCAACTATGCTATTCATGAAGCTCTAAAAAACTAATCATGAATCTTATATTGGAAACTCAATAAACTTTTGGTGTGGGATATTTAGTTTCACACATTGTGATCTATAAAAGAGAGGAAGAGATAGATCAAGCAATGGATCTAAAAATGTATAAAACACACACTTTATTCACTACCTTGTATTCAATTAACGTCATTAAAAAGCAAAGCTTTATTCAAATTTGTGACAATACAACTATGGCAACACTACACTAAATACATAATTTCAAAGCAAATTTATAACATAAAGTTTTTCTTCTTTTTTAGGCATTAATATAATAAAGTTGAATCTGGTACCAAAAAGTTACGAAAAAGAAACGCATTAATCTCTTTTTTAAAAAGCATCTGATTAAGTGCCTGCGTCTTCTTCTTCTTTTATCCCTCCAATTCAAAATTCAGGTACGTCGACGACACCACCACCACCACCGACAGAATATTCCGATTTAACCCTCACCGAATATTCCCTCTTCCTCCATGGAAAACGACGTCAAAGAGAATCTCGAAGAAGAGGAAGACCGTCTTCTTCCTCCTCCTCCTCCTTCACAATCTCTCCCATCCACCGATTCCGAATCCGAAGCGGCTTTCGAAACAAACGAAAAGATCCTAATCGTCGATTTCGAATCACCCGACGATCCAACAACCGGAGACACACCACCGCCATTCTCATGGCGGAAGCTCTGGTTATTCACCGGTCCAGGTTTCTTAATGAGTATAGCGTTTTTGGATCCAGGGAATCTAGAAGGAGATCTACAAGCTGGTGCAATCGCTGGCTATTCTCTGTTGTGGCTACTAATGTGGGCAACAGCTATGGGGTTGTTGATTCAGATGTTGTCAGCTAGAGTCGGTGTAGCTACTGGTCGTCATTTAGCTGAGCTTTGTCGTGATGAGTATCCTACTTGGGCTAGGTATGTGCTTTGGTCTATGGCGGAACTTGCTTTGATTGGTGCTGATATTCAAGAGGTTATTGGTAGTGCTATTGCTATTCAGATTCTTAGCCGTGGCTTCTTGCCTCTTTGGGCTGGTGTTGTTATTACTGCTTCCGATTGGTGAGTCCTTTCGATACTCTATTCGTTCTTTAGAGATGTTGGATTCGTAGAATTAGTAGAGACTTGGTTTGGAGAATCTTATGATTCATTCTGAAATTTTAAAACTTTGCGGATCATCTTAGCGGTATTGAGTTTGAGTATGGATCATTCGAACTCACAAATCAGTAGAAACTTGGTTTAGAGATTCATGATTCAATCTGAAGTTGAGAATTTGCTTTTACTTTGGCTGTTTTCTTGTAAAACTTTGCTAAGATGATCCAAACTCACAAATCAGTAGAGAATTGGTTTAACGATTTGTGATCGAATCTGAAATTAAGAAACTTGCTTTTTTGTATTTTGAAAACTTGGCTAATGAATTTGTTGCAAACAGTTTTTTATTTTTGTTTCTAGAGAATTACGGTGTGAGGAAGTTAGAAGCTGTTTTTGCAGTTTTGATCGCAACTATGGGTTTGTCCTTTGCTTGGATGTTTGGTGAAACAAAACCGAGTGGGAAAGAACTTATGATAGGTAAAGATTTCAGATTTTTACTCTTGAATTTCACTTTATTTGCTTTGATTTGAGTGCTTAAAAATCAAATCTTTGTGTTTATGGATAGGTATTTTACTACCGAGACTTAGCTCAAAGACAATTAGGCAAGCTGTAGGTGTTGTTGGCTGTGTTATAATGCCTCACAATGTGTTTTTGCATTCGGCTCTTGTACAATCGAGGAAAATCGATCCGAAGAGGAAATCCCGGGTTCAAGAAGCGCTTAATTACTATTTGATCGAGTCATCCGTCGCACTTTTCATCTCCTTCATGATTAACTTGTTTGTGACTACTGTCTTTGCAAAGGGGTTTTATGGAACTGAGAAAGCTAATAACATTGGCCTAGTTAATGCTGGTCAGTATCTTCAAGAAAAGTTTGGAGGCGGGCTTCTTCCGATTCTTTATATCTGGGGTATCGGGTTGTTAGCAGCCGGACAAAGCAGTACGATAACTGGTACATATGCTGGACAGTTTATAATGGGCGGTTTTCTGAATCTCCGGCTTAAGAAATGGATGAGGGCAGTAATAACAAGAAGCTGTGCTATTGTGCCTACAATGATTGTGGCAATCGTGTTCAATACTTCTGAAGCTTCCTTGGATGTTTTGAATGAATGGCTCAATGTCCTTCAGTCTGTACAAATTCCTTTTGCTCTTCTCCCTCTTCTAACCTTGGTATCCAAAGAAGAAATTATGGGAGACTTCAAGATTGGGCCTATTCTCCAGGTAAATTTCCACTTCTTTTACTACAAGTCTCCATAGGATACCACAATAGGTGAATTAGTGTTGAGTCTTATCGTTTTAGGTGTCTCGACTTTTTTAGTTTCACTGTTTGTGCAATTATCTTAGTAAACATGTAGAATTGAAAGTCCTTCAATGGAATAGAGAAGCATGAAGAGTGAGTATTTGTAAGTTGATTGGATTTATTGATTACATTGCAGAGAATAGCTTGGACTGTGGCTGCACTTGTAATGATCATCAATGGGTATCTTCTGTTGGATTTCTTTGTATCAGAAGTCGACGGGTTTCTGTTTGGAGTTACGGTCTGCGTCTGGACGACTGCTTATATCGCCTTTATAGTGTACCTCATTTCACACAGCAACTTTTTTCCTTCTCCTTGGTCATCCTCTTCCATAGAACTTCCCAAAAGAGTGTCCGTCTCCAATAGCTAGTAGCTGCACAAAAATAACTGCCCTCAAGACCATTTGTTACATGTCAAGAAGATACAGTAAACAAACTTCATCCACTATAGTCTTATACATATTGAAACGCCAAAGTGGTGATAAGAGTTAGCTTAGCTTTTTGTGAATGTTAACATCACAAATATGTAGTGGCAAAGTCTTTGTTGTACTTTTTTGTTTTTGTTAAGAGGATGTGCACATTCCAATATGATTTAAAGAGGCTTTTACATCATAGAAAAAAGCAGAAAACAAATCAATAAAAATCTAATAAACCATTGAAAAAATGGTCAAGCAAAAAAAAAAAAGTTTCTTAACTAGTGTTAGCAAAAATCATTGAACATACGCTAAAAGAGATAATACTCAATACTAATCTGCCATTCTAACAGATATATACAACCCAAAATTCAGGTAACTAACACTTCCAATACATAAGCTTCAAGCTTCTTTTACGCCATTCCTCTAATGGTAATATCTTCAAAGAAAGCAAGAGGTAGCTCCGGTGAAACAGGCATGGTCGCAACGCACTTGTACTGTACCAAGAGAATCAGATATTAGAATGTTCTTGTTGCAATATATCACAAGTTTAAAGTTACATCATTGAATTGTTGAATTTACCTTGTGTTGCTTGTACTTATTTCTAACAGCTTCTAGAGTGTTTCCTCTTCTGCTTAGATACAAGTCATGTATGATACCCACGCACACTTGTAGATCAGCTGCTTTGTACTTTGTGTATTCTTCTAGCATTTGATTCTGTTTGCATCACCAGAAGAGGATTTAGAATATAAAGAACTTTTTCTGTATAAGAACCTGTCATGGTTCTTAATTTGCTTACCCAAGGATGTTGTTTTGGACGGATGATGAACCGGGCAAGAAATACAGCTGAAGCAGACAAAAGAGATGGCAAATACTTCACACAGGTGTAATCTAACATACTCAATTCTGATAGATAGCAACAAAGGAACTCTATCTGCAATTGTGAGTCCTGCAAAGGCATGAAAAAAAAGAAGATTTAACAATAGAAATTATGAGATGCAAATGCCACAGTTTACAGGTACATCGATTTTGAGCTTACTTTGAAATCTTCTTGTGCAACCCGTGTAAACCGTCTGCACAAACACGACATAAAAAAGAGAATAACAATCAAAACAAGGGCAAGTAAAACCATGAAATCATAAGTTTAAACACCAGACTGTTTCAGAGTCGAACCTTAGGAATGTTTTGATGGTTGGGCTTCCTAATTCAAACTGCAGAGCAAGAAGTATATCCGCCTCCATCGACACCACTTCTTGTTTAGTAAATGTATTATCCGTAATGTAACAAAAATCTTCAACTTTAGGAGGACCTATCTCTTCATATTTCCTACTTTTTTAAAAGCAAAAATAAAGATTCCATAAGCCAACCATCTAAGACTCTTCACACCAACACAACAATAAACAAAGAGGATTAAGATGCTTACGACGCAATAAGCATTGCAGAAACTCCCACAAGCTGAAGCTTCTGCCTGTTAATAGGCTTCACAGACAAGAATCTATCAACATAGGAGATAGTGAGATAAAGCGTATCCGAAACAAGCTTGTACTCCTCAGCAACCTCCACTAACCAATCCACCAAAACCGCTCTCATGTGTGGAGTTAAATCACTCTGAACCTTTTCAATATAATCAGGTAGTGGTCTATGTTTCGGCTTCCCCTGAAAATTTTACCAATCCAAAAACAATAACCATTAGTCCCAAAGTATCAATCATCTCTAATTTCTCCAAACATATCATATAACCATAAGAGCAAGCTGTGATTGGACAAAATCTCAGAAACTTATCAAATCCACAACTTTAACCAAACCCATTAATCAATATCAAGTCCAACACTGTACCAATTCCAAAATAACATAAACTGATACCATAAGATCACTAAGATCAAAAATGATGGAATCAAGAAATCTACTAAAGATGATTTTTTTTTTACCTCCATTTCACGGAGATAAGCACAAATATCACTAGCAAAAGGCTCACACATCTGAGGATCAACAGATCTCGATTCGATTAGTACGCTAGCTTCAGGAATCATCAAAGCCTTCTTCATCTGCCTCTTCGAGGTATTAACACTTGTTTTAGCCTTAAGGGTCTCTCTTTCTTGATTGGGTACAGCAACGACATTGGACATATTCGGAAGCTCTCCGAGAACAACTCTCTTCTTACTAACTGGGTTTTCGTCTAACGCCATGGACGACGCTTTTCGTTTCGCCGCCGCTCTCGTCATCCTCGCACAGTTCTGATTCTCCGCCATGGGGTTATTTCAGTGGGAAAGTGAGATTTGAGAAAAGGGGTAATGTACAAGGTAGGTAAAAGGAAATGGGTTGAGTAAAAGCGCCATTTTTGTTGGGGAAGTTTTGAGATTTTTAGGTCATGGCGCTTCTCTGTGTAAATTTTCCGATTTCGAAATTTTTAGGGATTTGACTTTTGAGTATCCAAAATTTGGGGCTTTTTTGCAGATTTCATTTCCACATTTATTTGGCGGCTGTTTTCTCCTTTTTACCCTTCAAAAAGTTTCACTCCTATATTTAGACAATCATTATTGTTTTATTCACTTAATTAAAGATGAAAATAACAATCAATGAATGCTTTTAATTAAGGAAATTATTAGTAGTTGATTTGTTTTTTTTTCGGTTTTGGTTAAGATTCGGAATTAAGTGAGATGCTTTTAAAAAATTTAAAAAAAAATCGGTTTTGCATTTGTTTTTTTTTTATACTTTTTTTGGGTTTAGTTTTACATTTTTGATTTTTTTTTGGATACAGAAAAATAAATCCACTAAACCATATGAAAATATTTTGTCTAAACAATAATAAAAAAAAATCATTGAACTAGGAATTCATTTAACACCATTTCCTATATAATTTTTTCGACAAATTCAGCTATTAATTTAACAAAAATAATTGACACCAACGGACACTTATCTTATATTAGAGTTGTCAAAATGGGTGTGCGGCCCGTGGGCTGCCTGCGTCCAATACTTAATGGACCGAGTCATGGATAAAGCCATTATAAAACGGGCTTTAATGGTTATAGTCGTTAACGGATATGAACTTTAGCAGAGTAGATATGATGGACATGGGCGGCCCAATAGTCTTATAATGTTAGGTTAAATCGATTTGAGGAAAAATCGAATATTAAAATGGACATTATTGGATTGGACAAAGGTGTTAATGGATACGGACTATGTTCGTCCAATATCAAAATAGACATTATTGGATTGGGCTAATGGACATGGACACCCCGATTTGACAACTCTATCTTATATGATCCGCCTATCTGTTATTATCTAATAAACGTATGTTGGAAATGACCAGACCAATTCTACCAAATAATCTTTCCAATAAGGGTTCACTTGTAGAAATTGCCTTTTTATTGACTTAAATGAACAATTTCTGTTTTGTTTTGTTTTTGTCAAGGATCATAGCAAGTCTAAAGGCTTATCTTGTCATGTCTTCCCATTCATCTGGTTTCGATACCATTTGAAGTAAATTATTGACTACTAAAGTTTTGGCCTTCTAGGAACTTATAAATTTTGTCATAGGAGGCTCAATGATTAAACAAATAAAATCATGTCACATAAAATACTTCTTATCATATTGCATAATCGTATAAATTTCCAGAGTAACACATTAATTTGTCACCACAATGTTAATCAAGTAATAACACAATACATCTTCACAACACAAATTATTTGCTCCTGCTTCACTTCGATACATATAACATATGACTCCTCTAGCTTCAACTGTTGATCAGTGTCCCTTAGTAATCGAGCTCAGTAACAATTGGGAAATGAAAGATTGGTTCTGATCAAATGGTAACAACATCCTCCCAAAAGGTAACCGGAAGCTCTTGGTAGACAGGAATTGCCGCAACGTATTGGAACTGTACCATAAAAAGCAACATTTAAGTATAAATGATACTACTAATTAAATCAAATGATTTCATAATTTGTAATATGTCAATTACCTTATGTTGCTTGTATTTCTCTCTAACAGCTTTTGAAGCACCTTCACTTCTGCTCAGGTACAAGTCAAGCATGATCTCCACACACACTTGTAGATCAGCCGCTTTGTACTTTGTGCATTCTTCCAACATTTGACTCTGTTTTACATTACAAGCCATAGATTATTAGTGTCTCATTCAAAAGATTAACTCAACATATAAACCTGAAAAAGAGAGATTGAGACAAAAGTTCTTACCCAAGGATGTTGGTTAGGAAGGATGATGAATCGAGCGAGAAAGACAGCAGAAGCAGCCAACAAAGATGGAACAAACTTCACACAACTATAATCTAACATACTTAGTTCTGACAGATAGCAACAAAGAGGCTCTAGCTGCAAGTTTGGCACTTTGAAATCTTCTTGTGCAACCCTTATGAACCGTCTGCACAAACACAACAAAAGATGAGAACAAAGAACCATAAGATACAACCAAAAGTCAGTATTATTCATCACAATTCTAACCTTAGAAAAGTATTTGTCGTAGGCCTTCCTAGTTCAAACTCAAGCGCGAGAAGTATATCCTCTTCCATCTTCAACACATCTTGTTTCGTATAAGTATTAGCCGTAATGTAACAAAAATCCTCCACTTTAGGGCGACGTTTCTCTTCATACTTCCTATTTATATCAAATGCCAAAAAAGAGAAGCCACTCCATATGTAAGTTTCAACATGACAATGAATAGCAAAGAGAGTAATACAAGAGGATCAAAAACACTTACGAAGCGATAAACATTGCAGAAACTCCCACAAGCTGAAGCCAGTGCTCGTTAACCATCTTTAATGACAAGAATCTATCAATGTAAGAGACAGTGAGATAGAGTGTTTCAGACACGAGTTCGAACTCTTCAGCAACTTCCACTAACCAATCTACCAAAACACCTCTCTTGCTTGGTGTTATATCTTCTTGAATCTTTTCAATGTAATCATGTAAAGGTCTTAGCTTTGGCTTCACCTGAATATTCACCAAACCAAAAACACAAATCTTCAGAACATATCCACAAATTCTAAGTCCAAACAGAGAACAATCATAGAAACTCTTCAGATAAAGTATACTAAATTGACCTATTGAAACTTGTCAATGTTCTAAGTCCAAAAACAGAGCAAGTAGGAGATCTTATTACGTACCTCTAATTCACGGAGATACTCGTAGATATCTGAGACATAAAGTCCACACATCTGTGGATCATCAGACCTAGCGTCAATGTCAGAGCCTGATTGAATGTTCTCTTGAAACGCAAGTAGCTTATGTCGAATTTCCGCCCACTCTACCGGGGAAGCATCTTGAGGGTTATGGTCGGAATGAATCTGTTTATCTTTCTTAGACACCATATTTATCGAAAAACAAGAACACATCTTCGAAAGAACAACAATAAATCTTACACTAAGTCCTATATATAGAGTAGAAGACTCTATCCTAAAACAACCAGGTTTCAGAATTCAGATGAGAGATGAGACAGACTAAAAAAAAAAGGAAAATTAAACCAAAGCCCAAAACAATAACTTGTTGAACACGAAATCCCAAGTAATTAAAAAAAGGAAATTAAAAAAAAAATCGTTCCAAAACGTGTTAATTTAGAGAAATTACCTTTTTTTACTTGATTAAAAATCTCAAAAAGTAATTACATATAATTATCTTTTTTTAATCTAAAACTTGTAATTTTACTTTGGAGAAAATTGTAAAGTAGAACCCTAATTATAATTTCGATTTGATTTGCTTATTCCGCTGAGTTAGGCCTAAACGAGAACGCTACAACTTGTGAAGTTTTTGATTTTGCAACCAACACTTGGAGGTACGTTGTCCTGCATCCCCTTATCTGGTTTCTCACACCCAAGATCCTGTGTATGTTGATGGCTCACTTCACTGGTTCACACGAGGGTGAAAGTTGAAACCATGGTTTTGTCTTTGGATCTTCACACCGAAACTTTTCAAGTCATCGCTAAAGCTCCCTTGTTTCTTGTTTCTCAAGTTTAATCTCTCTTTAGTAAACTTGATTATCAATCTCATAGACAATCTTTTCTTTTCTTTTGTTTCTTGAGATTTTCATTAGTTTCTTTAAATTAACAACAATGTCTTCTAGAGTTTTAGCCCTCTAGGAATTTTCATTAAGTATAAACATACAGTAGTAGGCTCAATGCTTAAACAAAATAAGATCATGTCACATAAATACTTATATCATATTGCATAATTGTATAAAATTATATTATTCCGAATTTCACACTAAAATTTTGTAAATAAAAAAGAAGAGATTTCAATAATACATCACACATCTTCACATAACGCAGACTTATTTGCTCCTGCCTTCACTTCTATATTTCTTACTCTTCTAGCTTCACTTGAAGATCTGTGTCCATTATACTATTTGAAACAAGATTCGGTAATCCAGCTCCGTAACATTTGCTTAAGATAGCATAACCTCAGATCAAATGGTAACATCCTCCCAAAAGGTAACCGGCAGCTCTGGTGAAACAGGCATGGTCGCAACGCATTGGAACTGTACCGAGAAGAAGCAACATTAAGTATCAAGAAAGCTCTGCTTATTCAAATGATTTTATCAATGTGTAATGTTTAAGTACCTTATGGTGCTTATATTTCTCTCTAACAGCTTGTAAAGCACCTCCTCTTCTGCTCAAATACAAGTCATGTATGATTCCAACACACACTTGTAGATCAGCCGCTTTGTACTTTGTGTACTCTTCTAACATTTGGTTCTGTTTACATATTCACAACCATAAATCATTAGTGTCTCATTCTAAACAATGACCACAGCAGACTAAAACCTGAAAGAGACTGAGACAAATATGCTTACCCAAGGATGTTGTTTCGGACGGATGATGAACCGAGCGAGAAAAACAGCAGAAGCAGCCAACAGAGACGGCACAAACTTCACAGTCTTATAATCTAATATACTCAATTCTGACAAATAGCAACAAAGAGGCTCTAGCTGCAAATGTGGAACTTTGAAATCGTCTTGTGCAACTCTAGTAAACCGTCTACACAAACACCAACACACAAAATCAGAACAATGAAACTAAGACAAACCAATAAGTAATCATCACCAATACACACAAATCTAACCTCATAAAAGTATTAATCGTTGGTCTTCCCAACTCAAACTGAAGAGCAAGAAGTATATCAGCTTCCATCTTCACAACATCTTGTTTCGAAAACGTATTATCCGTAATGTAACAAAAATCATCCACTTTAGGAGGACTTATCTCTTCATACTTCCTACAACATTTCAATACTTCCATTAGCTTCCATACATAAACAATGACAACAAACACAAGAGAGGAAGAATCATAAAACACTTACGAAGCAATAAGCATAGCAGAAACTCCAACAAGCTGTAGCTTTTGCTTGTTAACAGTCTTTAAAGACAAGAATCTATCAATATGTGAGACAGTGAGATAAAGTGTTTCAGATCCAAGTTTATACTCTTCAGCAACTTCCACTAACCAATCAACCAAAACACCTCTCATACTTGGTGTTACATCTTTCTGAACTTTCTCTATGTAATCTGGTAAAGGTCTCTGCTTTGGCTTCACCTGAATTCACCAAATCCAATTCAGATCCAATTCAAGAACTAAGTAAATGATTCTAAATCCAAAACACAAGATCATTATTACCTCAAGTTGACGAAGATACTCATAGATATCAGCAACATAAGGTCCACACATTTGAGGATCATCAGATCGAGAATCAATGTCAGATTTTGATTCTAGGTCAATAATAGCCACCGGAGCTGACTTAATCTGTTTCGCCGGAGGAGGTTTAAGATTCCTTTTTGGCTTCTGGGTTTCTTTCTTCTGATTGAGATTAGCCAAGAGATTGACATTGGAGACGTTTAGAAGCTCACCGAGAACAACTCTCTTCTTGTTGACCCGATCTCCGTCAATACCCATCGCCGTCGAAGCTTTTCGTTTCGCCGCCGCTCTTGTAACCCTCACGCAGATCTCTTGCTCTGTCATGATTGAGATGAGATTGAAGAGAGAGCGAGAGAGTGATGGGAAGAGAGAGTTTGAGATTTGAGAGGATTGAGAGATCGGATGAGTGGAAGAAGAGAAGGTGAGAAGGGGAAGAAAAAGGGAAGAGCAAAAGCGCCATTTTTTCTGATTGTGGCGCTCTCTGTGATTTTTTTGGAGTTTGAGTTTTTTGGGAGTCAACTAAAAAATTTTGGAGGTGCGAAAATTCTCTGAAATTTGTTTGGGCGGGTGATTTATGTTTTTTTGTTTTCAGATTTTGCCTGAAAATGTTTTTGACCGGTAAAGATTGGGGTTTTGGCCGTGGTGGTTCGATTCAGAAACAAATTTGACATTTGACATTTTTGTCCCTTCGAAGACATCTGTTAAATTTATAATTTAGATTGTAATATTTTGTCTTTGACAAAAAAAAAAAAAAAAAAAAAGATTGTGATATTTTGTACTTTACTAATCTTATATTTTTTAATAAAATATTTAGAATTGTTAAATGTACAATTTTCTTTAAACAAGATCATGACTTTTTAAAACTAACTAGTTTTTTAGGGTTTTTTTAAATAAAATTTTGATCCTTTTTTATTTTTTTTTATAGTGATTATTTTATAATTTTGAGAATTTTATGTTGTTTAGTATGGTCTAAATTGTGAAAACGATTACAGAAAAAAACAAAGAAGATATAAAGACCAAAATCTATAACTAAATAAACTTACGAAAACTATAATGAAAGCTAAGTGGAAAGCAGCTAGCATAGGTTCGATGAAGAACATCAATGTTGAACCGTGAGGCTCAGACATTTGTATAATTGTCCCATCTCCAACAAAAATTGAATCTTCATTATTGTTACCACGAGCAATTTCTTTATGAGGTCTATCTTCAAAACCTTAAAACAAAAAGACGCTAATAGTTTTTTTGAGAACTAACACAAAAACAAAACCGCTAGAATAGACTTACCTGACAGCAAAAGAGCATCTACGAACATCCAGAAAAGCCGCCTTTGGCCACCAAAGGCCACCATTCTCAAGCATAAAACTAGAAAAATCAGTTCCCACAATATAATATAGACATTCTAGACCAAATCACCGCTTCTATCCAACACTGAAAGCTCACTGGAACATCATGCGGAACAAACCTTTATCCTATCAAAGTGAAGAAACACAACAAACAATCAAAAACAACAAAGACACCTCCTTAGAGCAGAGCCAACCCAAGGCAAATTCAAGGTGAAGAAACGTTGCGAATATACATTCGGTTGAGAAACGATTATGTTTTCTAATTTCTTCTAAGCTCACCAAATATCATAATAGACCTTGATCACCTTTTAACTAGACTCAAAACTAATTTTACTCATCATCCACATGTTCAATTGATCCTCCACCCAATATATTTTTCAAACTTGATTGCCAAATAGTTCTAAAATAAAAAAATCTCTTGACTGCTTTTTTATGATGTAAAATTTGTTGATTGGTAACTAATAATTTACAATGAGAATGTGACAATATACAAAAACAAGACATAACAAAACAGATCAAAGATTTGAGGACAGATCTTGGCAGTGACTAATGTAGGGGTCTCGTCACATACAAAGTTTGAAGCAATCTTTAAGTTTTGGTTTCTCGTAGTAACACAATGACATGATGCGAGAGTGAATGGTTTTCTCGATCATGGCTAGAAGCTGCATATGGGTCCGACATTTCTTGTTGTGAGCTTCCTCTCATTCCACTCTCTCCAAAGATAATACAAAGTCGCTTGAAAAGATAGTCGAATGAGAATGTAGTGGTTATCGTCATTTATGATTATTACCCTATTTAGATTTTGTAAAATAATATTTGGATTACCTAAAGATTAGTTCAGTTGAAAATAATTTGTAAGAAAAAATCAAGTTACCCTACTTATTTTGATTTTATATATATACTATTTTCCACAAAACATTTATATTTAAAACATTTATTGTATTTTATATACTGATATTATCTTCATCTGATATCAATAAAATTAGCTGAAATTTTTATTATTAATTGTATTTTATGTAATTAATTTAAAATAAAACCGTAATTAATTCATAAAAAGATTTGAACGTAAGTTTAAGATTATAACTGAAATATTTATATTGACTATAGTTTTCTCCACCACACAAAGTTTAAATTTCAAATACTTCCTGAATTTTCGGTTATTTAATTATTTATAATAACACCGAACCAAACCAATCAATGTCTAAACTCTAAACTCTAAAGACTTTGTCATTTCGTGAACCGTCGTCATAACTGATCCTTCCAAAGAATCTCCAAAATCCCTAAACTTCGAAAATGGCAGAAACCGCCGAGACAATCAACACCACGATCTCATCGCCGCCACCGGAATCCGAAAGCTCCACCACTATTTCTGCAATGACAGATCCAACATCTCAAGAAGCAGCCTCAAAAGACACAGATCTGACGAAAGAAGCCGAATCAGAGAAGAAACCAGGAGGAATCTCTCTCCGAATCTGGCCACCGACTCAGAAAACTCGCGACGCCGTTCTGAATCGCCTGATCGAGACCTTATCCACCGAATCAATCCTCTCTAAGAGATACGGTACTCTTAAATCTGACGATGCAACCACCGTCGCGAAACTTATCGAAGAAGAGGCTTATGGTGTTGCTTCGAATGCTGTGTCGAGTGATGATGATGGGATTAAGATTCTTGAGCTTTATTCTAAAGAGATTAGTAAGAGGATGCTTGAATCTGTTAAGGCTAGATCTAATGCTAGTGTTGGAAATGGAAGTGTGGAGGATGCTAATACTGATGCTAGTGAGGTTTCTAAAGATGATGCTGGTCCTGCTTCAGAGGAGGAGAAGAGTGAGGCTTGAGAAATTTGGTTTTACTTCCTTATTATAATCTCTTGTCTCTTAGGGTTTTGCTGTTCTTGTAATGATGATGATGACTTGTGGATTTGGTATTATGCATATTTGAAGATGTTTCTTCTTCCTTAATATGAGTGCAAGTGTCTTCATTTTGTTGCTTGGTTTGGCTTTATGGGATTTGATATTTAACAATAATGCATCTTTGTTGGTAAATTGTTTTCCTTTTCTGCTATGTGTGTTTTGGATTGCTTTGATTGATGTGTATTCAACAACCACATCGTTTGATTTGTGTCATTCATTGTGTAATTACGGTTAGTATCATCGGGTTATGTCTTTGTGAATGTTAGAGTGGTGTGTTGAGTTTATTGTTTTGTTCAGTTTCTTTAAGCACATTTGCATCTTTGCTTTGGTGACCATTAGTGTCTCTATGCAGCTTACCATTGAGTTATGTAACGTTTTTTAAATTGGGTTACAATTACGATTAAGCTGAAGTTCTGTTACTTTTCAGTGGTGACAGGAACATGTGAGTTTGTCTTACTTTGGTGTATGCAGCTTTCTATGGCTTATAGGTTGTGTAGTGTTTGGTCGATTGGATTTGGAGTTCTTTAGAACACACCATTAGGATTAGGCTGAAAGTTCTTTGGATTTTTCAGTGATGACATGAACTTGTGGTGAGTCGGAGCACGGATTAAGTATCTTTAGATTTTATAAATCCTCAAGTAACTAGTTTGATGAACCTAATTACATCAGAACATGAAAAACACTGCCTACAAGTTTCTAGTGGTTATGTCATAGCGGTTTCTTTCTGTTTTTACTCTGTTTTTGTATTCCTATTCTATTGGATTAGATTTTGGCCAGTTGAATTTTAAACCAAGTTATGTAATGTGTAGATAGTGTTTGTTCTTATGTTGTTTTACATAGAATTAGAGGATGATTCCAGTCTATTTTCTCCTTCTTCCTTCTTCCTTCCTATGCTCAGGTGGGTATGTTTCGAGTTCATTGACCTCTGTATTCGTTTAATTTAGTAACTGAAACAATTTCACTGATTCTTTGATATTCTCTCTAGTCTTCTCTGGTTAGTGGTTAGGGATTACAGTCAAAATAGAGTTTTAAAGTTCGCAGTTCTTCCATACAGAATCGTCATGAATTTCTTTATCAATTCAAGAATCCAAAAAACAATGACTTAGAAAAACATACATAGTTTATATGTAAGCCAATAACTTATAACTACAGTTACATAGTTTTGTTTTGTGATGTGGAAAGGAGATTAGATAAAATCAAATGTAGGTTTAGAAATCAGAAATTTTTTGGTTTAATACTTTTATTCATAAGTTACAAAAAGCAGGCGGATATGGGAATAACCAGATTGAAAAAATGTGAAATAGAAACTATGCTTATTGGTCAATTGATTGATAAGATCTCAGCCAAACAATTTTTGTCATCCTGGATGACCCCATCATCACAAATGGGAGGCTTGGTCAGTAAAGAGATTGAGATTATATTGTTTGCTAGAAGGGTGATGACCCTTTTTTGGCAGAGCAACTTCATGCCAACAAAAAATTCAGAAGTCTATAATCTGTGTGGTACGCTAAGCGTTGGCTTTTTTTTTTTAAGACAAGTGTAAGCGGAGAGGTGATCAACTGATCATGAAGCTTTGTAGGAAAAGACACGTGAGAAGAAAAACTCCTATATTAGCTTCCACACATGTGCTTCATGTCCCATTCACCAAGTGTACATTCTACTTTTGGGAGTATATTATTTCTTTAGATCCAAAGAAGAAAGATGTACCTTTGTTCTAATTGGATTATTCTTTTTAATTTTCAACGATCTTGTTTTTAGTATTAGGATTAGAAGAGTTAGAGCACCTCCATCAACAATATTTTTTTTTTCTTCACTAGAATGGTAAATTATATTGATGAAATAAGTTCTGAATACAATAGGCGGCAATGCAATCAAACCTTCCAAAGACATAAGCCGGCGAGTACATGTAGACTCCTAGAAACAAAAATCTAATTAAGAAAAATTAAAGAGGAAATAAACTCAAACATACAAATACACGCATCTGAACCAATCTTCTCGGAATCCAAACTCAAAAAATCAAAAATAAAATTACAAAGTCTAAATCACCATAAAAACAAACAGATTCACACTAAGGAAAACAAAACCAACAAAACCAGGACTCTCTTTACCACAAACGGCGGTGAACAAACAAACACCCCGCGACCCAAATGATGATGGTCATAAGAAGAAGAAAGGAGATCGAGATCTTCAAAGGAGAGAAATCTACTTCTGAAGGCGGTGAAAGAACTCGCCTCTGCCGAGGTTCGAACGGCCAGAACTGGTGCTGCACATAAAAGGGACAAAAACAAGCAGCAAAATCCAAAGACGAAAAATTTAGAAATTGTAGATTTAGATCTGAAATTTTAGATCTGAAACCGTTGGAAAAAAAAAAGGTTCAGATCTGTCAGAGAGGAAGGAAAACAAAAACTAAACATGAAGAAACCAAGAAATTTCGGTTCTGGTGCTGAAAAAGTCACTGGGACCGAAACCCTAGCAACAACGGCGGCGACTTTGTTTTATAGAGAGAAGGAGGAGCGTTTGTCCCTCCATCTGCAATATCTAGAAAAGATACTTATTATTAAAATAATATAAAGTGGTGAAAAAGAAGAGAGAGAAGTGAGAATCGTCTCTGTTTTCAGAAACTCTGAGAGACGTTTCTGGCCACGTGTTTTTTCAGGAATGGTTGATTTTCTTTTTTTTCATTAAAATTAATAATTTATCTGAATTCAATTAAAATAAGCAATATTTTATTCATGAGAAACTCTTTTTTGAGAATCTACCAATGTAGATGGCCTTATCATCCTAGGCCCTTGACCACTTAGCTTGATGGTTTTAACCAGCTCAACCGATTATAATTGGAGTCTCCGGTTTAGTTTCATTTGGGTAATATTCTATGTCATTTGGTCATTTGTAAGATGTCTTAAGCTCTATATGAAACAAATTTTGTGTATTTGTATAGTTATGCCATTGGAAAGCAATCCAAAAACCATAATCGAATCTTAAATCAACTCAAAGACATCTTGATCTCTCTTTAAATATTACCTAATTGACTTTTTGTTTGGAAAATCATGTGATCCGAAATCAGATATCGCCATGGAATCTCCAATTTTGGTTTTTAAACCGAGCTTCCTCTATTCATCATCTTCATCGCCCATATAGTCCTCCTTTATCAGCTGCTGAATTCCAACTCCAACACTGATCATTCATCTCCTCCAAAATCAACGAATCTCCTTTTCCATTTTATTTGTTTTCTCCATATGATAACACAAGGGTAGAAGCGTTATTTTACAAAGGAAGAAGTGCCGGTTTTCGTAATCACTTCTGCAATGTTTCGGATCTTATAAGTTTTTAACTTTATGATGCCTTGCATACAATTAACTCAATTATATTTGGTAAATTTGGATGTCTACATAAGAAATATAACAAAAAAAAAAAAACAGAAGACCATCATCGTTCCTTAACAGAAAGAGGTAAATAAATTGTTCAAAATATGATACATTCATAGACAAAGGTATAATTACTCTTGTCATTTACTTAATTATTGGGGAAAGGTTTTGTCATTCTGTGCAAATACATTCTTTTTTTTTTGAACAAAAGTGGGATGTTTAAGAGCAAGATATACTCCAGTGATGGTATTAATTCTTTCAAAGAAATTCAGTTTATGCAGCCTATATAGTTTGAATTAAAATTTGTTGTCCTTTTTGTTCCTTGTGGAGTAATTTTACACAATTATTACTTTCATTTTCTTAATTTTATTTTGGTATTAAATTGAAGAAAGTAAGTGTTTTACTTTTCTTACTTTAGTGTTGAAATCGTAAAGGCATAAAGCCATAAAGGTCATCAACTGATTCTTGGATTGTATATATTTTTCTCACCGACGCAGGAAGTTGTCTGTACAACTTACTTTGCTTTTCATGCTTCCTCGTCGGTTATTAGAACAGTAATCGGAAATGAAATTATATAAAAATAGAAAACCACAGAAAAGCCCTAAATACTGTAATGCTTCAAATTAATTAATCTATTAGTTTGATTGAAACAAGATTTACGGTTGCAAGAAAAAGTTAAATACTGAATTCGTCAAGGATTCCAATCATGTACAAACGCTTTATATAATAATTATAAACATGGAAGAGAAGGGAACAAACCTACAAATGAAAACTACTTACTAATAGACAAACACTTACAAATTTGGTTTCGATTTGATATTTTCGTATATGTCATTCGATTTTATTTTTGTTTTATTTGTTTAAGAATACAGAAACAAAATAACACTCTCACATATCATGTGTAGGAATGTACTATAAATTTCTTTAGGAAATGCCCCATGTAATTCACATATAGACGTTACGAGTTATACTTCTACTGAGTGCCTTTTTTGTCTCTGTACTCTAAGGTCACAGAAAAAACAGCCCATGTTACTTTATCAATCGACAATGGTTCGTGTTTTTCTTCCATATTTTAAATTATCATGTGGTTCGGTAGGAAATGTGTAAATGAGTTGATCTTGTTTACTGATTTCTTATTTTAAACATTGACCTTGATCATAGTTACCTTTAAAAATTCATCAAAATTCTTATGGACTCATTTGTCATGCATCTTAAAATTGTAGAATCTTTGCTTTAAGTATCATGAAGACACTTAAAACTGTTTAAGAGAACTCCACATCTTTAAAGTTGGTTCACAATATTAAGCGAATCTTTGAAATTGCTGATTCGAATGACATTTGAAACAAAACTAATTATAAATGTTGTGGTTTCGGACCTGCAAAGATTATAGGTTTTGGCATATAAAATCTTGGTGTTCAAAAAAAAAACAAAGTTGGTTCACAATCCTAACTCCACGTAAACTAAAACCAAGTTCAATTGTCTCTAATCGATAACTTTCCCGTTTTCCTTCCGGTCCGATTTTAAAAACACTGCAACAAACACTGATTTTTGTAGTTAAAAGGTTAATAACCTAATTTCTGTTATTCCTCTCTTTCCAGCTAAACTGGAATTTTAGTAGTTAATATATCTGTTATATTACTAACCGAAAGATTATTTTGCCCCCCTTTCTTTAATTTACTACTTTTCTTTTCTGTCCTTGCTTTTTTGTTTGTGACTTTTCTATGGGATAAATAAACTATAATCCTTTGTATTCCATTAACAAGAAAAATCAAACCTTTACATGTATAACGACTTGTGCAAACGAAAAAGCCAGTAACTAAGCCTCTGATTAGTGAATTACATGGCATTGAATCAATCAATGCTTTTAAAAAATGTTTTTTTTCCCTTTTGCGATGAAATGAAACTAAAACTTAAATACACAATCGTTATATATAGTTTATGCAAAGGCAAAAATAAAATAAAATAAAAATCAATATCAATGGTCACTAGTGTCCACGGCCTTTCCTGCTCGGTCCAGAGGCTAACCGGAAAGCCAAGCTCCTCATCAAAAGATGGTCTCTCGAACCGTTCGCCGCCCCCGAGAAAACGCCAAAACCACCACTCTCTACGGTGGCGGTCGTTTGATCACAGCCGGTCGTTTGATCACAGCCGGTCGTTTGCTCTGTTCGCAATGCTCTGCAATCAACTCCCCCAAGAATTGAAAACACCTCCACCAAGAAGATGATGCACAACAAGATCATAAGCTTCTTCTCCATCGATCCTTGACTTAACTTCGGTTTATTACTTCTCTTATTGAGTTCTCTCTCAAAATGTTGGCTTTGTCAAAACGAGTTGTTGAGTTATGAGATGGAAAGGCTTGTGTGTGTATATATAGTTGTGTGTGGGTGCGTGTGTAAGCAAAAGGCATTTATTGACCAAGAATGTTGGACTAATTGATTTCGACTTCGCGTTTTCTTTATACAAATAGTAATATTTTATGGCCTTTGAATATTTCAGGTGGCATCTTTTTAAAATGTGTATTCAGAACAATTTCTAACTGTTCTTAAACTAGTTTTGGATTTTATGCAAAAATGTTTTTATTAATATGTAAAAAACATGTTTATAAAATTTATAGACTCCAGTTTATATGCTTATTTAATCTCTTTTATTTTAATTTTAGATTTTGAAATCATACCATGTTTAATTTATCTAAAATTAGACATGTTAAAAGAAGACTATATTATGTATATATTCATCATATTAGCGGAGAAGTTTTGATCAGTTTTTTCCAACCTACTTGTTTTGGCTGAGAGGTTATTGTTAGACGCTGACTTTGAATATAAAATTACATATTTATATAATAGTTATAAAGGTTAAAGGAATTGCACACAAAAATTCAAACAAATTGCGATTAACTATATAAGTACTATTTTCTTAATGCGTAGTCAGTCATATTAGTGGCAAACATTAGATCAATTTTCTCCAACCTACCAGGCTTGATCGACATGTATTGTTAGACTCTGACTTTGAAAATTAAAATTAAACAATAATAAAATAAAAAAGAATATTGCAGAAATTACAAATGTTAGACTAGTTGATTTGGATTTCGTGTTTTCTTTAAATAATTTAGTAATGTATATATTTTATGGCCATCCTTTAGATTATTTCAGGTATAATCTTTTTCCACCTTAAACTATTTGTAGGCTTTGTGCAAATATTTTATAAATAGTAGATCATTTGATGTGCTTCAAAATATGTTTCTATCTAATAAAATTATACCTTGCTTAAATGATCTACTCACATCTAAAAACCGGCCATGTGTGTATGTATATCAGAGGCTATTGTTAGAATGTTTTGACTTTGAAAAGAAAACTAAATAATAGTAGTAATTGCAGAAAATTACAAAAAGTTGTAAAAAGTGGAATTTTATATATTTGTAGTTGTGTCCAATGTGAAGAGACAAAATGGGTTAGATTGTTGTTGAACGAATGAGCTAACAAAAGAAGCGTTGTTGAAGAAAAAAAAAGTCATAAGAGTGTGTTTGTGTTTGTGTTTGAGTTGTCAACTTTTGACTTTTGTCCGACGTCGGTTTTTCGTTATTACCGTGAAAGAAGTCGTGTTCGTCGGATCCTTAGTTTTGCTGTCTAGTGATGACGTGGCATTCACTCGTTAACGTGTTTCCTTTTCTTTTTGTCTTTTGCTTCCGTCCGTCTGATTTTAGTTTTCCTACTACTTTTTTTAAACTAGATTCTTTTCCTAATAGTCTATTTCAAAAGTGAAAATAAAAGCACTAAACTGCAGTAAAGGTGTTAATCTGTAGTTAAATATTTATTTTTACATTCCTATATACTCTCCATTTCTAAGAAATAAATGTTAAGATAGCAATACAAAAAGTTGAAAGTACTTTTCTTTTATCATTTTTGGTATCATTTTTATGATAAGTTACTAGGCCTCGGCAAAAAACTCGTACTCGAAAATCCGAACCGAAACCGATCCGAGAAAATCGGTTCGGGGCGGGTACGGATATTAGTTATTTATCCTATTGGGTCTTAGATTGTTGTATCCGGGTGTATAGAGTAATACCCGACCCAAACCCGATACCTGAAAGGATATCCGCTTACCCAAAATTACATATACTTATTCATAGATTTATACATATAAAAATTTATTTAATATTTAATATTTAACCAAATATATTTATATCCAAATATTCAAGAATAATTACTAAAAACTAAATGTATCTATATTTAAATACTTAATACTAAATATTTATATATGCAAAATAGTCGTAAATGTTTTGGATATTTGGACAAAATTTCGGTTATTCGGGTAAAATTCAGATATTTAGGTAAAAGTTTTGACTATTTTGGTATAAATTTCGGGTATTCAGGTATAATTTCAGGTATTTGGGTAAATTTTTTGACTATTTGGGTACAAATTTCGGGTATTCATGTACAATTTCGAGTATTTGGGTAAAATTTTGGATATTTGGATATAAAATACCTGATTTTTTTCAGGTATTTAGCGGTTCTAAAATTCTATACCGAACCAATCCGAACCCGATTGGAACCGAACGAACCCGAACCGAAGTTTTCTATTTACCCTATTTGATCCTAGAATAGTATACCCGATATACTCATACCCGATCAGGTATTACCCGAACCCGACCCACGTACCCGAATGCCCAACCCTAATAGTTTTTATGGTAACTAATAGTTACCATGAAAGTTGTACAGTACCATGACACTCAAAAATAATGACAATAAAACTATAGATTTTAGCAAAATATTGATTGAAAATAATTAAACTTATTAAATTACTATAGCTCCAGAATAAAAGAAAATTGTTTAGTAAAAATGATGCATTAATTTTTTTTAACGTGTGAAAAATGGAACATTCATTATTCAAAAACAGAAAGAGATTCATATTTCAAAAGGTGTTATGTAAGAAAGCTTATAAAAAAAAGAAAGAAAACGAATGTATCATTCCATTGTGGGTTGGGCCTCTTTTTTTTGTTTTATGTTTGTTTAAATTATGTTATCACTTTGTATGGCTAGACCCAATTTGTTTTGTATCACCTGTGATCCTAAAAAGTCAATATAACCCTTTGATAAAAAACAAACAAACAAATCATTCCATCATGTAATTTAACATATAAATGTTTAACACAACCTGTATTTCTAATAGAAATTTTGACTTCACCCTTTAGGAAAAAATAATCAGTATAATAAAAAAGAGTACAAATATCAATGGAGAAGATATAAACAAAAAAATATATATAGAAAAAAGAGAAATTTGCAAGAATAACTAACAAAAACTTATAAATTAAGAAAGTAACACAAGACAAAAAAACAGTTATACTCTCCATATTATATATAATAATAGCATATTTACCCCTTTCTCTCCACCTCATTCTAAGTCCCTCCTTCTCTCCTCTCTCTCTCATCTCTTTTTCTTTCTTCTCTCAATCTCTTCTCTCTTTCTTTTTTCTGTATCACATGACAAACAAACGAGAAGCACAAAGTAGATTTTTCAGATACCACTTATGTTATCTGGTTGCTTGGGTTGCCAATGTTGTATCTTAGGGTATAGTTTTTCTATACATCCAAAATAGTATAGTACAACATTTTATTTCTATCCAAAATAGTACAACATGTTTTTACTTACAAACACTATTTACTATTTTATAAATCCAAATCCGATTTTAAAAATTCAAACTATTTTGTATGTAGAAAAAAACATAGGGCTTTTCTAATAAATTTTATAATTGGAATCTATTTTTTGGAAAAGATATATAGCAAAAAAAAACAAATAGGTGCAAAACTAAACTAAGTGTTACTAAATCATCTCACCTCCAATTCAACACTAAAATTGTCTTTTTCTTATCCTTACATGCTATTTTCTTAATTTTTATACATATGGTGCTATATTTTTAATTTATTTATCAAATATGGTTATTAAGGTAAATCACCCAAAAAAAAATTATATATCAACGGGAAAATTCCCAAAAAAAACCTCAACTATTTAAAATTTGTCAGAAAAACCTATCAACAATGAACGGGCCATAACAACATTGGTTATGTTAGAAAACCTCATGTAAAACTAGTATTATACACAAGATACACATTATCCATACAAATAAAATGGGCCCAAAATATTTCAAAACCCAAAGTGGTCATCGAATATGTAAGATAACAAATTACTCTCTAACTAGTAAAGCTGTTTTAAATGGGCTATAACCCGCGGACCAGATCCAACTCTTAAAAAAAGTCTATAAGTCATAAGGACAAAAAACAAAAAACAATTGAGGAAGGACAAGAAATTTTATTAAAAAAATGTTGCCAATTTGCCATTCCAACTACAGTTAGGTTTATGAATGTCAACATCAGATATTTTTCGAGCTACCTTGCGAATGGCTAATCACGCAAGCACGTTCCTGGAGGTTGACGTTACACGTATATGGCCTATCCTACGTTCAAGATTAAACTTCTTCAATCCTTTTTTTTTTTTTTTTTTTCAATTATCTCTGTTTTGAATAAAATCTACTACGTACAGTTGCGAAAATTTTAGTTGAATCTTGTTCATCCAGAAGTAGAAAATAGCACATCTATTGGAAAGACTAAAACTGTTTTCATATTTTCTTATGCTAAAAATACAAACATTTCGTTTGGAAAAAAGGTTGTAGAAATTACACAAAATAGATCTCACAGTTTAATCTCATGGCAAAAAAAGAAAAAGAAGGATAAACGACAAGGAAGCAAACAATAATAAATCAATCAACATCAATAAAAGCAATTACTCTTTCGGATTCAATGAAGAAATCAGAATCGGGTTTTTATTTAATTTTTAATTTTGTATAAAGTAAATATTTAGAATATTAATCTTTCACACATTTTTTTACATCAAATTGTTTTACAAATAAGATTTGACCATGACCTAAACGATGGTAGTTTAATGGTAGGTGTAACCTTCATTTGATGGTGTGCGTGCGTTTTTCATAACCGTTACATTTAATTCTGTTCGTATAAGAGATTTTAAAATATAAGCTCAAACTGTTTAAGAGTGTAGTCATGTAATCATATACATTTGACTGTATATGTACTGTTCCATCCAAAACTTTCTGTCCATGTAATCGTATTTCAACATGTCATGAAATTTTACCAATAACTAATGCGCAAATTTCACCGTCAGAAATTTTATCCCATCTCGCAATTCAACTTTAGATTGGAGAATTGAATTC</ASSEMBLY_SEQUENCE>
+	</ASSEMBLY>
+</TIGR>

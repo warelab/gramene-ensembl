@@ -1,0 +1,30 @@
+use Bio::EnsEMBL::DBSQL::DBAdaptor; 
+use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+
+my $ENSVER   = '52';
+my $GRMVER   = '30',
+my $def_user = 'ensembl_rw';
+my $def_pass = '()ryz@';
+my $def_host = 'cabot';
+my $def_port = 3306;
+
+#----------------------------------------------------------------------
+# Species; alphabetical by genus
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => "Oryza_sativa_japonica", 
+    '-group'   => "core", 
+    '-port'    => $def_port,
+    '-host'    => $def_host, 
+    '-user'    => $def_user, 
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_sativa_japonica_core_${ENSVER}_${GRMVER}", 
+  ); 
+
+# Species aliases
+
+my $REG = 'Bio::EnsEMBL::Registry';
+
+$REG->add_alias("Oryza_sativa_japonica","Oryza sativa japonica");
+$REG->add_alias("Oryza_sativa_japonica","rice");

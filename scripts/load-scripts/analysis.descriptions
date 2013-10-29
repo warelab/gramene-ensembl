@@ -1,0 +1,422 @@
+#
+# File for populating the analysis.description records in the ensembl core 
+# database.
+#
+# Follows the convention in 
+# ensembl/misc-scripts/analysis_description/analysis.descriptions
+#
+# Uploaded to the database using the script 
+# ensembl/misc-scripts/analysis_description/load_analysis_descriptions.pl
+#
+# Note fields in this file should be separated by *tabs* not spaces!
+# format: nr<TAB>logic_name<TAB>description<TAB>display_label<TAB>displayable<TAB>web_data
+#
+# 
+
+5010	AFFYMETRIX	Deprecated	Affymetrix	0	
+5011	african-rice_mrna	Alignments for African rice mRNA sequences from GenBank	Africa rice mRNA	1	{'type'=>'cdna'}
+5012	AGILENT	Deprecated	Agilent	0	
+5013	Arabidopsis_EST	Genomic alignments of Arabidopsis "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	EST (Arabidopsis)	1	{'type'=>'cdna'}
+5014	Arabidopsis_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Arabidopsis	EST Cluster (Arabidopsis)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+# This one should be deprecated:
+55013	brachypodium_est	Genomic alignments of Brachypodium "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	EST (Brachypodium)	1	{'type'=>'cdna'}
+5015	Chris_miRNA_prediction	An alternative set of miRNA gene sequences from <a href="http://microrna.sanger.ac.uk/sequences">miRBase</a> as aligned to the reference genome	Gene (miRNA)	0	{'type'=>'rna'}
+5016	chemical-mutations	Chemical Mutations	Chemical Mutations	1	
+5017	Density_Rice_rflp_marker	The relative density of RFLP markers in a genomic region.	RFLPs (density)	1	
+5018	Density_Rice_SSR	The relative density of SSR markers in a genomic region.	SSRs (density)	1	
+5019	Density_Rice_tos17_insert	The relative density of TOS-17 inserts in a genomic region.	Tos17s (density)	1	
+5020	Density_Rice_T_DNA_Insert	The relative density of T-DNA inserts in a genomic region.	T-DNAs (density)	1	
+5021	dicot_EST_Cluster	Alignmments of EST clusters (Unigenes, Gene Indices) from all dicot species	EST Cluster (Dicot)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5030	fgeneshpred	Hidden Markov Model (HMM)-based ab-initio gene prediction program <a rel="external" href="http://www.pubmedcentral.nih.gov/articlerender.fcgi?tool=pubmed&amp;pubmedid=10779491">AA Salamov et al., Genome Res. 2000 4:516-22</a>	FGENESH	1	{'key'=>'fgenesh','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5031	fgeneshprediction	Hidden Markov Model (HMM)-based ab-initio gene prediction program <a rel="external" href="http://www.pubmedcentral.nih.gov/articlerender.fcgi?tool=pubmed&amp;pubmedid=10779491">AA Salamov et al., Genome Res. 2000 4:516-22</a>	FGENESH	1	
+5036	GeneBuilder	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (Gramene)	1	{'key'=>'gramene','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5036	cdna_genebuilder	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (cDNA Gramene)	1	{'key'=>'gramene','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5036	est_genebuilder	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (EST Gramene)	1	{'key'=>'gramene','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5036	mrna_genebuilder	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (mRNA Gramene)	1	{'key'=>'gramene','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5036	mrna_exonerate	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (mrna_exonerate Gramene)	1	{'key'=>'gramene','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5037	GeneBuilderJaponica	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (Gramene)	1	{'label_key'=>'[text_label]','default'=>{'contigviewbottom' => 'collapsed_nolabel','contigviewtop' => 'gene_nolabel','cytoview'=> 'gene_nolabel'}}
+5037	GeneBuilderArabidopsis	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through an automated, evidence-based method	Gene (Gramene)	1	{'label_key'=>'[text_label]','default'=>{'contigviewbottom' => 'collapsed_nolabel','contigviewtop' => 'gene_nolabel','cytoview'=> 'gene_nolabel'}}
+5038	GeneBuilderRAP	Gene annotation based on RAP proteins on IRGSPv4; some gene structure changed due to assembly difference	Gene (IRGSP/RAP)	1	{'label_key'=>'[text_label]','default'=>{'contigviewbottom' => 'collapsed_nolabel','contigviewtop' => 'gene_nolabel','cytoview'=> 'gene_nolabel'}}
+
+5039	GeneModel_Alyrata_JGI	Gene annotation by <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5040	GeneModel_JGI	Gene annotation by <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5040	GeneModel_MIPS	Gene annotation by <a href="http://www.helmholtz-muenchen.de/mips">MIPS</a>	Gene (MIPS)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},MultiTop=>gene_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},MultiBottom=>collapsed_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},alignsliceviewbottom=>as_collapsed_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5040	GeneModel_MIPS_JGI	Gene annotation by <a href="http://www.helmholtz-muenchen.de/mips">MIPS</a> and <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (MIPS/JGI)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},MultiTop=>gene_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},MultiBottom=>collapsed_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}},alignsliceviewbottom=>as_collapsed_label:{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5041	GeneModel_IGGP	Gene annotation by <a href="http://www.vitaceae.org">IGGP</a> through a process of automatic and manual curation	Gene (IGGP)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5042	GeneModel_Poplar_JGI	Gene annotation by <a href="http://genome.jgi-psf.org/Poptr1_1/Poptr1_1.info.html">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5043	GeneModel_RiceIndica_BGI	Gene annotation by <a href="http://rice.genomics.org.cn">BGI</a> through a process of automatic and manual curation	Gene (BGI)	1	{'key'=>'bgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5044	GrameneGeneBuilder	Gene annotation by <a href="http://www.gramene.org">Gramene</a> through a process of automatic and manual curation	Gene (Gramene)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5044	mips_oglab_v2.01	Oryza glaberrima genes annotated by MIPS	Gene (MIPS)	1	{'label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label'}}
+5045	Grape_EST	Genomic alignments of grape (Vitis) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Grape EST	1	{'type'=>'cdna'}
+5046	Grape_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from grape (Vitis)	EST Cluster (Grape)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5048	indian-rice_mrna	Alignments for Indica rice mRNA sequences from GenBank	Indica mRNA	1	{'type'=>'cdna'}
+5049	indian-rice_est	Genomic alignments of Oryza indica "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Indica EST	1	{'type'=>'cdna'}
+5050	Maize_EST	Genomic alignments of maize (Zea) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Maize EST	1	{'type'=>'cdna'}
+5051	Maize_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Maize	EST Cluster (Maize)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5052	Maize_MarkerRFLP	Location of RFLP (restriction fragment length polymorphism) markers from maize	Marker (Maize RFLP)	1	{'type'=>'marker'}
+5053	mdr_0.25	Mathmatically defined repeats (MDR, 0.25 level)	MDR (0.25)	1	
+5054	mdr_1	Mathmatically defined repeats (MDR, 1 level)	MDR (1)	1	
+5055	mdr_2	Mathmatically defined repeats (MDR, 2 level)	MDR (2)	1	
+5056	mdr_3	Mathmatically defined repeats (MDR, 3 level)	MDR (3)	1	
+5057	Microarray-Probe	Deprecated	Microarray Probe	0	
+5058	Microarray_Probe	Deprecated	Microarray Probe	0	
+5059	microsatellite	Genic nonCoding microsatellites	Marker (microsat)	1	
+5060	mips_recat	Repeat sequences from the <a rel="external" href="http://mips.helmholtz-muenchen.de/proj/plant/webapp/recat/">mips-REcat></a> library, identified using <a rel="external" href="http://www.repeatmasker.org/">RepeatMasker</a>	mips-REcat	1	
+5060	agi_repeats	Repeat seqsuences annotated by AGI	repeats-AGI	1	
+# miRNA_genes is similar to Ensembl's BlastmiRNA analysis
+5061	miRNA_genes	Loci of microRNA gene sequences from <a rel="external" href="http://microrna.sanger.ac.uk/sequences">miRBase</a> as aligned to the reference genome	miRBase miRNA	1	{'type'=>'rna'}
+5061	miRNA	MicroRNA gene sequences from <a rel="external" href="http://microrna.sanger.ac.uk/sequences">miRBase</a> as aligned to the reference genome	miRBase miRNA	1	{'colour_key' => 'rna_[status]','label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label','MultiTop' => 'gene_label','MultiBottom' => 'collapsed_label','alignsliceviewbottom' => 'as_collapsed_label'}}
+5062	monocot_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from monocot species	EST Cluster (Monocot)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+# T2is is an alteration to the standard Ensembl ncRNA meta data;
+5063	ncRNA_gramene	Non-coding RNA (ncRNA) predicted using sequences from <a href="http://microrna.sanger.ac.uk/sequences/index.shtml">miRBase</a>, GenBank and MSU/TIGR.	Gene (ncRNA)	1	 {'colour_key' => 'rna_[status]','label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5064	NSF	Deprecated	NSF	0	
+5065	OVERGO	Genomic location of <a rel="external" href="www.ncbi.nlm.nih.gov/projects/genome/probe/doc/TechOvergo.shtml">Overgo</a> probe markers	Overgo Probes	1	
+5067	Poplar_EST	Genomic alignments of poplar (Populus) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Poplar EST	1	{'type'=>'cdna'}
+5068	Poplar_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from poplar (Populus) species	EST Cluster (Poplar)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5069	prodom	A comprehensive set of protein domain (<a rel="external" href="http://prodom.prabi.fr/prodom/current/html/home.php">ProDom</a>) families automatically generated from the UniProt Knowledge Database	ProDom domain	1	{'type'=>'domain'}
+5071	RFLP	genomics location of RFLP (restriction fragment length polymorphism) markers	Marker (RFLP)	1	
+5071	Rice_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna'}
+5072	Rice_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from rice (Oryza) species	EST Cluster (Rice)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5073	brachypodium_est_cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Brachypodium species	EST Cluster (Brachypodium)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5074	Rice_OVERGO	Genomic location of <a rel="external" href="www.ncbi.nlm.nih.gov/projects/genome/probe/doc/TechOvergo.shtml">Overgo</a> probe markers	Rice Overgo Probes	1	
+5075	Rice_MpssTag	This dataset Rice_MPSS_Blake was provided by Blake Meyers. http://mpss.udel.edu/rice/GeneQuery.php. There are totally 93301 signature sequences, out of which 92735 (99.4%) have been mapped to single exons on TIGR v3 pseudo-molecules.	Rice_MPSStag_Meyers	1	
+5076	Rice_QTL	Quantitative Trait Loci (QTL) features, mappings inferred from location of associated markers	QTL	1	
+5077	Rice_rflp_marker	Obtained from Gramene Marker database	Marker (Rice RFLP)	1	
+5078	Rice_siRNA	Loci of published siRNA gene sequences as aligned to the reference genome	Gene (siRNA)	1	{'type'=>'rna'}
+5079	Rice_SSR	The 2,939 CU and IRMI SSR primers are from http://www.gramene.org/microsat/microsats.txt	Marker (Rice SSR)	1	
+5080	Rice_TE	Genomic locations of known transopsable element insertion sites giving rise to genetic mutants	Transposable Element	1	
+5081	Rice_TE-T-DNA-INSERTION	Locations of <a rel="external" href="http://en.wikipedia.org/wiki/T-DNA">T-DNA</A> and transposable element insertion sites identified via alignment to the genome of appropriate flanking sequence tags (FST)	Insertion Sites	1	
+5090	siRNA_genes	Loci of published siRNA gene sequences as aligned to the reference genome	Gene (siRNA)	1	{'type'=>'rna'}
+#5091	submittergeneannotation	These are gene models that have been annotated on the clones by the original sequencing group and submitted directly to genbank.	Gene (GenBank)	1	
+5092	Sorghum_EST	Genomic alignments of Sorghum "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Sorghum EST	1	{'type'=>'cdna'}
+5093	Sorghum_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Sorghum species	EST Cluster (Sorgum)	1	{'type'=>'cdna'},'default'=>{'contigviewbottom'=>'stack'}}
+5094	Sorghum_ESTCluster3p_lgbpratt	Alignments of LGB Pratt EST clusters for Sorghum	EST Cluster (Sorghum LGB Pratt)	1	{'type'=>'cdna'}
+5095	TE-T-DNA-INSERTIONS	Locations of <a rel="external" href="http://en.wikipedia.org/wiki/T-DNA">T-DNA</A> and transposable element insertion sites identified via alignment to the genome of appropriate flanking sequence tags (FST)	Insertion Sites	1	
+5096	TE-T-DNA-INSERTION	Locations of <a rel="external" href="http://en.wikipedia.org/wiki/T-DNA">T-DNA</A> and transposable element insertion sites identified via alignment to the genome of appropriate flanking sequence tags (FST)	Insertion Sites	1	
+5097	TAIR	Gene annotation by <a href="http://www.arabidopsis.org">TAIR</a>through a process of automatic and manual curation	Gene (TAIR)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5098	tigr_gene	Gene annotation by <a href="http://rice.plantbiology.msu.edu">MSU/TIGR</a> through a process of automatic and manual curation	Gene (MSU/TIGR)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5099	msu_gene	Gene annotation by <a href="http://rice.plantbiology.msu.edu">MSU</a> through a process of automatic and manual curation	Gene (MSU)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label'}}
+5100	wesslerbennetzen	Repeats detected using the Wessler/Bennetzen library using <a rel="external" href="http://www.repeatmasker.org">RepeatMasker</a>.	Repeats WessBenn	1
+5100	RepeatMaskAGI	Repeats detected using the AGI library (repeats_nr_s_111026.fasta) using <a rel="external" href="http://www.repeatmasker.org">RepeatMasker</a>.	Repeats AGI library	1
+5101	vitis_EST	Genomic alignments of grape "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	EST (grape)	1	{'type'=>'cdna'}
+5102	vitis_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from hgrape	EST Cluster (grape)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+
+# Unknown analyses in arabidopsis
+6010	SubmitSlice200K	Unknown	SubmitSlice200K	0	
+6011	SubmitTranslation	Unknown	SubmitTranslation	0	
+6012	SubmitContig	Unknown	SubmitContig	0	
+6012	submitproteome	Unknown	submitproteome	0	
+
+# Unknown analyses in O. glaberrima
+6013	similarity_blast	Unknown	similarity_blast	0	
+6014	pmatch	Unknown	pmatch	0	
+6016	submitprotein	Unknown	submitprotein	0	
+6017	other_mrna_genebuilder	Unknown	other_mrna_genebuilder	0	
+6018	genewiseslice	Unknown	genewiseslice	0	
+6019	submitotherest	Unknown	submitotherest	0	
+6020	maize_mrna_exonerate	Unknown	maize_mrna_exonerate	0	
+6021	submitgenome	Unknown	submitgenome	0	
+6022	rice_mrna_genebuilder	Unknown	rice_mrna_genebuilder	0	
+6023	submitchromosome	Unknown	submitchromosome	0	
+6024	submitothermrna	Unknown	submitothermrna	0	
+6025	bestpmatch	Unknown	bestpmatch	0	
+6026	maize_mrna_genebuilder	Unknown	maize_mrna_genebuilder	0	
+6027	genecombiner	Unknown	genecombiner	0	
+6028	submitclone	Unknown	submitclone	0	
+6029	utr_addition	Unknown	utr_addition	0	
+6030	submitothercdna	Unknown	submitothercdna	0	
+6031	submitslice	Unknown	submitslice	0	
+6032	genebuilder_s	Unknown	genebuilder_s	0	
+6034	repeatmask1	Unknown	repeatmask1	0	
+6035	protein_genebuilder	Unknown	protein_genebuilder	0	
+6036	submitotherprotein	Unknown	submitotherprotein	0	
+6037	submitest	Unknown	submitest	0	
+6038	rice-blast	Unknown	rice-blast	0	
+6039	genecombiner_s	Unknown	genecombiner_s	0	
+6040	other_protein_exonerate	Unknown	other_protein_exonerate	0	
+6041	submitcdna	Unknown	submitcdna	0	
+6042	protein_exonerate	Unknown	protein_exonerate	0	
+6043	rice_mrna_exonerate	Unknown	rice_mrna_exonerate	0	
+6044	blastpeptides	Unknown	blastpeptides	0	
+
+# Unknown analyses in rapgene/grmgene
+6050	test	Unknown	test	0	
+#6051	est_exonerate	Unknown	est_exonerate	0	
+6053	other_est_exonerate	Unknown	oryza_sativa_japonica_rapgene	0	
+#6054	cdna_exonerate	Unknown	cdna_exonerate	0	
+6054	rice_blast	Unknown	rice_blast	0	
+6055	other_cdna_exonerate	Unknown	other_cdna_exonerate	0	
+#6056	targettedgenewise	Unknown	targettedgenewise	0	
+6059	insert_sm	Unknown	insert_sm	0	
+6061	other_mrna_exonerate	Unknown	other_mrna_exonerate	0	
+6070	insert_mgt	Unknown	insert_mgt	0	
+6071	insert_met	Unknown	insert_met	0	
+6072	submitvitalesest	Unknown	submitvitalesest	0	
+6073	rosales_est_exonerate	Unknown	rosales_est_exonerate	0	
+6074	insert_gk	Unknown	insert_gk	0	
+6075	submitsolanalesest	Unknown	submitsolanalesest	0	
+6076	submitmalvalesest	Unknown	submitmalvalesest	0	
+6077	wheat_est_exonerate	Unknown	wheat_est_exonerate	0	
+6078	malvales_est_exonerate	Unknown	malvales_est_exonerate	0	
+6079	submitmonocotest	Unknown	submitmonocotest	0	
+6090	submitrosalesest	Unknown	submitrosalesest	0	
+6091	insert_set	Unknown	insert_set	0	
+6092	other_mrna_genebuilder1	Unknown	other_mrna_genebuilder1	0	
+6093	insert_riken	Unknown	insert_riken	0	
+6094	insert_sail	Unknown	insert_sail	0	
+6095	tair_go	Unknown	tair_go	0	
+6096	barley_est_exonerate	Unknown	barley_est_exonerate	0	
+6097	submitriceest	Unknown	submitriceest	0	
+6098	other_mrna_genebuilder3	Unknown	other_mrna_genebuilder3	0	
+6099	rice_est_exonerate	Unknown	rice_est_exonerate	0	
+7010	insert_gmt	Unknown	insert_gmt	0	
+7011	vitales_est_exonerate	Unknown	vitales_est_exonerate	0	
+7012	submitmalpighialesest	Unknown	submitmalpighialesest	0	
+7013	submitbigslice	Unknown	submitbigslice	0	
+7014	raphanus_est_exonerate	Unknown	raphanus_est_exonerate	0	
+7015	insert_gat	Unknown	insert_gat	0	
+7016	maize_est_exonerate	Unknown	maize_est_exonerate	0	
+7017	other_mrna_genebuilder4	Unknown	other_mrna_genebuilder4	0	
+7018	other_mrna_genebuilder2	Unknown	other_mrna_genebuilder2	0	
+7019	submitsapindalesest	Unknown	submitsapindalesest	0	
+7030	submitwheatest	Unknown	submitwheatest	0	
+7031	malpighiales_est_exonerate	Unknown	malpighiales_est_exonerate	0	
+7032	insert_flag	Unknown	insert_flag	0	
+7033	monocot_est_exonerate	Unknown	monocot_est_exonerate	0	
+7034	insert_gt	Unknown	insert_gt	0	
+7035	insert_wisc	Unknown	insert_wisc	0	
+7036	submitraphanusest	Unknown	submitraphanusest	0	
+7038	insert_salk	Unknown	insert_salk	0	
+7039	brassica_est_exonerate	Unknown	brassica_est_exonerate	0	
+7050	insert_fet	Unknown	insert_fet	0	
+7051	solanales_est_exonerate	Unknown	solanales_est_exonerate	0	
+7052	fabales_est_exonerate	Unknown	fabales_est_exonerate	0	
+7053	sapindales_est_exonerate	Unknown	sapindales_est_exonerate	0	
+7054	submitbrassicaest	Unknown	submitbrassicaest	0	
+7055	submitasteralesest	Unknown	submitasteralesest	0	
+7056	asterales_est_exonerate	Unknown	asterales_est_exonerate	0	
+7057	insert_sgt	Unknown	insert_sgt	0	
+7058	submitmaizeest	Unknown	submitmaizeest	0	
+7059	submitdicotmrna	Unknown	submitdicotmrna	0	
+7070	arabi_est_exonerate1	Unknown	arabi_est_exonerate1	0	
+7071	barley_wheat_est_exonerate	Unknown	barley_wheat_est_exonerate	0	
+7072	submitvitisest	Unknown	submitvitisest	0	
+7073	japonica_tar_exonerate	Unknown	japonica_tar_exonerate	0	
+7074	submitglycineest	Unknown	submitglycineest	0	
+7075	submitarabigene	Unknown	submitarabigene	0	
+7076	monocot_other_est_exonerate1	Unknown	monocot_other_est_exonerate1	0	
+7077	submitmaizegene	Unknown	submitmaizegene	0	
+7078	submitdicotest	Unknown	submitdicotest	0	
+7079	arabi_gene_exonerate	Unknown	arabi_gene_exonerate	0	
+7090	submitwheatest2	Unknown	submitwheatest2	0	
+7091	mocot_mrna_exonerate	Unknown	mocot_mrna_exonerate	0	
+7092	monocot_other_est_exonerate2	Unknown	monocot_other_est_exonerate2	0	
+7093	vitis_est_exonerate	Unknown	vitis_est_exonerate	0	
+7094	submitgossypiumest	Unknown	submitgossypiumest	0	
+7095	submitbarleywheatest	Unknown	submitbarleywheatest	0	
+7096	submitgslice	Unknown	submitgslice	0	
+7097	wheat_est_exonerate1	Unknown	wheat_est_exonerate1	0	
+7098	submitsorghumgene	Unknown	submitsorghumgene	0	
+7099	arabidopsis_est_exonerate	Unknown	arabidopsis_est_exonerate	0	
+8010	arabi_est_exonerate2	Unknown	arabi_est_exonerate2	0	
+8011	submitmaizeest2	Unknown	submitmaizeest2	0	
+8012	close_mrna_genebuilder	Unknown	close_mrna_genebuilder	0	
+8013	maize_gene_exonerate	Unknown	maize_gene_exonerate	0	
+8014	submitmaizeest1	Unknown	submitmaizeest1	0	
+8015	submitmonocotmrna	Unknown	submitmonocotmrna	0	
+8016	submitmonocototherest2	Unknown	submitmonocototherest2	0	
+8017	maize_est_exonerate1	Unknown	maize_est_exonerate1	0	
+8018	wheat_est_exonerate2	Unknown	wheat_est_exonerate2	0	
+8019	monocot_mrna_exonerate	Unknown	monocot_mrna_exonerate	0	
+8030	maize_est_exonerate2	Unknown	maize_est_exonerate2	0	
+8031	JGI-Phypa1.1-masked	Unknown	JGI-Phypa1.1-masked	0
+
+# Unknown analyses in maize
+8032	density_fgenesh	Unknown	density_fgenesh	0
+8033	monocot_est_genebuilder	Unknown	monocot_est_genebuilder	0
+8034	monocot_est_genebuilder2	Unknown	monocot_est_genebuilder2	0
+8035	monocot_est	Unknown	monocot_est	0
+8036	genebuilder-5a-orig	Unknown	genebuilder-5a-orig	0
+8037	density_working_set	Unknown	density_working_set	0
+8038	dicot_est	Unknown	dicot_est	0
+8039	other_est_genebuilder	Unknown	other_est_genebuilder	0
+8040	density_filtered_set	Unknown	density_filtered_set	0
+8041	submitcollapseaffy	Unknown	submitcollapseaffy	0
+8042	maize_fpc_markers	Unknown	maize_fpc_markers	0
+8043	density_repeatmask	Unknown	density_repeatmask	0
+8044	monocot_est_exonerate2	Unknown	monocot_est_exonerate2	0
+8045	other_protein_genebuilder	Unknown	other_protein_genebuilder	0
+8046	density_genebuilder	Unknown	density_genebuilder	0
+8047	other_cdna_exonerate2	Unknown	other_cdna_exonerate2	0
+8048	similar_mrna_exonerate	Unknown	similar_mrna_exonerate	0
+8049	mdr	Unknown	mdr	0
+8051	submitchunk	Unknown	submitchunk	0
+8052	probe2transcript	Unknown	probe2transcript	0
+8053	te-t-dna-insertion_like	Unknown	te-t-dna-insertion_like	0
+8054	teconsortium	Unknown	teconsortium	0
+8055	genebuilder-4a	Unknown	genebuilder-4a	0
+8056	teconsortiumltr	Unknown	teconsortiumltr	0
+8057	essr	Unknown	essr	0
+8058	alignaffy	Unknown	alignaffy	0
+8060	density_essr	Unknown	density_essr	0
+8061	collapse_wait	Unknown	collapse_wait	0
+8063	submitalignaffy	Unknown	submitalignaffy	0
+8064	similar_mrna_genebuilder	Unknown	similar_mrna_genebuilder	0
+8066	other_cdna_genebuilder	Unknown	other_cdna_genebuilder	0
+8066	acds_insertions	Unknown	acds_insertions	0
+8066	mu_insertions	Unknown	mu_insertions	0
+
+
+# Arabidopsis test data
+6277	Emma_FLC_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FLC_17	Emma_FLC_17-sig count	1	
+6278	Emma_FLC_17-peak score	Score of most significant SNP in 100kb bins for Emma_FLC_17	Emma_FLC_17-peak score	1	
+6297	Emma_FRI_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FRI_17	Emma_FRI_17-sig count	1	
+6298	Emma_FRI_17-peak score	Score of most significant SNP in 100kb bins for Emma_FRI_17	Emma_FRI_17-peak score	1	
+6249	Emma_FT_10C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FT_10C_17	Emma_FT_10C_17-sig count	1	
+6250	Emma_FT_10C_17-peak score	Score of most significant SNP in 100kb bins for Emma_FT_10C_17	Emma_FT_10C_17-peak score	1	
+6291	Emma_FT_16C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FT_16C_17	Emma_FT_16C_17-sig count	1	
+6292	Emma_FT_16C_17-peak score	Score of most significant SNP in 100kb bins for Emma_FT_16C_17	Emma_FT_16C_17-peak score	1	
+6259	Emma_FT_22C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FT_22C_17	Emma_FT_22C_17-sig count	1	
+6260	Emma_FT_22C_17-peak score	Score of most significant SNP in 100kb bins for Emma_FT_22C_17	Emma_FT_22C_17-peak score	1	
+6265	Emma_FT_duration_GH_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_FT_duration_GH_17	Emma_FT_duration_GH_17-sig count	1	
+6266	Emma_FT_duration_GH_17-peak score	Score of most significant SNP in 100kb bins for Emma_FT_duration_GH_17	Emma_FT_duration_GH_17-peak score	1	
+6281	Emma_JIC0W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC0W_17	Emma_JIC0W_17-sig count	1	
+6282	Emma_JIC0W_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC0W_17	Emma_JIC0W_17-peak score	1	
+6239	Emma_JIC0W_GH/JIC8W_GH_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC0W_GH/JIC8W_GH_17	Emma_JIC0W_GH/JIC8W_GH_17-sig count	1	
+6240	Emma_JIC0W_GH/JIC8W_GH_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC0W_GH/JIC8W_GH_17	Emma_JIC0W_GH/JIC8W_GH_17-peak score	1	
+6263	Emma_JIC0W_GH_Day_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC0W_GH_Day_17	Emma_JIC0W_GH_Day_17-sig count	1	
+6264	Emma_JIC0W_GH_Day_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC0W_GH_Day_17	Emma_JIC0W_GH_Day_17-peak score	1	
+6251	Emma_JIC0W_GH_Leaf_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC0W_GH_Leaf_17	Emma_JIC0W_GH_Leaf_17-sig count	1	
+6252	Emma_JIC0W_GH_Leaf_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC0W_GH_Leaf_17	Emma_JIC0W_GH_Leaf_17-peak score	1	
+6283	Emma_JIC2W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC2W_17	Emma_JIC2W_17-sig count	1	
+6284	Emma_JIC2W_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC2W_17	Emma_JIC2W_17-peak score	1	
+6257	Emma_JIC4W/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC4W/LD+V_17	Emma_JIC4W/LD+V_17-sig count	1	
+6258	Emma_JIC4W/LD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC4W/LD+V_17	Emma_JIC4W/LD+V_17-peak score	1	
+6285	Emma_JIC4W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC4W_17	Emma_JIC4W_17-sig count	1	
+6286	Emma_JIC4W_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC4W_17	Emma_JIC4W_17-peak score	1	
+6295	Emma_JIC8W/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC8W/LD+V_17	Emma_JIC8W/LD+V_17-sig count	1	
+6296	Emma_JIC8W/LD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC8W/LD+V_17	Emma_JIC8W/LD+V_17-peak score	1	
+6273	Emma_JIC8W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC8W_17	Emma_JIC8W_17-sig count	1	
+6274	Emma_JIC8W_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC8W_17	Emma_JIC8W_17-peak score	1	
+6267	Emma_JIC8W_GH_Day_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC8W_GH_Day_17	Emma_JIC8W_GH_Day_17-sig count	1	
+6268	Emma_JIC8W_GH_Day_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC8W_GH_Day_17	Emma_JIC8W_GH_Day_17-peak score	1	
+6293	Emma_JIC8W_GH_Leaf_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_JIC8W_GH_Leaf_17	Emma_JIC8W_GH_Leaf_17-sig count	1	
+6294	Emma_JIC8W_GH_Leaf_17-peak score	Score of most significant SNP in 100kb bins for Emma_JIC8W_GH_Leaf_17	Emma_JIC8W_GH_Leaf_17-peak score	1	
+6261	Emma_LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LD+V_17	Emma_LD+V_17-sig count	1	
+6262	Emma_LD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_LD+V_17	Emma_LD+V_17-peak score	1	
+6255	Emma_LD/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LD/LD+V_17	Emma_LD/LD+V_17-sig count	1	
+6256	Emma_LD/LD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_LD/LD+V_17	Emma_LD/LD+V_17-peak score	1	
+6279	Emma_LD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LD_17	Emma_LD_17-sig count	1	
+6280	Emma_LD_17-peak score	Score of most significant SNP in 100kb bins for Emma_LD_17	Emma_LD_17-peak score	1	
+6189	Emma_LN_10C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LN_10C_17	Emma_LN_10C_17-sig count	1	
+6190	Emma_LN_10C_17-peak score	Score of most significant SNP in 100kb bins for Emma_LN_10C_17	Emma_LN_10C_17-peak score	1	
+6287	Emma_LN_16C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LN_16C_17	Emma_LN_16C_17-sig count	1	
+6288	Emma_LN_16C_17-peak score	Score of most significant SNP in 100kb bins for Emma_LN_16C_17	Emma_LN_16C_17-peak score	1	
+6275	Emma_LN_22C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_LN_22C_17	Emma_LN_22C_17-sig count	1	
+6276	Emma_LN_22C_17-peak score	Score of most significant SNP in 100kb bins for Emma_LN_22C_17	Emma_LN_22C_17-peak score	1	
+6243	Emma_SD+V/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_SD+V/LD+V_17	Emma_SD+V/LD+V_17-sig count	1	
+6244	Emma_SD+V/LD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_SD+V/LD+V_17	Emma_SD+V/LD+V_17-peak score	1	
+6229	Emma_SD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_SD+V_17	Emma_SD+V_17-sig count	1	
+6230	Emma_SD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_SD+V_17	Emma_SD+V_17-peak score	1	
+6233	Emma_SD/LD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_SD/LD_17	Emma_SD/LD_17-sig count	1	
+6234	Emma_SD/LD_17-peak score	Score of most significant SNP in 100kb bins for Emma_SD/LD_17	Emma_SD/LD_17-peak score	1	
+6245	Emma_SD/SD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_SD/SD+V_17	Emma_SD/SD+V_17-sig count	1	
+6246	Emma_SD/SD+V_17-peak score	Score of most significant SNP in 100kb bins for Emma_SD/SD+V_17	Emma_SD/SD+V_17-peak score	1	
+6271	Emma_SD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in Emma_SD_17	Emma_SD_17-sig count	1	
+6272	Emma_SD_17-peak score	Score of most significant SNP in 100kb bins for Emma_SD_17	Emma_SD_17-peak score	1	
+6219	KW_FLC_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FLC_17	KW_FLC_17-sig count	1	
+6220	KW_FLC_17-peak score	Score of most significant SNP in 100kb bins for KW_FLC_17	KW_FLC_17-peak score	1	
+6269	KW_FRI_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FRI_17	KW_FRI_17-sig count	1	
+6270	KW_FRI_17-peak score	Score of most significant SNP in 100kb bins for KW_FRI_17	KW_FRI_17-peak score	1	
+6203	KW_FT_10C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_10C_17	KW_FT_10C_17-sig count	1	
+6204	KW_FT_10C_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_10C_17	KW_FT_10C_17-peak score	1	
+6213	KW_FT_16C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_16C_17	KW_FT_16C_17-sig count	1	
+6214	KW_FT_16C_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_16C_17	KW_FT_16C_17-peak score	1	
+6215	KW_FT_22C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_22C_17	KW_FT_22C_17-sig count	1	
+6216	KW_FT_22C_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_22C_17	KW_FT_22C_17-peak score	1	
+6205	KW_FT_days_field_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_days_field_17	KW_FT_days_field_17-sig count	1	
+6206	KW_FT_days_field_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_days_field_17	KW_FT_days_field_17-peak score	1	
+6237	KW_FT_days_GH_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_days_GH_17	KW_FT_days_GH_17-sig count	1	
+6238	KW_FT_days_GH_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_days_GH_17	KW_FT_days_GH_17-peak score	1	
+6227	KW_FT_diameter_field_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_diameter_field_17	KW_FT_diameter_field_17-sig count	1	
+6228	KW_FT_diameter_field_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_diameter_field_17	KW_FT_diameter_field_17-peak score	1	
+6221	KW_FT_duration_GH_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_FT_duration_GH_17	KW_FT_duration_GH_17-sig count	1	
+6222	KW_FT_duration_GH_17-peak score	Score of most significant SNP in 100kb bins for KW_FT_duration_GH_17	KW_FT_duration_GH_17-peak score	1	
+6247	KW_JIC0W/LD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC0W/LD_17	KW_JIC0W/LD_17-sig count	1	
+6248	KW_JIC0W/LD_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC0W/LD_17	KW_JIC0W/LD_17-peak score	1	
+6241	KW_JIC0W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC0W_17	KW_JIC0W_17-sig count	1	
+6242	KW_JIC0W_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC0W_17	KW_JIC0W_17-peak score	1	
+6209	KW_JIC0W_GH/JIC8W_GH_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC0W_GH/JIC8W_GH_17	KW_JIC0W_GH/JIC8W_GH_17-sig count	1	
+6210	KW_JIC0W_GH/JIC8W_GH_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC0W_GH/JIC8W_GH_17	KW_JIC0W_GH/JIC8W_GH_17-peak score	1	
+6183	KW_JIC0W_GH_Day_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC0W_GH_Day_17	KW_JIC0W_GH_Day_17-sig count	1	
+6184	KW_JIC0W_GH_Day_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC0W_GH_Day_17	KW_JIC0W_GH_Day_17-peak score	1	
+6253	KW_JIC0W_GH_Leaf_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC0W_GH_Leaf_17	KW_JIC0W_GH_Leaf_17-sig count	1	
+6254	KW_JIC0W_GH_Leaf_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC0W_GH_Leaf_17	KW_JIC0W_GH_Leaf_17-peak score	1	
+6217	KW_JIC2W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC2W_17	KW_JIC2W_17-sig count	1	
+6218	KW_JIC2W_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC2W_17	KW_JIC2W_17-peak score	1	
+6185	KW_JIC4W/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC4W/LD+V_17	KW_JIC4W/LD+V_17-sig count	1	
+6186	KW_JIC4W/LD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC4W/LD+V_17	KW_JIC4W/LD+V_17-peak score	1	
+6181	KW_JIC4W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC4W_17	KW_JIC4W_17-sig count	1	
+6182	KW_JIC4W_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC4W_17	KW_JIC4W_17-peak score	1	
+6289	KW_JIC8W/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC8W/LD+V_17	KW_JIC8W/LD+V_17-sig count	1	
+6290	KW_JIC8W/LD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC8W/LD+V_17	KW_JIC8W/LD+V_17-peak score	1	
+6225	KW_JIC8W_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC8W_17	KW_JIC8W_17-sig count	1	
+6226	KW_JIC8W_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC8W_17	KW_JIC8W_17-peak score	1	
+6235	KW_JIC8W_GH_Day_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC8W_GH_Day_17	KW_JIC8W_GH_Day_17-sig count	1	
+6236	KW_JIC8W_GH_Day_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC8W_GH_Day_17	KW_JIC8W_GH_Day_17-peak score	1	
+6201	KW_JIC8W_GH_Leaf_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_JIC8W_GH_Leaf_17	KW_JIC8W_GH_Leaf_17-sig count	1	
+6202	KW_JIC8W_GH_Leaf_17-peak score	Score of most significant SNP in 100kb bins for KW_JIC8W_GH_Leaf_17	KW_JIC8W_GH_Leaf_17-peak score	1	
+6179	KW_LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LD+V_17	KW_LD+V_17-sig count	1	
+6180	KW_LD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_LD+V_17	KW_LD+V_17-peak score	1	
+6231	KW_LD/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LD/LD+V_17	KW_LD/LD+V_17-sig count	1	
+6232	KW_LD/LD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_LD/LD+V_17	KW_LD/LD+V_17-peak score	1	
+6211	KW_LD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LD_17	KW_LD_17-sig count	1	
+6212	KW_LD_17-peak score	Score of most significant SNP in 100kb bins for KW_LD_17	KW_LD_17-peak score	1	
+6195	KW_LN_10C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LN_10C_17	KW_LN_10C_17-sig count	1	
+6196	KW_LN_10C_17-peak score	Score of most significant SNP in 100kb bins for KW_LN_10C_17	KW_LN_10C_17-peak score	1	
+6223	KW_LN_16C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LN_16C_17	KW_LN_16C_17-sig count	1	
+6224	KW_LN_16C_17-peak score	Score of most significant SNP in 100kb bins for KW_LN_16C_17	KW_LN_16C_17-peak score	1	
+6197	KW_LN_22C_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_LN_22C_17	KW_LN_22C_17-sig count	1	
+6198	KW_LN_22C_17-peak score	Score of most significant SNP in 100kb bins for KW_LN_22C_17	KW_LN_22C_17-peak score	1	
+6199	KW_SD+V/LD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_SD+V/LD+V_17	KW_SD+V/LD+V_17-sig count	1	
+6200	KW_SD+V/LD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_SD+V/LD+V_17	KW_SD+V/LD+V_17-peak score	1	
+6191	KW_SD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_SD+V_17	KW_SD+V_17-sig count	1	
+6192	KW_SD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_SD+V_17	KW_SD+V_17-peak score	1	
+6187	KW_SD/LD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_SD/LD_17	KW_SD/LD_17-sig count	1	
+6188	KW_SD/LD_17-peak score	Score of most significant SNP in 100kb bins for KW_SD/LD_17	KW_SD/LD_17-peak score	1	
+6193	KW_SD/SD+V_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_SD/SD+V_17	KW_SD/SD+V_17-sig count	1	
+6194	KW_SD/SD+V_17-peak score	Score of most significant SNP in 100kb bins for KW_SD/SD+V_17	KW_SD/SD+V_17-peak score	1	
+6207	KW_SD_17-count	No. SNPs showing significance of at threshold of 1e-3 per 100kb bin in KW_SD_17	KW_SD_17-sig count	1	
+6208	KW_SD_17-peak score	Score of most significant SNP in 100kb bins for KW_SD_17	KW_SD_17-peak score	1	
+5042	GeneModel_Glyma1.1_JGI	Gene annotation by <a href="http://www.phytozome.net/soybean.php">JGI</a> through GenomeScan (a homology based gene prediction program), fgenesh and PASA the program used to integrate over 1.6 million soybean ESTs	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5041	IGGP12x.V1	Gene annotation by <a href="http://www.vitaceae.org">IGGP</a> through a process of automatic and manual curation	Gene (IGGP)	1	{'label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5044	RNA_MIPS_Oglab_v2.0	Oryza glaberrima rna genes annotated by MIPS	Gene (MIPS)	1	{'label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+17	Soybean_EST	Genomic alignments of soybean (Glycine) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Soybean EST	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+14	Glycine_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from soybean (Glycine) species	EST Cluster (Soybean)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+32	Selaginella_EST	Genomic alignments of Selaginella "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Selaginella EST	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+34	Selaginella_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Selaginella species	EST Cluster (Selaginella)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+
+40	Chlamy_EST	Genomic alignments of Chlamydomonas "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Chlamydomonas EST	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+37	Chlamydomonas_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Chlamydomonas species	EST Cluster (Chlamydomonas)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5039	GeneModel_Ppatens1.6	Gene annotation by <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5040	GeneModel_ITAG2.3	Gene annotation by <a href="http://www.ab.wur.nl/TomatoWiki">International Tomato Annotation Group (ITAG)</a>	Gene (ITAG)	1	{'key'=>'itag','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5041	GeneModel_irgspv1.0	Gene annotation by <a href="http://rgp.dna.affrc.go.jp/IRGSP/">International Rice Genome Sequencing Project (IRGSP)</a>	Gene (IRGSP)	1	{'key'=>'irgsp','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}} 
+5042	IRGSP1.0-repeats	IRGSP1.0 repeats annotation	repeats-IRGSP1.0	1	
+5041	GeneModel_v1.4_OGE	Gene annotation by <a href="http://www.omap.org/index.html">The Oryza Genome Evolution Project (OGE), previously known as OMAP</a>	Gene (OGE)	1	{'key'=>'oge','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}} 
+5042	GeneBuild_MSU7	Gene annotation by <a href="http://rice.plantbiology.msu.edu">MSU</a> through a process of automatic and manual curation	Gene (MSU)	1	{'label_key' => '[biotype]', colour_key => '[biotype]', 'default' => {'MultiTop' => 'gene_label', 'contigviewbottom' => 'transcript_label', 'MultiBottom' => 'collapsed_label', 'contigviewtop' => 'gene_label', 'cytoview' => 'gene_label', 'alignsliceviewbottom' => 'as_collapsed_label' }, 'key' => 'MSU7', name => 'MSU7 annotation', caption => 'MSU7 annotation', multi_name => 'MSU7 annotation'}
+5044	GeneModel_v2.1_JGI	Gene annotation by <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
+5071	Oryza_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna'}
+5071	Oryza_EST_Cluster	Genomic alignments of rice (Oryza) EST clusters (Unigenes, Gene Indices)	Rice ESTCluster	1	{'type'=>'cdna'}
+5071	Oryza_mRNA	Genomic alignments of rice (Oryza) mRNA	Rice mRNA	1	{'type'=>'cdna'}
+5071	Oryza_RFLP	Genomic alignments of rice (Oryza) "restriction fragment length polymorphism" (RFLP)	Rice RFLP	1	{'type'=>'cdna'}
+17	Solanum_EST	Genomic alignments of tomato (Solanum) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Tomato EST	1	{'type'=>'cdna'}
+14	Solanum_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from tomato (Solanum) species	Tomato EST Cluster	1	{'type'=>'cdna'}
+17	Solanum_mRNA	Genomic alignments of tomato (Solanum) mRNA	Tomato mRNA	1	{'type'=>'cdna'}
+17	Setaria_EST	Genomic alignments of foxtail millet (Setaria) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	EST (Foxtail_millet)	1	{'type'=>'cdna'}
+14	Setaria_mRNA	Alignments of mRNA from foxtail millet (Setaria) species	mRNA (Foxtail_millet)	1	{'type'=>'cdna'}
+9999	agi_annotated_repeats	Repeats annotation provided by Dario Copetti from <a href="http://www.genome.arizona.edu/">AGI</a> through OGE collaboration, the repeats database used is supposed to be high quality and manually curated.	repeats_AGI	1
+
+5	ncRNA_gene_AGI	nonCoding RNA genes annotated by AGI	ncRNA (AGI)	1	{'label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','cytoview' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label'},'key' => 'ncRNA', 'name' => 'RNA Gene (AGI)', 'caption' => 'RNA Gene (AGI)', 'multi_name' => 'RNA Gene (AGI)'}
+5041	IRGSPV1.0-2013424genes	Gene annotation by <a href="http://rgp.dna.affrc.go.jp/IRGSP/">International Rice Genome Sequencing Project (IRGSP)</a> dated 2013-04-24	Gene (IRGSP)	1	{'key'=>'irgsp','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}} 
+5041	GeneBuild_MSU7_TEs	TE-related Gene annotation by <a href="http://rice.plantbiology.msu.edu">MSU</a> through a process of automatic and manual curation	TE-related Gene (MSU)	1	{'label_key' => '[biotype]', colour_key => '[biotype]', 'default' => {'MultiTop' => 'gene_label', 'contigviewbottom' => 'transcript_label', 'MultiBottom' => 'collapsed_label', 'contigviewtop' => 'gene_label', 'cytoview' => 'gene_label', 'alignsliceviewbottom' => 'as_collapsed_label' }, 'key' => 'MSU7_TEgenes', name => 'MSU7 TE-related genes', caption => 'MSU7 TE-related genes', multi_name => 'MSU7 TE-related genes'}
+ 

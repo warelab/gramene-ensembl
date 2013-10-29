@@ -1,0 +1,8 @@
+The script 'parse_TIGR_XML.pl' provides an example of how to parse the TIGR XML files using a perl XML parser.
+
+The perl library provided in TIGRXMLLIB/ provides the implementation for a parser and facilities to extract annotation data from the XML in the form of 'Gene objects'.
+
+The XML::Simple module must be installed prior to using the software provided here.
+
+Please direct questions to Brian Haas (bhaas@tigr.org).  
+

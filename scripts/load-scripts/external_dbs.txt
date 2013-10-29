@@ -1,0 +1,39 @@
+# File used to populate the external_db table of an Ensembl core database.
+# Should be used in conjunction with ensembl/misc-scripts/external_db/update_external_dbs.pl
+# and the ensembl/misc-scripts/external_db/external_dbs.txt file
+# For more details see http://gwiki.gramene.org/Ensembl_Core_External_DB
+# The columns are;
+# external_db_id	db_name	db_release	status	dbprimary_acc_linkable	display_label_linkable	priority	db_display_name type secondary_db_name secondary_db_table description
+50000	BGI_EST_Cluster	1	XREF	1	0	0	EST Cluster (BGI Indica)	MISC	\N	\N
+50005	EC_NUMBER	1	XREF	1	0	0	Enzyme EC Number	MISC	\N	\N
+50010	FSTs	1	XREF	1	0	0	Flanking Sequence Tag (FST)	MISC	\N	\N
+50015	gene_name	1	KNOWNXREF	1	0	0	Gene Name	MISC	\N	\N
+50020	Gramene_Pathway	1	XREF	1	0	0	Gramene Pathway	MISC	\N	\N
+50030	Gramene_GenesDB	1	KNOWNXREF	1	0	100	Gramene Curated Gene	MISC	\N	\N
+50035	Gramene_MarkersDB	1	XREF	1	0	0	Gramene	MISC	\N	\N
+50040	Gramene_MarkersDB_mRNA	1	XREF	1	0	0	GenBank mRNA (Gramene)	MISC	\N	\N
+50050	Gramene_MarkersDB_EST	1	XREF	1	0	0	GenBank EST (Gramene)	MISC	\N	\N
+50060	IRGSP_Gene	1	XREF	1	0	0	IRGSP/RAP Gene	MISC	\N	\N
+50065	KOME	1	KNOWNXREF	1	0	0	Full Length cDNA (KOME)	MISC	\N	\N
+50070	miRNA_Accession	1	XREF	1	0	0	miRNA miRBase accession	MISC	\N	\N
+50080	miRNA_Registry	1	XREF	1	0	1	miRNA Registry	MISC	\N	\N
+50090	NASC_GENE_ID	1	XREF	1	0	1	NASC Gene ID	MISC	\N	\N
+50100	NASC_TRANSCRIPT_ID	1	XREF	1	0	1	NASC Transcript ID	MISC	\N	\N
+50110	PlantGDB_PUT	1	XREF	1	0	1	PlantGDB Transcript	MISC	\N	\N
+50120	RAP_Gene	1	XREF	1	0	0	IRGSP/RAP Gene	MISC	\N	\N
+50130	siRNA_Sunkar	1	XREF	1	0	0	siRNA ID from Sunkar et. al. 2005 NAR 33(14):4443-54	MISC	\N	\N
+50140	TIGR_LOCUS	1	XREF	0	1	1	MSU/TIGR Locus	MISC	\N	\N
+50150	TIGR_LOCUS_MODEL	1	XREF	0	1	0	MSU/TIGR Locus (Model)	MISC	\N	\N
+50160	TAIR_LOCUS	1	XREF	1	0	8	TAIR Locus	MISC	\N	\N
+50170	TAIR_LOCUS_MODEL	1	XREF	1	0	8	TAIR Locus (Model)	MISC	\N	\N
+50180	TIGR_GeneIndex	1	XREF	1	0	0	Gene Index	MISC	\N	\N
+50185	TO	1	XREF	1	0	0	Plant Trait Ontology	MISC	\N	\N
+50190	PO	1	XREF	1	0	0	Plant Structure Ontology	MISC	\N	\N
+50195	PO_to_gene	1	XREF	1	0	0	Plant Structure Ontology	MISC	\N	\N
+50196	GO_to_gene	1	XREF	1	0	0	Gene Ontology	MISC	\N	\N
+50200	GRO	1	XREF	1	0	0	Plant Growth Stage	MISC	\N	\N
+# Oligo Arrays 
+50510	AFFY_RICE	1	XREF	1	0	1	Affymx GeneChip Rice	ARRAY	\N	\N
+50520	AFFY_ATH1	1	XREF	1	0	1	Affymx GeneChip ATH1	ARRAY	\N	\N
+50530	AFFY_Vitis_Vinifera	1	XREF	1	0	1	Affymx GeneChip Vitis vinifera	ARRAY	\N	\N
+50540	AFFY_Poplar	1	XREF	1	0	1	Affymx GeneChip Poplar	ARRAY	\N	\N

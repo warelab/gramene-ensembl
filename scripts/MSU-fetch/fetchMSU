@@ -1,0 +1,83 @@
+#!/bin/ksh
+
+version=$1; shift
+
+if [[ $version != +([0-9]).+([0-9]) ]]
+then
+    print -u2 You must supply "TIGR's" version as the argument to $0.
+    print -u2 Number.Number is expected, like 1.0,2.0,...
+    exit 1
+fi
+
+#To get
+#ftp://ftp.tigr.org/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_$version/chr01.dir/chr01.cds
+#etc
+
+download_dir=$HOME/data/genomes/OSjMSUrelease/o_sativa_$version
+mkdir $download_dir
+cd $download_dir
+mkdir 01 02 03 04 05 06 07 08 09 10 11 12 unmapped chloroplast mitochondrion
+
+#ftp.plantbiology.msu.edu/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_6.0/
+
+(print "
+open ftp.plantbiology.msu.edu
+user anonymous weix@cshl.edu
+binary
+cd pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_$version/
+mget README
+cd all.dir
+mget all.TE_related
+mget orthologous_groups
+cd .." ;
+
+for c in 01 02 03 04 05 06 07 08 09 10 11 12 
+do
+    print lcd $c
+    print cd chr$c.dir
+    print 'mget *.BAC_in_pseudomolecule.info'
+    print 'mget *.TU_model.brief_info'
+    print 'mget *.cDNA'
+    print 'mget *.pep'
+    print 'mget *.con'
+    print 'mget *.short_models.pep'
+    print 'mget *.gff3'
+    print lcd ..
+    print cd ..
+done ;
+
+for d in unmapped 
+do
+    print lcd $d
+    print cd $d.dir
+    print 'mget *.TE_related'
+    print 'mget *.cDNA'
+    print 'mget *.pep'
+    print 'mget *.con'
+    print 'mget *.short_models.pep'
+    print 'mget *.gff3'
+    print lcd ..
+    print cd ..
+done
+
+print cd ..
+for d in chloroplast mitochondrion
+do
+    print lcd $d
+    print cd $d.dir
+    print 'mget *'
+    print lcd ..
+    print cd ..
+done
+
+print 'bye'
+)  | ftp -ndvi
+
+
+#Not getting:
+#ftp://ftp.tigr.org/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_$version/chr01.dir/chr01.TU_model.conversion
+# -- contained in xml (and parsed)
+
+#ftp://ftp.tigr.org/pub/data/Eukaryotic_Projects/o_sativa/annotation_dbs/pseudomolecules/version_$version/chr01.dir/README
+# -- same for all
+
