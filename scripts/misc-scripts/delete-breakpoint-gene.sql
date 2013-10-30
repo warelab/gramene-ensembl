@@ -1,0 +1,2 @@
+delete g.*, t.*, e.*, tr.*, gsi.*, tsi.*, trsi.*, et.*, esi.*  from gene g join transcript t using (gene_id) join exon_transcript et using(transcript_id) join exon e using(exon_id) join gene_stable_id gsi using (gene_id) join transcript_stable_id tsi using (transcript_id) join exon_stable_id esi using (exon_id) join translation tr using (transcript_id) join translation_stable_id trsi using (translation_id) where t.seq_region_id != e.seq_region_id;
+

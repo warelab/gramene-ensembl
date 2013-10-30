@@ -1,0 +1,224 @@
+#!/lab/bin/perl
+# Prints the username/password for the requested database.
+
+=head1 NAME 
+
+  get_dbconnection  -n db_name
+
+=head1 SYNOPSIS
+
+  get_dbconnection -n db_name
+ 
+ Options:
+    --species		species in EnsEMBL registry to use for db 
+			defaults to $ENSEMBL_SPECIES environment variable
+    --registry_file	Default is $GrameneEnsemblDir/conf/ensembl.registry
+    --help		help message
+    --man		full documentation
+    -n  		The desired database is one of:
+			sequence,map,ontology,phenotype,go-curator,export
+			Defaults to 'sequence' if species is given
+    --prefix		print prefix to use in SQL instead of command
+			=user for oracle and db for others
+
+=head1 DESCRIPTION
+
+    This will write the command to connect to the database to std output.
+
+    *** Warning *** Only ensembl core db has been re-implemented.
+
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--species> 
+
+A species in the EnsEMBL web config
+Any Ensembl db will be assumed to be in there
+
+=item B<--help> 
+
+print a help message and exit
+
+=item B<--man> 
+
+print documentation and exit
+
+    
+=back
+
+=head1 ARGUMENTS
+
+none
+
+
+=cut
+
+BEGIN {
+    $ENV{'GrameneDir'} ||= '/usr/local/gramene/'; 
+    $ENV{'GrameneConfPath'} ||= $ENV{'GrameneDir'}."/conf/gramene.conf";
+    $ENV{'EnsemblDir'} ||= '/usr/local/ensembl-live/';
+}
+
+# The first shall be last...
+use lib map { $ENV{'GrameneDir'}."/$_" } qw ( lib/perl );
+use lib map { $ENV{'EnsemblDir'}."/$_" } 
+        qw ( bioperl-live modules ensembl/modules conf
+	     ensembl-external/modules ensembl-draw/modules
+	     ensembl-compara/modules );
+
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+
+use DBI;
+
+use Bio::EnsEMBL::Registry;
+
+use Gramene::Config;
+#use Gramene::DB;
+      
+
+my ($db_name,$help,$prefix);
+my $ensembl_species = $ENV{ENSEMBL_SPECIES};
+my $registry_file= $ENV{GrameneEnsemblDir}.'/conf/ensembl.registry';
+    {  #Argument Processing
+	my $help=0;
+	my $man=0;
+	GetOptions( "help|h|?"=>\$help,"man"=>\$man
+		   ,"species=s" => \$ensembl_species
+		   ,"n|name=s"=>\$db_name
+		   ,"registry_file=s" => \$registry_file
+		   ,"prefix"=>\$prefix
+		  )
+	  or pod2usage(2);
+	pod2usage(-verbose => 2) if $man;
+        pod2usage(1) if $help;
+        map{
+  	-e $_ || ( warn( "File $_ does not exist\n" )    && pod2usage(2) );
+  	-r $_ || ( warn( "Cannot read $_\n" )            && pod2usage(2) );
+  	-f $_ || ( warn( "File $_ is not plain-text\n" ) && pod2usage(2) );
+  	-s $_ || ( warn( "File $_ is empty\n" )          && pod2usage(2) );
+        } $registry_file;
+	$db_name ||= 'sequence' if $ensembl_species;
+    }
+
+
+pod2usage(2) unless $db_name =~ /^\w+$/;
+
+
+
+#pod2usage(2) unless exists $db_names_hash{$db_name};
+
+my $want_seq=  $db_name eq 'sequence' || $db_name eq 'mart' ;
+
+my ($user    ,
+    $db      ,
+    $password,
+    $port    ,
+    $host    ,
+    $driver  );
+
+if ( $want_seq ) {
+    $ENV{'ENSEMBL_SPECIES'}    = $ensembl_species;
+    my ($ENS_DBA,$ENS_DBC);
+
+    # Load the ensembl file
+    $ensembl_species || ( warn( "Need a --species\n" ) && pod2usage(2) );
+    Bio::EnsEMBL::Registry->load_all( $registry_file );
+    $ENS_DBA=Bio::EnsEMBL::Registry->get_DBAdaptor( $ensembl_species, 'core' );
+    $ENS_DBA || 
+       ( warn( "No core DB for $ensembl_species set in $registry_file\n" ) &&
+                  pod2usage(2) );
+
+    $ENS_DBC=$ENS_DBA->dbc;
+
+
+    $user    =$ENS_DBC->username;
+    $db      =$ENS_DBC->dbname;
+    $password=$ENS_DBC->password;
+    $port    =$ENS_DBC->port;
+    $host    =$ENS_DBC->host;
+    $driver  =$ENS_DBC->driver || 'mysql';
+} else {
+    my $gconfig=Gramene::Config->new or die "No config";
+    my $config= $gconfig->get($db_name) 
+        or die "no $db_name database in config";
+
+    my $dsn=$config->{'db_dsn'};
+    if($dsn =~ /dbi : (\w+) : (?:database=)?(\w+) /ix) {
+        $driver=$1;
+        $db=$2
+    } else {
+        die ("can't parse db_dsn=$dsn");
+    }
+    $user    =$config->{'db_user'};
+    $password=$config->{'db_pass'};
+
+    #$port    =
+    #$host    =
+
+
+}
+
+if($prefix) {
+    print +($driver =~ /oracle/i)?$user:$db;
+} else {
+    if($driver=~ /mysql/i) {
+        my $cmd="mysql";
+        $cmd.=" --user=$user" if $user;
+        $cmd.=" --password=$password" if $password;
+        $cmd.=" --port=$port" if $port;
+        $cmd.=" --host=$host" if $host && $host ne 'localhost';
+        print "$cmd $db";
+    } elsif($driver =~/oracle/i) {
+        print "sqlplus $user/$password";
+    } else {
+        die "unknown database driver=$driver"
+    }
+}
+
+
+
+
+exit;
+    
+# end of main program
+
+########################## subroutines ######################################
+
+__END__
+
+=head1 OUTPUT
+
+=item B<Standard Output>
+
+    Either command to connect to database
+    or, if --prefix is used,
+    prefix to use when accessing tables in this database
+
+=head1 NOTES
+    
+    Usage in bash or ksh:
+	cmd=$($ge/scripts/get_dbconnection --species=Oryza_sativa)
+	$cmd -e "show tables;"
+
+=head1 AUTHOR
+
+   Leonid Teytelman 
+   Steven Schmidt <schmidt@cshl.edu>
+   Gramene Project (www.gramene.org)
+   Stein Lab
+   Cold Spring Harbor Laboratory
+
+   This is free software and may be distributed on the same terms as Perl itself.
+
+=cut
+
+
+
+
