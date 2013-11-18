@@ -220,7 +220,8 @@ while( my $line = $GFF_HANDLE->getline ){
       $start, $end, $score, $strand, $frame, 
       $attribute ) = split( /\s+/, $line, 9 );
   #$feature = uc($feature);
-  $seqname =~ s/.*chr(omosome)?_?0*//i;
+  #$seqname =~ s/.*chr(omosome)?_?0*//i;
+  $seqname =~ s/(.*chr0?|\D*0?)//i;
   $strand = $strand eq '-' ? -1: 1;
   
   my %attribs;

@@ -23,7 +23,6 @@ use Pod::Usage;
 use Bio::Seq;
 use Bio::SeqIO;
 use Bio::Tools::CodonTable;
-use Gramene::Config;
 use Bio::EnsEMBL::DBLoader;
 use Bio::EnsEMBL::Gene;
 use Bio::EnsEMBL::Registry;
