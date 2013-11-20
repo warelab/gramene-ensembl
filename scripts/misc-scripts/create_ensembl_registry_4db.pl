@@ -1,0 +1,128 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use autodie;
+use feature 'say';
+use Getopt::Long;
+use Pod::Usage;
+use Readonly;
+
+my ( $help, $man_page, $dbname_file );
+GetOptions(
+    'help' => \$help,
+    'man'  => \$man_page,
+    '-dbname_file=s' => \$dbname_file,
+) or pod2usage(2);
+
+if ( $help || $man_page ) {
+    pod2usage({
+        -exitval => 0,
+        -verbose => $man_page ? 2 : 1
+    });
+}; 
+
+Readonly my $header => q{
+use Bio::EnsEMBL::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Variation::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Funcgen::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
+
+my $ENSVER   = '73';
+my $GRMVER   = '39';
+my $def_user = 'ensembl_rw';
+my $def_pass = '()ryz@';
+my $def_host = 'cabot';
+my $def_port = 3306;
+};
+
+#print "$header\n";
+
+my $dbfile_fh;
+my %dbadaptor_hash;
+
+open $dbfile_fh, $dbname_file or die "cannot open $dbname_file";
+
+while (my $dbline = <$dbfile_fh>){
+
+    chomp ($dbline);
+
+    my @f = split ' ', $dbline;
+    my $dbname = lc $f[0];
+    $dbname =~ s/\s//g;
+
+    if( $dbname =~ /([a-z]+_[a-z]+)_(core|variation|funcgen)_/ ){
+	$dbadaptor_hash{$1}{group} = $2;
+	$dbadaptor_hash{$1}{dbname} = $dbname;
+
+    }else{
+	warn ("not recognized dbname $dbname\n")
+    }
+    
+}
+
+
+my $dbconnection_string;
+for my $species (keys %dbadaptor_hash){
+
+    $dbconnection_string .= qq{
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+   -species => $species,
+   -group   => $dbadaptor_hash{$species}{group},
+   -port    => \$def_port,
+   -host    => \$def_host,
+   -user    => \$def_user,
+   -pass    => \$def_pass,
+   -dbname  => $dbadaptor_hash{$species}{dbname},
+);
+};
+
+};
+
+print "$header\n$dbconnection_string\n1;\n";
+
+__END__
+
+# ----------------------------------------------------
+
+=pod
+
+=head1 NAME
+
+create_ensembl_registry_4db.pl - a script
+
+=head1 SYNOPSIS
+
+  create_ensembl_registry_4db.pl 
+
+Options:
+
+  --help   Show brief help and exit
+  --man    Show full documentation
+
+=head1 DESCRIPTION
+
+Describe what the script does, what input it expects, what output it
+creates, etc.
+
+=head1 SEE ALSO
+
+perl.
+
+=head1 AUTHOR
+
+weix E<lt>weix@cshl.eduE<gt>.
+
+=head1 COPYRIGHT
+
+Copyright (c) 2013 Cold Spring Harbor Laboratory
+
+This module is free software; you can redistribute it and/or
+modify it under the terms of the GPL (either version 1, or at
+your option, any later version) or the Artistic License 2.0.
+Refer to LICENSE for the full license text and to DISCLAIMER for
+additional warranty disclaimers.
+
+=cut
