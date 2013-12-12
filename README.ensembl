@@ -1,0 +1,168 @@
+GRAMENE ENSEMBL; how to set up the web server
+=============================================
+
+This document describes how to configure the gramene-specific version
+of the ensembl web browser. This server, generally proxied behind a
+seperate gramene web server, provides the Gramene implementation of
+Ensembl's genome browser.  This readme corresponds to the 'new
+version' which uses the ensembl-plugins system, rather than the
+gramene_ensembl code base.
+
+1. If you are installing on a machine that has Apache-2 installed, and
+   has run Ensembl in the past, skip to step 2. If not, follow the
+   instructions here;
+   http://www.ensembl.org/info/software/website/installation/non-ensembl-code.html
+
+1a The install instructions are missing the 'emboss' suite, whose
+   installation is described here;
+   http://emboss.sourceforge.net/download
+
+   In addition, the emboss 'restrict' application needs to be set up
+   using 'rebaseextract';
+   http://emboss.sourceforge.net/apps/release/5.0/emboss/apps/rebaseextract.html
+
+   ...download the 'withrefm' file and 'proto' files from the
+   following locations;
+   http://rebase.neb.com/rebase/link_withrefm
+   http://rebase.neb.com/rebase/link_proto
+
+1b Install Microsoft TrueType fonts.  For a Linux system, follow these
+   instructions:
+
+     http://corefonts.sourceforge.net/
+
+   The RPM will probably install the fonts into:
+
+     /usr/share/fonts/msttcorefonts
+
+   Ensembl, however, expects to find them in:
+
+      /usr/local/share/fonts/ttfonts
+
+   The latter needs to be a symlink to whatever the former ends up being.
+
+2. Decide where to install the site. E.g. /usr/local.
+
+   $ cd /usr/local
+
+3. Check out the Gramene project from the Gramene Subversion repository.
+   You may need to use a tmp dir, and then copy back into
+   /usr/local. The following example checks-out the build29-branch;
+
+   $ svn co http://svn.warelab.org/gramene/branches/build29-branch/ \
+     gramene-29
+
+4. Check out the bioperl-live project from BioPerl's CVS repository.
+   You need to get the bioperl-release-1-2-3 branch. I find it
+   convenient to call the directory after the release;
+
+   $ cvs -d :pserver:cvs@cvs.open-bio.org:/home/repository/bioperl \
+     co -r bioperl-release-1-2-3 -d bioperl-1-2-3 bioperl-live
+     (pass cvs)
+
+5. Check out the Ensembl code from Ensembl's CVS. This is a little
+   more complex as several (aliased) projects are involved. Gramene 30
+   needs ensembl-55 and ensembl genomes (eg-plugins) 3-55.
+
+   $ mkdir ensembl-55
+   $ cd ensembl-55
+   $ cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl login
+     (pass CVSUSER)
+   $ cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl \
+     co -r branch-ensembl-55 ensembl-api ensembl-website
+   $ cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl \
+     co -r branch-ensemblgenomes-3-55 eg-plugins
+   $ cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/biomart login
+     (pass CVSUSER)
+   $ cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/biomart \
+     co -r release-0_6 biomart-perl
+   $ cd biomart-perl
+   $ <follow INSTALL> # There are some code mods to make as well...
+   $ cd ../
+
+6. We now have all the code. Symlinks are currently required from the
+   ensembl root directory to the other projects above. I.e.
+
+   $ cd ensembl-55
+   $ ln -s ../gramene-30 gramene-live
+   $ ln -s ../bioperl-1-2-3 bioperl-live
+
+7. A sylink is also required to the apache installation. If, for
+   example, apache2 is installed into /usr/local/apache2;
+   
+   $ ln -s /usr/local/apache2 apache2
+
+8. ensembl ships with an httpd configuration file;
+   ensembl-55/conf/httpd.conf. By default, the server will write its
+   logs to a logs directory, which needs creating;
+
+   $ mkdir ./logs
+
+9. ensembl works using a plugin system. To use the Gramene-specific
+   plugins, copy the relevent Plugins.pm file into the ensembl conf
+   dir;
+
+   $ cp gramene-live/ensembl-plugins/gramene/conf/Plugins.pm conf/
+
+10. Two main files are used to configure the web site;
+   - the 'default' ensembl file at conf/SiteDefs.pm and,
+   - the 'gramene' specific file at 
+     gramene-live/ensembl-plugins/gramene/conf/SiteDefs.pm
+
+   Edit the gramene-specific file to ensure that the server starts on
+   the correct port, for example.
+
+11. Assuming that the gramene SiteDefs.pm module has ENSEMBL_PORT set to
+   an unused port, and you have a mod-perl enabled httpd (apache2 for
+   ensembl versions > 42), you can now start the web server;
+
+   $ sudo /usr/local/apache2/bin/httpd -d /usr/local/apache2 \
+   -f $PWD/conf/httpd.conf
+
+12.To ensure that the httpd starts on server startup, create an
+   apachectl start script, and configure the machine's /etc/init.d
+   system accordingly. By making the ensembl root dir a symlink, the
+   startup script can be somewhat generic;
+
+   $ cd ..
+   $ ln -s ensembl-55 ensembl-live
+
+   The httpd config file will then be
+   /usr/local/ensembl-live/conf/httpd.conf, and the pid file
+   will be /usr/local/ensembl-live/logs/httpd.pid
+
+13.You should now be able to point a web browser at the port that you
+   started the server on, and see the site. E.g.
+
+   http://acorn.cshl.edu:8011/genome_browser/index.html
+
+14.You may need to configure the files in
+   gramene-live/ensembl-plugins/gramene/conf/ini-files to point to the
+   correct (version 30-55) ensembl databases. This procedure probably
+   warrants a seperate README.
+
+15.BioMart needs to be configured;
+
+  $ cd biomart-perl
+  $ perl bin/configure.pl -r conf/martRegistry.xml
+  $ perl sudo find conf/ -type d -exec chmod 777 {} \;
+
+  You need to rerun this step whenever the BioMart configuration is changed.
+
+16.Add the following to root's crontab (sudo crontab -e):
+
+  # Clean ensembl* tmp and img-tmp files
+  0  4 * * * find /usr/local/ensembl*/*tmp -type f -atime +1 -exec rm {} \; > /dev/null 2>&1
+  0  4 * * * find /usr/local/ensembl*/img-cache -type f -atime +1 -exec rm {} \; > /dev/null 2>&1
+
+
+Further info; read Ensembl's detailed installation docs;
+
+  http://www.ensembl.org/info/software/website/installation/index.html
+
+To upgrade multi-species databases such as 
+ensembl_website_50
+ensembl_web_user_db_50
+download data from  ftp://ftp.ensembl.org/pub/release-55/multi_species_50/data/mysql 
+and refer to doc at 
+http://www.ensembl.org/info/software/website/installation/build.html
