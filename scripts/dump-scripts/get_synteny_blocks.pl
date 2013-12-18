@@ -1,6 +1,4 @@
-#!/usr/local/bin/perl
-
-# vim: tw=78: sw=4: ts=4: et: 
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
@@ -20,9 +18,11 @@ use Getopt::Long;
 use Pod::Usage;
 use Readonly;
 
-my $registry_file = '/usr/local/gramene/conf/ensembl.registry';
+my $registry_file = '/usr/local/gramene-ensembl/conf/ensembl.registry';
+my $show_list     = 0;
 my ( $help, $man_page );
 GetOptions(
+    'l|list'       => \$show_list,
     'r|registry:s' => \$registry_file,
     'help'         => \$help,
     'man'          => \$man_page,
@@ -35,10 +35,6 @@ if ( $help || $man_page ) {
     });
 }; 
 
-if ( scalar @ARGV != 2 ) {
-    die "Need two species\n";
-}
-
 if ( !-e $registry_file ) {
     pod2usage("Registry file '$registry_file' does not exist!");
 }
@@ -49,14 +45,25 @@ my $compara_db = Bio::EnsEMBL::Registry->get_DBAdaptor('compara', 'compara');
 my $gdba       = $compara_db->get_adaptor('GenomeDB');
 my $ synrega   = $compara_db->get_adaptor('SyntenyRegion');
 
-my %genome_db_by_name = map { $_->{'name'}, $_ } @{ $gdba->fetch_all }
+my %genome_db_by_name = map { lc $_->{'name'}, $_ } @{ $gdba->fetch_all }
     or die "No genome dbs found!\n";
+
+if ( $show_list ) {
+    print join "\n", 'Available species:',
+        ( map { "- $_" } sort keys %genome_db_by_name ),
+        '',
+    ;
+    exit;
+}
+
+if ( scalar @ARGV != 2 ) {
+    die "Need two species\n";
+}
 
 my @genome_dbs;
 for my $species ( @ARGV ) {
-    $species =~ s/_/ /g;
-
-    my $db = $genome_db_by_name{ $species } or die "No db named '$species'\n";
+    my $db = $genome_db_by_name{ lc $species } 
+        or die "No db named '$species'\n";
 
     push @genome_dbs, $db;
 }

@@ -1,0 +1,128 @@
+# GRAMENE BLAST; How to set up the blast server
+#==============================================
+
+# These instructions were tested for the versions below on 
+# catskill.cshl.edu 
+
+# CODE INSTALLATION
+#------------------
+
+# bash shell assumed
+# Set code/data versions (will change with each release)
+# These are just used for convenience for this README
+export ENSVER=65
+export GRAVER=34b
+export EGVER=12
+
+# Fetch the version-specific code into a clean directory
+mkdir /usr/local/svntmp/ensembl-grmblast-$ENSVER
+cd /usr/local/svntmp/ensembl-grmblast-$ENSVER
+
+cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl login
+[pass CVSUSER]
+
+cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl \
+co -r branch-ensembl-$ENSVER ensembl-api
+
+cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl \
+co -r branch-ensembl-$ENSVER ensembl-website
+
+cvs -d :pserver:cvsuser@cvsro.sanger.ac.uk:/cvsroot/ensembl \
+co -r branch-ensemblgenomes-$EGVER-$ENSVER eg-plugins
+
+svn co http://svn.warelab.org/gramene/branches/build${GRAVER}-branch \
+gramene-$GRAVER
+
+# Move the code directory into place
+sudo mv /usr/local/svntmp/ensembl-grmblast-$ENSVER /usr/local
+
+# Create links to code that does not change
+cd /usr/local/ensembl-grmblast-$ENSVER 
+ln -s gramene-$GRAVER gramene-live
+ln -s /usr/local/bioperl-1-2-3 bioperl-live
+ln -s /usr/local/biomart-perl-0_6 biomart-perl
+ln -s /usr/local/apache2 apache2
+cp /usr/local/vcftools_0.1.5/lib/Vcf.pm /usr/local/ensembl-grmblast/modules/
+
+# Create temporary dirs
+mkdir logs
+mkdir -p /usr/local/ensembl-grmblast/htdocs/BlastView/minified
+
+# Move the Ensembl Plugins file into place
+cp gramene-live/ensembl-plugins/grmblast/conf/Plugins.pm conf/
+
+# Stop the old server, and start the new
+# NOTE: the new server should have been tested first!
+
+sudo kill `cat /usr/local/ensembl-grmblast/logs/httpd.pid`
+sudo rm /usr/local/ensembl-grmblast
+sudo ln -s /usr/local/ensembl-grmblast-$ENSVER /usr/local/ensembl-grmblast
+sudo /etc/init.d/apachectl-grmblast start
+
+
+# DATA INSTALLATION
+#------------------
+
+# Get the version-specific FASTA databases
+# Note that we download these from the EnsemblGenomes FTP site, 
+# But they can be generated direct from the Ensembl databases
+# using the utils/do_fasta_dump script
+
+##get sequences
+# for EG genomes, we can download from EG ftp site
+
+wget -nH -r --cut-dirs=3 \
+"ftp://ftp.ensemblgenomes.org/pub/release-$EGVER/plants/fasta/"
+
+# for Gramene specific genomes such as OGE genomes, create locally
+cd ensembl-live/
+perl  utils/do_fasta_dump  
+	--no_ssaha --species $s 
+	-type dna_toplevel -type cdna_all -type pep_all -type ncrna 
+	-dumpdir OGEdump/ 
+	-release 71 
+	--no_log 
+	-email weix@cshl.edu;
+
+# Index the FASTA DBs
+find fasta/ -name \*.gz -exec gunzip {} \;
+find fasta/ -name \*.pep.\*.fa -exec /usr/local/wublast/xdformat -p {} \;
+find fasta/ -name \*dna\*.fa -exec /usr/local/wublast/xdformat -n {} \;
+
+# Move the indexes into place, and update the symlink
+mkdir /usr/local/blastdb/gramene-$ENSVER
+find fasta/ -name \*.fa.x?? -exec mv {} /usr/local/blastdb/gramene-$ENSVER \;
+sudo rm /usr/local/blastdb/gramene
+sudo ln -s /usr/local/blastdb/gramene-$ENSVER \
+/usr/local/blastdb/gramene
+
+# Some slight renaming to convert from EG to Ensembl convention
+cd /usr/local/blastdb/gramene
+ls | perl -e 'while(<>){ chomp; my $ori=$_; my $new=$ori; if( $ori =~ /^.*\..*\.(.*\.).*\..*\.fa/..*$ ){ $new =~ s/$1//; `mv $ori $new` } }'
+For example, the filename should be Oryza_sativa.IRGSP-1.0.dna.toplevel.fa.* or Zea_mays.AGPv3.pep.all.fa.*
+The format should be, and we only need *.dna.toplevel.fa.* and *.pep.all.fa.*, we do not need the individual chromosome files to be indexed,
+Species.assemblyVersion.dna.toplevel.fa.*
+Species.assemblyVersion.pep.all.fa.*
+
+# MAINTENANCE
+#------------
+
+Ensure that there is a startup script in /etc/init.d that is correctly
+linked from /etc/rc.d to ensure that the web server is restarted on
+server reboot.
+
+There are also some scripts that need installing in the root user's
+crontab that clean up temporary blast files and database records. Here
+is an example (please replace <ENSROOT> with the value of the $ENSROOT
+variable);
+
+---
+# Clean ensembl* tmp and img-tmp files, and the blast database
+0  4 * * * find <ENSROOT>/*tmp -type f -atime +1 -exec rm {} \; > /dev/null 2>&1
+0  4 * * * find <ENSROOT>/img-cache -type f -atime +1 -exec rm {} \; > /dev/null 2>&1
+0  3 * * * perl <ENSROOT>/utils/blast_cleaner.pl 
+---
+
+
+
+
