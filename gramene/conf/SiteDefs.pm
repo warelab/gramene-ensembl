@@ -4,7 +4,7 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'www.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'blast.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = "39"; 
@@ -87,19 +87,21 @@ sub update_conf {
      'Oryza_barthii'        => [('ob','barthii')],
      'Oryza_brachyantha'    => [('obr','brachyantha')],
      'Oryza_nivara'         => [('on','nivara')],
-     'Oryza_rufipogon'      => [('or','rufipogon')],
-     'Oryza_rufipogon3s'    => [('or3s')],
+     'Oryza_rufipogon'      => [('or','rufipogon','oryza_rufipogon_fpc')],
+     'Oryza_rufipogon3s'    => [('or3s','oryza_rufipogon')],
 #     'Oryza_glaberrima'     => [('og','glaberrima')],
-     'Oryza_glaberrima3s'     => [('og3s','glaberrima3s')],
+     'Oryza_glaberrima3s'   => [('og3s','glaberrima3s')],
      'Oryza_minutabb'       => [('omBB','Oryza_minutabb', 'Oryza_minutaBB','minutaBB')],
      'Oryza_minutacc'       => [('omCC', 'Oryza_minutacc', 'Oryza_minutaCC','minutaCC')],
      'Oryza_officinalis'    => [('oo','officianlis')],
      'Oryza_punctata'       => [('op','punctata')],
-     'Oryza_glumaepatula'    => [('oglu','glumaepatula')],
-     'Oryza_meridionalis'       => [('omer','meridionalis')],
-     'Oryza_granulata'    => [('ogra','granulata')],
-     'Oryza_longistaminata'    => [('olon','longistaminata')],
-     'Leersia_perrieri'    => [('lper','leersia')],
+     'Oryza_glumaepatula'   => [('oglu','glumaepatula')],
+     'Oryza_sativa'         => [('oryza_sativa_japonica')],
+     'Oryza_indica'         => [('oryza_sativa_indica')],
+     'Oryza_meridionalis'   => [('omer','meridionalis')],
+     'Oryza_granulata'      => [('ogra','granulata')],
+     'Oryza_longistaminata' => [('olon','longistaminata')],
+     'Leersia_perrieri'     => [('lper','leersia')],
 
      # Needed for the home page and species lists
      #'Zea_mays'             => [('zm','maize')],

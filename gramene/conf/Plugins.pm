@@ -5,7 +5,7 @@
 my $ENSROOT = $SiteDefs::ENSEMBL_SERVERROOT;
 my $GRMROOT = $SiteDefs::ENSEMBL_SERVERROOT.'/gramene-live';
 $SiteDefs::ENSEMBL_PLUGINS = [
-  'EnsEMBL::Gramene'       => $GRMROOT.'/ensembl-plugins/gramene',
+  'EnsEMBL::Gramene'       => $GRMROOT.'/gramene',
   'EnsEMBL::Mart'          => $ENSROOT.'/public-plugins/mart',
   'EG::Plants' => $ENSROOT.'/eg-plugins/plants',
   'EG::Common'=> $ENSROOT.'/eg-plugins/common',
