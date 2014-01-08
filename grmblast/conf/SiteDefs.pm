@@ -7,7 +7,7 @@ sub update_conf {
   warn( "===> ", __PACKAGE__, "->update_conf\n" );
 
   #$SiteDefs::ENSEMBL_PORT       = '8018';
-  $SiteDefs::ENSEMBL_PORT       = '80';
+  $SiteDefs::ENSEMBL_PORT       = '8019';
 
   #----------
   # tmp dirs; tweak for proxy

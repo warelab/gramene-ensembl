@@ -2,10 +2,10 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Glyci)</ShortName>
- <Description>Search EnsemblGenomes genome browser - Glycine max - Glycine max</Description>
+ <Description>Search Ensembl Genomes - Glycine max - Glycine max</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser EnsemblGenomes genome browser Glycine max Glycine max</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Glycine max Glycine max</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://dev.gramene.org/Glycine_max/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Glycine_max/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

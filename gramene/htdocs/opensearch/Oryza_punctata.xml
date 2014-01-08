@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
- <ShortName>Ensembl (O.pun)</ShortName>
- <Description>Search Ensembl - Oryza punctata - Oryza punctata</Description>
+ <ShortName>Ensembl ()</ShortName>
+ <Description>Search Ensembl Genomes - Oryza punctata - </Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Oryza punctata Oryza punctata</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Oryza punctata </Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://www.gramene.org/Oryza_punctata/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Oryza_punctata/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>
