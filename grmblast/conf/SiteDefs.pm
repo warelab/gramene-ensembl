@@ -5,9 +5,10 @@ use strict;
 # SiteDefs.pm file
 sub update_conf {
   warn( "===> ", __PACKAGE__, "->update_conf\n" );
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'blast.gramene.org'; 
 
   #$SiteDefs::ENSEMBL_PORT       = '8018';
-  $SiteDefs::ENSEMBL_PORT       = '8019';
+  #$SiteDefs::ENSEMBL_PORT       = '8019';
 
   #----------
   # tmp dirs; tweak for proxy

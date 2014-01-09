@@ -1,0 +1,9 @@
+
+User-agent: *
+Disallow: /
+
+User-agent: W3C-checklink
+Allow: /info
+
+User-agent: AhrefsBot
+Disallow: /
