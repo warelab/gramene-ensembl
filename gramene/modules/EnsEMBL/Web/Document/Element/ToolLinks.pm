@@ -8,6 +8,8 @@ use CGI qw(escape);
 
 our @ISA = qw(EnsEMBL::Web::Document::Element);
 
+my $blastserver = 'blast.gramene.org';
+
 sub content   {
   my $self    = shift;
   my $dir = '/'.$ENV{'ENSEMBL_SPECIES'};
@@ -18,7 +20,7 @@ sub content   {
   my $blast_dir='Multi';
   
   my $sp_param = $ENV{'ENSEMBL_SPECIES'} =~ /_/ ? "?species=$ENV{'ENSEMBL_SPECIES'}" : '';
-  $html .= qq(<a href="/$blast_dir/blastview$sp_param">BLAST</a> &nbsp;|&nbsp;) if $self->blast;
+  $html .= qq(<a href="http://$blastserver/$blast_dir/blastview$sp_param">BLAST</a> &nbsp;|&nbsp;) if $self->blast;
   $html .= qq(<a href="/biomart/martview">BioMart</a> &nbsp;|&nbsp;)   if $self->biomart;
   $html .= qq(<a href="/tools.html">Tools</a> &nbsp;|&nbsp;)  ;
   $html .= qq(<a href="http://www.gramene.org/contact">Feedback</a>);
