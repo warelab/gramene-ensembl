@@ -17,7 +17,7 @@ sub content   {
   my $url     = CGI::escape($ENV{'REQUEST_URI'});
   my $html = '<div class="print_hide">';
 
-  my $blast_dir='Multi';
+  my $blast_dir = $ENV{'ENSEMBL_SPECIES'} || 'Multi';
   
   my $sp_param = $ENV{'ENSEMBL_SPECIES'} =~ /_/ ? "?species=$ENV{'ENSEMBL_SPECIES'}" : '';
   $html .= qq(<a href="http://$blastserver/$blast_dir/blastview$sp_param">BLAST</a> &nbsp;|&nbsp;) if $self->blast;
