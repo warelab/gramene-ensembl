@@ -152,6 +152,9 @@ my $slice_adaptor = $ENS_DBA->get_SliceAdaptor;
 
 my @genes=@ARGV;
 @genes or  @genes=@{$gene_adaptor->list_dbIDs()};
+print "retrieved gene count", scalar @genes;
+
+#exit;
 
 my %count;
 
@@ -229,40 +232,44 @@ foreach my $geneid (@genes) {
   foreach my $trans (@transcripts) {
   
     #print join "\t", ($trans->stable_id, $trans->spliced_seq, "\n");
-    my $cdna_seq=$trans->spliced_seq;
+    #my $cdna_seq=$trans->spliced_seq;
     my $id = $trans->stable_id;
-    my $slice_name = $trans->slice->name;
-    my $biotype = $trans->biotype;
-    my $logic_name = $trans->analysis->logic_name;
-    my $comp_id = join "|", ($id, $slice_name, $logic_name, $biotype);
-    unless ( $cdna_seq ){
-      print STDERR "No cDNA seq for $geneid:$comp_id\n";
-      next;
-    }
+    #my $slice_name = $trans->slice->name;
+    #my $biotype = $trans->biotype;
+    #my $logic_name = $trans->analysis->logic_name;
+    #my $comp_id = join "|", ($id, $slice_name, $logic_name, $biotype);
+    
+	my $aa_obj = $trans->translate;
+    #unless ( $cdna_seq ){
+    #  print STDERR "No cDNA seq for $geneid:$comp_id\n";
+    #  next;
+    #}
     
     my $seq_obj;
-    if( $coding){
+    #if( $coding){
       
-      my $cdna_coding_start = $trans->cdna_coding_start;
-      my $cdna_coding_end   = $trans->cdna_coding_end;
-      $comp_id .= 
-	"|coding region $cdna_coding_start-$cdna_coding_end";
-      $seq_obj = Bio::Seq->new(
-				      -display_id => $comp_id,
-				      -seq => substr($cdna_seq, 
-						     $cdna_coding_start-1, 
-						     $cdna_coding_end-$cdna_coding_start+1)
-				     );
-    }else{
+    #  my $cdna_coding_start = $trans->cdna_coding_start;
+    #  my $cdna_coding_end   = $trans->cdna_coding_end;
+    #  $comp_id .= 
+#	"|coding region $cdna_coding_start-$cdna_coding_end";
+ #     $seq_obj = Bio::Seq->new(
+#				      -display_id => $comp_id,
+#				      -seq => substr($cdna_seq, 
+#						     $cdna_coding_start-1, 
+#						     $cdna_coding_end-$cdna_coding_start+1)
+#				     );
+ #   }else{
       
-      $comp_id .=  "|CDNA";
-      $seq_obj = Bio::Seq->new(
-				    -display_id => $comp_id,
-				    -seq => $cdna_seq,
-				   );
-      
-    }
-    $seqio->write_seq($seq_obj);
+ #     $comp_id .=  "|CDNA";
+  #    $seq_obj = Bio::Seq->new(
+#				    -display_id => $comp_id,
+#				    -seq => $cdna_seq,
+#				   );
+ #     
+  #  }
+
+
+    $seqio->write_seq($aa_obj);
     $count{qualified_transcripts}++;
     
   }

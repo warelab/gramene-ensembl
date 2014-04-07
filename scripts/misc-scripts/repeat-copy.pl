@@ -40,7 +40,7 @@ GetOptions(
 	   'tdbuser=s'      => \$tdbuser,
 	   'tdbpass=s'      => \$tdbpass,
 	   'tdbname=s'     => \$tdbname,
-	   'logicname=s'   => \$logicname,
+	   'logic_name=s'   => \$logicname,
 
 	   ) or die;
 pod2usage(2) if $_help;
@@ -188,7 +188,7 @@ Options:
   -sdbport=s        target db port
   -tdbuser=s         db user 
   -tdbname=s        db for target genes
-  -logicname        logic name for the repeat analysis
+  -logic_name        logic name for the repeat analysis
   
 =head1 DESCRIPTION
 

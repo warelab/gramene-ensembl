@@ -144,7 +144,7 @@ my (%seqio,%seqio5,%seqio3);
 
 
 foreach my $geneid (@genes) {
-  #print "! $geneid\n";
+  print "! $geneid\n";
   
   $count{total_genes}++;
   my $gene;
@@ -158,10 +158,10 @@ foreach my $geneid (@genes) {
   }
   next unless $gene;
   
-  next if %exclude_gene and $exclude_gene{$gene->stable_id}
-    or %analysispgm and !$analysispgm{$gene->analysis->program}
-    or %bylogicname and !$bylogicname{$gene->analysis->logic_name} 
-      or %exclude_analysispgm and $exclude_analysispgm{$gene->analysis->program}
+  next if %exclude_gene and $gene->stable_id && $exclude_gene{$gene->stable_id}
+    or %analysispgm and $gene->analysis && !$analysispgm{$gene->analysis->program}
+    or %bylogicname and $gene->analysis && !$bylogicname{$gene->analysis->logic_name} 
+      or %exclude_analysispgm and $gene->analysis && $exclude_analysispgm{$gene->analysis->program}
 	;
   
   if (%exclude_clone) {
@@ -177,7 +177,10 @@ foreach my $geneid (@genes) {
   }
   
   $count{qualified_genes}++;
-  $gene_adaptor->remove($gene);
+  eval {$gene_adaptor->remove($gene)};
+  if( $@ ){
+      print STDERR "ERROR: cannot removed gene $geneid, $@";
+  }
   
   
 }

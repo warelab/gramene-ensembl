@@ -177,7 +177,7 @@ if($margin) {
 
 
 foreach my $geneid (@genes) {
-  #print "! $geneid\n";
+  print "! $geneid\n";
   
   $count{total_genes}++;
   my $gene;

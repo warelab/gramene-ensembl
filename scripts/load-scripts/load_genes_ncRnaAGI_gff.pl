@@ -524,8 +524,13 @@ foreach my $geneid( sort keys %$GENES ){
   
   my $dbid = '???';
   if( $I ){
-    $dbid = $ENS_DBA->get_GeneAdaptor->store($eGene);
-    print "// dbID = $dbid for gene = $genedata->{GENE_NAME} ($n of $number)\n";
+      eval{  $dbid = $ENS_DBA->get_GeneAdaptor->store($eGene); };
+      if ($@){
+         print STDERR "ERROR adding gene $genedata->{GENE_NAME}, $@";   
+	 next;
+      }else{
+         print "// dbID = $dbid for gene = $genedata->{GENE_NAME} ($n of $number)\n";
+      }
   }
 
   $n++;

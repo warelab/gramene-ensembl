@@ -112,7 +112,7 @@ system("gunzip  -f $database/$database.sql.gz");
 system("mysql $mysql_options < $database/$database.sql");
 system("gzip  $database/$database.sql");
 
-#system("gunzip -f $database/CHECKSUMS.gz");
+system("gunzip -f $database/CHECKSUMS.gz");
 print "now parse the checksum\n" unless $quiet;
 
 if(defined($mysqltmpdir)){

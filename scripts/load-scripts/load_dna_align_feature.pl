@@ -24,7 +24,7 @@ use warnings;
 use Getopt::Long;
 use Pod::Usage;
 
-use Gramene::Config;
+#use Gramene::Config;
 use DBI;
 use DBI qw(:sql_types);
 

@@ -158,6 +158,7 @@ Options:
   -tdbuser=s         db user 
   -tdbname=s        db for target genes
   -logic_name=s     logic_name of that gene analysis
+  -write
 
 =head1 DESCRIPTION
 
