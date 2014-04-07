@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
- <ShortName>Ensembl (B.dis)</ShortName>
- <Description>Search Ensembl - Brachypodium distachyon - Brachypodium distachyon</Description>
+ <ShortName>Ensembl (Brach)</ShortName>
+ <Description>Search Ensembl Genomes - Brachypodium distachyon - Brachypodium distachyon</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Brachypodium distachyon Brachypodium distachyon</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Brachypodium distachyon Brachypodium distachyon</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://www.gramene.org/Brachypodium_distachyon/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Brachypodium_distachyon/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

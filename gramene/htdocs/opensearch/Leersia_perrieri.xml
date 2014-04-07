@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
- <ShortName>Ensembl (L.per)</ShortName>
- <Description>Search Ensembl - Leersia perrieri  - Leersia perrieri</Description>
+ <ShortName>Ensembl ()</ShortName>
+ <Description>Search Ensembl Genomes - Leersia perrieri - </Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Leersia perrieri  Leersia perrieri</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Leersia perrieri </Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://dev.gramene.org/Leersia_perrieri/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Leersia_perrieri/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

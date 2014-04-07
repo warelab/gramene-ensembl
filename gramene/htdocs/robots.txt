@@ -1,6 +1,9 @@
 
 User-agent: *
-Disallow:   /
+Disallow: /
 
-User-Agent: W3C-checklink
+User-agent: W3C-checklink
 Allow: /info
+
+User-agent: AhrefsBot
+Disallow: /

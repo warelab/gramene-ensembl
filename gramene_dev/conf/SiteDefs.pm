@@ -6,7 +6,7 @@ use strict;
 
 sub update_conf {
   #warn( "===> ", __PACKAGE__, "->update_conf\n" );
-  $SiteDefs::ENSEMBL_SERVERNAME   = 'dev.gramene.org';  
+  $SiteDefs::ENSEMBL_SERVERNAME   = 'ensembl.gramene.org';  
   $SiteDefs::ENSEMBL_USERDB_HOST  = 'cabot.cshl.edu';
 }
 1;
