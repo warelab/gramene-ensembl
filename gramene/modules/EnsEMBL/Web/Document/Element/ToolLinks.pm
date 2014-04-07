@@ -21,7 +21,7 @@ sub content   {
   
   my $sp_param = $ENV{'ENSEMBL_SPECIES'} =~ /_/ ? "?species=$ENV{'ENSEMBL_SPECIES'}" : '';
   $html .= qq(<a href="http://$blastserver/$blast_dir/blastview$sp_param">BLAST</a> &nbsp;|&nbsp;) if $self->blast;
-  $html .= qq(<a href="/biomart/martview">BioMart</a> &nbsp;|&nbsp;)   if $self->biomart;
+  $html .= qq(<a href="http://ensembl.gramene.org/biomart/martview">BioMart</a> &nbsp;|&nbsp;)   if $self->biomart;
   $html .= qq(<a href="/tools.html">Tools</a> &nbsp;|&nbsp;)  ;
   $html .= qq(<a href="http://www.gramene.org/contact">Feedback</a>);
   $html .= '</div>';
