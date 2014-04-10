@@ -8,9 +8,8 @@ $SiteDefs::ENSEMBL_PLUGINS = [
 #  'EnsEMBL::GrameneDev'    => $GRMROOT.'/gramene_dev',
   'EnsEMBL::Gramene'       => $GRMROOT.'/gramene',
   'EnsEMBL::Mart'          => $ENSROOT.'/public-plugins/mart',
-  'EG::Plants' => $ENSROOT.'/eg-plugins/plants',
-  'EG::Common'=> $ENSROOT.'/eg-plugins/common',
-#  'EnsEMBL::Memcached' => $ENSROOT.'/public-plugins/memcached',
+  'EG::Plants' => $ENSROOT.'/eg-web-plants/',
+  'EG::Common'=> $ENSROOT.'/eg-web-common/',
 ];
 
 1;

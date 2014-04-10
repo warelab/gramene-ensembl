@@ -7,16 +7,16 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = "40"; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = "21";
+  $SiteDefs::SITE_RELEASE_VERSION = "41"; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = "22";
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2014';
+  $SiteDefs::SITE_RELEASE_DATE    = 'May 2014';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 
-  $SiteDefs::ENSEMBL_PORT       = 80;
-  $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
+  $SiteDefs::ENSEMBL_PORT       = 8886;
+  $SiteDefs::ENSEMBL_PROXY_PORT = 8886; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
 
@@ -31,10 +31,10 @@ sub update_conf {
 
   #----------
   # Logging
-  my $LOG_ROOT = $SiteDefs::ENSEMBL_SERVERROOT."/logs";
-  $SiteDefs::ENSEMBL_PIDFILE   = "$LOG_ROOT/httpd.pid";
-  $SiteDefs::ENSEMBL_ERRORLOG  = "$LOG_ROOT/error.log";
-  $SiteDefs::ENSEMBL_CUSTOMLOG = "$LOG_ROOT/access.log combined";
+  #my $LOG_ROOT = $SiteDefs::ENSEMBL_WEBROOT."/logs";
+  #$SiteDefs::ENSEMBL_PIDFILE   = "$LOG_ROOT/httpd.pid";
+  #$SiteDefs::ENSEMBL_ERRORLOG  = "$LOG_ROOT/error.log";
+  #$SiteDefs::ENSEMBL_CUSTOMLOG = "$LOG_ROOT/access.log combined";
 
   #----------
   # Mart/Blast
@@ -59,16 +59,16 @@ sub update_conf {
 
   #----------
   # Species stuff
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_barthii';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_nivara';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_barthii';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_nivara';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon3s';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutabb';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutacc';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_officinalis';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_punctata';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_glumaepatula';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_meridionalis'; 
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_punctata';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_glumaepatula';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_meridionalis'; 
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_granulata';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_longistaminata';
   push @$SiteDefs::ENSEMBL_DATASETS, 'Leersia_perrieri';
@@ -85,20 +85,20 @@ sub update_conf {
      %SiteDefs::__species_aliases,
 
      'Leersia_perrieri'    => [('lper','leersia')],
-     'Oryza_barthii'        => [('ob','barthii')],
+   #  'Oryza_barthii'        => [('ob','barthii')],
      'Oryza_brachyantha'    => [('obr','brachyantha')],
      'Oryza_glaberrima3s'     => [('og3s','glaberrima3s')],
 #     'Oryza_glaberrima'     => [('og','glaberrima')],
-     'Oryza_glumaepatula'    => [('oglu','glumaepatula')],
+    # 'Oryza_glumaepatula'    => [('oglu','glumaepatula')],
      'Oryza_granulata'    => [('ogra','granulata')],
      'Oryza_indica'         => [('oryza_sativa_indica')],
      'Oryza_longistaminata'    => [('olon','longistaminata')],
-     'Oryza_meridionalis'       => [('omer','meridionalis')],
+    # 'Oryza_meridionalis'       => [('omer','meridionalis')],
      'Oryza_minutabb'       => [('omBB','Oryza_minutabb', 'Oryza_minutaBB','minutaBB')],
      'Oryza_minutacc'       => [('omCC', 'Oryza_minutacc', 'Oryza_minutaCC','minutaCC')],
-     'Oryza_nivara'         => [('on','nivara')],
+    # 'Oryza_nivara'         => [('on','nivara')],
      'Oryza_officinalis'    => [('oo','officianlis')],
-     'Oryza_punctata'       => [('op','punctata')],
+    # 'Oryza_punctata'       => [('op','punctata')],
      'Oryza_rufipogon3s'    => [('or3s', 'oryza_rufipogon')],
      'Oryza_rufipogon'      => [('or','rufipogon','oryza_rufipogon_fpc')],
      'Oryza_sativa'         => [('oryza_sativa_japonica')],
