@@ -5,8 +5,8 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
-my $ENSVER   = '73';
-my $GRMVER   = '39';
+my $ENSVER   = '74';
+my $GRMVER   = '40';
 my $def_user = 'ensembl_rw';
 my $def_pass = '()ryz@';
 my $def_host = 'cabot';
