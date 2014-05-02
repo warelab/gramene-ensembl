@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription
+      xmlns="http://a9.com/-/spec/opensearch/1.1/">
+ <ShortName>Ensembl (Ambor)</ShortName>
+ <Description>Search Ensembl Genomes - Amborella trichopoda - Amborella trichopoda</Description>
+ <InputEncoding>UTF-8</InputEncoding>
+ <Tags>Ensembl genome browser Ensembl Genomes Amborella trichopoda Amborella trichopoda</Tags>
+ <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
+ <Url type="text/html"
+      template="http://ensembl.gramene.org/Amborella_trichopoda/psychic?q={searchTerms};site=ensembl"/>
+</OpenSearchDescription>
