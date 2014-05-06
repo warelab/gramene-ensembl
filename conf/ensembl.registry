@@ -26,6 +26,16 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Amborella_trichopoda',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "amborella_trichopoda_core_${GRMVER}_${ENSVER}_1",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-species' => 'Arabidopsis_lyrata',
     '-group'   => 'core',
     '-port'    => $def_port,
@@ -413,6 +423,16 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-user'    => $def_user,
     '-pass'    => $def_pass,
     '-dbname'  => "populus_trichocarpa_funcgen_${GRMVER}_${ENSVER}_20",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Prunus_persica',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "prunus_persica_core${GRMVER}_${ENSVER}_1",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
