@@ -5,11 +5,11 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
-my $ENSVER   = '74';
-my $GRMVER   = '40';
+my $ENSVER   = '75';
+my $GRMVER   = '41';
 my $def_user = 'ensembl_rw';
 my $def_pass = '()ryz@';
-my $def_host = 'cabot';
+my $def_host = 'colden';
 my $def_port = 3306;
 
 #----------------------------------------------------------------------
@@ -23,6 +23,16 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-user'    => $def_user,
     '-pass'    => $def_pass,
     '-dbname'  => "aegilops_tauschii_core_${GRMVER}_${ENSVER}_1",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Amborella_trichopoda',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "amborella_trichopoda_core_${GRMVER}_${ENSVER}_1",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -222,7 +232,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_glumaepatula_core_${GRMVER}_${ENSVER}_02",
+    '-dbname'  => "oryza_glumaepatula_core_${GRMVER}_${ENSVER}_15",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -242,7 +252,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_nivara_core_${GRMVER}_${ENSVER}_02",
+    '-dbname'  => "oryza_nivara_core_${GRMVER}_${ENSVER}_10",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -262,7 +272,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_meridionalis_core_${GRMVER}_${ENSVER}_02",
+    '-dbname'  => "oryza_meridionalis_core_${GRMVER}_${ENSVER}_1",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -302,7 +312,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_punctata_core_${GRMVER}_${ENSVER}_11",
+    '-dbname'  => "oryza_punctata_core_${GRMVER}_${ENSVER}_12",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -413,6 +423,16 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-user'    => $def_user,
     '-pass'    => $def_pass,
     '-dbname'  => "populus_trichocarpa_funcgen_${GRMVER}_${ENSVER}_20",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Prunus_persica',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "prunus_persica_core${GRMVER}_${ENSVER}_1",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
