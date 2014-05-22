@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Oryza rufipogon3s Oryza rufipogon3s</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://ensembl.gramene.org/Oryza_rufipogon3s/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org:8886/Oryza_rufipogon3s/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

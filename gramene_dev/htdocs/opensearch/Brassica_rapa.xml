@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Brassica rapa Brassica rapa</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://ensembl.gramene.org/Brassica_rapa/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org:8886/Brassica_rapa/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

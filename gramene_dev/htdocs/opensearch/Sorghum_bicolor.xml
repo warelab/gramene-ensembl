@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Sorghum bicolor Sorghum bicolor</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://ensembl.gramene.org/Sorghum_bicolor/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org:8886/Sorghum_bicolor/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

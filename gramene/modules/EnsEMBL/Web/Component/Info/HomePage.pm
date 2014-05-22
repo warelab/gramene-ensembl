@@ -1,4 +1,22 @@
-# $Id: HomePage.pm,v 1.68 2013-12-12 10:18:21 jk10 Exp $
+=head1 LICENSE
+
+Copyright [2009-2014] EMBL-European Bioinformatics Institute
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+=cut
+
+# $Id: HomePage.pm,v 1.69 2014-01-17 16:02:23 jk10 Exp $
 
 package EnsEMBL::Web::Component::Info::HomePage;
 
@@ -156,7 +174,7 @@ sub content {
   }
 
   $html .= '<p class="taxon-id">';
-  $html .= 'Provider ' . $provider_link if $provider_link;
+  $html .= 'Data Source ' . $provider_link if $provider_link;
   $html .= sprintf q{Taxonomy ID %s}, $hub->get_ExtURL_link("$taxid", 'UNIPROT_TAXONOMY', $taxid) if $taxid;
   $html .= '</p>';
   $html .= '</div>'; #species-badge
@@ -253,6 +271,13 @@ sub _whatsnew_text {
   return $html;
 }
 
+sub _site_release {
+  my $self = shift;
+
+#warn ("weix ===== SITE_RELEASE_VERSION_EG is ", $self->hub->species_defs->SITE_RELEASE_VERSION_EG);
+  return $self->hub->species_defs->SITE_RELEASE_VERSION_EG;
+}
+
 sub _assembly_text {
   my $self             = shift;
   my $hub              = $self->hub;
@@ -261,7 +286,7 @@ sub _assembly_text {
   my $name             = $species_defs->SPECIES_COMMON_NAME;
   my $img_url          = $self->img_url;
   my $sample_data      = $species_defs->SAMPLE_DATA;
-  my $ensembl_version  = $species_defs->SITE_RELEASE_VERSION_EG;
+  my $ensembl_version  = $self->_site_release;
   my $current_assembly = $species_defs->ASSEMBLY_NAME;
   my $accession        = $species_defs->ASSEMBLY_ACCESSION;
   my $source           = $species_defs->ASSEMBLY_ACCESSION_SOURCE || 'NCBI';
@@ -354,7 +379,7 @@ sub _genebuild_text {
   my $species         = $hub->species;
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
-  my $ensembl_version = $species_defs->SITE_RELEASE_VERSION_EG;
+  my $ensembl_version = $self->_site_release;
   my $vega            = $species_defs->get_config('MULTI', 'ENSEMBL_VEGA');
   my $has_vega        = $vega->{$species};
 
@@ -402,7 +427,7 @@ sub _compara_text {
   my $species         = $hub->species;
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
-  my $ensembl_version = $species_defs->SITE_RELEASE_VERSION_EG;
+  my $ensembl_version = $self->_site_release;   #$species_defs->SITE_RELEASE_VERSION;
 
   my $html = '<div class="homepage-icon">';
   
@@ -461,7 +486,7 @@ sub _compara_text {
   else {
     $html .= '<p><strong>What can I find?</strong>  Homologues, gene trees, and whole genome alignments across multiple species.</p>';
   }
-  $html .= qq(<p><a href="/info/docs/compara/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analysis</a></p>);
+  $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/whole_genome_alignment" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analysis</a></p>);
 
   if ($species_defs->ENSEMBL_FTP_URL) {
     my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
@@ -469,20 +494,8 @@ sub _compara_text {
       unless $self->is_bacteria;
   }
   my $aligns = EnsEMBL::Web::Component::GenomicAlignments->new($hub)->content;
-#use Data::Dumper;
-#warn ("weix debug aligns=>\n". Dumper ($aligns));
-#weix debug aligns=>
-#$VAR1 = '
-#    <table id="Zea_mays_aligns"  class="no_col_toggle ss toggle_table hide toggleable autocenter all_species_tables" style="position:absolute; z-index:1;width: 100%" cellpadding="0" cellspacing="0">
-#      
-#      <tbody><tr class="bg1"><td><a href="/Zea_mays/Location/Compara_Alignments/Image?align=9134;db=core;r=1:8001-18000"><em>Zea mays</em> : <em>Setaria italica</em></a></td><td style="text-align:right">LASTZ_NET</td></tr><tr class="bg2"><td><a href="/Zea_mays/Location/Compara_Alignments/Image?align=9104;db=core;r=1:8001-18000"><em>Zea mays</em> : <em>Arabidopsis thaliana</em></a></td><td style="text-align:right">LASTZ_NET</td></tr><tr class="bg1"><td><a href="/Zea_mays/Location/Compara_Alignments/Image?align=9130;db=core;r=1:8001-18000"><em>Zea mays</em> : <em>Sorghum bicolor</em></a></td><td style="text-align:right">LASTZ_NET</td></tr><tr class="bg2"><td><a href="/Zea_mays/Location/Compara_Alignments/Image?align=9165;db=core;r=1:8001-18000"><em>Zea mays</em> : <em>Oryza sativa Japonica (Rice)</em></a></td><td style="text-align:right">LASTZ_NET</td></tr></tbody>
-#    </table>
-#    
-#  ';
-
   if ($aligns) {
- #   $aligns =~ s=/==;
-	$html .= sprintf(qq{<p><div class="js_panel"><img src="%s24/info.png" alt="" class="homepage-link" />Genomic alignments [%s]</div></p>}, $img_url, $aligns);
+    $html .= sprintf(qq{<p><div class="js_panel"><img src="%s24/info.png" alt="" class="homepage-link" />Genomic alignments [%s]</div></p>}, $img_url, $aligns);
   }
   return $html;
 }
@@ -494,7 +507,7 @@ sub _variation_text {
   my $species      = $hub->species;
   my $img_url      = $self->img_url;
   my $sample_data  = $species_defs->SAMPLE_DATA;
-  my $ensembl_version = $species_defs->SITE_RELEASE_VERSION_EG;
+  my $ensembl_version = $self->_site_release;   #$species_defs->SITE_RELEASE_VERSION;
   my $display_name    = $species_defs->SPECIES_SCIENTIFIC_NAME;
   my $html;
 
@@ -536,14 +549,12 @@ sub _variation_text {
     }
 
     my $site = $species_defs->ENSEMBL_SITETYPE;
-    $html .= qq(<p><a href="/info/docs/variation/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
+    $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
 
     if ($species_defs->ENSEMBL_FTP_URL) {
       my @links;
       foreach my $format (qw/gvf vcf vep/){
-        push(@links,  $format eq 'vep' ? 
-	sprintf('<a href="%s/release-%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format,  $display_name, uc $format,uc $format):
-	sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
+        push(@links, sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
       }
       my $links = join(" - ", @links);
       $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];
@@ -566,7 +577,7 @@ sub _funcgen_text {
   my $species         = $hub->species;
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
-  my $ensembl_version = $species_defs->ENSEMBL_VERSION;
+  my $ensembl_version = $self->_site_release;  #$species_defs->ENSEMBL_VERSION;
   my $site            = $species_defs->ENSEMBL_SITETYPE;
   my $html;
 
@@ -601,7 +612,7 @@ sub _funcgen_text {
     if ($self->_other_text('regulation', $species)) {
       $html .= qq(<p><a href="/$species/Info/Annotation#regulation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about regulation in $display_name</a></p>);
     }
-    $html .= qq(<p><a href="/info/docs/microarray_probe_set_mapping.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about the $site microarray annotation strategy</a></p>);
+    $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/microarray_mapping" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about the $site microarray annotation strategy</a></p>);
 
     # EG add a link to about_[spp]#regulation
     my $display_name = $species_defs->SPECIES_SCIENTIFIC_NAME;
