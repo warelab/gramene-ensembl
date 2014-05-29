@@ -20,6 +20,7 @@ Options:
   -n|--no_insert        Do not make changes to the database. For debug.
   -v|--verbose          Print verbose output
   -source|--source	annotation source such as JGI, MIPS
+  -correction           self correct on start > stop cases
 
 =head1 OPTIONS
 
@@ -165,7 +166,7 @@ Readonly my $TRNA_INTRON_REGEX => qr/^(TRNA_INTRON)$/i;
 Readonly my $biotype => 'non_coding';
 
 use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $V 
-             $GENES  %PARENT $ANNOT_SOURCE );
+             $GENES  %PARENT $ANNOT_SOURCE $correction);
 
 
 my $date = time(); 
@@ -186,6 +187,7 @@ BEGIN{  #Argument Processing
         "no_insert"          => \$no_insert,
         "verbose"            => \$V,
 	"source=s"	     => \$ANNOT_SOURCE,
+	"correction"         => \$correction,
         )
       or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
@@ -251,6 +253,13 @@ while( my $line = $GFF_HANDLE->getline ){
       $attribute ) = split( /\s+/, $line, 9 );
   $feature = uc($feature);
   $seqname =~ s/.*chr0*(\d+)/$1/i;
+
+ if ($correction && $start > $end ){
+	my $temp;
+	$temp = $start;
+	$start = $end;
+	$end = $temp;
+ }
 
   my %attribs;
   foreach my $id( split( /;\s*/, $attribute ) ){
