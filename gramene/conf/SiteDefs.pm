@@ -20,6 +20,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
 
+  $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
+
   #----------
   # User database
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_web_user_db';
