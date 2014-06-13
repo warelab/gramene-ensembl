@@ -15,8 +15,8 @@ sub update_conf {
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 
-  $SiteDefs::ENSEMBL_PORT       = 80;
-  $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
+  $SiteDefs::ENSEMBL_PORT       = 8886;
+  $SiteDefs::ENSEMBL_PROXY_PORT = 8886; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
 
