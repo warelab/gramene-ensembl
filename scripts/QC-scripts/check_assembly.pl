@@ -159,7 +159,7 @@ for my $tigr_fasta (@ARGV) {
 	}elsif( $tigrseq->display_id =~ m/ (chr)? \s*(\S+) /ixms) {
       
     		 $chr=$2; 
-        }else{ $chr= $tigrseq->display_id;}
+	}else{ $chr= $tigrseq->display_id;}
 
 	$chr    =~ s/chr(omosome)?_?0*//i;
 	print "chr = $chr\n";
@@ -169,6 +169,12 @@ for my $tigr_fasta (@ARGV) {
       warn "$acs seq: $chr\n";
 
     }
+
+	if ($chr =~ /\w+3s$/i){
+                $chr = '3s'; #chr3s 
+	}
+
+	warn ("ensembl db chr is $acs:$chr\n");
 
     #create chr slice 
     my $chr_slice=$slice_adaptor->fetch_by_region($acs,$chr);
@@ -184,7 +190,7 @@ for my $tigr_fasta (@ARGV) {
 	$outchrwrong->write_seq($chr_slice) if $outchrwrong;
 	#next;
     }else{
-	print "$acs:$chr matched sequences between source and ensembl\n";
+	print "$acs:$chr MATCHED!!! sequences between source and ensembl\n";
     }
 
     #compara the sequences at the assembly path for component coord system $ccs
