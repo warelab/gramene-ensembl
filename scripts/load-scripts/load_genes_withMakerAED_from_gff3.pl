@@ -493,6 +493,15 @@ foreach my $gene_id( keys %$GENES ){
     $eTranscript->created_date( $date );
     $eTranscript->modified_date( $date );
 
+	if(my $aed =$atrptdata->{ATTRIBS}->{'_AED'} ){
+		
+		warn ("aed=$aed\n");
+		my $aed_attrib = Bio::EnsEMBL::Attribute->new
+       		(-CODE => 'AED',
+        	-VALUE => "$aed");
+	$eTranscript->add_Attributes($aed_attrib);
+
+	}
     my $transcript_xref;
 
     # Transcript xrefs...
