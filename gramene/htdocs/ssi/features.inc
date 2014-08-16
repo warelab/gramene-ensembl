@@ -1,5 +1,6 @@
 <div class="plain-box"><h2>
 <h2 id="features">Featured content</h2>
+<font color='red'>NEEDS UPDATES</font>
 
 This release of Gramene includes the genomes of peach <em><a title="Prunus persica in Gramene" href="/Prunus_persica">Prunus persica</a></em> and <em><a title="Amborella trichopoda in Gramene" href="/Amborella_trichopoda">Amborella trichopoda</a></em>, the first basal flowering plant (angiosperm) to be fully sequenced. The genome sequence of <i>A. trichopoda</i> provides an evolutionary framework for comparative analyses of angiosperm gene content and genome structure. 
 
