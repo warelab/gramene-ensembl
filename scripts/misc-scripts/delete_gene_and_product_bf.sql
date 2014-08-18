@@ -14,7 +14,6 @@ truncate exon;
 
 truncate transcript_supporting_feature;
 truncate splicing_transcript_pair;
-truncate unconventional_transcript_association;
 truncate transcript_attrib;
 truncate transcript;  
 
