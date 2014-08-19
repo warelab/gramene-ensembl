@@ -7,8 +7,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = "41"; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = "22";
+  $SiteDefs::SITE_RELEASE_VERSION = "42"; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = "23";
   #$SiteDefs::ENSEMBL_VERSION = 65;
   $SiteDefs::SITE_RELEASE_DATE    = 'May 2014';
   $SiteDefs::SITE_NAME            = 'Gramene';

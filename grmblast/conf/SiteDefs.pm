@@ -7,7 +7,7 @@ sub update_conf {
   warn( "===> ", __PACKAGE__, "->update_conf\n" );
 
   #$SiteDefs::ENSEMBL_PORT       = '8018';
-  #$SiteDefs::ENSEMBL_PORT       = '8019';
+  $SiteDefs::ENSEMBL_PORT       = '8019';
 
   #----------
   # tmp dirs; tweak for proxy
@@ -21,9 +21,9 @@ sub update_conf {
   #----------
   # Species stuff
   # Ditch problematic species
-  delete( $SiteDefs::__species_aliases{Oryza_rufipogon} );
-  delete( $SiteDefs::__species_aliases{Zea_mays} );
-  delete( $SiteDefs::__species_aliases{Zea_mays2} );
+  #delete( $SiteDefs::__species_aliases{Oryza_rufipogon} );
+  #delete( $SiteDefs::__species_aliases{Zea_mays} );
+  #delete( $SiteDefs::__species_aliases{Zea_mays2} );
 }
 
 1;
