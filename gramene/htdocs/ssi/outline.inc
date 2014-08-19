@@ -1,5 +1,7 @@
-<div class="plain-box"><h2>What's New in Release 41</h2>
+<div class="plain-box"><h2>What's New in Release 42</h2>
 <div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p>The <a href="/tools.html">Assembly Converter Tool</a> allows the conversion of a variety of annotation formats between different versions of a genome assembly. Currently it has been enabled for <em>Zea mays</em> between assembly version 2 and 3 and for <em>Oryza sativa</em> between MSU6 and IRGSP assemblies.</p></div>
+
+<font color='red'>NEEDS UPDATES</font>
 
 <ul><li>New genomes
 <ul><li><em><a title="Amborella trichopoda in Gramene" href="/Amborella_trichopoda">Amborella trichopoda</a></em></li></ul>

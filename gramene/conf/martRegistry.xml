@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MartRegistry SYSTEM "classpath:data/XML/MartRegistry.dtd">
+<!DOCTYPE MartRegistry>
 <MartRegistry>
-
-  <DatabaseLocation name         = "GrameneMart20"
-                    visible      = "1"
-                    databaseType = "mysql"
-                    host         = "colden.cshl.edu"
-                    port         = "3306"
-                    instanceName = "ensembl_mart_30_20"
-                    schema       = "ensembl_mart_30_20"
-                    user         = "gramene_web"
-                    password     = "gram3n3"/>
- 
+<MartDBLocation
+   databaseType = "mysql"
+       database = "plants_mart_41"
+           name = "ENSEMBL_MART_PLANT"
+         schema = "plants_mart_41"
+           host = "colden.cshl.edu"
+           port = "3306"
+           user = "gramene_web"
+       password = "gram3n3"
+    displayName = "Plant Genes 41"
+        visible = "1"
+        default = "1"
+       martUser = ""
+includeDatasets = ""
+   includeMarts = ""
+/>
+<MartDBLocation
+   databaseType = "mysql"
+       database = "plants_snp_mart_41"
+           name = "ENSEMBL_MART_PLANT_SNP"
+         schema = "plants_snp_mart_41"
+           host = "colden.cshl.edu"
+           port = "3306"
+           user = "gramene_web"
+       password = "gram3n3"
+    displayName = "Plant Variation Mart 41"
+        visible = "1"
+        default = ""
+       martUser = ""
+includeDatasets = ""
+   includeMarts = ""
+/>
+<MartDBLocation
+   databaseType = "mysql"
+       database = "plants_sequence_mart_41"
+           name = "ENSEMBL_MART_PLANT_SEQUENCE"
+         schema = "plants_sequence_mart_41"
+           host = "colden.cshl.edu"
+           port = "3306"
+           user = "gramene_web"
+       password = "gram3n3"
+    displayName = "Plant Sequence Mart 41"
+        visible = ""
+        default = ""
+       martUser = ""
+includeDatasets = ""
+   includeMarts = ""
+/>
+<MartDBLocation
+   databaseType = "mysql"
+       database = "egontology_mart_41"
+           name = "ENSEMBL_MART_ONTOLOGY"
+         schema = "egontology_mart_41"
+           host = "colden.cshl.edu"
+           port = "3306"
+           user = "gramene_web"
+       password = "gram3n3"
+    displayName = "Ontology 41"
+        visible = ""
+        default = ""
+       martUser = ""
+includeDatasets = ""
+   includeMarts = ""
+/>
 </MartRegistry>
