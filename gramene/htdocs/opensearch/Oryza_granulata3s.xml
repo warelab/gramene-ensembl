@@ -2,10 +2,10 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Oryza)</ShortName>
- <Description>Search Ensembl Genomes - Oryza longistaminata - Oryza longistaminata</Description>
+ <Description>Search Ensembl Genomes - Oryza granulata3s - Oryza granulata3s</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Oryza longistaminata Oryza longistaminata</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Oryza granulata3s Oryza granulata3s</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://ensembl.gramene.org/Oryza_longistaminata/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Oryza_granulata3s/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>
