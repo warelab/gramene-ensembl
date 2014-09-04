@@ -10,6 +10,7 @@ $SiteDefs::ENSEMBL_PLUGINS = [
   'EnsEMBL::Mart'          => $ENSROOT.'/public-plugins/mart',
   'EG::Plants' => $ENSROOT.'/eg-web-plants/',
   'EG::Common'=> $ENSROOT.'/eg-web-common/',
+  'EnsEMBL::Genoverse'  => $SiteDefs::ENSEMBL_SERVERROOT.'/public-plugins/genoverse',
   'EnsEMBL::Doc' => $ENSROOT.'/public-plugins/docs/',
 ];
 

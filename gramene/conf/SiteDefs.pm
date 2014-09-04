@@ -14,6 +14,7 @@ sub update_conf {
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
+#  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 80;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
