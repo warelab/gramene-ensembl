@@ -1,0 +1,4 @@
+species_id	db_name	common_name	web_name	scientific_name	production_name	url_name	taxon	species_prefix
+1000001	oryza_barthii	oryza_barthii	oryza_barthii	Oryza barthii	oryza_barthii	Oryza_barthii	65489	ENSOBA
+1000002	oryza_rufipogon	oryza_rufipogon	oryza_rufipogon	Oryza rufipogon	oryza_rufipogon	Oryza_rufipogon	4529	ENSORU
+1000003	leersia_perrieri	leersia_perrieri	leersia_perrieri	Leersia perrieri	leersia_perrieri	Leersia_perrieri	77586	ENSLPE

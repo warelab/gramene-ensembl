@@ -1,0 +1,2 @@
+web_data_id	data
+3	{"caption" => "Genes (GENCODE 19)","colour_key" => "[biotype]","default" => {"MultiBottom" => "collapsed_label","MultiTop" => "gene_label","alignsliceviewbottom" => "as_collapsed_label","contigviewbottom" => "transcript_label","contigviewtop" => "gene_label","cytoview" => "gene_label"},"key" => "ensembl","label_key" => "[biotype]","multi_name" => "GENCODE 19 genes","name" => "GENCODE 19 genes"}

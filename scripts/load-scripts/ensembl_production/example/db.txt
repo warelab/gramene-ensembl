@@ -1,0 +1,2 @@
+db_id	species_id	is_current	db_type	db_release	db_assembly
+2283	21	1	core	75	37
