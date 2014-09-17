@@ -1,2 +1,0 @@
-web_data_id	data
-1000001	{'multi_name' => 'OGE MAKER annotation','colour_key' => '[biotype]','caption' => 'OGE MAKER annotation','name' => 'OGE MAKER annotation','label_key' => '[biotype]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'},'key' => 'ensembl'}
