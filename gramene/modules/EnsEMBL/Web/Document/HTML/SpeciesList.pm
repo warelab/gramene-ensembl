@@ -13,7 +13,7 @@ sub render {
   my $fragment      = shift eq 'fragment';
   my $hub           = $self->hub;
   my $species_defs  = $hub->species_defs;
-  my $sitename      = $species_defs->ENSEMBL_SITETYPE;
+  my $sitename      = $species_defs->SITE_NAME;
   my $species_info  = $hub->get_species_info;
   my $labels        = $species_defs->TAXON_LABEL; ## sort out labels
   my $favourites    = $hub->get_favourite_species;

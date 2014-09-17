@@ -3,10 +3,10 @@
 <ul><li><em><a href="/ostreococcus_lucimarinus" title="Ostreococcus lucimarinus in Gramene Genomes">Ostreococcus lucimarinus</a></em><!--nbsp--> <!--nbsp-->(a green alga).</li>
 <li><em><a href="/leersia_perrieri" title="Leersia perrieri in Gramene Genomes">Leersia perrieri</a></em><!--nbsp--> <!--nbsp-->(a wild grass).</li>
 <li><em><a href="/oryza_rufipogon" title="Oryza rufipogon in Gramene Genomes">Oryza rufipogon</a></em><!--nbsp--> <!--nbsp-->(brownbeard rice).</li>
-<li><em><a href="/oryza_longistaminata" title="Oryza longistaminata in Gramene Genomes">Oryza longistaminata</a></em><!--nbsp--> <!--nbsp-->(a wild rice).</li></ul>
+<li><em><a href="/oryza_longistaminata" title="Oryza longistaminata in Gramene Genomes">Oryza longistaminata</a></em><!--nbsp--> <!--nbsp-->(a wild rice).</li>
 <li><em><a href="/theobroma_cacao" title="Theobroma cacao in Gramene Genomes">Theobroma cacao</a></em><!--nbsp--> <!--nbsp-->(cocoa).</li>
 <li><em><a href="/brassica_oleracea" title="Brassica oleracea in Gramene Genomes">Brassica oleracea</a></em><!--nbsp--> <!--nbsp-->(the brassica C genome).</li>
-</li>
+</li></ul>
 <li>Updated genomes
 <ul><li>Updated assembly and gene build for<!--nbsp--> <!--nbsp--><em><a href="/oryza_barthii" title="Oryza barthii in Gramene Genomes">Oryza barthii</a></em><!--nbsp--> <!--nbsp-->(wild rice).</li>
 <li>Chloroplast genomes added to the triticeae genomes: <em><a href="/hordeum_vulgare" title="Hordeum vulgare in Gramene Genomes">Hordeum vulgare</a></em> (Barley), <em><a href="/aegilops_tauschii" title="Aegilops tauschii in Gramene Genomes">Aegilops tauschii</a></em> (Tausch's goatgrass), <em><a href="/triticum_aestivum" title="Triticum aestivum in Gramene Genomes">Triticum aestivum</a></em> (bread wheat) and <a href="/triticum_urartu" title="Triticum urartu in Gramene Genomes">Triticum urartu</a> (an einkorn wheat).</li>
