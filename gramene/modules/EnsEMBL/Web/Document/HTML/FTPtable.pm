@@ -35,7 +35,7 @@ sub render {
   my $species_defs    = $hub->species_defs;
 
   my $rel = $species_defs->SITE_RELEASE_VERSION_EG;
-
+  my $grm_rel = $species_defs->SITE_RELEASE_VERSION;
   my @species = $species_defs->valid_species;
   my %title = (
     dna       => 'Masked and unmasked genome sequences associated with the assembly (contigs, chromosomes etc.)',
@@ -87,6 +87,7 @@ sub render {
       if($db_config){
         my $title = sprintf($title{$db}, $sp_name);
         my $db_name = $db_config->{NAME};
+           $db_name =~ s/_${grm_rel}_/_${rel}_/;
         push(@mysql, qq{<a rel="external" title="$title" href="$ftp_base_path_stub/mysql/$db_name">MySQL($db)</a>});
       }
     }
@@ -145,7 +146,9 @@ vep        => qq{<a rel="external"  title="$title{'vep'}" href="$ftp_base_path_s
   $table->{'options'}{'data_table_config'} = {iDisplayLength => 10};
 
   my $pan_compara = $species_defs->get_config('MULTI', 'databases')->{DATABASE_COMPARA_PAN_ENSEMBL}->{NAME};
+     $pan_compara =~ s/_${grm_rel}_/_${rel}_/;
   my $compara = $species_defs->get_config('MULTI', 'databases')->{DATABASE_COMPARA}->{NAME};
+     $compara =~ s/_${grm_rel}_/_${rel}_/;
   my $multi_sp = $g_units->{$genomic_unit};
   my $multi_table    = EnsEMBL::Web::Document::Table->new(
     [
