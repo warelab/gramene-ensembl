@@ -160,25 +160,25 @@ foreach my $gene(@genes) {
     my $comp_id = join "|", ($id, $stableid, $strand, $slice_name, $logic_name, $biotype);
 
     my $translation = $transcript->translation();
-    my $aa;
+    my $aa_seq;
 
-    eval{$aa= $translation->seq()};
+    eval{$aa_seq= $translation->seq()};
 
     if($@){
 	print "error translation seq for $comp_id, $@\n";
 	next;
     }
     
-    if($aa){
+    if($aa_seq){
 	$count{qualified_transcripts}++;
     }else{
 	warn("no aa translation for $comp_id\n");
 	next;
     }
     
-    my $idx = index($aa,'*',0);
+    my $idx = index($aa_seq,'*',0);
     while($idx!=-1) {
-	$transcript_with_internal_stop{$stableid};
+	$transcript_with_internal_stop{$stableid} = 1;
 	my $pidx = $idx+1;
 	$aa->store_on_Translation($translation,
 				  [
