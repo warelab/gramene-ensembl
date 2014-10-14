@@ -49,6 +49,7 @@ fix_internal_stop_codon.pl  [options]
     --speceis 		which species to dump
     --exclude		genes to exclude
     --bylogicname	only work on genes udner this analysis logic_name
+    --nowrite           test only , no change to the database
     --debug             debug mode
 
 =head1 OPTIONS
@@ -71,6 +72,10 @@ fix_internal_stop_codon.pl  [options]
 =item B<--species> 
 
     supply the species name whose transcripts are to be dumped
+
+=item B<--nowrite>
+
+    test run without writing to database
 
 =item B<--help> 
 
