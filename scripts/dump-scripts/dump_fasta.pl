@@ -221,7 +221,8 @@ foreach my $geneid (@genes) {
     for my $type (@types){
 	$seqio{"$ln.$type"} ||= 
 	    Bio::SeqIO->new(-file =>">$ln.$type.fasta", '-format'=>'fasta');
-    }
+    # print "created file for $ln.$type\n";
+	}
   }
   
   my @transcripts;
@@ -277,7 +278,8 @@ foreach my $geneid (@genes) {
 	      -seq => $seq{$type},
 	      );
 
-	  $seqio{$type}->write_seq($seq_obj);
+	  $bylogicname ? $seqio{"$logic_name.$type"}->write_seq($seq_obj):
+                         $seqio{$type}->write_seq($seq_obj);
       }
 
       $count{qualified_transcripts}++;
