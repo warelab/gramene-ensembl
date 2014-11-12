@@ -28,7 +28,7 @@ Sharon Wei (weix@cshl.edu)
 =cut
 
 
-use lib map {"$ENS_CODE_ROOT/$_" } 
+use lib map {"$ENV{ENS_CODE_ROOT}/$_" } 
 	qw ( bioperl-live  
 	     ensembl/modules 
              ensembl-compara/modules
