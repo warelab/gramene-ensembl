@@ -10,10 +10,10 @@ my $ENSROOT = $SiteDefs::ENSEMBL_SERVERROOT;
 my $GRMROOT = $SiteDefs::ENSEMBL_SERVERROOT.'/gramene-live';
 $SiteDefs::ENSEMBL_PLUGINS = [
   # grmblast contains the ini files to configure BlastView
-  'EnsEMBL::GrmBlast'  => $GRMROOT.'/ensembl-plugins/grmblast',
-  'EnsEMBL::Gramene'   => $GRMROOT.'/ensembl-plugins/gramene',
-  'EG::Plants' => $ENSROOT.'/eg-plugins/plants',
-  'EG::Common'=> $ENSROOT.'/eg-plugins/common',
+  'EnsEMBL::GrmBlast'  => $GRMROOT.'/grmblast',
+  'EnsEMBL::Gramene'   => $GRMROOT.'/gramene',
+  'EG::Plants' => $ENSROOT.'/eg-web-plants/',
+  'EG::Common'=> $ENSROOT.'/eg-web-common/',
 ];
 
 1;

@@ -1,19 +1,32 @@
-<div class="plain-box"><h2>What's New in Release 40</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p>The <a href="/tools.html">Assembly Converter Tool</a> allows the conversion of a variety of annotation formats between different versions of a genome assembly.</p></div>
-<ul><li>Updated genomes
-<ul><li>Updated gene models for <em><a href="/oryza_sativa" title="Oryza sativa in Ensembl Plants">Oryza sativa</a></em> from <a href="http://rapdb.dna.affrc.go.jp/">rap-db</a>.</li></ul>
+<div class="plain-box"><h2>What's New in Release 42</h2>
+<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;">The bread wheat A, B and D component genomes have been compared, allowing us to call orthology relationships between them, identifying the so called homoeologous genes.</span><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;"></span><a title="Homoeologues view" href="http://plants.ensembl.org/Triticum_aestivum/Gene/Compara_Homoeolog?g=Traes_1BS_1172A6B03;r=IWGSC_CSS_1BS_scaff_3442289:1424-3326;t=Traes_1BS_1172A6B03.1" style="color: #3355aa; font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 1.5em; background-color: #ffffdd;"><strong>Click here for example</strong></a><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;">. Relationships between the component genomes can also now be browsed in our new region comparison view.</span><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;"><!--nbsp--> <!--nbsp--></span><a title="Polyploid view" href="http://plants.ensembl.org/Triticum_aestivum/Location/MultiPolyploid?db=core;g=Traes_1BS_1172A6B03;r=IWGSC_CSS_1BS_scaff_3442289:1-3476;r1=IWGSC_CSS_1AS_scaff_3251772:1-4760:1;r2=IWGSC_CSS_1DS_scaff_1875954:5937-10936:-1;s1=Triticum_aestivum--IWGSC_CSS_1AS_scaff_3251772;s2=Triticum_aestivum--IWGSC_CSS_1DS_scaff_1875954;t=Traes_1BS_1172A6B03.1" style="color: #3355aa; font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 1.5em; background-color: #ffffdd;"><strong>Click here for example</strong></a><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;">.</span></p></div><ul><li>New genomes
+<ul><li><em><a href="/ostreococcus_lucimarinus" title="Ostreococcus lucimarinus in Gramene Genomes">Ostreococcus lucimarinus</a></em><!--nbsp--> <!--nbsp-->(a green alga).</li>
+<li><em><a href="/leersia_perrieri" title="Leersia perrieri in Gramene Genomes">Leersia perrieri</a></em><!--nbsp--> <!--nbsp-->(a wild grass).</li>
+<li><em><a href="/oryza_rufipogon" title="Oryza rufipogon in Gramene Genomes">Oryza rufipogon</a></em><!--nbsp--> <!--nbsp-->(brownbeard rice).</li>
+<li><em><a href="/oryza_longistaminata" title="Oryza longistaminata in Gramene Genomes">Oryza longistaminata</a></em><!--nbsp--> <!--nbsp-->(a wild rice).</li></ul>
+<li><em><a href="/theobroma_cacao" title="Theobroma cacao in Gramene Genomes">Theobroma cacao</a></em><!--nbsp--> <!--nbsp-->(cocoa).</li>
+<li><em><a href="/brassica_oleracea" title="Brassica oleracea in Gramene Genomes">Brassica oleracea</a></em><!--nbsp--> <!--nbsp-->(the brassica C genome).</li>
+</li>
+<li>Updated genomes
+<ul><li>Updated assembly and gene build for<!--nbsp--> <!--nbsp--><em><a href="/oryza_barthii" title="Oryza barthii in Gramene Genomes">Oryza barthii</a></em><!--nbsp--> <!--nbsp-->(wild rice).</li>
+<li>Chloroplast genomes added to the triticeae genomes: <em><a href="/hordeum_vulgare" title="Hordeum vulgare in Gramene Genomes">Hordeum vulgare</a></em> (Barley), <em><a href="/aegilops_tauschii" title="Aegilops tauschii in Gramene Genomes">Aegilops tauschii</a></em> (Tausch's goatgrass), <em><a href="/triticum_aestivum" title="Triticum aestivum in Gramene Genomes">Triticum aestivum</a></em> (bread wheat) and <a href="/triticum_urartu" title="Triticum urartu in Gramene Genomes">Triticum urartu</a> (an einkorn wheat).</li>
+<li>Mitochondrial genome added to <em><a href="/triticum_aestivum" title="Triticum aestivum in Gramene Genomes">Triticum aestivum</a></em> (bread wheat).</li></ul>
 </li>
 <li>New data
-<ul><li>Gene models for <em><a href="/triticum_aestivum" title="Triticum aestivum in Ensembl Plants">Triticum aestivum</a></em> (bread wheat) chromosome survey sequences from <a href="http://mips.helmholtz-muenchen.de/plant/wheat/iwgsc/index.jsp">MIPS</a>.</li>
-<li>DNA-DNA alignments between bread wheat and <em><a href="/oryza_sativa" title="Oryza sativa in Ensembl Plants">Oryza sativa</a></em>, as well as <em><a href="/brachypodium_distachyon" title="Brachypodium distachyon in Ensembl Plants">Brachypodium distachyon</a></em>.</li>
-<li>DNA-DNA alignments between <em><a href="/hordeum_vulgare" title="Hordeum vulgare in Ensembl Plants">Hordeum vulgare</a></em> (barley) and the wild wheat progenitors (<em><a href="/triticum_urartu" title="Triticum urartu in Ensembl Plants">Triticum urartu</a></em> and <em><a href="/aegilops_tauschii" title="Aegilops tauschii in Ensembl Plants">Aegilops tauschii</a></em>).</li>
-<li>Additional RNA-Seq data were aligned to bread wheat as well as to its wild progenitors.</li>
-<li>Wheat UniGene clusters sequences were also aligned to bread wheat as well as to its wild progenitors.</li></ul>
+<ul>
+<li>New <a href="ftp://ftp.gramene.org/pub/gramene/release42/data/">gene split predictions</a> for 37 plant genomes in this release.</li>
+<li>ncRNA annotation for<!--nbsp--> <!--nbsp--><em>Triticum aestivum</em><!--nbsp--> <!--nbsp-->(bread wheat).</li>
+<li>Probes from the Affymetrix barley genome array aligned to<!--nbsp--> <!--nbsp--><em>Hordeum vulgare</em><!--nbsp--> <!--nbsp-->(barley).</li>
+<li>New <em><a href="/zea_mays" title="Zea mays in Gramene Genomes">Zea mays</a></em> (maize) variation data based on Panzea release 2.7.</li>
+<li>New <em><a href="/sorghum_bicolor" title="Sorghum bicolor in Gramene Genomes">Sorghum bicolor</a></em> (sorghum) variation data from Mace et al (2013).</li>
+<li>New<!--nbsp--> <!--nbsp--><em>Triticum aestivum</em><!--nbsp--> <!--nbsp-->(bread wheat)<!--nbsp--> <!--nbsp-->variation data from<!--nbsp--> <!--nbsp-->Axiom,<!--nbsp--> <!--nbsp-->iSelect and KASP array sets.</li>
+<li>Two transcriptome datasets from diploid einkorn wheat (<em>Triticum monococcum)</em>, generated by <a href="http://jaiswallab.cgrb.oregonstate.edu/genomics/wheat">Jaiswal's Lab</a>, have been aligned to barley, bread wheat and <em>Triticum urartu</em> genomes using <a href="https://code.google.com/p/rna-star/">STAR</a>.</li>
+<li><a href="http://trifldb.psc.riken.jp/v3/index.pl">TriFLDB</a> full-length cDNA sequences aligned to bread wheat genome.</li>
+<li>New whole genome alignments for bread wheat against barley.</li></ul>
 </li>
 <li>Updated data
-<ul><li>Updated gene-trees to include bread wheat gene models.</li>
-<li>Updated (TREP) repeat analysis for wheat and barley genomes.</li>
-<li>Updated functional domain (InterPro) and ontology (InterPro2GO) annotation.</li>
-<li>Updated biomarts.</li></ul>
+<ul><li>Updated gene-trees across 37 species (<i>Ostreococcus lucimarinus</i> and <i>Oryza longistaminata</i> were not included in gene tree construction in this release).</li>
+<li>Updated gene, sequence and variation BioMarts.</li>
+<li>Updated GO term and gene name projection from <em><a href="/arabidopsis_thaliana" title="Arabidopsis thaliana in Gramene Genomes">Arabidopsis thaliana</a></em> to all dicots.</li></ul>
 </li></ul>
 </div>

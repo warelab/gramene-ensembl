@@ -258,7 +258,7 @@ while( my $line = $GFF_HANDLE->getline ){
       $start, $end, $score, $strand, $frame, 
       $attribute ) = split( /\s+/, $line, 9 );
   $feature = uc($feature);
-  $seqname =~ s/chr//i;
+  $seqname =~ s/chr0*//i;
 
   my %attribs;
   foreach my $id( split( /;/, $attribute ) ){
@@ -460,7 +460,8 @@ foreach my $g( keys %$GENES ){
     
   }
 }
-
+ 
+warn ("Done parsing\n");
 
 # Load the data
 my $sa = $ENS_DBA->get_adaptor('Slice');
@@ -477,7 +478,7 @@ foreach my $gene_id( keys %$GENES ){
   $eGene->modified_date( $date );
 
   # Add XREFs to gene
-  #print Dumper ($agenedata->{ATTRIBS});
+  print Dumper ($agenedata->{ATTRIBS});
   add_xrefs( $eGene, $agenedata->{ATTRIBS}, 'GENE');
   
   foreach my $trpt_id (keys %{$agenedata->{TRANSCRIPTS}} ){
@@ -495,14 +496,14 @@ foreach my $gene_id( keys %$GENES ){
     my $transcript_xref;
 
     # Transcript xrefs...
-    #print "For transcript\n";
-    #print Dumper ($atrptdata->{ATTRIBS});
+    print "For transcript\n";
+    print Dumper ($atrptdata->{ATTRIBS});
     add_xrefs( $eTranscript, $atrptdata->{ATTRIBS}, 'TRANSCRIPT');
   
     my $seq_region_name = $atrptdata->{SEQ_NAME};
-                              #print "seq_region_name=$seq_region_name\n";
+                              print "seq_region_name=$seq_region_name\n";
     $seq_region_name =~ s/chr//i;
-                              #print "seq_region_name=$seq_region_name\n";
+                              print "seq_region_name=$seq_region_name\n";
     my $slice = $sa->fetch_by_region( undef, $seq_region_name );
 
     my $start_exon;

@@ -14,17 +14,16 @@ sub update_conf {
   $SiteDefs::ENSEMBL_TMP_URL       = '/BlastView/tmp';
   $SiteDefs::ENSEMBL_TMP_URL_IMG   = '/BlastView/img-tmp';
   $SiteDefs::ENSEMBL_TMP_URL_CACHE = '/BlastView/img-cache';
-  $SiteDefs::ENSEMBL_TMP_DIR_MINIFIED 
-      = $SiteDefs::ENSEMBL_SERVERROOT.'/htdocs/BlastView/minified';
-  $SiteDefs::ENSEMBL_TMP_URL_MINIFIED 
-      = '/BlastView/minified';
+  $SiteDefs::ENSEMBL_TMP_DIR_MINIFIED = '/BlastView/minified'; 
+      #= $SiteDefs::ENSEMBL_WEBROOT.'/htdocs/BlastView/minified';
+  $SiteDefs::ENSEMBL_TMP_URL_MINIFIED = '/BlastView/minified';
 
   #----------
   # Species stuff
   # Ditch problematic species
-  delete( $SiteDefs::__species_aliases{Oryza_rufipogon} );
-  delete( $SiteDefs::__species_aliases{Zea_mays} );
-  delete( $SiteDefs::__species_aliases{Zea_mays2} );
+  #delete( $SiteDefs::__species_aliases{Oryza_rufipogon} );
+  #delete( $SiteDefs::__species_aliases{Zea_mays} );
+  #delete( $SiteDefs::__species_aliases{Zea_mays2} );
 }
 
 1;
