@@ -7,10 +7,10 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = "42"; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = "23";
+  $SiteDefs::SITE_RELEASE_VERSION = "43"; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = "24";
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2014';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2014';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -66,14 +66,14 @@ sub update_conf {
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_nivara';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon3s';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutabb3s';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutacc3s';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_officinalis3s';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutabb3s';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutacc3s';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_officinalis3s';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_punctata';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_glumaepatula';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_meridionalis'; 
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_granulata3s';
-  push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_longistaminata';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_granulata3s';
+  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_longistaminata';
   #push @$SiteDefs::ENSEMBL_DATASETS, 'Leersia_perrieri';
 
 #warn("species datases are", @$SiteDefs::ENSEMBL_DATASETS);

@@ -5,12 +5,12 @@
 my $ENSROOT = $SiteDefs::ENSEMBL_SERVERROOT;
 my $GRMROOT = $SiteDefs::ENSEMBL_SERVERROOT.'/gramene-live';
 $SiteDefs::ENSEMBL_PLUGINS = [
-#  'EnsEMBL::GrameneDev'    => $GRMROOT.'/gramene_dev',
   'EnsEMBL::Gramene'       => $GRMROOT.'/gramene',
   'EnsEMBL::Mart'          => $ENSROOT.'/public-plugins/mart',
+  'EG::EBEyeSearch'        => $ENSROOT.'/eg-web-search/',
+  'EnsEMBL::Genoverse'  => $SiteDefs::ENSEMBL_SERVERROOT.'/public-plugins/genoverse',
   'EG::Plants' => $ENSROOT.'/eg-web-plants/',
   'EG::Common'=> $ENSROOT.'/eg-web-common/',
-  'EnsEMBL::Genoverse'  => $SiteDefs::ENSEMBL_SERVERROOT.'/public-plugins/genoverse',
   'EnsEMBL::Doc' => $ENSROOT.'/public-plugins/docs/',
 ];
 
