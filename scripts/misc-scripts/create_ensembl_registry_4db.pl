@@ -30,8 +30,6 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
-my $ENSVER   = '73';
-my $GRMVER   = '39';
 my $def_user = 'ensembl_rw';
 my $def_pass = '()ryz@';
 my $def_host = 'cabot';
@@ -101,6 +99,7 @@ Options:
 
   --help   Show brief help and exit
   --man    Show full documentation
+  --dbname_file the file containing the database names you want to create dbAdaptor for.
 
 =head1 DESCRIPTION
 

@@ -213,6 +213,7 @@ while( my $seq = $SEQ_IO->next_seq ){
   $seq->id( $seq_id );
 
   my $seq_length = $seq->length;
+  next if ($seq_length == 0);
 
   warn( "[INFO] Processing $CS_NAME $seq_id ($seq_length bp)\n" );
   my $seq_slice = &new_slice( $seq_cs, $seq );

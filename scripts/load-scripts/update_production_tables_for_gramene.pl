@@ -1,4 +1,18 @@
-#!/bin/env perl
+#!/usr/bin/env perl
+
+# Copyright [2009-2014] EMBL-European Bioinformatics Institute
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 use strict;
 use warnings;
@@ -25,7 +39,7 @@ if (!($dbhost && $dbport && $dbuser && $dbpass) || $help) {
     exit 1;
 }
 
-my @tables = ("biotype", "master_external_db", "master_attrib_type", "master_misc_set", "master_unmapped_reason", "analysis_description", "web_data");
+my @tables = ("biotype", "master_external_db", "master_attrib_type", "master_misc_set", "master_unmapped_reason", "analysis_description", "web_data", "meta_key", "rfam_2_ensembl_biotype", "meta", "db", "db_status", "division", "division_status", "division_db", "division_species", "meta_key_species", "species", "species_alias");
 
 my $host = "ftp.ensemblgenomes.org";
 my $user = "anonymous";

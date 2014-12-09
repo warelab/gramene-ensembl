@@ -18,8 +18,8 @@ my ( $help, $man_page);
 my ($dbhost, $dbuser, $dbpass, $dbport) = qw(cabot gramene_web gram3n3 3306);
 my $dbname;
 
-my $input_gene_cnt_sql = "select count(*) from member where source_name='ENSEMBLGENE'";
-my $tree_memeber_fam_cnt_sql = "select  count(distinct(member_id)), count(distinct(root_id)) from gene_tree_node grn  join gene_tree_root gtr using (root_id) where tree_type='tree' and clusterset_id='default'";
+my $input_gene_cnt_sql = "select count(*) from gene_member where source_name='ENSEMBLGENE'";
+my $tree_memeber_fam_cnt_sql = "select  count(distinct(seq_member_id)), count(distinct(root_id)) from gene_tree_node grn  join gene_tree_root gtr using (root_id) where tree_type='tree' and clusterset_id='default'";
 
 GetOptions(
     'help' => \$help,
@@ -78,6 +78,11 @@ Options:
 
   --help   Show brief help and exit
   --man    Show full documentation
+  -dbuser  database connection 
+  -dbpass  database connection
+  -dbport  database connection
+  -dbhost  database connection
+  -dbname  database name
 
 =head1 DESCRIPTION
 
