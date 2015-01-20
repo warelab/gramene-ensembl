@@ -20,7 +20,7 @@ mkdir logs
 ln -s ensembl-webcode/conf conf
 cd ensembl-webcode/
 ln -s ../biomart-perl biomart-perl    
-ln -s /usr/local/biomart-perl biomart-perl
+#ln -s /usr/local/biomart-perl biomart-perl
 cd ../
 sudo chown -R nobody:nobody tmp 
 sudo chown -R nobody:nobody ensembl-webcode/cbuild
