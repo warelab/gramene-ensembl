@@ -1,0 +1,2 @@
+# is is an alteration to the standard Ensembl ncRNA meta data;
+5	tRNA_gene_AGI	tRNA genes annotated by AGI with tRNAScan	tRNA (AGI)	1	{'label_key' => '[text_label] [display_label]','default' => {'contigviewbottom' => 'transcript_label','contigviewtop' => 'gene_label'},'key' => 'ncRNA', 'name' => 'tRNA Gene (AGI)', 'caption' => 'tRNA Gene (AGI)'}
