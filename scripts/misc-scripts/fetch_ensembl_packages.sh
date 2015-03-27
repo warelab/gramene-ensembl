@@ -2,7 +2,7 @@
 
 if [ ! ${branch_e} ]
    then 
-      	echo "please set branch_e"
+      	echo "please set branch_e, such as release/79"
 	exit
 fi
 
