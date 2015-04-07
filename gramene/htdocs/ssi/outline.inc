@@ -1,34 +1,20 @@
-<div class="plain-box"><h2>What's New in Release 44</h2>
-
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;">We now generate stats for all our whole genome alignments (e.g. for <a href="http://plants.ensembl.org/mlss.html?mlss=9046">Brachy vs. Barley</a>. The full set can be browsed on the <a href="http://plants.ensembl.org/compara_analyses.html">genomic alignments</a> page<span style="font-family: 'Luxi Sans', Helvetica, Arial, Geneva, sans-serif; line-height: 16px; background-color: #ffffdd;">.</span></p></div>
- 
-<li>Updated assembly for <a href="/triticum_aestivum" title="Bread wheat in Gramene Genomes">bread wheat</a>.
-<ul>
-<li>A new chromosome-scale pseudomolecule assembly using existing <a href="http://www.wheatgenome.org/Projects/IWGSC-Bread-Wheat-Projects/Sequencing/Whole-Chromosome-Survey-Sequencing">IWGSC CSS contigs</a> incorporating <a href="http://wheat-urgi.versailles.inra.fr/About-us/News/3B-survey-seq-POPSEQ-GenomeZipper-data-available">POPSEQ data</a> from IPK processed by TGAC</li>
-<li>New <a href="http://www.wheatgenome.org/Projects/IWGSC-Bread-Wheat-Projects/Sequencing/Whole-Chromosome-Survey-Sequencing/3B-survey-sequence">3B chromosome & gene model annotations</a> from the IWGSC.</li>
-<li>All sequence features, including the MIPS gene set v2.2, and sequence alignments, were projected to the new pseudomolecule assembly.</li>
+<div class="plain-box"><h2>What's New in Release 45</h2>
+<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><img src="/img/brachyvsbarley-trans.png" alt="Stats" title="Stats" width="50" height="50" style="float: right; padding: 0px 0px 5px 5px;" />We now generate stats for all our whole genome alignments (e.g. for <a href="/mlss.html?mlss=9046">Brachypodium vs. Barley</a>. The full set can be browsed on the <a href="/compara_analyses.html">genomic alignments</a> page.</p></div><ul><li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Updated genomes
+<ul><li><a href="/Medicago_truncatula"><em>Medicago truncatula</em></a><!--nbsp--> <!--nbsp-->latest assembly and gene set.</li>
+<li><a href="/Oryza_meridionalis"><em>Oryza meridionalis</em></a><!--nbsp--> <!--nbsp-->latest assembly and gene set.</li>
 </ul>
 </li>
-
-<li>New marker and variation data for <a href="/hordeum_vulgare" title="Barley in Gramene Genomes">barley</a>.
-<ul>
-<li>New POPSEQ marker and variation data from IPK.</li>
-<li>New variation identifiers from the <a href="http://www.transplantdb.eu/variation/introi">transPLANT variation archive</a>.</li>
-</ul>
+<li><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">New data</span>
+<ul><li><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Whole genome alignments between triticeae genomes using ATAC between:</span>
+<ul><li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">The <em>Triticum aestivum</em> (bread wheat) component genomes (A, B and D).</li>
+<li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Triticum urartu against the bread wheat A component genome.</li>
+<li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Aegilops tauschii against the bread wheat D component genome.</li>
+<li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;"><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Triticum urartu against Aegilops tauschii (<a href="http://plants.ensembl.org/mlss.html?mlss=9409">stats</a>).</span></li>
+<li><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Hordeum vulgare against<!--nbsp--> <!--nbsp--></span>Triticum aestivum (<a href="http://plants.ensembl.org/mlss.html?mlss=9410">stats</a>), Triticum urartu (<a href="http://plants.ensembl.org/mlss.html?mlss=9411">stats</a>) and Aegilops tauschii (<a href="http://plants.ensembl.org/mlss.html?mlss=9412">stats</a>).</li></ul>
 </li>
-
-<li>New data
-<ul>
-<li>New marker data from KeyGene for <a href="/brassica_rapa" title="Brassica rapa in Gramene Genomes"><i>Brassica rapa</i></a>, <a href="/zea_mays" title="Corn in Gramene Genomes"><i>Zea mays</i></a>, <a href="/oryza_sativa" title="Rice in Gramene Genomes"><i>Oryza sativa</i></a>, and <a href="/glycine_max" title="Soybean in Gramene Genomes"><i>Glycine max</i></a>.</li>
-<li>New whole genome alignment data for <a href="/brassica_oleracea" title="Brassica oleracea in Gramene Genomes"><i>Brassica oleracea</i></a> against Brassica rapa.</li>
-</ul>
+<li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;"><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Whole genome alignments between<!--nbsp--> <!--nbsp--></span><a href="http://plants.ensembl.org/Brassica_oleracea"><em style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Brassica oleracea</em></a><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;"><!--nbsp--> <!--nbsp-->and<!--nbsp--> <!--nbsp--></span><em style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;"><a href="http://plants.ensembl.org/Arabidopsis_thaliana">Arabidopsis thaliana</a></em><!--nbsp--> <!--nbsp-->(<a href="http://plants.ensembl.org/mlss.html?mlss=9385">stats</a>).</li></ul>
 </li>
-
-<li>Updated data
-<ul>
-<li>Updated to Ensembl 78 software.</li>
-<li>Updated gene, sequence and variation BioMarts.</li>
-</ul>
-</li>
-</ul>
+<li style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Updated data
+<ul><li><span style="font-size: 12.8000001907349px; line-height: 19.2000007629395px;">Peptide comparative genomics data.</span></li></ul>
+</li></ul>
 </div>

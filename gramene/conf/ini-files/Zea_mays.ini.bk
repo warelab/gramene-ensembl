@@ -1,0 +1,123 @@
+#[general]
+#DATABASE_HOST       = cabot.cshl.edu
+#SPECIES_RELEASE_VERSION = 6
+
+[ENSEMBL_INTERNAL_BAM_SOURCES]
+rpd1_unique = mrna_prot
+wt_unique = mrna_prot
+
+[rpd1_unique]
+source_name = rpd1_nascent_RNA_unique
+description = rpd1 nascent RNA unique hits
+source_url = http://brie.cshl.edu/data/Zea_mays/RNAseq/Talbot/rpd1_unique.bam
+source_type = bam
+display = normal
+
+[wt_unique]
+source_name = wt_nascent_RNA_unique
+description = wt nascent RNA unique hits
+source_url = http://brie.cshl.edu/data/Zea_mays/RNAseq/Talbot/wt_unique.bam
+source_type = bam
+display = normal
+
+[ENSEMBL_INTERNAL_BIGBED_SOURCES]
+HClncRNAs = mrna_prot
+MAKERP = gene_transcript
+
+[HClncRNAs]
+source_name = HC_lncRNAs
+description = High Confidence lncRNAs
+source_url = http://brie.cshl.edu/data/Zea_mays/HC-lncRNAs.bb
+source_type = bigbed
+
+[MAKERP]
+source_name = MAKER-P_genes
+description = Gene annotations contributed by developers of the MAKER-P annotation system
+source_url = http://brie.cshl.edu/data/Zea_mays/6a.bb
+source_type = bigbed
+
+[ENSEMBL_INTERNAL_BIGWIG_SOURCES]
+B73_CpG_ratio = functional
+B73_CpG_coverage = functional
+B73_CHG_ratio = functional
+B73_CHG_coverage = functional
+MO17_CpG_ratio = functional
+MO17_CpG_coverage = functional
+MO17_CHG_ratio = functional
+MO17_CHG_coverage = functional
+
+[B73_CpG_ratio]
+source_name = B73_CpG_ratio
+description = B73 CpG methylation ratio from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/B73_CpG_ratio.bw
+source_type = bigwig
+display = wiggle
+
+[B73_CpG_coverage]
+source_name = B73_CpG_coverage
+description = B73 CpG methylation coverage from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/B73_CpG_coverage.bw
+source_type = bigwig
+display = wiggle
+
+[B73_CHG_ratio]
+source_name = B73_CHG_ratio
+description = B73 CHG methylation ratio from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/B73_CHG_ratio.bw
+source_type = bigwig
+display = wiggle
+
+[B73_CHG_coverage]
+source_name = B73_CHG_coverage
+description = B73 CHG methylation coverage from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/B73_CHG_coverage.bw
+source_type = bigwig
+display = wiggle
+
+[MO17_CpG_ratio]
+source_name = MO17_CpG_ratio
+description = MO17 CpG methylation ratio from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/MO17_CpG_ratio.bw
+source_type = bigwig
+display = wiggle
+
+[MO17_CpG_coverage]
+source_name = MO17_CpG_coverage
+description = MO17 CpG methylation coverage from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/MO17_CpG_coverage.bw
+source_type = bigwig
+display = wiggle
+
+[MO17_CHG_ratio]
+source_name = MO17_CHG_ratio
+description = MO17 CHG methylation ratio from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/MO17_CHG_ratio.bw
+source_type = bigwig
+display = wiggle
+
+[MO17_CHG_coverage]
+source_name = MO17_CHG_coverage
+description = MO17 CHG methylation coverage from bisulfite sequencing
+source_url = http://brie.cshl.edu/data/Zea_mays/methylome/MO17_CHG_coverage.bw
+source_type = bigwig
+display = wiggle
+
+[ENSEMBL_INTERNAL_DAS_SOURCES]
+MAKERP = gene_transcript
+
+[MAKERP]
+dsn     = 6a
+label   = MAKER-P
+caption = MAKER-P genes
+description = Gene annotations contributed by developers of the MAKER-P annotation system
+url     = http://brie:9509/das
+authority = http://www.gramene.org
+homepage  = http://www.gramene.org
+on        = [ contigview ]
+type      = ensembl_location
+coords    = toplevel
+labelflag = U
+stylesheet = y
+group     = 0
+depth = 9999
+strand = b
