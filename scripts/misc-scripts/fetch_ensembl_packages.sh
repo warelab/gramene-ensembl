@@ -25,7 +25,8 @@ fi
      ensembl-webcode \
      ensembl-orm \
      public-plugins \
-     ensembl-tools;
+     ensembl-tools \
+     ensembl-production;
  do
      if [ ! -d "$repo" ]; then
          echo "Checking out $repo (branch $branch_e)"
