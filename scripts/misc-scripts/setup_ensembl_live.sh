@@ -13,6 +13,7 @@ ln -s ../biomart-perl biomart-perl
 ln -s ../samtools samtools            
 ln -s ../bioperl-live bioperl-live
 ln -s /usr/local/apache2 apache2
+ln -s ../blastdb blastdb
 mkdir -p ensembl-webcode/conf/packed
 mkdir -p ensembl-webcode/htdocs/minified
 mkdir tmp
