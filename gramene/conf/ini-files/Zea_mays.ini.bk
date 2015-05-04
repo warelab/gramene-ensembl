@@ -22,11 +22,18 @@ display = normal
 
 [ENSEMBL_INTERNAL_BIGBED_SOURCES]
 HClncRNAs = mrna_prot
+MAKERP = gene_transcript
 
 [HClncRNAs]
 source_name = HC_lncRNAs
 description = High Confidence lncRNAs
 source_url = http://brie.cshl.edu/data/Zea_mays/HC-lncRNAs.bb
+source_type = bigbed
+
+[MAKERP]
+source_name = MAKER-P_genes
+description = Gene annotations contributed by developers of the MAKER-P annotation system
+source_url = http://brie.cshl.edu/data/Zea_mays/6a.bb
 source_type = bigbed
 
 [ENSEMBL_INTERNAL_BIGWIG_SOURCES]

@@ -2,7 +2,7 @@
 
 if [ ! ${branch_e} ]
    then 
-      	echo "please set branch_e"
+      	echo "please set branch_e, such as release/79"
 	exit
 fi
 
@@ -26,7 +26,8 @@ fi
      ensembl-webcode \
      ensembl-orm \
      public-plugins \
-     ensembl-tools;
+     ensembl-tools \
+     ensembl-production;
  do
      if [ ! -d "$repo" ]; then
          echo "Checking out $repo (branch $branch_e)"
