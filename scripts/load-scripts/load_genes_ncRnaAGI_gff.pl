@@ -161,7 +161,7 @@ use Date::Calc;
 use Readonly;
 
 
-Readonly my $RNA_REGEX => qr/^(RRNA_FRAGMENT|NCRNA|TRNA)$/i;
+Readonly my $RNA_REGEX => qr/^(RRNA_FRAGMENT|NCRNA|TRNA|RF\d+)$/i;
 Readonly my $TRNA_INTRON_REGEX => qr/^(TRNA_INTRON)$/i;
 Readonly my $biotype => 'non_coding';
 

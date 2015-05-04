@@ -19,6 +19,7 @@ fi
 
  for repo in \
      ensembl \
+     ensembl-production \
      ensembl-compara \
      ensembl-funcgen \
      ensembl-variation \

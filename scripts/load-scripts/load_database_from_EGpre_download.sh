@@ -46,6 +46,7 @@ fi
      echo "$FDB $TDB"
      mysql -u weix -pwarelab -h $Host -e "drop database if EXISTS $TDB; create database $TDB"
      cd $FDB
+     gunzip *.gz
      mysql -u weix -pwarelab -h $Host $TDB < $FDB.sql
      ls *txt | xargs mysqlimport -u weix -pwarelab -h $Host  -L -l $TDB
  done

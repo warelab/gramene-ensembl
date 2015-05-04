@@ -384,7 +384,7 @@ while( my $line = $GFF_HANDLE->getline ){
     #we can figure out the exon boundry from UTR and CDs
   }
   else{
-    die( "Unrecognized feature $feature" );
+    warn( "Unrecognized feature $feature" );
   }
 
 }
