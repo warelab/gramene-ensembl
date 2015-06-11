@@ -1,0 +1,23 @@
+
+export ENS_CODE_ROOT=/usr/local/ensembl-79
+export ENSEMBL_CVS_ROOT_DIR=${ENS_CODE_ROOT}
+export EHIVE_ROOT_DIR=${ENSEMBL_CVS_ROOT_DIR}/ensembl-hive
+export ensembl_cvs_root_dir=$ENSEMBL_CVS_ROOT_DIR
+export EHIVE_HOST=cabot
+export EHIVE_USER=weix
+export EHIVE_PORT=3306
+
+
+export PERL5LIB=${ENS_CODE_ROOT}/bioperl-live:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-hive/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-compara/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-analysis/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-pipeline/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-variation/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-functgenomics/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-production/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/ensembl-orm/modules:${PERL5LIB}
+export PERL5LIB=${ENS_CODE_ROOT}/gramene-live/grmblast/conf:${PERL5LIB}
+
+export PATH=$PATH:${ENS_CODE_ROOT}/ensembl-compara/scripts:${ENS_CODE_ROOT}/ensembl-hive/scripts

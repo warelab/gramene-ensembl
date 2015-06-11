@@ -1,0 +1,238 @@
+use Bio::EnsEMBL::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Variation::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Production::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
+
+my $ENSVER   = '79';
+my $GRMVER   = '2';
+my $def_user = 'ensembl_rw';
+my $def_pass = '()ryz@';
+my $def_host = 'cabot';
+my $def_port = 3306;
+
+#----------------------------------------------------------------------
+# Species; alphabetical by genus
+
+
+
+Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
+    '-species' => 'Arabidopsis_thaliana',
+    '-group'   => 'funcgen',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "arabidopsis_thaliana_funcgen_${GRMVER}_${ENSVER}_10",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Brachypodium_distachyon',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "brachypodium_distachyon_core_${GRMVER}_${ENSVER}_12",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Leersia_perrieri',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "leersia_perrieri_core_${GRMVER}_${ENSVER}_14",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_barthii',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_barthii_core_${GRMVER}_${ENSVER}_3",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_brachyantha',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_brachyantha_core_${GRMVER}_${ENSVER}_14",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_glaberrima',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_glaberrima_core_${GRMVER}_${ENSVER}_2",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_glumaepatula',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_glumaepatula_core_${GRMVER}_${ENSVER}_15",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_granulata3s',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_granulata3s_core_${GRMVER}_${ENSVER}_03",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_nivara',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_nivara_core_${GRMVER}_${ENSVER}_10",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_longistaminata',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_longistaminata_core_${GRMVER}_${ENSVER}_117",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_meridionalis',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_meridionalis_core_${GRMVER}_${ENSVER}_131",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_minutabb3s',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_minutabb3s_core_${GRMVER}_${ENSVER}_03",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_minutacc3s',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_minutacc3s_core_${GRMVER}_${ENSVER}_03",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_officinalis3s',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_officinalis3s_core_${GRMVER}_${ENSVER}_03",
+);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_punctata',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_punctata_core_${GRMVER}_${ENSVER}_12",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_rufipogon',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_rufipogon_core_${GRMVER}_${ENSVER}_11",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_indica',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_indica_core_${GRMVER}_${ENSVER}_2",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Oryza_sativa',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_sativa_core_${GRMVER}_${ENSVER}_7",
+);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    '-species' => 'Sorghum_bicolor',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "sorghum_bicolor_core_${GRMVER}_${ENSVER}_14",
+);
+
+  Bio::EnsEMBL::DBSQL::DBAdaptor->new(
+    -HOST => 'cabot',
+    -PORT => 3306,
+    -USER => 'weix',
+    -DBNAME => "ensembl_website_${ENSVER}",
+    -PASS => 'warelab',
+    -SPECIES => 'multi',
+    -GROUP => 'web'
+  );
+  Bio::EnsEMBL::Production::DBSQL::DBAdaptor->new(
+    -HOST => 'cabot',
+    -PORT => 3306,
+    -USER => 'weix',
+    -DBNAME => 'ensembl_production',
+    -PASS => 'warelab',
+    -SPECIES => 'multi',
+    -GROUP => 'production'
+  );
+
+
+
+1;
