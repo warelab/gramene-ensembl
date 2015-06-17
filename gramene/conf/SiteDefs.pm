@@ -9,7 +9,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 2; 
   $SiteDefs::SITE_RELEASE_DATE    = 'Jun 2015';
-  $SiteDefs::SITE_NAME            = 'Gramene';
+  $SiteDefs::SITE_NAME            = 'Gramene OGE';
+  $SiteDefs::ENSEMBL_SITETYPE     = 'Gramene OGE';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current';
@@ -20,6 +21,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
 
   $SiteDefs::ENSEMBL_SERVERADMIN            = 'weix@cshl.edu';
+  $SiteDefs::ENSEMBL_MAIL_SERVER       = 'localhost';
+  $SiteDefs::ENSEMBL_SERVERNAME        = 'oge.gramene.org';
+  
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
@@ -34,15 +38,15 @@ sub update_conf {
 # and it makes sense to keep all of them in the same place for easy maintenance. 
 # Create this directory somewhere that the webserver can access
 
-#   $SiteDefs::ENSEMBL_NCBIBLAST_BIN_PATH     = '/usr/local/ncbi-blast-2.2.30+/bin'; # path to blast executables  
-#   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH_DNA = "/usr/local/blastdb/ncbi_blast/genomic"; # path for the blast DNA index files 
-#   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH    = "/usr/local/blastdb/ncbi_blast/genes"; # path for the blast index files (other than DNA) 
-#   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
+   $SiteDefs::ENSEMBL_NCBIBLAST_BIN_PATH     = '/usr/local/ncbi-blast-2.2.30+/bin'; # path to blast executables  
+   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH_DNA = "/usr/local/blastdb/ncbi_blast/genomic"; # path for the blast DNA index files 
+   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH    = "/usr/local/blastdb/ncbi_blast/genes"; # path for the blast index files (other than DNA) 
+   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
 
 
   #----------
   # User database
-  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_web_user_db';
+  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';
   #'ensembl_web_user_db_31_57';
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
   $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
@@ -51,11 +55,14 @@ sub update_conf {
 
   #----------
   # Mart/Blast
-  #$SiteDefs::ENSEMBL_MART_ENABLED ++; # And mart, do we need mart for OGE?
-
+  $SiteDefs::ENSEMBL_MART_ENABLED   = 0; # And mart, do we need mart for OGE?
   $SiteDefs::ENSEMBL_BLAST_ENABLED  = 1;
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
+
+  $SiteDefs::ENSEMBL_TOOLS_JOB_DISPATCHER = { 'Blast' => 'NcbiBlast' };
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT  = 'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
+
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';

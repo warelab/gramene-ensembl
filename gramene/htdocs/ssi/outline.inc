@@ -1,39 +1,64 @@
-<div class="plain-box"><h2>What's New in Release 45</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><img src="/img/brachyvsbarley-trans.png" alt="Stats" title="Stats" width="50" height="50" style="float: right; padding: 0px 0px 5px 5px;" />We now generate stats for all our whole genome alignments (e.g. for <a href="/mlss.html?mlss=9046">Brachypodium vs. Barley</a>. The full set can be browsed on the <a href="/compara_analyses.html">genomic alignments</a> page.</p></div><ul><li>Updated genomes</li>
-<ul><li><a href="/Medicago_truncatula"><em>Medicago truncatula</em></a><!--nbsp--> <!--nbsp-->latest assembly and gene set.</li>
-<li><a href="/Oryza_meridionalis"><em>Oryza meridionalis</em></a><!--nbsp--> <!--nbsp-->latest assembly and gene set.</li>
-</ul>
+<div class="plain-box"><h2>What's in Version 2</h2>
+This release is the second stable release of oge.gramene.org. It includes the most complete and up-to-date assemblies and annotations of the genomes studied by Oryza Genome Evolution (OGE) project, with 12 complete whole genomes from International Oryza Map Alignment Project (I-OMAP) and 4 chromosome 3 short arms from <a href='http://www.omap.org/'>OMAP project</a>.
+
+<ul> 
+<li> 
+Compared with version 1 release, this release has updated Oryza meridionalis assembly, which is the final version of the assembly that was accepted by NCBI genbank. This version adjusted many gap sizes in order to conform to the NCBI submission guidelines. Accordingly MAKER-P annotation was reran and subsequence annotations were repeated with the new version of gene models. However the protein compara analysis which generates gene trees was not redone, instead the O.meridionalis version2 MAKER-P gene names were mapped to version1 names based on location projection and protein sequence similarity search.
 </li>
-<li><span>New data</span>
-<ul><li><span>Whole genome alignments between Triticeae genomes using <a href="http://seqanswers.com/wiki/ATAC">ATAC</a> between:</span>
-<ul><li>The <em>Triticum aestivum</em> (bread wheat) component genomes (A, B and D - <a href="http://plants.ensembl.org/mlss.html?mlss=9413">stats</a>).</li>
-<li><em>T. urartu vs.</em> the bread wheat A component genome (<a href="http://plants.ensembl.org/mlss.html?mlss=9414">stats</a>).</li>
-<li><em>Aegilops tauschii vs.</em> the bread wheat D component genome (<a href="http://plants.ensembl.org/mlss.html?mlss=9415">stats</a>.</li>
-<li><span><em>T. urartu vs. A. tauschii</em> (<a href="http://plants.ensembl.org/mlss.html?mlss=9409">stats</a>).</span></li>
-<li><span><em>Hordeum vulgare vs. T. aestivum</em> (<a href="http://plants.ensembl.org/mlss.html?mlss=9410">stats</a>), <em>T. urartu</em> (<a href="http://plants.ensembl.org/mlss.html?mlss=9411">stats</a>) and <em>A. tauschii</em> (<a href="http://plants.ensembl.org/mlss.html?mlss=9412">stats</a>).</li></ul>
+<li>
+RNA-seq expression profiles from three tissues (root, leaf, panicle) were added for 10 whole genomes. They are O.sativa. Japonica, O.rufipogon, O.nivara, O.meridionalis, O.glaberrima, O.barthii, O.glumaepatula, O.punctata, O.brachyantha, L.perrieri.      
 </li>
-<li><span>Whole genome alignments using LASTZ between<!--nbsp--> <!--nbsp--></span>:
-<ul><li><em>Brassica oleracea</em></a><span><!--nbsp--> <!--nbsp-->and<!--nbsp--> <!--nbsp--></span><em>Arabidopsis thaliana</a></em><!--nbsp--> <!--nbsp-->(<a href="http://plants.ensembl.org/mlss.html?mlss=9385">stats</a>).</li>
-<li><em>M. truncatula</em> and <em>Glycine max</em>, <em>Arabidopsis thaliana</em>, <em>Vitis vinifera</em> and <em>O. sativa</em> group Japonica.</li>
-</ul>
-<li>Enabled the assembly converter tool to allow conversion of tomato 2.50 onto 2.40 coordinates.</li>
-<li>Synteny regions for bread wheat against <em>O. sativa</em> Japonica.</li>
-<li>Two new RNA-Seq studies aligned to barley (<a href="/Hordeum_vulgare/Info/Annotation#genebuild">read more</a>).
-<li>New RNA-Seq studies (leaf, root and panicle) for OGE genomes, including <em>O. barthii</em>, <em>O. brachyantha</em>, <em>O. glaberrima</em>, <em>O. glumaepatula</em>, <em>O. meridionals</em>, <em>O. nivara</em>, <em>O. punctata</em>, <em>O. rufipogon</em>, <em>O. sativa</em> Japonica and <em>Leersia perrieri</em>.
-<li>New genome browser tracks for <em>Zea mays</em> (<a href="/Zea_mays/Info/Annotation#genebuild">read more</a>).</li>
-<li>New browser tracks for <em>Sorghum bicolor</em> (<a href="/Sorghum_bicolor/Info/Annotation#genebuild">read more</a>).</li>
-<li>New links to gene annotations from AraPort and Expression ATLAS (see for example, <a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Gene/Matches?db=core;g=AT3G52430;r=3:19431371-19434403;t=AT3G52430.1"><em>pad4</em></a>).</li> 
-</ul>
+<li>
+Nuclear organelle DNA insertion (norgDNA) annotation were provided by Christos in Doreen Ware's lab and displayed as a dna feature track.
 </li>
-<li>Updated data
+<li>
+lastz-net WGA of O.meridionalis against the other 10 whole genome assemblies were repeated with the updated O.meridionalis assemlby.
+Below is the summary table of the WGAs
 <ul>
-<li>Updated to Ensembl 79 software.</li>
-<li>Updated gene, sequence and variation BioMarts.</li>
-<li>Updated BLAST software from Ensembl.</li>
-<li>Peptide comparative genomics data across all species.</li>
-<li>Projection of manual GO annotation from <em>Arabidopsis thaliana</em> to 1:1 orthologues in all other plant species.</li>
-<li>Projection of manually assigned gene names and descriptions from <em>Arabidopsis thaliana</em> to 1:1 orthologues in all other dicotyledons species.</li>
-<li>Renamed the unordered barley chromosomes.</li>
+<li>Whole Genomes</li>
+<style type="text/css">
+	table.tableizer-table {
+	border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif
+	font-size: 12px;
+} 
+.tableizer-table td {
+	padding: 2px;
+	margin: 1px;
+	border: 1px solid #CCC;
+}
+.tableizer-table th {
+	background-color: #0B610B; 
+	color: #FFF;
+	font-weight: bold;
+}
+</style><table class="tableizer-table">
+<tr class="tableizer-firstrow"><th>Species</th><th>OGE version</th><th>Genbank WGS Proj Accession</th><th>Genbank Assembly ID</th><th>Genbank Bioproject</th></tr>
+ <tr><td><a href='/Oryza_sativa/Info/Index'><i>O. sativa ssp. japonica</i></a></td><td>v7</td><td>NA</td><td>NA</td><td>NA</td></tr>
+ <tr><td><a href='/Oryza_indica/Info/Index'><i>O. sativa ssp. indica</i></a></td><td>v2</td><td>AAAA00000000.2</td><td>GCA_000004655.2 </td><td>PRJNA361</td></tr>
+ <tr><td><a href='/Oryza_nivara/Info/Index'><i>O. nivara</i></a></td><td>v1.0</td><td>AWHD00000000.1</td><td>GCA_000576065.1</td><td>PRJNA48107</td></tr>
+ <tr><td><a href='/Oryza_rufipogon/Info/Index'><i>O. rufipogon</i></a></td><td>v1.1</td><td>NA</td><td>NA</td><td>PRJEB4137</td></tr>
+ <tr><td><a href='/Oryza_barthii/Info/Index'><i>O. barthii</i></a></td><td>v3</td><td>ABRL00000000.2</td><td>GCA_000182155.2</td><td>PRJNA30379</td></tr>
+ <tr><td><a href='/Oryza_glaberrima/Info/Index'><i>O. glaberrima</i></a></td><td>v2</td><td>ADWL00000000.1</td><td>NA</td><td>PRJNA13765</td></tr>
+ <tr><td><a href='/Oryza_glumaepatula/Info/Index'><i>O. glumaepatula</i></a></td><td>v1.5</td><td>ALNU00000000.2</td><td>GCA_000576495.1</td><td>PRJNA48429</td></tr>
+ <tr><td><a href='/Oryza_meridionalis/Info/Index'><i>O. meridionalis</i></a></td><td>v1.3</td><td>ALNW00000000.2</td><td>GCA_000338895.2</td><td>PRJNA48433</td></tr>
+ <tr><td><a href='/Oryza_longistaminata/Info/Index'><i>O. longistaminata</i></a></td><td>v117</td><td>NA</td><td>NA</td><td>PRJNA245492</td></tr>
+ <tr><td><a href='/Oryza_punctata/Info/Index'><i>O. punctata</i></a></td><td>v1.2</td><td>AVCL00000000.1</td><td>GCA_000573905.1</td><td>PRJNA13770</td></tr>
+ <tr><td><a href='/Oryza_brachyantha/Info/Index'><i>O. brachyantha</i></a></td><td>v1.4b</td><td>AGAT00000000.1</td><td>GCA_000231095.2</td><td>PRJNA70533</td></tr>
+ <tr><td><a href='/Leersia_perrieri/Info/Index'><i>L. perrieri</i></a></td><td>v1.4</td><td>ALNV00000000.2</td><td>GCA_000325765.3</td><td>PRJNA163065</td></tr>
+</table>
+
+<li>Chromosome 3 short arms</li>
+<table class="tableizer-table">
+<tr class="tableizer-firstrow"><th>Species</th><th>OGE version</th><th>Genbank WGS Proj Accession</th><th>Genbank Assembly ID</th><th>Genbank Bioproject</t
+h></tr>
+ <tr><td><a href='/Oryza_granulata3s/Info/Index'><i>O. granulata</i></a></td><td>v03</td><td>ALNT00000000.1</td><td>GCA_000325655.2</td><td>PRJNA13788</td></tr>
+ <tr><td><a href='/Oryza_officinalis/Info/Index'><i>O. officinalis</i></a></td><td>v03</td><td>JJMQ00000000.1</td><td>GCA_000717455.1</td><td>PRJNA239525</td></
+tr>
+ <tr><td><a href='/Oryza_minutabb3s/Info/Index'><i>O. minuta</i> (BB)</a></td><td>v03</td><td>JJNN00000000.1</td><td>GCA_000632695.1</td><td>PRJNA239524</td></t
+r>
+<tr><td><a href='/Oryza_minutacc3s/Info/Index'><i>O. minuta</i> (CC)</a></td><td>v03</td><td>JJNN00000000.1</td><td>GCA_000632695.1</td><td>PRJNA239524</td></tr>
+</table>
 </ul>
-</li></ul>
+</li>
+</ul>
 </div>
