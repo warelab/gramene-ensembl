@@ -7,10 +7,10 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = "45"; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = "26";
+  $SiteDefs::SITE_RELEASE_VERSION = 46; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 27;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Apr 2015';
+  $SiteDefs::SITE_RELEASE_DATE    = 'June 2015';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -42,12 +42,12 @@ sub update_conf {
 
   #----------
   # User database
-  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_web_user_db';
+  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
   #'ensembl_web_user_db_31_57';
-  $SiteDefs::ENSEMBL_USERDB_USER = 'weix';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
-  $SiteDefs::ENSEMBL_USERDB_PASS = 'warelab';
+  $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
   #----------
   # Logging
@@ -58,10 +58,9 @@ sub update_conf {
 
   #----------
   # Mart/Blast
-  $SiteDefs::ENSEMBL_BLAST_ENABLED ++; # Creates header link for blast
-  $SiteDefs::ENSEMBL_MART_ENABLED ++; # And mart
+  $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
+  $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
 
-  #$SiteDefs::ENSEMBL_BLAST_ENABLED  = 1;
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
 
@@ -84,59 +83,18 @@ sub update_conf {
 
   #----------
   # Species stuff
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_barthii';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_nivara';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_rufipogon3s';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutabb3s';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_minutacc3s';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_officinalis3s';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_punctata';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_glumaepatula';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_meridionalis'; 
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_granulata3s';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Oryza_longistaminata';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Leersia_perrieri';
-
-#warn("species datases are", @$SiteDefs::ENSEMBL_DATASETS);
- #push @$SiteDefs::ENSEMBL_DATASETS, 'Zea_mays';
-  #push @$SiteDefs::ENSEMBL_DATASETS, 'Physcomitrella_patens';
 
   $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
-  %SiteDefs::__species_aliases =
-    (
+  #%SiteDefs::__species_aliases =
+   # (
      # These are supplimental species to EnsemblGenomes
-     %SiteDefs::__species_aliases,
-
-   #  'Leersia_perrieri'    => [('lper','leersia')],
-   #  'Oryza_barthii'        => [('ob','barthii')],
-   #  'Oryza_brachyantha'    => [('obr','brachyantha')],
-   #  'Oryza_glaberrima3s'     => [('og3s','glaberrima3s')],
-#     'Oryza_glaberrima'     => [('og','glaberrima')],
-    # 'Oryza_glumaepatula'    => [('oglu','glumaepatula')],
-     'Oryza_granulata3s'    => [('ogra','granulata')],
-    # 'Oryza_indica'         => [('oryza_sativa_indica')],
-     'Oryza_longistaminata'    => [('olon','longistaminata')],
-    # 'Oryza_meridionalis'       => [('omer','meridionalis')],
-     'Oryza_minutabb3s'       => [('omBB','Oryza_minutabb', 'Oryza_minutaBB','minutaBB')],
-     'Oryza_minutacc3s'       => [('omCC', 'Oryza_minutacc', 'Oryza_minutaCC','minutaCC')],
-    # 'Oryza_nivara'         => [('on','nivara')],
-     'Oryza_officinalis3s'    => [('oo','officianlis')],
-    # 'Oryza_punctata'       => [('op','punctata')],
-  #   'Oryza_rufipogon3s'    => [('or3s', 'oryza_rufipogon')],
-  #   'Oryza_rufipogon'      => [('or','rufipogon','oryza_rufipogon_fpc')],
-  #   'Oryza_sativa'         => [('oryza_sativa_japonica')],
-
-     # Needed for the home page and species lists
+    # %SiteDefs::__species_aliases,
      #'Zea_mays'             => [('zm','maize')],
      #'Physcomitrella_patens' => [('pp','physcomitrella')],
-     );
-
-#  push(@{$SiteDefs::__species_aliases{'Oryza_indica'}},'Oryza_sativa_indica');
-#  push(@{$SiteDefs::__species_aliases{'Oryza_indica'}},'indica');
-#  push(@{$SiteDefs::__species_aliases{'Oryza_sativa'}},'Oryza_sativa_japonica');
+     #);
 #  push(@{$SiteDefs::__species_aliases{'Populus_trichocarpa'}},'poplar');
+
 }
 
 1;
