@@ -65,6 +65,12 @@ sub links {
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
 #  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
   push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/contact">Feedback</a>';
+
+# test upload link
+# UserData/SelectFile?db=core
+	
+  my $upload_link = 'UserData/SelectFile?db=core';
+  push @links, 'uploadData',  sprintf '<a class="constant" href="/%s">UploadData</a>', $upload_link;  
   return \@links;
 }
 
