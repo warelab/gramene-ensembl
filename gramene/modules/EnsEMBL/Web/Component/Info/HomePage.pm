@@ -184,12 +184,15 @@ sub content {
 
   $html .= '</div>'; #box-left
   $html .= '<div class="box-right">';
-  
-  if ($hub->species_defs->multidb->{'DATABASE_PRODUCTION'}{'NAME'} and my $whatsnew_text = $self->_whatsnew_text) {
-    $html .= '<div class="round-box info-box unbordered">' . $whatsnew_text . '</div>';
-  } elsif (my $ack_text = $self->_other_text('acknowledgement', $species)) {
-    $html .= '<div class="plain-box round-box unbordered">' . $ack_text . '</div>';
-  }
+ 
+my $ack_text = $self->_other_text('acknowledgement', $species);
+$html .= '<div class="plain-box round-box unbordered">' . $ack_text . '</div>';
+ 
+#  if ($hub->species_defs->multidb->{'DATABASE_PRODUCTION'}{'NAME'} and my $whatsnew_text = $self->_whatsnew_text) {
+#    $html .= '<div class="round-box info-box unbordered">' . $whatsnew_text . '</div>';
+#  } elsif (my $ack_text = $self->_other_text('acknowledgement', $species)) {
+#    $html .= '<div class="plain-box round-box unbordered">' . $ack_text . '</div>';
+#  }
 
   $html .= '</div>'; # box-right
   $html .= '</div>'; # column-wrapper
@@ -582,7 +585,7 @@ sub _variation_text {
       }
       #push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
       
-      push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL_EG, $eg_version, lc $species, $eg_version, $species_defs->ASSEMBLY_NAME, $display_name));
+      push(@links, sprintf('<a href="%s/release-%s/vep/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL_EG, $eg_version, $display_name));
 
       my $links = join(" - ", @links);
       $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];

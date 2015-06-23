@@ -51,8 +51,14 @@ sub links {
   my @links;
 
   push @links, 'eqsearch',      '<a class="constant" href="/Multi/enasearch">Sequence Search</a>' if $sd->ENSEMBL_ENASEARCH_ENABLED;
-  push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>', $self->hub->url({'species' => '', 'type' => 'Tools', 'action' => 'Blast'}) if $sd->ENSEMBL_BLAST_ENABLED;
-  #push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>',  if $sd->ENSEMBL_BLAST_ENABLED;
+
+  if( $sd->ENSEMBL_BLAST_ENABLED ){
+	my $blast_link = $self->hub->url({'species' => '', 'type' => 'Tools', 'action' => 'Blast'});
+	$blast_link =~ s/genome_browser//i; # but genome_browser is not embedded here, it is in the base url
+	push @links, 'blast', sprintf '<a class="constant" href="%s">BLAST</a>', $blast_link;
+  	#push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>',  if $sd->ENSEMBL_BLAST_ENABLED;
+  }
+
   push @links, 'biomart',       '<a class="constant" href="/biomart/martview">BioMart</a>';
   push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
   push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
