@@ -60,8 +60,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
 
-  $SiteDefs::ENSEMBL_TOOLS_JOB_DISPATCHER = { 'Blast' => 'NcbiBlast' };
-  $SiteDefs::NCBIBLAST_REST_ENDPOINT  = 'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
+  #$SiteDefs::ENSEMBL_TOOLS_JOB_DISPATCHER = { 'Blast' => 'NcbiBlast' }; #in public-plugins/tools/conf, defined 'Blast' => ''
+  #$SiteDefs::NCBIBLAST_REST_ENDPOINT  = 'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast'; 
 
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
