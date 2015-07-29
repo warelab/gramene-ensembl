@@ -4,7 +4,8 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org'; #'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+#  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 46; 
@@ -22,10 +23,11 @@ sub update_conf {
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
 
   $SiteDefs::ENSEMBL_SERVERADMIN            = 'weix@cshl.edu';
+  $SiteDefs::ENSEMBL_MAIL_SERVER            = 'localhost';
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
-  $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 24;
+  $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
