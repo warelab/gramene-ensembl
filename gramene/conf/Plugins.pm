@@ -11,6 +11,7 @@ $SiteDefs::ENSEMBL_PLUGINS = [
   'EnsEMBL::Genoverse'     => $ENSROOT.'/public-plugins/genoverse',
   'EG::Plants'             => $ENSROOT.'/eg-web-plants/',
   'EG::Common'             => $ENSROOT.'/eg-web-common/',
+  'EG::Widgets' 	   => $ENSROOT.'/public-plugins/widgets',
   'EnsEMBL::Tools'         => $ENSROOT.'/public-plugins/tools',
   'EnsEMBL::Users'         => $ENSROOT.'/public-plugins/users',
   'EnsEMBL::Memcached'     => $ENSROOT.'/public-plugins/memcached',

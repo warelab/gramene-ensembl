@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Zea mays Zea mays</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://dev.gramene.org/Zea_mays/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Zea_mays/psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

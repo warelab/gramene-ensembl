@@ -8,10 +8,10 @@ sub update_conf {
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 46; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 27;
+  $SiteDefs::SITE_RELEASE_VERSION = 48; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 82;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'June 2015';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Nov 2015';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
