@@ -23,5 +23,7 @@
 			<li><a href="http://ensembl.gramene.org/Brachypodium_distachyon"><em>Brachypodium distachyon</em></a>, and</li>
 			<li><a href="http://ensembl.gramene.org/Oryza_sativa"><em>Oryza sativa</em></a></li></ul>
 		</li></ul>
-	</li></ul>
+	</li>
+	<li>Atlas expression view is available for some of the species, for example: <a href="/Oryza_sativa/Gene/ExpressionAtlas?g=OS05G0113900;r=5:738208-739079;t=OS05T0113900-01">rice gene OS05G0113900</a></li>
+</ul>
 </div>
