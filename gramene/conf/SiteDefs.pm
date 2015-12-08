@@ -4,8 +4,8 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-#  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
+ # $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 48; 
@@ -47,7 +47,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
   #'ensembl_web_user_db_31_57';
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
   $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
