@@ -8,10 +8,10 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 48; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 29;
+  $SiteDefs::SITE_RELEASE_VERSION = 49; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 30;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Nov 2015';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2015';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -40,7 +40,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH_DNA = "/usr/local/blastdb/ncbi_blast/genomic"; # path for the blast DNA index files 
   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH    = "/usr/local/blastdb/ncbi_blast/genes"; # path for the blast index files (other than DNA) 
   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
-
+  $SiteDefs::ASSEMBLY_CONVERTER_BIN_PATH = '/usr/local/downloads/CrossMap-0.2.2/bin/CrossMap.py';
 
   #----------
   # User database
@@ -63,8 +63,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
   $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
 
-  $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
-  $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
+  $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
+  $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
