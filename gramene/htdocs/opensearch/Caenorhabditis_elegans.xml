@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription
+      xmlns="http://a9.com/-/spec/opensearch/1.1/">
+ <ShortName>Ensembl (Caeno)</ShortName>
+ <Description>Search Ensembl Genomes - Caenorhabditis elegans - Caenorhabditis elegans</Description>
+ <InputEncoding>UTF-8</InputEncoding>
+ <Tags>Ensembl genome browser Ensembl Genomes Caenorhabditis elegans Caenorhabditis elegans</Tags>
+ <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
+ <Url type="text/html"
+      template="http://brie.cshl.org:8888/Caenorhabditis_elegans/psychic?q={searchTerms};site=ensembl"/>
+</OpenSearchDescription>
