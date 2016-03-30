@@ -2,9 +2,9 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Medic)</ShortName>
- <Description>Search Ensembl Genomes - Medicago truncatula str. A17 - Medicago truncatula str. A17</Description>
+ <Description>Search Ensembl Genomes - Medicago truncatula - Medicago truncatula str. A17</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Medicago truncatula str. A17 Medicago truncatula str. A17</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Medicago truncatula Medicago truncatula str. A17</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
       template="http://dev.gramene.org/Medicago_truncatula/psychic?q={searchTerms};site=ensembl"/>
