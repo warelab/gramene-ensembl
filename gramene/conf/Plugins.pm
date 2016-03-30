@@ -12,6 +12,7 @@ $SiteDefs::ENSEMBL_PLUGINS = [
   'EG::Plants'             => $ENSROOT.'/eg-web-plants/',
   'EG::Common'             => $ENSROOT.'/eg-web-common/',
   'EnsEMBL::Widgets' 	   => $ENSROOT.'/public-plugins/widgets',
+  'EnsEMBL::Tools_hive'    => $ENSROOT.'/public-plugins/tools_hive',
   'EnsEMBL::Tools'         => $ENSROOT.'/public-plugins/tools',
   'EnsEMBL::Users'         => $ENSROOT.'/public-plugins/users',
   'EnsEMBL::Memcached'     => $ENSROOT.'/public-plugins/memcached',
