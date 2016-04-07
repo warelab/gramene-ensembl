@@ -1,19 +1,20 @@
-<div class="plain-box"><h2>What's New in Release 49</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="http://dev.gramene.org/Sorghum_bicolor/Variation/Explore?db=core;g=Sb03g028120;r=3:55892797-55900180;source=Sorghum_EMS_mutants;t=Sb03g028120.1;v=tmp_3_55893324_G_A;vdb=variation;vf=7315833"><img alt="EMS variant" src="/i/species/64/Sorghum_bicolor.png" style="float:right; height:50px; padding:0px 0px 5px 5px; width:50px" title="EMS variant" /></a>Yes, we have EMS-induced mutations in sorghum <!--nbsp--><!--nbsp-->(<i>e.g.</i> here it is a <a href="http://dev.gramene.org/Sorghum_bicolor/Variation/Explore?db=core;g=Sb03g028120;r=3:55892797-55900180;source=Sorghum_EMS_mutants;t=Sb03g028120.1;v=tmp_3_55893324_G_A;vdb=variation;vf=7315833">premature STOP codon</a> introduced in Sb03g028120)</p></div>
+<div class="plain-box"><h2>What's New in Release 50</h2>
+<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="http://ensemblgenomes.org/info/data/rfam_alignment"><img alt="Read more" src="/img/9796ea51.png" style="float:right; height:50px; margin:1px 5px; width:50px" title="" /></a></p>
+
+<p>We have performed <a href="http://ensemblgenomes.org/info/data/rfam_alignment">ncRNA alignments</a><!--nbsp--> <!--nbsp-->across<!--nbsp--> <!--nbsp-->all plant species?</p></div>
 <ul><li>New data
-	<ul><li>New EMS derived mutation data for <i>Sorghum bicolor</i></li>
-    	<li>New Variation data for <i>Oryza glumaepatula</i></li>
-	</li></ul>
-</ul>
-<ul><li>Updated data
-    	<ul><li>Updated <i>Oryza longistaminata</i> assembly and annotations</li>
-        <li>Updated Compara gene trees</li>
-        <li>Updated BioMarts</li>
-        <li>Updated protein domain information based on latest InterProScan</li>
-	</li></ul>
-</ul>
-<ul><li>New features
-	<ul><li>SIFT scores added for barley variation (<a href="http://dev.gramene.org/Hordeum_vulgare/Variation/Mappings?db=core;r=5:109047745-109076660;v=vcZ8R3QT;vdb=variation;vf=18771968">example</a>; SIFT is now also available in the Variant Effect Predictor)
-	</li></ul>
-</ul>
+        <ul><li>New <a href="http://ensembl.gramene.org/Oryza_sativa/Info/Annotation#variation">variation data for rice</a>.</li>
+                <li>New <a href="http://plantreactome.gramene.org/">Plant Reactome</a> cross references added to all species.</li>
+                <li>New <a href="http://ensemblgenomes.org/info/data/rfam_alignment">ncRNA alignment</a> across all plant species.</li>
+                <li>New <a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Info/Index#modal_user_data-Track_Hub_Registry_Search">track hubs</a> for more than 900 public RNA-Seq studies, totalling more than 16,000 tracks across 35 plant species.</li></ul>
+        </li>
+        <li>Updated data
+        <ul><li>Updated <a href="ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/split_genes">putative split gene annotation artifacts</a>.</li>
+                <li>Updated protein domain information based on latest InterProScan.</li>
+		<li>Updated BioMarts.</li>
+		<li>Updated to <a href="http://ensembl.org/info/website/news.html?id=84">Ensembl 84 software</a>.</li></ul>
+		</li>
+	<li>Updated features
+		<ul><li>Searches within ensembl.gramene.org are now being served by our new search API hosted at <a href="http://www.gramene.org/web-services">data.gramene.org</a>.</li>
+		<li>New <a href="http://ensembl.gramene.org/hmmer/index.html">HMMER tool</a> for fast protein sequence search using Hidden Markov Models.</li></ul>
 </div>
