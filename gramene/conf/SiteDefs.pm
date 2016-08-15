@@ -4,14 +4,14 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-#  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
+#  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 50; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 31;
+  $SiteDefs::SITE_RELEASE_VERSION = 51; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Apr 2016';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2016';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -30,7 +30,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:11050';
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
 
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
   $SiteDefs::ENSEMBL_BLASTSCRIPT            = $SiteDefs::ENSEMBL_WEBROOT."/utils/runblast.pl";
