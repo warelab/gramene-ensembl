@@ -26,11 +26,13 @@ use EnsEMBL::Web::Document::HTML::HomeSearch;
 use EnsEMBL::Web::Document::HTML::Compara;
 use EnsEMBL::Web::DBSQL::ProductionAdaptor;
 use EnsEMBL::Web::Component::GenomicAlignments;
+use EnsEMBL::Web::Component::Info;
 
 use LWP::UserAgent;
 use JSON;
 
-use base qw(EnsEMBL::Web::Component);
+#use base qw(EnsEMBL::Web::Component);
+use base qw(EnsEMBL::Web::Component::Info);
 
 sub _init {
   my $self = shift;

@@ -25,36 +25,28 @@
           <h3>Gene counts</h3>
           <table class="ss tint species-stats">
         <tr class="bg2">
-              <td class="data"><span class="glossary_mouseover">Coding genes (filtered set)<span class="_ht_tip hidden"><p>High confidence genes and/or transcript that contains an open reading frame (ORF).</p></span></span>:</td>
-              <td class="value">39,324</td>
-              </tr>
- <tr class="bg2">
-              <td class="data"><span class="glossary_mouseover">Coding genes (rejected set)<span class="_ht_tip hidden"><p>Low confidence Maker genes and/or transcript that contains an open reading frame (ORF).</p></span></span>:</td>
-              <td class="value">9,878</td>
-              </tr>
- <tr class="bg2">
-              <td class="data"><span class="glossary_mouseover">v3 genes <span class="_ht_tip hidden"><p>Maize v3 genes and/or transcript that mapped to v4 assembly by location.</p></span></span>:</td>
-              <td class="value">36,413</td>
+              <td class="data"><span class="glossary_mouseover">Coding genes<span class="floating_popup"><p>Genes and/or transcript that contains an open reading frame (ORF).</p></span></span>:</td>
+              <td class="value">49,203</td>
               </tr>
             <tr>
               <td class="data"><b>Non coding genes</b>:</td>
-              <td class="value">4,976</td>
+              <td class="value">58,905</td>
               </tr>
             <tr class="bg2">
-              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em">tRNA genes</font><span class="_ht_tip hidden"><p>Small non coding genes are usually fewer than 200 bases long. They may be transcribed but are not translated. In Ensembl, genes with the following biotypes are classed as small non coding genes: miRNA, miscRNA, rRNA, scRNA, snlRNA, snoRNA, snRNA, and also the pseudogenic form of these biotypes. The majority of the small non coding genes in Ensembl are annotated automatically by our <a title="Ensembl ncRNA annotation" href="/info/genome/genebuild/ncrna.html">ncRNA pipeline</a>. Please note that tRNAs are annotated separately using tRNAscan. tRNAs are included as 'simple fetaures', not genes, because they are not annotated using aligned sequence evidence.</p></span></span>:</td>
+              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em">Short non coding genes</font><span class="floating_popup"><p>Small non coding genes are usually fewer than 200 bases long. They may be transcribed but are not translated. In Ensembl, genes with the following biotypes are classed as small non coding genes: miRNA, miscRNA, rRNA, scRNA, snlRNA, snoRNA, snRNA, and also the pseudogenic form of these biotypes. The majority of the small non coding genes in Ensembl are annotated automatically by our <a title="Ensembl ncRNA annotation" href="/info/genome/genebuild/ncrna.html">ncRNA pipeline</a>. Please note that tRNAs are annotated separately using tRNAscan. tRNAs are included as 'simple fetaures', not genes, because they are not annotated using aligned sequence evidence.</p></span></span>:</td>
               <td class="value">2,290</td>
               </tr>
             <tr>
-              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em">Long non coding genes</font><span class="_ht_tip hidden"><p>Long non coding genes are usually greater than 200 bases long. They may  be transcribed but are not translated. In Ensembl, genes with the  following biotypes are classed as long non coding genes: 3prime_overlapping_ncrna, ambiguous_orf, antisense, antisense_RNA, lincRNA, ncrna_host, non_coding, non_stop_decay, processed_transcript, retained_intron, sense_intronic, sense_overlapping. The majority of the long non  coding genes in Ensembl are annotated manually by <a title="HAVANA gene biotypes" href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" target="_blank">HAVANA</a>.</p></span></span>:</td>
-              <td class="value">2,532</td>
+              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em">Long non coding genes</font><span class="floating_popup"><p>Long non coding genes are usually greater than 200 bases long. They may  be transcribed but are not translated. In Ensembl, genes with the  following biotypes are classed as long non coding genes: 3prime_overlapping_ncrna, ambiguous_orf, antisense, antisense_RNA, lincRNA, ncrna_host, non_coding, non_stop_decay, processed_transcript, retained_intron, sense_intronic, sense_overlapping. The majority of the long non  coding genes in Ensembl are annotated manually by <a title="HAVANA gene biotypes" href="http://vega.sanger.ac.uk/info/about/gene_and_transcript_types.html" target="_blank">HAVANA</a>.</p></span></span>:</td>
+              <td class="value">2,561</td>
               </tr>
             <tr class="bg2">
-              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em">miRNA</font><span class="_ht_tip hidden"></span></span>:</td>
-              <td class="value">154</td>
+              <td class="data">&nbsp;&nbsp;&nbsp; <span class="glossary_mouseover"><font size="1em"></font><span class="floating_popup"></span></span>:</td>
+              <td class="value">54,054</td>
               </tr>
             <tr>
-              <td class="data"> <span class="glossary_mouseover">Gene transcripts (filtered set)<span class="_ht_tip hidden">Nucleotide sequence resulting from the transcription of the genomic DNA to mRNA. One gene can have different transcripts or splice variants resulting from the alternative splicing of different exons in genes.</span></span>:</td>
-              <td class="value">149,669</td>
+              <td class="data"> <span class="glossary_mouseover">Gene transcripts<span class="floating_popup">Nucleotide sequence resulting from the transcription of the genomic DNA to mRNA. One gene can have different transcripts or splice variants resulting from the alternative splicing of different exons in genes.</span></span>:</td>
+              <td class="value">166,705</td>
               </tr>
             
           </table>
