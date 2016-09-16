@@ -8,10 +8,14 @@ use Getopt::Long;
 use Pod::Usage;
 use Readonly;
 
-my ( $help, $man_page, $dbname_file );
+my ( $help, $man_page, $dbname_file, $user, $pass, $host, $port );
 GetOptions(
     'help' => \$help,
     'man'  => \$man_page,
+    'user' => \$user,
+    'pass' => \$pass,
+    'host' => \$host,
+    'port=s' => \$port,
     '-dbname_file=s' => \$dbname_file,
 ) or pod2usage(2);
 
@@ -22,6 +26,11 @@ if ( $help || $man_page ) {
     });
 }; 
 
+$user ||= 'gramene_web';
+$pass ||= 'gram3n3';
+$host ||=  'cabot';
+$port ||= '3306';
+
 Readonly my $header => q{
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Variation::DBSQL::DBAdaptor;
@@ -30,11 +39,15 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
-my $def_user = 'ensembl_rw';
-my $def_pass = '()ryz@';
-my $def_host = 'cabot';
-my $def_port = 3306;
 };
+
+my $db_params = << "END_DBPAR";
+my \$def_user = '$user';
+my \$def_pass = '$pass';
+my \$def_host = '$host';
+my \$def_port = '$port';
+
+END_DBPAR
 
 #print "$header\n";
 
@@ -79,7 +92,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
 
 };
 
-print "$header\n$dbconnection_string\n1;\n";
+print "$header\n$db_params$dbconnection_string\n1;\n";
 
 __END__
 

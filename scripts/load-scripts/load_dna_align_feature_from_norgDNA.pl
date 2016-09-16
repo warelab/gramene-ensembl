@@ -9,9 +9,9 @@ BEGIN {
 #use lib map { $ENV{'GrameneDir'}."/$_" } qw ( lib/perl );
 
 #use lib map { $ENV{'GrameneEnsemblDir'}."/$_" } 
-        qw ( bioperl-live modules ensembl/modules conf
-	     ensembl-external/modules ensembl-draw/modules
-	     ensembl-compara/modules );
+#        qw ( bioperl-live modules ensembl/modules conf
+#	     ensembl-external/modules ensembl-draw/modules
+#	     ensembl-compara/modules );
 
 use lib map { "$ENV{'GrameneEnsemblDir'}/ensembl-live/$_" } 
         qw ( bioperl-live modules ensembl/modules ensembl-external/modules
@@ -51,7 +51,6 @@ load_dna_align_feature.pl  [options]
     --man		full documentation
     --coord_system	coord system to use
     --registry_file	Default is $GrameneEnsemblDir/conf/ensembl.registry
-    --file_prefix	Remove from filename before interpreting as logic name (default=empty)
     --logic_name	Allowed logic name
     --replace		Remove all hits for each track being loaded
 
@@ -107,10 +106,10 @@ filename is prefix+logic_name+'.whatever'
 
 =cut
 
-use vars qw($ENS_DBA $species @logic_names $file_prefix $coord_system
+use vars qw($ENS_DBA $species $logic_name  $coord_system
 		$replace $verbose);
 $verbose=0;
-$file_prefix='';
+
 {  #Argument Processing
   my $help=0;
   my $man=0;
@@ -122,8 +121,7 @@ $file_prefix='';
         "species=s"       => \$species,
 	"coord_system=s"  => \$coord_system,
         "registry_file=s" => \$registry_file,
-        "file_prefix=s"   => \$file_prefix,
-        "logic_name=s"    => \@logic_names,
+        "logic_name=s"    => \$logic_name,
         "replace"         => \$replace,
         "v+"		  => \$verbose,
         )
@@ -150,7 +148,7 @@ $file_prefix='';
                 pod2usage(1) );
 
 }
-my %logic_names = map{$_=>1} @logic_names;
+
 
 my $slice_adaptor    = $ENS_DBA->get_adaptor('Slice');
 my $analysis_adaptor = $ENS_DBA->get_adaptor('Analysis');
@@ -167,18 +165,11 @@ my %replaced;
 
 foreach my $file( @ARGV ){
   warn( "Processing $file\n" );
-  my( $logic_name ) = $file =~ m|([^/]+?)(_\d*)?\..*$|;
   warn ($logic_name) if $verbose;
-  if( $file_prefix ){ 
-      warn "removing $file_prefix" if $verbose;
-      $logic_name =~ s/$file_prefix// 
-  }
-  if( %logic_names and ! $logic_names{$logic_name} ){
-    warn( "  Skipping analysis logic_name: $logic_name\n" );
-  }
 
   my $analysis = &fetch_analysis($logic_name); 
   if($replace && !$replaced{$logic_name}++ && $analysis->dbID) {
+      print "replace is $replace, analysisID is ", $analysis->dbID if $verbose;
       $feature_adaptor->db->dbc->do(
        "delete from dna_align_feature where analysis_id=".$analysis->dbID)
        or die("delete $logic_name = ".$analysis->dbID.": $DBI::errstr");
@@ -186,73 +177,73 @@ foreach my $file( @ARGV ){
   
   open( FEATURES, $file ) || die ("Cannot open $file: $!");
   while( my $line = <FEATURES> ){
-    next if ($line =~ /^HIT_ID/);
+    next if ($line =~ /^\#/ || $line =~ /^\s*$/);
     chomp $line;
-    my( $hit_num, 
-        $hit_name, 
-        $seq_region_name_with_offset, 
-        $seq_region_strand, 
-        $hit_start, 
-        $hit_end, 
-	$seq_region_name,  
-        $seq_region_start, 
-        $seq_region_end ,
-	$score,
-	$perc_id,
-	$cigar_string,
-	$evalue );
+    
+    warn ($line) if $verbose;
 
-    my $this_coord_system=$coord_system;
-
-    if( $file_prefix eq 'final_filtered_offset_' ) {
-	( $hit_num, 
-	  $hit_name, 
-	  $seq_region_name_with_offset, 
-	  $seq_region_strand, 
-	  $hit_start, 
-	  $hit_end, 
-	  $seq_region_name,  #not in 'final_filtered_' format
-	  $seq_region_start, 
-	  $seq_region_end ,
-	  $score,
-	  $perc_id,
-	  $cigar_string,
-	  $evalue )
-	    =  split( /\t/, $line );
-    } else {	# final_filtered_
-	( $hit_num, 
-	  $hit_name, 
-	  $seq_region_name_with_offset, #or just clone name
-	  $seq_region_strand, 
-	  $hit_start, 
-	  $hit_end, 
-	  $seq_region_start, 
-	  $seq_region_end ,
-	  $score,
-	  $perc_id,
-	  $cigar_string,
-	  $evalue )   #evalue has bogus value
-	    =  split( /\t/, $line );
-	  $seq_region_name=$seq_region_name_with_offset;
+    #1       genomic_organellar_insert_annotation    nuclear_mitochondrial   3820191 3820421 100     +       .       ID=32_cluster_24;Target=mitochondria genome 352597 352827;evalue=2E-31;length_orgDNA=85
+    my( $chr, 
+        $src, 
+        $type, 
+        $chr_start, 
+        $chr_end, 
+	$score, 
+	$chr_strand,,
+        $phase, 
+        $attribs ,
+	 ) = split /\t/, $line;
+    
+    my %attributes = map{$_=~ s/^\s+//; $_=~s/\s$//; $_ =~ s/\s+/_/;  split /\=/; }(split /;/, $attribs);
+#print "score is $score\n";
+#next;
+    for (keys %attributes){
+	
+	print "$_ => $attributes{$_}\n";
     }
-    #It's stupid hack time again down at the Bar-G Corral
-    if($seq_region_name_with_offset =~ /^chr_(\d+)(.*)$/) {
-	$seq_region_name=$1;
-	$this_coord_system='chromosome';
-    }
-    warn "$this_coord_system:$seq_region_name\n" if $verbose;
 
-    my $slice = $slice_adaptor->fetch_by_region($this_coord_system,$seq_region_name) ||
-        ( warn( "  Cannot fetch $this_coord_system $seq_region_name - skipping\n" ) && next );
+    $chr =~ s/^chr(omosome)?_?//;
+    warn "$coord_system:$chr\n" if $verbose;
+
+    my $slice = $slice_adaptor->fetch_by_region($coord_system,$chr) ||
+    ( warn( "  Cannot fetch $coord_system $chr - skipping\n" ) && next );
 
     #my $cigar = ( $seq_region_end-$seq_region_start+1 ) . "M";
 
-    $hit_name =~ s/\|.*//;
+    
+    my ($hit_name, $hit_start, $hit_end);
+
+    if($attributes{Target} =~ /(\w+)\s(\d+)\s(\d+)/){
+	($hit_name, $hit_start, $hit_end) = ($1, $2, $3);
+	delete $attributes{Target};
+    }elsif( defined $attributes{ID} ){
+	$hit_name =  $attributes{ID};
+	$hit_start = 1;
+	$hit_end = $chr_end-$chr_start+1;
+	delete $attributes{ID};
+    }else{
+	warn("ERROR: No hit name can be determined from attribute 'Target' or 'ID' \n");
+	next;
+    }
+
+    my $evalue = undef;
+    if( defined $attributes{evalue} ){  
+	my $e = $attributes{evalue};
+	$evalue = $e =~ /E/i ? sprintf("%.10g", $e) : sprintf ("%.10f", $e);
+    }
+    delete $attributes{evalue};
+
+    my $cigar_string = $chr_end-$chr_start+1;
+
+    my $external_data = join ';', map{ "$_=$attributes{$_}" } (keys %attributes);
+    print "exteral_data=$external_data\n" if $verbose;
+
+    my $strand = $chr_strand =~ /\+/ ? 1 : -1;
     my $feature = Bio::EnsEMBL::DnaDnaAlignFeature->new
         ( 
-          -start        => $seq_region_start,
-          -end          => $seq_region_end,
-          -strand       => $seq_region_strand,
+          -start        => $chr_start,
+          -end          => $chr_end,
+          -strand       => $strand,
           -hstart       => $hit_start,
           -hend         => $hit_end,
           -hstrand      => 1,
@@ -260,9 +251,10 @@ foreach my $file( @ARGV ){
           -analysis     => $analysis,
           -slice        => $slice,
           -cigar_string => $cigar_string,
-  #        -p_value 	=> $evalue,
+          -p_value 	=> $evalue,        #key cannot be evalue
           -score        => $score,
-          -percent_id        => $perc_id, 
+	  -extra_data => $external_data,   #key cannot be external_data
+          -percent_id   => $score, 
           );
 
     $feature_adaptor->store($feature);

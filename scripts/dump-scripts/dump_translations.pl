@@ -120,7 +120,7 @@ my $margin=undef;
   my @exclude_clone=();
   GetOptions( "help|?"=>\$help,"man"=>\$man
 	      ,"exclude=s"=>\@exclude_gene
-	      ,"bylogicname"=>\$bylogicname
+	      ,"bylogicname=s"=>\$bylogicname
 	      ,"exclude-analysispgm=s"=>\@exclude_analysispgm
 	      ,"analysispgm=s"=>\@analysispgm
 	      ,"exclude-clone=s"=>\@exclude_clone
@@ -151,7 +151,7 @@ my $slice_adaptor = $ENS_DBA->get_SliceAdaptor;
 #my $assembly_type=$ENS_DBA->get_MetaContainer()->get_default_assembly();
 
 my @genes=@ARGV;
-@genes or  @genes=@{$gene_adaptor->list_dbIDs()};
+@genes or  @genes=@{$gene_adaptor->fetch_all_by_logic_name($bylogicname)};
 print "retrieved gene count", scalar @genes;
 
 #exit;
@@ -160,7 +160,13 @@ my %count;
 
 my ($seqio,%seqio,$seqio5,$seqio3);
 
-unless($bylogicname) {
+if($bylogicname) {
+
+	$seqio = new Bio::SeqIO(-format => 'fasta',
+                          -file => ">${species}_$bylogicname.fasta",
+                          #-fh     => \*STDOUT
+                         );
+}else{
   $seqio = new Bio::SeqIO(-format => 'fasta',
 			  -file => ">${species}.fasta",
 			  #-fh     => \*STDOUT
@@ -173,24 +179,25 @@ if($margin) {
 }
 
 
-foreach my $geneid (@genes) {
+foreach my $gene (@genes) {
   #print "! $geneid\n";
   
   $count{total_genes}++;
-  my $gene;
   if(@ARGV) {    # Stable ids GRMGnnnnnnn
-    eval { $gene=$gene_adaptor->fetch_by_stable_id($geneid) };
+	my $gid=$gene;
+    eval { $gene=$gene_adaptor->fetch_by_stable_id($gid) };
     print STDERR "$@\n" and next if $@;
-  } else {	#internal ids
-    eval { $gene= $gene_adaptor->fetch_by_dbID($geneid); };
-    print STDERR "gene_id $geneid:\n$@\n" and next if $@;
-    # fails e.g. if gene has no exons
-  }
+  } #else {	#internal ids
+  #  eval { $gene= $gene_adaptor->fetch_by_dbID($geneid); };
+  #  print STDERR "gene_id $geneid:\n$@\n" and next if $@;
+  #  # fails e.g. if gene has no exons
+  #}
+  
   next unless $gene;
   
-  my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
+  #my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
   #print "gene attrib is ", $working_set_attrib->code, "\n";
-  next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
+  #next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
   
   
   next if %exclude_gene and $exclude_gene{$gene->stable_id}
@@ -212,12 +219,6 @@ foreach my $geneid (@genes) {
   
   $count{qualified_genes}++;
   
-  my $ln;
-  if ($bylogicname) {
-    $ln=$gene->analysis->logic_name;
-    $seqio{$ln} ||= 
-      Bio::SeqIO->new(-file =>">$ln.fasta", '-format'=>'fasta');
-  }
   
   my @transcripts;
   
@@ -232,42 +233,10 @@ foreach my $geneid (@genes) {
   foreach my $trans (@transcripts) {
   
     #print join "\t", ($trans->stable_id, $trans->spliced_seq, "\n");
-    #my $cdna_seq=$trans->spliced_seq;
     my $id = $trans->stable_id;
-    #my $slice_name = $trans->slice->name;
-    #my $biotype = $trans->biotype;
-    #my $logic_name = $trans->analysis->logic_name;
-    #my $comp_id = join "|", ($id, $slice_name, $logic_name, $biotype);
     
 	my $aa_obj = $trans->translate;
-    #unless ( $cdna_seq ){
-    #  print STDERR "No cDNA seq for $geneid:$comp_id\n";
-    #  next;
-    #}
     
-    my $seq_obj;
-    #if( $coding){
-      
-    #  my $cdna_coding_start = $trans->cdna_coding_start;
-    #  my $cdna_coding_end   = $trans->cdna_coding_end;
-    #  $comp_id .= 
-#	"|coding region $cdna_coding_start-$cdna_coding_end";
- #     $seq_obj = Bio::Seq->new(
-#				      -display_id => $comp_id,
-#				      -seq => substr($cdna_seq, 
-#						     $cdna_coding_start-1, 
-#						     $cdna_coding_end-$cdna_coding_start+1)
-#				     );
- #   }else{
-      
- #     $comp_id .=  "|CDNA";
-  #    $seq_obj = Bio::Seq->new(
-#				    -display_id => $comp_id,
-#				    -seq => $cdna_seq,
-#				   );
- #     
-  #  }
-
 
     $seqio->write_seq($aa_obj);
     $count{qualified_transcripts}++;

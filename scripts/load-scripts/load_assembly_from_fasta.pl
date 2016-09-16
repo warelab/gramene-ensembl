@@ -108,10 +108,10 @@ use vars qw( $BASEDIR );
 BEGIN{
   # Set the perl libraries. Need a symlink from the gramene-ensembl 
   #   directory to an ensembl API distribution
-  $BASEDIR = dirname($Bin);
-  unshift @INC, $BASEDIR.'/ensembl-live/ensembl/modules';
-  unshift @INC, $BASEDIR.'/ensembl-live/ensembl-compara/modules';
-  unshift @INC, $BASEDIR.'/bioperl-HEAD'; # ncomment if BioPerl not in path
+  $BASEDIR = $ENV{'GrameneEnsemblDir'};
+  unshift @INC, $BASEDIR.'ensembl/modules';
+  unshift @INC, $BASEDIR.'ensembl-compara/modules';
+  unshift @INC, "/usr/local/BioPerl-1.6.922"; # ncomment if BioPerl not in path
 }
 
 use Bio::EnsEMBL::Registry; 
