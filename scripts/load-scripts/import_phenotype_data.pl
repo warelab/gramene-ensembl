@@ -1181,6 +1181,7 @@ sub parse_gramene_qtl {
     # create phenotype hash
     my @trait_attrib_keys = qw(trait_category trait_description trait_symbol);
     my $phenotype = {
+      'name' => $extra->{'trait_symbol'},
       'id' => $extra->{'name'}, #Name=AQA006
       'description' => join (':', map{ $extra->{$_} } grep{ defined $extra->{$_}   } @trait_attrib_keys),
       'seq_region_id' => $seq_region_ids->{$data[0]},
