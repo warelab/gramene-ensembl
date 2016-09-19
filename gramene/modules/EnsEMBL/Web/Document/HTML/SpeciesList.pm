@@ -80,7 +80,7 @@ sub render {
         </select>
       </p>
     </form>
-    <p><a href="/info/about/species.html">View full list of all $sitename species</a></p>
+    <p><a href="/species.html">View full list of all $sitename species</a></p>
     </div>
   };
   

@@ -3,6 +3,10 @@ taxonTreeData = [
       "isFolder" : true,
       "children" : [
          {
+            "title" : "Beta vulgaris subsp. vulgaris",
+            "key" : "beta_vulgaris"
+         },
+         {
             "isFolder" : true,
             "children" : [
                {
@@ -14,6 +18,10 @@ taxonTreeData = [
                   "key" : "arabidopsis_thaliana"
                },
                {
+                  "title" : "Brassica napus",
+                  "key" : "brassica_napus"
+               },
+               {
                   "title" : "Brassica oleracea var. oleracea",
                   "key" : "brassica_oleracea"
                },
@@ -22,7 +30,7 @@ taxonTreeData = [
                   "key" : "brassica_rapa"
                }
             ],
-            "title" : "Brassicaceae (4)",
+            "title" : "Brassicaceae (5)",
             "key" : "Brassicaceae"
          },
          {
@@ -35,9 +43,13 @@ taxonTreeData = [
                {
                   "title" : "Medicago truncatula",
                   "key" : "medicago_truncatula"
+               },
+               {
+                  "title" : "Trifolium pratense",
+                  "key" : "trifolium_pratense"
                }
             ],
-            "title" : "Fabaceae (2)",
+            "title" : "Fabaceae (3)",
             "key" : "Fabaceae"
          },
          {
@@ -72,7 +84,7 @@ taxonTreeData = [
             "key" : "vitis_vinifera"
          }
       ],
-      "title" : "Dicots (12)",
+      "title" : "Dicots (15)",
       "key" : "Dicots"
    },
    {
@@ -198,16 +210,16 @@ taxonTreeData = [
       "isFolder" : true,
       "children" : [
          {
-            "title" : "Amborella trichopoda",
-            "key" : "amborella_trichopoda"
+            "title" : "Cyanidioschyzon merolae strain 10D",
+            "key" : "cyanidioschyzon_merolae"
          },
          {
-            "title" : "Selaginella moellendorffii",
-            "key" : "selaginella_moellendorffii"
+            "title" : "Galdieria sulphuraria",
+            "key" : "galdieria_sulphuraria"
          },
          {
-            "title" : "Physcomitrella patens",
-            "key" : "physcomitrella_patens"
+            "title" : "Chondrus crispus",
+            "key" : "chondrus_crispus"
          },
          {
             "title" : "Ostreococcus lucimarinus CCE9901",
@@ -218,11 +230,19 @@ taxonTreeData = [
             "key" : "chlamydomonas_reinhardtii"
          },
          {
-            "title" : "Cyanidioschyzon merolae strain 10D",
-            "key" : "cyanidioschyzon_merolae"
+            "title" : "Physcomitrella patens",
+            "key" : "physcomitrella_patens"
+         },
+         {
+            "title" : "Amborella trichopoda",
+            "key" : "amborella_trichopoda"
+         },
+         {
+            "title" : "Selaginella moellendorffii",
+            "key" : "selaginella_moellendorffii"
          }
       ],
-      "title" : "Other (6)",
+      "title" : "Other (8)",
       "key" : "Other"
    }
 ]

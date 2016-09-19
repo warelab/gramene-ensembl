@@ -20,8 +20,8 @@ sub content {
     <div class="twocol-right right unpadded">
       <a href="http://www.gramene.org/about-gramene">About&nbsp;Gramene</a> | 
       <a href="http://www.ensemblgenomes.org">About&nbsp;EnsemblGenomes</a> | 
-      <a href="/info/about/contact/index.html">Contact&nbsp;Us</a> | 
-      <a href="/info/website/help/index.html">Help</a>
+      <a href="http://tools.gramene.org/feedback">Contact&nbsp;Us</a> | 
+      <a href="/info/website/index.html">Help</a>
     </div>) 
   ;
 }
