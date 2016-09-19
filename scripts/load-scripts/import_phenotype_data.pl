@@ -1181,7 +1181,7 @@ sub parse_gramene_qtl {
     # create phenotype hash
     my @trait_attrib_keys = qw(trait_category trait_description trait_symbol);
     my $phenotype = {
-      'id' => $extra->{name}, #Name=AQA006
+      'id' => $extra->{'name'}, #Name=AQA006
       'description' => join (':', map{ $extra->{$_} } grep{ defined $extra->{$_}   } @trait_attrib_keys),
       'seq_region_id' => $seq_region_ids->{$data[0]},
       'seq_region_start' => $data[3] || 1,
@@ -2236,7 +2236,7 @@ sub add_phenotypes {
 
     # If the rs could not be mapped to a variation id, skip it
     next if $object_type =~ /Variation/ && (!defined($variation_ids->{$phenotype->{"id"}}[0]));
-
+warn ("phenotype object id is ", $phenotype->{"id"}, "\n");
     # if we have no coords, skip it
     my $study_id;
     
