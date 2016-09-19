@@ -15,6 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# modified by Sharon Wei to accommendate gramene QTL data
+# 1. add gramene specific attrib_types in variationDB.attrib_type table
+#	code	name	description
+#	trait_category	trait category	category the trait belongs to
+#	trait_symbol	trait symbol	symbol of this trait
+#	publish_symbol	publish symbol	published symbol of this trait
+
 use strict;
 use Getopt::Long;
 use DBI qw(:sql_types);
@@ -1172,9 +1179,10 @@ sub parse_gramene_qtl {
     }
 
     # create phenotype hash
+    my @trait_attrib_keys = qw(trait_category trait_description trait_symbol);
     my $phenotype = {
-      'id' => $extra->{name},
-      'description' => join (':' ($extra->{trait_category},$extra->{Trait_description})),
+      'id' => $extra->{name}, #Name=AQA006
+      'description' => join (':', map{ $extra->{$_} } grep{ defined $extra->{$_}   } @trait_attrib_keys),
       'seq_region_id' => $seq_region_ids->{$data[0]},
       'seq_region_start' => $data[3] || 1,
       'seq_region_end' => $data[4],
@@ -1188,13 +1196,18 @@ sub parse_gramene_qtl {
     }
     
     # add additional fields if found
-    $phenotype->{'study'} = $pubmed_prefix.$extra->{'PUBMED_ID'} if defined($extra->{'PUBMED_ID'});
-    $phenotype->{'p_value'} = $extra->{'P-value'} if defined($extra->{'P-value'});
-    $phenotype->{'f_stat'} = $extra->{'F-stat'} if defined($extra->{'F-stat'});
-    $phenotype->{'lod_score'} = $extra->{'LOD-score'} if defined($extra->{'LOD-score'});
-    $phenotype->{'variance'} = $extra->{'Variance'} if defined($extra->{'Variance'});
-    $phenotype->{'associated_gene'} = $extra->{'Candidate_Gene_Symble'} if defined($extra->{'Candidate_Gene_Symble'});
-    $phenotype->{'accession'} =  $extra->{to_accession} if defined ( $extra->{to_accession} );
+    for my $extra_key ( qw(published_symbol to_accession), @trait_attrib_keys){
+    	$phenotype->{$extra_key} =  $extra->{$extra_key} if defined ( $extra->{$extra_key} );
+    }
+    $phenotype->{'accession'}=$phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
+    
+    #$phenotype->{'study'} = $pubmed_prefix.$extra->{'PUBMED_ID'} if defined($extra->{'PUBMED_ID'});
+    #$phenotype->{'p_value'} = $extra->{'P-value'} if defined($extra->{'P-value'});
+    #$phenotype->{'f_stat'} = $extra->{'F-stat'} if defined($extra->{'F-stat'});
+    #$phenotype->{'lod_score'} = $extra->{'LOD-score'} if defined($extra->{'LOD-score'});
+    #$phenotype->{'variance'} = $extra->{'Variance'} if defined($extra->{'Variance'});
+    #$phenotype->{'associated_gene'} = $extra->{'Candidate_Gene_Symble'} if defined($extra->{'Candidate_Gene_Symble'});
+    #$phenotype->{'accession'} =  $extra->{to_accession} if defined ( $extra->{to_accession} );
     
     push @phenotypes, $phenotype;
   }
@@ -1634,82 +1647,7 @@ sub parse_omim_gene {
   return {'phenotypes' => \@phenotypes}; 
 }
  
-#sub parse_omim_gene {
-#  my $infile = shift;
-#  my $mim2gene_file = shift;
-#  my $core_db_adaptor = shift;
-#  
-#  # parse mim2gene
-#  my $mim2gene = parse_mim2gene($mim2gene_file);
-#  
-#  my $ga = $core_db_adaptor->get_GeneAdaptor;
-#  die("ERROR: Could not get gene adaptor") unless defined($ga);
-# 
-#  my @phenotypes;
-#  
-#  # set input record separator
-#  local $/ = "*RECORD*";
-#  
-#  # Open the input file for reading
-#  open(IN, ($infile =~ /(z|gz)$/i ? "zcat $infile | " : $infile)) or die ("Could not open $infile for reading");
-#  
-#  # first record is empty
-#  <IN>;
-#  
-#  # Read through the file and parse out the desired fields
-#  while (<IN>) {
-#    chomp;
-#    
-#    if(/\*FIELD\*\s+NO\n(\d+)/){
-#      my $number = $1;
-#      next unless $mim2gene->{$number} && $mim2gene->{$number}->{symbols} ne '-';
-#      
-#      if(/\*FIELD\*\sTI\n([\^\#\%\+\*]*)\d+(.*)\n/){
-#        my $label = $2; # taken from description as acc is meaning less
-#        my $type = $1;
-#        $label =~ s/\;\s[A-Z0-9]+$//; # strip gene name at end
-#        $label = $label." [".$type.$number."]";
-#        
-#        my $symbol = $mim2gene->{$number}->{symbols};
-#        my $genes = $ga->fetch_all_by_external_name($symbol, 'HGNC');
-#        
-#        # we don't want any LRG genes
-#        @$genes = grep {$_->stable_id !~ /^LRG_/} @$genes;
-#        
-#        # try to get only the one with the correct display label
-#        if(scalar @{$genes} > 0) {
-#          my @tmp = grep {$_->external_name eq $symbol} @$genes;
-#          @$genes = @tmp if scalar @tmp;
-#        }
-#        
-#        if ( scalar(@$genes) > 0) {
-#          if(scalar @$genes != 1) {
-#            print STDERR "WARNING: Found ".(scalar @$genes)." matching Ensembl genes for HGNC ID $symbol\n";
-#          }
-#          
-#          next unless scalar @$genes;
-#          
-#          foreach my $gene(@$genes) {
-#            push @phenotypes, {
-#              'id' => $gene->stable_id,
-#              'description' => $label,
-#              'external_id' => $number,
-#              'seq_region_id' => $gene->slice->get_seq_region_id,
-#              'seq_region_start' => $gene->seq_region_start,
-#              'seq_region_end' => $gene->seq_region_end,
-#              'seq_region_strand' => $gene->seq_region_strand,
-#              'type' => 'Gene',
-#            };
-#          }
-#        }
-#      }
-#    }
-#    
-#    last if scalar @phenotypes >= 20;
-#  }
-#  
-#  return {'phenotypes' => \@phenotypes};
-#}
+
 
 sub parse_mim2gene {
   my $file = shift;
