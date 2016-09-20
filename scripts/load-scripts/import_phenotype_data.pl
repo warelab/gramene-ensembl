@@ -1200,7 +1200,7 @@ sub parse_gramene_qtl {
     for my $extra_key ( qw(published_symbol to_accession), @trait_attrib_keys){
     	$phenotype->{$extra_key} =  $extra->{$extra_key} if defined ( $extra->{$extra_key} );
     }
-    $phenotype->{'accession'}=$phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
+    push @{$phenotype->{'accessions'}}, $phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
     
     #$phenotype->{'study'} = $pubmed_prefix.$extra->{'PUBMED_ID'} if defined($extra->{'PUBMED_ID'});
     #$phenotype->{'p_value'} = $extra->{'P-value'} if defined($extra->{'P-value'});
