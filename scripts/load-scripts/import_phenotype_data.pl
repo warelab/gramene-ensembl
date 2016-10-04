@@ -465,8 +465,7 @@ if($source_name eq 'Gramene_QTLdb'){
 	my $ssr_data_types        = $SOURCES{$ssr_source_name}->{data_types};
 	my $ssr_source_id = get_or_add_source($ssr_source_name,$ssr_source_description,$ssr_source_url,$ssr_source_status,$db_adaptor,$ssr_data_types);
 	print STDOUT "$source ssr source_id is $source_id\n" if ($verbose);
-	
-	our %ssr2svid_cache;
+
 	add_ssr_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
 }
 
@@ -2443,10 +2442,10 @@ sub add_phenotypes {
       		$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
       		$pf_ins_sth->bind_param(5,$a_ssr_name,SQL_VARCHAR);
       		$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(7,$ssr2svid_cache->{svid},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(8,$ssr2svid_cache->{seq_region_start},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(9,$ssr2svid_cache->{seq_region_end},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(10,$ssr2svid_cache->{seq_region_strand},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(7,$ssr2svid_cache{$a_ssr_name}->{'svid'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(8,$ssr2svid_cache{$a_ssr_name}->{'seq_region_start'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(9,$ssr2svid_cache{$a_ssr_name}->{'seq_region_end'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(10,$ssr2svid_cache{$a_ssr_name}->{'seq_region_strand'},SQL_INTEGER);
       		$pf_ins_sth->execute();
       		$phenotype_feature_count++;
     	}
