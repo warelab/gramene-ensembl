@@ -97,6 +97,16 @@ my %SOURCES = (
     description => "QTLs from the legacy Gramene QTL Database",
     url => "http://archive.gramene.org/db/qtl/",
     type => "QTL",
+    somatic_status => "mixed",
+    data_types => "phenotype_feature",
+  },
+  
+  "gramene-ssr" => { #structure variation - genetic_marker
+  	description => "gramene markers",
+  	url => "http://archive.gramene.org/markers",
+  	type => "StructuralVariation",
+  	somatic_status => "mixed",
+  	data_types   => "structural_variation, phenotype_feature",
   },
 
   "GIANT" => {
@@ -202,6 +212,7 @@ my $source_description;
 my $source_url;
 my $source_status = 'germline';
 my $object_type;
+my $data_types;
 my $prev_prog;
 
 my $pubmed_prefix = 'PMID:';
@@ -259,6 +270,9 @@ if(defined($chost) && defined($cuser) && defined($cdbname)) {
 
 # get attrib types
 our @attrib_types = @{get_attrib_types($db_adaptor)};
+
+# get attribs
+our %attribs = @{get_attribs($db_adaptor)};
 
 # get phenotypes from DB
 my $phenotype_adaptor = $db_adaptor->get_PhenotypeAdaptor;
@@ -384,6 +398,7 @@ $source_url         = $SOURCES{$source_name}->{url};
 $set                = defined($SOURCES{$source_name}->{set}) ? $SOURCES{$source_name}->{set} : undef;
 $object_type        = $SOURCES{$source_name}->{type};
 $source_status      = $SOURCES{$source_name}->{status} if (defined($SOURCES{$source_name}->{status}));
+$data_types        = $SOURCES{$source_name}->{data_types} if (defined($SOURCES{$source_name}->{data_types}));
 
 my %synonym;
 my @phenotypes;
@@ -438,8 +453,21 @@ foreach my $id(keys %$coords) {
 }
 
 # Get or add a source
-my $source_id = get_or_add_source($source_name,$source_description,$source_url,$source_status,$db_adaptor);
+my $source_id = get_or_add_source($source_name,$source_description,$source_url,$source_status,$db_adaptor,$data_types);
 print STDOUT "$source source_id is $source_id\n" if ($verbose);
+if($source_name eq 'Gramene_QTLdb'){
+	my $ssr_source_name = 'gramene-ssr';
+	my $ssr_source_description = $SOURCES{$ssr_source_name}->{description};
+    my $ssr_source_url         = $SOURCES{$ssr_source_name}->{url};
+	my $ssr_object_type        = $SOURCES{$ssr_source_name}->{type};
+	my $ssr_source_status      = $SOURCES{$ssr_source_name}->{status};
+	my $ssr_data_types        = $SOURCES{$ssr_source_name}->{data_types};
+	my $ssr_source_id = get_or_add_source($ssr_source_name,$ssr_source_description,$ssr_source_url,$ssr_source_status,$db_adaptor,$ssr_data_types);
+	print STDOUT "$source ssr source_id is $source_id\n" if ($verbose);
+	
+	our %ssr2svid_cache;
+	add_ssr_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
+}
 
 
 # Add the synonyms if required
@@ -1128,7 +1156,17 @@ sub parse_rgd_qtl {
 }
 
 
-#Chr1    QTL-gramene_Vigor       Gene    40757069        41542841        .       +       .       ID=1_AQA006;Name=AQA006;published_symbol=qNOT1-1;to_accession=TO:0000346;trait_category=Vigor;Trait_description=tiller number;trait_symbol=TINB;MappedOn=wgs_9311_Indica
+#Chr4    QTL-gramene_Yield       Gene    178080  186366  .       +       .       ID=4909_AQGH029;Name=AQGH029;published_symbol=qGW4;to_accession=TO:0000181;trait_category=Yield;Trait_description=seed weight;trait_symbol=SDWT
+#Chr4    QTL-Gramene     exon    186347  186366  40.14   -       .       ID=RM537_41190;Name=RM537;EValue=0.001545;Rank=1;Target=RM537 1 20 -;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
+#Chr4    QTL-Gramene     exon    186131  186150  40.14   +       .       ID=RM537_41192;Name=RM537;EValue=0.001545;Rank=1;Target=RM537 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
+#Chr4    QTL-Gramene     exon    178252  178271  40.14   -       .       ID=RM551_41195;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 -;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
+#Chr4    QTL-Gramene     exon    178080  178099  40.14   +       .       ID=RM551_41197;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
+# source
+# name: gramene-ssr
+# description: gramene markers
+# url: http://archive.gramene.org/markers/
+# somatic_status: mixed
+# data_types: structural_variation, phenotype_feature
 
 sub parse_gramene_qtl {
   my $infile = shift;
@@ -1137,7 +1175,8 @@ sub parse_gramene_qtl {
   # get seq_region_ids
   my $seq_region_ids = get_seq_region_ids($db_adaptor);
   
-  my @phenotypes;
+  #my @phenotypes;
+  my %phenotypes;
   
   # Open the input file for reading
   if($infile =~ /gz$/) {
@@ -1163,6 +1202,11 @@ sub parse_gramene_qtl {
       next;
     }
 
+	if($data[2] !~ /^(gene|exon)$/i) {
+      print STDERR "WARNING: Unrecognized type $data[2]\n";
+      next;
+    }
+    
     # parse "extra" GFF fields
     my $extra = {};
     
@@ -1174,46 +1218,59 @@ sub parse_gramene_qtl {
     }
     
     if ($data[4] !~ /^\d+$/) {
-      print STDERR "WARNING: Could not find a numeric seq_region_end for the QTL ".$extra->{Name}."\n";
+      print STDERR "WARNING: Could not find a numeric seq_region_end for the QTL ".$extra->{name}."\n";
       next;
     }
 
-    # create phenotype hash
-    my @trait_attrib_keys = qw(trait_category trait_description trait_symbol);
-    my $phenotype = {
-      'name' => $extra->{'trait_symbol'},
-      'id' => $extra->{'name'}, #Name=AQA006
-      'description' => join (':', map{ $extra->{$_} } grep{ defined $extra->{$_}   } @trait_attrib_keys),
-      'seq_region_id' => $seq_region_ids->{$data[0]},
-      'seq_region_start' => $data[3] || 1,
-      'seq_region_end' => $data[4],
-      'seq_region_strand' => 1
-    };
+	if( $data[2] =~ /^gene$/i){ #QTL line
+		my $ptid=$extra->{'id'};
+    	# create phenotype hash
+    	my @trait_attrib_keys = qw(trait_category trait_description trait_symbol);
+    	my $phenotype = {
+      	'name' => $extra->{'name'},#name=AQGH029
+      	'id' => $ptid, #id=4909_AQGH029
+      	'description' => join (':', map{ $extra->{$_} } grep{ defined $extra->{$_}   } @trait_attrib_keys),
+      	'seq_region_id' => $seq_region_ids->{$data[0]},
+      	'seq_region_start' => $data[3] || 1,
+      	'seq_region_end' => $data[4],
+      	'seq_region_strand' => 1
+    	};
     
-    if ($phenotype->{'seq_region_start'} > $phenotype->{'seq_region_end'}) {
-      my $tmp_end = $phenotype->{'seq_region_end'};
-      $phenotype->{'seq_region_start'} = $phenotype->{'seq_region_end'};
-      $phenotype->{'seq_region_end'}   = $tmp_end;
-    }
+    	if ($phenotype->{'seq_region_start'} > $phenotype->{'seq_region_end'}) {
+      		my $tmp_end = $phenotype->{'seq_region_end'};
+      		$phenotype->{'seq_region_start'} = $phenotype->{'seq_region_end'};
+      		$phenotype->{'seq_region_end'}   = $tmp_end;
+    	}
     
-    # add additional fields if found
-    for my $extra_key ( qw(published_symbol to_accession), @trait_attrib_keys){
-    	$phenotype->{$extra_key} =  $extra->{$extra_key} if defined ( $extra->{$extra_key} );
-    }
-    push @{$phenotype->{'accessions'}}, $phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
+    	# add additional fields if found
+    	for my $extra_key ( qw(published_symbol to_accession), @trait_attrib_keys){
+    		$phenotype->{$extra_key} =  $extra->{$extra_key} if defined ( $extra->{$extra_key} );
+    	}
+    	push @{$phenotype->{'accessions'}}, $phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
     
-    #$phenotype->{'study'} = $pubmed_prefix.$extra->{'PUBMED_ID'} if defined($extra->{'PUBMED_ID'});
-    #$phenotype->{'p_value'} = $extra->{'P-value'} if defined($extra->{'P-value'});
-    #$phenotype->{'f_stat'} = $extra->{'F-stat'} if defined($extra->{'F-stat'});
-    #$phenotype->{'lod_score'} = $extra->{'LOD-score'} if defined($extra->{'LOD-score'});
-    #$phenotype->{'variance'} = $extra->{'Variance'} if defined($extra->{'Variance'});
-    #$phenotype->{'associated_gene'} = $extra->{'Candidate_Gene_Symble'} if defined($extra->{'Candidate_Gene_Symble'});
-    #$phenotype->{'accession'} =  $extra->{to_accession} if defined ( $extra->{to_accession} );
-    
-    push @phenotypes, $phenotype;
+    	$phenotypes{$ptid} = $phenotype;
+   
+	}else{ #the ssr marker line
+		#Chr4    QTL-Gramene     exon    178080  178099  40.14   +       .       ID=RM551_41197;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
+		my $ptid=$extra->{'parent'};
+		warn "Already existed for SSR primer ". $extra->{'name'}. "$data[6]\n" && next 
+			if defined $phenotypes{$ptid}{'ssrmarkers'}{$extra->{'name'}}{$data[6]};
+
+    	$phenotypes{$ptid}{'ssrmarkers'}{$extra->{'name'}}{$data[6]} = { #$data[6] is primer strand, +/- 
+    		'id' => $extra->{'id'},
+    		'seq_region_id' => $seq_region_ids->{$data[0]},
+    		'seq_region_start' => $data[3] || 1,
+	      	'seq_region_end' => $data[4],	
+    	  	'seq_region_strand' => $data[6] eq '-' ? -1:1,
+    	  	'type'     => 'SSR',
+    	  	'evalue'   => $extra->{'evalue'},
+    	};
+
+	}
+
   }
   
-  my %result = ('phenotypes' => \@phenotypes);
+  my %result = ('phenotypes' => values %phenotypes);
   return \%result;
 }
 
@@ -1306,7 +1363,6 @@ sub parse_rgd_gene {
   my %result = ('phenotypes' => \@phenotypes);
   return \%result;
 }
-
 
 sub parse_giant {
   my $infile = shift;
@@ -1610,7 +1666,6 @@ sub parse_cancer_gene_census {
   return {'phenotypes' => \@phenotypes};
 }
 
-
 sub parse_omim_gene {
   my $infile = shift;
   open(IN, ($infile =~ /(z|gz)$/i ? "zcat $infile | " : $infile)) or die ("Could not open $infile for reading");
@@ -1648,8 +1703,6 @@ sub parse_omim_gene {
   return {'phenotypes' => \@phenotypes}; 
 }
  
-
-
 sub parse_mim2gene {
   my $file = shift;
   
@@ -1852,6 +1905,29 @@ sub parse_zfin {
 }
 
 
+sub get_attribs {
+  my $db_adaptor = shift;
+  
+  my $sth = $db_adaptor->dbc->prepare(qq{
+    SELECT value, attrib_id, attrib_type_id
+    FROM attrib
+  });
+  $sth->execute();
+  
+  my ($attrib_value, $attrib_id, $attrib_type_id);
+  $sth->bind_columns(1, \$attrib_value);
+  $sth->bind_columns(2, \$attrib_id);
+  $sth->bind_columns(3, \$attrib_type_id);
+  
+  my %attribs;
+  while ($sth->fetch()) {
+    push @{$attribs{lc $attrib_value}}, [$attrib_id,$attrib_type_id]; 
+  }
+  $sth->finish;
+  
+  return \%attribs;
+}
+
 sub get_attrib_types {
   my $db_adaptor = shift;
   
@@ -2007,6 +2083,7 @@ sub get_or_add_source {
   my $source_url    = shift;
   my $source_status = shift;
   my $db_adaptor    = shift;
+  my $data_types = shift;
   
   my $stmt = qq{
     SELECT
@@ -2237,10 +2314,9 @@ sub add_phenotypes {
 
     # If the rs could not be mapped to a variation id, skip it
     next if $object_type =~ /Variation/ && (!defined($variation_ids->{$phenotype->{"id"}}[0]));
-warn ("phenotype object id is ", $phenotype->{"id"}, "\n");
+	warn ("phenotype object id is ", $phenotype->{"id"}, "\n");
     # if we have no coords, skip it
-    my $study_id;
-    
+    my $study_id;    
     if(defined($phenotype->{study}) || defined($phenotype->{study_description}) || defined($phenotype->{study_type})) {
       
       my $sql_study = '= ?';
@@ -2323,7 +2399,7 @@ warn ("phenotype object id is ", $phenotype->{"id"}, "\n");
     $pf_check_sth->execute();
     $pf_check_sth->bind_columns(\$pf_id);
     $pf_check_sth->fetch();
-    next if (defined($pf_id));
+    next if (defined($pf_id)); #assume ssr feature always go together with pt feature
     
     $phenotype->{"p_value"} = convert_p_value($phenotype->{"p_value"}) if (defined($phenotype->{"p_value"}));
     
@@ -2357,12 +2433,216 @@ warn ("phenotype object id is ", $phenotype->{"id"}, "\n");
         $sth->execute();
       }
     }
+    
+    if( keys %{$phenotype->{'ssrmarkers'}} > 0){ # For QTl ssr markers
+    	foreach my $a_ssr_name( keys %{$phenotype->{'ssrmarkers'}} ){
+    		$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
+      		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
+      		$pf_ins_sth->bind_param(3,$study_id,SQL_INTEGER);
+      		$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
+      		$pf_ins_sth->bind_param(5,$a_ssr_name,SQL_VARCHAR);
+      		$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
+      		$pf_ins_sth->bind_param(7,$ssr2svid_cache->{svid},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(8,$ssr2svid_cache->{seq_region_start},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(9,$ssr2svid_cache->{seq_region_end},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(10,$ssr2svid_cache->{seq_region_strand},SQL_INTEGER);
+      		$pf_ins_sth->execute();
+      		$phenotype_feature_count++;
+    	}
+    }
   }
   end_progress();
   print STDOUT "$study_count new studies added\n" if ($verbose);
   print STDOUT "$phenotype_feature_count new phenotype_features added\n" if ($verbose);
 }
 
+sub add_ssr_markers{
+	
+	my $phenotypes = shift;
+    my $source_id = shift;
+    my $object_type = shift;
+    my $db_adaptor = shift;
+ 
+  my $attrib_id = shift map{$_->[0]} @{$attribs{'genetic_marker'}};
+
+  # Prepared statements
+  my $sv_ins_stmt = qq{
+    INSERT INTO structural_variation (
+      variation_name,
+      source_id,
+      class_attrib_id,
+    )
+    VALUES (
+      ?,
+      $source_id,
+      $attrib_id,
+    )
+  };
+  
+  my $sv_check_stmt = qq{
+    SELECT
+      structural_variation_id
+    FROM
+      structural_variation 
+    WHERE
+      variation_name = ?
+    LIMIT 1
+  };
+  
+  my $svf_ins_stmt = qq{
+    INSERT INTO structural_variation_feature (
+    	seq_region_id,
+    	outer_start,
+    	seq_region_start,
+    	inner_start,
+    	inner_end,
+    	seq_region_end,
+    	outer_end,
+    	seq_region_strand,
+    	structural_variation_id,
+    	variation_name,
+    	source_id,
+    	class_attrib_id,
+    )
+    VALUES (
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      ?,
+      $source_id,
+      $attrib_id
+    )
+  };
+  
+ my $svf_check_stmt = qq{
+    select structural_variation_feature_id from structural_variation_feature where 
+    	seq_region_id = ? ,
+    	outer_start = ?,
+    	seq_region_start =? ,
+    	inner_start =? ,
+    	inner_end =? ,
+    	seq_region_end =?,
+    	outer_end =?,
+    	seq_region_strand=?,
+    	structural_variation_id=?,
+    	variation_name=?,
+    	source_id=$source_id,
+    	class_attrib_id=$attrib_id
+  	};	
+  
+  my $sv_ins_sth   = $db_adaptor->dbc->prepare($sv_ins_stmt);
+  my $sv_check_sth   = $db_adaptor->dbc->prepare($sv_check_stmt);
+  my $svf_ins_sth   = $db_adaptor->dbc->prepare($svf_ins_stmt);
+
+  # First, extract all the ssr markers from phenotype hashrf
+  my %ssrmarkers_hash; 
+  map{ $ssrmarkers_hash{$_} = 1 } map{  keys %{$_->{'ssrmarkers'}} } @{$phenotypes};
+  
+  foreach my $a_qt( @{$phenotypes} ) {
+  	foreach (keys %{$a_qt->{'ssrmarkers'}}){
+  		$ssrmarkers_hash{$_} = calculate_ssr_pair($a_qt->{'ssrmarkers'}{$_}) unless defined $ssrmarkers_hash{$_};
+  	}
+  }
+  
+  my $ssr_feature_count = 0;
+  
+  my $total = scalar keys %ssrmarkers_hash;
+  my $i = 0;
+  
+  foreach my $ssr_name( keys %ssrmarkers_hash  ) {
+    progress($i++, $total);
+    my $ssr_mapping = $ssrmarkers_hash{$ssr_name};
+       
+    # get SV ID
+    my $sv_id;
+    $sv_check_sth->bind_param(1, $ssr_name,SQL_VARCHAR );
+    $sv_check_sth->execute();
+    $sv_check_sth->bind_param(\$sv_id);
+    $sv_check_sth->fetch; 
+	unless( $sv_id ){
+		$sv_ins_sth->bind_param(1,$ssr_name,SQL_VARCHAR);
+		$sv_ins_sth->execute();
+		$sv_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
+	}
+	$ssr2svid_cache{$ssr_name}{'svid'} = $sv_id;		
+	
+	# get SVF ID
+    my $svf_id;
+    $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
+    $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
+    $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
+    $svf_check_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
+    $svf_check_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
+    $svf_check_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
+    $svf_check_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
+    $svf_check_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
+    $svf_check_sth->bind_param(9, $sv_id,SQL_INTEGER);
+    $svf_check_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
+    $svf_check_sth->execute();
+    $svf_check_sth->bind_param(\$svf_id);
+    $svf_check_sth->fetch; 
+	unless( $svf_id ){
+		$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
+    	$svf_ins_sth->bind_param(9, $sv_id,SQL_INTEGER);
+    	$svf_ins_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
+		$svf_ins_sth->execute();
+		$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
+	}
+	
+	for my $k qw( seq_region_id seq_region_start seq_region_end seq_region_strand){
+		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
+	}
+	$ssr_feature_count new++;
+  }
+  end_progress();
+  print STDOUT "$ssr_feature_count new ssr_features added\n" if ($verbose);	
+}
+
+sub calculate_ssr_pair{
+	my $a_ssr_hash = shift;
+
+	my @positions;
+	my $seq_region_id = {shift values %{$a_ssr_hash}}->{seq_region_id};
+	warn "No seq_region_id found for this ssr pairs\n" && return undef unless $seq_region_id;
+	
+	foreach my $ori(keys %{$a_ssr_hash}){
+		warn "different seq_region_id found for this ssr pairs, expecting $seq_region_id, got ". 
+			$a_ssr_hash->{$ori}{seq_region_id}."\n" && return undef
+			if($seq_region_id != $a_ssr_hash->{$ori}{seq_region_id});
+		push @positions, $a_ssr_hash->{$ori}{seq_region_start};
+		push @positions, $a_ssr_hash->{$ori}{seq_region_end};
+	}
+		
+	warn"missing positions in the pairs, need at least 4 positions" && return undef 
+		if (scalar @positions < 4);
+		
+	my @sorted_pos = sort {$a <=> $b} @positions;
+	my $result;
+	
+	$result->{seq_region_id} = $seq_region_id;
+	$result->{seq_region_start} = $sorted_pos[0];
+    $result->{seq_region_end} = $sorted_pos[-1];
+    $result->{outer_start} = $sorted_pos[0];
+    $result->{inner_start} = $sorted_pos[1];
+    $result->{inner_end} = $sorted_pos[-2];
+    $result->{outer_end} = $sorted_pos[-1];
+    
+    return $result;	
+}
+    	
 sub get_phenotype_id {
   my $phenotype = shift;
   my $db_adaptor = shift;
