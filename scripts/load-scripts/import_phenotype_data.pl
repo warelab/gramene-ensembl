@@ -2474,7 +2474,7 @@ sub add_ssr_markers{
     VALUES (
       ?,
       $source_id,
-      $attrib_id,
+      $attrib_id
     )
   };
   
