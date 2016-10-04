@@ -2466,8 +2466,10 @@ sub add_ssr_markers{
   my $attrib_id = shift @{$attribs->{'genetic_marker'}};
 warn ("ssr genetic_marker attrib id is $attrib_id\n"); 
   # Prepared statements
+  
+  warn ("before SV insertion, source_id=$source_id, attrib_id=$attrib_id\n");
   my $sv_ins_stmt = qq{
-    INSERT INTO structural_variation (
+    INSERT IGNORE INTO structural_variation (
       variation_name,
       source_id,
       class_attrib_id
@@ -2490,7 +2492,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
   };
   
   my $svf_ins_stmt = qq{
-    INSERT INTO structural_variation_feature (
+    INSERT IGNORE INTO structural_variation_feature (
     	seq_region_id,
     	outer_start,
     	seq_region_start,
