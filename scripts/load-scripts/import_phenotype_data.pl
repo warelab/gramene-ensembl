@@ -2624,15 +2624,15 @@ sub calculate_ssr_pair{
 	my $a_ssr_hash = shift;
 
 	my @positions;
-	my $seq_region_id = {shift values %{$a_ssr_hash}}->{seq_region_id};
+	my $seq_region_id = {shift values %{$a_ssr_hash}}->{'seq_region_id'};
 	warn "No seq_region_id found for this ssr pairs\n" && return undef unless $seq_region_id;
 	
 	foreach my $ori(keys %{$a_ssr_hash}){
 		warn "different seq_region_id found for this ssr pairs, expecting $seq_region_id, got ". 
-			$a_ssr_hash->{$ori}{seq_region_id}."\n" && return undef
-			if($seq_region_id != $a_ssr_hash->{$ori}{seq_region_id});
-		push @positions, $a_ssr_hash->{$ori}{seq_region_start};
-		push @positions, $a_ssr_hash->{$ori}{seq_region_end};
+			$a_ssr_hash->{$ori}{'seq_region_id'}."\n" && return undef
+			if($seq_region_id != $a_ssr_hash->{$ori}{'seq_region_id'});
+		push @positions, $a_ssr_hash->{$ori}{'seq_region_start'};
+		push @positions, $a_ssr_hash->{$ori}{'seq_region_end'};
 	}
 		
 	warn"missing positions in the pairs, need at least 4 positions" && return undef 
