@@ -2606,7 +2606,7 @@ sub add_ssr_markers{
 	for my $k qw( seq_region_id seq_region_start seq_region_end seq_region_strand){
 		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
 	}
-	$ssr_feature_count new++;
+	$ssr_feature_count++;
   }
   end_progress();
   print STDOUT "$ssr_feature_count new ssr_features added\n" if ($verbose);	
