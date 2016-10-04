@@ -1270,7 +1270,7 @@ sub parse_gramene_qtl {
 
   }
   
-  my %result = ('phenotypes' => values %phenotypes);
+  my %result = ('phenotypes' => [values %phenotypes]);
   return \%result;
 }
 
