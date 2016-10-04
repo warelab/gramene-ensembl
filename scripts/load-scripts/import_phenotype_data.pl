@@ -2526,14 +2526,14 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     select structural_variation_feature_id from structural_variation_feature where 
     	seq_region_id = ? ,
     	outer_start = ?,
-    	seq_region_start =? ,
-    	inner_start =? ,
-    	inner_end =? ,
-    	seq_region_end =?,
-    	outer_end =?,
-    	seq_region_strand=?,
-    	structural_variation_id=?,
-    	variation_name=?,
+    	seq_region_start = ? ,
+    	inner_start = ? ,
+    	inner_end = ? ,
+    	seq_region_end = ?,
+    	outer_end = ?,
+    	seq_region_strand= ?,
+    	structural_variation_id= ?,
+    	variation_name = ?,
     	source_id=$source_id,
     	class_attrib_id=$attrib_id
   	};	
@@ -2577,7 +2577,12 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
 	
 	# get SVF ID
     my $svf_id;
-    warn("seq_region_id is ". $ssr_mapping->{'seq_region_id'}."\n");
+    
+    #verify data
+    for my $k(keys %{$ssr_mapping}){
+    	warn("$k =>", $ssr_mapping->{$k}, "\n");
+    }
+
     $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
     $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
     $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
