@@ -2603,7 +2603,7 @@ sub add_ssr_markers{
 		$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	}
 	
-	for my $k qw( seq_region_id seq_region_start seq_region_end seq_region_strand){
+	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
 		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
 	}
 	$ssr_feature_count++;
