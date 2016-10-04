@@ -2621,7 +2621,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
   
   $sv_check_sth->finish;
   $sv_ins_sth->finish;
-  $svf_check_sth->finish;
+  #$svf_check_sth->finish;
   $svf_ins_sth->finish;
 }
 
