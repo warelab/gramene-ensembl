@@ -2624,7 +2624,9 @@ sub calculate_ssr_pair{
 	my $a_ssr_hash = shift;
 
 	my @positions;
-	my $seq_region_id = {shift values %{$a_ssr_hash}}->{'seq_region_id'};
+	my @ssr_primers = values %{$a_ssr_hash};
+	
+	my $seq_region_id = $ssr_primers[0]->{'seq_region_id'};
 	warn "No seq_region_id found for this ssr pairs\n" && return undef unless $seq_region_id;
 	
 	foreach my $ori(keys %{$a_ssr_hash}){
