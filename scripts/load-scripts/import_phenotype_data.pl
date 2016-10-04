@@ -2541,7 +2541,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
   my $sv_ins_sth   = $db_adaptor->dbc->prepare($sv_ins_stmt);
   my $sv_check_sth   = $db_adaptor->dbc->prepare($sv_check_stmt);
   my $svf_ins_sth   = $db_adaptor->dbc->prepare($svf_ins_stmt);
-  my $svf_check_sth   = $db_adaptor->dbc->prepare($svf_check_stmt);
+  #my $svf_check_sth   = $db_adaptor->dbc->prepare($svf_check_stmt);
 
   # First, extract all the ssr markers from phenotype hashrf
   my %ssrmarkers_hash; 
@@ -2583,20 +2583,20 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     	warn("$k =>", $ssr_mapping->{$k}, "\n");
     }
 
-    $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
-    $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
-    $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
-    $svf_check_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
-    $svf_check_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
-    $svf_check_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
-    $svf_check_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
-    $svf_check_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
-    $svf_check_sth->bind_param(9, $sv_id,SQL_INTEGER);
-    $svf_check_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
-    $svf_check_sth->execute();
-    $svf_check_sth->bind_columns(\$svf_id);
-    $svf_check_sth->fetch; 
-	unless( $svf_id ){
+   # $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
+   # $svf_check_sth->bind_param(9, $sv_id,SQL_INTEGER);
+   # $svf_check_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
+   # $svf_check_sth->execute();
+   # $svf_check_sth->bind_columns(\$svf_id);
+   # $svf_check_sth->fetch; 
+	#unless( $svf_id ){
 		$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
     	$svf_ins_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
     	$svf_ins_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
@@ -2609,7 +2609,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     	$svf_ins_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
 		$svf_ins_sth->execute();
 		$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
-	}
+	#}
 	
 	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
 		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
