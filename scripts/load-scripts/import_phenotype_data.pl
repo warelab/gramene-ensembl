@@ -1921,7 +1921,7 @@ sub get_attribs {
   while ($sth->fetch()) {
     $attribs{lc $attrib_value} = [$attrib_id,$attrib_type_id];
     warn("attrib_value=$attrib_value, id=$attrib_id, type_id=$attrib_type_id\n");
-    last; 
+    #last; 
   }
   $sth->finish;
   
