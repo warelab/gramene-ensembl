@@ -2577,6 +2577,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
 	
 	# get SVF ID
     my $svf_id;
+    warn("seq_region_id is ". $ssr_mapping->{'seq_region_id'}."\n");
     $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
     $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
     $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
@@ -2612,6 +2613,11 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
   }
   end_progress();
   print STDOUT "$ssr_feature_count new ssr_features added\n" if ($verbose);	
+  
+  $sv_check_sth->finish;
+  $sv_ins_sth->finish;
+  $svf_check_sth->finish;
+  $svf_ins_sth->finish;
 }
 
 sub calculate_ssr_pair{
