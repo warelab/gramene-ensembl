@@ -1915,9 +1915,9 @@ sub get_attribs {
   $sth->execute();
   
   my ($attrib_value, $attrib_id, $attrib_type_id);
-  $sth->bind_columns(1, \$attrib_value);
-  $sth->bind_columns(2, \$attrib_id);
-  $sth->bind_columns(3, \$attrib_type_id);
+  $sth->bind_columns(1, \$attrib_value, SQL_VARCHAR);
+  $sth->bind_columns(2, \$attrib_id, SQL_INTEGER);
+  $sth->bind_columns(3, \$attrib_type_id, SQL_INTEGER);
   
   my %attribs;
   while ($sth->fetch()) {
