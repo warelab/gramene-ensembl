@@ -272,7 +272,7 @@ if(defined($chost) && defined($cuser) && defined($cdbname)) {
 our @attrib_types = @{get_attrib_types($db_adaptor)};
 
 # get attribs
-our %attribs = @{get_attribs($db_adaptor)};
+our $attribs = get_attribs($db_adaptor);
 
 # get phenotypes from DB
 my $phenotype_adaptor = $db_adaptor->get_PhenotypeAdaptor;
@@ -1915,13 +1915,14 @@ sub get_attribs {
   $sth->execute();
   
   my ($attrib_value, $attrib_id, $attrib_type_id);
-  $sth->bind_columns(1, \$attrib_value, SQL_VARCHAR);
-  $sth->bind_columns(2, \$attrib_id, SQL_INTEGER);
-  $sth->bind_columns(3, \$attrib_type_id, SQL_INTEGER);
+  $sth->bind_columns(1, \$attrib_value);
+  $sth->bind_columns(2, \$attrib_id);
+  $sth->bind_columns(3, \$attrib_type_id);
   
   my %attribs;
   while ($sth->fetch()) {
-    push @{$attribs{lc $attrib_value}}, [$attrib_id,$attrib_type_id]; 
+    $attribs{lc $attrib_value} = [$attrib_id,$attrib_type_id];
+    last; 
   }
   $sth->finish;
   
@@ -2463,7 +2464,7 @@ sub add_ssr_markers{
     my $object_type = shift;
     my $db_adaptor = shift;
  
-  my $attrib_id = shift map{$_->[0]} @{$attribs{'genetic_marker'}};
+  my $attrib_id = shift @{$attribs->{'genetic_marker'}};
 
   # Prepared statements
   my $sv_ins_stmt = qq{
