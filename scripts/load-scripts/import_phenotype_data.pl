@@ -2502,7 +2502,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     	structural_variation_id,
     	variation_name,
     	source_id,
-    	class_attrib_id,
+    	class_attrib_id
     )
     VALUES (
       ?,
