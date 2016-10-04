@@ -2539,6 +2539,7 @@ sub add_ssr_markers{
   my $sv_ins_sth   = $db_adaptor->dbc->prepare($sv_ins_stmt);
   my $sv_check_sth   = $db_adaptor->dbc->prepare($sv_check_stmt);
   my $svf_ins_sth   = $db_adaptor->dbc->prepare($svf_ins_stmt);
+  my $svf_check_sth   = $db_adaptor->dbc->prepare($svf_check_stmt);
 
   # First, extract all the ssr markers from phenotype hashrf
   my %ssrmarkers_hash; 
