@@ -464,7 +464,7 @@ if($source_name eq 'Gramene_QTLdb'){
 	my $ssr_source_status      = $SOURCES{$ssr_source_name}->{status};
 	my $ssr_data_types        = $SOURCES{$ssr_source_name}->{data_types};
 	my $ssr_source_id = get_or_add_source($ssr_source_name,$ssr_source_description,$ssr_source_url,$ssr_source_status,$db_adaptor,$ssr_data_types);
-	print STDOUT "$source ssr source_id is $source_id\n" if ($verbose);
+	print STDOUT "$source ssr source_id is $ssr_source_id\n" if ($verbose);
 
 	add_ssr_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
 }
