@@ -277,6 +277,7 @@ our %attribs = @{get_attribs($db_adaptor)};
 # get phenotypes from DB
 my $phenotype_adaptor = $db_adaptor->get_PhenotypeAdaptor;
 our %phenotype_cache = map {$_->description() => $_->dbID()} @{$phenotype_adaptor->fetch_all};
+our %ssr2svid_cache;
 
 my $initial_phenotype_count = $phenotype_adaptor->generic_count;
 
