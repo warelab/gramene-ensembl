@@ -2545,7 +2545,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
 
   # First, extract all the ssr markers from phenotype hashrf
   my %ssrmarkers_hash; 
-  map{ $ssrmarkers_hash{$_} = 1 } map{  keys %{$_->{'ssrmarkers'}} } @{$phenotypes};
+  #map{ $ssrmarkers_hash{$_} = {} } map{  keys %{$_->{'ssrmarkers'}} } @{$phenotypes};
   
   foreach my $a_qt( @{$phenotypes} ) {
   	foreach (keys %{$a_qt->{'ssrmarkers'}}){
