@@ -1920,6 +1920,7 @@ sub get_attribs {
   my %attribs;
   while ($sth->fetch()) {
     $attribs{lc $attrib_value} = [$attrib_id,$attrib_type_id];
+    warn("attrib_value=$attrib_value, id=$attrib_id, type_id=$attrib_type_id\n");
     last; 
   }
   $sth->finish;
@@ -2463,13 +2464,13 @@ sub add_ssr_markers{
     my $db_adaptor = shift;
  
   my $attrib_id = shift @{$attribs->{'genetic_marker'}};
-
+warn ("ssr genetic_marker attrib id is $attrib_id\n"); 
   # Prepared statements
   my $sv_ins_stmt = qq{
     INSERT INTO structural_variation (
       variation_name,
       source_id,
-      class_attrib_id,
+      class_attrib_id
     )
     VALUES (
       ?,
