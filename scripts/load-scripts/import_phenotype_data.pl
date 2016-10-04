@@ -2561,9 +2561,9 @@ sub add_ssr_markers{
        
     # get SV ID
     my $sv_id;
-    $sv_check_sth->bind_param(1, $ssr_name,SQL_VARCHAR );
+    $sv_check_sth->bind_param(1, $ssr_name, SQL_VARCHAR );
     $sv_check_sth->execute();
-    $sv_check_sth->bind_param(\$sv_id);
+    $sv_check_sth->bind_columns(\$sv_id);
     $sv_check_sth->fetch; 
 	unless( $sv_id ){
 		$sv_ins_sth->bind_param(1,$ssr_name,SQL_VARCHAR);
@@ -2585,7 +2585,7 @@ sub add_ssr_markers{
     $svf_check_sth->bind_param(9, $sv_id,SQL_INTEGER);
     $svf_check_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
     $svf_check_sth->execute();
-    $svf_check_sth->bind_param(\$svf_id);
+    $svf_check_sth->bind_columns(\$svf_id);
     $svf_check_sth->fetch; 
 	unless( $svf_id ){
 		$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
