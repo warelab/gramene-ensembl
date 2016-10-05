@@ -2582,36 +2582,22 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     for my $k(keys %{$ssr_mapping}){
     	warn("$k =>", $ssr_mapping->{$k}, "\n");
     }
-
-   # $svf_check_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
-   # $svf_check_sth->bind_param(9, $sv_id,SQL_INTEGER);
-   # $svf_check_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
-   # $svf_check_sth->execute();
-   # $svf_check_sth->bind_columns(\$svf_id);
-   # $svf_check_sth->fetch; 
-	#unless( $svf_id ){
-		$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
-    	$svf_ins_sth->bind_param(9, $sv_id,SQL_INTEGER);
-    	$svf_ins_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
-		$svf_ins_sth->execute();
-		$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
-	#}
+	warn("Now bind for ssr insert to structure_variation\n");  
+	$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(9, $sv_id,SQL_INTEGER);
+    $svf_ins_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
+	$svf_ins_sth->execute();
+	$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	
 	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
+		warn ("$k => ". $ssr_mapping->{$k} ."\n");
 		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
 	}
 	$ssr_feature_count++;
