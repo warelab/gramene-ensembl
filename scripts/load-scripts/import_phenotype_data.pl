@@ -2442,7 +2442,7 @@ sub add_phenotypes {
       		$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
       		$pf_ins_sth->bind_param(5,$a_ssr_name,SQL_VARCHAR);
       		$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(7,$ssr2svid_cache{$a_ssr_name}->{'svid'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(7,$ssr2svid_cache{$a_ssr_name}->{'seq_region_id'},SQL_INTEGER);
       		$pf_ins_sth->bind_param(8,$ssr2svid_cache{$a_ssr_name}->{'seq_region_start'},SQL_INTEGER);
       		$pf_ins_sth->bind_param(9,$ssr2svid_cache{$a_ssr_name}->{'seq_region_end'},SQL_INTEGER);
       		$pf_ins_sth->bind_param(10,$ssr2svid_cache{$a_ssr_name}->{'seq_region_strand'},SQL_INTEGER);
