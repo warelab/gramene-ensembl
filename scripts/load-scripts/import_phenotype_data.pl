@@ -2683,8 +2683,8 @@ sub calculate_rflp{
 	$result->{'seq_region_start'} = $a_rflp_hash->{'seq_region_start'};
     $result->{'seq_region_end'} = $a_rflp_hash->{'seq_region_end'};
     $result->{'outer_start'} = $a_rflp_hash->{'seq_region_start'};
-    $result->{'inner_start'} = 'NULL';
-    $result->{'inner_end'} = 'NULL';
+    $result->{'inner_start'} = undef;
+    $result->{'inner_end'} = undef;
     $result->{'outer_end'} = $a_rflp_hash->{'seq_region_end'};
     $result->{'seq_region_strand'} = $a_rflp_hash->{'seq_region_strand'}; 
     
