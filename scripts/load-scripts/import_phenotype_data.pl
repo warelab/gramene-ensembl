@@ -2648,13 +2648,14 @@ sub calculate_ssr_pair{
 	my @sorted_pos = sort {$a <=> $b} @positions;
 	my $result;
 	
-	$result->{seq_region_id} = $seq_region_id;
-	$result->{seq_region_start} = $sorted_pos[0];
-    $result->{seq_region_end} = $sorted_pos[-1];
-    $result->{outer_start} = $sorted_pos[0];
-    $result->{inner_start} = $sorted_pos[1];
-    $result->{inner_end} = $sorted_pos[-2];
-    $result->{outer_end} = $sorted_pos[-1];
+	$result->{'seq_region_id'} = $seq_region_id;
+	$result->{'seq_region_start'} = $sorted_pos[0];
+    $result->{'seq_region_end'} = $sorted_pos[-1];
+    $result->{'outer_start'} = $sorted_pos[0];
+    $result->{'inner_start'} = $sorted_pos[1];
+    $result->{'inner_end'} = $sorted_pos[-2];
+    $result->{'outer_end'} = $sorted_pos[-1];
+    $result->{'seq_region_strand'} = 1; 
     
     return $result;	
 }
