@@ -277,7 +277,7 @@ our $attribs = get_attribs($db_adaptor);
 # get phenotypes from DB
 my $phenotype_adaptor = $db_adaptor->get_PhenotypeAdaptor;
 our %phenotype_cache = map {$_->description() => $_->dbID()} @{$phenotype_adaptor->fetch_all};
-our %ssr2svid_cache;
+our %qtlmrk2svid_cache;
 
 my $initial_phenotype_count = $phenotype_adaptor->generic_count;
 
@@ -466,7 +466,7 @@ if($source_name eq 'Gramene_QTLdb'){
 	my $ssr_source_id = get_or_add_source($ssr_source_name,$ssr_source_description,$ssr_source_url,$ssr_source_status,$db_adaptor,$ssr_data_types);
 	print STDOUT "$source ssr source_id is $ssr_source_id\n" if ($verbose);
 
-	add_ssr_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
+	add_qtl_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
 }
 
 
@@ -1250,7 +1250,7 @@ sub parse_gramene_qtl {
     
     	$phenotypes{$ptid} = $phenotype;
    
-	}else{ #the ssr marker line
+	}elsif($extra->{'marker_type'} eq 'SSR'){ #the ssr marker line
 		#Chr4    QTL-Gramene     exon    178080  178099  40.14   +       .       ID=RM551_41197;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
 		my $ptid=$extra->{'parent'};
 		warn "Already existed for SSR primer ". $extra->{'name'}. "$data[6]\n" && next 
@@ -1266,6 +1266,27 @@ sub parse_gramene_qtl {
     	  	'evalue'   => $extra->{'evalue'},
     	};
 
+	}elsif($extra->{'marker_type'} eq 'RFLP'){
+		#Chr11   QTL-gramene_Biotic_stress       Gene    18645136        23621421        .       +       .       ID=1773_AQEN016;Name=AQEN016;to_accession=TO:0000074;trait_category=Biotic stress;Trait_description=blast disease resistance
+		#Chr11   QTL-Gramene     exon    23620855        23621421        1114.58 +       .       ID=RG1109_1409;Name=RG1109;EValue=0;Rank=1;Target=RG1109 1 568 +;Gaps=M191 I1 M375;Origin=Oryza sativa;Marker_type=RFLP;Parent=1773_AQEN016;MappedOn=wgs_IRGSP-Build4_Japonica
+		#Chr11   QTL-Gramene     exon    18645136        18645701        1098.72 -       .       ID=RG16_18864;Name=RG16;EValue=0;Rank=1;Target=RG16 1 566 -;Gaps=M565;Origin=Oryza sativa;Marker_type=RFLP;Parent=1773_AQEN016;MappedOn=wgs_IRGSP-Build4_Japonica
+		#Chr11   QTL-Gramene     exon    20803200        20803709        1003.57 -       .       ID=RG103_32257;Name=RG103;EValue=1.4E-291;Rank=1;Target=RG103 1 510 -;Gaps=M509;Origin=Oryza sativa Indica Group;Marker_type=RFLP;Parent=1773_AQEN0
+		my $ptid=$extra->{'parent'};
+		warn "Already existed for RFLP marker ". $extra->{'name'}. "\n" && next 
+			if defined $phenotypes{$ptid}{'RFLP'}{$extra->{'name'}};
+
+    	$phenotypes{$ptid}{'RFLP'}{$extra->{'name'}} = { 
+    		'id' => $extra->{'id'},
+    		'seq_region_id' => $seq_region_ids->{$data[0]},
+    		'seq_region_start' => $data[3] || 1,
+	      	'seq_region_end' => $data[4],	
+    	  	'seq_region_strand' => $data[6] eq '-' ? -1:1,
+    	  	'type'     => 'RFLP',
+    	  	'evalue'   => $extra->{'evalue'},
+    	};
+		
+	}else{
+		warn("Unrecognized marker_type (skip) ",$extra->{'marker_type'},"\n");
 	}
 
   }
@@ -2435,17 +2456,17 @@ sub add_phenotypes {
     }
     
     if( keys %{$phenotype->{'ssrmarkers'}} > 0){ # For QTl ssr markers
-    	foreach my $a_ssr_name( keys %{$phenotype->{'ssrmarkers'}} ){
+    	foreach my $a_qtlmrk_name( keys %{$phenotype->{'ssrmarkers'}} ){
     		$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
       		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
       		$pf_ins_sth->bind_param(3,$study_id,SQL_INTEGER);
       		$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
-      		$pf_ins_sth->bind_param(5,$a_ssr_name,SQL_VARCHAR);
+      		$pf_ins_sth->bind_param(5,$a_qtlmrk_name,SQL_VARCHAR);
       		$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(7,$ssr2svid_cache{$a_ssr_name}->{'seq_region_id'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(8,$ssr2svid_cache{$a_ssr_name}->{'seq_region_start'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(9,$ssr2svid_cache{$a_ssr_name}->{'seq_region_end'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(10,$ssr2svid_cache{$a_ssr_name}->{'seq_region_strand'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(7,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_id'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(8,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_start'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(9,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_end'},SQL_INTEGER);
+      		$pf_ins_sth->bind_param(10,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_strand'},SQL_INTEGER);
       		$pf_ins_sth->execute();
       		$phenotype_feature_count++;
     	}
@@ -2456,7 +2477,7 @@ sub add_phenotypes {
   print STDOUT "$phenotype_feature_count new phenotype_features added\n" if ($verbose);
 }
 
-sub add_ssr_markers{
+sub add_qtl_markers{
 	
 	my $phenotypes = shift;
     my $source_id = shift;
@@ -2544,64 +2565,71 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
   #my $svf_check_sth   = $db_adaptor->dbc->prepare($svf_check_stmt);
 
   # First, extract all the ssr markers from phenotype hashrf
-  my %ssrmarkers_hash; 
+  my %qtlmarkers_hash; 
+  
   #map{ $ssrmarkers_hash{$_} = {} } map{  keys %{$_->{'ssrmarkers'}} } @{$phenotypes};
   
   foreach my $a_qt( @{$phenotypes} ) {
   	foreach (keys %{$a_qt->{'ssrmarkers'}}){
-  		$ssrmarkers_hash{$_} = calculate_ssr_pair($a_qt->{'ssrmarkers'}{$_}) unless defined $ssrmarkers_hash{$_};
+  		$qtlmarkers_hash{$_} = calculate_ssr_pair($a_qt->{'ssrmarkers'}{$_}) unless defined $qtlmarkers_hash{$_};
+  	}
+  	foreach (keys %{$a_qt->{'RFLP'}}){
+  		$qtlmarkers_hash{$_} = calculate_rflp($a_qt->{'RFLP'}{$_}) unless defined $qtlmarkers_hash{$_};
   	}
   }
   
+  
   my $ssr_feature_count = 0;
   
-  my $total = scalar keys %ssrmarkers_hash;
+  my $total = scalar keys %qtlmarkers_hash;
   my $i = 0;
   
-  foreach my $ssr_name( keys %ssrmarkers_hash  ) {
+  
+  foreach my $qtlmrk_name( keys %qtlmarkers_hash  ) {
     progress($i++, $total);
-    my $ssr_mapping = $ssrmarkers_hash{$ssr_name};
+    my $qtlmrk_mapping = $qtlmarkers_hash{$qtlmrk_name};
        
     # get SV ID
     my $sv_id;
-    $sv_check_sth->bind_param(1, $ssr_name, SQL_VARCHAR );
+    $sv_check_sth->bind_param(1, $qtlmrk_name, SQL_VARCHAR );
     $sv_check_sth->execute();
     $sv_check_sth->bind_columns(\$sv_id);
     $sv_check_sth->fetch; 
 	unless( $sv_id ){
-		$sv_ins_sth->bind_param(1,$ssr_name,SQL_VARCHAR);
+		$sv_ins_sth->bind_param(1,$qtlmrk_name,SQL_VARCHAR);
 		$sv_ins_sth->execute();
 		$sv_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	}
-	$ssr2svid_cache{$ssr_name}{'svid'} = $sv_id;		
+	$qtlmrk2svid_cache{$qtlmrk_name}{'svid'} = $sv_id;		
 	
 	# get SVF ID
     my $svf_id;
     
     #verify data
-    for my $k(keys %{$ssr_mapping}){
-    	warn("$k =>", $ssr_mapping->{$k}, "\n");
+    for my $k(keys %{$qtlmrk_mapping}){
+    	warn("$k =>", $qtlmrk_mapping->{$k}, "\n");
     }
-	warn("Now bind for ssr insert to structure_variation\n");  
-	$svf_ins_sth->bind_param(1, $ssr_mapping->{'seq_region_id'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(2, $ssr_mapping->{'outer_start'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(3, $ssr_mapping->{'seq_region_start'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(4, $ssr_mapping->{'inner_start'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(5, $ssr_mapping->{'inner_end'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(6, $ssr_mapping->{'seq_region_end'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(7, $ssr_mapping->{'outer_end'},SQL_INTEGER);
-    $svf_ins_sth->bind_param(8, $ssr_mapping->{'seq_region_strand'},SQL_INTEGER);
+	warn("Now bind for qtl markers insert to structure_variation\n");  
+	$svf_ins_sth->bind_param(1, $qtlmrk_mapping->{'seq_region_id'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(2, $qtlmrk_mapping->{'outer_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(3, $qtlmrk_mapping->{'seq_region_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(4, $qtlmrk_mapping->{'inner_start'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(5, $qtlmrk_mapping->{'inner_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(6, $qtlmrk_mapping->{'seq_region_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(7, $qtlmrk_mapping->{'outer_end'},SQL_INTEGER);
+    $svf_ins_sth->bind_param(8, $qtlmrk_mapping->{'seq_region_strand'},SQL_INTEGER);
     $svf_ins_sth->bind_param(9, $sv_id,SQL_INTEGER);
-    $svf_ins_sth->bind_param(10, $ssr_name,SQL_VARCHAR);  
+    $svf_ins_sth->bind_param(10, $qtlmrk_name,SQL_VARCHAR);  
 	$svf_ins_sth->execute();
 	$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	
 	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
-		warn ("$k => ". $ssr_mapping->{$k} ."\n");
-		$ssr2svid_cache{$ssr_name}{$k} = $ssr_mapping->{$k};		
+		warn ("$k => ". $qtlmrk_mapping->{$k} ."\n");
+		$qtlmrk2svid_cache{$qtlmrk_name}{$k} = $qtlmrk_mapping->{$k};		
 	}
 	$ssr_feature_count++;
   }
+  
   end_progress();
   print STDOUT "$ssr_feature_count new ssr_features added\n" if ($verbose);	
   
@@ -2645,7 +2673,24 @@ sub calculate_ssr_pair{
     
     return $result;	
 }
-    	
+  
+sub calculate_rflp{
+	my $a_rflp_hash = shift;
+
+	my $result;
+	
+	$result->{'seq_region_id'} = $a_rflp_hash->{'seq_region_id'};
+	$result->{'seq_region_start'} = $a_rflp_hash->{'seq_region_start'};
+    $result->{'seq_region_end'} = $a_rflp_hash->{'seq_region_end'};
+    $result->{'outer_start'} = $a_rflp_hash->{'seq_region_start'};
+    $result->{'inner_start'} = 'NULL';
+    $result->{'inner_end'} = 'NULL';
+    $result->{'outer_end'} = $a_rflp_hash->{'seq_region_end'};
+    $result->{'seq_region_strand'} = $a_rflp_hash->{'seq_region_strand'}; 
+    
+    return $result;	
+}
+  	
 sub get_phenotype_id {
   my $phenotype = shift;
   my $db_adaptor = shift;
