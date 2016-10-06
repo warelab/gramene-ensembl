@@ -101,7 +101,7 @@ my %SOURCES = (
     data_types => "phenotype_feature",
   },
   
-  "gramene-ssr" => { #structure variation - genetic_marker
+  "gramene-marker" => { #structure variation - genetic_marker
   	description => "gramene markers",
   	url => "http://archive.gramene.org/markers",
   	type => "StructuralVariation",
@@ -457,7 +457,7 @@ foreach my $id(keys %$coords) {
 my $source_id = get_or_add_source($source_name,$source_description,$source_url,$source_status,$db_adaptor,$data_types);
 print STDOUT "$source source_id is $source_id\n" if ($verbose);
 if($source_name eq 'Gramene_QTLdb'){
-	my $ssr_source_name = 'gramene-ssr';
+	my $ssr_source_name = 'gramene-marker';
 	my $ssr_source_description = $SOURCES{$ssr_source_name}->{description};
     my $ssr_source_url         = $SOURCES{$ssr_source_name}->{url};
 	my $ssr_object_type        = $SOURCES{$ssr_source_name}->{type};
@@ -1162,7 +1162,7 @@ sub parse_rgd_qtl {
 #Chr4    QTL-Gramene     exon    178252  178271  40.14   -       .       ID=RM551_41195;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 -;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
 #Chr4    QTL-Gramene     exon    178080  178099  40.14   +       .       ID=RM551_41197;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
 # source
-# name: gramene-ssr
+# name: gramene-marker
 # description: gramene markers
 # url: http://archive.gramene.org/markers/
 # somatic_status: mixed
