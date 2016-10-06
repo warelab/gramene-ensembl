@@ -2455,22 +2455,22 @@ sub add_phenotypes {
       }
     }
     
-    if( keys %{$phenotype->{'ssrmarkers'}} > 0){ # For QTl ssr markers
-    	foreach my $a_qtlmrk_name( keys %{$phenotype->{'ssrmarkers'}} ){
-    		$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(3,$study_id,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
-      		$pf_ins_sth->bind_param(5,$a_qtlmrk_name,SQL_VARCHAR);
-      		$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
-      		$pf_ins_sth->bind_param(7,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_id'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(8,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_start'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(9,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_end'},SQL_INTEGER);
-      		$pf_ins_sth->bind_param(10,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_strand'},SQL_INTEGER);
-      		$pf_ins_sth->execute();
-      		$phenotype_feature_count++;
-    	}
+    my $qtlmarkers = {%{$phenotype->{'ssrmarkers'}}, %{$phenotype->{'RFLP'}} } ;
+    foreach my $a_qtlmrk_name( keys %{$qtlmarkers} ){
+    	$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
+   		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
+   		$pf_ins_sth->bind_param(3,$study_id,SQL_INTEGER);
+      	$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
+      	$pf_ins_sth->bind_param(5,$a_qtlmrk_name,SQL_VARCHAR);
+      	$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
+      	$pf_ins_sth->bind_param(7,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_id'},SQL_INTEGER);
+      	$pf_ins_sth->bind_param(8,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_start'},SQL_INTEGER);
+      	$pf_ins_sth->bind_param(9,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_end'},SQL_INTEGER);
+      	$pf_ins_sth->bind_param(10,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_strand'},SQL_INTEGER);
+      	$pf_ins_sth->execute();
+      	$phenotype_feature_count++;
     }
+    
   }
   end_progress();
   print STDOUT "$study_count new studies added\n" if ($verbose);
