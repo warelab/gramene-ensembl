@@ -2334,7 +2334,7 @@ sub add_phenotypes {
   $attrib_id_ext_sth->execute();
   my $ont_attrib_type = $attrib_id_ext_sth->fetchall_arrayref();
 
-map{ warn "dump phenotype, ", Dumper $_ }@{$phenotypes};
+map{ warn "dump phenotype, ", Dumper $_  if undef $_->{name}}@{$phenotypes};
 
   # First, sort the array according to the phenotype description
   my @sorted = sort {($a->{description} || $a->{name}) cmp ($b->{description} || $b->{name})} @{$phenotypes};
