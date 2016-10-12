@@ -1978,7 +1978,7 @@ sub get_seq_region_ids {
   
   my $sth = $db_adaptor->dbc->prepare(qq{
     SELECT sr.seq_region_id, sr.name
-    FROM seq_region
+    FROM seq_region sr
     JOIN coord_system cs  
     USING (coord_system_id) 
     WHERE cs.name='chromosome' 
