@@ -1971,10 +1971,20 @@ sub get_attrib_types {
 sub get_seq_region_ids {
   my $db_adaptor = shift;
   
+  #my $sth = $db_adaptor->dbc->prepare(qq{
+    #SELECT seq_region_id, name
+    #FROM seq_region
+  #});
+  
   my $sth = $db_adaptor->dbc->prepare(qq{
-    SELECT seq_region_id, name
+    SELECT sr.seq_region_id, sr.name
     FROM seq_region
+    JOIN coord_system cs  
+    USING (coord_system_id) 
+    WHERE cs.name='chromosome' 
+    AND attrib = 'default_version';
   });
+  
   $sth->execute;
   
   my (%seq_region_ids, $id, $name);
