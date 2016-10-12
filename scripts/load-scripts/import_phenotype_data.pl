@@ -2657,6 +2657,7 @@ sub calculate_ssr_pair{
 	
 	my $seq_region_id = $ssr_primers[0]->{'seq_region_id'};
 	warn "No seq_region_id found for this ssr pairs\n" && return undef unless $seq_region_id;
+	my $seq_region_strand = $ssr_primers[0]->{'seq_region_strand'};
 	
 	foreach my $ori(keys %{$a_ssr_hash}){
 		warn "different seq_region_id found for this ssr pairs, expecting $seq_region_id, got ". 
@@ -2666,8 +2667,8 @@ sub calculate_ssr_pair{
 		push @positions, $a_ssr_hash->{$ori}{'seq_region_end'};
 	}
 		
-	warn"missing positions in the pairs, need at least 4 positions" && return undef 
-		if (scalar @positions < 4);
+	warn"missing positions in the pairs, need at least 2 positions" && return undef 
+		if (scalar @positions < 2);
 		
 	my @sorted_pos = sort {$a <=> $b} @positions;
 	my $result;
@@ -2676,10 +2677,10 @@ sub calculate_ssr_pair{
 	$result->{'seq_region_start'} = $sorted_pos[0];
     $result->{'seq_region_end'} = $sorted_pos[-1];
     $result->{'outer_start'} = $sorted_pos[0];
-    $result->{'inner_start'} = $sorted_pos[1];
-    $result->{'inner_end'} = $sorted_pos[-2];
+    $result->{'inner_start'} = scalar @positions > 3 ? $sorted_pos[1] : undef;
+    $result->{'inner_end'} = scalar @positions > 3 ? $sorted_pos[-2] : undef;
     $result->{'outer_end'} = $sorted_pos[-1];
-    $result->{'seq_region_strand'} = 1; 
+    $result->{'seq_region_strand'} = scalar @positions > 3 ? 1 : $seq_region_strand; 
     
     return $result;	
 }
