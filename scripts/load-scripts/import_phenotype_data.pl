@@ -32,6 +32,7 @@ use String::Approx qw(amatch adist);
 use Algorithm::Diff qw(diff);
 use XML::LibXML;
 use Text::CSV;
+use DB::Dumper;
 
 # set output autoflush for progress bars
 $| = 1;
@@ -2709,6 +2710,8 @@ sub get_phenotype_id {
   my $phenotype = shift;
   my $db_adaptor = shift;
   
+ warn ( "debug ==> phenotype ", Dumper($phenotype));
+
   my ($name, $description);
   $name = $phenotype->{name};
   $description = $phenotype->{description};
