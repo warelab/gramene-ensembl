@@ -32,7 +32,7 @@ use String::Approx qw(amatch adist);
 use Algorithm::Diff qw(diff);
 use XML::LibXML;
 use Text::CSV;
-use DB::Dumper;
+use Data::Dumper;
 
 # set output autoflush for progress bars
 $| = 1;
