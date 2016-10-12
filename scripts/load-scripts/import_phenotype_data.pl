@@ -2334,7 +2334,7 @@ sub add_phenotypes {
   $attrib_id_ext_sth->execute();
   my $ont_attrib_type = $attrib_id_ext_sth->fetchall_arrayref();
 
-map{ warn "dump phenotype, ", Dumper $_  if undef $_->{name}}@{$phenotypes};
+#map{ warn "dump phenotype, ", Dumper $_  if undef $_->{name}}@{$phenotypes};
 
   # First, sort the array according to the phenotype description
   my @sorted = sort {($a->{description} || $a->{name}) cmp ($b->{description} || $b->{name})} @{$phenotypes};
@@ -2404,6 +2404,7 @@ map{ warn "dump phenotype, ", Dumper $_  if undef $_->{name}}@{$phenotypes};
     
     # get phenotype ID
     my $phenotype_id = get_phenotype_id($phenotype, $db_adaptor);
+    next unless $phenotype_id;
 
     foreach my $acc (@{$phenotype->{accessions}}){
       $acc =~ s/\s+//g;
@@ -2712,7 +2713,7 @@ sub get_phenotype_id {
   my $phenotype = shift;
   my $db_adaptor = shift;
   
- warn ( "debug ==> phenotype ", Dumper($phenotype));
+ #warn ( "debug ==> phenotype ", Dumper($phenotype));
 
   my ($name, $description);
   $name = $phenotype->{name};
@@ -2722,8 +2723,12 @@ sub get_phenotype_id {
   $description =~ s/^\s+|\s+$//g; # Remove spaces at the beginning and the end of the description
   $description =~ s/\n//g; # Remove 'new line' characters
   
-  die "ERROR: No description found for phenotype $name, $description\n" if(!defined($description));
-
+  if(!defined($description)){
+  	warn "ERROR: No description found for phenotype $name, $description\n" if(!defined($description));
+  	warn ( "debug ==> phenotype ", Dumper($phenotype));
+  	return undef;
+  }
+  
   # Check phenotype description in the format "description; name"
   if (!defined($name) || $name eq '') {
     my ($p_desc,$p_name) = split(";",$description);
