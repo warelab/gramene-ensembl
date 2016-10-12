@@ -1945,7 +1945,7 @@ sub get_attribs {
   my %attribs;
   while ($sth->fetch()) {
     $attribs{lc $attrib_value} = [$attrib_id,$attrib_type_id];
-    warn("attrib_value=$attrib_value, id=$attrib_id, type_id=$attrib_type_id\n");
+    #warn("attrib_value=$attrib_value, id=$attrib_id, type_id=$attrib_type_id\n");
     #last; 
   }
   $sth->finish;
