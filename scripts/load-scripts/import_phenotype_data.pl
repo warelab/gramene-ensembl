@@ -2622,10 +2622,10 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
     my $svf_id;
     
     #verify data
-    for my $k(keys %{$qtlmrk_mapping}){
-    	warn("$k =>", $qtlmrk_mapping->{$k}, "\n");
-    }
-	warn("Now bind for qtl markers insert to structure_variation\n");  
+    #for my $k(keys %{$qtlmrk_mapping}){
+    	#warn("$k =>", $qtlmrk_mapping->{$k}, "\n");
+    #}
+	#warn("Now bind for qtl markers insert to structure_variation\n");  
 	$svf_ins_sth->bind_param(1, $qtlmrk_mapping->{'seq_region_id'},SQL_INTEGER);
     $svf_ins_sth->bind_param(2, $qtlmrk_mapping->{'outer_start'},SQL_INTEGER);
     $svf_ins_sth->bind_param(3, $qtlmrk_mapping->{'seq_region_start'},SQL_INTEGER);
@@ -2640,7 +2640,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
 	$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	
 	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
-		warn ("$k => ". $qtlmrk_mapping->{$k} ."\n");
+		#warn ("$k => ". $qtlmrk_mapping->{$k} ."\n");
 		$qtlmrk2svid_cache{$qtlmrk_name}{$k} = $qtlmrk_mapping->{$k};		
 	}
 	$ssr_feature_count++;
