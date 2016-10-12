@@ -1249,6 +1249,9 @@ sub parse_gramene_qtl {
     	push @{$phenotype->{'accessions'}}, $phenotype->{'to_accession'} if (defined $phenotype->{'to_accession'} && $phenotype->{'to_accession'} );
     
     	$phenotypes{$ptid} = $phenotype;
+    	for my $k(keys %{$phenotype}){
+    		$phenotypes{$ptid}{$k} = $phenotype->{$k};
+    	}
    
 	}elsif($extra->{'marker_type'} eq 'SSR'){ #the ssr marker line
 		#Chr4    QTL-Gramene     exon    178080  178099  40.14   +       .       ID=RM551_41197;Name=RM551;EValue=0.001545;Rank=1;Target=RM551 1 20 +;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
