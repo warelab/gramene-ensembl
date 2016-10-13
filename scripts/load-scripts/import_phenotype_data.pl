@@ -2328,7 +2328,7 @@ sub add_phenotypes {
  
   my $onology_accession_ins_stmt = qq{
     INSERT IGNORE INTO phenotype_ontology_accession
-    (phenotype_id, accession, linked_by_attrib)
+    (phenotype_id, accession, mapped_by_attrib)
     values (?,?, ?)
    };
  
