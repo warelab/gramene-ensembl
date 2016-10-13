@@ -2487,7 +2487,7 @@ sub add_phenotypes {
     	$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
    		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
    		$pf_ins_sth->bind_param(3,$study_id,SQL_INTEGER);
-      	$pf_ins_sth->bind_param(4,$object_type,SQL_VARCHAR);
+      	$pf_ins_sth->bind_param(4,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'type'},SQL_VARCHAR);
       	$pf_ins_sth->bind_param(5,$a_qtlmrk_name,SQL_VARCHAR);
       	$pf_ins_sth->bind_param(6,$is_significant,SQL_INTEGER);
       	$pf_ins_sth->bind_param(7,$qtlmrk2svid_cache{$a_qtlmrk_name}->{'seq_region_id'},SQL_INTEGER);
