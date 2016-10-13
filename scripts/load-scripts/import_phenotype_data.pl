@@ -1266,7 +1266,7 @@ sub parse_gramene_qtl {
     		'seq_region_start' => $data[3] || 1,
 	      	'seq_region_end' => $data[4],	
     	  	'seq_region_strand' => $data[6] eq '-' ? -1:1,
-    	  	'type'     => 'SSR',
+    	  	'type'     => 'StructuralVariation', #SSR',
     	  	'evalue'   => $extra->{'evalue'},
     	};
 
@@ -1285,7 +1285,7 @@ sub parse_gramene_qtl {
     		'seq_region_start' => $data[3] || 1,
 	      	'seq_region_end' => $data[4],	
     	  	'seq_region_strand' => $data[6] eq '-' ? -1:1,
-    	  	'type'     => 'RFLP',
+    	  	'type'     => 'StructuralVariation', #RFLP',
     	  	'evalue'   => $extra->{'evalue'},
     	};
 		
@@ -1303,7 +1303,7 @@ sub parse_gramene_qtl {
   		", id=", $phenotypes{$pid}->{id}, "\n"
   		unless ($phenotypes{$pid}->{name} && $phenotypes{$pid}->{description} && $phenotypes{$pid}->{id});
   	}
-  	exit;
+  	#exit;
   }
   my %result = ('phenotypes' => [values %phenotypes]);
   return \%result;
@@ -2650,7 +2650,7 @@ warn ("ssr genetic_marker attrib id is $attrib_id\n");
 	$svf_ins_sth->execute();
 	$svf_id = $db_adaptor->dbc->db_handle->{'mysql_insertid'};
 	
-	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand'){
+	for my $k ( 'seq_region_id', 'seq_region_start', 'seq_region_end', 'seq_region_strand', 'type'){
 		#warn ("$k => ". $qtlmrk_mapping->{$k} ."\n");
 		$qtlmrk2svid_cache{$qtlmrk_name}{$k} = $qtlmrk_mapping->{$k};		
 	}
@@ -2673,6 +2673,7 @@ sub calculate_ssr_pair{
 	my @ssr_primers = values %{$a_ssr_hash};
 	
 	my $seq_region_id = $ssr_primers[0]->{'seq_region_id'};
+	my $marker_type = $ssr_primers[0]->{'type'};
 	warn "No seq_region_id found for this ssr pairs\n" && return undef unless $seq_region_id;
 	my $seq_region_strand = $ssr_primers[0]->{'seq_region_strand'};
 	
@@ -2690,6 +2691,7 @@ sub calculate_ssr_pair{
 	my @sorted_pos = sort {$a <=> $b} @positions;
 	my $result;
 	
+	$result->{'type'} = $marker_type;
 	$result->{'seq_region_id'} = $seq_region_id;
 	$result->{'seq_region_start'} = $sorted_pos[0];
     $result->{'seq_region_end'} = $sorted_pos[-1];
@@ -2707,6 +2709,7 @@ sub calculate_rflp{
 
 	my $result;
 	
+	$result->{'type'} =  $a_rflp_hash->{'type'};
 	$result->{'seq_region_id'} = $a_rflp_hash->{'seq_region_id'};
 	$result->{'seq_region_start'} = $a_rflp_hash->{'seq_region_start'};
     $result->{'seq_region_end'} = $a_rflp_hash->{'seq_region_end'};
