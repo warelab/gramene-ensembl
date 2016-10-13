@@ -1295,6 +1295,12 @@ sub parse_gramene_qtl {
 
   }
   
+  if ($verbose){
+  	for my $pid (keys %phenotypes){
+  		print "[INFO] pid = $pid\n";
+  	}
+  	exit;
+  }
   my %result = ('phenotypes' => [values %phenotypes]);
   return \%result;
 }
