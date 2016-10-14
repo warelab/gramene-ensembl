@@ -100,6 +100,11 @@ my %SOURCES = (
     type => "QTL",
     somatic_status => "mixed",
     data_types => "phenotype_feature",
+    href_template => {
+    	'name' => '<a href="http://archive.gramene.org/db/qtl/qtl_display?qtl_accession_id=$$$">$$$</a>',
+    	'trait_category'=>'<a href="http://archive.gramene.org/db/qtl/qtl_display?trait_category=$$$">$$$</a>',
+    	'default' => '<a href="http://archive.gramene.org/db/qtl/qtl_display?query=$$$&submit=Submit">$$$</a>',
+    },
   },
   
   "gramene-marker" => { #structure variation - genetic_marker
@@ -108,6 +113,9 @@ my %SOURCES = (
   	type => "StructuralVariation",
   	somatic_status => "mixed",
   	data_types   => "structural_variation, phenotype_feature",
+  	href_template => {
+  		'default' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
+  	}
   },
 
   "GIANT" => {
@@ -215,6 +223,7 @@ my $source_status = 'germline';
 my $object_type;
 my $data_types;
 my $prev_prog;
+my $href_template;
 
 my $pubmed_prefix = 'PMID:';
 
@@ -401,6 +410,7 @@ $set                = defined($SOURCES{$source_name}->{set}) ? $SOURCES{$source_
 $object_type        = $SOURCES{$source_name}->{type};
 $source_status      = $SOURCES{$source_name}->{status} if (defined($SOURCES{$source_name}->{status}));
 $data_types        = $SOURCES{$source_name}->{data_types} if (defined($SOURCES{$source_name}->{data_types}));
+$href_template     = $SOURCES{$source_name}->{href_template} if (defined($SOURCES{$source_name}->{href_template}));
 
 my %synonym;
 my @phenotypes;
@@ -464,9 +474,11 @@ if($source_name eq 'Gramene_QTLdb'){
 	my $ssr_object_type        = $SOURCES{$ssr_source_name}->{type};
 	my $ssr_source_status      = $SOURCES{$ssr_source_name}->{status};
 	my $ssr_data_types        = $SOURCES{$ssr_source_name}->{data_types};
+	my $ssr_href_template     = $SOURCES{$source_name}->{href_template} if (defined($SOURCES{$source_name}->{href_template}));
 	my $ssr_source_id = get_or_add_source($ssr_source_name,$ssr_source_description,$ssr_source_url,$ssr_source_status,$db_adaptor,$ssr_data_types);
 	print STDOUT "$source ssr source_id is $ssr_source_id\n" if ($verbose);
 
+	#add_qtl_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor,$ssr_href_template);
 	add_qtl_markers(\@phenotypes,$ssr_source_id,$ssr_object_type,$db_adaptor);
 }
 
@@ -482,7 +494,7 @@ unless ($skip_phenotypes) {
   die("ERROR: No phenotypes or objects retrieved from input\n") unless scalar @phenotypes;
 
   print STDOUT "Adding phenotypes\n" if ($verbose);
-  add_phenotypes(\@phenotypes,$coords,$source_id,$object_type,$db_adaptor);
+  add_phenotypes(\@phenotypes,$coords,$source_id,$object_type,$db_adaptor,$href_template);
 
   my $added_phenotypes = $phenotype_adaptor->generic_count - $initial_phenotype_count;
   print STDOUT "$added_phenotypes new phenotypes added\n" if ($verbose);
@@ -2192,6 +2204,7 @@ sub add_phenotypes {
   my $source_id = shift;
   my $object_type = shift;
   my $db_adaptor = shift;
+  my $template = shift;
  
   my $st_col = ($source =~ m/dbgap/i) ? 'name' : 'description';
 
@@ -2475,8 +2488,9 @@ sub add_phenotypes {
       foreach my $attrib_type(grep {defined($phenotype->{$_}) && $phenotype->{$_} ne ''} @attrib_types) {
         my $value = $phenotype->{$attrib_type};
         my $sth = $value =~ m/^\d+(\.\d+)?$/ ? $attrib_ins_cast_sth : $attrib_ins_sth;
+        my $href_value = href_value($template, $attrib_type, $value);
         $sth->bind_param(1,$pf_id,SQL_INTEGER);
-        $sth->bind_param(2,$value,SQL_VARCHAR);
+        $sth->bind_param(2,$href_value,SQL_VARCHAR);
         $sth->bind_param(3,$attrib_type,SQL_VARCHAR);
         $sth->execute();
       }
@@ -2504,12 +2518,32 @@ sub add_phenotypes {
   print STDOUT "$phenotype_feature_count new phenotype_features added\n" if ($verbose);
 }
 
+sub href_value{
+	
+	my $template = shift; 
+	my $attrib_type= shift;
+	my $value = shift;
+	
+	return $value unless $template;
+	
+	my $href_tmpl = $template->{$attrib_type} || $template->{'default'};	
+	warn ("link template is $href_tmpl\n");
+	
+	return $value unless $href_tmpl;
+	
+	$href_tmpl =~ s/\$\$\$/$value/g;
+	warn ("link is $href_tmpl\n");
+	return $href_tmpl;
+}
+
+
 sub add_qtl_markers{
 	
 	my $phenotypes = shift;
     my $source_id = shift;
     my $object_type = shift;
     my $db_adaptor = shift;
+    #my $template = shift;
  
   my $attrib_id = shift @{$attribs->{'genetic_marker'}};
 warn ("ssr genetic_marker attrib id is $attrib_id\n"); 
