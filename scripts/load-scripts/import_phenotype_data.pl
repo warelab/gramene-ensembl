@@ -2673,8 +2673,8 @@ sub href_value{
 	my $ret;
 	if( $value =~ /,/){ #RM227,RM555,
 		my @tmp_markers = split ',',$value;
-		print "$tmp_markers[0]\n";
-		$ret = join ',', (map{my $tmp=$href_tmpl; warn ("tmp=$tmp\n"); $tmp =~ s/\$\$\$/$_/g; warn ("tmp=$tmp\n"); $tmp} @tmp_markers);
+		#print "$tmp_markers[0]\n";
+		$ret = join ',', (map{my $tmp=$href_tmpl;  $tmp =~ s/\$\$\$/$_/g; } @tmp_markers);
 		
 	}else{
 		$href_tmpl =~ s/\$\$\$/$value/g;
