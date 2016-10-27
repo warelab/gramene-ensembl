@@ -1264,7 +1264,7 @@ sub parse_qtaro_qtl {
 
     $description .= ", ".$extra->{character} if (defined $extra->{character} && $extra->{character});
       
-    my $ptid=$extra->{'id'};
+    my $ptid=$extra->{'name'} || $extra->{'id'};
     # create phenotype feature hash    	
     my $phenotype = {
         id => $ptid,
@@ -1273,8 +1273,8 @@ sub parse_qtaro_qtl {
       	seq_region_start => $data[3] || 1,
       	seq_region_end => $data[4],
       	seq_region_strand => 1,
-      	variation_names => defined $extra->{name} && ($extra->{name} !~ /^[ -]*$/) ? 
-        	$extra->{name} : undef,
+      	#variation_names => defined $extra->{name} && ($extra->{name} !~ /^[ -]*$/) ? 
+        	#$extra->{name} : undef,
       	qtaro_category => defined $extra->{category} && ($extra->{category} !~ /^[ -]*$/) ? 
         	$extra->{category} : undef,
         qtaro_major_category => defined $extra->{major_category} && ($extra->{major_category} !~ /^[ -]*$/) ? 
