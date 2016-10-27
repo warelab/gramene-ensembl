@@ -1293,12 +1293,12 @@ sub parse_qtaro_qtl {
         	$extra->{explained_variance} : undef,
         associated_gene => defined $extra->{'qtl-gene'} && ($extra->{'qtl-gene'} !~ /^[ -]*$/) ? 
         	$extra->{'qtl-gene'} : undef,
-        marker_accession_id => join ",",  uniq(
+        marker_accession_id => join ",", ( uniq(
         	grep { defined $_ && $_ && $_ !~ /^[- ]*$/ } 
         	map{ defined $extra->{$_} ? $extra->{$_} : undef }@marker_keys
-        	),
+        	)),
       };
-      
+      warn ($phenotype->{marker_accession_id});
       push @phenotypes, $phenotype;
       
   }
