@@ -1298,7 +1298,7 @@ sub parse_qtaro_qtl {
         	map{ defined $extra->{$_} ? $extra->{$_} : undef }@marker_keys
         	)),
       };
-      warn ($phenotype->{marker_accession_id});
+    #  warn ($phenotype->{marker_accession_id});
       push @phenotypes, $phenotype;
       
   }
@@ -2671,7 +2671,7 @@ sub href_value{
 	
 	my $ret;
 	if( $value =~ /,/){ #RM227,RM555,
-		$ret = join ',', map{$href_tmpl =~ s/\$\$\$/$value/g} split /,/,$value;
+		$ret = join ',', map{$href_tmpl =~ s/\$\$\$/$value/g} (split /,/,$value);
 		
 	}else{
 		$href_tmpl =~ s/\$\$\$/$value/g;
