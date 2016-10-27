@@ -2634,8 +2634,16 @@ sub add_phenotypes {
       }
     }
     
-    my $qtlmarkers = {%{$phenotype->{'ssrmarkers'}}, %{$phenotype->{'RFLP'}} } if (defined $phenotype->{'ssrmarkers'}
-    || defined $phenotype->{'RFLP'});
+    my %qtlmarkers = %{$phenotype->{'ssrmarkers'}} if (defined $phenotype->{'ssrmarkers'});
+    if (defined $phenotype->{'RFLP'}){
+    	foreach (keys %{$phenotype->{'RFLP'}}){
+    		$qtlmarkers{$_} = $phenotype->{'RFLP'}{$_};
+    	}
+    }
+    
+    my $qtlmarkers = \%qtlmarkers;
+    #my $qtlmarkers = {%{$phenotype->{'ssrmarkers'}}, %{$phenotype->{'RFLP'}} } if (defined $phenotype->{'ssrmarkers'}
+    #|| defined $phenotype->{'RFLP'});
     foreach my $a_qtlmrk_name( keys %{$qtlmarkers} ){
     	$pf_ins_sth->bind_param(1,$phenotype_id,SQL_INTEGER);
    		$pf_ins_sth->bind_param(2,$source_id,SQL_INTEGER);
