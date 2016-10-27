@@ -2669,9 +2669,10 @@ sub href_value{
 	
 	return $value unless $href_tmpl;
 	
+	warn ("value=$value\n");
 	my $ret;
 	if( $value =~ /,/){ #RM227,RM555,
-		$ret = join ',', map{my $tmp=$href_tmpl; $tmp =~ s/\$\$\$/$value/g; $tmp} (split /,/,$value);
+		$ret = join ',', map{my $tmp=$href_tmpl; warn ("tmp=$tmp\n"); $tmp =~ s/\$\$\$/$value/g; warn ("tmp=$tmp\n"); $tmp} (split ',',$value);
 		
 	}else{
 		$href_tmpl =~ s/\$\$\$/$value/g;
