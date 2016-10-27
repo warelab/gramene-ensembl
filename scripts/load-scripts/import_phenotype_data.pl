@@ -1296,7 +1296,7 @@ sub parse_qtaro_qtl {
         marker_accession_id => join ",",  uniq(
         	grep { defined $_ && $_ && $_ !~ /^[- ]*$/ } 
         	map{ defined $extra->{$_} ? $extra->{$_} : undef }@marker_keys
-        	);
+        	),
       };
       
       push @phenotypes, $phenotype;
