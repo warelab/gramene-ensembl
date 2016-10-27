@@ -1218,7 +1218,7 @@ sub parse_qtaro_qtl {
     }
 
 	my $description;
-	if($data[2] =~ /^Qtaro_QTL_(.+)$/i) {
+	if($data[1] =~ /^Qtaro_QTL_(.+)$/i) {
       $description = $1;
     }else{
     	print STDERR "WARNING: Unrecognized type $data[2]\n";
