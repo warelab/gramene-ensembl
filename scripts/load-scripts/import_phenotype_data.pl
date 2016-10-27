@@ -2671,7 +2671,7 @@ sub href_value{
 	
 	my $ret;
 	if( $value =~ /,/){ #RM227,RM555,
-		$ret = join ',', map{$href_tmpl =~ s/\$\$\$/$value/g} (split /,/,$value);
+		$ret = join ',', map{my $tmp=$href_tmpl; $tmp =~ s/\$\$\$/$value/g; $tmp} (split /,/,$value);
 		
 	}else{
 		$href_tmpl =~ s/\$\$\$/$value/g;
