@@ -1291,8 +1291,8 @@ sub parse_qtaro_qtl {
         	$extra->{p_value} : undef,
         variance => defined $extra->{explained_variance} && ($extra->{explained_variance} !~ /^[ -]*$/) ? 
         	$extra->{explained_variance} : undef,
-        associated_gene => defined $extra->{qtl-gene} && ($extra->{qtl-gene} !~ /^[ -]*$/) ? 
-        	$extra->{qtl-gene} : undef,
+        associated_gene => defined $extra->{'qtl-gene'} && ($extra->{'qtl-gene'} !~ /^[ -]*$/) ? 
+        	$extra->{'qtl-gene'} : undef,
         marker_accession_id => join ",",  uniq(
         	grep { defined $_ && $_ && $_ !~ /^[- ]*$/ } 
         	map{ defined $extra->{$_} ? $extra->{$_} : undef }@marker_keys
