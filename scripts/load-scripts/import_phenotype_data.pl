@@ -33,6 +33,8 @@ use Algorithm::Diff qw(diff);
 use XML::LibXML;
 use Text::CSV;
 use Data::Dumper;
+use List::Uniq ':all';
+
 
 # set output autoflush for progress bars
 $| = 1;
@@ -116,6 +118,18 @@ my %SOURCES = (
   	href_template => {
   		'default' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
   	}
+  },
+  
+  "Qtaro_QTLdb" => {
+    description => "QTLs from the Qtaro Database and remapped to IRGSPv1 assembly by keygen",
+    url => "http://qtaro.abr.affrc.go.jp/qtab/table",
+    type => "QTL",
+    somatic_status => "mixed",
+    data_types => "phenotype_feature",
+    href_template => {
+    	'id' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$">$$$</a>',
+    	'marker_accession_id' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
+    },
   },
 
   "GIANT" => {
@@ -344,6 +358,10 @@ elsif($source =~ /rgd_qtl/i) {
 elsif($source =~ /gramene_qtl/i){
     $result = parse_gramene_qtl($infile, $db_adaptor);
     $source_name = 'Gramene_QTLdb';
+}
+elsif($source =~ /qtaro_qtl/i){
+    $result = parse_qtaro_qtl($infile, $db_adaptor);
+    $source_name = 'Qtaro_QTLdb';
 }
 elsif($source =~ /rgd_gene/i) {
   die("ERROR: No core DB parameters supplied (--chost, --cdbname, --cuser) or could not connect to core database") unless defined($core_db_adaptor);
@@ -1168,6 +1186,126 @@ sub parse_rgd_qtl {
   return \%result;
 }
 
+sub parse_qtaro_qtl {
+  my $infile = shift;
+  my $db_adaptor = shift;
+  
+  # get seq_region_ids
+  my $seq_region_ids = get_seq_region_ids($db_adaptor);
+  
+  my @phenotypes;
+  
+  # Open the input file for reading
+  if($infile =~ /gz$/) {
+    open IN, "zcat $infile |" or die ("Could not open $infile for reading");
+  }
+  else {
+    open(IN,'<',$infile) or die ("Could not open $infile for reading");
+  } 
+  
+  # Read through the file and parse out the desired fields   
+  while (<IN>) {
+    chomp;    
+    next if /^(\#|\s)/ || !$_;
+    
+    my @data = split /\t/, $_;
+    
+    # fix chr
+    $data[0] =~ s/^chr(om)?\.?//i;   
+    if(!defined($seq_region_ids->{$data[0]})) {
+      print STDERR "WARNING: Could not find seq_region_id for chromosome name $data[0]\n";
+      next;
+    }
+
+	my $description;
+	if($data[2] =~ /^Qtaro_QTL_(.+)$/i) {
+      $description = $1;
+    }else{
+    	print STDERR "WARNING: Unrecognized type $data[2]\n";
+    	next;
+    }
+    
+    # parse "extra" GFF fields
+    #Marker_type=-;Marker_physical=- AP003237 (gene);
+    #Marker_Fine1=-;Marker_Fine2=-;Marker_Fine3=-;
+    #Marker_interval1=-;Marker_interval2=-;Marker_interval3=-;
+    #Marker_Co-segregated=RG207a
+    #category
+    #Major_category
+    #mapping_method
+    #LOD
+    #Parent_A
+    #Parent_B
+    #Dirention(Parent) = A/B/-
+    #Reference_Source
+    #Reference_No
+    #Population_type
+    #No_of_plants
+    #Character
+    #Explained_variance
+    #Additive_effect
+    
+    my @marker_keys = qw(marker_physical marker_fine1 marker_fine2 marker_fine3 
+    marker_interval1 marker_interval2 marker_interval3 Marker_Co-segregated);
+    
+    my $extra = {};
+    
+    foreach my $chunk(split /\;/, $data[8]) {
+      my ($key, $value) = split /\=/, $chunk;
+      next unless defined($key) && defined($value);
+      $value =~ s/\"|\'//g;
+      $extra->{ lc $key} = $value;
+    }
+    
+    if ($data[4] !~ /^\d+$/) {
+      print STDERR "WARNING: Could not find a numeric seq_region_end for the QTL ".$extra->{name}."\n";
+      next;
+    }
+
+    $description .= ", ".$extra->{character} if (defined $extra->{character} && $extra->{character});
+      
+    my $ptid=$extra->{'id'};
+    # create phenotype feature hash    	
+    my $phenotype = {
+        id => $ptid,
+        description => $description,
+        seq_region_id => $seq_region_ids->{$data[0]},
+      	seq_region_start => $data[3] || 1,
+      	seq_region_end => $data[4],
+      	seq_region_strand => 1,
+      	variation_names => defined $extra->{name} && ($extra->{name} !~ /^[ -]*$/) ? 
+        	$extra->{name} : undef,
+      	qtaro_category => defined $extra->{category} && ($extra->{category} !~ /^[ -]*$/) ? 
+        	$extra->{category} : undef,
+        qtaro_major_category => defined $extra->{major_category} && ($extra->{major_category} !~ /^[ -]*$/) ? 
+        	$extra->{major_category} : undef,
+      	qtaro_parent_a  => defined $extra->{parent_a} && ($extra->{parent_a} !~ /^[ -]*$/) ? 
+        	$extra->{parent_a} : undef,
+        qtaro_parent_b  => defined $extra->{parent_b} && ($extra->{parent_b} !~ /^[ -]*$/) ? 
+        	$extra->{parent_b} : undef,
+        trait_category  => defined $extra->{character} && ($extra->{character} !~ /^[ -]*$/) ? 
+        	$extra->{character} : undef,
+        lod_score => defined $extra->{lod} && ($extra->{lod} !~ /^[ -]*$/) ? 
+        	$extra->{lod} : undef,
+        p_value => defined $extra->{p_value} && ($extra->{p_value} !~ /^[ -]*$/) ? 
+        	$extra->{p_value} : undef,
+        variance => defined $extra->{explained_variance} && ($extra->{explained_variance} !~ /^[ -]*$/) ? 
+        	$extra->{explained_variance} : undef,
+        associated_gene => defined $extra->{qtl-gene} && ($extra->{qtl-gene} !~ /^[ -]*$/) ? 
+        	$extra->{qtl-gene} : undef,
+        marker_accession_id => join ",",  uniq(
+        	grep { defined $_ && $_ && $_ !~ /^[- ]*$/ } 
+        	map{ defined $extra->{$_} ? $extra->{$_} : undef }@marker_keys
+        	);
+      };
+      
+      push @phenotypes, $phenotype;
+      
+  }
+  
+  my %result = ('phenotypes' => \@phenotypes);
+  return \%result;
+}
 
 #Chr4    QTL-gramene_Yield       Gene    178080  186366  .       +       .       ID=4909_AQGH029;Name=AQGH029;published_symbol=qGW4;to_accession=TO:0000181;trait_category=Yield;Trait_description=seed weight;trait_symbol=SDWT
 #Chr4    QTL-Gramene     exon    186347  186366  40.14   -       .       ID=RM537_41190;Name=RM537;EValue=0.001545;Rank=1;Target=RM537 1 20 -;Gaps=M19;Origin=Oryza sativa Japonica Group;Marker_type=SSR;Parent=4909_AQGH029;MappedOn=wgs_IRGSP-Build4_Japonica wgs_9311_Indica
@@ -2531,9 +2669,16 @@ sub href_value{
 	
 	return $value unless $href_tmpl;
 	
-	$href_tmpl =~ s/\$\$\$/$value/g;
-	warn ("link is $href_tmpl\n");
-	return $href_tmpl;
+	my $ret;
+	if( $value =~ /,/){ #RM227,RM555,
+		$ret = join ',', map{$href_tmpl =~ s/\$\$\$/$value/g} split /,/,$value;
+		
+	}else{
+		$href_tmpl =~ s/\$\$\$/$value/g;
+		$ret = $href_tmpl;
+	}
+	warn ("link is $ret\n");
+	return $ret;
 }
 
 
