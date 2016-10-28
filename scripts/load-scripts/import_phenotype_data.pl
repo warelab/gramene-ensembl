@@ -1266,6 +1266,14 @@ sub parse_qtaro_qtl {
     $description .= ", ".$extra->{character} if (defined $extra->{character} && $extra->{character});
       
     my $ptid=$extra->{'name'} || $extra->{'id'};
+    my $category;
+    if( defined $extra->{category} && ($extra->{category} !~ /^[ -]*$/) ){
+    	$category = $extra->{category} ;
+    }
+    if( defined $extra->{major_category} && ($extra->{major_category} !~ /^[ -]*$/) ){
+    	$category .= ', ' if ( defined $category && $category);
+    	$category .= $extra->{major_category} ;
+    }
     
     # create phenotype feature hash    	
     my $phenotype = {
@@ -1278,10 +1286,7 @@ sub parse_qtaro_qtl {
       	seq_region_strand => 1,
       	#variation_names => defined $extra->{name} && ($extra->{name} !~ /^[ -]*$/) ? 
         	#$extra->{name} : undef,
-      	qtaro_category => defined $extra->{category} && ($extra->{category} !~ /^[ -]*$/) ? 
-        	$extra->{category} : undef,
-        qtaro_major_category => defined $extra->{major_category} && ($extra->{major_category} !~ /^[ -]*$/) ? 
-        	$extra->{major_category} : undef,
+      	qtaro_category => $category,
       	qtaro_parent_a  => defined $extra->{parent_a} && ($extra->{parent_a} !~ /^[ -]*$/) ? 
         	$extra->{parent_a} : undef,
         qtaro_parent_b  => defined $extra->{parent_b} && ($extra->{parent_b} !~ /^[ -]*$/) ? 
