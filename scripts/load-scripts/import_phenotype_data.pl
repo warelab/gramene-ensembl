@@ -127,7 +127,7 @@ my %SOURCES = (
     somatic_status => "mixed",
     data_types => "phenotype_feature",
     href_template => {
-    	'id' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$">$$$</a>',
+    	'name' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$">$$$</a>',
     	'marker_accession_id' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
     },
   },
@@ -361,8 +361,7 @@ elsif($source =~ /gramene_qtl/i){
 }
 elsif($source =~ /qtaro_qtl/i){
     $source_name = 'Qtaro_QTLdb';
-    $href_template     = $SOURCES{$source_name}->{href_template} if (defined($SOURCES{$source_name}->{href_template}));
-    $result = parse_qtaro_qtl($infile, $db_adaptor, $href_template);
+    $result = parse_qtaro_qtl($infile, $db_adaptor);
     
 }
 elsif($source =~ /rgd_gene/i) {
@@ -1191,7 +1190,6 @@ sub parse_rgd_qtl {
 sub parse_qtaro_qtl {
   my $infile = shift;
   my $db_adaptor = shift;
-  my $template = shift;
   
   # get seq_region_ids
   my $seq_region_ids = get_seq_region_ids($db_adaptor);
@@ -1268,15 +1266,11 @@ sub parse_qtaro_qtl {
     $description .= ", ".$extra->{character} if (defined $extra->{character} && $extra->{character});
       
     my $ptid=$extra->{'name'} || $extra->{'id'};
-    if(defined $extra->{'id'}){
-    	my $tmpl = $template->{'id'};
-    	$tmpl =~ s/\$\$\$/$extra->{id}/;
-    	$tmpl =~ s/\$\$\$/$ptid/;
-    	$ptid = $tmpl;
-    }
+    
     # create phenotype feature hash    	
     my $phenotype = {
         id => $ptid,
+        name => $extra->{'id'},
         description => $description,
         seq_region_id => $seq_region_ids->{$data[0]},
       	seq_region_start => $data[3] || 1,
