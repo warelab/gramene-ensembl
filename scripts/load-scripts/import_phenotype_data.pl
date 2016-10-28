@@ -127,8 +127,8 @@ my %SOURCES = (
     somatic_status => "mixed",
     data_types => "phenotype_feature",
     href_template => {
-    	'name' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$">$$$</a>',
-    	'marker_accession_id' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
+    	'name' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$" target="_blank">$$$</a>',
+    	'marker_accession_id' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$" target="_blank">$$$</a>',
     },
   },
 
