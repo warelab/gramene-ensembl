@@ -360,8 +360,10 @@ elsif($source =~ /gramene_qtl/i){
     $source_name = 'Gramene_QTLdb';
 }
 elsif($source =~ /qtaro_qtl/i){
-    $result = parse_qtaro_qtl($infile, $db_adaptor);
     $source_name = 'Qtaro_QTLdb';
+    $href_template     = $SOURCES{$source_name}->{href_template} if (defined($SOURCES{$source_name}->{href_template}));
+    $result = parse_qtaro_qtl($infile, $db_adaptor, $href_template);
+    
 }
 elsif($source =~ /rgd_gene/i) {
   die("ERROR: No core DB parameters supplied (--chost, --cdbname, --cuser) or could not connect to core database") unless defined($core_db_adaptor);
@@ -1189,6 +1191,7 @@ sub parse_rgd_qtl {
 sub parse_qtaro_qtl {
   my $infile = shift;
   my $db_adaptor = shift;
+  my $template = shift;
   
   # get seq_region_ids
   my $seq_region_ids = get_seq_region_ids($db_adaptor);
@@ -1265,6 +1268,12 @@ sub parse_qtaro_qtl {
     $description .= ", ".$extra->{character} if (defined $extra->{character} && $extra->{character});
       
     my $ptid=$extra->{'name'} || $extra->{'id'};
+    if(defined $extra->{'id'}){
+    	my $tmpl = $template->{'id'};
+    	$tmpl =~ s/\$\$\$/$extra->{id}/;
+    	$tmpl =~ s/\$\$\$/$ptid/;
+    	$ptid = $tmpl;
+    }
     # create phenotype feature hash    	
     my $phenotype = {
         id => $ptid,
