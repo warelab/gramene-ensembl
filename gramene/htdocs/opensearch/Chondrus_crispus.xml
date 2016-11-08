@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Chondrus crispus Chondrus crispus</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://dev.gramene.org/Chondrus_crispus/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Chondrus_crispus/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

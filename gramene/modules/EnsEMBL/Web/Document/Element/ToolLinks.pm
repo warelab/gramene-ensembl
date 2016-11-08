@@ -22,28 +22,6 @@ use strict;
 use warnings;
 use URI::Escape;
 
-#sub links {
-#  my $self  = shift;
-#  my $hub   = $self->hub;
-#  my $sd    = $self->species_defs;
-#  my @links;
-#
-#  #my $blastserver = 'blast.gramene.org';
-#  #my $blast_dir =  $sd->SPECIES_SCIENTIFIC_NAME || 'Multi';
-#  #used to be $ENV{'ENSEMBL_SPECIES'}, may also be $sd->SPECIES_COMMON_NAME
-#
-#  #my $blast_url = uri_escape("http://$blastserver/$blast_dir/blastview");
-#
-#  push @links, 'eqsearch',      '<a class="constant" href="/Multi/enasearch">Sequence Search</a>' if $sd->ENSEMBL_ENASEARCH_ENABLED;
-#  push @links, 'blast',         '<a class="constant" href="http://blast.gramene.org/Multi/blastview">BLAST</a>' if $sd->ENSEMBL_BLAST_ENABLED;
-#  push @links, 'biomart',       '<a class="constant" href="/biomart/martview">BioMart</a>';
-#  push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
-#  push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
-#  push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
-#  push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/contact">Feedback</a>';
-#  return \@links;
-#}
-
 sub links {
   my $self  = shift;
   my $hub   = $self->hub;
@@ -63,12 +41,8 @@ sub links {
   push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
   push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
-#  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
   push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/contact">Feedback</a>';
 
-# test upload link
-# UserData/SelectFile?db=core
-	
   my $upload_link = 'UserData/SelectFile?db=core';
   push @links, 'uploadData',  sprintf '<a class="constant" href="/%s">UploadData</a>', $upload_link;  
   return \@links;

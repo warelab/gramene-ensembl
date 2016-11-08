@@ -8,11 +8,12 @@ sub update_conf {
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 51; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
+  $SiteDefs::SITE_RELEASE_VERSION = 52; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 33;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2016';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Nov 2016';
   $SiteDefs::SITE_NAME            = 'Gramene';
+  $SiteDefs::ENSEMBL_SITETYPE = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
@@ -30,8 +31,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye';
 
+  $SiteDefs::ENSEMBL_TOOLS_PERL_BIN             = '/usr/local/bin/perl';
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
   $SiteDefs::ENSEMBL_BLASTSCRIPT            = $SiteDefs::ENSEMBL_WEBROOT."/utils/runblast.pl";
 
@@ -44,13 +46,26 @@ sub update_conf {
   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
   $SiteDefs::ASSEMBLY_CONVERTER_BIN_PATH = '/usr/local/bin/CrossMap.py';
   $SiteDefs::ENSEMBL_CHAIN_FILE_DIR       = '/usr/local/ensembl-live/tools_data/assembly_converter';
+  #$SiteDefs::IDMAPPER_SCRIPT              = '/usr/local/ensembl-live/ensembl-tools/scripts/id_history_converter/IDmapper.pl'; 
+ 
+$SiteDefs::ENSEMBL_VEP_CACHE_DIR              = "/usr/local/ensembl-live/tools_data/vep/";
+$SiteDefs::ENSEMBL_VEP_PLUGIN_DATA_DIR        = "/usr/local/ensembl-live/tools_data/vep/Plugins";                       # path to vep plugin data files on the LSF host (or local machine if job running locally) 
+  
+$SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
+    '--host'        => 'colden',                                                                       # Database host (defaults to ensembldb.ensembl.org)
+    '--user'        => 'weix',                                                                       # Defaults to 'anonymous'
+    '--password'    => 'warelab',                                                                       # Not used by default
+    '--port'        => 3306,                                                                       # Defaults to 5306
+    '--fork'        => 4,                                                                           # Enable forking, using 4 forks
+  };
+
 
   #----------
   # User database
-  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
+  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts_86';  #changed to ensembl_accounts lately
   #'ensembl_web_user_db_31_57';
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
   $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
@@ -68,6 +83,7 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
+  $SiteDefs::ENSEMBL_IDM_ENABLED    = 0;
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';

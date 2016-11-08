@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Galdieria sulphuraria Galdieria sulphuraria</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://dev.gramene.org/Galdieria_sulphuraria/psychic?q={searchTerms};site=ensembl"/>
+      template="http://ensembl.gramene.org/Galdieria_sulphuraria/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>
