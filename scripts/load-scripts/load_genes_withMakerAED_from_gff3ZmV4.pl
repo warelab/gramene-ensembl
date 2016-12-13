@@ -563,8 +563,7 @@ foreach my $gene_id( keys %$GENES ){
 		my $aed_attrib = Bio::EnsEMBL::Attribute->new
        		(-CODE => 'AED',
         	-VALUE => "$aed");
-	$eTranscript->add_Attributes($aed_attrib);
-
+	    $eTranscript->add_Attributes($aed_attrib);
 	}
     my $transcript_xref;
 
