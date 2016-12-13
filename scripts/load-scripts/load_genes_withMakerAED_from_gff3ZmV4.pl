@@ -665,7 +665,7 @@ foreach my $gene_id( keys %$GENES ){
 	          #  $phase_diff = 0;
 	          #  $exon_start_phase = 0;
 	          #  $exon_end_phase   = 0;
-	        }
+	        #}
 	        else { # internal exon
 	            $phase_diff = ( $exon_end - $exon_start ) % 3;
 	            $exon_start_phase = ($last_exon_phase+1)%3;
@@ -679,21 +679,21 @@ foreach my $gene_id( keys %$GENES ){
 	        #$span = $exon_end - $exon_start + 1;
 	        $last_exon_phase = $exon_end_phase;
       }
-      
+
       else{ # -ve strand
 	# 5' exons
 	    if    ( ( $transl_start < $exon_start ) &&
 		    ( $transl_start < $exon_end ) )  {
-	  $exon_start_phase = -1;
-	  $exon_end_phase   = -1;
-	}
+	          $exon_start_phase = -1;
+	            $exon_end_phase   = -1;
+	    }
 	# exon stops with a start 
 	    elsif ( ( $transl_start == $exon_end ) ) {
 	  #was   $transcript_start == ($exon_end - 2)
-	  $phase_diff = ( ( $exon_end - $exon_start ) % 3 );
-	  $exon_start_phase = 0;
-	  $exon_end_phase   = $phase_diff;
-	}
+	        $phase_diff = ( ( $exon_end - $exon_start ) % 3 );
+	        $exon_start_phase = 0;
+	        $exon_end_phase   = $phase_diff;
+	    }
 	# exon contains a start codon
 	    elsif ( ( $transl_start > $exon_start ) &&
 		    ( $transl_start < $exon_end ) ) {
@@ -775,7 +775,7 @@ foreach my $gene_id( keys %$GENES ){
       }
      }#end of noncoding
     } #_ END of exon loop _#
-    
+
     unless ($NONCODING){
     $eTranscript->start_Exon($start_exon);
     $eTranscript->end_Exon($end_exon);
