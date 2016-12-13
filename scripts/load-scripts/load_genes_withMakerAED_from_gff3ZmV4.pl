@@ -680,47 +680,47 @@ foreach my $gene_id( keys %$GENES ){
 	        $last_exon_phase = $exon_end_phase;
       }
 
-      else{ # -ve strand
+        else{ # -ve strand
 	# 5' exons
-	    if    ( ( $transl_start < $exon_start ) &&
-		    ( $transl_start < $exon_end ) )  {
-	          $exon_start_phase = -1;
+	        if    ( ( $transl_start < $exon_start ) &&
+		        ( $transl_start < $exon_end ) )  {
+	            $exon_start_phase = -1;
 	            $exon_end_phase   = -1;
-	    }
+	        }
 	# exon stops with a start 
-	    elsif ( ( $transl_start == $exon_end ) ) {
+	        elsif ( ( $transl_start == $exon_end ) ) {
 	  #was   $transcript_start == ($exon_end - 2)
-	        $phase_diff = ( ( $exon_end - $exon_start ) % 3 );
-	        $exon_start_phase = 0;
-	        $exon_end_phase   = $phase_diff;
-	    }
+	            $phase_diff = ( ( $exon_end - $exon_start ) % 3 );
+	            $exon_start_phase = 0;
+	            $exon_end_phase   = $phase_diff;
+	        }
 	# exon contains a start codon
-	    elsif ( ( $transl_start > $exon_start ) &&
-		    ( $transl_start < $exon_end ) ) {
+	        elsif ( ( $transl_start > $exon_start ) &&
+		        ( $transl_start < $exon_end ) ) {
 	  #$phase_diff = ( ( $exon_end - $transcript_start + 1 ) % 3 );
-	  $phase_diff = ( ( $transl_start - $exon_start  ) % 3 );
-	  $exon_start_phase = - 1;
-	  $exon_end_phase   = $phase_diff;
-	}
+	            $phase_diff = ( ( $transl_start - $exon_start  ) % 3 );
+	            $exon_start_phase = - 1;
+	            $exon_end_phase   = $phase_diff;
+	        }
 	# exon contains a stop codon
-	    elsif ( ( $transl_stop > $exon_start ) &&
-		    ( $transl_stop < $exon_end ) ) {
+	        elsif ( ( $transl_stop > $exon_start ) &&
+		        ( $transl_stop < $exon_end ) ) {
 	  #$phase_diff = ( ( $exon_end - $transcript_stop + 1 ) % 3 );
-	  $exon_start_phase = ($last_exon_phase+1)%3;
-	  $exon_end_phase   = -1;
-	}
+	            $exon_start_phase = ($last_exon_phase+1)%3;
+	            $exon_end_phase   = -1;
+	        }
 	# exon stops with a stop
 	    #elsif ( ( $transl_stop == $exon_start ) ) {
 	  #$phase_diff = ( ( $exon_end - $exon_start + 1 ) % 3 );
 	  #$exon_start_phase = ($last_exon_phase+1)%3;
 	  #$exon_end_phase   = 2;
-	}
+	#}
 	# 3' exons
-	    elsif ( ( $transl_stop > $exon_start ) &&
-		( $transl_stop > $exon_end ) ) {
-	  $exon_start_phase = ($last_exon_phase+1)%3;
-	  $exon_end_phase   = -1;
-	}
+	       elsif ( ( $transl_stop > $exon_start ) &&
+		    ( $transl_stop > $exon_end ) ) {
+	            $exon_start_phase = ($last_exon_phase+1)%3;
+	            $exon_end_phase   = -1;
+	        }
 	# single exon genes
 	 #   elsif ( ( $transl_start == $exon_start ) &&
 		#( $transl_stop == $exon_end ) ) {
@@ -729,91 +729,89 @@ foreach my $gene_id( keys %$GENES ){
 	  #$exon_end_phase   = 0;
 	#}
 	# internal exon
-	    else {
-	  $phase_diff = ( $exon_end - $exon_start ) % 3;
-	  $exon_start_phase = ($last_exon_phase+1)%3;
-	  $exon_end_phase   = ( $last_exon_phase + $phase_diff ) % 3;
-	}
-	
+	        else {
+	            $phase_diff = ( $exon_end - $exon_start ) % 3;
+	            $exon_start_phase = ($last_exon_phase+1)%3;
+	            $exon_end_phase   = ( $last_exon_phase + $phase_diff ) % 3;
+	        }
+	    }
 	# set exon phase
 	    $eExon->phase($exon_start_phase);
 	    $eExon->end_phase($exon_end_phase);
 	
 	#$span = $exon_end - $exon_start + 1;      
 	    $last_exon_phase = $exon_end_phase;
-      }
-      
 
-      $eTranscript->add_Exon($eExon);
+        $eTranscript->add_Exon($eExon);
       
       # Start exon
-      unless ( $start_exon ) {
-	    if ( $exon == 0 ) {
+        unless ( $start_exon ) {
+	        if ( $exon == 0 ) {
 	        $start_exon = $eExon;
-	    }
-      }
+	        }
+        }
       
       # Final exon
-      unless ( $end_exon ) {
-	    if ( $exon == $atrptdata->{EXON_COUNT}-1 ) {
+        unless ( $end_exon ) {
+	        if ( $exon == $atrptdata->{EXON_COUNT}-1 ) {
 	        $end_exon = $eExon;
-	    }
-      }
+	        }
+        }
       
       # Translation start exon
-      unless ( $trans_start_exon ) {
-	    if ( $exon == $atrptdata->{CDS_START_EXON} ) {
-	        $trans_start_exon = $eExon;
-	    }
-      }
+        unless ( $trans_start_exon ) {
+	        if ( $exon == $atrptdata->{CDS_START_EXON} ) {
+	            $trans_start_exon = $eExon;
+	        }
+        }
       
       # Translation stop exon
-      unless ( $trans_end_exon ) {
-	    if ( $exon == $atrptdata->{CDS_END_EXON} ) {
-	        $trans_end_exon = $eExon;
-	}
-      }
+        unless ( $trans_end_exon ) {
+	        if ( $exon == $atrptdata->{CDS_END_EXON} ) {
+	            $trans_end_exon = $eExon;
+	        }
+        }
      }#end of noncoding
     } #_ END of exon loop _#
 
     unless ($NONCODING){
-    $eTranscript->start_Exon($start_exon);
-    $eTranscript->end_Exon($end_exon);
+        $eTranscript->start_Exon($start_exon);
+        $eTranscript->end_Exon($end_exon);
     
     ###############
     # TRANSLATION #
     ###############
     
     # Check for translation start being different to Exon start (i.e. UTR)
-    if ( $atrptdata->{STRAND} > 0 ) {
-      $translation_offset_left  = 
-        $transl_start
-	  - $atrptdata->{EXON_START}[$atrptdata->{CDS_START_EXON}] + 1;
-      $translation_offset_right = 
-        $transl_stop
+        if ( $atrptdata->{STRAND} > 0 ) {
+            $translation_offset_left  =
+                $transl_start
+	            - $atrptdata->{EXON_START}[$atrptdata->{CDS_START_EXON}] + 1;
+            $translation_offset_right =
+                $transl_stop
 	  #- $atrptdata->{EXON_START}[$atrptdata->{CDS_END_EXON}] + 3; ##???why +3 
-	  - $atrptdata->{EXON_START}[$atrptdata->{CDS_END_EXON}] + 1;
-    }
-    elsif ( $atrptdata->{STRAND} < 0 ) {
-      $translation_offset_left  = 
-        $atrptdata->{EXON_END}[$atrptdata->{CDS_START_EXON}] 
-	  - $transl_start + 1;
-      $translation_offset_right = 
-        $atrptdata->{EXON_END}[$atrptdata->{CDS_END_EXON}]   
+	            - $atrptdata->{EXON_START}[$atrptdata->{CDS_END_EXON}] + 1;
+        }
+        elsif ( $atrptdata->{STRAND} < 0 ) {
+            $translation_offset_left  =
+                $atrptdata->{EXON_END}[$atrptdata->{CDS_START_EXON}]
+	            - $transl_start + 1;
+            $translation_offset_right =
+                $atrptdata->{EXON_END}[$atrptdata->{CDS_END_EXON}]
 	 # - $transcript_stop  + 3; ##???why +3
-	   - $transl_stop  + 1;
-    }
+	            - $transl_stop  + 1;
+        }
     
    # print "translation: $trans_start_exon, $trans_end_exon, $translation_offset_left, $translation_offset_right,   $trpt_name\n";
-    my $eTranslation = new  Bio::EnsEMBL::Translation
-      (
-       -START_EXON  => $trans_start_exon,
-       -END_EXON    => $trans_end_exon,
-       -SEQ_START   => $translation_offset_left,
-       -SEQ_END     => $translation_offset_right,
-       -STABLE_ID   => $trpt_name,
-       -VERSION     => 1,
-      );
+        my $eTranslation = new  Bio::EnsEMBL::Translation
+        (
+        -START_EXON  => $trans_start_exon,
+        -END_EXON    => $trans_end_exon,
+        -SEQ_START   => $translation_offset_left,
+        -SEQ_END     => $translation_offset_right,
+        -STABLE_ID   => $trpt_name,
+        -VERSION     => 1,
+        );
     
     
    # $eTranslation->stable_id( $trpt_name );
@@ -822,7 +820,7 @@ foreach my $gene_id( keys %$GENES ){
     # EnsEMBL add translation to transcript #
     #########################################
     
-    $eTranscript->translation($eTranslation);
+        $eTranscript->translation($eTranslation);
 
    }#end of else noncoding
     ##################################
