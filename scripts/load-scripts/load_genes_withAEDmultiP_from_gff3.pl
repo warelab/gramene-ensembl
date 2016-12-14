@@ -692,7 +692,7 @@ foreach my $gene_id( keys %$GENES ){
 	        }
 	# exon contains a stop codon
 	        elsif ( ( $transcript_stop >= $exon_start ) &&
-		        ( $transcript_stop =< $exon_end ) ) {
+		        ( $transcript_stop <= $exon_end ) ) {
 	            $exon_start_phase = $last_exon_phase;
 	            $exon_end_phase   = -1;
 	        }
