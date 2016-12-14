@@ -641,16 +641,16 @@ foreach my $gene_id( keys %$GENES ){
 	        elsif(  $transcript_start == $exon_start  ) { # exon starts with a start
 	            $phase_diff =  ( ( $exon_end - $exon_start + 1 ) % 3 );
 	            $exon_start_phase = 0;
-	            $exon_end_phase   = $transcript_stop <= $exon_end ?  -1 : $phase_diff;
+	            $exon_end_phase   = $transcript_stop < $exon_end ?  -1 : $phase_diff;
 	        }
 	        elsif ( ( $transcript_start > $exon_start  ) &&
 		        ( $transcript_start <= $exon_end ) ) { # exon contains a start
 	            $phase_diff = ( ( $exon_end - $transcript_start + 1 ) % 3 );
 	            $exon_start_phase = - 1;
-	            $exon_end_phase   = $transcript_stop <= $exon_end ?  -1 : $phase_diff;
+	            $exon_end_phase   = $transcript_stop < $exon_end ?  -1 : $phase_diff;
 	        }
 	        elsif ( ( $transcript_stop >= $exon_start ) &&
-		            ( $transcript_stop <= $exon_end ) ) { # exon contains a stop
+		            ( $transcript_stop < $exon_end ) ) { # exon contains a stop
 	            $exon_start_phase = $last_exon_phase;
 	            $exon_end_phase   = -1;
 	        }
@@ -681,17 +681,17 @@ foreach my $gene_id( keys %$GENES ){
 	        elsif ( ( $transcript_start == $exon_end ) ) {
        	        $phase_diff = ( ( $exon_end - $exon_start + 1 ) % 3 );
 	            $exon_start_phase = 0;
-	            $exon_end_phase   = $transcript_stop < $exon_start ? $phase_diff : -1;
+	            $exon_end_phase   = $transcript_stop <= $exon_start ? $phase_diff : -1;
 	        }
 	# exon contains a start codon
 	        elsif ( ( $transcript_start >= $exon_start ) &&
 		            ( $transcript_start < $exon_end ) ) {
         	    $phase_diff = ( ( $transcript_start - $exon_start + 1 ) % 3 );
 	            $exon_start_phase = - 1;
-	            $exon_end_phase   = $transcript_stop < $exon_start ? $phase_diff : -1;
+	            $exon_end_phase   = $transcript_stop <= $exon_start ? $phase_diff : -1;
 	        }
 	# exon contains a stop codon
-	        elsif ( ( $transcript_stop >= $exon_start ) &&
+	        elsif ( ( $transcript_stop > $exon_start ) &&
 		        ( $transcript_stop <= $exon_end ) ) {
 	            $exon_start_phase = $last_exon_phase;
 	            $exon_end_phase   = -1;
