@@ -714,7 +714,7 @@ foreach my $gene_id( keys %$GENES ){
 
     	    $last_exon_phase = $exon_end_phase;
       }
-
+    warn("Exon name2hashkey: ", $eExon->stable_id, "=", $eExon->hashkey, "\n");
       $eTranscript->add_Exon($eExon);
       
       # Start exon
