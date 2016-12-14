@@ -698,29 +698,29 @@ foreach my $gene_id( keys %$GENES ){
 	  #was   $transcript_start == ($exon_end - 2)
 	  $phase_diff = ( ( $exon_end - $exon_start + 1 ) % 3 );
 	  $exon_start_phase = 0;
-	  $exon_end_phase   = $phase_diff;
+	  $exon_end_phase   = $transcript_stop < $exon_start ? $phase_diff : -1;
 	}
 	# exon contains a start codon
-	elsif ( ( $transcript_start > $exon_start ) && 
+	elsif ( ( $transcript_start >= $exon_start ) &&
 		( $transcript_start < $exon_end ) ) {
 	  #$phase_diff = ( ( $exon_end - $transcript_start + 1 ) % 3 );
 	  $phase_diff = ( ( $transcript_start - $exon_start + 1 ) % 3 );
 	  $exon_start_phase = - 1;
-	  $exon_end_phase   = $phase_diff;
+	  $exon_end_phase   = $transcript_stop < $exon_start ? $phase_diff : -1;
 	}
 	# exon contains a stop codon
-	elsif ( ( $transcript_stop > $exon_start ) && 
-		( $transcript_stop < $exon_end ) ) {
-	  $phase_diff = ( ( $exon_end - $transcript_stop + 1 ) % 3 );
+	elsif ( ( $transcript_stop >= $exon_start ) &&
+		( $transcript_stop =< $exon_end ) ) {
+	  #$phase_diff = ( ( $exon_end - $transcript_stop + 1 ) % 3 );
 	  $exon_start_phase = $last_exon_phase;
 	  $exon_end_phase   = -1;
 	}
 	# exon stops with a stop
-	elsif ( ( $transcript_stop == $exon_start ) ) { 
-	  $phase_diff = ( ( $exon_end - $exon_start + 1 ) % 3 );
-	  $exon_start_phase = $last_exon_phase;
-	  $exon_end_phase   = -1;
-	}
+	#elsif ( ( $transcript_stop == $exon_start ) || ( $transcript_stop == $exon_end ) ) {
+	  #$phase_diff = ( ( $exon_end - $exon_start + 1 ) % 3 );
+	 # $exon_start_phase = $last_exon_phase;
+	 # $exon_end_phase   = -1;
+	#}
 	# 3' exons
 	elsif ( ( $transcript_stop > $exon_start ) && 
 		( $transcript_stop > $exon_end ) ) {
@@ -728,11 +728,11 @@ foreach my $gene_id( keys %$GENES ){
 	  $exon_end_phase   = -1;
 	}
 	# single exon genes
-	elsif ( ( $transcript_start == $exon_start ) && 
-		( $transcript_stop == $exon_end ) ) {
-	  $exon_start_phase = 0;
-	  $exon_end_phase   = -1;
-	}
+	#elsif ( #( $transcript_start == $exon_start ) &&
+#		( $transcript_stop == $exon_end ) ) {
+#	  $exon_start_phase = 0;
+#	  $exon_end_phase   = -1;#
+#	}
 	# internal exon
 	else {
 	  $phase_diff = ( $exon_end - $exon_start + 1 ) % 3;
