@@ -70,6 +70,17 @@ Oglab01_0053    MIPS_Oglab_v2.0 tRNA    16782   16853   71.08   +       .       
 Oglab01_0259    MIPS_Oglab_v2.0 tRNA    226597  226681  40.47   +       .       ID=trna_190;Name=tRNA-Met
 Oglab01_0259    MIPS_Oglab_v2.0 tRNA_intron     226635  226645  .       +       .       ID=trna_190_intron;Parent=trna_190
 
+ObartChr01      tRNAscan        Glu_CTC 354679  354751  79.07   +       .       ID=tRNA_1;tRNA_name=Glu_CTC
+ObartChr01      tRNAscan        Thr_AGT 1477442 1477515 76.42   +       .       ID=tRNA_2;tRNA_name=Thr_AGT
+ObartChr01      tRNAscan        Phe_GAA 1554309 1554381 77.43   -       .       ID=tRNA_84;tRNA_name=Phe_GAA
+ObartChr01      tRNAscan        Met_CAT 1673949 1674022 33.51   +       .       ID=tRNA_3;tRNA_name=Met_CAT
+ObartChr01      tRNAscan        Asp_GTC 1911347 1911418 70.78   +       .       ID=tRNA_4;tRNA_name=Asp_GTC
+ObartChr01      tRNAscan        Leu_CAG 2000450 2000530 68.57   -       .       ID=tRNA_83;tRNA_name=Leu_CAG
+ObartChr01      tRNAscan        Ser_TGA 2853080 2853161 80.82   +       .       ID=tRNA_5;tRNA_name=Ser_TGA
+ObartChr01      tRNAscan        Cys_GCA 2947973 2948044 77.22   -       .       ID=tRNA_82;tRNA_name=Cys_GCA
+ObartChr01      tRNAscan        Pro_AGG 3158779 3158850 71.75   +       .       ID=tRNA_6;tRNA_name=Pro_AGG
+ObartChr01      tRNAscan        Gly_GCC 3760770 3760840 71.56   +       .       ID=tRNA_7;tRNA_name=Gly_GCC
+
 B<The Ensembl Registry>
 
   The database connection details for both Ensembl and interproscan
@@ -162,7 +173,7 @@ use Readonly;
 
 Readonly my $RNA_REGEX => qr/^(RRNA_FRAGMENT|NCRNA|TRNA)$/i;
 Readonly my $TRNA_INTRON_REGEX => qr/^(TRNA_INTRON)$/i;
-Readonly my $biotype => 'non_coding';
+Readonly my $biotype => 'tRNA';
 
 use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $V 
              $GENES  %PARENT $ANNOT_SOURCE );
@@ -266,7 +277,7 @@ while( my $line = $GFF_HANDLE->getline ){
   $PARENT{ $id } = $parent if $parent;
   my $gene_id = $parent ? &get_gene_id( $parent ) : $id;
   
-  my $name = $attribs{NAME} ? $attribs{NAME} : '';
+  my $name = $attribs{NAME} ? $attribs{NAME} : $attribs{TRNA_NAME} ? $attribs{TRNA_NAME} : '';
   print "id=$id, gene_id=$gene_id,,,\n" if $V;
 
   my $family = $attribs{FAMILY} ? $attribs{FAMILY} : '';
@@ -277,7 +288,7 @@ while( my $line = $GFF_HANDLE->getline ){
   #if( $feature =~ $RNA_REGEX ){
       #my ($biotype) = split /_/, $feature; 
       print "[INFO] Processing $biotype gene $gene_id, name $name\n" if $V;
-      $GENES->{$gene_id}->{GENE_NAME}  = $id;
+      $GENES->{$gene_id}->{GENE_NAME}  = "$id-$name";
       $GENES->{$gene_id}->{GENE_NAME_ALIAS}  = $name;
       $GENES->{$gene_id}->{ATTRIB}  = $attribute;
       $GENES->{$gene_id}->{FAMILY}  = $family;
@@ -288,7 +299,7 @@ while( my $line = $GFF_HANDLE->getline ){
       $GENES->{$gene_id}->{STRART}     = $start;
       $GENES->{$gene_id}->{END}     = $end;
       
-      $GENES->{$gene_id}->{TRPT}->{$id}->{TRPT_NAME}  = $id; 
+      $GENES->{$gene_id}->{TRPT}->{$id}->{TRPT_NAME}  = "$id-$name"; 
       $GENES->{$gene_id}->{TRPT}->{$id}->{TRPT_NAME_ALIAS} = $name;
       $GENES->{$gene_id}->{TRPT}->{$id}->{EXON_COUNT} = 0;
       $GENES->{$gene_id}->{TRPT}->{$id}->{CDS_COUNT}  = 0;
@@ -338,7 +349,7 @@ foreach my $geneid ( sort keys %$GENES ){
 	  print "$trptid: exon_starts=", join ",", @$exon_starts, "\n" if $V;
 	  print "$trptid: exon_starts=", join ",", @$exon_ends, "\n" if $V;
       }else{
-
+warn ("Add exon coord\n");
 	  $trptdata->{EXON_START} = [$trpt_start];
 	  $trptdata->{EXON_END} = [$trpt_end];
 	  $trptdata->{EXON_COUNT} = 1;
@@ -360,7 +371,8 @@ foreach my $geneid( sort keys %$GENES ){
   my $genedata = $GENES->{$geneid};
   my $family = $genedata->{FAMILY};
 
-  my $slice = $sa->fetch_by_region( undef, $genedata->{SEQ_NAME} );
+	
+  my $slice = $sa->fetch_by_region( undef, $genedata->{SEQ_NAME} =~ /3s$/i ? '3s' : $genedata->{SEQ_NAME} );
 
   unless( $slice ){
       print STDERR "ERROR: No seq_region found for ", $genedata->{SEQ_NAME},"\n";

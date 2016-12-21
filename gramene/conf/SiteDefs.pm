@@ -8,10 +8,10 @@ sub update_conf {
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 46; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 27;
+  $SiteDefs::SITE_RELEASE_VERSION = 51; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'June 2015';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2016';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -30,6 +30,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
+
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
   $SiteDefs::ENSEMBL_BLASTSCRIPT            = $SiteDefs::ENSEMBL_WEBROOT."/utils/runblast.pl";
 
@@ -40,14 +42,15 @@ sub update_conf {
   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH_DNA = "/usr/local/blastdb/ncbi_blast/genomic"; # path for the blast DNA index files 
   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH    = "/usr/local/blastdb/ncbi_blast/genes"; # path for the blast index files (other than DNA) 
   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
-
+  $SiteDefs::ASSEMBLY_CONVERTER_BIN_PATH = '/usr/local/bin/CrossMap.py';
+  $SiteDefs::ENSEMBL_CHAIN_FILE_DIR       = '/usr/local/ensembl-live/tools_data/assembly_converter';
 
   #----------
   # User database
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
   #'ensembl_web_user_db_31_57';
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
   $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
@@ -63,8 +66,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
   $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
 
-  $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
-  $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
+  $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
+  $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';

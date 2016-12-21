@@ -167,7 +167,7 @@ my %replaced;
 
 foreach my $file( @ARGV ){
   warn( "Processing $file\n" );
-  my( $logic_name ) = $file =~ m|([^/]+?)_\d+\..*$|;
+  my( $logic_name ) = $file =~ m|([^/]+?)(_\d*)?\..*$|;
   warn ($logic_name) if $verbose;
   if( $file_prefix ){ 
       warn "removing $file_prefix" if $verbose;

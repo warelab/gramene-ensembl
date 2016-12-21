@@ -22,9 +22,6 @@ use warnings;
 use Getopt::Long;
 use Pod::Usage;
 
-#you may not want all of these:
-#use Gramene::Config;
-#use DBI;
 use DBI qw(:sql_types);
 use Bio::EnsEMBL::DBLoader;
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
@@ -317,7 +314,7 @@ for my $file (@ARGV){
 				    );
 
        my $ori=$r->{'scaffold_strand'};
-       if( !$ori ){
+       if( !$ori || $ori eq '?'){
 	   $ori = 1;
        }elsif( $ori eq '+' || $ori =~ /^plus$/i || $ori eq '?' ){
 	   $ori = 1;

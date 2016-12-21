@@ -20,6 +20,7 @@ Options:
   -l|--logic_name       the logic name for the gene track
   -n|--no_insert        Do not make changes to the database. For debug.
   -x|--xref_source      the external db source for xref, in format of 'src_in_gff3 => external_db.db_name'
+  -keepalive                ignore the unregonized feature instead of dying
 
 =head1 OPTIONS
 
@@ -169,7 +170,7 @@ use Bio::EnsEMBL::DBEntry;
 use Date::Calc;
 
 
-use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $XREF_SRCS $SPECIES );
+use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $XREF_SRCS $SPECIES $KEEPALIVE);
 
 my $date = time(); 
 
@@ -186,6 +187,7 @@ BEGIN{  #Argument Processing
         "logic_name=s"       => \$logic_name,
         "no_insert"          => \$no_insert,
         "xref_source=s"      => \@xref_srcs,
+	"keepalive|?"	     => \$KEEPALIVE,
         )
       or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
@@ -265,7 +267,7 @@ while( my $line = $GFF_HANDLE->getline ){
 
   my $attribs_ref = get_attrib( $attribute, $SPECIES) ;
 
-  #print "The attribs is ", Dumper( $attribs_ref);
+  print "The attribs is ", Dumper( $attribs_ref);
   #exit;
 
   
@@ -378,7 +380,11 @@ while( my $line = $GFF_HANDLE->getline ){
     #we can figure out the exon boundry from UTR and CDs
   }
   else{
-    die( "Unrecognized feature $feature" );
+    	if( ! $KEEPALIVE){
+		die ( "Unrecognized feature $feature" );
+  	}	
+	warn ( "Unrecognized feature $feature" );
+
   }
 
 }

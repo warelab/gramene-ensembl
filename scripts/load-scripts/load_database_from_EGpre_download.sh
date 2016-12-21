@@ -6,6 +6,7 @@
 DBlist=$1
 Host=$2
 WKdir=$3
+REPLACE=$4
 
 if [ ! ${DBlist} ]
    then 
@@ -23,6 +24,12 @@ if [ ! ${WKdir} ]
    then
         echo "please pass working diretory path which should be the parenet directory of the database dump you are loading from"
         exit
+fi
+
+if [ ! ${REPLACE} ]
+   then   
+        echo "This is will not replace the existing database"
+        
 fi
 
 
@@ -44,10 +51,16 @@ fi
  do  
      cd $WKdir
      echo "$FDB $TDB"
-     mysql -u weix -pwarelab -h $Host -e "drop database if EXISTS $TDB; create database $TDB"
+     if  [  ! ${REPLACE} ]
+	then 
+		mysql -u weix -pwarelab -h $Host -e "create database if NOT EXISTS $TDB"
+     else
+		mysql -u weix -pwarelab -h $Host -e "drop database if EXISTS $TDB; create database $TDB"
+     fi
+	
      cd $FDB
      gunzip *.gz
      mysql -u weix -pwarelab -h $Host $TDB < $FDB.sql
-     ls *txt | xargs mysqlimport -u weix -pwarelab -h $Host  -L -l $TDB
+     ls *txt | xargs mysqlimport -u weix -pwarelab -h $Host -i  -L -l $TDB
  done
 

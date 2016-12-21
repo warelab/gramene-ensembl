@@ -126,10 +126,15 @@ eval{
 		       'PrintError' => 0});
 };
 
+if( $@ ){
+	print "failed to create dbh, $@\n";
+}
+
 # get all database names that match pattern
 my ($sth, $sql);
 my $sql_pattern = $pattern || $dbname;
 $sql = "SHOW DATABASES LIKE '". $sql_pattern ."'";
+warn("$sql");
 $sth = $dbh->prepare($sql);
 $sth->execute;
 while (my ($dbname) = $sth->fetchrow_array){

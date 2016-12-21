@@ -74,7 +74,7 @@
 5068	Poplar_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from poplar (Populus) species	EST Cluster (Poplar)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
 5069	prodom	A comprehensive set of protein domain (<a rel="external" href="http://prodom.prabi.fr/prodom/current/html/home.php">ProDom</a>) families automatically generated from the UniProt Knowledge Database	ProDom domain	1	{'type'=>'domain'}
 5071	RFLP	genomics location of RFLP (restriction fragment length polymorphism) markers	Marker (RFLP)	1	
-5071	Rice_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna'}
+5071	Rice_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
 5072	Rice_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from rice (Oryza) species	EST Cluster (Rice)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
 5073	brachypodium_est_cluster	Alignments of EST clusters (Unigenes, Gene Indices) from Brachypodium species	EST Cluster (Brachypodium)	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
 5074	Rice_OVERGO	Genomic location of <a rel="external" href="www.ncbi.nlm.nih.gov/projects/genome/probe/doc/TechOvergo.shtml">Overgo</a> probe markers	Rice Overgo Probes	1	
@@ -404,10 +404,10 @@
 5041	GeneModel_v1.4_OGE	Gene annotation by <a href="http://www.omap.org/index.html">The Oryza Genome Evolution Project (OGE), previously known as OMAP</a>	Gene (OGE)	1	{'key'=>'oge','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}} 
 5042	GeneBuild_MSU7	Gene annotation by <a href="http://rice.plantbiology.msu.edu">MSU</a> through a process of automatic and manual curation	Gene (MSU)	1	{'label_key' => '[biotype]', colour_key => '[biotype]', 'default' => {'MultiTop' => 'gene_label', 'contigviewbottom' => 'transcript_label', 'MultiBottom' => 'collapsed_label', 'contigviewtop' => 'gene_label', 'cytoview' => 'gene_label', 'alignsliceviewbottom' => 'as_collapsed_label' }, 'key' => 'MSU7', name => 'MSU7 annotation', caption => 'MSU7 annotation', multi_name => 'MSU7 annotation'}
 5044	GeneModel_v2.1_JGI	Gene annotation by <a href="http://genome.jgi-psf.org">JGI</a> through a process of automatic and manual curation	Gene (JGI)	1	{'key'=>'jgi','label_key' => '[text_label] [display_label]','default' => {'MultiTop' => 'gene_label','contigviewbottom' => 'transcript_label','MultiBottom' => 'collapsed_label','contigviewtop' => 'gene_label','alignsliceviewbottom' => 'as_collapsed_label','cytoview' => 'gene_label'}}
-5071	Oryza_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna'}
-5071	Oryza_EST_Cluster	Genomic alignments of rice (Oryza) EST clusters (Unigenes, Gene Indices)	Rice ESTCluster	1	{'type'=>'cdna'}
-5071	Oryza_mRNA	Genomic alignments of rice (Oryza) mRNA	Rice mRNA	1	{'type'=>'cdna'}
-5071	Oryza_RFLP	Genomic alignments of rice (Oryza) "restriction fragment length polymorphism" (RFLP)	Rice RFLP	1	{'type'=>'cdna'}
+5071	Oryza_EST	Genomic alignments of rice (Oryza) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Rice EST	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5071	Oryza_EST_Cluster	Genomic alignments of rice (Oryza) EST clusters (Unigenes, Gene Indices)	Rice ESTCluster	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5071	Oryza_mRNA	Genomic alignments of rice (Oryza) mRNA	Rice mRNA	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
+5071	Oryza_RFLP	Genomic alignments of rice (Oryza) "restriction fragment length polymorphism" (RFLP)	Rice RFLP	1	{'type'=>'cdna','default'=>{'contigviewbottom'=>'stack'}}
 17	Solanum_EST	Genomic alignments of tomato (Solanum) "Expressed Sequence Tags" (ESTs) from <a rel="external" href="http://www.ncbi.nlm.nih.gov/dbEST/">dbEST</a>	Tomato EST	1	{'type'=>'cdna'}
 14	Solanum_EST_Cluster	Alignments of EST clusters (Unigenes, Gene Indices) from tomato (Solanum) species	Tomato EST Cluster	1	{'type'=>'cdna'}
 17	Solanum_mRNA	Genomic alignments of tomato (Solanum) mRNA	Tomato mRNA	1	{'type'=>'cdna'}

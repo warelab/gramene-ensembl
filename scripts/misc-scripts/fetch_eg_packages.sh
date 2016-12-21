@@ -21,7 +21,7 @@ for repo in \
      eg-web-search \
      eg-web-common \
      ensemblgenomes-api \
-     eg-web-plants;
+     eg-web-plants ;
  do
      if [ ! -d "$repo" ]; then
          echo "Checking out $repo (branch $branch_eg)"

@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl -w 
+#! /usr/local/bin/perl -w 
 
 =pod
 
@@ -108,7 +108,7 @@ use vars qw( $BASEDIR );
 use Readonly;
 
 Readonly my $repeat_name_key => "id";
-Readonly my @repeat_class_keys => qw(rclass subclass rorder superfamily family);
+Readonly my @repeat_class_keys => qw(name rclass subclass rorder superfamily family);
 Readonly my $repeat_consensus_key => "tsd_sequence";
 
 
@@ -134,11 +134,12 @@ use Date::Calc;
 use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $LOGIC_NAME );
 
 my $date = time(); ;
+my $SPECIES_NAME;
 
 BEGIN{  #Argument Processing
   my $help=0;
   my $man=0;
-  my( $species,  $reg, $logic_name, $no_insert);
+  my ( $species,  $reg, $logic_name, $no_insert);
   GetOptions
       ( 
         "help|?"             => \$help,
@@ -197,6 +198,8 @@ BEGIN{  #Argument Processing
           ":". $dba->dbc->port ."\n");
     $pre_text = "  Old DB: ";
   }
+
+   $SPECIES_NAME = $species;
 }
 
 my $sa  = $ENS_DBA->get_adaptor('Slice');
@@ -221,7 +224,7 @@ while( my $line = $GFF_HANDLE->getline ){
       $attribute ) = split( /\s+/, $line, 9 );
   #$feature = uc($feature);
   #$seqname =~ s/.*chr(omosome)?_?0*//i;
-  $seqname =~ s/(.*chr0?|\D*0?)//i;
+  $seqname =~ s/(.*chr0?|\D*0?)//i unless $SPECIES_NAME =~ /longistaminata/i;
   $strand = $strand eq '-' ? -1: 1;
   
   my %attribs;
@@ -245,7 +248,8 @@ while( my $line = $GFF_HANDLE->getline ){
 
 
   #print "feature=$feature, $repeat_name_key => $attribs{$repeat_name_key}, $repeat_consensus_key=>$attribs{$repeat_consensus_key} \n";
-  my $repeat_name = join '-', ($feature, $attribs{$repeat_name_key});
+  #my $repeat_name = join '-', ($feature, $attribs{$repeat_name_key});
+  my $repeat_name = $attribs{$repeat_name_key};
   my $repeat_class = join '/', map{ $attribs{$_} } @repeat_class_keys;
   my $repeat_type = $feature;
   my $repeat_consensus = $attribs{$repeat_consensus_key} || 'unknown';

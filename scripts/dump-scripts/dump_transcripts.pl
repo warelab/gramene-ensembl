@@ -10,7 +10,7 @@ dump_transcripts.pl - Make fasta files of transcripts, and 3' and 5'
 
 BEGIN {
     $ENV{'GrameneDir'} = '/usr/local/gramene/'; 
-    $ENV{'GrameneEnsemblDir'} = '/usr/local/ensembl-50/'; 
+    $ENV{'GrameneEnsemblDir'} = '/usr/local/ensembl-live/'; 
 }
 
 # The first shall be last...
@@ -171,7 +171,7 @@ if($margin) {
 
 
 foreach my $geneid (@genes) {
-  #print "! $geneid\n";
+  print "! $geneid\n";
   
   $count{total_genes}++;
   my $gene;
@@ -185,9 +185,9 @@ foreach my $geneid (@genes) {
   }
   next unless $gene;
   
-  my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
+  #my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
   #print "gene attrib is ", $working_set_attrib->code, "\n";
-  next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
+  #next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
   
   
   next if %exclude_gene and $exclude_gene{$gene->stable_id}
@@ -241,7 +241,7 @@ foreach my $geneid (@genes) {
     }
     
     my $seq_obj;
-    if( $coding){
+    if( $coding && $biotype =~ /protein_coding/i){
       
       my $cdna_coding_start = $trans->cdna_coding_start;
       my $cdna_coding_end   = $trans->cdna_coding_end;
@@ -253,18 +253,19 @@ foreach my $geneid (@genes) {
 						     $cdna_coding_start-1, 
 						     $cdna_coding_end-$cdna_coding_start+1)
 				     );
-    }else{
+#    }
+#else{
       
-      $comp_id .=  "|CDNA";
-      $seq_obj = Bio::Seq->new(
-				    -display_id => $comp_id,
-				    -seq => $cdna_seq,
-				   );
-      
-    }
-    $seqio->write_seq($seq_obj);
-    $count{qualified_transcripts}++;
-    
+      #$comp_id .=  "|CDNA";
+      #$seq_obj = Bio::Seq->new(
+#				    -display_id => $comp_id,
+#				    -seq => $cdna_seq,
+#				   );
+#      
+#    }
+      $seqio->write_seq($seq_obj);
+      $count{qualified_transcripts}++;
+    }   
   }
   #last;
 }
