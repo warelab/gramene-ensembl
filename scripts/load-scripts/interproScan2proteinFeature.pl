@@ -3,7 +3,7 @@
 
 =head1 Name
 
-    parse_interpro2ensembl.pl - parse interproscan raw xml ouptut file and load into ensembl core database. 
+    parse_interpro2ensembl.pl - parse interproscan raw xml ouptut file and load into protein_feature table in ensembl core database. 
 
 =head1 SYNOPSIS
 
@@ -27,13 +27,14 @@ Sharon Wei (weix@cshl.edu)
 
 =cut
 
+use strict;
 
 use lib map {"$ENV{ENS_CODE_ROOT}/$_" } 
 	qw ( bioperl-live  
 	     ensembl/modules 
              ensembl-compara/modules
 	     Sharon/modules 
-	     ensembl/misc-scripts/xref_mapping);
+	    );
 
 
 use Getopt::Long;
@@ -43,14 +44,12 @@ use File::Path;
 
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
-use XrefParser::Database;
-use XrefMapper::Interpro;
-use XrefParser::InterproParser;
+use Bio::EnsEMBL::Analysis;
+use Bio::EnsEMBL::ProteinFeature;
+use Bio::SeqIO::interpro;
+use XML::DOM::XPath;
 
 use Readonly;
-
-Readonly our $SRC => 'Interpro';
-Readonly our $SPECIES_ID_METa_KEY => 'species.taxonomy_id';
 
 my($help, $dbname, $dbhost, $dbuser, $dbpass, $dbport, $test, $debug);
 
@@ -73,43 +72,86 @@ if($help || !$dbname || !$dbhost || !$dbuser || !$dbpass){
 
 $dbport ||= 3306;
 
-warn "get optionts\nhelp=>$help, debug=>$debug, $dbuser:$dbpass@$dbhost:$dbport/$dbname\n" if $debug ;
+warn "get optionts\nhelp=>$help, debug=>$debug, $dbuser:$dbpass\@$dbhost:$dbport/$dbname\n" if $debug ;
 
-my $db_obj = XrefParser::Database->new( {
-			'dbname' => $dbname,
-			'host'   => $dbhost,
-			'user'	=> $dbuser,
-			'pass'	=> $dbpass,
-			'port'	=> $dbport,
-			'verbose' => $debug,
-		});
-die "Cannot create XrefParser::Database object for $dbuser:$dbpass@$dbhost:$dbport/$dbname" unless $db_obj;
+my $DBAdaptor = Bio::EnsEMBL::DBSQL::DBAdaptor->new( 
+			-dbname => $dbname,
+			-host   => $dbhost,
+			-user	=> $dbuser,
+			-pass	=> $dbpass,
+			-port	=> $dbport,
+			-driver => 'mysql'
+		);
+die "Cannot create DBAdaptor for $dbuser:$dbpass@$dbhost:$dbport/$dbname" unless $DBAdaptor;
 
-my $interpro_parser = XrefParser::InterproParser->new($db_obj, $debug);
-die "Cannot create XrefParser::InterproParser for the database" unless $interpro_parser;
+my $protein_feature_adaptor = $DBAdaptor->get_ProteinFeatureAdaptor or die "Cannot get ProteinFeatureAdaptor\n";
 
-my $dbi = $db_obj->dbi;
-
-my $source_id = &get_source_id( $dbi );
-my $species_id = &get_species_id($dbi );
-
-print "source_id for $SRC is $source_id\nspecies_id is $species_id\n" if $debug;
+my $analysis = Bio::EnsEMBL::Analysis->new(-LOGIC_NAME => 'interproScan2proteinFeature');
+$DBAdaptor->save('core', 'protein_feature', 'meta_coord') unless $test;
 
 for my $xmlfile (@ARGV){
 
 	print "Process $xmlfile";
 	
-	$interpro_parser->run(
-		{
-		'source_id'  => $source_id,
-		'species_id' => $species_id,
-		'files'	     => [$xmlfile],
-		'rel_file'   => "Dummy",
-		'verbose'    => $debug,
-		});
+        my $interpro_parser = Bio::SeqIO->new(  -file    => $xmlfile,
+                            			-verbose => $debug,
+                            			-format  => 'interpro');
+
+	while (my $seq = $interpro_parser->next_seq() ){
+
+		my $pid = $seq->pid;
+	warn ("protein ID is $pid") if $debug;
+		my @features = $seq->get_SeqFeatures;
+
+		#for 
+# is($features[0]->primary_tag, 'region', 'primary_tag()');
+# is($features[0]->display_name, 'Protein of unknown function DUF1021', 'display_name()');
+# is($features[0]->location->end, 78, 'location->end()');
+# my @dblinks = $features[0]->annotation->get_Annotations('dblink');
+# is(scalar @dblinks, 3, 'right number of dblinks');
+# is($dblinks[1]->primary_id, 'IPR009366', 'first primary_id');
+# is($dblinks[2]->primary_id, 'PF06257.1', 'second primary_id');
+# is($dblinks[3]->primary_id, 'GO:0003677', 'primary_id via dblinks');
+#
+			
+
+	}
+}
+
+sub store_protein_feature {
+
+	my $pfadaptor = shift;
+	my $translation_id = shift;
+	my $pf_hashref = shift;
 	
 
+ 	my $f = Bio::EnsEMBL::ProteinFeature->new
+  	(-START       => $pf_hashref->{start},
+   	 -END         => $pf_hashref->{end},
+   	 -ANALYSIS    => $pf_hashref->{analysis},
+         -HSTART      => $pf_hashref->{hstart},
+   	 -HEND        => $pf_hashref->{hend},
+   	 -HSEQNAME    => $pf_hashref->{hseqname},
+   	 -PERCENT_ID  => $pf_hashref->{percent_id},
+   	 -P_VALUE     => $pf_hashref->{p_value},
+   	 -SCORE       => $pf_hashref->{score},
+   	 -SPECIES     => $pf_hashref->{species},
+   	 -HSPECIES    => $pf_hashref->{hspecies},
+   	 -HDESCRIPTION=> $pf_hashref->{hdes},
+   	 -IDESC       => $pf_hashref->{idesc},
+   	 -INTERPRO_AC => $pf_hashref->{interpro_ac});
+   
+	eval { $pfadaptor->store($f, $translation_id) };
+	if($@){
+		warn ("Error: failed to store protein_feature:$pf_hashref->{interpro_ac} for translation_id: $translation_id\n");	
+		return 0;
+	}
+
+	return 1;
+
 }
+
+
 
 sub get_source_id {
 
@@ -127,19 +169,6 @@ sub get_source_id {
 	return $src_id;
 }
 
-sub get_species_id {
-
-        my $dbi=shift;
-        my $sql = "select meta_value from meta where meta_key = ?";
-
-        my $sth = $dbi->prepare($sql) or return;
-
-        $sth->execute($SPECIES_ID_METa_KEY);
-
-        my ($species_id) = $sth->fetchrow_array();
-        
-        return $species_id;
-}
 
 
 __END__
