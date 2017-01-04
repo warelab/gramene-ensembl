@@ -73,7 +73,7 @@ my @db_adaptors = @ARGV;
 
 pod2usage( -verbose => 2) if $args{'help'};
 
-my $feature_type = $args{feature_type};
+my $feature_types = [$args{feature_type}];
 
 print STDERR "Sending $feature_type files to $args{'output_dir'}\n\n";
 
@@ -103,7 +103,7 @@ foreach my $dbname (@db_adaptors) {
     eval {
 	    my $exporter = ExportView::GFF3Exporter->new('debug' => 1);
 	    #$exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
-    	$exporter->export_features_from_slices($gff, $slices, $feature_type);
+    	$exporter->export_features_from_slices($gff, $slices, $feature_types);
     };
 
     close $gff;
