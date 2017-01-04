@@ -102,7 +102,7 @@ foreach my $dbname (@db_adaptors) {
 
     eval {
 	    my $exporter = ExportView::GFF3Exporter->new('debug' => 1);
-	    $exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
+	    #$exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
     	$exporter->export_features_from_slices($gff, @$slices, $feature_type);
     };
 
