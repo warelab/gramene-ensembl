@@ -75,7 +75,7 @@ pod2usage( -verbose => 2) if $args{'help'};
 
 my $feature_types = [$args{feature_type}];
 
-print STDERR "Sending $feature_type files to $args{'output_dir'}\n\n";
+print STDERR "Sending $feature_types[0] files to $args{'output_dir'}\n\n";
 
 foreach my $dbname (@db_adaptors) {
 
