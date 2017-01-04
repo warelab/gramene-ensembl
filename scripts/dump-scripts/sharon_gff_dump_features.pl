@@ -94,9 +94,9 @@ foreach my $dbname (@db_adaptors) {
 
 	my $slices = $adaptor->fetch_all('toplevel');
 
-	my $output_file = $args{'output_dir'} . '/' . $key. '.'. $feature_type . ".gff";
+	my $output_file = $args{'output_dir'} . '/' . $key. '.'. $feature_types[0] . ".gff";
 
-	print STDERR "\tDumping $key ($feature_type) to $output_file (" , scalar(@$slices), " slices)\n";
+	print STDERR "\tDumping $key ($feature_types[0]) to $output_file (" , scalar(@$slices), " slices)\n";
 
 	open (my $gff, '>' . $output_file);
 
