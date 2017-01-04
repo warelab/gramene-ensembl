@@ -94,7 +94,7 @@ foreach my $dbname (@db_adaptors) {
 
 	my $slices = $adaptor->fetch_all('toplevel');
 
-	my $output_file = $args{'output_dir'} . '/' . $key. $feature_type . ".gff";
+	my $output_file = $args{'output_dir'} . '/' . $key. '.'. $feature_type . ".gff";
 
 	print STDERR "\tDumping $key ($feature_type) to $output_file (" , scalar(@$slices), " slices)\n";
 
@@ -103,7 +103,7 @@ foreach my $dbname (@db_adaptors) {
     eval {
 	    my $exporter = ExportView::GFF3Exporter->new('debug' => 1);
 	    #$exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
-    	$exporter->export_features_from_slices($gff, @$slices, $feature_type);
+    	$exporter->export_features_from_slices($gff, $slices, $feature_type);
     };
 
     close $gff;
