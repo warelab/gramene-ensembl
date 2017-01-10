@@ -97,7 +97,7 @@ foreach my $table (@tables) {
     
     my $ebi_sum = $sums_href->{"$db_name.".$table};
     
-    # print STDERR "gramene_sum, ebi_sum, $gramene_sum, $ebi_sum\n";
+     print STDERR "gramene_sum, ebi_sum, $gramene_sum, $ebi_sum\n";
     
     # Update the production database only the checksums differ
 
@@ -117,7 +117,7 @@ foreach my $table (@tables) {
             die "can't find file, $temp_table_filename, found!\n";
         }
         elsif (-z $temp_table_filename) {
-            die "file, $temp_table_filename, is empty!\n";
+            warn "file, $temp_table_filename, is empty!\n";
         }
 	
         my $command = "cat $temp_table_filename | mysql -h $dbhost -P$dbport -u $dbuser -p$dbpass $db_name";
