@@ -253,7 +253,7 @@ while( my $line = $GFF_HANDLE->getline ){
       $start, $end, $score, $strand, $frame, 
       $attribute ) = split( /\s+/, $line, 9 );
   $feature = uc($feature);
-  $seqname =~ s/chr0*//i;
+  $seqname =~ s/^chr0*//i;
 
   my %attribs;
   foreach my $id( split( /;/, $attribute ) ){
@@ -514,7 +514,7 @@ warn ("start codon coord=$start_codon, stop codon coord =$stop_codon\n");
     }
     unless( $NONCODING ||  (defined $trptdata->{CDS_END_EXON} &&
           defined $trptdata->{CDS_START_EXON}) ){
-      warn Dumper( $trptdata );
+      #warn Dumper( $trptdata );
       die( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
     }
     
@@ -579,9 +579,10 @@ foreach my $gene_id( keys %$GENES ){
   
     my $seq_region_name = $atrptdata->{SEQ_NAME};
      #                         print "seq_region_name=$seq_region_name\n";
-    $seq_region_name =~ s/chr//i;
-                              #print "seq_region_name=$seq_region_name\n";
+    $seq_region_name =~ s/^chr//i;
+                              print "seq_region_name=$seq_region_name\n";
     my $slice = $sa->fetch_by_region( undef, $seq_region_name );
+	#warn ("DEBUG sliceid = ", $slice->seq_region_name, "\n");
 
     my $start_exon;
     my $end_exon;
@@ -714,7 +715,7 @@ foreach my $gene_id( keys %$GENES ){
 
     	    $last_exon_phase = $exon_end_phase;
       }
-    warn("Exon name2hashkey: ", $eExon->stable_id, "=", $eExon->hashkey, "\n");
+    #warn("Exon name2hashkey: ", $eExon->stable_id, "=", $eExon->hashkey, "\n");
       $eTranscript->add_Exon($eExon);
       
       # Start exon

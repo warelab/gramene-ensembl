@@ -108,6 +108,7 @@ foreach my $dbname (@db_adaptors) {
     if ($@) {
     	unlink $output_file;
     	print STDERR "BLAMMO! DUMP FAILED: $@. Deleting log!\n";
+	exit;
     }
 
 }
