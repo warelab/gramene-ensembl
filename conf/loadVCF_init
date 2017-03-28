@@ -1,0 +1,5 @@
+
+export SRC_HOME=/usr/local/ensembl-live
+
+export PATH=${SRC_HOME}/tabix:$PATH
+

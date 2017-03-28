@@ -1,0 +1,21 @@
+{
+
+    "collections": [
+
+        {
+            "id": "1001genomes",
+            "species": "arabidopsis_thaliana",
+            "assembly": "TAIR10",
+            "type": "local",
+            "filename_template": "/home/weix/data/variation/Arabidopsis/1001genomes_snp-short-indel_only_ACGTN.vcf.gz",
+            "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "Pt", "Mt"
+            ],
+            "strict_name_match": 0
+        },
+
+
+    ]
+
+}
