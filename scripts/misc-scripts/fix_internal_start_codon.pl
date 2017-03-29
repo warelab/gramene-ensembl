@@ -162,7 +162,7 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 my %count;
 
 foreach my $gene(@genes) {
-  print "geneid = ", $gene->stable_id, "\n";
+  #print "geneid = ", $gene->stable_id, "\n";
   
   $count{total_genes}++;
   
@@ -184,7 +184,7 @@ foreach my $gene(@genes) {
     my $logic_name = $trans->analysis->logic_name;
     my $strand = $trans->strand;
     my $comp_id = join "|", ($id, $stableid, $strand, $slice_name, $logic_name, $biotype);
-    print "processing transcript $comp_id\n";
+    #print "processing transcript $comp_id\n";
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for :$comp_id\n";
       next;
@@ -288,7 +288,7 @@ foreach my $gene(@genes) {
 	    unless($nowrite){
 			$update_exon_start_sth->execute($met_start_ExonID);
 			map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
-			print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, do $update_translation_sql\n" if $debug;
+			print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start\n";
 			$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    }
 		
