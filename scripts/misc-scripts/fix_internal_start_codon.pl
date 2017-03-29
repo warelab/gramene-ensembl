@@ -250,7 +250,7 @@ foreach my $gene(@genes) {
 	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
 	    				#exit;
 	
-		    my @5UTRexonIDs2update;
+		    my @fiveUTRexonIDs2update;
 		    my ($met_start_ExonID, $start_exon_start);
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
@@ -273,11 +273,11 @@ foreach my $gene(@genes) {
 				    last;
 				}
 		
-	        	push @5UTRexonIDs2update, $Exon->dbID if $strand>0;
+	        	push @fiveUTRexonIDs2update, $Exon->dbID if $strand>0;
 		
 	    	}
 	    	
-	   		@5UTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
+	   		@fiveUTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
             	
 
 		    unless( $met_start_ExonID && $start_exon_start){
@@ -287,7 +287,7 @@ foreach my $gene(@genes) {
 	    
 	    unless($nowrite){
 			$update_exon_start_sth->execute($met_start_ExonID);
-			map{ $update_exon_sth->execute($_) }@5UTRexonIDs2update;
+			map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
 			print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, do $update_translation_sql\n" if $debug;
 			$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    }
