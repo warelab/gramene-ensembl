@@ -96,7 +96,7 @@ fix_internal_start_codon.pl  [options]
 my ($species, $registry);
 my (%exclude_gene, $bylogicname, $debug, $nowrite);
 my $margin=undef;
-{  #Argument Processing
+{  							#Argument Processing
   my $help=0;
   my $man=0;
   my @exclude_gene=();
@@ -112,7 +112,7 @@ my $margin=undef;
     or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
   pod2usage(1) if $help;
-  #pod2usage(2) if $margin<0;
+  							#pod2usage(2) if $margin<0;
   %exclude_gene= map { $_,1 }  map { split /,/ } @exclude_gene;
  
 }
@@ -135,21 +135,18 @@ my $update_translation_sql = qq{update translation set
                                 seq_start=?
                                 where translation_id=?
                               };
-my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 my $update_exon_start_sql = qq{update exon set phase=-1 where exon_id=?};
-#my $update_exon_end_sql = qq{update exon set end_phase=-1 where exon_id=?};
+my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 
-my ($update_translation_sth, $update_exon_start_sth, $update_exon_end_sth,$update_exon_sth);
+my ($update_translation_sth, $update_exon_start_sth, $update_exon_sth);
  
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
-	die "cannot prepare $update_translation_sql\n";
+							die "cannot prepare $update_translation_sql\n";
     $update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
-	die "cannot prepare $update_exon_start_sql\n";
-    $update_exon_end_sth = $dbh->prepare($update_exon_end_sql) ||
-	die "cannot prepare $update_exon_end_sql\n";
-    $update_exon_sth = $dbh->prepare($update_exon_sql) ||
-	die "cannot prepare $update_exon_sql\n";
+							die "cannot prepare $update_exon_start_sql\n";
+	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
+							die "cannot prepare $update_exon_sql\n";
 }
 
 print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
@@ -157,7 +154,7 @@ print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
 print "@ARGV\n";
 my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 
-#my @genes = ($gene_adaptor->fetch_by_stable_id('Opunc01g00010'));
+				#my @genes = ($gene_adaptor->fetch_by_stable_id('Opunc01g00010'));
 @genes or  
     @genes = !$bylogicname ? @{$gene_adaptor->fetch_all()}:
     @{$gene_adaptor->fetch_all_by_logic_name($bylogicname)};
@@ -178,7 +175,7 @@ foreach my $gene(@genes) {
 
   foreach my $trans (@transcripts) {
   
-    #print join "\t", ($trans->stable_id, $trans->spliced_seq, "\n");
+    			#print join "\t", ($trans->stable_id, $trans->spliced_seq, "\n");
     my $cdna_seq=$trans->spliced_seq;
     my $id = $trans->dbID;
     my $stableid = $trans->stable_id;
@@ -206,133 +203,110 @@ foreach my $gene(@genes) {
     # $transl_adaptor->store($translation_new);
 
     my $trmapper = $trans->get_TranscriptMapper;
-    #my $translation = $trans->translation;
+    			#my $translation = $trans->translation;
     my $aa = $trans->translate->seq;
  
-
-    #print "aa=$aa\n";
-
-    #exit;
+    			#print "aa=$aa\n";
+    			#exit;
     if($aa =~ /^M/i){
-	$count{qualified_transcripts_with_M}++;
-	next;
-    }else{
-	if( $aa =~ /M/i){
-	    #print "matched\n";
-	    $count{qualified_transcripts_withInternal_M}++;
-
-	    my $translation = $trans->translation;
-	    my $translation_id= $translation->dbID;
-	    my $translation_stable_id= $translation->stable_id;
-	    my $translation_old_start= $translation->start;
-
-	    my $index_of_M = index( uc($aa), 'M', 0);
-	    my $idxm = $index_of_M+1;
-	    print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
-	    
-	    my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
-	    my $Met_start_genomic;
-
-	    #for my $gc (@genomic_coords){
-		#warn(Dumper($gc));
-		#print $gc->start, ", ",  $gc->end;
-	    #}
-
-	    #exit;
-
-	    if( scalar @genomic_coords == 0 ){
-		warn("No genomic coord found for M at $idxm, skip\n");
+		$count{qualified_transcripts_with_M}++;
 		next;
-	    }
+    }else{
+		if( $aa =~ /M/i){
+	    	#print "matched\n";
+	    	$count{qualified_transcripts_withInternal_M}++;
+
+	    	my $translation = $trans->translation;
+	    	my $translation_id= $translation->dbID;
+	    	my $translation_stable_id= $translation->stable_id;
+	    	my $translation_old_start= $translation->start;
+
+	    	my $index_of_M = index( uc($aa), 'M', 0);
+	    	my $idxm = $index_of_M+1;
+	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
 	    
-	    if ($strand > 0){
-		my @starts = sort map {$_->start} 
-		#grep { reftype $_ eq 'Bio::EnsEMBL::Mapper::Coordinate' }
-		@genomic_coords;
-		$Met_start_genomic = shift @starts;
-	    }else{
-		my @ends = reverse sort map {$_->end}
-		#grep { reftype $_ =~ /Bio::EnsEMBL::Mapper::Coordinate/ } 
-		@genomic_coords;
+	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
+	    	my $Met_start_genomic;
 
-		#print 'ends are ', @ends;
-		$Met_start_genomic = shift @ends;
-	    }
+		    if( scalar @genomic_coords == 0 ){
+				warn("No genomic coord found for M at $idxm, skip\n");
+				next;
+		    }
+	    
+		    if ($strand > 0){
+				my @starts = sort map {$_->start} 
+						#grep { reftype $_ eq 'Bio::EnsEMBL::Mapper::Coordinate' }
+					@genomic_coords;
+				$Met_start_genomic = shift @starts;
+		    }else{
+				my @ends = reverse sort map {$_->end}
+						#grep { reftype $_ =~ /Bio::EnsEMBL::Mapper::Coordinate/ } 
+				@genomic_coords;
+						#print 'ends are ', @ends;
+				$Met_start_genomic = shift @ends;
+		    }
 
-	    #$Met_start_genomic = $Met_start_genomic + $translation_old_start -1;
-	    print "Met start genomic coord is $Met_start_genomic\n" if $debug;
-	    #exit;
+					    #$Met_start_genomic = $Met_start_genomic + $translation_old_start -1;
+	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
+	    				#exit;
 	
-	    my @exonIDs2update;
-	    my @5UTRexonIDs2update;
-	    my ($met_start_ExonID, $start_exon_start);
-	    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
-		sort {$b->seq_region_start <=> $a->seq_region_start} 
-	    @{$trans->get_all_Exons};
-	    my $Exon;
-	    while ( $Exon = shift @ordered_Exons){
-		my $exon_gstart = $Exon->seq_region_start;
-		my $exon_gend = $Exon->seq_region_end;
-		my $exon_start_phase = $Exon->phase;
-		my $exon_seq = $Exon->seq->seq;
+		    my @5UTRexonIDs2update;
+		    my ($met_start_ExonID, $start_exon_start);
+		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
+											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
+		    my $Exon;
+		    while ( $Exon = shift @ordered_Exons){
+		    	
+				my $exon_gstart = $Exon->seq_region_start;
+				my $exon_gend = $Exon->seq_region_end;
+				my $exon_start_phase = $Exon->phase;
+				my $exon_seq = $Exon->seq->seq;
        		
-		print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
-		if( $Met_start_genomic >= $exon_gstart &&
-		    $Met_start_genomic <= $exon_gend){		    
+				print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
+				if( $Met_start_genomic >= $exon_gstart &&
+				    $Met_start_genomic <= $exon_gend){		    
 
-		    $met_start_ExonID = $Exon->dbID;
-		    $start_exon_start = $strand>0 ?
-			$Met_start_genomic-$exon_gstart+1:
-			$exon_gend-$Met_start_genomic+1;
-		                #if($exon_start_phase > 0){
-			        #$start_exon_start -= $exon_start_phase;
-		    push @exonIDs2update, $met_start_ExonID;
-		                #}
-		                #$start_exon_start = $Met_start_genomic-$exon_gstart+1;
-		                #$start_exon_start = $strand>0 ?
-			        #$Met_start_genomic-$exon_gstart+1+$exon_start_phase:
-			        #$exon_gend-$Met_start_genomic+1+$exon_start_phase;
-		                #then no need to update exon start phase, but the Met codon is often truncated as NTG and become X
-		    last;
-		}
+				    $met_start_ExonID = $Exon->dbID;
+				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic+1;
+				                						#if($exon_start_phase > 0){
+					        							#$start_exon_start -= $exon_start_phase;
+				    last;
+				}
 		
-	        push @5UTRexonIDs2update, $Exon->dbID if $strand>0;
+	        	push @5UTRexonIDs2update, $Exon->dbID if $strand>0;
 		
-	    }
-	    @5UTRexonIDs2update = @ordered_Exons if $strand < 0;
+	    	}
+	    	
+	   		@5UTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
             	
 
-	    unless( $met_start_ExonID && $start_exon_start){
-		warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
-		next;
+		    unless( $met_start_ExonID && $start_exon_start){
+				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
+				next;
 	    }
 	    
 	    unless($nowrite){
-		map{$update_exon_start_sth->execute($_)} @exonIDs2update ;
-		
-		#$strand > 0 ?
-		#map{$update_exon_start_sth->execute($_)} @exonIDs2update ;
-		#map{$update_exon_end_sth->execute($_)} @exonIDs2update;
-		
-		print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, do $update_translation_sql\n" if $debug;
-		$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
-		#$update_exon_end_sth->execute($met_start_ExonID);
+			$update_exon_start_sth->execute($met_start_ExonID);
+			map{ $update_exon_sth->execute($_) }@5UTRexonIDs2update;
+			print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, do $update_translation_sql\n" if $debug;
+			$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    }
-#check the resulting translation
-	    #my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
-	    #my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
-	    #print "old=$aa\nnew=$newaa\ncdn=$cdna_seq\nCDS=$newcds\n\n";
+		
+				#check the resulting translation
+			    #my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
+			    #my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
+			    #print "old=$aa\nnew=$newaa\ncdn=$cdna_seq\nCDS=$newcds\n\n";
 
-	}else{
-	    $count{qualified_transcripts_without_M}++;
-	    next;
-	}
+		}else{
+	    	$count{qualified_transcripts_without_M}++;
+	    	next;
+		}
     }
    
 
-  }
-  #last;
-}
+  }					#trans
+ 				 	#last;
+}					#Gene
 
 
 for my $k (sort keys %count){
@@ -341,7 +315,6 @@ for my $k (sort keys %count){
 
 $update_translation_sth->finish if $update_translation_sth;
 $update_exon_start_sth->finish if $update_exon_start_sth;
-$update_exon_end_sth->finish if $update_exon_end_sth;
 $update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
   
