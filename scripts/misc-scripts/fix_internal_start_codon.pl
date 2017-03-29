@@ -135,9 +135,9 @@ my $update_translation_sql = qq{update translation set
                                 seq_start=?
                                 where translation_id=?
                               };
-my $update_exon_sql = qq{update exon set phase=0, end_phase=0 where exon_id=?};
+my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 my $update_exon_start_sql = qq{update exon set phase=-1 where exon_id=?};
-my $update_exon_end_sql = qq{update exon set end_phase=-1 where exon_id=?};
+#my $update_exon_end_sql = qq{update exon set end_phase=-1 where exon_id=?};
 
 my ($update_translation_sth, $update_exon_start_sth, $update_exon_end_sth,$update_exon_sth);
  
@@ -264,17 +264,17 @@ foreach my $gene(@genes) {
 	    #exit;
 	
 	    my @exonIDs2update;
+	    my @5UTRexonIDs2update;
 	    my ($met_start_ExonID, $start_exon_start);
 	    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 		sort {$b->seq_region_start <=> $a->seq_region_start} 
 	    @{$trans->get_all_Exons};
-	    for my $Exon (@ordered_Exons){
-	    #for my $Exon (@{$trans->get_all_Exons}){
+	    my $Exon;
+	    while ( $Exon = shift @ordered_Exons){
 		my $exon_gstart = $Exon->seq_region_start;
 		my $exon_gend = $Exon->seq_region_end;
 		my $exon_start_phase = $Exon->phase;
 		my $exon_seq = $Exon->seq->seq;
-		#push @exonIDs2update, $Exon->dbID;
        		
 		print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
 		if( $Met_start_genomic >= $exon_gstart &&
@@ -284,18 +284,23 @@ foreach my $gene(@genes) {
 		    $start_exon_start = $strand>0 ?
 			$Met_start_genomic-$exon_gstart+1:
 			$exon_gend-$Met_start_genomic+1;
-		    if($exon_start_phase > 0){
-			#$start_exon_start -= $exon_start_phase;
-			push @exonIDs2update, $met_start_ExonID;
-		    }
-		    #$start_exon_start = $Met_start_genomic-$exon_gstart+1;
-		    #$start_exon_start = $strand>0 ?
-			#$Met_start_genomic-$exon_gstart+1+$exon_start_phase:
-			#$exon_gend-$Met_start_genomic+1+$exon_start_phase;
-		    #then no need to update exon start phase, but the Met codon is often truncated as NTG and become X
+		                #if($exon_start_phase > 0){
+			        #$start_exon_start -= $exon_start_phase;
+		    push @exonIDs2update, $met_start_ExonID;
+		                #}
+		                #$start_exon_start = $Met_start_genomic-$exon_gstart+1;
+		                #$start_exon_start = $strand>0 ?
+			        #$Met_start_genomic-$exon_gstart+1+$exon_start_phase:
+			        #$exon_gend-$Met_start_genomic+1+$exon_start_phase;
+		                #then no need to update exon start phase, but the Met codon is often truncated as NTG and become X
 		    last;
 		}
+		
+	        push @5UTRexonIDs2update, $Exon->dbID if $strand>0;
+		
 	    }
+	    @5UTRexonIDs2update = @ordered_Exons if $strand < 0;
+            	
 
 	    unless( $met_start_ExonID && $start_exon_start){
 		warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
