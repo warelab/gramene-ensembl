@@ -224,8 +224,8 @@ foreach my $gene(@genes) {
 	    	my $translation_stable_id= $translation->stable_id;
 	    	my $translation_old_start= $translation->start;
 
-	    	my $index_of_M = index( uc($aa), 'M', 0);
-	    	my $idxm = $index_of_M+2;
+	    	my $indxm = index( uc($aa), 'M', 0);
+	    	#my $idxm = $index_of_M+2;
 	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
 	    
 	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
