@@ -209,14 +209,14 @@ foreach my $gene(@genes) {
     			#my $translation = $trans->translation;
     my $aa = $trans->translate->seq;
  
-    			#print "aa=$aa\n";
+    			print "aa=$aa\n" if $debug;
     			#exit;
     if($aa =~ /^M/i){
 		$count{qualified_transcripts_with_M}++;
 		next;
     }else{
 		if( $aa =~ /M/i){
-	    	#print "matched\n";
+	    	print "matched\n" if $debug;
 	    	$count{qualified_transcripts_withInternal_M}++;
 
 	    	my $translation = $trans->translation;
