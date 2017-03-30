@@ -152,7 +152,7 @@ unless ($nowrite){
 									#die "cannot prepare $update_exon_sql\n";
 }
 
-print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
+#print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
 
 print "@ARGV\n";
 my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
