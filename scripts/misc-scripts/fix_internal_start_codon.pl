@@ -224,7 +224,7 @@ foreach my $gene(@genes) {
 	    	my $translation_stable_id= $translation->stable_id;
 	    	my $translation_old_start= $translation->start;
 
-	    	my $idxm = index( uc($aa), 'M', 0);
+	    	my $idxm = index( uc($aa), 'M', 1);
 	    	#my $idxm = $index_of_M+2;
 	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
 	    
@@ -272,7 +272,7 @@ foreach my $gene(@genes) {
 				    $Met_start_genomic <= $exon_gend){		    
 
 				    $met_start_ExonID = $Exon->dbID;
-				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic+1;
+				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic-1;
 				                						#if($exon_start_phase > 0){
 					        							#$start_exon_start -= $exon_start_phase;
 				    last;
