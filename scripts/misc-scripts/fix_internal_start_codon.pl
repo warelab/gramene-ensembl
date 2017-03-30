@@ -230,6 +230,8 @@ foreach my $gene(@genes) {
 	    
 	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
 	    	my $Met_start_genomic;
+	    	
+	    	map{ print $_->start .", " . $_->end . "\n"} @genomic_coords if $debug;
 
 		    if( scalar @genomic_coords == 0 ){
 				warn("No genomic coord found for M at $idxm, skip\n");
