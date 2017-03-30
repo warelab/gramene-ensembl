@@ -135,18 +135,21 @@ my $update_translation_sql = qq{update translation set
                                 seq_start=?
                                 where translation_id=?
                               };
-#my $update_exon_start_sql = qq{update exon set phase=-1 where exon_id=?};
-my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
+			#We cannot change the exon phases, may exons were shared between transcripts
+			#The other OK transcripts may rely on the phase of the exons. 
+			#my $update_exon_start_sql = qq{update exon set phase=-1 where exon_id=?};
+			#my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 
-my ($update_translation_sth, $update_exon_start_sth, $update_exon_sth);
+my ($update_translation_sth);
+			# $update_exon_start_sth, $update_exon_sth);
  
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
 							die "cannot prepare $update_translation_sql\n";
-    #$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
-							#die "cannot prepare $update_exon_start_sql\n";
-	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
-							die "cannot prepare $update_exon_sql\n";
+		    #$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
+									#die "cannot prepare $update_exon_start_sql\n";
+			#$update_exon_sth = $dbh->prepare($update_exon_sql) ||
+									#die "cannot prepare $update_exon_sql\n";
 }
 
 print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
@@ -184,7 +187,7 @@ foreach my $gene(@genes) {
     my $logic_name = $trans->analysis->logic_name;
     my $strand = $trans->strand;
     my $comp_id = join "|", ($id, $stableid, $strand, $slice_name, $logic_name, $biotype);
-    #print "processing transcript $comp_id\n";
+    			#print "processing transcript $comp_id\n";
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for :$comp_id\n";
       next;
@@ -250,7 +253,7 @@ foreach my $gene(@genes) {
 	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
 	    				#exit;
 	
-		    my @fiveUTRexonIDs2update;
+		    			#my @fiveUTRexonIDs2update;
 		    my ($met_start_ExonID, $start_exon_start);
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
@@ -273,11 +276,11 @@ foreach my $gene(@genes) {
 				    last;
 				}
 		
-	        	push @fiveUTRexonIDs2update, $Exon->dbID if $strand>0;
+	        					#push @fiveUTRexonIDs2update, $Exon->dbID if $strand>0;
 		
 	    	}
 	    	
-	   		@fiveUTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
+	   							#@fiveUTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
             	
 
 		    unless( $met_start_ExonID && $start_exon_start){
@@ -287,15 +290,15 @@ foreach my $gene(@genes) {
 	    
 	    unless($nowrite){
 			#$update_exon_start_sth->execute($met_start_ExonID);
-			map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
+			#map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
 			print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start\n";
 			$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    }
 		
-				#check the resulting translation
-			    #my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
-			    #my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
-			    #print "old=$aa\nnew=$newaa\ncdn=$cdna_seq\nCDS=$newcds\n\n";
+			#check the resulting translation
+			my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
+			#my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
+			print "old=$aa\nnew=$newaa\n\n";
 
 		}else{
 	    	$count{qualified_transcripts_without_M}++;
