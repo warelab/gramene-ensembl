@@ -317,8 +317,8 @@ for my $k (sort keys %count){
 }
 
 $update_translation_sth->finish if $update_translation_sth;
-$update_exon_start_sth->finish if $update_exon_start_sth;
-$update_exon_sth->finish if $update_exon_sth;
+#$update_exon_start_sth->finish if $update_exon_start_sth;
+#$update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
   
 ########################## subroutines ######################################
