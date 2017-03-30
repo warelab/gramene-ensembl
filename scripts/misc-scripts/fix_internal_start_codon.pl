@@ -209,7 +209,7 @@ foreach my $gene(@genes) {
     			#my $translation = $trans->translation;
     my $aa = $trans->translate->seq;
  
-    			print "aa=$aa\n" if $debug;
+    			print ">$comp_id\n$aa\n" if $debug;
     			#exit;
     if($aa =~ /^M/i){
 		$count{qualified_transcripts_with_M}++;
