@@ -146,8 +146,8 @@ my ($update_translation_sth);
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
 							die "cannot prepare $update_translation_sql\n";
-#	$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
-#									die "cannot prepare $update_exon_start_sql\n";
+	$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
+									die "cannot prepare $update_exon_start_sql\n";
 #	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
 #									die "cannot prepare $update_exon_sql\n";
 }
@@ -294,11 +294,11 @@ foreach my $gene(@genes) {
 				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
 				next;
 	    	}
-#	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
+	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
 	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id\n" if $debug;
 	    
 	    	unless($nowrite){
-#				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID);
+				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID);
 #				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
 				print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start\n";
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
@@ -307,7 +307,7 @@ foreach my $gene(@genes) {
 			#check the resulting translation
 			my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
 			#my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
-			print "old=$aa\nnew=$newaa\n\n";
+			print "$stableid(old)=$aa\n$stableid(new)=$newaa\n\n";
 
 		}else{
 	    	$count{qualified_transcripts_without_M}++;
@@ -326,7 +326,7 @@ for my $k (sort keys %count){
 }
 
 $update_translation_sth->finish if $update_translation_sth;
-#$update_exon_start_sth->finish if $update_exon_start_sth;
+$update_exon_start_sth->finish if $update_exon_start_sth;
 #$update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
   
