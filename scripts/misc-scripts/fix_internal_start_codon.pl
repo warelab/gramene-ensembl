@@ -140,8 +140,9 @@ my $update_translation_sql = qq{update translation set
 my $update_exon_start_sql = qq{update exon set phase=? where exon_id=?};
 my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 
-my ($update_translation_sth);
-#my ($update_exon_start_sth, $update_exon_sth);
+my $update_translation_sth;
+my $update_exon_start_sth; 
+#my $update_exon_sth;
  
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
