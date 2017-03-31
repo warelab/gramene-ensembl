@@ -225,6 +225,7 @@ foreach my $gene(@genes) {
 	    	my $translation_old_start= $translation->start;
 
 	    	my $idxm = index( uc($aa), 'M', 1);
+	    	$idxm += 1;
 	    	#my $idxm = $index_of_M+2;
 	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
 	    
@@ -243,6 +244,7 @@ foreach my $gene(@genes) {
 						#grep { reftype $_ eq 'Bio::EnsEMBL::Mapper::Coordinate' }
 					@genomic_coords;
 				$Met_start_genomic = shift @starts;
+				 
 		    }else{
 				my @ends = reverse sort map {$_->end}
 						#grep { reftype $_ =~ /Bio::EnsEMBL::Mapper::Coordinate/ } 
@@ -272,7 +274,7 @@ foreach my $gene(@genes) {
 				    $Met_start_genomic <= $exon_gend){		    
 
 				    $met_start_ExonID = $Exon->dbID;
-				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic-1;
+				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic+1;
 				                						#if($exon_start_phase > 0){
 					        							#$start_exon_start -= $exon_start_phase;
 				    last;
