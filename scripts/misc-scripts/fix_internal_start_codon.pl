@@ -260,7 +260,7 @@ foreach my $gene(@genes) {
 	    				#exit;
 	
 		    my @fiveUTRexonIDs2update;
-		    my ($met_start_ExonID, $start_exon_start);
+		    my ($met_start_ExonID, $start_exon_start, $exon_start_phase);
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
 		    my $Exon;
@@ -268,7 +268,7 @@ foreach my $gene(@genes) {
 		    	
 				my $exon_gstart = $Exon->seq_region_start;
 				my $exon_gend = $Exon->seq_region_end;
-				my $exon_start_phase = $Exon->phase;
+				$exon_start_phase = $Exon->phase;
 				my $exon_seq = $Exon->seq->seq;
        		
 				print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
