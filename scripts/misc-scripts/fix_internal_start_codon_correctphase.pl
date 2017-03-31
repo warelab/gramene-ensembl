@@ -141,15 +141,15 @@ my $update_exon_start_sql = qq{update exon set phase=? where exon_id=?};
 my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 
 my ($update_translation_sth);
-#my ($update_exon_start_sth, $update_exon_sth);
+my ($update_exon_start_sth, $update_exon_sth);
  
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
 							die "cannot prepare $update_translation_sql\n";
-#	$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
-#									die "cannot prepare $update_exon_start_sql\n";
-#	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
-#									die "cannot prepare $update_exon_sql\n";
+	$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
+									die "cannot prepare $update_exon_start_sql\n";
+	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
+									die "cannot prepare $update_exon_sql\n";
 }
 
 #print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
@@ -293,12 +293,12 @@ foreach my $gene(@genes) {
 				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
 				next;
 	    	}
-#	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
+	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
 	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id\n" if $debug;
 	    
 	    	unless($nowrite){
-#				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID);
-#				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
+				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID);
+				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
 				print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start\n";
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    	}
@@ -325,8 +325,8 @@ for my $k (sort keys %count){
 }
 
 $update_translation_sth->finish if $update_translation_sth;
-#$update_exon_start_sth->finish if $update_exon_start_sth;
-#$update_exon_sth->finish if $update_exon_sth;
+$update_exon_start_sth->finish if $update_exon_start_sth;
+$update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
   
 ########################## subroutines ######################################
