@@ -293,8 +293,8 @@ foreach my $gene(@genes) {
 				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
 				next;
 	    	}
-	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]" if $debug;	
-	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id" if $debug;
+	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
+	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id\n" if $debug;
 	    
 	    	unless($nowrite){
 				$update_exon_start_sth->execute($met_start_ExonID);
