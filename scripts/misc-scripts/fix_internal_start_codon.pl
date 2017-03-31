@@ -255,7 +255,7 @@ foreach my $gene(@genes) {
 		    }
 
 					    #$Met_start_genomic = $Met_start_genomic + $translation_old_start -1;
-	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
+	    	print "Met start genomic coord is $Met_start_genomic (the genomic start fo 1st M may looks off by one codon for minus strand gene, but believe it it will end up giving the correct translation in the end)\n" if $debug;
 	    				#exit;
 	
 		    my @fiveUTRexonIDs2update;
