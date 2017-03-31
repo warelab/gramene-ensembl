@@ -305,10 +305,10 @@ foreach my $gene(@genes) {
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    	}
 		
-			#check the resulting translation
-			my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
+			#check the resulting translation, won't work since the update not officially complete.
+			#my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
 			#my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
-			print "$stableid(old)=$aa\n$stableid(new)=$newaa\n\n";
+			#print "$stableid(old)=$aa\n$stableid(new)=$newaa\n\n";
 
 		}else{
 	    	$count{qualified_transcripts_without_M}++;
