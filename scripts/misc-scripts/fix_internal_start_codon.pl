@@ -257,7 +257,7 @@ foreach my $gene(@genes) {
 	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
 	    				#exit;
 	
-		    			#my @fiveUTRexonIDs2update;
+		    my @fiveUTRexonIDs2update;
 		    my ($met_start_ExonID, $start_exon_start);
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
