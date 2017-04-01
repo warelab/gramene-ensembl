@@ -303,6 +303,7 @@ foreach my $gene(@genes) {
 #				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
 				print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase)\n";
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
+	    		$count{qualified_transcripts_withInternal_M_fixed}++;
 	    	}
 		
 			#check the resulting translation, won't work since the update not officially complete.
