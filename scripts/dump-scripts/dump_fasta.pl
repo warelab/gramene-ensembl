@@ -186,14 +186,17 @@ foreach my $geneid (@genes) {
     print STDERR "$@\n" and next if $@;
   } else {	#internal ids
     eval { $gene= $gene_adaptor->fetch_by_dbID($geneid); };
-    print STDERR "gene_id $geneid:\n$@\n" and next if $@;
+
+    #print "Gene gene obj fpr gene_id $geneid\n";
+    print STDERR "gene_id $geneid:\n$@\n" && next if $@;
     # fails e.g. if gene has no exons
   }
   next unless $gene;
   
-  my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
+  #print "Get sequences\n";
+  #my ($working_set_attrib) = @{$gene->get_all_Attributes('working-set')};
   #print "gene attrib is ", $working_set_attrib->code, "\n";
-  next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
+  #next if ($species =~ /zea|mays|maize/i && !$working_set_attrib);
   
   
   next if %exclude_gene and $exclude_gene{$gene->stable_id}

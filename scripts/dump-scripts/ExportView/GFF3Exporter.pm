@@ -572,7 +572,7 @@ sub export_features_from_slices {
 					
 				);
 				
-				print join ("\t", @output), "\n";
+				print $fh join ("\t", @output), "\n";
 				
 				#last if $fc_counter++ > 10;
 			}

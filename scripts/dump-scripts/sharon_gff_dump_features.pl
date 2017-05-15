@@ -23,7 +23,7 @@ Options:
   --pass          	database password, default to the one for gramene_web
   --port		database port, default to 3306       
   -o|--output_dir       path to output directory, default to /tmp
-
+ -feature_type          feature_type such as gene
 =cut
 
 
@@ -55,7 +55,7 @@ my %args = (
 	'user' => 'gramene_web',
 	'pass' => 'gram3n3',
 	'port' => 3306,
-	'dbhost' => 'cabot',	
+	'dbhost' => 'cabot',
 );
 
 GetOptions(
@@ -64,7 +64,8 @@ GetOptions(
 	'user=s',
 	'pass=s',
 	'dbhost=s',
-	'port=i',	
+	'port=i',
+	'feature_type=s',
 	'help',
 );
 
@@ -72,7 +73,9 @@ my @db_adaptors = @ARGV;
 
 pod2usage( -verbose => 2) if $args{'help'};
 
-print STDERR "Sending files to $args{'output_dir'}\n\n";
+my @feature_types = ($args{feature_type});
+
+print STDERR "Sending $feature_types[0] files to $args{'output_dir'}\n\n";
 
 foreach my $dbname (@db_adaptors) {
 
@@ -91,16 +94,16 @@ foreach my $dbname (@db_adaptors) {
 
 	my $slices = $adaptor->fetch_all('toplevel');
 
-	my $output_file = $args{'output_dir'} . '/' . $key . ".gff";
+	my $output_file = $args{'output_dir'} . '/' . $key. '.'. $feature_types[0] . ".gff";
 
-	print STDERR "\tDumping $key ($dbname) to $output_file (" , scalar(@$slices), " slices)\n";
+	print STDERR "\tDumping $key ($feature_types[0]) to $output_file (" , scalar(@$slices), " slices)\n";
 
 	open (my $gff, '>' . $output_file);
 
     eval {
 	    my $exporter = ExportView::GFF3Exporter->new('debug' => 1);
-	    $exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
-    	$exporter->export_genes_from_slices($gff, @$slices);
+	    #$exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
+    	$exporter->export_features_from_slices($gff, $slices, \@feature_types);
     };
 
     close $gff;
@@ -108,7 +111,6 @@ foreach my $dbname (@db_adaptors) {
     if ($@) {
     	unlink $output_file;
     	print STDERR "BLAMMO! DUMP FAILED: $@. Deleting log!\n";
-	exit;
     }
 
 }

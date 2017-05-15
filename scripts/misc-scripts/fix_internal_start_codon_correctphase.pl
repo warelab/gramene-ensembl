@@ -140,17 +140,16 @@ my $update_translation_sql = qq{update translation set
 my $update_exon_start_sql = qq{update exon set phase=? where exon_id=?};
 my $update_exon_sql = qq{update exon set phase=-1, end_phase=-1 where exon_id=?};
 
-my $update_translation_sth;
-my $update_exon_start_sth; 
-#my $update_exon_sth;
+my ($update_translation_sth);
+my ($update_exon_start_sth, $update_exon_sth);
  
 unless ($nowrite){
     $update_translation_sth = $dbh->prepare($update_translation_sql) ||
 							die "cannot prepare $update_translation_sql\n";
 	$update_exon_start_sth = $dbh->prepare($update_exon_start_sql) ||
 									die "cannot prepare $update_exon_start_sql\n";
-#	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
-#									die "cannot prepare $update_exon_sql\n";
+	$update_exon_sth = $dbh->prepare($update_exon_sql) ||
+									die "cannot prepare $update_exon_sql\n";
 }
 
 #print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
@@ -226,8 +225,7 @@ foreach my $gene(@genes) {
 	    	my $translation_old_start= $translation->start;
 
 	    	my $idxm = index( uc($aa), 'M', 1);
-	    	$idxm += 1;	
-	    	#$idxm += $strand>0 ? 1 : 2;
+	    	$idxm += 1;
 	    	#my $idxm = $index_of_M+2;
 	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
 	    
@@ -256,11 +254,11 @@ foreach my $gene(@genes) {
 		    }
 
 					    #$Met_start_genomic = $Met_start_genomic + $translation_old_start -1;
-	    	print "Met start genomic coord is $Met_start_genomic (the genomic start fo 1st M may looks off by one codon for minus strand gene, but believe it it will end up giving the correct translation in the end)\n" if $debug;
+	    	print "Met start genomic coord is $Met_start_genomic\n" if $debug;
 	    				#exit;
 	
 		    my @fiveUTRexonIDs2update;
-		    my ($met_start_ExonID, $start_exon_start, $exon_start_phase);
+		    my ($met_start_ExonID, $start_exon_start);
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
 		    my $Exon;
@@ -268,7 +266,7 @@ foreach my $gene(@genes) {
 		    	
 				my $exon_gstart = $Exon->seq_region_start;
 				my $exon_gend = $Exon->seq_region_end;
-				$exon_start_phase = $Exon->phase;
+				my $exon_start_phase = $Exon->phase;
 				my $exon_seq = $Exon->seq->seq;
        		
 				print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
@@ -299,17 +297,16 @@ foreach my $gene(@genes) {
 	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id\n" if $debug;
 	    
 	    	unless($nowrite){
-				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID); #this is needed to make the frame stay in place
-#				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
-				print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase)\n";
+				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID);
+				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
+				print "For translationID $translation_id, stableID $translation_stable_id, old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start\n";
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
-	    		$count{qualified_transcripts_withInternal_M_fixed}++;
 	    	}
 		
-			#check the resulting translation, won't work since the update not officially complete.
-			#my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
+			#check the resulting translation
+			my $newaa = $transcript_adaptor->fetch_by_dbID($id)->translate->seq;
 			#my $newcds = $transcript_adaptor->fetch_by_dbID($id)->translateable_seq;
-			#print "$stableid(old)=$aa\n$stableid(new)=$newaa\n\n";
+			print "old=$aa\nnew=$newaa\n\n";
 
 		}else{
 	    	$count{qualified_transcripts_without_M}++;
@@ -329,7 +326,7 @@ for my $k (sort keys %count){
 
 $update_translation_sth->finish if $update_translation_sth;
 $update_exon_start_sth->finish if $update_exon_start_sth;
-#$update_exon_sth->finish if $update_exon_sth;
+$update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
   
 ########################## subroutines ######################################
