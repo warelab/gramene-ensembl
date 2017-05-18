@@ -26,13 +26,11 @@ use EnsEMBL::Web::Document::HTML::HomeSearch;
 use EnsEMBL::Web::Document::HTML::Compara;
 use EnsEMBL::Web::DBSQL::ProductionAdaptor;
 use EnsEMBL::Web::Component::GenomicAlignments;
-use EnsEMBL::Web::Component::Info;
 
 use LWP::UserAgent;
 use JSON;
 
-#use base qw(EnsEMBL::Web::Component);
-use base qw(EnsEMBL::Web::Component::Info);
+use base qw(EnsEMBL::Web::Component);
 
 sub _init {
   my $self = shift;
@@ -168,7 +166,7 @@ sub content {
       <div class="box-left">
         <div class="species-badge">';
 
-  $html .= qq(<img src="${img_url}species/64/$species.png" alt="" title="$sound" />) unless $self->is_bacteria;
+  $html .= qq(<a class="species_lightbox _ht" href="${img_url}species/large/$species.png" title="Click to enlarge"><img src="${img_url}species/64/$species.png" alt="" title="$sound" /></a>) unless $self->is_bacteria;
 
   if ($common_name =~ /\./) {
     $html .= qq(<h1>$display_name</h1>);
@@ -338,12 +336,8 @@ sub _assembly_text {
   }
 
   # Link to assembly mapper
-  my $mappings = $species_defs->ASSEMBLY_MAPPINGS;
-  if ($mappings && ref($mappings) eq 'ARRAY') {
-$html .= sprintf('<a href="%s" class="nodeco"><img src="%s24/tool.png" class="homepage-link" />Convert your data to %s coordinates</a></p>', $hub->url({'type' => 'Tools', 'action' => 'AssemblyConverter'}), $img_url, $current_assembly);
-
-    #my $am_url = $hub->url({'type' => 'UserData', 'action' => 'SelectFeatures'});
-    #$html .= qq(<p><a href="$am_url" class="modal_link nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Convert your data to $assembly coordinates</a></p>);
+  if ($species_defs->ENSEMBL_AC_ENABLED and $species_defs->ASSEMBLY_CONVERTER_FILES) {
+    $html .= sprintf('<a href="%s" class="nodeco"><img src="%s24/tool.png" class="homepage-link" />Convert your data to %s coordinates</a></p>', $hub->url({'type' => 'Tools', 'action' => 'AssemblyConverter'}), $img_url, $current_assembly);
   }
   
   $html .= sprintf '<p><a href="%s" class="modal_link nodeco" rel="modal_user_data">%sDisplay your data in %s</a></p>',
@@ -426,8 +420,14 @@ sub _genebuild_text {
   $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
   }
   
-  my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
-  $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
+  #my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
+  #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
+ if( $species =~ /Zea_mays/i ){ 
+	my $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
+	 $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize B73 V3 <=> V4 gene ID mapping </a></p>);
+        my $te_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/repeat_annotation/"; 
+        $html .= qq(<p><a href="$te_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize Transposable element annotation </a></p>);
+  }
 
   if ($has_vega) {
     $html .= qq(
@@ -606,13 +606,13 @@ sub _variation_text {
     $html .= '<h2>Variation</h2><p>This species currently has no variation database. However you can process your own variants using the Variant Effect Predictor:</p>';
   }
 
-  my $new_vep = $species_defs->ENSEMBL_VEP_ENABLED;
-  $html .= sprintf(
-    qq(<p><a href="%s" class="%snodeco">$self->{'icon'}Variant Effect Predictor<img src="%svep_logo_sm.png" style="vertical-align:top;margin-left:12px" /></a></p>),
-    $hub->url({'__clear' => 1, $new_vep ? qw(type Tools action VEP) : qw(type UserData action UploadVariations)}),
-    $new_vep ? '' : 'modal_link ',
-    $self->img_url
-  );
+  if ($species_defs->ENSEMBL_VEP_ENABLED) {
+    $html .= sprintf(
+      qq(<p><a href="%s" class="nodeco">$self->{'icon'}Variant Effect Predictor<img src="%svep_logo_sm.png" style="vertical-align:top;margin-left:12px" /></a></p>),
+      $hub->url({'__clear' => 1, qw(type Tools action VEP)}),
+      $self->img_url
+    );
+  }
 
   return $html;
 }
