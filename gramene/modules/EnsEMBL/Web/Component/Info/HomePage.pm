@@ -424,9 +424,11 @@ sub _genebuild_text {
   #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
  if( $species =~ /Zea_mays/i ){ 
 	my $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
-	 $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize B73 V3 <=> V4 gene ID mapping </a></p>);
+	 $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Maize B73 V3 <=> V4 gene ID mapping </a></p>);
         my $te_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/repeat_annotation/"; 
-        $html .= qq(<p><a href="$te_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize Transposable element annotation </a></p>);
+        $html .= qq(<p><a href="$te_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Maize Transposable element annotation </a></p>);
+	my $gf_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/gene_function/";
+	$html .= qq(<p><a href="$gf_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Maize Gene function annotation </a></p>);
   }
 
   if ($has_vega) {
