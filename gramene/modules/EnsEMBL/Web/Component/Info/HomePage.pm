@@ -431,6 +431,11 @@ sub _genebuild_text {
 	$html .= qq(<p><a href="$gf_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Maize Gene function annotation </a></p>);
   }
 
+  if( $species =~ /Sorghum_bicolor/i ){
+	my $im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
+	$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />phytozome gene mappings v2.1 to MIPS/JGI Sbi1.4 </a></p>);
+  }
+
   if ($has_vega) {
     $html .= qq(
       <a href="http://vega.sanger.ac.uk/$species/" class="nodeco">
