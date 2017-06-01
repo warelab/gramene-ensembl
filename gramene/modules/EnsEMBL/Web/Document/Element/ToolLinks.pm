@@ -64,7 +64,7 @@ sub links {
   push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
 #  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
-  push @links, 'feedback',      '<a class="constant" href="http://dev.gramene.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
+  push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
 
 # test upload link
 # UserData/SelectFile?db=core
