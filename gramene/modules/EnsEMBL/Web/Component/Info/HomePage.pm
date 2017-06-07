@@ -394,7 +394,23 @@ sub _genebuild_text {
   }
   
   my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
-  $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
+  if( $species =~ /Zea_mays/i ){  ###weix-start
+        $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
+   #      $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize B73 V3 <=> V4 gene ID mapping </a></p>);
+  }elsif( $species =~ /Sorghum_bicolor/i ){
+	$im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
+  }elsif($species =~ /Oryza_sativa/i ){
+	$im_url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz";
+  }else{
+	$im_url = undef;
+  }    ###weix-end
+  
+  $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
+
+  if( $species =~ /Zea_mays/i ){  ##weix-start
+	my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/gene_function";
+	$html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
+  }  ##weix-end
 
   if ($has_vega) {
     $html .= qq(
