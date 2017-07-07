@@ -5,13 +5,14 @@ use strict;
 sub update_conf {
 
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
+  $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 53; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 35;
-  #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'May 2017';
+  $SiteDefs::SITE_RELEASE_VERSION = 54; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 36;
+  #$SiteDefs::ENSEMBL_VERSION = 89;
+  $SiteDefs::SITE_RELEASE_DATE    = 'July 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -26,6 +27,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_MAIL_SERVER            = 'localhost';
 
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
+  $SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
+
+
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
@@ -60,8 +64,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   #----------
   # User database
-  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts_88';  #changed to ensembl_accounts lately
-  #'ensembl_web_user_db_31_57';
+  $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
   $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
@@ -69,10 +72,15 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   #----------
   # Logging
-  #my $LOG_ROOT = $SiteDefs::ENSEMBL_WEBROOT."/logs";
-  #$SiteDefs::ENSEMBL_PIDFILE   = "$LOG_ROOT/httpd.pid";
-  #$SiteDefs::ENSEMBL_ERRORLOG  = "$LOG_ROOT/error.log";
-  #$SiteDefs::ENSEMBL_CUSTOMLOG = "$LOG_ROOT/access.log combined";
+  $SiteDefs::ENSEMBL_LOGDIR = $SiteDefs::ENSEMBL_SERVERROOT."/logs";
+  $SiteDefs::ENSEMBL_PIDFILE   = "$SiteDefs::ENSEMBL_LOGDIR/httpd.pid";
+  $SiteDefs::ENSEMBL_ERRORLOG  = "$SiteDefs::ENSEMBL_LOGDIR/error.log";
+  $SiteDefs::ENSEMBL_CUSTOMLOG = "$SiteDefs::ENSEMBL_LOGDIR/access.log combined";
+#our $ENSEMBL_LOGDIR               = defer { "$ENSEMBL_SYS_DIR/logs/$ENSEMBL_SERVER_SIGNATURE" };              # Path for log files
+#our $ENSEMBL_PIDFILE              = defer { "$ENSEMBL_LOGDIR/httpd.pid" };                                    # httpd process id
+#our $ENSEMBL_ERRORLOG             = defer { "$ENSEMBL_LOGDIR/error_log" };                                    # Error log file
+#our $ENSEMBL_CUSTOMLOG            = defer { "$ENSEMBL_LOGDIR/access_log ensembl_extended" };    
+
 
   #----------
   # Mart/Blast

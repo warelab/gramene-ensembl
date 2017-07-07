@@ -412,7 +412,12 @@ sub _genebuild_text {
 	$html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
   }  ##weix-end
 
-  if ($has_vega) {
+  if( $species =~ /Zea_mays/i ){  ##weix-start
+        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/gff3/zea_mays/repeat_annotation/";
+        $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Transposon annotation download</a></p>) if $func_url;
+  }  ##weix-end
+
+ if ($has_vega) {
     $html .= qq(
       <a href="http://vega.sanger.ac.uk/$species/" class="nodeco">
       <img src="/img/vega_small.gif" alt="Vega logo" style="float:left;margin-right:8px;width:83px;height:30px;vertical-align:center" title="Vega - Vertebrate Genome Annotation database" /></a>
