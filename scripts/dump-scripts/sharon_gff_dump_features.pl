@@ -23,7 +23,7 @@ Options:
   --pass          	database password, default to the one for gramene_web
   --port		database port, default to 3306       
   -o|--output_dir       path to output directory, default to /tmp
-
+ -feature_type          feature_type such as gene
 =cut
 
 
