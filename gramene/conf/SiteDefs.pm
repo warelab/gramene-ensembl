@@ -9,10 +9,10 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 54; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 36;
+  $SiteDefs::SITE_RELEASE_VERSION = 55; 
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 37;
   #$SiteDefs::ENSEMBL_VERSION = 89;
-  $SiteDefs::SITE_RELEASE_DATE    = 'July 2017';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
