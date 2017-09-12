@@ -17,6 +17,9 @@ ln -s ../tools_data tools_data
 mkdir -p ensembl-webcode/conf/packed
 mkdir -p ensembl-webcode/htdocs/minified
 mkdir tmp
+cd tmp/
+mkdir udcCache procedure export persistent failure_dir temporary
+cd ../
 mkdir logs
 ln -s ensembl-webcode/conf conf
 cd ensembl-webcode/
