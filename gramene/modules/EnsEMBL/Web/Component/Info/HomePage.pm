@@ -147,7 +147,7 @@ sub content {
   my $common_name  = $species_defs->SPECIES_COMMON_NAME;
   my $display_name = $species_defs->SPECIES_SCIENTIFIC_NAME;
   my $taxid        = $species_defs->TAXONOMY_ID;
-  my $sound        = $species_defs->SAMPLE_DATA->{'ENSEMBL_SOUND'};
+  my $sound        = 'Moo-oooo!'; #$species_defs->SAMPLE_DATA->{'ENSEMBL_SOUND'};
   my $provider_link;
 
   if ($species_defs->PROVIDER_NAME && ref $species_defs->PROVIDER_NAME eq 'ARRAY') {
@@ -255,7 +255,9 @@ sub _whatsnew_text {
   my $species      = $hub->species;
   my $news_url     = $hub->url({'action' => 'WhatsNew'});
 
-  my $html = sprintf(qq(<h2><a href="%s" title="More release news"><img src="%s24/announcement.png" style="vertical-align:middle" alt="" /></a> What's New in %s release %s</h2>), $news_url, $self->img_url, $species_defs->SPECIES_COMMON_NAME, $species_defs->ENSEMBL_VERSION,);
+  my $html = $species_defs->SPECIES_COMMON_NAME =~ /W22/i ? qq(This sequence has been released under the Toronto Agreement. No whole-genome research may be submitted for publication until the official publication for this genome assembly has been published. )
+:
+sprintf(qq(<h2><a href="%s" title="More release news"><img src="%s24/announcement.png" style="vertical-align:middle" alt="" /></a> What's New in %s release %s</h2>), $news_url, $self->img_url, $species_defs->SPECIES_COMMON_NAME, $species_defs->ENSEMBL_VERSION,);
 
   if ($species_defs->multidb->{'DATABASE_PRODUCTION'}{'NAME'}) {
     my $adaptor = EnsEMBL::Web::DBSQL::ProductionAdaptor->new($hub);

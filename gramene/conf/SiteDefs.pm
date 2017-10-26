@@ -4,20 +4,20 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'panzea.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 51; 
+  $SiteDefs::SITE_RELEASE_VERSION = 53; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2016';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Mar 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
-  $SiteDefs::ENSEMBL_PORT       = 80;
+  $SiteDefs::ENSEMBL_PORT       = 8888;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -63,11 +63,11 @@ sub update_conf {
 
   #----------
   # Mart/Blast
-  $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
-  $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
+  $SiteDefs::ENSEMBL_BLAST_ENABLED = 0; # Creates header link for blast
+  $SiteDefs::ENSEMBL_MART_ENABLED = 0; # And mart
 
-  $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
-  $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
+  $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
+  $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
@@ -91,6 +91,10 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysw22';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysph207';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_parviglumis';
+
   #%SiteDefs::__species_aliases =
    # (
      # These are supplimental species to EnsemblGenomes

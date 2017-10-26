@@ -7,9 +7,9 @@ use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
 my $ENSVER   = '89';
 my $GRMVER   = '54';
-my $def_user = 'gramene_web';
-my $def_pass = 'gram3n3';
-my $def_host = 'cabot';
+my $def_user = 'weix';
+my $def_pass = 'warelab';
+my $def_host = 'colden';
 my $def_port = 3306;
 
 #----------------------------------------------------------------------

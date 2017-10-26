@@ -1,0 +1,21 @@
+{
+
+    "collections": [
+
+        {
+            "id": "1001genomes",
+            "species": "arabidopsis_thaliana",
+            "assembly": "TAIR10",
+            "type": "remote",
+            "filename_template": "ftp://ftp.gramene.org/pub/gramene/collaborators/ensemblgenomes/Arabidopsis1001genome/1001genomes_snp-short-indel_only_ACGTN_srt.vcf.gz",
+            "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5"
+            ],
+            "strict_name_match": 0
+        }
+
+
+    ]
+
+}

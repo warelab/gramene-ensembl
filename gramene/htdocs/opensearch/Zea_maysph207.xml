@@ -2,10 +2,10 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Zea m)</ShortName>
- <Description>Search Ensembl Genomes - Zea mays - Zea mays</Description>
+ <Description>Search Ensembl Genomes - Zea mays PH207 - Zea mays PH207</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Zea mays Zea mays</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Zea mays PH207 Zea mays PH207</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://panzea.gramene.org/Zea_mays/Psychic?q={searchTerms};site=ensembl"/>
+      template="http://panzea.gramene.org/Zea_maysph207/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>
