@@ -69,8 +69,9 @@ sub links {
 # test upload link
 # UserData/SelectFile?db=core
 	
-  my $upload_link = 'UserData/SelectFile?db=core';
-  push @links, 'uploadData',  sprintf '<a class="constant" href="/%s">UploadData</a>', $upload_link;  
+  my $upload_link = $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 });
+
+  push @links, 'uploadData',  sprintf '<a href="%s" class="modal_link nodeco" rel="modal_user_data">UploadData</a>', $upload_link;  
   return \@links;
 }
 

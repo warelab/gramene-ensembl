@@ -11,12 +11,15 @@ fi
 cd $ENSEMBLROOT
 ln -s ../biomart-perl biomart-perl
 ln -s ../samtools samtools            
-ln -s ../bioperl-live bioperl-live
+ln -s ../BioPerl-1.6.922 bioperl-live
 ln -s /usr/local/apache2 apache2
 ln -s ../tools_data tools_data
 mkdir -p ensembl-webcode/conf/packed
 mkdir -p ensembl-webcode/htdocs/minified
 mkdir tmp
+cd tmp/
+mkdir udcCache procedure export persistent failure_dir temporary
+cd ../
 mkdir logs
 ln -s ensembl-webcode/conf conf
 cd ensembl-webcode/

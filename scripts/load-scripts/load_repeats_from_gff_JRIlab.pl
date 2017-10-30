@@ -235,8 +235,8 @@ while( my $line = $GFF_HANDLE->getline ){
 
   $strand = $strand eq '-' ? -1: 1;
  
-  my $repeat_type = $repeat_type_hash{$feature};
-  my $repeat_class = $repeat_class_hash{$feature};
+  my $repeat_type = $repeat_type_hash{$feature} || 'unknown';
+  my $repeat_class = $repeat_class_hash{$feature} || 'unknown';
 
 #  $repeat_class =~ s/_/\//;
   my ($repeat_name,  $repeat_consensus) = ('unknown',  'unknown');

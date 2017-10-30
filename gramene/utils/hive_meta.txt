@@ -1,6 +1,6 @@
 hive_all_base_tables	dataflow_rule,resource_class,analysis_stats_monitor,analysis_stats,pipeline_wide_parameters,analysis_data,analysis_ctrl_rule,log_message,analysis_base,accu,worker_resource_usage,job_file,worker,job,role,hive_meta,dataflow_target,resource_description
 hive_all_views	progress,msg,live_roles,resource_usage_stats
 hive_auto_rebalance_semaphores	0
-hive_pipeline_name	ensembl_web_tools_89
-hive_sql_schema_version	89
+hive_pipeline_name	ensembl_web_tools_90
+hive_sql_schema_version	90
 hive_use_param_stack	0
