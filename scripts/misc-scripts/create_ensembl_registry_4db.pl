@@ -12,10 +12,10 @@ my ( $help, $man_page, $dbname_file, $user, $pass, $host, $port );
 GetOptions(
     'help' => \$help,
     'man'  => \$man_page,
-    'user' => \$user,
-    'pass' => \$pass,
-    'host' => \$host,
-    'port=s' => \$port,
+    'user=s' => \$user,
+    'pass=s' => \$pass,
+    'host=s' => \$host,
+    'port=i' => \$port,
     '-dbname_file=s' => \$dbname_file,
 ) or pod2usage(2);
 
@@ -41,7 +41,7 @@ use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
 };
 
-my $db_params = << "END_DBPAR";
+my $db_params =  << "END_DBPAR";
 my \$def_user = '$user';
 my \$def_pass = '$pass';
 my \$def_host = '$host';
