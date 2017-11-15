@@ -1,0 +1,63 @@
+8-21-2009  Josh Stein
+
+DAGchainer Synteny pipeline:
+
+Pipeline description:
+1) Prepare ortholog data:  A Compara ortholog dump (e.g. *.ort file) is formated for input to DAGchainer using script "ort2matchlist.pl".  Output is redirected to a file, e.g. *.matchlist.  In this file the reference chromosomes are renamed by appending species abbreviations so as not to confuse DAGchainer (for example sorghum and rice each have a chromosome '3', but DAGchainer doesn't know the difference so they need to be renamed 'sb3' and 'os3').  Also gene coordinates are converted to gene order.  [DAGchainer can either use gene order or gene coordinates, but in the latter case you need to define nucleotide distance thresholds which is difficult to do since gene density varies tremendously within and between genomes.  Thus gene order is used].
+
+2) Run DAGchainer on *.matchlist to give output *.matchlist.aligncoords.  This output lists ortholog pairs that have strict colinear relationships.  The output is similar to the input but includes headers with synteny block information.  See below for parameters I use.
+
+3) Reformat if necessary: The *.matchlist may or may not need reformating before step 4.  The reformatting step is required if DAGchainer output (*.matchlist.aligncoords) gives species in reverse order relative to *.matchlist.  I think what is happening is that DAGchainer gives the order alphabetically which may or may not already be the case for the input file (see below).
+
+4) "Analyze" the results: The *.matchlist and *.matchlist.aligncoords files are used as input for script "analyze_dagchain.pl" and output is redirected to a new file e.g. *.analyze_dag.out".  The output gives gene order distance of non-colinear genes to nearest flanking colinear anchors.  This distance is later used as criteria to call non-colinear genes as "syntenic:in_range" using a distance threshold.  The file can also be loaded into Excel and viewed as dotplots, whereupon additional synteny calls can be made manually. 
+
+5) Call synteny: "call_synteny.pl" uses *.analyze_dag.out, manual.txt, and a distance threshold (e.g. '5') to give outputs 3 outputs: *.syn_table, sp1.synteny_list, and sp2.synteny_list.  The *.syn_table lists all syntenic gene relationships and classifies them as "syntenic:colinear" (defined by DAGchainer), "syntenic:in_range" (gene pair is within the specified distance threshold), or "syntenic:manual" if any were defined.  The manual.txt file is required input but can be a blank file.  Note that the manual.txt file can specify gene pairs to remove from synteny calls if upon manual inspection they look like false positives.
+
+6) Call blocks.  This step can be performed immediately after the DAGchainer run (step 2) since it only relies on the colinear chains produced by DAGchainer.  This is unfortunate because it does not take into account "syntenic:in_range" and "syntenic:manual" calls which may extend or create new blocks.  Script define_blocks.pl takes input *.ort and *matchlist.aligncoords as input.  Output is redirected to a file e.g. *.blocks
+
+Required data input (only one):
+1) Ortholog table.  See example 'os_sb.ort'
+   This file is usually provided by either Liya Ren or Will Spooner.  Note that
+   the dump script was initially developed by Liya and that Will modified it to     include "paralogs" as well as "othologs".  If using Will's output you will       need to grep on 'ortholog' and redirect output to a new file in order to         filter out the paralogs.  Alternatively this filtering could be incorporated     into the first script of the pipeline which is ort2matchlist.pl.  If you         choose to skip this dump step and directly query the Compara and core            databases, the relevant information for each member of an ortholog pair is:      gene_stable_id, reference chromosome, start coordinate, and taxon id. Note       that if you go this route the reference chromosome will need to be renamed so    that it is unique.  For example if both maize and sorghum have a chromosome 3    the reference may be simply '3' for both species within the Ensembl  
+   core.  DAGchainer cannot distinguish these so they are renamed as 'zm3' and        'sb3'.  The ort2matchlist.pl script will do this automatically for maize,      rice, and sorghum taxon ids.
+
+Required software package (only one):
+1) DAGchainer (http://dagchainer.sourceforge.net/)
+
+Required scripts:
+1) ort2matchlist.pl
+2) analyze_dagchain.pl
+3) call_synteny.pl
+4) define_blocks.pl
+
+Example input and output data:
+os_by_sb.dist5.synteny_list
+os_sb.analyze_dag.out
+os_sb.blocks
+os_sb.dist5.syn_table
+os_sb.matchlist
+os_sb.matchlist2
+os_sb.matchlist.aligncoords
+os_sb.ort
+sb_by_os.dist5.synteny_list
+
+Example run:
+#Make matchlist file
+$ ort2matchlist.pl os_sb.ort > os_sb.matchlist
+
+#Run DAGchainer
+$ ~/DAGCHAINER/run_DAG_chainer.pl -i os_sb.matchlist -Z 12 -D 20 -g 1 -A 5 &
+
+#Reverse original maitch lst
+$ cat os_sb.matchlist | perl -ne 'chomp; split; print join("\t", $_[4], $_[5], $_[6], $_[7], $_[0], $_[1], $_[2], $_[3], $_[8],),"\n";' > os_sb.matchlist2
+
+#Analyze DAG
+$ analyze_dagchain.pl os_sb.matchlist2 os_sb.matchlist.aligncoords > os_sb.analyze_dag.out
+
+#Call synteny:
+$ call_synteny.pl os_sb.analyze_dag.out fake.manual 5
+
+#List blocks:
+$ define_blocks.pl os_sb.ort os_sb.matchlist.aligncoords > os_sb.blocks
+
+   

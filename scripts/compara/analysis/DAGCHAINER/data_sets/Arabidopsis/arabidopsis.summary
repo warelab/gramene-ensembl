@@ -1,0 +1,20 @@
+cat Arabidopsis.Release5.matchList.filtered.aligncoords | print.pl 1 5 | perl -ne 'if (/at\dg/i) {@x = split (/\t/); $x[0] =~ s/\s//g; $x[1] =~ s/\s//g; ; print "$x[0]\n$x[1]\n";}' | sort -u | wc
+   8153    8153   81530
+
+# Number of blast match pairs examined.
+ cat Arabidopsis.Release5.matchList.filtered | perl -ne 'if (/At\dg/) { print;}'|wc
+  40834  367506 2704790
+
+## number of genes reported in chains:
+cat Arabidopsis.Release5.matchList.filtered.aligncoords | scarf_pub_loci.pl | sort -u |wc
+   8153    8153   81530
+
+## number of chains reported:
+cat Arabidopsis.Release5.matchList.filtered.aligncoords | grep 'num aligned pairs' |wc
+    292    4245   23160
+
+
+## number of chains >= 10
+cat Arabidopsis.Release5.matchList.filtered.aligncoords | grep 'num aligned pairs' | perl -ne '/num aligned pairs: (\d+)/; if ($1 >= 10) { print "$1\n";}' | sort -g |wc
+    129     129     395
+

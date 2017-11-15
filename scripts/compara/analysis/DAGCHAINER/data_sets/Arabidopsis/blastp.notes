@@ -1,0 +1,7 @@
+
+used WU-BLAST
+
+condor_blast.pl -q rel5_proteins.fasta -s rel5_proteins.fasta -p /usr/local/common/blastp -O "V=5 B=5 E=1e-10 -filter seg" -b
+
+only the longest protein from release 5 was selected when multiple isoforms existed.
+

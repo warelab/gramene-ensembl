@@ -1,0 +1,15 @@
+
+
+## filtered repetitive matches:
+../filter_repetitive_matches.pl 50000 <Arabidopsis.Release5.matchList >Arabidopsis.Release5.matchList.filtered
+bhaas@sarafina % wc Arabidopsis.Release5.matchList
+  48720  438480 3229538 Arabidopsis.Release5.matchList
+bhaas@sarafina % wc Arabidopsis.Release5.matchList.filtered 
+  40834  367506 2704790 Arabidopsis.Release5.matchList.filtered
+
+## Run DAGchainer:
+../../run_DAG_chainer.pl -i Arabidopsis.Release5.matchList.filtered -s -I
+
+## Visualize Results:
+../../Java_XY_plotter/run_XYplot.pl Arabidopsis.Release5.matchList.filtered Arabidopsis.Release5.matchList.filtered.aligncoords
+

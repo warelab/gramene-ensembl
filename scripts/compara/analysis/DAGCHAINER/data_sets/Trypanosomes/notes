@@ -1,0 +1,13 @@
+###### Synteny Between Trypanosoma brucei and Leishmania major ############################
+
+# blast hits were limited to the top 10 matches in a search against L. major, T. brucei, and T. cruzi.  T. cruzi was eliminated from this synteny analysis only because the genome is fragmented into many contigs coupled with the representation of two different haplotypes. 
+
+../../accessory_scripts/filter_repetitive_matches.pl 5 < Tbrucei_vs_Lmajor.match_file > Tbrucei_vs_Lmajor.match_file.filtered
+
+../../run_DAG_chainer.pl -i Tbrucei_vs_Lmajor.match_file.filtered -Z 12 -D 10 -g 1 -A 5
+
+ ../../accessory_scripts/extract_only_chromo_pairs_with_dups.pl Tbrucei_vs_Lmajor.match_file.filtered Tbrucei_vs_Lmajor.match_file.filtered.aligncoords  > Tbrucei_vs_Lmajor.match_file.filtered.only_with_synteny
+
+
+ ../../Java_XY_plotter/run_XYplot.pl Tbrucei_vs_Lmajor.match_file.filtered.only_with_synteny  Tbrucei_vs_Lmajor.match_file.filtered.aligncoords 
+
