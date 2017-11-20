@@ -325,36 +325,38 @@ sub write_output{
 
   my $query_db_name=$query_db->dbc->dbname;
   my $target_db_name=$target_db->dbc->dbname;
+warn("DEBUG query_sp=$query_db_name, target_db=$target_db_name\n");
 
-  my $meta=$self->{species_meta};
-  #my $switched=$meta->{query}{abbr} le $meta->{target}{abbr} ? 1 : 0;
+  my $query_gene_adaptor=$query_db->get_GeneAdaptor(); 
+  my $target_gene_adaptor=$target_db->get_GeneAdaptor();
 
+  my $switched = test_switched($query_gene_adaptor, $target_gene_adaptor, $self->output);
+  
   my (%query_syn, %target_syn); 
   while (my $line= shift @{ $self->output }) {
 	  next if $line=~/syn:type/i;
 	  my @parts = (split( /\s+/, $line))[0, 3, 6, 8];
   	  my @empty = grep{ ! length($_) } @parts[0 .. 3];
 
-      if( @empty ){
+      	  if( @empty ){
 		  # Sanity check
 		  warn("[WARN] Incomplete line in synteny file: $line\n");
-	  }
+       	  }
+
 	  $query_syn{$parts[0]}||=[];
 	  push @{ $query_syn{$parts[0]} }, [@parts[1 .. 3]];
 	  $target_syn{$parts[1]}||=[];
 	  push @{ $target_syn{$parts[1]} }, [@parts[0, 2, 3]];
   }
 
-  my $query_gene_adaptor=$query_db->get_GeneAdaptor();
-  my $target_gene_adaptor=$target_db->get_GeneAdaptor();
   my $query_attribute_adaptor = $query_db->get_AttributeAdaptor();
   my $target_attribute_adaptor = $target_db->get_AttributeAdaptor();
   ## check if query/target is switched
-  #if ($switched) {
-  #	  my %tmp=%query_syn;
-  #	  %query_syn=%target_syn;
-  #	  %target_syn=%tmp;
-  #}
+  if ($switched) {
+  	  my %tmp=%query_syn;
+  	  %query_syn=%target_syn;
+  	  %target_syn=%tmp;
+  }
 
   #warn ("DEBUG query_gene_adaptor is ", Dumper($query_gene_adaptor), "\n");
   #warn ("DEBUG target_gene_adaptor is ", Dumper($target_gene_adaptor), "\n");
@@ -366,7 +368,7 @@ sub write_output{
 	  while (my ($key, $value) = each %query_syn) {
 		  my $attr_value="$target_db_name;" . join("&", map { join "+", @$_ } @$value);
 		  my $gene=$query_gene_adaptor->fetch_by_stable_id( $key );
-		  #warn ("DEBUG: key=$key, attr_value=$attr_value\n");
+		  warn ("DEBUG: query key=$key, attr_value=$attr_value\n");
 		   #warn ("DEBUG query gene = $key", Dumper($gene), "\n");
 		  #exit;
 		  unless ($gene) {
@@ -376,7 +378,7 @@ sub write_output{
 		  my $attribute=Bio::EnsEMBL::Attribute->new(
 			  -CODE   => 'syn-gene-pairs',
 			  -NAME   => 'syntenic gene pairs',
-			  -DESCRIPTION    => 'syntenic gene relationship from Josh pipeline',
+			  -DESCRIPTION    => 'syntenic gene relationship from gramene DAGchainer pipeline',
 			  -VALUE  => $attr_value,
 		  );
 		  print "$key\t$gene\t$attr_value\n";
@@ -394,7 +396,7 @@ sub write_output{
 		  my $attribute=Bio::EnsEMBL::Attribute->new(
 			  -CODE   => 'syn-gene-pairs',
 			  -NAME   => 'syntenic gene pairs',
-			  -DESCRIPTION    => 'syntenic gene relationship from Josh pipeline',
+			  -DESCRIPTION    => 'syntenic gene relationship from gramene DAGchainer pipeline',
 			  -VALUE  => $attr_value,
 		  );
 		  print "$key\t$gene\t$attr_value\n";
@@ -412,6 +414,29 @@ sub write_output{
 	  };
   }
   return 1;
+}
+
+sub test_switched{
+
+  my($query_gene_adaptor, $target_gene_adaptor, $output) = @_;
+
+  my $switched = 0;
+
+  my $first_line =  $output->[1];
+  my ($g0, $s1, $s3) = (split( /\s+/, $first_line))[0, 1, 4];
+
+  #we can only tell query from target apart by gene
+  my $test_gene=$query_gene_adaptor->fetch_by_stable_id( $g0 );
+  unless( $test_gene ){
+        $test_gene=$target_gene_adaptor->fetch_by_stable_id( $g0 );
+        if( $test_gene ){
+                $switched = 1;
+        }else{  
+                throw("Cannot find gene $g0 in either query or target \n");
+        }
+  }
+	
+   return $switched;
 }
 
 1;

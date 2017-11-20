@@ -83,8 +83,18 @@ Created by Zhenyuan Lu <luj@cshl.edu>
 
 use strict;
 use FindBin;
-#use lib "$FindBin::Bin/../ensembl-analysis/modules", "/data/ware/weix/ensembl_main/ensembl-compara/modules"; 
-use lib ("$FindBin::Bin/../ensembl-analysis/modules", "/sonas-hs/ware/hpc/data/weix/ensembl_main/ensembl/modules", "/sonas-hs/ware/hpc/data/weix/ensembl_main/ensembl-analysis/modules", "/sonas-hs/ware/hpc/data/weix/ensembl_main/ensembl-compara/modules", "/sonas-hs/ware/hpc/data/weix/ensembl_main/ensembl-variation/modules"); 
+
+our $ensembl_root;
+BEGIN{   
+
+         $ensembl_root = $ENV{ENSROOT} || $ENV{HOME} || '/usr/local/ensembl-live/';
+        warn ("DEBUG ensembl_root=$ensembl_root\n");
+
+}
+ 
+
+use lib ("$FindBin::Bin/../ensembl-analysis/modules", "$ensembl_root/ensembl/modules", "$ensembl_root/ensembl-analysis/modules", "$ensembl_root/ensembl-compara/modules", "$ensembl_root/ensembl-variation/modules");
+
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::Analysis::RunnableDB::SyntenyBlock;
 use Bio::EnsEMBL::Analysis;
@@ -124,7 +134,7 @@ my $compara_db = Bio::EnsEMBL::Registry->get_DBAdaptor($COMPARA, 'compara');
 my $target_db = Bio::EnsEMBL::Registry->get_DBAdaptor($TARGET, 'core');
 
 my $analysis=Bio::EnsEMBL::Analysis->new(
-	-program => "$ENV{HOME}/gramene-ensembl/scripts/compara/analysis/synteny_block.pl", #"/sonas-hs/ware/hpc_norepl/data/programs/synteny_block.pl",
+	-program => "$ENV{ENSROOT}/gramene-live/scripts/compara/analysis/synteny_block.pl", #"/sonas-hs/ware/hpc_norepl/data/programs/synteny_block.pl",
 );
 my $synteny_block = Bio::EnsEMBL::Analysis::RunnableDB::SyntenyBlock->new(
 	-analysis => $analysis,

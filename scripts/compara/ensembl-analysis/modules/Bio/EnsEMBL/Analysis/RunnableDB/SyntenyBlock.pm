@@ -345,7 +345,8 @@ sub write_output {
             = $gdba->fetch_by_name_assembly($species_name, $species_assembly)
             || throw("[*DIE] Species $species not in compara DB");
     }
-    my $switched = $meta->{query}{abbr} le $meta->{target}{abbr} ? 0 : 1;
+    my $switched = test_switched( $meta, $self->output);
+
     local $compara_db->dbc->db_handle->{'AutoCommit'};
     eval {
         while (my $line = shift @{ $self->output })
@@ -514,6 +515,30 @@ VALUES ( ?, ?, ?, ?, ? ) );
         $dnafrag_end, $dnafrag_strand
     ) || throw("[[*DIE] " . $sth->errstr);
     return $sth->{'mysql_insertid'};
+}
+
+sub test_switched{
+
+  my($meta, $output) = @_;
+
+  my $switched = 0;
+
+  my $first_line =  $output->[1];
+  my ($tx1, $tx2) = (split( /\s+/, $first_line))[6, 13];
+  #29760Vp
+
+  my ($qtx, $qabbr) = map { $meta->{query}->{$_} } qw(taxon_id abbr);
+  my ($ttx, $tabbr) = map { $meta->{target}->{$_} } qw(taxon_id abbr);
+
+  if( $qtx == $ttx && $qabbr eq $tabbr){
+	throw ("Die: Cannot tell query block ($qtx, $qabbr) and target block ($ttx, $tabbr) for $tx1, $tx2 ");
+  }
+
+  if( ($tx1 =~ /^$ttx/ && $tx1 !~ /^$qtx/) || ($tx1 =~ /^$ttx/ && $tx1 =~ /^$qtx/ && $tx1 =~ /$tabbr/ && $tx1 !~ /$qabbr/) ){
+	$switched = 1;
+   }
+
+   return $switched;
 }
 
 1;
