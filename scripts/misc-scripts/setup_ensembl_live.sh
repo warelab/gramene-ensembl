@@ -54,6 +54,8 @@ ln -s ../samtools samtools
 ln -s ../BioPerl-1.6.922 bioperl-live
 ln -s /usr/local/apache2 apache2
 ln -s ../tools_data tools_data
+ln -s ../vcftools vcftools
+
 mkdir -p ensembl-webcode/conf/packed
 mkdir -p ensembl-webcode/htdocs/minified
 mkdir tmp
