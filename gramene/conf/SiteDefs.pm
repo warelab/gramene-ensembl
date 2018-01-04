@@ -14,7 +14,7 @@ sub update_conf {
   #$SiteDefs::ENSEMBL_VERSION = 65;
   $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
-  $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
+ # $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 8889;

@@ -1,27 +1,32 @@
-<div class="plain-box"><h2>What's New in Release 55</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="http://trackhubregistry.org/"><img alt="Read more" src="http://ensemblgenomes.org/sites/ensemblgenomes.org/files/field/image/thr-02.png" style="float:right; height:40px; margin:1px 5px; width:40px" title="The Track Hub Registry" /></a></p>
+<div class="plain-box"><h2>What's in Pan-grape pilot Release</h2>
 
-<p>You can search the <a href="http://trackhubregistry.org/">Track Hub Registry</a> to find more than 1,400 public RNA-Seq studies aligned to plants (<a href="http://ensemblgenomes.org/info/access/public-track-hubs">read more</a>) on the Ensembl Genomes site.</p></div>
-<ul><li>New genomes</li>
-        <ul><li>New genome for <a href="/Corchorus_capsularis" title="Jute in Gramene"><em>Corchorus capsularis</em></a> Jute (GCA_001974805)</li></ul>
+<ul>
+<li>Vitis genomes
+        <ul>
+	<li>Vitis pinot IGGP 12x assembly and 2012-07-CRIBI community annotation <a href="/Vitis_vinifera" title="community pinot in Gramene"><em>Vitis vinifera pinot PN40024</em></a></li>
+	<li>Vitis pinot IGGP 12x assembly and MAKER-P wareLab annotation <a href="/Vitis_pinot" title="wareLab pinot in Gramene"><em>Vitis vinifera pinot PN40024</em></a></li>
+	<li>Vitis cabernet PacBio assembly and MAKER-P wareLab annotation <a href="/Vitis_cabernet" title="wareLab cabernet in Gramene"><em>Vitis vinifera cabernet</em></a></li>
+	<li>Vitis flame Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_flame" title="wareLab flame in Gramene"><em>Vitis vinifera flame</em></a></li>
+	<li>Vitis concord Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_concord" title="wareLab concord in Gramene"><em>Vitis vinifera concord</em></a></li>
+	<li>Vitis cinerea Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_cinerea10x" title="wareLab cinerea10x in Gramene"><em>Vitis vinifera cinerea10x</em></a></li>
+	<li>Vitis cinerea PacBio assembly and MAKER-P wareLab annotation <a href="/Vitis_cinerea" title="wareLab cinerea in Gramene"><em>Vitis vinifera cinerea</em></a></li>
+	</ul>
         </li>
-        <li>New data
-	<ul><li>New alignment based cross references to UniProt and RefSeq across all plants</li>
-	<li>New automatic ncRNA gene annotations across all plants</li>
-	<li>New <a href="http://plantreactome.gramene.org">plant reactome</a> cross-references across all plants</li>
-	<li>New whole genome alignments between Hordeum vulgare (barley) and 
-	<ul><li><a href=/Oryza_sativa><em> Oryza sativa</em></a> <a href="/mlss.html?mlss=9557">(summarized here)</a>, and</li>
-    	<li><a href=/Brachypodium_distachyon><em>Brachypodium distachyon</em></a> <a href="/mlss.html?mlss=9558">(summarized here)</a>
-        </li></ul></ul>
-        <li>Updated data
-	<ul><li>Updated <a href="http://ensemblgenomes.org/info/data/peptide_compara">peptide comparative genomics</a> including the new Jute genome</li>
- 	<li>Updated protein features using <a href="http://www.ebi.ac.uk/interpro/search/sequence-search">InterProScan</a> with version 64 of <a href="https://www.ebi.ac.uk/interpro/">InterPro</a></li>
-         <li>Updated <a href="http://ensembl.gramene.org/biomart/martview">BioMart</a></li></ul>
-        </li>
-	<li>New web features</li>
-    		<ul><li>Pathyways link on gene pages</li>
-    		<li>Neighborhood conservation mode to the Homology tab of the results of <a href="http://www.gramene.org">Gramene's main search query</a></li></ul>
-	<li>Updated software
-    	<ul><li>Updated genome browser, database schema, Mart and API to <a href="http://ensembl.org/info/website/news.html?id=90">Ensembl 90 software</a></li></ul>
-        </li></ul>
+<li>Other genomes as out group
+	<ul>
+	<li><a href="/Glycine_max">Glycine_max (soybean)</a></li>
+	<li><a href="/Arabidopsis_thaliana">Arabidopsis_thaliana</a></li>
+	<li><a href="/Solanum_lycopersicum">Solanum_lycopersicum (tomato)</a></li>
+	<li><a href="/Oryza_sativa">Oryza_sativa (rice)</a></li>
+	<li><a href="/Brachypodium_distachyon">Brachypodium_distachyon</a></li>
+	<li><a href="/Sorghum_bicolor">Sorghum_bicolor v1.4</a></li>
+	</ul>
+</li>
+<li>Featured data
+	<ul>
+	<li>peptide comparative genomics: gene tree and ortholog/paralogs <a href="/Vitis_vinifera/Gene/Compara_Tree?g=VIT_01s0010g03900">example</a></li>
+ 	<li>synteny <a href="/Vitis_vinifera/Location/Synteny?r=7:318001-328000">example</a></li>
+        <li>protein domains predicted by InterProScan <a href="/Vitis_cabernet/Transcript/ProteinSummary?db=core;g=CASF_010137;r=000020F%7Cquiver:2717301-2734973;t=CASF_010137-RA">example</a></li>
+	</ul>
+</li>
 </div>

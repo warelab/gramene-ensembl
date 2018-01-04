@@ -142,22 +142,6 @@ sub content {
   my $species_defs = $hub->species_defs;
   my $species      = $hub->species;
   my $taxid        = $species_defs->TAXONOMY_ID;
-<<<<<<< HEAD
-  my $sound        = 'Moo-oooo!'; #$species_defs->SAMPLE_DATA->{'ENSEMBL_SOUND'};
-  my $provider_link;
-
-  if ($species_defs->PROVIDER_NAME && ref $species_defs->PROVIDER_NAME eq 'ARRAY') {
-    my @providers;
-    push @providers, map { $hub->make_link_tag(text => $species_defs->PROVIDER_NAME->[$_], url => $species_defs->PROVIDER_URL->[$_]) } 0 .. scalar @{$species_defs->PROVIDER_NAME} - 1;
-
-    if (@providers) {
-      $provider_link = join ', ', @providers;
-      $provider_link .= ' | ';
-    }
-  }
-  elsif ($species_defs->PROVIDER_NAME) {
-    $provider_link = $hub->make_link_tag(text => $species_defs->PROVIDER_NAME, url => $species_defs->PROVIDER_URL) . " | ";
-=======
   my $img_url      = $self->img_url;
   my $provider_link = '';
 
@@ -167,7 +151,6 @@ sub content {
     $url  = [$url]  unless ref $url  eq 'ARRAY';
     my @providers = map { $hub->make_link_tag(text => $name->[$_], url => $url->[$_]) } 0 .. scalar @{$name} - 1;
     $provider_link = join ', ', @providers if @providers;
->>>>>>> 4c475c7c9d8962c7e7274f719378b12b6eb505f9
   }
 
   my $html = '
