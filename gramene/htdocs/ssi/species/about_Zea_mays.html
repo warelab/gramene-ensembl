@@ -1,0 +1,77 @@
+<!-- {about} --><a name="about"></a>
+<h2 id="about">About <em>Zea mays</em></h2>
+
+<p><em>Zea mays</em> (maize) has the highest world-wide production of all grain crops, yielding 875 million tonnes in 2012 (<a href="http://faostat.fao.org/">http://faostat.fao.org/</a>). Although a food staple in many regions of the world, most is used for animal feed and ethanol fuel. Maize was domesticated from wild teosinte in Central America and its cultivation spread throughout the Americas by Pre-Columbian civilizations. In addition to its economic value, maize is an important model organism for studies in plant genetics, physiology, and development. It has a large genome of of about 2.4 gigabases with a haploid chromosome number of 10 (Schnable <em>et al.</em>, 2009; Zhang <em>et al.</em>, 2009). Maize is distinguished from other grasses in that its genome arose from an ancient tetraploidy event unique to its lineage.</p>
+
+<!-- {about} -->
+<!-- {assembly} --><a name="assembly"></a>
+<h3 id="assembly">Assembly</h3>
+
+<p>This entirely new assembly of the maize genome (B73 RefGen_v4) is constructed from PacBio Single Molecule Real-Time (SMRT) sequencing at approximately 60-fold coverage and scaffolded with the aid of a high-resolution whole-genome restriction (optical) mapping. The pseudomolecules of maize B73 RefGen_v4 are assembled nearly end-to-end, representing a 52-fold improvement in average contig size relative to the previous reference (B73 RefGen_v3).</p>
+
+<!-- {assembly} -->
+<!-- {annotation} --><a name="annotation"></a>
+<h3 id="genebuild">Annotation</h3>
+
+<h4>Nomenclature of Maize RefGen_V4 gene models</h4>
+
+<p>The gene models of Maize RefGen_V4 were named following the standard of Maize Genetics Nomenclature: <a href="http://www.maizegdb.org/nomenclature#GENEMODEL">www.maizegdb.org/nomenclature#GENEMODEL</a>. Previous identifiers (e.g. GRMZM) are retained as synonyms and can be searched.</p>
+
+<h4>Method</h4>
+
+<p>Genes were annotated with Maker pipeline (Campbell et al. 2014) using 111,000 transcripts obtained by single-molecule sequencing. These long read Iso-Seq data (Wang et al. 2016) improved annotation of alternative splicing, more than doubling the number of alternative transcripts from 1.5 to 3.8 per gene, thereby improving our knowledge of gene structure and transcript variation, resulting in substantial improvements including resolved gaps and misassembles, corrections to strand, consolidation of gene models, and anchoring of unanchored genes.</p>
+
+<p>Gene annotation was performed in the laboratory of Doreen Ware (CSHL/USDA). Protein-coding genes were identified using MAKER-P software version 3.1 (Campbell et al 2014) with the following transcript evidence: 111,151 PacBio Iso-Seq long-reads from 6 tissues (Wang et al. 2016), 69,163 full-length cDNAs deposited in Genbank (Alexandrov et al. 2008; Soderlund et al. 2009), 1,574,442 Trinity-assembled transcripts from 94 B73 RNA-Seq experiments (Law et al 2015), and 112,963 transcripts assembled from deep sequencing of a B73 seedling (Martin et al 2014). Additional evidence included annotated proteins from <em>Sorghum bicolor</em>, <em>Oryza sativa</em>, <em>Setaria italica</em>, <em>Brachypodium distachyon</em>, and <em>Arabidopsis thaliana</em> downloaded from Ensembl Plants Release 29 (Oct-2015). Gene calling was assisted by Augustus (Keller et al. 2011) and FGENESH (Salamov & Solovyev, 2000) trained on maize and monocots, respectively. Low-confidence gene calls were filtered on the basis of AED score and other criteria and are viewable as a separate track. In the end, the higher confidence set (called filtered gene set) has 39,324 protein coding genes. Gene annotations from B73 RefGen_v3 were mapped to the new assembly and are also available as a separate track. In addition, 2,532 Long non-coding RNA (lncRNA) genes were mapped and annotated from prior studies (Li et al., 2014; Wang et al., 2016), while 2,290 tRNA genes were identified using tRNAscan-SE (Lowe & Eddy 1997), and 154 miRNA genes mapped from miRBase (Kozomara & Griffiths-Jones 2014).</p>
+
+<!-- {annotation} -->
+<!-- {regulation} --><a name="regulation"></a>
+<h3 id="regulation">Regulation</h3>
+
+<h4>DNA methylation</h4>
+
+<p>Genomewide patterns of DNA methylation for two maize inbred lines, B73 and Mo17, are now displayed on the maize genome browser. Cytosine methylation in symmetric (CG and CHG, where H is A, C, or T) context is associated with DNA replication and histone modification. CG (65%) and CHG (50%) methylation is also highest in transposons. Source: Maize methylome publication by Regulski <em>et al.</em> (2013).</p>
+
+<!-- {regulation} -->
+<!-- {variation} --><a name="variation"></a>
+<h3 id="variation">Variation</h3>
+
+<h4>HapMap2 dataset</h4>
+
+<p>A variation set which comprises the maize HapMap2 data (Chia <em>et al.</em>, 2012). This dataset incorporates approximately 55 million SNPs and InDels identified in a collection of 103 pre-domesticated and domesticated <em>Zea mays</em> varieties, including a representative from the sister genus, <em>Tripsacum dactyloides</em> (Eastern gamagrass). Each line was sequenced to an average of 4.5-fold coverage using the Illumina GAIIx platform. The reads can be accessed from the SRA, with accession ID: SRA051245. Reads were initially mapped to the B73 RefGen_v3 reference genome using a combination of Bowtie, Novoalign and SOAP, then remapped to the most recent B73 RefGen_v4 reference genome. The variations were scored by taking into account identity-by-descent blocks that are shared among the lines.</p>
+
+<h4>The <a href="https://www.panzea.org/genotypes">Panzea 2.7</a> genotyped-by-sequencing (GBS) dataset</h4>
+
+<p>This variation data set consists of 719,472 SNPs (excluding 332 SNPs that were removed for mapping to scaffolds) typed in 16,718 maize and teosinte lines, and grouped in 14 overlapping populations according to the germplasm set in the corresponding <a href="http://www.panzea.org/dynamic/derivative_data/genotypes/AllZeaGBSv2.7_publicSamples_metadata20140411.xlsx">metadata table</a>.</p>
+
+<!-- {variation} -->
+<!-- {other} --><a name="other"></a>
+<h3 id="other">Links</h3>
+
+<ul>
+	<li><a href="https://www.ncbi.nlm.nih.gov/bioproject/10769">Maize B73 RefGen_v4 related data at NCBI (raw data included)</a></li>
+	<li><a href="ftp://ftp.gramene.org/pub/gramene/maizesequence.org/" title="MaizeSequence.org">MaizeSequence.org FTP site</a></li>
+	<li><a href="http://maizev4.gramene.org/genome_browser">Legacy Gramene Maize RefGen_V4 genome browser</a> (includes RefGen_V3)</li>
+	<li><a href="http://www.maizegdb.org/" title="MaizeGDB">MaizeGDB - Look here for RefGen_V3 on the generic genome browser</a></li>
+	<li>Description of the B73 <em>Zea mays</em> RefGen_V4 assembly in <a href="http://maizegdb.org/genome/genome_assembly/Zm-B73-REFERENCE-GRAMENE-4.0">MaizeGDB</a></li>
+</ul>
+<!-- {other} -->
+<h3>References</h3><ol><li><a id="ref-01"></a><a href="http://europepmc.org/abstract/MED/19936050">A genome-wide characterization of microRNA genes in maize</a>.<br>Zhang L, Chia JM, Kumari S, Stein JC, Liu Z, Narechania A, Maher CA, Guill K, McMullen MD, Ware D. 2009. PLoS Genet.. 5:e1000716.</li>
+<li><a id="ref-02"></a><a href="http://europepmc.org/abstract/MED/24682209">A near complete snapshot of the Zea mays seedling transcriptome revealed from ultra-deep sequencing</a>.<br>Martin JA, Johnson NV, Gross SM, Schnable J, Meng X, Wang M, Coleman-Derr D, Lindquist E, Wei CL, Kaeppler S et al. 2014. Sci Rep. 4:4519.</li>
+<li><a id="ref-03"></a><a href="http://europepmc.org/abstract/MED/21216780">A novel hybrid gene prediction method employing protein multiple sequence alignments</a>.<br>Keller O, Kollmar M, Stanke M, Waack S. 2011. Bioinformatics. 27:757-763.</li>
+<li><a id="ref-04"></a><a href="http://europepmc.org/abstract/MED/10779491">Ab initio gene finding in Drosophila genomic DNA</a>.<br>Salamov AA, Solovyev VV. 2000. Genome Res.. 10:516-522.</li>
+<li><a id="ref-05"></a><a href="http://europepmc.org/abstract/MED/25384563">Automated update, revision, and quality control of the maize genome annotations using MAKER-P improves the B73 RefGen_v3 gene models and identifies new genes</a>.<br>Law M, Childs KL, Campbell MS, Stein JC, Olson AJ, Holt C, Panchy N, Lei J, Jiao D, Andorf CM et al. 2015. Plant Physiol.. 167:25-39.</li>
+<li><a id="ref-06"></a><a href="http://europepmc.org/abstract/MED/24576388">Genome-wide discovery and characterization of maize long non-coding RNAs</a>.<br>Li L, Eichten SR, Shimizu R, Petsch K, Yeh CT, Wu W, Chettoor AM, Givan SA, Cole RA, Fowler JE et al. 2014. Genome Biol.. 15:R40.</li>
+<li><a id="ref-07"></a><a href="http://europepmc.org/abstract/MED/18937034">Insights into corn genes derived from large-scale cDNA sequencing</a>.<br>Alexandrov NN, Brover VV, Freidin S, Troukhan ME, Tatarinova TV, Zhang H, Swaller TJ, Lu YP, Bouck J, Flavell RB et al. 2009. Plant Mol. Biol.. 69:179-194.</li>
+<li><a id="ref-08"></a><a href="http://europepmc.org/abstract/MED/22660545">Maize HapMap2 identifies extant variation from a genome in flux</a>.<br>Chia JM, Song C, Bradbury PJ, Costich D, de Leon N, Doebley J, Elshire RJ, Gaut B, Geller L, Glaubitz JC et al. 2012. Nat. Genet.. 44:803-807.</li>
+<li><a id="ref-09"></a><a href="http://europepmc.org/abstract/MED/24306534">MAKER-P: a tool kit for the rapid creation, management, and quality control of plant genome annotations</a>.<br>Campbell MS, Law M, Holt C, Stein JC, Moghe GD, Hufnagel DE, Lei J, Achawanantakun R, Jiao D, Lawrence CJ et al. 2014. Plant Physiol.. 164:513-524.</li>
+<li><a id="ref-10"></a><a href="http://europepmc.org/abstract/MED/24275495">miRBase: annotating high confidence microRNAs using deep sequencing data</a>.<br>Kozomara A, Griffiths-Jones S. 2014. Nucleic Acids Res.. 42:D68-73.</li>
+<li><a id="ref-11"></a><a href="http://europepmc.org/abstract/MED/19936069">Sequencing, mapping, and analysis of 27,455 maize full-length cDNAs</a>.<br>Soderlund C, Descour A, Kudrna D, Bomhoff M, Boyd L, Currie J, Angelova A, Collura K, Wissotski M, Ashley E et al. 2009. PLoS Genet.. 5:e1000740.</li>
+<li><a id="ref-12"></a><a href="http://europepmc.org/abstract/MED/19965430">The B73 maize genome: complexity, diversity, and dynamics</a>.<br>Schnable PS, Ware D, et al.. 2009. Science. 326:1112-1115.</li>
+<li><a id="ref-13"></a><a href="http://europepmc.org/abstract/MED/27339440">Unveiling the complexity of the maize transcriptome by single-molecule long-read sequencing</a>.<br>Wang B, Tseng E, Regulski M, Clark TA, Hon T, Jiao Y, Lu Z, Olson A, Stein JC, Ware D. 2016. Nat Commun. 7:11708.</li>
+<li><a id="ref-14"></a><a href="http://faostat.fao.org/">FAOSTAT</a>.<br></li>
+<li><a id="ref-15"></a><a href="http://europepmc.org/abstract/MED/22660546">Comparative population genomics of maize domestication and improvement</a>.<br>Hufford MB, Xu X, van Heerwaarden J, Pyhjrvi T, Chia JM, Cartwright RA, Elshire RJ, Glaubitz JC, Guill KE, Kaeppler SM et al. 2012. Nat. Genet.. 44:808-811.</li>
+<li><a id="ref-16"></a><a href="http://europepmc.org/abstract/MED/19965431">A first-generation haplotype map of maize</a>.<br>Gore MA, Chia JM, Elshire RJ, Sun Q, Ersoz ES, Hurwitz BL, Peiffer JA, McMullen MD, Grills GS, Ross-Ibarra J et al. 2009. Science. 326:1115-1117.</li>
+<li><a id="ref-17"></a><a href="http://europepmc.org/abstract/MED/19936048">Detailed analysis of a contiguous 22-Mb region of the maize genome</a>.<br>Wei F, Stein JC, Liang C, Zhang J, Fulton RS, Baucom RS, De Paoli E, Zhou S, Yang L, Han Y et al. 2009. PLoS Genet.. 5:e1000728.</li>
+<li><a id="ref-18"></a><a href="http://europepmc.org/abstract/MED/19936061">The physical and genetic framework of the maize B73 genome</a>.<br>Wei F, Zhang J, Zhou S, He R, Schaeffer M, Collura K, Kudrna D, Faga BP, Wissotski M, Golser W et al. 2009. PLoS Genet.. 5:e1000715.</li>
+<li><a id="ref-19"></a><a href="http://europepmc.org/abstract/MED/19936062">A single molecule scaffold for the maize genome</a>.<br>Zhou S, Wei F, Nguyen J, Bechner M, Potamousis K, Goldstein S, Pape L, Mehan MR, Churas C, Pasternak S et al. 2009. PLoS Genet.. 5:e1000711.</li>
+<li><a id="ref-20"></a><a href="http://europepmc.org/abstract/MED/19541913">Evidence-based gene predictions in plant genomes</a>.<br>Liang C, Mao L, Ware D, Stein L. 2009. Genome Res.. 19:1912-1923.</li></ol><p>Picture credit: Nicolle Rager Fuller, National Science Foundation.</p>

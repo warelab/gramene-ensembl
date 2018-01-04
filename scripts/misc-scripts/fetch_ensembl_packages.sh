@@ -27,6 +27,7 @@ fi
      ensembl-orm \
      public-plugins \
      ensembl-tools \
+     ensembl-vep \
      ensembl-hive \
      ensembl-production \
      ensembl-io \

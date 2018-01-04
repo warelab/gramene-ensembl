@@ -23,6 +23,8 @@ Options:
   --pass          	database password, default to the one for gramene_web
   --port		database port, default to 3306       
   -o|--output_dir       path to output directory, default to /tmp
+  -g|--gene_type	type of genes to dump, for example: protein_coding
+  -c|--canonical_transcript dump only canonical_transcript
 
 =cut
 
@@ -44,7 +46,7 @@ use lib "$Bin";
 
 use strict;
 use warnings;
-use ExportView::GFF3Exporter;
+use ExportView::GFF3ExporterMod;
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
 use Getopt::Long;
 use Pod::Usage;
@@ -61,6 +63,8 @@ my %args = (
 GetOptions(
 	\%args,
 	'output_dir=s',
+	'gene_type=s',
+	'canonical_transcript',
 	'user=s',
 	'pass=s',
 	'dbhost=s',
@@ -98,7 +102,10 @@ foreach my $dbname (@db_adaptors) {
 	open (my $gff, '>' . $output_file);
 
     eval {
-	    my $exporter = ExportView::GFF3Exporter->new('debug' => 1);
+	    my $exporter = ExportView::GFF3ExporterMod->new('debug' => 1,
+							'gene_type' => $args{gene_type},
+							'canonical_transcript' => $args{canonical_transcript}
+							);
 	    $exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
     	$exporter->export_genes_from_slices($gff, @$slices);
     };

@@ -7,6 +7,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERNAME             = 'panvitis.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
+  $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 53; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
@@ -14,7 +15,6 @@ sub update_conf {
   $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
-  $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 8889;
@@ -25,13 +25,18 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SERVERADMIN            = 'weix@cshl.edu';
   $SiteDefs::ENSEMBL_MAIL_SERVER            = 'localhost';
 
+  $SiteDefs::MAX_PROCESS_SIZE = 2000000;
+  $SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
+
+
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
+  $SiteDefs::ENSEMBL_TOOLS_PERL_BIN         = '/usr/local/bin/perl';
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
   $SiteDefs::ENSEMBL_BLASTSCRIPT            = $SiteDefs::ENSEMBL_WEBROOT."/utils/runblast.pl";
 
@@ -43,23 +48,41 @@ sub update_conf {
   $SiteDefs::ENSEMBL_NCBIBLAST_DATA_PATH    = "/usr/local/blastdb/ncbi_blast/genes"; # path for the blast index files (other than DNA) 
   $SiteDefs::ENSEMBL_REPEATMASK_BIN_PATH    = '/usr/local/RepeatMasker'; # path to RepeatMasker executable
   $SiteDefs::ASSEMBLY_CONVERTER_BIN_PATH = '/usr/local/bin/CrossMap.py';
-  $SiteDefs::ENSEMBL_CHAIN_FILE_DIR       = '/usr/local/ensembl-live/tools_data/assembly_converter';
+  $SiteDefs::ENSEMBL_CHAIN_FILE_DIR       = '/usr/local/ensembl-live/tools_data/assembly_chain';
+
+$SiteDefs::ENSEMBL_VEP_CACHE_DIR              = "/usr/local/ensembl-live/tools_data/vep/";
+$SiteDefs::ENSEMBL_VEP_PLUGIN_DATA_DIR        = "/usr/local/ensembl-live/tools_data/vep/Plugins";                       # path to vep plugin data files on the LSF host (or local machine if job running locally) 
+ 
+push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/local/BioPerl-1.6.922', '/usr/local/ensembl-live/ensembl-io/modules', '/usr/local/ensembl-live/ensembl-funcgen/modules', '/usr/local/ensembl-live/ensembl-variation/modules';
+
+ 
+$SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
+    'host'        => 'colden',                                                                       # Database host (defaults to ensembldb.ensembl.org)
+    'user'        => 'weix',                                                                       # Defaults to 'anonymous'
+    'password'    => 'warelab',                                                                       # Not used by default
+    'port'        => 3306,                                                                       # Defaults to 5306
+    'fork'        => 4,                                                                           # Enable forking, using 4 forks
+  };
 
   #----------
   # User database
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
-  #'ensembl_web_user_db_31_57';
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
   $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
   #----------
   # Logging
-  #my $LOG_ROOT = $SiteDefs::ENSEMBL_WEBROOT."/logs";
-  #$SiteDefs::ENSEMBL_PIDFILE   = "$LOG_ROOT/httpd.pid";
-  #$SiteDefs::ENSEMBL_ERRORLOG  = "$LOG_ROOT/error.log";
-  #$SiteDefs::ENSEMBL_CUSTOMLOG = "$LOG_ROOT/access.log combined";
+  $SiteDefs::ENSEMBL_LOGDIR = $SiteDefs::ENSEMBL_SERVERROOT."/logs";
+  $SiteDefs::ENSEMBL_PIDFILE   = "$SiteDefs::ENSEMBL_LOGDIR/httpd.pid";
+  $SiteDefs::ENSEMBL_ERRORLOG  = "$SiteDefs::ENSEMBL_LOGDIR/error.log";
+  $SiteDefs::ENSEMBL_CUSTOMLOG = "$SiteDefs::ENSEMBL_LOGDIR/access.log combined";
+#our $ENSEMBL_LOGDIR               = defer { "$ENSEMBL_SYS_DIR/logs/$ENSEMBL_SERVER_SIGNATURE" };              # Path for log files
+#our $ENSEMBL_PIDFILE              = defer { "$ENSEMBL_LOGDIR/httpd.pid" };                                    # httpd process id
+#our $ENSEMBL_ERRORLOG             = defer { "$ENSEMBL_LOGDIR/error_log" };                                    # Error log file
+#our $ENSEMBL_CUSTOMLOG            = defer { "$ENSEMBL_LOGDIR/access_log ensembl_extended" };    
+
 
   #----------
   # Mart/Blast

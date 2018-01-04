@@ -22,8 +22,6 @@ use warnings;
 use Getopt::Long;
 use Pod::Usage;
 
-#you may not want all of these:
-#use DBI;
 use DBI qw(:sql_types);
 use Bio::EnsEMBL::DBLoader;
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
@@ -258,7 +256,7 @@ for my $file (@ARGV){
      # now start to load assembly 
      #
      my $chr_num = $chr;
-     $chr_num    =~ s/chr(omosome)?_?0*//i;
+     $chr_num    =~ s/.*chr(omosome)?_?0*//i;
      my $chr_slice = get_slice($coord_system_adaptor,
 				$slice_adaptor,
 				$chr_num,
@@ -280,13 +278,13 @@ for my $file (@ARGV){
        # We don't need to save gap in seq_region_table
        # so skip
        # otherwise, comment the if block out
-       if( $r->{'IsGap'} !~ /^[ADFGOPW]$/i ){
+       if( $r->{'IsGap'} !~ /^\s*[ADFGOPW]\s*$/i ){
 	 next;
        }
 
        
        my ($scaffold_len, $scaffold_name);
-       if ( $r->{'IsGap'}  !~ /^[ADFGOPW]$/i ){
+       if ( $r->{'IsGap'}  !~ /^\s*[ADFGOPW]\s*$/i ){
 	 $scaffold_len = $r->{'seq_name'};
 	 $scaffold_name .=  $j++;
        }else{
@@ -298,11 +296,12 @@ for my $file (@ARGV){
 
              
        my $scaffold_seq = undef;
-       $scaffold_seq    = 'N' x $scaffold_len if ( $r->{'IsGap'}  !~ /^[ADFGOPW]$/i);
+       $scaffold_seq    = 'N' x $scaffold_len if ( $r->{'IsGap'}  !~ /^\s*[ADFGOPW]\s*$/i);
 
        my $scaffold_slice = get_slice($coord_system_adaptor,
 				      $slice_adaptor,
-				      $scaffold_name,
+				      substr($scaffold_name, 0, 40),
+					# table collumn only has varchar(40) to store name
 				      $scaffold_len,
 				      $csc,
 				      $scaffold_seq,
@@ -317,7 +316,7 @@ for my $file (@ARGV){
        my $ori=$r->{'scaffold_strand'};
        if( !$ori || $ori eq '?'){
 	   $ori = 1;
-       }elsif( $ori eq '+' || $ori =~ /^plus$/i ){
+       }elsif( $ori eq '+' || $ori =~ /^plus$/i || $ori eq '?' ){
 	   $ori = 1;
        }elsif( $ori eq '-' || $ori =~ /^minus$/i ){
 	   $ori = -1;
