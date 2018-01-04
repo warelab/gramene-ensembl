@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Brachypodium distachyon Brachypodium distachyon</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://panzea.gramene.org/Brachypodium_distachyon/Psychic?q={searchTerms};site=ensembl"/>
+      template="http://panvitis.gramene.org/Brachypodium_distachyon/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

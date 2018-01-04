@@ -4,20 +4,20 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'panzea.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'panvitis.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 53; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Mar 2017';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2017';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
-  $SiteDefs::ENSEMBL_PORT       = 8888;
+  $SiteDefs::ENSEMBL_PORT       = 8889;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -91,19 +91,17 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysw22';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysph207';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_parviglumis';
-
-  #%SiteDefs::__species_aliases =
-   # (
-     # These are supplimental species to EnsemblGenomes
-    # %SiteDefs::__species_aliases,
-     #'Zea_mays'             => [('zm','maize')],
-     #'Physcomitrella_patens' => [('pp','physcomitrella')],
-     #);
-#  push(@{$SiteDefs::__species_aliases{'Populus_trichocarpa'}},'poplar');
-
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cabernet';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cinerea';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cinerea10x'; 
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_pinot';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_flame';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_concord';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_vinifera';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Brachypodium_distachyon';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Sorghum_bicolor';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Glycine_max';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Solanum_lycopersicum';
 }
 
 1;
