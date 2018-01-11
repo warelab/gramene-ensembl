@@ -9,10 +9,10 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 55; 
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 37;
+  $SiteDefs::SITE_RELEASE_VERSION = 56;
+#  $SiteDefs::SITE_RELEASE_VERSION_EG = 38;
   #$SiteDefs::ENSEMBL_VERSION = 89;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2017';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2018';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
@@ -92,7 +92,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
-  $SiteDefs::ENSEMBL_IDM_ENABLED    = 1;
+  $SiteDefs::ENSEMBL_IDM_ENABLED    = 0;
   $SiteDefs::ENSEMBL_FC_ENABLED     = 0;
 
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
