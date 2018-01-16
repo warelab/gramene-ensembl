@@ -4,8 +4,8 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
