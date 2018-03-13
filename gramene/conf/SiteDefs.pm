@@ -4,7 +4,7 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'panzea.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'maize-pangenome-ensembl.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
@@ -30,7 +30,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
+#  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://brie:12051';
+  $SiteDefs::EBEYE_REST_ENDPOINT = 'http://data.gramene.org/panmaize-ebeye';
 
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
   $SiteDefs::ENSEMBL_BLASTSCRIPT            = $SiteDefs::ENSEMBL_WEBROOT."/utils/runblast.pl";
@@ -93,7 +94,15 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysw22';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysph207';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_parviglumis';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_mays';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Setaria_italica';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Glycine_max';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Brachypodium_distachyon';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Sorghum_bicolor';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_vinifera';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Physcomitrella_patens';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Chlamydomonas_reinhardtii';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Selaginella_moellendorffii';
 
   #%SiteDefs::__species_aliases =
    # (

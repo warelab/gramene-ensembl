@@ -69,8 +69,8 @@ sub links {
 # test upload link
 # UserData/SelectFile?db=core
 	
-  my $upload_link = 'UserData/SelectFile?db=core';
-  push @links, 'uploadData',  sprintf '<a class="constant" href="/%s">UploadData</a>', $upload_link;  
+  #my $upload_link = 'UserData/SelectFile?db=core';
+  #push @links, 'uploadData',  sprintf '<a class="constant" href="/%s">UploadData</a>', $upload_link;  
   return \@links;
 }
 
