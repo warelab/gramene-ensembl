@@ -18,7 +18,7 @@
         <li>Updated gene models for <a href="/Oryza_sativa" title="rice in Gramene"><em>Oryza sativa Japonica</em></a> (rice)</li></ul>
 <li>New data</li>
         <ul><li>New <a href="ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/repeat_annotation/">transposable elements for <em>Zea mays</em></a> (maize) provided by Jeffrey Ross-Ibarra, Department of Plant Sciences, UC Davis</li>
-	<li>24 new <a href="http://ensembl.gramene.org/compara_analyses.html">synteny pairs</a> between the 8 new genomes and each of <i>Oryza sativa Japonica</i>, <i>Arabidopsis thaliana</i>, and <i>Vitis vinifera</i></ul>
+	<li>26 new synteny maps and 33 new <a href="http://ensembl.gramene.org/compara_analyses.html">whole-genome alignments</a> involving the new and updated genome assemblies</li></ul>
 <li>Updated data</li>
         <ul><li>Updated gene trees (see <a href="http://ensembl.gramene.org/prot_tree_stats.html">phylogenetic tree statistics</a>) across all plants, including the 12 new and updated genomes</li>
         <li>Updated <a href="http://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/split_genes/">split gene predictions</a> from <a href="http://ensemblgenomes.org/info/data/peptide_compara">peptide comparative genomics</a></li>
