@@ -81,10 +81,10 @@ sub new {
     $self->{ort} = $ort;
 
     my ($query_species, $target_species, $query_taxon_id, $target_taxon_id);
-    $query_species = $self->db->get_MetaContainer->get_scientific_name;
+    $query_species = $self->db->get_MetaContainer->get_production_name; # used to be get_scientific_name
     $query_species =~ s/\s/_/g;
     $target_species
-        = $self->target_db->get_MetaContainer->get_scientific_name;
+        = $self->target_db->get_MetaContainer->get_production_name;
     $target_species =~ s/\s/_/g;
     $query_taxon_id  = $self->db->get_MetaContainer->get_taxonomy_id;
     $target_taxon_id = $self->target_db->get_MetaContainer->get_taxonomy_id;
@@ -346,7 +346,8 @@ sub write_output {
             || throw("[*DIE] Species $species not in compara DB");
     }
     my $switched = test_switched( $meta, $self->output);
-
+warn ("switch is $switched\n");
+#exit;
     local $compara_db->dbc->db_handle->{'AutoCommit'};
     eval {
         while (my $line = shift @{ $self->output })
@@ -529,6 +530,9 @@ sub test_switched{
 
   my ($qtx, $qabbr) = map { $meta->{query}->{$_} } qw(taxon_id abbr);
   my ($ttx, $tabbr) = map { $meta->{target}->{$_} } qw(taxon_id abbr);
+
+#warn ("DEBUG: $qtx == $ttx && $qabbr eq $tabbr\n");
+warn ("DEBUG: ($tx1 =~ /^$ttx/ && $tx1 !~ /^$qtx/) || ($tx1 =~ /^$ttx/ && $tx1 =~ /^$qtx/ && $tx1 =~ /$tabbr/ && $tx1 !~ /$qabbr/) \n");
 
   if( $qtx == $ttx && $qabbr eq $tabbr){
 	throw ("Die: Cannot tell query block ($qtx, $qabbr) and target block ($ttx, $tabbr) for $tx1, $tx2 ");

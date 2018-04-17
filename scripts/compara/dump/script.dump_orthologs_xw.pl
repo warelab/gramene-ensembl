@@ -32,8 +32,9 @@ my $homology_adaptor = Bio::EnsEMBL::Registry->get_adaptor('compara', 'compara',
 my $gene_adaptor = Bio::EnsEMBL::Registry->get_adaptor( $sp1, 'core', 'Gene' );
 my $gene_id_arrayref = $gene_adaptor->list_stable_ids;
 
+#print "DEBUG\n";
 while( my $gid = shift @$gene_id_arrayref ){ #a gene stable id
-    #print "$gid\n";
+ #   print "$gid\n";
     next unless $gid;
     my $gm1 = $gene_member_adaptor->fetch_by_stable_id($gid); #gene_member
     next unless $gm1;

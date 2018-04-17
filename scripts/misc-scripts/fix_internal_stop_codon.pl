@@ -130,7 +130,7 @@ $ENS_DBA || pod2usage( "\nNo core DB for $species set in $registry\n" );
 my $gene_adaptor=$ENS_DBA->get_GeneAdaptor;
 my $aa = $ENS_DBA->get_AttributeAdaptor();
 
-print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
+print "DBbase connected is ", $ENS_DBA->dbc->dbname, "\n" if $debug;
 
 my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 

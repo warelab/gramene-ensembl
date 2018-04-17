@@ -314,6 +314,7 @@ for my $file (@ARGV){
 				    );
 
        my $ori=$r->{'scaffold_strand'};
+	$ori =~ s/\s+//g;
        if( !$ori || $ori eq '?'){
 	   $ori = 1;
        }elsif( $ori eq '+' || $ori =~ /^plus$/i || $ori eq '?' ){

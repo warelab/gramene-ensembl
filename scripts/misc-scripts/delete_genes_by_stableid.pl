@@ -114,7 +114,7 @@ my $genes;
 
 if ($lfile){
     open my $fh, $lfile or die "Cannot open gene stable id file for reading";
-    push @$genes, map{ print; chomp;$gene_adaptor->fetch_by_stable_id($_) } <$fh>;
+    push @$genes, grep { defined $_ } map{ print; chomp;$gene_adaptor->fetch_by_stable_id($_) } <$fh>;
     close $fh;
 }
 
@@ -122,7 +122,14 @@ my %count;
 
 
 foreach my $gene (@$genes) {
-    my $sid = $gene->stable_id;
+    my $sid;
+
+    eval{  $sid = $gene->stable_id};
+
+    if($@){
+	warn ("Undef gene\n");
+	next;
+    }
   print "! gene_stable_id=$sid\n";
   
   $count{genes2delete}++;
