@@ -4,18 +4,17 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 56;
-#  $SiteDefs::SITE_RELEASE_VERSION_EG = 38;
-  #$SiteDefs::ENSEMBL_VERSION = 89;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2018';
+  $SiteDefs::SITE_RELEASE_VERSION = 57;
+#  $SiteDefs::SITE_RELEASE_VERSION_EG = 39;
+  $SiteDefs::SITE_RELEASE_DATE    = 'May 2018';
   $SiteDefs::SITE_NAME            = 'Gramene';
+  $SiteDefs::ENSEMBL_SITETYPE = 'Gramene-Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
-#  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 80;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
