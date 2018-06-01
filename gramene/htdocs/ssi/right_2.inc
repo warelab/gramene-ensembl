@@ -1,25 +1,14 @@
-<div class="plain-box"><h2>Eight new genomes</h2>
+<div class="plain-box"><h2>Polyploid View Enabled</h2>
 
-<p>This release of <a href="http://www.gramene.org/index.html">Gramene</a> brings eight new genomes, including <a href="http://ensembl.gramene.org/Manihot_esculenta">cassava</a>, <a href="http://ensembl.gramene.org/Gossypium_raimondii">cotton</a>, <a href="http://ensembl.gramene.org/Cucumis_sativus">cucumber</a>, <a href="http://ensembl.gramene.org/Phaseolus_vulgaris">common bean</a>, <a href="http://ensembl.gramene.org/Helianthus_annuus">sunflower</a> and <a href="http://ensembl.gramene.org/Dioscorea_rotundata">yam</a>. In addition, we have updated to latest and greatly improved (v3.0) <a href="http://ensembl.gramene.org/Sorghum_bicolor">sorghum</a> genome assembly from JGI as well as updated assemblies for both <a href="http://ensembl.gramene.org/Glycine_max">soybean</a> and <a href="http://ensembl.gramene.org/Prunus_persica">peach</a>. Users can now <a href="http://ensembl.gramene.org/Arabidopsis_lyrata/Gene/Compara_Tree?g=Al_scaffold_0002_1120">view</a>, <a href="http://plants.ensembl.org/biomart/martview?VIRTUALSCHEMANAME=plants_mart&ATTRIBUTES=hvulgare_eg_gene.default.homologs.ensembl_gene_id|hvulgare_eg_gene.default.homologs.taestivum_eg_homolog_ensembl_gene|hvulgare_eg_gene.default.homologs.athaliana_eg_homolog_ensembl_gene|hvulgare_eg_gene.default.homologs.athaliana_eg_homolog_associated_gene_name&FILTERS=&VISIBLEPANEL=resultspanel">query</a>, <a href="ftp://ftp.gramene.org/pub/gramene/release-56/emf/ensembl-compara/homologies/">download</a> and <a href="https://www.ensembl.org/info/docs/api/compara/index.html">analyse</a> our comparative analysis of nearly 2 million genes across 53 plant species. The current Gramene release includes 24 new synteny pairs (see a summary of all <a href="http://ensembl.gramene.org/compara_analyses.html">genomic alignments and syntenies</a>. These correspond to LastZ comparisons between the 8 new genomes and each of <i>Oryza sativa Japonica</i>, <i>Arabidopsis thaliana</i>, and <i>Vitis vinifera</i>.  A stats page for each paiwise LastZ alignment is available, see for example the one for <a href="http://ensembl.gramene.org/mlss.html?mlss=9613"><i>P. vulgaris vs V. vinifera</i></a> and the corresponding <a href="http://ensembl.gramene.org/Phaseolus_vulgaris/Location/Synteny?db=core&r=9%3A31189079-31189
-912&otherspecies=Vitis_vinifera">synteny map for chromosome 9 of the common bean vs the common grape vine</a>.  Also available from Gramene's FTP are <a href="ftp://ftp.gramene.org/pub/gramene/release-56/synteny_maps/">Synteny tables</a>.</p>
+<p>Polyploid view for<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Info/Index">wheat</a><!--nbsp--> <!--nbsp-->has been enabled, allowing users to view alignments between all 3 wheat components<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Location/MultiPolyploid?db=core;g=TRIAE_CS42_6DL_TGACv1_526338_AA1679880;r=TGACv1_scaffold_526338_6DL:198278-201729;r1=TGACv1_scaffold_500260_6BL:98835-102286:-1;r2=TGACv1_scaffold_472311_6AL:52247-55698:1;s1=Triticum_aestivum--TGACv1_scaffold_500260_6BL;s2=Triticum_aestivum--TGACv1_scaffold_472311_6AL;t=TRIAE_CS42_6DL_TGACv1_526338_AA1679880.1">simultaneously</a>.</p>
 
-<h2>Updated genomes including <i>Sorghum bicolor</i> v3.1.1</h2>
+<h2>Functional Genomics</h2>
 
-<p>Three genome assemblies were updated, including <i>Sorghum bicolor</i> (sorghum v3.1.1), <i>Glycine max</i> (soybean V3), and <i>Prunus persica</i> (peach V2). For more details on the sorghum v3.1.1 assembly, see the <a href="https://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Sbicolor">Phytozome site</a>. The release also includes updated gene models for <i>Oryza sativa Japonica</i>.
-
-<h2>Barley genome</h2>
-
-<p>A ten-nation consortium reported the first high-quality reference genome sequence of <a href="http://ensembl.gramene.org/Hordeum_vulgare" title="Hordeum vulgare in Gramene"><em>Hordeum vulgare</em></a> (barley). The barley genome was sequenced and assembled using an array of state-of- the-art methods, taking ten years. For the first time, scientists can now locate all genes precisely in the genome and analyze complex gene families that play a key role in malting and resilience.</p>
+<p>26 new and updated functional genomic databases (<a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Transcript/Oligos?db=core;g=AT1G01030;r=1:8001-18000;t=AT1G01030.2">example</a> for Arabidopsis).</p>
 
 <h2>Arabidopsis variation data from the 1001 Genomes Project</h2>
 
 <p>The representation of genetic variation of <a href="http://ensembl.gramene.org/Arabidopsis_thaliana" title="Arabidopsis thaliana in Gramene">Arabidopsis thaliana</a> incorporates the full data set from the <a href="http://1001genomes.org/" title="1001genomes.org">1001 Genomes Project</a>, covering more than 10 million variant loci across 1,135 samples (<a href="http://europepmc.org/abstract/MED/27293186" title="Europe PMC">Cell 2016</a>).</p>
-
-<h2>Bread wheat variation data</h2>
-
-<p>A total of 80,829 variation markers from the iSelect 90k array and 13.8 million Inter-Homoeologous Variants (IHVs) have been added to the new genome assembly of <a href="http://ensembl.plants.org/Triticum_aestivum"><em>Triticum aestivum</em></a> cv. Chinese Spring produced by the <a href="http://www.earlham.ac.uk/">Earlham Institute</a>.</p>
-
-<p>This data is viewable alongside the existing Axiom 35k and 820k SNP marker sets provided by <a href="http://www.cerealsdb.uk.net/cerealgenomics/CerealsDB/indexNEW.php">CerealsDB</a> and located on the new assembly <strong>and</strong> the publicly available EMS mutant lines from tetraploid (cv. Kronos) and hexaploid (cv. Cadenza) TILLING populations (<a href="http://ensembl.gramene.org/Triticum_aestivum/Info/Annotation#variation">read more</a>).</p>
 
 <h2>Ensembl Plants Archive Site</h2>
 
