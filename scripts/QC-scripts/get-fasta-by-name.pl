@@ -14,16 +14,16 @@ my $in  = Bio::SeqIO->new(
 
 my $out= Bio::SeqIO->new(
 			 -format => 'Fasta',
-			 -file   => ">&STDOUT",
+			 -file   => ">$file.$name",
 			 );
 
 
 while (my $seqobj = $in->next_seq()) {
     
     my $id=$seqobj->display_id;
-    #print "id=$id, name=$name\n";
+    print "id=$id, name=$name\n";
     if( $id =~ /$name/i){
-	#print "found";
+	print "found";
 	$out->write_seq($seqobj);
     }
 }

@@ -250,7 +250,7 @@ while(my $infile=shift) {
 	    my $transcript; #print "id = $id\n";
 	    eval {  $transcript=$transcript_adaptor->fetch_by_stable_id($id); };
 	    print STDERR "$@\n" and ++$count{'not found'} and next if $@;
-	    print STDERR "no transcript fetched by $id\n" and next unless $transcript;
+	    print STDERR "no transcript fetched by $id\n" and ++$count{'not found'} and next unless $transcript;
 	    @GeneScriptLation= ( [ $gene_adaptor->fetch_by_transcript_id( $transcript->dbID)
 				,$transcript ]);
 	} else { #must be translation

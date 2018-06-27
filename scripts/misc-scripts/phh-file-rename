@@ -1,0 +1,214 @@
+#!/usr/local/bin/perl -w
+#
+# /home/hgsc/bin/phh-file-rename ---
+# phh-file-rename based on harley's bcm-rename
+#
+# $$
+#
+
+# Libraries
+use Getopt::Long;
+
+$opt_help=0;
+$opt_test=0;
+$opt_num=0;
+$opt_verbose=1;
+{
+    open(LOGFILE, ">>.renamed") or die "Cannot open logfile: .renamed\n";
+
+    # Read opts
+    if (!GetOptions(
+		    "help|h",
+		    "verbose|v!",
+		    "test|t",
+		    "num|numeric|n",
+		    "symlink|sym",
+		    )) {
+	&usage(1);
+    }
+    if ($opt_help) {
+	&usage(0);
+    }
+    if (!$opt_test) {
+	print LOGFILE ($opt_num? "NUMERIC ":"REGEXP:  "), join(' ', @ARGV);
+    } else {
+	print STDOUT "LOG: ", 
+	($opt_num? "NUMERIC ":"REGEXP:  "), join(' ', @ARGV);
+    }
+
+    # Compile the regex
+    $exp=shift(@ARGV);
+    if ($opt_num) {
+	$exp =~ m%(\d+)/(\d+)%;
+	if (!defined($1) || !defined($2)) {
+	    print "Bad Renumbering.  Should look like 'nnnn/mmmm'\n";
+	    print "$@";
+	    exit;
+	} elsif (($1 % 10 != 1) || ($2 % 10 != 1)) {
+	    print "Both old and new starting trace numbers should end in 1\n";
+	    print "$@";
+	    # print " Continue? ";
+	    # $answer = <STDIN>;
+	    # if ($answer !~ /^y/i) {
+	    # print "$answer\n";
+	    exit;
+	    #}
+	}
+	$delta = $2 - $1;
+	
+	if ($opt_symlink) {
+	    &renumber_symlinks();
+	}
+	else {
+	    &renumber_files();
+	}
+    } else {
+	$exp_func=eval "sub { ".$exp.";}";
+	if (!defined($exp_func)) {
+	    print "Bad Expression.  Should look like 's/aaa/bbb/'\n";
+	    print "$@";
+	    exit;
+	}
+	
+	if ($opt_symlink) {
+	    &rename_symlinks();
+	}
+	else {
+	    &rename_files();
+	}
+    }
+}
+
+### Generate a name and possible rename the file
+sub rename_files {
+    foreach $_ (@ARGV) {
+	$oldfilename=$_;
+	&$exp_func();
+
+	#
+	if (!-e $_) {
+	    rename($oldfilename,$_) if (!$opt_test);
+	    if ($opt_verbose) {
+		printf("%-20s : %-20s\n",$oldfilename,$_);
+	    }
+	}
+	else {
+	    if ($opt_verbose) {
+		printf("%-20s : %-20s Skipping...\n",$oldfilename,$_);
+	    }
+	}
+    }
+}
+
+
+### Replace the symlinks with a new renamed symlink (if changed)
+sub rename_symlinks {
+    foreach $f (@ARGV) {
+	if (!-l $f) { # not a symlink
+	    next;
+	}
+	$_=readlink($f);
+	$old_link=$_;
+	&$exp_func();
+	if ($_ ne $old_link) {
+	    if ($opt_verbose) {
+		printf("%-30s -> %s\n",$f,$_);
+	    }
+	    if (!$opt_test) {
+		unlink($f);
+		symlink($_,$f);
+	    }
+	}
+    }
+}
+
+### Generate a name and possible rename the file
+sub renumber_files {
+    foreach $_ (@ARGV) {
+	$oldfilename=$_;
+	m/(\S*\D)(\d+)(\.\w+)$/;
+	$prefix = $1;
+	$trace = $2;
+	$suffix = $3;
+	$trace += $delta;
+
+	$newtrace = sprintf("%4d", $trace);
+	$newfilename = $prefix.$newtrace.$suffix;
+
+	#
+	if (!-e $newfilename) {
+	    rename($oldfilename,$newfilename) if (!$opt_test);
+	    if ($opt_verbose) {
+		printf("%-20s : %-20s\n",$oldfilename,$newfilename);
+	    }
+	}
+	else {
+	    rename($oldfilename,"_".$newfilename) if (!$opt_test);
+	    if ($opt_verbose) {
+		printf("%-20s : %-20s Prefixing with _...\n",$oldfilename,
+		       $newfilename);
+	    }
+	}
+    }
+}
+
+
+### Replace the symlinks with a new renamed symlink (if changed)
+sub renumber_symlinks {
+    foreach $f (@ARGV) {
+	if (!-l $f) { # not a symlink
+	    next;
+	}
+	$_=readlink($f);
+	$old_link=$_;
+	m/(\S*\D)(\d+)(\.\w+)$/;
+	$prefix = $1;
+	$trace = $2;
+	$suffix = $3;
+	$trace += $delta;
+
+	$newtrace = sprintf("%4d", $trace);
+	$newfilename = $prefix.$newtrace.$suffix;
+	
+	if ($newfilename ne $old_link) {
+	    if ($opt_verbose) {
+		printf("%-30s -> %s\n",$f,$newfilename);
+	    }
+	    if (!$opt_test) {
+		unlink($f);
+		symlink($newfilename,$f);
+	    }
+	}
+    }
+}
+
+sub usage {
+print "
+
+   bcm-rename --- rename files en mass
+
+   -h     = this help message.
+   -v     = be verbose in output
+   -n     = do a numeric renaming ####/####
+   -t     = test (do not actually change)
+
+USAGE:
+
+   bcm-rename 'perlfunc' files
+
+   'perlfunc' is called with the current filename in \$_.
+   The output filename should be left in \$_.
+   If the output file is not there the file is renamed.
+
+EXAMPLE:
+
+   bcm-rename s/.abi.scf/.scf/ *.abi.scf
+
+";
+exit(shift);
+}
+
+
+# Local Variables:
+# mode: perl
+# End:
