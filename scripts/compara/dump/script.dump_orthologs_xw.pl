@@ -57,8 +57,8 @@ while( my $gid = shift @$gene_id_arrayref ){ #a gene stable id
 		       $coord2,
 		       $sp1,
 		       $sp2,
-		       $gm1->taxon_id . ucfirst (join '', map{ substr($_, 0, 1) } (split '_', $sp1)),
-		       $gm2->taxon_id . ucfirst (join '', map{ substr($_, 0, 1) } (split '_', $sp2)),
+		       $gm1->taxon_id . ucfirst(join '', map { (substr $_, 0, 1).(substr $_, -1)} (split '_', $sp1)), #ucfirst (join '', map{ substr($_, 0, 1) } (split '_', $sp1)),
+		       $gm2->taxon_id . ucfirst (join '', map{ substr($_, 0, 1).(substr $_, -1) } (split '_', $sp2)),
 		       $hom_type,
 		       $homology->gene_tree()->root_id(),
 		), "\n";

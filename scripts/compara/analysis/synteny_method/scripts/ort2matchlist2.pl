@@ -8,7 +8,7 @@ my $ort_file = shift;
 my $species_meta = shift;
 my $taxid2sp_file = shift;
 
-warn ("weix debug get arg ort_file=$ort_file, species_meta=$species_meta, taxid2sp_file=$taxid2sp_file\n");
+#warn ("weix debug get arg ort_file=$ort_file, species_meta=$species_meta, taxid2sp_file=$taxid2sp_file\n");
 my %sp;
 %sp = %{get_taxid2sp_hash( $taxid2sp_file )} if $taxid2sp_file;
 

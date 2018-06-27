@@ -38,6 +38,8 @@ dump_interpro.pl  [options]
     --registry_file	ensembl registry file,
     --help		help message
     --man		full documentation
+    --id                interpro id
+    --acc		interpro accession
 
 =head1 OPTIONS
 
@@ -74,7 +76,7 @@ NONE
 
 
 
-my ($ensembl_species, $registry_file,$interpro_file,$DUMPDIR);
+my ($ensembl_species, $registry_file,$interpro_file,$DUMPDIR, $ipr_id, $ipr_acc);
     {  #Argument Processing
 	my $help=0;
 	my $man=0;
@@ -82,6 +84,8 @@ my ($ensembl_species, $registry_file,$interpro_file,$DUMPDIR);
 		    "man"=>\$man,
 		    "species=s" => \$ensembl_species,
 		    "registry_file=s" => \$registry_file,
+		    "id=s" => \$ipr_id,
+		    "acc=s" => \$ipr_acc,
 		  )
 	  or pod2usage(2);
 	pod2usage(-verbose => 2) if $man;
@@ -106,7 +110,7 @@ my $dbc = $db->dbc;
 my %interpros;
 &get_interpros($dbc,\%interpros);
 
-my $sql = 
+my $sql_all = 
     q[
 	select    ts.stable_id,
               i.interpro_ac,
@@ -122,13 +126,27 @@ my $sql =
          and  pf.hit_name = i.id
     ];
 
+
+my $sql_acc_constraint = " and i.interpro_ac = ?";
+my $sql_id_constraint = " and i.id = ?";
+
 print $out_fh join("\t",qw(!protein_id Interpro_id Interpro_name domain evalue
 perc_ident seq_start seq_end)),"\n";
 
 
+my $sql = $sql_all;
+
+$sql = $sql_all . $sql_acc_constraint if $ipr_acc;
+$sql = $sql_all . $sql_id_constraint if $ipr_id;
 
 my $sth = $dbc->prepare($sql);
-$sth->execute() or die $dbc->errstr;
+if( $ipr_acc ){
+	$sth->execute( $ipr_acc ) or die $dbc->errstr;
+}elsif( $ipr_id ){
+	$sth->execute( $ipr_id ) or die $dbc->errstr;
+}else{
+	$sth->execute() or die $dbc->errstr;
+}
 
 my %seen_assocs;
 while(my @data = $sth->fetchrow_array()){

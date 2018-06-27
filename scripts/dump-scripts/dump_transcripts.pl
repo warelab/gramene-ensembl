@@ -253,19 +253,18 @@ foreach my $geneid (@genes) {
 						     $cdna_coding_start-1, 
 						     $cdna_coding_end-$cdna_coding_start+1)
 				     );
-#    }
-#else{
+    }
+ else{
       
-      #$comp_id .=  "|CDNA";
-      #$seq_obj = Bio::Seq->new(
-#				    -display_id => $comp_id,
-#				    -seq => $cdna_seq,
-#				   );
-#      
-#    }
+      $comp_id .=  "|CDNA";
+      $seq_obj = Bio::Seq->new(
+				    -display_id => $comp_id,
+				    -seq => $cdna_seq,
+				   );
+      
+    }
       $seqio->write_seq($seq_obj);
       $count{qualified_transcripts}++;
-    }   
   }
   #last;
 }

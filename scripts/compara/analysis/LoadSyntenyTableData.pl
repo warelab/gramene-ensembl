@@ -94,7 +94,7 @@ our $ensembl_root;
 BEGIN{
 
 	 $ensembl_root = $ENV{ENSROOT} || $ENV{HOME} || '/usr/local/ensembl-live/';
-	warn ("DEBUG ensembl_root=$ensembl_root\n");
+	#warn ("DEBUG ensembl_root=$ensembl_root\n");
 
 }
 

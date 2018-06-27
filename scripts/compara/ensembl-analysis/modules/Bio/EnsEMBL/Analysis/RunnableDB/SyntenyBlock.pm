@@ -94,15 +94,15 @@ sub new {
             name         => $query_species,    #'Zea_mays',
             core_adaptor => $self->db,
             taxon_id     => $query_taxon_id,
-            abbr =>
-                join('', map { substr $_, 0, 1 } split /_/, $query_species),
+            abbr => join('', map { (substr $_, 0, 1).(substr $_, -1)} split /_/, $query_species),
+                #join('', map { substr $_, 0, 1 } split /_/, $query_species),
         },
         target => {
             name         => $target_species,    #'Oryza_sativa',
             core_adaptor => $self->target_db,
             taxon_id     => $target_taxon_id,
-            abbr =>
-                join('', map { substr $_, 0, 1 } split /_/, $target_species),
+            abbr => abbr => join('', map { (substr $_, 0, 1).(substr $_, -1)} split /_/, $target_species),
+                #join('', map { substr $_, 0, 1 } split /_/, $target_species),
         },
     };
     return $self;

@@ -219,16 +219,15 @@ foreach my $gene (@genes) {
   
   $count{qualified_genes}++;
   
-  
   my @transcripts;
   
   if($longest){
     my $lognest_trpt = &get_longest_transcript( $gene );
     push @transcripts, $lognest_trpt if $lognest_trpt;
   }else{
-    @transcripts = @{$gene->get_all_Transcripts};
+    eval {@transcripts = @{$gene->get_all_Transcripts}};
+    print STDERR "$@" && next if $@;
   }
-  
   
   foreach my $trans (@transcripts) {
   
@@ -238,7 +237,9 @@ foreach my $gene (@genes) {
 	my $aa_obj = $trans->translate;
     
 
-    $seqio->write_seq($aa_obj);
+    eval {$seqio->write_seq($aa_obj)};
+    print STDERR "Cannot write seq for $id, $@" && next if $@;
+
     $count{qualified_transcripts}++;
     
   }

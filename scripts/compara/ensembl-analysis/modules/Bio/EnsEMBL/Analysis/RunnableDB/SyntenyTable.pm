@@ -94,13 +94,13 @@ sub new{
 		  name  => $query_species, #'Zea_mays',
 		  core_adaptor => $self->db,
 		  taxon_id => $query_taxon_id,
-		  abbr => join('', map {substr $_, 0, 1} split /_/, $query_species),
+		  abbr => join('', map { (substr $_, 0, 1).(substr $_, -1)} split /_/, $query_species),
 	  },
 	  target => {
 		  name  => $target_species, #'Oryza_sativa',
 		  core_adaptor => $self->target_db,
 		  taxon_id => $target_taxon_id,
-		  abbr => join('', map {substr $_, 0, 1} split /_/, $target_species),
+		  abbr => join('', map {(substr $_, 0, 1).(substr $_, -1)} split /_/, $target_species),
 	  },
   };
   return $self;
@@ -325,7 +325,7 @@ sub write_output{
 
   my $query_db_name=$query_db->dbc->dbname;
   my $target_db_name=$target_db->dbc->dbname;
-warn("DEBUG query_sp=$query_db_name, target_db=$target_db_name\n");
+#warn("DEBUG query_sp=$query_db_name, target_db=$target_db_name\n");
 
   my $query_gene_adaptor=$query_db->get_GeneAdaptor(); 
   my $target_gene_adaptor=$target_db->get_GeneAdaptor();

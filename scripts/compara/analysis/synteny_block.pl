@@ -38,7 +38,7 @@ my $matchlist_file="$dir$name.matchlist";
 my $aligncoords_file="$matchlist_file.aligncoords";
 my $blocks_file="$dir$name.blocks";
 
-warn("DEBUG weix: species_meta=$species_meta\n");
+#warn("DEBUG weix: species_meta=$species_meta\n");
 foreach my $cmd (
 	"$execdir/ort2matchlist2.pl $ort_file > $matchlist_file",
 	"$dagdir/run_DAG_chainer.pl -i $matchlist_file -Z 12 -D 20 -g 1 -A 5",

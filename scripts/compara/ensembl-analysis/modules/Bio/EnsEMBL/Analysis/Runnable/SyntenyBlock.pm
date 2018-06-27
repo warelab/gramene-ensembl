@@ -220,7 +220,7 @@ sub run{
   foreach my $file (glob("$workdir$name*")) {
       $self->files_to_delete($file);
   }
-  $self->delete_files;
+#  $self->delete_files;
   return 1;
 }
 
