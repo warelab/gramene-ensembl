@@ -64,7 +64,7 @@ while (my $dbline = <$dbfile_fh>){
     my $dbname = lc $f[0];
     $dbname =~ s/\s//g;
 
-    if( $dbname =~ /([a-z]+_[a-z]+)_(core|variation|funcgen)_/ ){
+    if( $dbname =~ /([a-z0-9]+_[a-z0-9]+)_(core|variation|funcgen)_/ ){
 	$dbadaptor_hash{$1}{group} = $2;
 	$dbadaptor_hash{$1}{dbname} = $dbname;
 
