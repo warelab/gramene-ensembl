@@ -4,14 +4,14 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 58;
 #  $SiteDefs::SITE_RELEASE_VERSION_EG = 40;
-  $SiteDefs::SITE_RELEASE_DATE    = 'July 2018';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2018';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Gramene-Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';

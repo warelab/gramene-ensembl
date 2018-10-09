@@ -24,11 +24,12 @@
 			<li><em><a href="http://ensembl.gramene.org/Populus_trichocarpa">Populus trichocarpa</a></em> (v3) <a href="https://www.ebi.ac.uk/ena/data/view/GCA_000002775.3">GCA_000002775.3</a></li>
 			<li><em><a href="http://ensembl.gramene.org/Setaria_italica">Setaria italica</a></em> (v2) <a href="https://www.ebi.ac.uk/ena/data/view/GCA_000263155.2">GCA_000263155.2</a></li></ul>
 		</li>
-		<li>The original versions of these genomes can still be found in the <a href="http://oct2017-plants.ensembl.org/index.html">Ensembl Plants Archive site</a>, and data from BED, GFF, GTF, WIG or VCF can be mapped to the latest assembly using the <a href="http://ensembl.gramene.org/Brachypodium_distachyon/Tools/AssemblyConverter">Assembly Converter</a> tool.</li></ul>
+		<li>The original (older) versions of these genomes can still be found in the <a href="http://oct2017-plants.ensembl.org/index.html">Ensembl Plants Archive site</a>, and data from BED, GFF, GTF, WIG or VCF can be mapped to the latest assembly using the <a href="http://ensembl.gramene.org/Brachypodium_distachyon/Tools/AssemblyConverter">Assembly Converter</a> tool.</li></ul>
 	</li>
-	<li>Updated data
-	<ul><li>The updated genomes will include updated Whole Genome Alignments and Assembly To Assembly Mapping data.</li>
+	<li>New & Updated data
+	<ul><li>The updated genomes include updated Whole Genome Alignments and Assembly To Assembly Mapping data.</li>
 		<li>Updated gene trees and homologies</li>
+		<li>New and updated synteny maps</li>
 		<li>Updated protein features</li>
 		<li>Updated <a href="http://ensembl.gramene.org/biomart/martview">BioMarts</li></a></ul>
         <li>Updated software:
