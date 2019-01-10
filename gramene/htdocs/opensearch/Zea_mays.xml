@@ -2,9 +2,9 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Zea m)</ShortName>
- <Description>Search Ensembl Genomes - Zea mays - Zea mays</Description>
+ <Description>Search Ensembl Genomes - Zea maysB73 - Zea maysB73</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Zea mays Zea mays</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Zea maysB73 Zea maysB73</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
       template="http://maize-pangenome-ensembl.gramene.org/Zea_mays/Psychic?q={searchTerms};site=ensembl"/>

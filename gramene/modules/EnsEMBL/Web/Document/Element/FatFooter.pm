@@ -49,8 +49,8 @@ sub content {
                 <h3>Get help</h3>
                 <p><a href="/info/website/">Using this website</a></p>
                 <p><a href="http://ensemblgenomes.org/info">Documentation</a></p>
-                <p><a href="/info/website/upload">Adding custom tracks</a></p>
-                <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
+#                <p><a href="/info/website/upload">Adding custom tracks</a></p>
+#                <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
               </div>
   );
 

@@ -8,10 +8,10 @@ sub update_conf {
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 53; 
+  $SiteDefs::SITE_RELEASE_VERSION = 2; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Mar 2017';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2019';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::GRAMENE_FTP_URL	  = 'ftp://ftp.gramene.org/pub';
@@ -94,7 +94,12 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysw22';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysph207';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_mays';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysb73';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_mayscml247';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_mayscml333';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_mayshp301';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysil14h';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysky21';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Setaria_italica';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Glycine_max';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Brachypodium_distachyon';
