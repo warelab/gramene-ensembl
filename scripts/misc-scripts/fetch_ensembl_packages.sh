@@ -31,6 +31,7 @@ fi
      ensembl-hive \
      ensembl-production \
      ensembl-io \
+     ensembl-metadata \
      VEP_plugins;
  do
      if [ ! -d "$repo" ]; then
