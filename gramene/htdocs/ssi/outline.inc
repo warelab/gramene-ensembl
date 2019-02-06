@@ -1,28 +1,32 @@
-<div class="plain-box"><h2>What's New in Release 59</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="https://trackhubregistry.org/"><img alt="The Track Hub Registry" src="/img/thr-02.png" style="float:right; height:40px; margin:1px 5px; width:40px" title="The Track Hub Registry" /></a></p>
+<div class="plain-box"><h2>What's New in Release 60</h2>
+<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="https://trackhubregistry.org/"><img alt="The Track Hub Registry" src="/img/thr-02.png" style="float:right; height:40px; margin-left:5px; margin-right:5px; width:40px" title="The Track Hub Registry" /></a></p>
 
-<p>You can search the <a href="https://trackhubregistry.org/">Track Hub Registry</a> to find more than <strong>3,500</strong> public RNA-Seq studies aligned to plants (<a href="http://ensemblgenomes.org/info/access/public-track-hubs">read more</a>)!</p></div>
-<ul><li>Removed genomes:
-	<ul><li>The genome assembly of Cajanus cajan (pigeonpea, <a href="http://www.ebi.ac.uk/ena/data/view/GCA_000340665.1">GCA_000340665.1</a>) was found to have been imported incorrectly, and has been removed from this release.</li></ul>
+<p>You can search the<!--nbsp--> <!--nbsp--><a href="https://trackhubregistry.org/">Track Hub Registry</a><!--nbsp--> <!--nbsp-->to find more than <strong>4,000</strong><!--nbsp--> <!--nbsp-->public RNA-Seq studies aligned to plant genomes (<a href="https://www.ebi.ac.uk/fg/rnaseq/api/index.html#PerformingRNA-seqAnalysis">read more</a>).</p></div>
+<ul><li>New genomes:
+	<ul><li>Arabidopsis halleri: assembly <a href="https://www.ebi.ac.uk/ena/data/view/GCA_900078215">GCA_900078215</a> , annotation <a href="https://datadryad.org/resource/doi:10.5061/dryad.gn4hh?show=full">doi:10.5061/dryad.gn4hh</a></li></ul>
 	</li>
-	<li>New genomes:
-	<ul><li><a href="http://ensembl.gramene.org/Triticum_dicoccoides"><em>Triticum dicoccoides</em></a> (emmer wheat, <a href="http://www.ebi.ac.uk/ena/data/view/GCA_002162155.1">GCA_002162155.1</a>)</li>
-		<li><a href="http://ensembl.gramene.org/Vigna_radiata"><em>Vigna radiata</em></a> (mungbean, <a href="http://www.ebi.ac.uk/ena/data/view/GCA_000741045.2">GCA_000741045.2</a>)</li></ul>
-	</li>
-	<li>New data:
-	<ul><li>New whole-genome alignments between nearly 80 pairs of plant genomes have been added, bringing the total number of pairwise whole-genome alignments in Gramene to nearly 250. Examples include the alignment of all six legume genomes to <em><a href="http://ensembl.gramene.org/Medicago_truncatula">Medicago truncatula</a> (</em><a href="http://www.ebi.ac.uk/ena/data/view/GCA_000219495.2">GCA_000219495.2</a>).</li></ul>
+	<li>Updated genomes:
+	<ul>
+		<li><a href="/Aegilops_tauschii/Info/Index">Aegilops tauschii</a>: updated assembly and annotation to version<!--nbsp--> <!--nbsp-->Aet v4.0 (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_002575655">GCA_002575655</a>)</li>
+		<li><em><a href="/Solanum_lycopersicum">Solanum lycopersicum</a></em>: updated assembly<!--nbsp--> <!--nbsp--> (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_000188115.3">GCA_000188115.3</a>) and annotation (ITAG3.0, except unplaced genes)</li>
+                <li><em><a href="/Glycine_max">Glycine max</a>:</em> updated assembly (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_000004515.4">GCA_000004515.4</a>) and annotation (Rel. 137, Version 4, Glycine_max_v2.1)</li>
+                <li><a href="/Vigna_radiata"><em>Vigna radiata</em></a><em>:</em> updated annotation (vigra.VC1973A.gnm6.ann1.M1Qs)</li>
+                <li><a href="/Physcomitrella_patens"><em>Physcomitrella patens</em></a>: updated annotation (<a href="https://genomevolution.org/coge/ExperimentView.pl?eid=11065">V3.3</a>)</li>
+	</ul>
 	</li>
 	<li>Updated data:
-	<ul><li>The latest (v1.1) gene build for <em><a href="http://ensembl.gramene.org/Triticum_aestivum">Triticum aestivum</a></em> (bread wheat, <a href="https://www.ebi.ac.uk/ena/data/view/GCA_900519105.1">GCA_900519105.1</a>).</li>
-		<li>Updated <a href="http://ensemblgenomes.org/info/data/repeat_features">repeat feature annotation</a> across all plants, including newly added repeat feature classification using <a href="http://pgsb.helmholtz-muenchen.de/plant/recat/index.jsp">REdat and REcat</a>, thanks to the <a href="https://www.ensembl.org/info/about/outreach/geek4aweek.html">Ensembl Geek for a Week</a> programme and <a href="https://www.facebook.com/jargentin">Joris Argentin</a>.</li>
-		<li>Updated <a href="http://ensemblgenomes.org/info/data/peptide_compara">gene trees</a> across all plants, including the new and updated genomes.</li>
-		<li>Updated <a href="http://ensemblgenomes.org/info/data/ncrna">ncRNA alignments and annotations</a> across all plants including <a href="http://www.mirbase.org/">MirBase</a> imports for twelve species.</li>
-		<li>Updated protein features for all (nearly 2 million) plant proteinsusing <a href="http://www.ebi.ac.uk/interpro/search/sequence-search">InterProScan</a> with version 67 of <a href="https://www.ebi.ac.uk/interpro/">InterPro</a>.</li>
-<li>Updated <a href="ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/split_genes/">split gene predictions</a> from <a href="http://ensemblgenomes.org/info/data/peptide_compara">peptide comparative genomics</a>.</li>		
-<li>Updated <a href="http://ensemblgenomes.org/info/access/biomart">BioMarts</a> for all gene and variation data.</li>
-		<li>Corrected attribution for many plant genomes.</li>
-		<li>Corrected chromosomal density plots for all plants.</li></ul>
-        <li>Updated software:
-    <ul><li>Updated genome browser, database schema, and API to <a href="http://www.ensembl.info/2018/10/03/ensembl-94-is-out/">Ensembl 94 software</a>.</li>
+	<ul><li><a href="/Triticum_aestivum/Info/Index"><em>Triticum aestivum</em></a>: Inter-Homeologous Variants (IHVs) were added</li>
+		<li><a href="/Lupinus_angustifolius"><em>Lupinus angustifolius</em></a>: genes from previous release were added</li>
+		<li><a href="/Arabidopsis_thaliana"><em>Arabidopsis thaliana:</em> </a>TAIR10 is now the unique source of ncRNA annotations</li>
+		<li><a href="/Nicotiana_attenuata"><em>Nicotiana attenuata</em></a>: mapped microarray probes were updated</li>
+		<li><a href="/Zea_mays"><em>Zea mays:</em></a> mapped microarray probes were updated</li></ul>
 	</li></ul>
+	<li>Updated compara gene trees:
+    	<ul>A total of 93,194 GeneTree families were constructed comprising 1,891,391 individual genes (2,115,547 input proteins).</ul>
+        </li>
+	<li>Updated software:
+    	<ul>Updated genome browser, database schema, and API to <a href="http://www.ensembl.info/2019/01/09/ensembl-95-is-out/">Ensembl 95 software</a>.</ul>
+        </li>
+</ul>
+
 </div>
