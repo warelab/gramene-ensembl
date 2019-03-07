@@ -9,11 +9,11 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 58;
-#  $SiteDefs::SITE_RELEASE_VERSION_EG = 40;
-  $SiteDefs::SITE_RELEASE_DATE    = 'July 2018';
+  $SiteDefs::SITE_RELEASE_VERSION = 60;
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 42;
+  $SiteDefs::SITE_RELEASE_DATE    = 'Feb 2019';
   $SiteDefs::SITE_NAME            = 'Gramene';
-  $SiteDefs::ENSEMBL_SITETYPE = 'Gramene-Ensembl Plants';
+  $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 80;
@@ -34,6 +34,17 @@ sub update_conf {
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
   $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+
+###############################################################################
+# this section copied over from ensembl-webcode/conf/SiteDef.pm
+## GDPR variables
+## Some variables are assigned null for external users to override
+###############################################################################
+$SiteDefs::GDPR_VERSION                 = 1;
+$SiteDefs::GDPR_COOKIE_NAME             = 'gdpr';
+#our $GDPR_POLICY_URL              = 'https://www.ebi.ac.uk/data-protection/ensembl/privacy-notice';
+#our $GDPR_TERMS_URL               = 'https://www.ebi.ac.uk/about/terms-of-use';
+
 
   $SiteDefs::ENSEMBL_TOOLS_PERL_BIN         = '/usr/local/bin/perl';
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
@@ -77,7 +88,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_PIDFILE   = "$SiteDefs::ENSEMBL_LOGDIR/httpd.pid";
   $SiteDefs::ENSEMBL_ERRORLOG  = "$SiteDefs::ENSEMBL_LOGDIR/error.log";
   $SiteDefs::ENSEMBL_CUSTOMLOG = "$SiteDefs::ENSEMBL_LOGDIR/access.log combined";
-#our $ENSEMBL_LOGDIR               = defer { "$ENSEMBL_SYS_DIR/logs/$ENSEMBL_SERVER_SIGNATURE" };              # Path for log files
+#our $ENSEMBL_LOGDIR               = defer { $SiteDefs::ENSEMBL_SERVERROOT."/logs" };              # Path for log files, used to be $ENSEMBL_SYS_DIR/logs/$ENSEMBL_SERVER_SIGNATURE
 #our $ENSEMBL_PIDFILE              = defer { "$ENSEMBL_LOGDIR/httpd.pid" };                                    # httpd process id
 #our $ENSEMBL_ERRORLOG             = defer { "$ENSEMBL_LOGDIR/error_log" };                                    # Error log file
 #our $ENSEMBL_CUSTOMLOG            = defer { "$ENSEMBL_LOGDIR/access_log ensembl_extended" };    
