@@ -24,7 +24,6 @@ use strict;
 
 use EnsEMBL::Web::Document::HTML::HomeSearch;
 use EnsEMBL::Web::Document::HTML::Compara;
-use EnsEMBL::Web::DBSQL::ProductionAdaptor;
 use EnsEMBL::Web::Component::GenomicAlignments;
 
 use LWP::UserAgent;
@@ -163,9 +162,7 @@ sub content {
   $html .= '</div>'; #box-left
   
   $html .= '<div class="box-right">';
-    if ($hub->species_defs->multidb->{'DATABASE_PRODUCTION'}{'NAME'} and my $whatsnew_text = $self->_whatsnew_text) {
-    $html .= '<div class="round-box info-box unbordered">' . $whatsnew_text . '</div>';
-  } elsif (my $ack_text = $self->_other_text('acknowledgement', $species)) {
+  if (my $ack_text = $self->_other_text('acknowledgement', $species)) {
     $html .= $ack_text;
   }
   $html .= '</div>'; # box-right
@@ -225,31 +222,6 @@ sub content {
   return $html;
 }
 
-sub _whatsnew_text {
-  my $self         = shift;
-  my $hub          = $self->hub;
-  my $species_defs = $hub->species_defs;
-  my $species      = $hub->species;
-  my $news_url     = $hub->url({'action' => 'WhatsNew'});
-
-  my $html = sprintf(qq(<h2><a href="%s" title="More release news"><img src="%s24/announcement.png" style="vertical-align:middle" alt="" /></a> What's New in %s release %s</h2>), $news_url, $self->img_url, $species_defs->SPECIES_COMMON_NAME, $species_defs->ENSEMBL_VERSION,);
-
-  if ($species_defs->multidb->{'DATABASE_PRODUCTION'}{'NAME'}) {
-    my $adaptor = EnsEMBL::Web::DBSQL::ProductionAdaptor->new($hub);
-    my $params  = {'release' => $species_defs->ENSEMBL_VERSION, 'species' => $species, 'limit' => 3};
-    my @changes = @{$adaptor->fetch_changelog($params)};
-
-    $html .= '<ul>';
-
-    foreach my $record (@changes) {
-      my $record_url = $news_url . '#change_' . $record->{'id'};
-      $html .= sprintf('<li><a href="%s" class="nodeco">%s</a></li>', $record_url, $record->{'title'});
-    }
-    $html .= '</ul>';
-  }
-
-  return $html;
-}
 
 sub _site_release {
   my $self = shift;
@@ -319,7 +291,7 @@ sub _assembly_text {
   }
   
   $html .= sprintf '<p><a href="%s" class="modal_link nodeco" rel="modal_user_data">%sDisplay your data in %s</a></p>',
-    $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 }), qq|<img src="${img_url}24/page-user.png" class="homepage-link" />|, $species_defs->SITE_NAME; #weix
+    $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 }), qq|<img src="${img_url}24/page-user.png" class="homepage-link" />|, $species_defs->ENSEMBL_SITETYPE;
 
 #EG no old assemblies
  ## PREVIOUS ASSEMBLIES
@@ -388,28 +360,30 @@ sub _genebuild_text {
 
   if ($species_defs->ENSEMBL_FTP_URL) {
     my $dataset = $species_defs->SPECIES_DATASET;
-    my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
-    my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+    my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+    my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
     $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
   }
   
-  my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
+  #my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
+  #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
+
+  my $im_url;
   if( $species =~ /Zea_mays/i ){  ###weix-start
         $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
-   #      $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Maize B73 V3 <=> V4 gene ID mapping </a></p>);
   }elsif( $species =~ /Sorghum_bicolor/i ){
-	$im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
+        $im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
   }elsif($species =~ /Oryza_sativa/i ){
-	$im_url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz";
+        $im_url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz";
   }else{
-	$im_url = undef;
+        $im_url = undef;
   }    ###weix-end
-  
+
   $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
-	my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
-	$html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
+        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
+        $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
   }  ##weix-end
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
@@ -417,7 +391,9 @@ sub _genebuild_text {
         $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Transposon annotation download</a></p>) if $func_url;
   }  ##weix-end
 
- if ($has_vega) {
+
+
+  if ($has_vega) {
     $html .= qq(
       <a href="http://vega.sanger.ac.uk/$species/" class="nodeco">
       <img src="/img/vega_small.gif" alt="Vega logo" style="float:left;margin-right:8px;width:83px;height:30px;vertical-align:center" title="Vega - Vertebrate Genome Annotation database" /></a>
@@ -560,7 +536,7 @@ sub _variation_text {
       $html .= qq(<p><a href="/$species/Info/Annotation#variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $display_name</a></p>);
     }
 
-    my $site = $species_defs->SITE_NAME;
+    my $site = $species_defs->ENSEMBL_SITETYPE;
     $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
 
     if ($species_defs->ENSEMBL_FTP_URL) {
@@ -596,7 +572,7 @@ sub _funcgen_text {
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
   my $ensembl_version = $species_defs->ENSEMBL_VERSION;
-  my $site            = $species_defs->SITE_NAME;  #weix
+  my $site            = $species_defs->ENSEMBL_SITETYPE;
   my $html;
 
   my $sample_data = $species_defs->SAMPLE_DATA;

@@ -76,7 +76,7 @@ then
 else
 	mkdir ensembl_dbs
 	cd ensembl_dbs	
-	for db in ensembl_archive_$e ontology_mart_$e ensembl_ontology_$e ensembl_website_$e ensembl_account ncbi_taxonomy
+	for db in ensembl_archive_$e ontology_mart_$e ensembl_ontology_$e ensembl_website_$e ensembl_accounts ncbi_taxonomy
 		do echo "download $db"
 		wget -r -nH --cut-dir=3 ${ENSEMBL_FTP}/release-${e}/mysql/$db
 		if [ "$db" == "ensembl_account" ]

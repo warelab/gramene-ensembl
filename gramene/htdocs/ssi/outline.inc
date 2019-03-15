@@ -1,21 +1,32 @@
-<div class="plain-box"><h2>What's New in Release 57</h2> 
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="https://trackhubregistry.org/"><img alt="The Track Hub Registry" src="/img/thr-02.png" style="float:right; height:40px; margin:1px 5px; width:40px" title="The Track Hub Registry" /></a></p>
+<div class="plain-box"><h2>What's New in Release 60</h2>
+<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="https://trackhubregistry.org/"><img alt="The Track Hub Registry" src="/img/thr-02.png" style="float:right; height:40px; margin-left:5px; margin-right:5px; width:40px" title="The Track Hub Registry" /></a></p>
 
-<p>You can search the <a href="https://trackhubregistry.org/">Track Hub Registry</a> to find more than 1,400 public RNA-Seq studies aligned to plants (<a href="http://ensemblgenomes.org/info/access/public-track-hubs">read more</a>)!</p></div>
-<ul><li>New features:
-	<ul><li><!--nbsp--> <!--nbsp-->Polyploid view for<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Info/Index">wheat</a><!--nbsp--> <!--nbsp-->has been enabled, allowing users to view alignments between all 3 wheat components<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Location/MultiPolyploid?db=core;g=TRIAE_CS42_6DL_TGACv1_526338_AA1679880;r=TGACv1_scaffold_526338_6DL:198278-201729;r1=TGACv1_scaffold_500260_6BL:98835-102286:-1;r2=TGACv1_scaffold_472311_6AL:52247-55698:1;s1=Triticum_aestivum--TGACv1_scaffold_500260_6BL;s2=Triticum_aestivum--TGACv1_scaffold_472311_6AL;t=TRIAE_CS42_6DL_TGACv1_526338_AA1679880.1">simultaneously</a>.</li>
-	<li><a href="http://sift.bii.a-star.edu.sg/">SIFT scores</a> are now displayed on the Genes and regulation view of a gene variant. Here is a <a href="http://ensembl.gramene.org/Sorghum_bicolor/Variation/Mappings?db=core;r=1:11205-12205;v=tmp_1_11918_C_T;vdb=variation;vf=6707824">sorghum SNP</a>.</li></ul>
+<p>You can search the<!--nbsp--> <!--nbsp--><a href="https://trackhubregistry.org/">Track Hub Registry</a><!--nbsp--> <!--nbsp-->to find more than <strong>4,000</strong><!--nbsp--> <!--nbsp-->public RNA-Seq studies aligned to plant genomes (<a href="https://www.ebi.ac.uk/fg/rnaseq/api/index.html#PerformingRNA-seqAnalysis">read more</a>).</p></div>
+<ul><li>New genomes:
+	<ul><li>Arabidopsis halleri: assembly <a href="https://www.ebi.ac.uk/ena/data/view/GCA_900078215">GCA_900078215</a> , annotation <a href="https://datadryad.org/resource/doi:10.5061/dryad.gn4hh?show=full">doi:10.5061/dryad.gn4hh</a></li></ul>
+	</li>
+	<li>Updated genomes:
+	<ul>
+		<li><a href="/Aegilops_tauschii/Info/Index">Aegilops tauschii</a>: updated assembly and annotation to version<!--nbsp--> <!--nbsp-->Aet v4.0 (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_002575655">GCA_002575655</a>)</li>
+		<li><em><a href="/Solanum_lycopersicum">Solanum lycopersicum</a></em>: updated assembly<!--nbsp--> <!--nbsp--> (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_000188115.3">GCA_000188115.3</a>) and annotation (ITAG3.0, except unplaced genes)</li>
+                <li><em><a href="/Glycine_max">Glycine max</a>:</em> updated assembly (<a href="https://www.ebi.ac.uk/ena/data/view/GCA_000004515.4">GCA_000004515.4</a>) and annotation (Rel. 137, Version 4, Glycine_max_v2.1)</li>
+                <li><a href="/Vigna_radiata"><em>Vigna radiata</em></a><em>:</em> updated annotation (vigra.VC1973A.gnm6.ann1.M1Qs)</li>
+                <li><a href="/Physcomitrella_patens"><em>Physcomitrella patens</em></a>: updated annotation (<a href="https://genomevolution.org/coge/ExperimentView.pl?eid=11065">V3.3</a>)</li>
+	</ul>
 	</li>
 	<li>Updated data:
-	<ul><li>Added gene name synonyms for<!--nbsp--> <!--nbsp--><em>O. sativa</em><!--nbsp--> <!--nbsp-->using<!--nbsp--> <!--nbsp-->from database sources such as<a href="https://link.springer.com/article/10.1007/s12284-008-9004-9"> CGSNL</a>, <a href="https://shigen.nig.ac.jp/rice/oryzabase/">Oryzabase</a> and <a href="http://rapdb.dna.affrc.go.jp/">Rap-DB</a>.</li>
-		<li>Updated protein features for all (nearly 2 million) plant proteins<!--nbsp--> <!--nbsp-->using<!--nbsp--> <!--nbsp--><a href="http://www.ebi.ac.uk/interpro/search/sequence-search">InterProScan</a><!--nbsp--> <!--nbsp-->with version 67 of<!--nbsp--> <!--nbsp--><a href="https://www.ebi.ac.uk/interpro/">InterPro</a>.</li>
-		<li>Updated <a href="http://ensembl.gramene.org/biomart/martview">BioMarts</a> for all gene and variation data.</li>
-		<li><!--nbsp--> <!--nbsp-->26 new and updated functional genomic databases (<a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Transcript/Oligos?db=core;g=AT1G01030;r=1:8001-18000;t=AT1G01030.2">example</a> for Arabidopsis).</li>
-		<li>Tandem repeats annotated by the TRF program are no longer used to soft- and hardmask the genome sequences. This affects sequences retrieved via the API and the files on the FTP site.</li></ul>
-	</li>
+	<ul><li><a href="/Triticum_aestivum/Info/Index"><em>Triticum aestivum</em></a>: Inter-Homeologous Variants (IHVs) were added</li>
+		<li><a href="/Lupinus_angustifolius"><em>Lupinus angustifolius</em></a>: genes from previous release were added</li>
+		<li><a href="/Arabidopsis_thaliana"><em>Arabidopsis thaliana:</em> </a>TAIR10 is now the unique source of ncRNA annotations</li>
+		<li><a href="/Nicotiana_attenuata"><em>Nicotiana attenuata</em></a>: mapped microarray probes were updated</li>
+		<li><a href="/Zea_mays"><em>Zea mays:</em></a> mapped microarray probes were updated</li></ul>
+	</li></ul>
+	<li>Updated compara gene trees:
+    	<ul>A total of 93,194 GeneTree families were constructed comprising 1,891,391 individual genes (2,115,547 input proteins).</ul>
+        </li>
 	<li>Updated software:
-    <ul><li>Updated genome browser, database schema, Mart and API to <a href="http://ensembl.org/info/website/news.html?id=92">Ensembl 92 software</a>.</li>
-
-
+    	<ul>Updated genome browser, database schema, and API to <a href="http://www.ensembl.info/2019/01/09/ensembl-95-is-out/">Ensembl 95 software</a>.</ul>
+        </li>
 </ul>
+
 </div>

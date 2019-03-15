@@ -6,14 +6,18 @@ use BioMart::Initializer;
 use BioMart::Query;
 use BioMart::QueryRunner;
 
-my $confFile = "PATH TO YOUR REGISTRY FILE UNDER biomart-perl/conf/. For Biomart Central Registry navigate to
-						http://www.biomart.org/biomart/martservice?type=registry";
+my $confFile = "../conf/martURLLocation.xml";
+my $species = shift || "bnapus";
+
+print STDERR "The other species is $species\n";
+
+
 #
 # NB: change action to 'clean' if you wish to start a fresh configuration  
 # and to 'cached' if you want to skip configuration step on subsequent runs from the same registry
 #
 
-my $action='cached';
+my $action='clean';
 my $initializer = BioMart::Initializer->new('registryFile'=>$confFile, 'action'=>$action);
 my $registry = $initializer->getRegistry;
 
@@ -22,10 +26,10 @@ my $query = BioMart::Query->new('registry'=>$registry,'virtualSchemaName'=>'defa
 		
 	$query->setDataset("osativa_eg_gene");
 	$query->addAttribute("ensembl_gene_id");
-	$query->addAttribute("bnapus_eg_homolog_ensembl_gene");
-	$query->addAttribute("bnapus_eg_homolog_orthology_confidence");
-	$query->addAttribute("bnapus_eg_homolog_perc_id");
-	$query->addAttribute("bnapus_eg_homolog_perc_id_r1");
+	$query->addAttribute("${species}_eg_homolog_ensembl_gene");
+	$query->addAttribute("${species}_eg_homolog_perc_id");
+	$query->addAttribute("${species}_eg_homolog_perc_id_r1");
+	$query->addAttribute("${species}_eg_homolog_orthology_confidence");
 
 $query->formatter("TSV");
 

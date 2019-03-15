@@ -1,3 +1,0 @@
-function selectActiveTab(xid){var tabs=document.getElementById("ontologyTabs").childNodes;for(i=0;i<tabs.length;i++){if(tabs[i].tagName=="div"){tabs[i].removeClass('selectedTab');}
-tabs[i].className="oTab";}
-var xxx='#'+xid;$(xxx).addClass('selectedTab');if(xid.match(/Image/)){Ensembl.updateURL({"tab":"i"});$('#tabTableContent').css('display','none');$('#tabImageContent').css('display','block');}else{$('#tabTableContent').css('display','block');$('#tabImageContent').css('display','none');Ensembl.updateURL({"tab":"t"});}}
