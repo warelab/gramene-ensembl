@@ -4,149 +4,201 @@ taxonTreeData = [
       "children" : [
          {
             "title" : "Beta vulgaris subsp. vulgaris",
-            "key" : "beta_vulgaris"
+            "key" : "Beta_vulgaris"
          },
          {
             "isFolder" : true,
             "children" : [
                {
+                  "title" : "Arabidopsis halleri subsp. gemmifera",
+                  "key" : "Arabidopsis_halleri"
+               },
+               {
                   "title" : "Arabidopsis lyrata subsp. lyrata",
-                  "key" : "arabidopsis_lyrata"
+                  "key" : "Arabidopsis_lyrata"
                },
                {
                   "title" : "Arabidopsis thaliana",
-                  "key" : "arabidopsis_thaliana"
+                  "key" : "Arabidopsis_thaliana"
                },
                {
                   "title" : "Brassica napus",
-                  "key" : "brassica_napus"
+                  "key" : "Brassica_napus"
                },
                {
                   "title" : "Brassica oleracea var. oleracea",
-                  "key" : "brassica_oleracea"
+                  "key" : "Brassica_oleracea"
                },
                {
-                  "title" : "Brassica rapa subsp. pekinensis",
-                  "key" : "brassica_rapa"
+                  "title" : "Brassica rapa",
+                  "key" : "Brassica_rapa"
                }
             ],
-            "title" : "Brassicaceae (5)",
+            "title" : "Brassicaceae (6)",
             "key" : "Brassicaceae"
+         },
+         {
+            "title" : "Corchorus capsularis",
+            "key" : "Corchorus_capsularis"
+         },
+         {
+            "title" : "Cucumis sativus",
+            "key" : "Cucumis_sativus"
+         },
+         {
+            "title" : "Daucus carota subsp. sativus",
+            "key" : "Daucus_carota"
          },
          {
             "isFolder" : true,
             "children" : [
                {
                   "title" : "Glycine max",
-                  "key" : "glycine_max"
+                  "key" : "Glycine_max"
+               },
+               {
+                  "title" : "Lupinus angustifolius",
+                  "key" : "Lupinus_angustifolius"
                },
                {
                   "title" : "Medicago truncatula",
-                  "key" : "medicago_truncatula"
+                  "key" : "Medicago_truncatula"
+               },
+               {
+                  "title" : "Phaseolus vulgaris",
+                  "key" : "Phaseolus_vulgaris"
                },
                {
                   "title" : "Trifolium pratense",
-                  "key" : "trifolium_pratense"
+                  "key" : "Trifolium_pratense"
+               },
+               {
+                  "title" : "Vigna angularis",
+                  "key" : "Vigna_angularis"
+               },
+               {
+                  "title" : "Vigna radiata var. radiata",
+                  "key" : "Vigna_radiata"
                }
             ],
-            "title" : "Fabaceae (3)",
+            "title" : "Fabaceae (7)",
             "key" : "Fabaceae"
          },
          {
+            "title" : "Gossypium raimondii",
+            "key" : "Gossypium_raimondii"
+         },
+         {
+            "title" : "Helianthus annuus",
+            "key" : "Helianthus_annuus"
+         },
+         {
+            "title" : "Manihot esculenta",
+            "key" : "Manihot_esculenta"
+         },
+         {
             "title" : "Populus trichocarpa",
-            "key" : "populus_trichocarpa"
+            "key" : "Populus_trichocarpa"
          },
          {
             "title" : "Prunus persica",
-            "key" : "prunus_persica"
+            "key" : "Prunus_persica"
          },
          {
             "isFolder" : true,
             "children" : [
                {
+                  "title" : "Nicotiana attenuata",
+                  "key" : "Nicotiana_attenuata"
+               },
+               {
                   "title" : "Solanum lycopersicum",
-                  "key" : "solanum_lycopersicum"
+                  "key" : "Solanum_lycopersicum"
                },
                {
                   "title" : "Solanum tuberosum",
-                  "key" : "solanum_tuberosum"
+                  "key" : "Solanum_tuberosum"
                }
             ],
-            "title" : "Solanaceae (2)",
+            "title" : "Solanaceae (3)",
             "key" : "Solanaceae"
          },
          {
             "title" : "Theobroma cacao",
-            "key" : "theobroma_cacao"
+            "key" : "Theobroma_cacao"
          },
          {
             "title" : "Vitis vinifera",
-            "key" : "vitis_vinifera"
+            "key" : "Vitis_vinifera"
          }
       ],
-      "title" : "Dicots (15)",
+      "title" : "Dicots (27)",
       "key" : "Dicots"
    },
    {
       "isFolder" : true,
       "children" : [
          {
+            "title" : "Dioscorea rotundata",
+            "key" : "Dioscorea_rotundata"
+         },
+         {
             "isFolder" : true,
             "children" : [
                {
                   "title" : "Brachypodium distachyon",
-                  "key" : "brachypodium_distachyon"
+                  "key" : "Brachypodium_distachyon"
                },
                {
                   "title" : "Leersia perrieri",
-                  "key" : "leersia_perrieri"
+                  "key" : "Leersia_perrieri"
                },
                {
                   "isFolder" : true,
                   "children" : [
                      {
                         "title" : "Oryza barthii",
-                        "key" : "oryza_barthii"
+                        "key" : "Oryza_barthii"
                      },
                      {
                         "title" : "Oryza brachyantha",
-                        "key" : "oryza_brachyantha"
+                        "key" : "Oryza_brachyantha"
                      },
                      {
                         "title" : "Oryza glaberrima",
-                        "key" : "oryza_glaberrima"
+                        "key" : "Oryza_glaberrima"
                      },
                      {
                         "title" : "Oryza glumipatula",
-                        "key" : "oryza_glumaepatula"
+                        "key" : "Oryza_glumipatula"
                      },
                      {
                         "title" : "Oryza longistaminata",
-                        "key" : "oryza_longistaminata"
+                        "key" : "Oryza_longistaminata"
                      },
                      {
                         "title" : "Oryza meridionalis",
-                        "key" : "oryza_meridionalis"
-                     },
-                     {
-                        "title" : "Oryza nivara",
-                        "key" : "oryza_nivara"
+                        "key" : "Oryza_meridionalis"
                      },
                      {
                         "title" : "Oryza punctata",
-                        "key" : "oryza_punctata"
+                        "key" : "Oryza_punctata"
                      },
                      {
                         "title" : "Oryza rufipogon",
-                        "key" : "oryza_rufipogon"
+                        "key" : "Oryza_rufipogon"
                      },
                      {
                         "title" : "Oryza sativa Indica Group",
-                        "key" : "oryza_indica"
+                        "key" : "Oryza_indica"
                      },
                      {
                         "title" : "Oryza sativa Japonica Group",
-                        "key" : "oryza_sativa"
+                        "key" : "Oryza_sativa"
+                     },
+                     {
+                        "title" : "Oryza nivara",
+                        "key" : "Oryza_nivara"
                      }
                   ],
                   "title" : "Rices (11)",
@@ -156,23 +208,27 @@ taxonTreeData = [
                   "isFolder" : true,
                   "children" : [
                      {
-                        "title" : "Aegilops tauschii",
-                        "key" : "aegilops_tauschii"
+                        "title" : "Aegilops tauschii subsp. strangulata",
+                        "key" : "Aegilops_tauschii"
                      },
                      {
                         "title" : "Hordeum vulgare subsp. vulgare",
-                        "key" : "hordeum_vulgare"
+                        "key" : "Hordeum_vulgare"
                      },
                      {
                         "title" : "Triticum aestivum",
-                        "key" : "triticum_aestivum"
+                        "key" : "Triticum_aestivum"
+                     },
+                     {
+                        "title" : "Triticum dicoccoides",
+                        "key" : "Triticum_dicoccoides"
                      },
                      {
                         "title" : "Triticum urartu",
-                        "key" : "triticum_urartu"
+                        "key" : "Triticum_urartu"
                      }
                   ],
-                  "title" : "Triticeae (4)",
+                  "title" : "Triticeae (5)",
                   "key" : "Triticeae"
                },
                {
@@ -180,30 +236,30 @@ taxonTreeData = [
                   "children" : [
                      {
                         "title" : "Setaria italica",
-                        "key" : "setaria_italica"
+                        "key" : "Setaria_italica"
                      },
                      {
                         "title" : "Sorghum bicolor",
-                        "key" : "sorghum_bicolor"
+                        "key" : "Sorghum_bicolor"
                      },
                      {
                         "title" : "Zea mays",
-                        "key" : "zea_mays"
+                        "key" : "Zea_mays"
                      }
                   ],
                   "title" : "Warm season grasses (C4) (3)",
                   "key" : "Warm season grasses (C4)"
                }
             ],
-            "title" : "Grasses (20)",
+            "title" : "Grasses (21)",
             "key" : "Grasses"
          },
          {
             "title" : "Musa acuminata subsp. malaccensis",
-            "key" : "musa_acuminata"
+            "key" : "Musa_acuminata"
          }
       ],
-      "title" : "Monocots (21)",
+      "title" : "Monocots (23)",
       "key" : "Monocots"
    },
    {
@@ -211,35 +267,35 @@ taxonTreeData = [
       "children" : [
          {
             "title" : "Cyanidioschyzon merolae strain 10D",
-            "key" : "cyanidioschyzon_merolae"
+            "key" : "Cyanidioschyzon_merolae"
          },
          {
             "title" : "Galdieria sulphuraria",
-            "key" : "galdieria_sulphuraria"
+            "key" : "Galdieria_sulphuraria"
          },
          {
             "title" : "Chondrus crispus",
-            "key" : "chondrus_crispus"
+            "key" : "Chondrus_crispus"
          },
          {
             "title" : "Ostreococcus lucimarinus CCE9901",
-            "key" : "ostreococcus_lucimarinus"
+            "key" : "Ostreococcus_lucimarinus"
          },
          {
             "title" : "Chlamydomonas reinhardtii",
-            "key" : "chlamydomonas_reinhardtii"
+            "key" : "Chlamydomonas_reinhardtii"
          },
          {
             "title" : "Physcomitrella patens",
-            "key" : "physcomitrella_patens"
+            "key" : "Physcomitrella_patens"
          },
          {
             "title" : "Amborella trichopoda",
-            "key" : "amborella_trichopoda"
+            "key" : "Amborella_trichopoda"
          },
          {
             "title" : "Selaginella moellendorffii",
-            "key" : "selaginella_moellendorffii"
+            "key" : "Selaginella_moellendorffii"
          }
       ],
       "title" : "Other (8)",
