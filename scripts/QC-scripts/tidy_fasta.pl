@@ -10,17 +10,6 @@ tidy_fasta.pl - uniform the fasta files so that they can be compared by diff
 =cut
 
 
-BEGIN {
-    $ENV{'GrameneDir'} ||= '/usr/local/gramene/'; 
-    $ENV{'GrameneEnsemblDir'} ||= '/usr/local/gramene_ensembl/'; 
-}
-
-# The first shall be last...
-use lib map { $ENV{'GrameneDir'}."/$_" } qw ( lib/perl );
-use lib map { $ENV{'GrameneEnsemblDir'}."/ensembl-live/$_" } qw ( bioperl-live modules ensembl/modules ensembl-external/modules ensembl-draw/modules ensembl-compara/modules);
-#use lib map { $ENV{'GrameneEnsemblDir'}."/$_" } qw ( bioperl-live modules ensembl/modules conf  ensembl-external/modules ensembl-draw/modules ensembl-compara/modules);
-
-
 
 use strict;
 use warnings;
@@ -30,16 +19,11 @@ use Getopt::Long;
 use Pod::Usage;
 use File::Glob;
 
-use Gramene::Config;
 use DBI qw/:sql_types/;
 
 use Bio::SeqIO;
 use Bio::PrimarySeq;
 
-use Bio::EnsEMBL::DBLoader;
-use Bio::EnsEMBL::DBSQL::DBAdaptor;
-use Bio::EnsEMBL::Slice;
-use Bio::EnsEMBL::Registry;
 use List::MoreUtils qw/each_array/;
 
 =head1 SYNOPSIS

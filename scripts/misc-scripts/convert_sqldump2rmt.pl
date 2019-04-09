@@ -19,25 +19,18 @@ convert_sqldump2rmt.pl  file
 
 The input file is generated from query 
 
-mysql-cabot -q ensembl_compara_plants_41_94 -e "SELECT genome_db.name as species, stable_id, perc_id FROM method_link_species_set INNER JOIN species_set USING(species_set_id) INNER JOIN homology USING(method_link_species_set_id) INNER JOIN homology_member USING(homology_id) INNER JOIN gene_member USING(gene_member_id) INNER JOIN genome_db ON gene_member.genome_db_id = genome_db.genome_db_id WHERE method_link_id = 201 AND species_set.genome_db_id = 1985" >Osj2allOrthologs.txt 
+SELECT g1.name as species, gm1.stable_id,  g2.name as otherspecies, gm2.stable_id as other_stable_id, hm1.perc_id, hm2.perc_id as other_perc_id, h.is_high_confidence FROM method_link_species_set INNER JOIN homology h USING(method_link_species_set_id) INNER JOIN homology_member hm1 on (h.homology_id=hm1.homology_id) INNER JOIN gene_member gm1 on (hm1.gene_member_id=gm1.gene_member_id) INNER JOIN genome_db g1 ON gm1.genome_db_id = g1.genome_db_id INNER JOIN homology_member hm2 on (h.homology_id=hm2.homology_id) INNER JOIN gene_member gm2 on (hm2.gene_member_id=gm2.gene_member_id) INNER JOIN genome_db g2 ON gm2.genome_db_id = g2.genome_db_id WHERE method_link_id = 201 AND g1.genome_db_id = 1985 AND g2.genome_db_id != 1985 order by otherspecies
 
 and looks like
 
-species stable_id       perc_id
-arabidopsis_thaliana    AT4G21870       20.8955
-oryza_sativa    Os10g0437700    17.1779
-arabidopsis_thaliana    AT4G21870       41.791
-oryza_sativa    Os07g0517100    32.3699
+species stable_id       otherspecies    other_stable_id       perc_id other_perc_id is_high_confidence
+oryza_sativa    BAC19852        aegilops_tauschii       AET0Gv20080100  27.6923 73.1707 0
+oryza_sativa    BAC19852        aegilops_tauschii       AET0Gv20080400  27.3846 87.2549 0
+oryza_sativa    BAC19852        aegilops_tauschii       AET0Gv20114300  15.3846 47.1698 0
 ...
 
 
-will be converted to 
-
-Os10g0437700	AT4G21870 17.1779 20.8955 1
-Os07g0517100	AT4G21870	32.3699	41.791	1
-...
-
-merge every two lines into one line
+will be splitted and
 and dumped to separate files, each representing a rice -> otherSpecies projection
 
 =cut
@@ -48,7 +41,8 @@ my $p = new Text::RecordParser::Tab;
 $p->comment( qr/^#/ ); 
 
 $p->filename($file);
-$p->bind_fields( qw[ species stable_id       perc_id ] );
+#$p->bind_header;
+$p->bind_fields( qw[ species stable_id  otherspecies  other_stable_id   perc_id other_perc_id is_high_confidence] );
   
 my $records = $p->fetchall_arrayref( { Columns => {} } );
   
@@ -57,35 +51,27 @@ my @records_array = @{$records};
 print "Total number of records is ", scalar @records_array, "\n";
 
 my %species_pair_hash;
-my @pair;
 
-while ( @pair = splice (@records_array, 0, 2) ){
+shift @records_array;
+foreach ( @records_array){
 
-map{ warn ($_->{'species'}, ', ', $_->{'stable_id'}) } @pair;
-    
 #print "spliced ", scalar @pair, "records\n";
-    warn "ERROR: less than two records in pair\n" if (scalar @pair < 2);
 
-    if (scalar @pair < 2){
-	warn "ERROR: less than two records in pair\n";
-	map{ warn ($_->{'species'}, ', ', $_->{'stable_id'}) } @pair;
-	next;
-    }
+    my $otherspecies = $_->{otherspecies};
+    my $species = $_->{species};
+    die ("ERROR: bad otherspecies $otherspecies, rice spcies is $species") if $otherspecies eq 'oryza_sativa';
+    
+    my $filename_base = camelize($otherspecies).'_osj';
 
-    my ($rice_record, $other_record)  = $pair[1]->{'species'} eq 'oryza_sativa' ?
-	($pair[1], $pair[0]) : ($pair[0], $pair[1]);
-
-    my $filename_base = camelize($other_record->{'species'}).'_osj';
-
-    push @{$species_pair_hash{ $filename_base }}, [$rice_record->{stable_id}, $other_record->{stable_id}, $rice_record->{perc_id}, $other_record->{perc_id}];
+    push @{$species_pair_hash{ $filename_base }}, join ("\t", ($_->{stable_id}, $_->{other_stable_id}, $_->{perc_id}, $_->{other_perc_id}, $_->{is_high_confidence}));
     
 }
 
 	
 for my $filename_base( keys %species_pair_hash){
 
-	open my $fh, '>', "${filename_base}.rmt" or die "cannot open file $filename_base.rmt to write";	 
-	map{ print $fh join ("\t", (@{$_}, "1\n")) } @{$species_pair_hash{$filename_base}};
+	open my $fh, '>', "${filename_base}.rtm" or die "cannot open file $filename_base.rmt to write";	 
+	map{ print $fh "$_\n" } @{$species_pair_hash{$filename_base}};
 	
 	close $fh;
 }
