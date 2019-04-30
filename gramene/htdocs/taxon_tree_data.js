@@ -3,6 +3,10 @@ taxonTreeData = [
       "isFolder" : true,
       "children" : [
          {
+            "title" : "Actinidia chinensis var. chinensis",
+            "key" : "Actinidia_chinensis"
+         },
+         {
             "title" : "Beta vulgaris subsp. vulgaris",
             "key" : "Beta_vulgaris"
          },
@@ -132,7 +136,7 @@ taxonTreeData = [
             "key" : "Vitis_vinifera"
          }
       ],
-      "title" : "Dicots (27)",
+      "title" : "Dicots (28)",
       "key" : "Dicots"
    },
    {
@@ -235,6 +239,21 @@ taxonTreeData = [
                   "isFolder" : true,
                   "children" : [
                      {
+                        "title" : "Panicum hallii",
+                        "key" : "Panicum_hallii_fil2"
+                     },
+                     {
+                        "isFolder" : true,
+                        "children" : [
+                           {
+                              "title" : "Panicum hallii var. hallii",
+                              "key" : "Panicum_hallii_hal2"
+                           }
+                        ],
+                        "title" : "Panicum hallii (2)",
+                        "key" : "Panicum hallii"
+                     },
+                     {
                         "title" : "Setaria italica",
                         "key" : "Setaria_italica"
                      },
@@ -247,11 +266,11 @@ taxonTreeData = [
                         "key" : "Zea_mays"
                      }
                   ],
-                  "title" : "Warm season grasses (C4) (3)",
+                  "title" : "Warm season grasses (C4) (5)",
                   "key" : "Warm season grasses (C4)"
                }
             ],
-            "title" : "Grasses (21)",
+            "title" : "Grasses (23)",
             "key" : "Grasses"
          },
          {
@@ -259,7 +278,7 @@ taxonTreeData = [
             "key" : "Musa_acuminata"
          }
       ],
-      "title" : "Monocots (23)",
+      "title" : "Monocots (25)",
       "key" : "Monocots"
    },
    {

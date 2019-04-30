@@ -21,6 +21,7 @@ sub content {
   my $species_defs = $self->species_defs;
   my $species_path = $species_defs->species_path;
   my $ack_text     = $species_defs->ACKNOWLEDGEMENT;
+  my $ack_url      = $species_defs->ACKNOWLEDGEMENT_URL || '/info/acknowledgement.html';
   my $db_provider  = $species_defs->DB_BUILDER;
   my $content;
 
@@ -30,7 +31,7 @@ if ($ack_text) {
     $content .= qq{
       <div>
         <ul>
-          <li style="list-style:none"><a href="/info/acknowledgement.html">$ack_text</a></li>
+          <li style="list-style:none"><a href="$ack_url">$ack_text</a></li>
         </ul>
       </div>
     };
