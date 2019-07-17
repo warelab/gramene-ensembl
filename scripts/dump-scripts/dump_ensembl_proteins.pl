@@ -60,7 +60,7 @@ supply the species name whose transcripts are to be dumped
 
 =item B<--logicname>
 
- the analysis logic_name of the gene set, for example: tair for arabidopsis_thaliana
+ the analysis logic_name of the gene set, for example: araport11 for arabidopsis_thaliana
 
 =item B<--longestn>
 
@@ -77,10 +77,6 @@ print documentation and exit
     
 =back
 
-=head1 ARGUMENTS
-
-Gene Stable ids - only dump transcripts of these genes
-None=All.
 
 =cut
 
@@ -134,7 +130,11 @@ foreach my $gene (@genes) {
   foreach my $trans (@{$translations}) {
   
 
-      my $stable_id = $trans->stable_id;
+      my $trpt_stable_id = $trans->stable_id;
+      my $trpt_obj = $trans->transcript;
+      my $trpt_seq_region = join '', ($trpt_obj->seq_region_name, ':', $trpt_obj->start, '-', $trpt_obj->end, ':', $trpt_obj->strand); 
+      my $stable_id = join '|', ($trpt_stable_id, $sid, $trpt_seq_region);
+	
       my $seq = $trans->seq; 
       my $seq_obj;
 
