@@ -5,8 +5,8 @@ use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::DBSQL::OntologyDBAdaptor;
 
-my $ENSVER   = '89';
-my $GRMVER   = '54';
+my $ENSVER   = '96';
+my $GRMVER   = '61';
 my $def_user = 'gramene_web';
 my $def_pass = 'gram3n3';
 my $def_host = 'colden';
@@ -22,7 +22,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "aegilops_tauschii_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "aegilops_tauschii_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -82,7 +82,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "brachypodium_distachyon_core_${GRMVER}_${ENSVER}_12",
+    '-dbname'  => "brachypodium_distachyon_core_${GRMVER}_${ENSVER}_4",
 );
 
 Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
@@ -92,7 +92,7 @@ Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "brachypodium_distachyon_variation_${GRMVER}_${ENSVER}_12",
+    '-dbname'  => "brachypodium_distachyon_variation_${GRMVER}_${ENSVER}_4",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -112,7 +112,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "chlamydomonas_reinhardtii_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "chlamydomonas_reinhardtii_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -132,7 +132,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "glycine_max_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "glycine_max_core_${GRMVER}_${ENSVER}_4",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -142,7 +142,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "hordeum_vulgare_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "hordeum_vulgare_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
@@ -152,7 +152,7 @@ Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "hordeum_vulgare_variation_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "hordeum_vulgare_variation_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -162,7 +162,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "leersia_perrieri_core_${GRMVER}_${ENSVER}_02",
+    '-dbname'  => "leersia_perrieri_core_${GRMVER}_${ENSVER}_14",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -172,7 +172,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "medicago_truncatula_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "medicago_truncatula_core_${GRMVER}_${ENSVER}_2",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -192,7 +192,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_barthii_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "oryza_barthii_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -236,16 +236,6 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_granulata',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_granulata_core_${GRMVER}_${ENSVER}_02",
-);
-
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-species' => 'Oryza_nivara',
     '-group'   => 'core',
     '-port'    => $def_port,
@@ -262,7 +252,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_longistaminata_core_${GRMVER}_${ENSVER}_01",
+    '-dbname'  => "oryza_longistaminata_core_${GRMVER}_${ENSVER}_2",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -272,37 +262,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "oryza_meridionalis_core_${GRMVER}_${ENSVER}_1",
-);
-
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_minutabb',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_minutabb_core_${GRMVER}_${ENSVER}_02",
-);
-
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_minutacc',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_minutacc_core_${GRMVER}_${ENSVER}_02",
-);
-
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_officinalis',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_officinalis_core_${GRMVER}_${ENSVER}_02",
+    '-dbname'  => "oryza_meridionalis_core_${GRMVER}_${ENSVER}_13",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -315,25 +275,6 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-dbname'  => "oryza_punctata_core_${GRMVER}_${ENSVER}_12",
 );
 
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_rufipogon_fpc',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_rufipogon_core_${GRMVER}_${ENSVER}_fpc",
-);
-
-Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-    '-species' => 'Oryza_rufipogon3s',
-    '-group'   => 'core',
-    '-port'    => $def_port,
-    '-host'    => $def_host,
-    '-user'    => $def_user,
-    '-pass'    => $def_pass,
-    '-dbname'  => "oryza_rufipogon3s_core_${GRMVER}_${ENSVER}_02",
-);
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-species' => 'Oryza_sativa_indica',
@@ -402,7 +343,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "physcomitrella_patens_core_${GRMVER}_${ENSVER}_11",
+    '-dbname'  => "physcomitrella_patens_core_${GRMVER}_${ENSVER}_2",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -412,7 +353,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "populus_trichocarpa_core_${GRMVER}_${ENSVER}_20",
+    '-dbname'  => "populus_trichocarpa_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -422,7 +363,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "populus_trichocarpa_funcgen_${GRMVER}_${ENSVER}_20",
+    '-dbname'  => "populus_trichocarpa_funcgen_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -432,7 +373,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "prunus_persica_core${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "prunus_persica_core${GRMVER}_${ENSVER}_2",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -452,7 +393,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "setaria_italica_core_${GRMVER}_${ENSVER}_21",
+    '-dbname'  => "setaria_italica_core_${GRMVER}_${ENSVER}_2",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -462,7 +403,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "solanum_lycopersicum_core_${GRMVER}_${ENSVER}_240",
+    '-dbname'  => "solanum_lycopersicum_core_${GRMVER}_${ENSVER}_3",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -472,7 +413,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "sorghum_bicolor_core_${GRMVER}_${ENSVER}_14",
+    '-dbname'  => "sorghum_bicolor_core_${GRMVER}_${ENSVER}_30",
 );
 
 Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
@@ -482,7 +423,7 @@ Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "sorghum_bicolor_variation_${GRMVER}_${ENSVER}_14",
+    '-dbname'  => "sorghum_bicolor_variation_${GRMVER}_${ENSVER}_30",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -502,7 +443,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "triticum_aestivum_core_${GRMVER}_${ENSVER}_1",
+    '-dbname'  => "triticum_aestivum_core_${GRMVER}_${ENSVER}_4",
 );
 
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
@@ -552,7 +493,7 @@ Bio::EnsEMBL::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "zea_mays_core_${GRMVER}_${ENSVER}_6",
+    '-dbname'  => "zea_mays_core_${GRMVER}_${ENSVER}_7",
 );
 
 Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
@@ -562,7 +503,7 @@ Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "zea_mays_variation_${GRMVER}_${ENSVER}_6",
+    '-dbname'  => "zea_mays_variation_${GRMVER}_${ENSVER}_7",
 );
 
 Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
@@ -572,7 +513,7 @@ Bio::EnsEMBL::Variation::DBSQL::DBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "zea_mays_funcgen_${GRMVER}_${ENSVER}_6",
+    '-dbname'  => "zea_mays_funcgen_${GRMVER}_${ENSVER}_7",
 );
 
 #----------------------------------------------------------------------
@@ -605,7 +546,7 @@ Bio::EnsEMBL::DBSQL::OntologyDBAdaptor->new(
     '-host'    => $def_host,
     '-user'    => $def_user,
     '-pass'    => $def_pass,
-    '-dbname'  => "ensemblgenomes_ontology_${GRMVER}_${ENSVER}",
+    '-dbname'  => "ensembl_ontology_${ENSVER}",
 );
 
 
