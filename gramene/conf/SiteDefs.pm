@@ -5,13 +5,13 @@ use strict;
 sub update_conf {
 
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+#  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 60;
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 42;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Feb 2019';
+  $SiteDefs::SITE_RELEASE_VERSION = 61;
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
+  $SiteDefs::SITE_RELEASE_DATE    = 'May 2019';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
@@ -139,6 +139,20 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
     # 'Arabidopsis_thaliana'  => [('arabidopsis_thaliana')],
     # );
 #  push(@{$SiteDefs::__species_aliases{'Populus_trichocarpa'}},'poplar');
+
+$SiteDefs::ENSEMBL_TOOLS_LIST = [
+    'Blast'             => 'BLAST/BLAT',
+    'VEP'               => 'Variant Effect Predictor',
+    #'FileChameleon'     => 'File Chameleon',
+    'AssemblyConverter' => 'Assembly Converter',
+    #'IDMapper'          => 'ID History Converter',
+    #'AlleleFrequency'   => 'Allele Frequency Calculator',
+    #'VcftoPed'          => 'VCF to PED Converter',
+    #'DataSlicer'        => 'Data Slicer',
+    #'VariationPattern'  => 'Variation Pattern Finder',
+    #'LD'                => 'Linkage Disequilibrium Calculator',
+  ];
+
 
 }
 
