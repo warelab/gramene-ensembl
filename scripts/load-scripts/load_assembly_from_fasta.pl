@@ -210,6 +210,8 @@ while( my $seq = $SEQ_IO->next_seq ){
     #next if ($seq_id =~ /chr(omosome)?_?0*/i || $seq_id =~ /^Bd\d+\s*$/i);
   }
   #$seq_id =~ s/chr(omosome)?_?0*//i; # Strip 'chromsome' prefix from ID
+
+  $seq_id = 'U' if( !$seq_id || $seq_id =~ /^0*$/); #in the case of Chr00, change name to U, meaning unknown
   $seq->id( $seq_id );
 
   my $seq_length = $seq->length;
@@ -222,7 +224,7 @@ while( my $seq = $SEQ_IO->next_seq ){
       my $end = $start + $CHUNK_SIZE - 1;
       if( $end > $seq_length ){ $end = $seq_length }
       my $chunk_id = "${seq_id}:${start}..${end}";
-      warn( "[INFO]   Processing chunk $chunk_id\n" );
+      #warn( "[INFO]   Processing chunk $chunk_id\n" );
       my $chunk_seq = Bio::PrimarySeq->new
           (
            -id => $chunk_id,

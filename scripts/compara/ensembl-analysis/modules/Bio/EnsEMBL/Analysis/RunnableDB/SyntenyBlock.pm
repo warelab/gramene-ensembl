@@ -473,7 +473,7 @@ sub create_synteny_region {
 
     my $mlss = $mlssa->fetch_by_method_link_type_GenomeDBs($method_name,
         [@genome_dbs], 1);
-
+#warn ("DEBUG weix got mlss_id=", $mlss->dbID, "\n");
     unless ($mlss) {
 		my $method=$ENS_DBA->get_MethodAdaptor()->fetch_by_type($method_name);
 		my $species_set=$ENS_DBA->get_SpeciesSetAdaptor()->fetch_by_GenomeDBs([@genome_dbs]); 

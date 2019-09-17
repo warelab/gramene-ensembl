@@ -18,8 +18,14 @@ my ( $help, $man_page);
 my ($dbhost, $dbuser, $dbpass, $dbport) = qw(cabot gramene_web gram3n3 3306);
 my $dbname;
 
-my $input_gene_cnt_sql = "select count(*) from gene_member where source_name='ENSEMBLGENE'";
-my $tree_memeber_fam_cnt_sql = "select  count(distinct(seq_member_id)), count(distinct(root_id)) from gene_tree_node grn  join gene_tree_root gtr using (root_id) where tree_type='tree' and clusterset_id='default'";
+my $input_gene_cnt_sql = "select count(*) from gene_member g join genome_db n using (genome_db_id)  where source_name='ENSEMBLGENE' and n.name not in ('ciona_savignyi', 'cyanidioschyzon_merolae', 'drosophila_melanogaster', 'homo_sapiens', 'saccharomyces_cerevisiae')";
+
+#"select count(*) from gene_member where source_name='ENSEMBLGENE'";
+
+
+my $tree_memeber_fam_cnt_sql = "select  count(distinct(seq_member_id)), count(distinct(root_id)), count(distinct(g.genome_db_id)) from gene_tree_node grn  join gene_tree_root gtr using (root_id) join seq_member s using (seq_member_id) join genome_db g using (genome_db_id) where tree_type='tree' and clusterset_id='default' and g.name not in ('ciona_savignyi', 'cyanidioschyzon_merolae', 'drosophila_melanogaster', 'homo_sapiens', 'saccharomyces_cerevisiae')";
+
+#"select  count(distinct(seq_member_id)), count(distinct(root_id)) from gene_tree_node grn  join gene_tree_root gtr using (root_id) where tree_type='tree' and clusterset_id='default'";
 
 GetOptions(
     'help' => \$help,
@@ -52,10 +58,12 @@ my $dbh = $db->dbc->db_handle;
 my ($input_gene_cnt) = $dbh->selectrow_array ($input_gene_cnt_sql);
 
 #$dbh->do( $tree_memeber_fam_cnt_sql );
-my ($gene_tree_member_cnt, $family_cnt) =$dbh->selectrow_array($tree_memeber_fam_cnt_sql);
+my ($gene_tree_member_cnt, $family_cnt, $genome_cnt) =$dbh->selectrow_array($tree_memeber_fam_cnt_sql);
 $dbh->disconnect;
 
-printf "A total of %d GeneTree families were constructed comprising %d individual genes (%d input proteins).\n", $family_cnt, $gene_tree_member_cnt, $input_gene_cnt;
+#57,562 gene are from outgroup species: 'ciona_savignyi', 'cyanidioschyzon_merolae', 'drosophila_melanogaster', 'homo_sapiens', 'saccharomyces_cerevisiae'
+
+printf "A total of %d GeneTree families were constructed comprising %d individual genes from %d plant genomes with %d input proteins.\n", $family_cnt, $gene_tree_member_cnt, $genome_cnt, $input_gene_cnt;
 
 
 

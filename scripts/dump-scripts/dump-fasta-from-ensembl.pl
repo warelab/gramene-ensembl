@@ -157,7 +157,16 @@ if( $list_file ){
     
 }else{
 
-    foreach my $slice( @{$sla->fetch_all($coord_system)} ){
+    my $slices;
+
+    if( @ARGV ){
+
+	$slices= [map{ $sla->fetch_by_region($coord_system, $_) } @ARGV];
+     }else{
+	$slices= $sla->fetch_all($coord_system);
+     }
+
+    foreach my $slice( @{$slices} ){
 
 	my $seqstr;
 	if($repeat_mask){ 

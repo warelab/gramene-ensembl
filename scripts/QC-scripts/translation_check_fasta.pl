@@ -276,7 +276,7 @@ while(my $infile=shift) {
 	    eval { $pep=$trans->translate; };
 	    $@ and ++$count{'translate failed'} 
 	       and print $trans->stable_id,"=$id translate failed: $@\n" 
-	       and next FASTA_SEQ;
+	       and die; #and next FASTA_SEQ;   #weix
 	    my $trpt_id=$trans->stable_id;
 
 	    $gtt->[2]=$pep;
@@ -355,7 +355,7 @@ while(my $infile=shift) {
 	    print "transcript ",$trans->stable_id,", on: ",join("+",sort keys %seq_regions),", $strand  $mismatchcount mismatches, the first at $mismatchposn ($mm_exon:$remaining) :\nEnsEMBL (tx start $lationstart)\n".show_mismatch($ens_seq,$mismatchposn,$lastmismatch)."\n$structure\n";
 	    if($mismatchposn<=$#ens_seq) {
 		print "first mismatch codon ",substr($trans->seq->seq,3*$mismatchposn,3),"\n"; 
-		do_3tx($trans->seq->seq,$lationstart,$fa_seq,$mismatchcount);
+		#do_3tx($trans->seq->seq,$lationstart,$fa_seq,$mismatchcount);
 	        if($mismatchposn==length($fa_seq)) {
 		    #Simple: Ensembl seq is too long
 		    #want to output --adjust id=-n for  adjust_translation_end.pl

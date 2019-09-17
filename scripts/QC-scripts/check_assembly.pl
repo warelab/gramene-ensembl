@@ -196,7 +196,7 @@ for my $tigr_fasta (@ARGV) {
     #compara the sequences at the assembly path for component coord system $ccs
     print "$acs:$chr | inspect projection from $acs to $ccs\n";
     for my $segment ( @{$chr_slice->project($ccs)} ) {
-      print("In projection for: ", $segment->from_start, ", ",$segment->from_end, "\n");
+      #print("In projection for: ", $segment->from_start, ", ",$segment->from_end, "\n");
 
       my $clone_slice=$segment->to_Slice();
       my $tigr_segseq=$tigrseq->subseq($segment->from_start,$segment->from_end);
