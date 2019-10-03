@@ -82,7 +82,7 @@ for my $species (keys %dbadaptor_hash){
 
     $dbconnection_string = qq{
 Bio::EnsEMBL::DBSQL::DBAdaptor->new(
-   -species => $tax_species,
+   -species => $tax_species ? $tax_species : $species,
    -group   => $dbadaptor_hash{$species}{group},
    -port    => \$def_port,
    -host    => \$def_host,

@@ -78,7 +78,7 @@ use IO::File;
 use vars qw( $BASEDIR $INTERNAL );
 BEGIN{
   # Set the perl libraries 
-    $BASEDIR = $ENV{COMPARA_BASEDIR}; #dirname( dirname( dirname($Bin) ) );
+    $BASEDIR = $ENV{COMPARA_BASEDIR} || $ENV{ENS_ROOT}; #dirname( dirname( dirname($Bin) ) );
   -d $BASEDIR
       || die( "\n[*DIE] Need $BASEDIR with ensembl modules\n" );
     unshift @INC, $BASEDIR.'/ensembl/modules';
