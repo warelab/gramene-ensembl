@@ -244,7 +244,7 @@ while( my $line = $GFF_HANDLE->getline ){
   next if ( $line =~ /^\s+/ );
   chomp $line;
 
-  print "$line\n";  #####
+  #print "$line\n";  #####
   #warn(Dumper($TRPT2GENE));
 
   # Split gff line,\
@@ -288,7 +288,7 @@ while( my $line = $GFF_HANDLE->getline ){
     $gene_description = $attribs{DESCRIPTION} || $gene_name;
     $attribs{DESCRIPTION} ||= $gene_description;
     
-    print "Gene $gene_id $gene_name $gene_description\n";#####
+    #print "Gene $gene_id $gene_name $gene_description\n";#####
     unless( $GENES->{$gene_id} ){
       $GENES->{$gene_id}->{GENE_NAME} = $gene_name;
       $GENES->{$gene_id}->{DESCRIPTION} = $gene_description;
@@ -310,7 +310,7 @@ while( my $line = $GFF_HANDLE->getline ){
 
     $attribs{DESCRIPTION} ||= $transcript_name;
 
-    print "TRANSCRIPT_ID = $transcript_id, transcript_name = $transcript_name\n";
+    #print "TRANSCRIPT_ID = $transcript_id, transcript_name = $transcript_name\n";
     $GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{TRPT_NAME} 
       = $transcript_name;
     $GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{SEQ_NAME} 
@@ -343,7 +343,7 @@ while( my $line = $GFF_HANDLE->getline ){
     $gene_description = $attribs{DESCRIPTION} || $gene_name;
     $attribs{DESCRIPTION} ||= $gene_description;
 
-    print "Gene $gene_id $gene_name $gene_description\n";#####
+    #print "Gene $gene_id $gene_name $gene_description\n";#####
     unless( $GENES->{$gene_id} ){
       $GENES->{$gene_id}->{GENE_NAME} = $gene_name;
       $GENES->{$gene_id}->{DESCRIPTION} = $gene_description;
@@ -391,7 +391,7 @@ while( my $line = $GFF_HANDLE->getline ){
       
       for my $atranscript_id (@transcript_ids){
 	  $gene_id = $TRPT2GENE{$atranscript_id};
-	  print"UTR $atranscript_id, $gene_id\n";#####
+	  #print"UTR $atranscript_id, $gene_id\n";#####
 	  unless ( $gene_id ){
 	      die("cannot find gene for transcript $atranscript_id at ".
 		  $GFF_HANDLE->input_line_number );
@@ -411,7 +411,7 @@ while( my $line = $GFF_HANDLE->getline ){
       my @transcript_ids = split ',', $attribs{'PARENT'};
       for my $atranscript_id (@transcript_ids){
 	  $gene_id = $TRPT2GENE{$atranscript_id};
-	  print"EXON $atranscript_id, $gene_id\n";#####
+	  #print"EXON $atranscript_id, $gene_id\n";#####
 	  unless ( $gene_id ){
 	      die("cannot find gene for transcript $atranscript_id at ".
 		  $GFF_HANDLE->input_line_number );
@@ -432,7 +432,7 @@ while( my $line = $GFF_HANDLE->getline ){
 
       for my $atranscript_id (@transcript_ids){
 	  $gene_id = $TRPT2GENE{$atranscript_id};
-	  print"CDS $atranscript_id, $gene_id\n";#####
+	  #print"CDS $atranscript_id, $gene_id\n";#####
 	  unless ( $gene_id ){
 	      die("cannot find gene for transcript $atranscript_id at ".
 		  $GFF_HANDLE->input_line_number );
@@ -546,7 +546,7 @@ foreach my $gene_id( keys %$GENES ){
   $eGene->biotype( $BIOTYPE ) if $BIOTYPE;
 
   # Add XREFs to gene
-  print Dumper ($agenedata->{ATTRIBS});
+  #print Dumper ($agenedata->{ATTRIBS});
   
   foreach my $trpt_id (keys %{$agenedata->{TRANSCRIPTS}} ){
     my $atrptdata = $agenedata->{TRANSCRIPTS}->{$trpt_id};
@@ -600,7 +600,7 @@ foreach my $gene_id( keys %$GENES ){
     my $seq_region_name = $atrptdata->{SEQ_NAME};
      #                         print "seq_region_name=$seq_region_name\n";
     $seq_region_name =~ s/^chr//i;
-                              print "seq_region_name=$seq_region_name\n";
+     #                         print "seq_region_name=$seq_region_name\n";
     my $slice = $sa->fetch_by_region( undef, $seq_region_name );
 	#warn ("DEBUG sliceid = ", $slice->seq_region_name, "\n");
 
@@ -783,7 +783,7 @@ foreach my $gene_id( keys %$GENES ){
 
         my $translation_name = $trpt_name;
         $translation_name =~ s/_T/_P/i;
-        print "translation: $trans_start_exon, $trans_end_exon, $translation_offset_left, $translation_offset_right,   $translation_name\n";
+        #print "translation: $trans_start_exon, $trans_end_exon, $translation_offset_left, $translation_offset_right,   $translation_name\n";
         my $eTranslation = new  Bio::EnsEMBL::Translation
         (
             -START_EXON  => $trans_start_exon,

@@ -3,7 +3,7 @@
 
 BEGIN {
     $ENV{'GrameneDir'} ||= '/usr/local/gramene/';
-    $ENV{'HOME'} = '/usr/local/';
+    $ENV{'HOME'} ||= '/usr/local/';
 }
 
 
@@ -11,8 +11,9 @@ use lib map { $ENV{HOME} . "/$_" }
             qw ( 
 		 ensembl-live/ensembl/modules
 		 ensembl-live/ensembl-compara/modules
-		 bioperl-live);
-use lib "/home/weix/gramene/modules";
+		 bioperl-live
+		 gramene-ensembl/gramene/modules
+		);
 
 
 #GFF3ExporterWeix.pm in gramene-svn-2/ensembl-plugins/maize/modules
