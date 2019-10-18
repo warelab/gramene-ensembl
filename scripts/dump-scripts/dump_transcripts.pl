@@ -109,7 +109,7 @@ None=All.
 =cut
 
 my ($species, $registry, $coding, $longest);
-my (%exclude_gene,%exclude_analysispgm,%analysispgm,%exclude_clone,$bylogicname);
+my (%exclude_gene,%exclude_analysispgm,%analysispgm,%exclude_clone,$bylogicname,$outfile);
 my $margin=undef;
 {  #Argument Processing
   my $help=0;
@@ -120,7 +120,7 @@ my $margin=undef;
   my @exclude_clone=();
   GetOptions( "help|?"=>\$help,"man"=>\$man
 	      ,"exclude=s"=>\@exclude_gene
-	      ,"bylogicname"=>\$bylogicname
+	      ,"bylogicname=s"=>\$bylogicname
 	      ,"exclude-analysispgm=s"=>\@exclude_analysispgm
 	      ,"analysispgm=s"=>\@analysispgm
 	      ,"exclude-clone=s"=>\@exclude_clone
@@ -129,6 +129,7 @@ my $margin=undef;
 	      ,"margin=i"=>\$margin
 	      ,"coding"=>\$coding
 	      ,"longest"=>\$longest
+	      ,"outfile=s"=> \$outfile
 	    )
     or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
@@ -150,19 +151,19 @@ my $gene_adaptor=$ENS_DBA->get_GeneAdaptor;
 my $slice_adaptor = $ENS_DBA->get_SliceAdaptor; 
 #my $assembly_type=$ENS_DBA->get_MetaContainer()->get_default_assembly();
 
+map{ print "argv stable ID = $_\n ";} @ARGV; #exit;
 my @genes=@ARGV;
-@genes or  @genes=@{$gene_adaptor->list_dbIDs()};
+@genes or  @genes=map{ $_->dbID }@{$gene_adaptor->fetch_all_by_logic_name($bylogicname)}  or @genes=@{$gene_adaptor->list_dbIDs()};
 
 my %count;
 
 my ($seqio,%seqio,$seqio5,$seqio3);
-
-unless($bylogicname) {
+my $type = $coding ? 'cds' : $longest ? 'longestcdna' : 'cdna';
+#unless($bylogicname) {
   $seqio = new Bio::SeqIO(-format => 'fasta',
-			  -file => ">${species}.fasta",
-			  #-fh     => \*STDOUT
+			  -file => $outfile ? ">$outfile" : ">${species}.$type.fasta",
 			 );
-}
+#}
 
 if($margin) {
   $seqio5 = Bio::SeqIO->new(-file =>">5prime.fasta", '-format'=>'fasta');
@@ -247,6 +248,7 @@ foreach my $geneid (@genes) {
       my $cdna_coding_end   = $trans->cdna_coding_end;
       $comp_id .= 
 	"|coding region $cdna_coding_start-$cdna_coding_end";
+      print "DEBUG coding id $comp_id\n";
       $seq_obj = Bio::Seq->new(
 				      -display_id => $comp_id,
 				      -seq => substr($cdna_seq, 

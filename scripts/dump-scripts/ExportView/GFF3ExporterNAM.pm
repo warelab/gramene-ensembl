@@ -1,4 +1,4 @@
-package ExportView::GFF3ExporterByLogicName;
+package ExportView::GFF3ExporterNAM;
 
 =pod
 
@@ -112,7 +112,7 @@ sub initialize {
 		'duplicate_sequence_id'		=> {},
 		'debug'						=> $init{'debug'} || 0,
 		'source'			=> $init{'source'} || '',
-		'export_transcripts'		=> defined $init{'export_transcripts'} ? $init{'export_transcripts'} : 1,
+		'export_transcripts'		=>  1,
 		'export_introns'			=> defined $init{'export_introns'} ? $init{'export_introns'} : 0,
 		'export_exons'				=> defined $init{'export_exons'} ? $init{'export_exons'} : 1,
 		'export_cdses'				=> defined $init{'export_cdses'} ? $init{'export_cdses'} : 1,
@@ -164,6 +164,11 @@ sub reset_id_counter{
 	$self->{'id_counter'} = 0;
 }
 
+sub source{
+        my $self = shift;
+        return $self->{'source'};
+}
+
 =pod
 
 =item export_genes_from_slices(FILEHANDLE, \@slices, $logicname);
@@ -199,7 +204,8 @@ sub export_genes_from_slices {
         my $num_genes = scalar(@{$slice->get_all_Genes($logicname)});
 
         print STDERR "retrieving $num_genes $logicname genes @ ", scalar(localtime), "\n" if $num_genes > 0 && $self->{'debug'};
-        
+       
+#print "debug before export_genes_from_slice"; 
         $self->export_genes_from_slice($fh, $slice, $logicname);
         
 	}	#end while @slices
@@ -223,7 +229,7 @@ sub export_genes_from_slice {
 
 	#foreach my $gene ( @{ $slice->get_all_Genes_by_type('avec_rnaseq_avec_sbi') } ) {
 	foreach my $gene ( @{ $slice->get_all_Genes($logicname)} ) {
-
+print "Debug inside export_genes_from_slice\n";
 		my $analysis_obj = $gene->analysis;
 		my $analysis_id = $analysis_obj->dbID;
 		
@@ -268,11 +274,15 @@ die "Not found geneID for $gid" unless $gene_id;
 			), "\n";
 		}
 		
+		my $src = $self->source ||        $analysis2logicname{$analysis_id};
+
+print "DEBUG source=$src\n";
+
 		print $fh join("\t",
 			(map { $self->escape($_) }
 			(
 				$gene_seqid,					#seqid
-				$analysis2logicname{$analysis_id},         #$gene->source,					#source
+				$src,         #$gene->source,					#source
 				'gene', 						#type		
 				$gene->seq_region_start,		#start
 				$gene->seq_region_end,			#end
@@ -280,24 +290,24 @@ die "Not found geneID for $gid" unless $gene_id;
 			)),
 			$strand_map->{$gene->strand},	#strand
 			'.',							#phase
-			"ID=" . $self->escape_attribute($gene_id)		#attributes
-			. ";Name=" . $self->escape_attribute($gene_name)
+			"ID=gene:" . $self->escape_attribute($gene_id)		#attributes
 			. ";biotype=" . $gene->biotype
+			. ";logic_name=" . $analysis2logicname{$analysis_id}
 			. $extra_attributes,
 			
 		), "\n";
 		
 		my $transcript_counter = 0;
 		my $num_transcripts = scalar(@{$gene->get_all_Transcripts});
-		print STDERR "retrieving $num_transcripts transcripts @ ", scalar(localtime), "\n" if $num_transcripts > 1 && $self->{'debug'};
+		print STDERR "Now retrieving $num_transcripts transcripts @ ", scalar(localtime), "\n" if $num_transcripts > 1 && $self->{'debug'};
 		
 		$self->export_transcripts(
 			$fh,
 			$gene,
 			$gene_id,
 			$gene->get_all_Transcripts,
-			$analysis2logicname{$analysis_id},
-		) if $self->{'export_transcripts'};
+			$src,
+		) ;
 	}# end foreach genes
 
 }
@@ -322,6 +332,7 @@ sub export_transcripts {
 	my $transcripts	= shift;
 	my $source = shift;
 
+print "DEBUG source=$source\n";
 	foreach my $transcript (@$transcripts) {
 		my $extra_attributes = '';
 	
@@ -355,10 +366,10 @@ sub export_transcripts {
 			)),
 			$strand_map->{$transcript->strand}, #strand
 			'.',								#phase
-			"ID=" . $self->escape_attribute($transcript_id)				#attributes
-			. ";Parent=" . $self->escape_attribute($gene_id)
-			. ";Name=" . $self->escape_attribute($transcript_name)
+			"ID=transcript:" . $self->escape_attribute($transcript_id)				#attributes
+			. ";Parent=gene:" . $self->escape_attribute($gene_id)
 			. ";biotype=" . $transcript->biotype
+			. ";transcript_id=" . $self->escape_attribute($transcript_id)
 			. $extra_attributes,
 			
 		), "\n";
@@ -488,19 +499,23 @@ sub export_exons {
 		my $exon_seqid = (split(':', $gene->seqname))[2];
 		
 		print $fh join("\t",
-			(map { $self->escape($_) }
-			(
+		#	(map { $self->escape($_) }
+		#	(
 				$exon_seqid,					#seqid
 				$source,					#source
 				'exon',							#type
 				$exon->seq_region_start,		#start
 				$exon->seq_region_end,			#end
 				'.',							#score
-			)),
+		#	)),
 			$strand_map->{$exon->strand},	#strand
 			'.',							#phase
-			"Parent=" . $self->escape_attribute($transcript_id)		#attributes
-			. ";Name=" . $self->escape_attribute($exon_id),
+			"Parent=transcript:$transcript_id"		#attributes
+			. ";Name=${transcript_id}.$exon_id"
+			. ";ensembl_end_phase=". $exon->end_phase
+			. ";ensembl_phase=".$exon->end_phase
+			. ";exon_id=${transcript_id}.$exon_id"
+			. ";rank=" . $exon->rank($transcript),
 			
 		), "\n";
 	}
@@ -527,9 +542,11 @@ sub export_cdses {
 	my $source = shift;
 
 	$self->reset_id_counter;
+	my $translation_id = $transcript->translation->stable_id;
+
 	foreach my $cds ( sort {$a->seq_region_start <=> $b->seq_region_start } @$cdses) {
 
-		my $cds_id = 'CDS.' . $self->id_counter;
+		my $cds_id = "CDS:$translation_id";
 	
 		my $cds_seqid = (split(':', $gene->seqname))[2];
 		
@@ -548,8 +565,9 @@ sub export_cdses {
 				$strand_map->{$cds->strand},			#strand
 				$cds->phase >= 0 ? $cds->phase : '.',	#phase
 				
-				"Parent=" . $self->escape_attribute($transcript_id)				#attributes
-				. ";Name=" . $self->escape_attribute($cds_id),
+				"ID=".$self->escape_attribute($cds_id)
+				.";Parent=transcript:" . $self->escape_attribute($transcript_id)				#attributes
+				. ";protein_id=" . $self->escape_attribute($translation_id),
 				
 			), "\n";
 		}
@@ -587,8 +605,8 @@ sub export_Futrs {
                                 )),
                                 $strand_map->{$Futr->strand},                    #strand
 				'.',                                                    #phase
-                                "Parent=" . $self->escape_attribute($transcript_id)                             #attributes
-                                . ";Name=" . $self->escape_attribute($Futr_id),
+                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
+                               
 
                         ), "\n";
                 }
@@ -626,8 +644,8 @@ sub export_Tutrs {
                                 )),
                                 $strand_map->{$Tutr->strand},                    #strand
 				'.',                                                    #phase
-                                "Parent=" . $self->escape_attribute($transcript_id)                             #attributes
-                                . ";Name=" . $self->escape_attribute($Tutr_id),
+                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
+                              
 
                         ), "\n";
                 }
@@ -653,7 +671,7 @@ sub export_features_from_slices {
 		my $slice = shift @$slices;
 
 		next unless $self->should_process_slice($slice);
-
+print "debug before feature\n";
 		foreach my $feature (@$features) {
 
 			my $feature_method = $feature_method_map->{$feature};

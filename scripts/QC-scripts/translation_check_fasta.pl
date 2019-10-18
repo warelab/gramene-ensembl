@@ -285,19 +285,27 @@ while(my $infile=shift) {
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	     if( $fa_seq  eq $gtt->[3] );
 	    #print "$fa_seq\n  eq\n $gtt->[3]\n";
-	    
+	   
+
+	    print "$trpt_id=> $gtt->[3] (ensembl_translation)\n";
+            print "$trpt_id=> $fa_seq (fasta_seq)\n";
+ 
 	    my ($uniform_fa_seq, $uniform_ensembl) = ($fa_seq, $gtt->[3]);
 	    
 	    $uniform_ensembl =~ s=[*]+.*==;
 	    $uniform_fa_seq =~ s=[*]+.*==;
 
-	    print "$trpt_id=> $gtt->[3] (ensembl_translation)\n";
-	    print "$trpt_id=> $fa_seq (fasta_seq)\n";
-	    print "Truncate at 1st stop codon to get uniformed sequences\n";
-	    print ">$trpt_id (uniform_ensembl)\n$uniform_ensembl\n>$trpt_id (uniform_fa_seq)\n$uniform_fa_seq\n";
-	    #exit;
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	      if( $uniform_fa_seq  eq $uniform_ensembl );
+
+	    print ">$trpt_id (uniform_ensembl)\n$uniform_ensembl\n>$trpt_id (uniform_fa_seq)\n$uniform_fa_seq\n";
+	    my $ori_len_ens = length($gtt->[3]) ;
+            my $trunc_len_ens = length($uniform_ensembl);
+            my $ori_len_fa = length($fa_seq) ;
+            my $trunc_len_fa = length($uniform_fa_seq);
+            print "Truncate at 1st stop codon to get uniformed sequences, internal stop codon for ensembl: $ori_len_ens -> $trunc_len_ens\n" if ( $ori_len_ens != $trunc_len_ens);
+            print "Truncate at 1st stop codon to get uniformed sequences, internal stop codon for fasta: $ori_len_fa -> $trunc_len_fa\n" if ( $ori_len_fa != $trunc_len_fa );
+	   ++$count{'mismatch-internal-stop'} if ($ori_len_ens != $trunc_len_ens or $ori_len_fa != $trunc_len_fa) ;
         }
 
 	#no transcript of this gene matches -need to report 

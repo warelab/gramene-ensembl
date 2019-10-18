@@ -109,7 +109,7 @@ None=All.
 =cut
 
 my ($species, $registry, $coding, $longest);
-my (%exclude_gene,%exclude_analysispgm,%analysispgm,%exclude_clone,$bylogicname);
+my (%exclude_gene,%exclude_analysispgm,%analysispgm,%exclude_clone,$bylogicname,$outfile);
 my $margin=undef;
 {  #Argument Processing
   my $help=0;
@@ -129,6 +129,7 @@ my $margin=undef;
 	      ,"margin=i"=>\$margin
 	      ,"coding"=>\$coding
 	      ,"longest"=>\$longest
+	      ,"outfile=s"=> \$outfile
 	    )
     or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
@@ -160,7 +161,13 @@ my %count;
 
 my ($seqio,%seqio,$seqio5,$seqio3);
 
-if($bylogicname) {
+if ($outfile) {
+
+	$seqio = new Bio::SeqIO(-format => 'fasta',
+                          -file => ">$outfile",
+                         );
+                          
+}elsif($bylogicname) {
 
 	$seqio = new Bio::SeqIO(-format => 'fasta',
                           -file => ">${species}_$bylogicname.fasta",
