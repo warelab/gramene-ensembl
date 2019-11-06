@@ -1,0 +1,76 @@
+#!/bin/sh
+
+SPLIT_PROG=/sonas-hs/ware/hpc/home/weix/gramene-ensembl/scripts/misc-scripts/split-fasta.pl
+INTERPROSCAN_PROG=/sonas-hs/ware/hpc/home/weix/my_interproscan/interproscan-5.38-76.0/interproscan.sh
+
+
+PROJ=$1
+INPUT=$2
+CNT=$3
+
+if [[ ! $PROJ ]]
+then
+   echo "PROJ not defined, quit"
+   exit
+fi
+
+if [[ ! $INPUT ]]
+then
+   echo "INPUT file not defined, quit"
+   exit
+fi
+
+if [[ ! $CNT ]]
+then
+   echo "Job Count not defined, quit"
+   exit
+fi
+
+if [[  -d $PROJ ]]
+then  
+   echo "PROJ already exists, quit"
+   exit
+fi
+ 
+if [[  ! -f $INPUT ]]
+then  
+   echo "INPUT not found, quit"
+   exit
+fi
+
+   echo "split input $INPUT to $CNT jobs under $PROJ"
+
+mkdir $PROJ
+mkdir $PROJ/input
+mkdir $PROJ/output
+mkdir $PROJ/log
+
+
+module load Java/11.0.2
+module load Python/3.6.6
+
+
+#split input file
+perl $SPLIT_PROG -i $INPUT -d $PROJ/input/ -fn $CNT
+
+cd $PROJ/
+
+echo "
+#!/bin/sh
+
+#$ -cwd
+#$ -V
+#$ -t 1-$CNT
+#$ -N $PROJ 
+#$ -o test_log/
+#$ -e test_log/
+
+echo "Task id is \$SGE_TASK_ID"
+
+$INTERPROSCAN_PROG -appl PfamA -iprlookup -goterms -f tsv -i input/*.\$SGE_TASK_ID.fa -o output/$PROJ.\$SGE_TASK_ID.tsv
+" >$PROJ.sh
+
+chmod a+x $PROJ.sh
+
+#submit job array
+qsub $PROJ.sh
