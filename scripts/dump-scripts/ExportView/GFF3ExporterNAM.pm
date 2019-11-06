@@ -276,7 +276,7 @@ die "Not found geneID for $gid" unless $gene_id;
 		
 		my $src = $self->source ||        $analysis2logicname{$analysis_id};
 
-print "DEBUG source=$src\n";
+#print "DEBUG source=$src\n";
 
 		print $fh join("\t",
 			(map { $self->escape($_) }
@@ -332,13 +332,20 @@ sub export_transcripts {
 	my $transcripts	= shift;
 	my $source = shift;
 
-print "DEBUG source=$source\n";
+	my $cano_trpt = $gene->canonical_transcript;
+	my $cano_trpt_name = $cano_trpt->stable_id if $cano_trpt;
+
+#print "DEBUG source=$source\n";
 	foreach my $transcript (@$transcripts) {
-		my $extra_attributes = '';
 	
 		my $transcript_id = $transcript->stable_id;
 		
 		my $transcript_name = $transcript_id || '';
+
+		my $extra_attributes = $cano_trpt_name ? 
+					$cano_trpt_name eq $transcript_name ? 
+					';canonical_transcript=1':''
+					: '';
 		
 		if ($self->{'overlapping_id'}->{$transcript_name}++) {
 			$transcript_id .= '.transcript';
