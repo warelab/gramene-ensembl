@@ -38,7 +38,7 @@ use File::Path;
 use Bio::SeqIO;
 use Bio::Seq;
 
-my($help, $input_file, $out_dir, $min_lines, $fn, $index_start, $clean);
+my($help, $input_file, $out_dir, $min_lines, $fn, $index_start, $clean, $interproscan);
 
 GetOptions(
 	   "help"          => \$help,
@@ -48,6 +48,7 @@ GetOptions(
 	   "min_lines=i"   => \$min_lines,
 	   "fn=i"          => \$fn,
 	   "index_start=i" => \$index_start,
+	   "interproscan"  => \$interproscan,
 	   ) || pod2usage();
 
 
@@ -126,7 +127,24 @@ sub split_file{
 	while (my $seqobj = $in->next_seq()) {
 	    $current_seq_count++;
 	    $total_seq_count++;
-	    $out->write_seq($seqobj);
+
+	    if($interproscan){ #interproscan cannot take illegal aa such as . *
+	    	my $new_seq = $seqobj->seq;
+	       	$new_seq =~ s/[.x*]+$//i;
+	
+		unless ($new_seq =~ /[.*]/){
+		
+			$seqobj = new Bio::Seq(
+				-display_id => $seqobj->display_id(),
+				-seq        => $new_seq,
+				);
+			$out->write_seq($seqobj);
+		}
+		
+	     }else{
+	    	$out->write_seq($seqobj);
+	     }	
+
 	    if ($total_seq_count == $total_sequences) { last SQ; }
 	    if ( $remainder && $current_seq_count == $seq_per_file + 1 || 
 		 !$remainder && $current_seq_count == $seq_per_file ) {

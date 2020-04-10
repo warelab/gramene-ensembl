@@ -47,11 +47,13 @@ mkdir $PROJ/log
 
 
 module load Java/11.0.2
+module load GCC/7.3.0-2.30
+module load OpenMPI/3.1.1
 module load Python/3.6.6
 
 
 #split input file
-perl $SPLIT_PROG -i $INPUT -d $PROJ/input/ -fn $CNT
+perl $SPLIT_PROG -i $INPUT -d $PROJ/input/ -fn $CNT  -interproscan
 
 cd $PROJ/
 
@@ -64,6 +66,8 @@ echo "
 #$ -N $PROJ 
 #$ -o test_log/
 #$ -e test_log/
+#$ -l m_mem_free=4G 
+#$ -l h_vmem=15G
 
 echo "Task id is \$SGE_TASK_ID"
 

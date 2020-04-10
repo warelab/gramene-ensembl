@@ -229,7 +229,7 @@ sub export_genes_from_slice {
 
 	#foreach my $gene ( @{ $slice->get_all_Genes_by_type('avec_rnaseq_avec_sbi') } ) {
 	foreach my $gene ( @{ $slice->get_all_Genes($logicname)} ) {
-print "Debug inside export_genes_from_slice\n";
+#print "Debug inside export_genes_from_slice\n";
 		my $analysis_obj = $gene->analysis;
 		my $analysis_id = $analysis_obj->dbID;
 		
@@ -678,7 +678,7 @@ sub export_features_from_slices {
 		my $slice = shift @$slices;
 
 		next unless $self->should_process_slice($slice);
-print "debug before feature\n";
+#print "debug before feature\n";
 		foreach my $feature (@$features) {
 
 			my $feature_method = $feature_method_map->{$feature};
