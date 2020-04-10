@@ -229,7 +229,7 @@ foreach my $gene(@genes) {
 	    	$idxm += 1;	
 	    	#$idxm += $strand>0 ? 1 : 2;
 	    	#my $idxm = $index_of_M+2;
-	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
+	    	print "1 based index of 1st M is $idxm\n" if $debug;
 	    
 	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
 	    	my $Met_start_genomic;
@@ -290,8 +290,8 @@ foreach my $gene(@genes) {
 	    	}
 	    	
 	   		@fiveUTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
-            		
-		    unless( $met_start_ExonID && $start_exon_start_phase){
+            	print "met_start_ExonID=$met_start_ExonID, start_exon_start_phase=$start_exon_start_phase\n" if $debug;	
+		    unless( $met_start_ExonID && defined $start_exon_start_phase){
 				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
 				next;
 	    	}
