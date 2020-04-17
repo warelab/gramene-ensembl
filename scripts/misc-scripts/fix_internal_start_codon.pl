@@ -84,6 +84,10 @@ fix_internal_start_codon.pl  [options]
 
    print out more debug information
 
+=item B<--guide> 
+
+   Tab delimited file with translation_stable_id and position of internal M to use
+
 =back
 
 =head1 ARGUMENTS
@@ -94,7 +98,7 @@ fix_internal_start_codon.pl  [options]
 =cut
 
 my ($species, $registry);
-my (%exclude_gene, $bylogicname, $debug, $nowrite);
+my (%exclude_gene, $bylogicname, $debug, $nowrite, $guide_file);
 my $margin=undef;
 {  							#Argument Processing
   my $help=0;
@@ -107,6 +111,7 @@ my $margin=undef;
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
 	      ,"debug"=>\$debug
+        ,"guide"=>\$guide_file
 	      ,"nowrite"=>\$nowrite
 	    )
     or pod2usage(2);
@@ -164,6 +169,17 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
     @{$gene_adaptor->fetch_all_by_logic_name($bylogicname)};
 
 my %count;
+
+my %guide;
+if ($guide_file and -e $guide_file) {
+  open (my $guide_fh, "<", $guide_file);
+  while (<$guide_fh>) {
+    chomp;
+    my ($stable_id, $idmx) = split /\t/, $_;
+    $guide{$stable_id} = $idxm;
+  }
+  close $guide_fh;
+}
 
 foreach my $gene(@genes) {
   #print "geneid = ", $gene->stable_id, "\n";
@@ -225,7 +241,7 @@ foreach my $gene(@genes) {
 	    	my $translation_stable_id= $translation->stable_id;
 	    	my $translation_old_start= $translation->start;
 
-	    	my $idxm = index( uc($aa), 'M', 1);
+	    	my $idxm = $guide{$translation_stable_id} || index( uc($aa), 'M', 1);
 	    	$idxm += 1;	
 	    	#$idxm += $strand>0 ? 1 : 2;
 	    	#my $idxm = $index_of_M+2;
