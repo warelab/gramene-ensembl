@@ -229,7 +229,7 @@ foreach my $gene(@genes) {
 	    	$idxm += 1;	
 	    	#$idxm += $strand>0 ? 1 : 2;
 	    	#my $idxm = $index_of_M+2;
-	    	print "1 based index of 1st M is $idxm\n" if $debug;
+	    	print "$comp_id: 1 based index of 1st M is $idxm\n" if $debug;
 	    
 	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
 	    	my $Met_start_genomic;
