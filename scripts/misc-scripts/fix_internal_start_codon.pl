@@ -111,7 +111,7 @@ my $margin=undef;
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
 	      ,"debug"=>\$debug
-        ,"guide"=>\$guide_file
+        ,"guide=s"=>\$guide_file
 	      ,"nowrite"=>\$nowrite
 	    )
     or pod2usage(2);
@@ -176,10 +176,14 @@ if ($guide_file and -e $guide_file) {
   while (<$guide_fh>) {
     chomp;
     my ($stable_id, $idmx) = split /\t/, $_;
-    $guide{$stable_id} = $idxm;
+    $guide{$stable_id} = $idmx;
   }
   close $guide_fh;
 }
+
+print "found ". scalar @genes . " genes\n";
+#use Data::Dumper;
+#warn ( Dumper(\@genes) );
 
 foreach my $gene(@genes) {
   #print "geneid = ", $gene->stable_id, "\n";
