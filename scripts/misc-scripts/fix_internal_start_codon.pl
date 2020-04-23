@@ -84,6 +84,10 @@ fix_internal_start_codon.pl  [options]
 
    print out more debug information
 
+=item B<--guide> 
+
+   Tab delimited file with translation_stable_id and position of internal M to use
+
 =back
 
 =head1 ARGUMENTS
@@ -94,7 +98,7 @@ fix_internal_start_codon.pl  [options]
 =cut
 
 my ($species, $registry);
-my (%exclude_gene, $bylogicname, $debug, $nowrite);
+my (%exclude_gene, $bylogicname, $debug, $nowrite, $guide_file);
 my $margin=undef;
 {  							#Argument Processing
   my $help=0;
@@ -107,6 +111,7 @@ my $margin=undef;
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
 	      ,"debug"=>\$debug
+        ,"guide"=>\$guide_file
 	      ,"nowrite"=>\$nowrite
 	    )
     or pod2usage(2);
@@ -165,6 +170,17 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 
 my %count;
 
+my %guide;
+if ($guide_file and -e $guide_file) {
+  open (my $guide_fh, "<", $guide_file);
+  while (<$guide_fh>) {
+    chomp;
+    my ($stable_id, $idmx) = split /\t/, $_;
+    $guide{$stable_id} = $idxm;
+  }
+  close $guide_fh;
+}
+
 foreach my $gene(@genes) {
   #print "geneid = ", $gene->stable_id, "\n";
   
@@ -210,9 +226,16 @@ foreach my $gene(@genes) {
     			#my $translation = $trans->translation;
     my $aa = $trans->translate->seq;
  
-    			print ">$comp_id\n$aa\n" if $debug;
-    			#exit;
-    if($aa =~ /^M/i){
+    print ">$comp_id\n$aa\n" if $debug;
+    my $translation = $trans->translation;
+    my $translation_id= $translation->dbID;
+    my $translation_stable_id= $translation->stable_id;
+    my $translation_old_start= $translation->start;
+    
+    my $idxm = $guide{$translation_stable_id} || index( uc($aa), 'M', 1);
+    $idxm += 1;
+    	
+    if($aa =~ /^M/i and not $guide{$translation_stable_id}){
 		$count{qualified_transcripts_with_M}++;
 		next;
     }else{
@@ -220,16 +243,9 @@ foreach my $gene(@genes) {
 	    	print "matched\n" if $debug;
 	    	$count{qualified_transcripts_withInternal_M}++;
 
-	    	my $translation = $trans->translation;
-	    	my $translation_id= $translation->dbID;
-	    	my $translation_stable_id= $translation->stable_id;
-	    	my $translation_old_start= $translation->start;
-
-	    	my $idxm = index( uc($aa), 'M', 1);
-	    	$idxm += 1;	
 	    	#$idxm += $strand>0 ? 1 : 2;
 	    	#my $idxm = $index_of_M+2;
-	    	print "1 based index of 1st M is $idxm\n$aa\n" if $debug;
+	    	print "$comp_id: 1 based index of 1st M is $idxm\n" if $debug;
 	    
 	    	my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
 	    	my $Met_start_genomic;
@@ -290,8 +306,8 @@ foreach my $gene(@genes) {
 	    	}
 	    	
 	   		@fiveUTRexonIDs2update = map{ $_->dbID } @ordered_Exons if $strand < 0;
-            		
-		    unless( $met_start_ExonID && $start_exon_start_phase){
+            	print "met_start_ExonID=$met_start_ExonID, start_exon_start_phase=$start_exon_start_phase\n" if $debug;	
+		    unless( $met_start_ExonID && defined $start_exon_start_phase){
 				warn("ERROR: no valid exon found and start found for genomic coord   $Met_start_genomic, skip $comp_id\n");
 				next;
 	    	}

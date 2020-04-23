@@ -235,7 +235,7 @@ foreach my $geneid (@genes) {
     my $slice_name = $trans->slice->name;
     my $biotype = $trans->biotype;
     my $logic_name = $trans->analysis->logic_name;
-    my $comp_id = join "|", ($id, $slice_name, $logic_name, $biotype);
+    my $comp_id = join "|", ($slice_name, $logic_name, $biotype);
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for $geneid:$comp_id\n";
       next;
@@ -250,7 +250,8 @@ foreach my $geneid (@genes) {
 	"|coding region $cdna_coding_start-$cdna_coding_end";
       print "DEBUG coding id $comp_id\n";
       $seq_obj = Bio::Seq->new(
-				      -display_id => $comp_id,
+				      -display_id => $id,
+				      -desc       => $comp_id,
 				      -seq => substr($cdna_seq, 
 						     $cdna_coding_start-1, 
 						     $cdna_coding_end-$cdna_coding_start+1)
@@ -260,7 +261,8 @@ foreach my $geneid (@genes) {
       
       $comp_id .=  "|CDNA";
       $seq_obj = Bio::Seq->new(
-				    -display_id => $comp_id,
+				    -display_id => $id,
+				    -desc      => $comp_id,
 				    -seq => $cdna_seq,
 				   );
       

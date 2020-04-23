@@ -162,7 +162,10 @@ for my $tigr_fasta (@ARGV) {
 	}else{ $chr= $tigrseq->display_id;}
 
 	$chr    =~ s/chr(omosome)?_?0*//i;
+
+	$chr = 'U' if $chr eq '0';
 	print "chr = $chr\n";
+	
     } else {
       $chr=$tigrseq->display_id;
 
