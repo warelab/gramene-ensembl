@@ -230,9 +230,16 @@ foreach my $gene(@genes) {
     			#my $translation = $trans->translation;
     my $aa = $trans->translate->seq;
  
-    			print ">$comp_id\n$aa\n" if $debug;
-    			#exit;
-    if($aa =~ /^M/i){
+    print ">$comp_id\n$aa\n" if $debug;
+    my $translation = $trans->translation;
+    my $translation_id= $translation->dbID;
+    my $translation_stable_id= $translation->stable_id;
+    my $translation_old_start= $translation->start;
+    
+    my $idxm = $guide{$translation_stable_id} || index( uc($aa), 'M', 1);
+    $idxm += 1;
+    	
+    if($aa =~ /^M/i and not $guide{$translation_stable_id}){
 		$count{qualified_transcripts_with_M}++;
 		next;
     }else{
@@ -240,13 +247,6 @@ foreach my $gene(@genes) {
 	    	print "matched\n" if $debug;
 	    	$count{qualified_transcripts_withInternal_M}++;
 
-	    	my $translation = $trans->translation;
-	    	my $translation_id= $translation->dbID;
-	    	my $translation_stable_id= $translation->stable_id;
-	    	my $translation_old_start= $translation->start;
-
-	    	my $idxm = $guide{$translation_stable_id} || index( uc($aa), 'M', 1);
-	    	$idxm += 1;	
 	    	#$idxm += $strand>0 ? 1 : 2;
 	    	#my $idxm = $index_of_M+2;
 	    	print "$comp_id: 1 based index of 1st M is $idxm\n" if $debug;
