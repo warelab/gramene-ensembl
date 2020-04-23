@@ -731,6 +731,7 @@ print "debug before feature\n";
 =item escape($string)
 
 Mainly used internally. Escapes strings to allow for GFF3 encoding
+doesnot look like need to encode the special chararcters
 
 =cut
 
@@ -741,7 +742,7 @@ sub escape {
 	return '' unless defined $string;
 
 	#$string =~ s/([\t\r\n])/sprintf("%%%02x",ord($1))/eg;
-	$string =~ s/([^a-zA-Z0-9.:^*$@!+_?-|])/sprintf("%%%02x",ord($1))/eg;
+#	$string =~ s/([^a-zA-Z0-9.:^*$@!+_?-|])/sprintf("%%%02x",ord($1))/eg;
 	
 
 	return $string;
@@ -752,6 +753,7 @@ sub escape {
 =item escape_attribute($string)
 
 Mainly used internally. Escapes strings to allow for GFF3 encoding as part of attributes. Different characters are escaped
+doesnot look like need to encode the special chararcters
 
 =cut
 
@@ -762,7 +764,7 @@ sub escape_attribute {
 	return '' unless defined $string;
 
 	#$string =~ s/([\t\r\n])/sprintf("%%%02x",ord($1))/eg;
-	$string =~ s/([,=;\t])/sprintf("%%%02x",ord($1))/eg;
+#	$string =~ s/([,=;\t])/sprintf("%%%02x",ord($1))/eg;
 
 	return $string;
 }
