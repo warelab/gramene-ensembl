@@ -281,7 +281,7 @@ foreach my $gene (@genes) {
         $transcriptEnd = $transcriptEnd + $adjustedEnd{$endExonID} + $append;
       }
       else {
-        $transcriptStart = $transcriptStart - $adjustedEnd{$startExonID} - $append;
+        $transcriptStart = $transcriptStart - $adjustedEnd{$endExonID} - $append;
       }
     }
     if ($updateTranscript) {
