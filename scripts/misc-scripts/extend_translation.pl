@@ -4,10 +4,10 @@
 
 extend_translations.pl
 
-If translation starts at beginning of transcript, search upstream (up to 2001 bp) for the furthest possible start codon (no in frame stops).
+If translation starts at beginning of transcript, search upstream for the furthest possible start codon (no in frame stops).
 If such a start codon is found, extend the exon to that point and add an additional --prepend nucleotides
 
-If translation ends at end of transcript, search downstream (up to 2001 bp) for the furthest possible stop codon.
+If translation ends at end of transcript, search downstream for the furthest possible stop codon.
 If found, extend last exon to that point and add an additional --append nucleotides.
 
 =cut
@@ -55,6 +55,8 @@ extend_translation.pl  [options]
     --species 		which species to dump
     --exclude		genes to exclude
     --bylogicname	only work on genes udner this analysis logic_name
+    --extendM extend even if protein starts with M
+    --extend max number of bases to extend coding region
     --prepend UTR length to prepend to extended transcript
     --append UTR length to append to extended transcript
     --debug             debug mode
@@ -83,6 +85,14 @@ extend_translation.pl  [options]
 
    print out more debug information
 
+=item B<--extend> 
+
+   max number of bases to extend coding region (default 2001)
+
+=item B<--extendM> 
+
+   if set, will try to extend upstream even if current translation starts with M
+
 =item B<--prepend> 
 
    number of bases to prepend upstream of the new start codon (default 0)
@@ -101,18 +111,23 @@ extend_translation.pl  [options]
 =cut
 
 my ($species, $registry);
-my ($debug, $nowrite, $prepend, $append);
+my ($debug, %exclude_gene, $bylogicname, $nowrite, $extendM, $extend, $prepend, $append);
 my $margin=undef;
 {  							#Argument Processing
   my $help=0;
   my $man=0;
+  my @exclude_gene=();
 
   GetOptions( "help|?"=>\$help,"man"=>\$man
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
+        ,"bylogicname=s"=>\$bylogicname
+        ,"exclude=s"=>\@exclude_gene
 	      ,"debug"=>\$debug
-        ,"prepend=i"=>\$prepend,
-        ,"append=i"=>\$append,
+        ,"extendM"=>\$extendM
+        ,"extend=i"=>\$extend
+        ,"prepend=i"=>\$prepend
+        ,"append=i"=>\$append
 	      ,"nowrite"=>\$nowrite
 	    )
     or pod2usage(2);
@@ -121,6 +136,9 @@ my $margin=undef;
   							#pod2usage(2) if $margin<0;
   $prepend ||= 0;
   $append ||= 0;
+  $extend ||= 2001;
+  $extend % 3 == 0 or die "extend needs to be a multiple of 3\n";
+  %exclude_gene = map {$_,1} map {split /,/} @exclude_gene;
 }
 
 # Load the ensembl file
@@ -137,6 +155,7 @@ my $transl_adaptor = $ENS_DBA->get_TranslationAdaptor;
 my $dbh = $ENS_DBA->dbc->db_handle;
 
 # need to be able to check whether fixing the first/last exon could break other transcripts
+print STDERR "reading exon_transcript\n" if $debug;
 my $sql = "select exon_id,transcript_id,rank from exon_transcript order by transcript_id, rank DESC";
 my $sth = $dbh->prepare($sql) or die "Error:" . $dbh->errstr . "\n";
 $sth->execute or die "Error:" . $sth->errstr . "\n";
@@ -178,13 +197,25 @@ unless ($nowrite){
 }
 
 #print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
-my @genes = @{$gene_adaptor->fetch_all()};
+my @genes = map { $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
+@genes or
+  @genes = !$bylogicname ? @{$gene_adaptor->fetch_all()}:
+  @{$gene_adaptor->fetch_all_by_logic_name($bylogicname)};
+  
 @genes or die "what, no genes?\n";
 
+print STDERR "will process ",scalar @genes - scalar keys %exclude_gene," genes\n" if $debug;
+my %updates = (
+  genes => 0,
+  transcripts => 0,
+  translations => 0,
+  exons => 0
+);
 foreach my $gene (@genes) {
   next unless $gene->biotype eq 'protein_coding';
   my $geneID = $gene->dbID;
-  print STDERR "starting gene ",$gene->stable_id,"\n";
+  next if %exclude_gene and $exclude_gene{$gene->stable_id};
+  print STDERR "starting gene ",$gene->stable_id,"\n" if $debug;
   my $geneStart = $gene->start;
   my $geneEnd = $gene->end;
   my $updateGene=0;
@@ -192,6 +223,7 @@ foreach my $gene (@genes) {
   my (%adjustedStart, %adjustedEnd);
   for my $trans (@transcripts) {
     my $transID = $trans->dbID;
+    my $transStableId = $trans->stable_id;
     next unless $trans->biotype eq 'protein_coding';
     my $translation = $trans->translation;
     $translation or die "huh? I expected to get a translation of transcript " . $trans->stable_id;
@@ -203,11 +235,12 @@ foreach my $gene (@genes) {
     my $updateLastExon=0;
     if (not exists $adjustedStart{$startExonID}) {
       if ($exonCheck{isNotFirst}{$startExonID}) {
-        print STDERR "Do not adjust this start exon (not always first)\n";
+        print STDERR "WARNING - Do not adjust this start exon (not always first)\n";
       }
-      elsif ($firstAA ne 'M') {
+      elsif ($extendM or $firstAA ne 'M') {
         my $newCDSStartPos = seekUpstream($trans);
         if ($newCDSStartPos) {
+          print STDERR "extending $transStableId CDS upstream $newCDSStartPos\n" if $debug;
           $adjustedStart{$startExonID} = $newCDSStartPos;
           # update the first exon start pos
           my $exonStart = $exons[0]->start;
@@ -225,11 +258,12 @@ foreach my $gene (@genes) {
     my $endExonID = $trans->end_Exon->dbID;
     if (not exists $adjustedEnd{$endExonID}) {
       if ($exonCheck{isNotLast}{$endExonID}) {
-        print STDERR "Do not adjust this end exon (not always last)\n";
+        print STDERR "WARNING - Do not adjust this end exon (not always last)\n";
       }
       else {
         my $newCDSEndPos = seekDownstream($trans);
         if ($newCDSEndPos) {
+          print STDERR "extending $transStableId CDS downstream $newCDSEndPos\n" if $debug;
           $adjustedEnd{$endExonID} = $newCDSEndPos;
           # update the last exon end pos
           my $exonStart = $exons[0]->start;
@@ -246,11 +280,13 @@ foreach my $gene (@genes) {
     }
     if ($updateFirstExon) {
       $update_exon_sth->execute($exons[0]->start,$exons[0]->end,$startExonID) if $update_exon_sth;
-      print STDERR "update exon $startExonID ",$exons[0]->start," ",$exons[0]->end,"\n";
+      print STDERR "update exon $startExonID ",$exons[0]->start," ",$exons[0]->end,"\n" if $debug;
+      $updates{exons}++;
     }
     if ($updateLastExon and (not $updateFirstExon or @exons > 1)) {
       $update_exon_sth->execute($exons[-1]->start,$exons[-1]->end,$endExonID) if $update_exon_sth;
-      print STDERR "update exon $endExonID ",$exons[-1]->start," ",$exons[-1]->end,"\n";
+      print STDERR "update exon $endExonID ",$exons[-1]->start," ",$exons[-1]->end,"\n" if $debug;
+      $updates{exons}++;
     }
     my $transcriptStart = $trans->start;
     my $transcriptEnd = $trans->end;
@@ -263,8 +299,8 @@ foreach my $gene (@genes) {
         $translationStart += $prepend;
         $updateTranslation = 1;
       }
-      $updateTranscript=1;
       # definitely update start/end of transcript depending on strand
+      $updateTranscript=1;
       if ($trans->strand == 1) {
         $transcriptStart = $transcriptStart - $adjustedStart{$startExonID} - $prepend;
       }
@@ -273,10 +309,10 @@ foreach my $gene (@genes) {
       }
     }
     if ($adjustedEnd{$endExonID}) {
-      $updateTranslation=1;
-      $updateTranscript=1;
       $translationEnd += $adjustedEnd{$endExonID};
+      $updateTranslation=1;
       # definitely update start/end of transcript depending on strand
+      $updateTranscript=1;
       if ($trans->strand == 1) {
         $transcriptEnd = $transcriptEnd + $adjustedEnd{$endExonID} + $append;
       }
@@ -286,7 +322,8 @@ foreach my $gene (@genes) {
     }
     if ($updateTranscript) {
       $update_transcript_sth->execute($transcriptStart,$transcriptEnd,$transID) if $update_transcript_sth;
-      print STDERR "update transcript $transID $transcriptStart $transcriptEnd\n";
+      print STDERR "update transcript $transID $transcriptStart $transcriptEnd\n" if $debug;
+      $updates{transcripts}++;
       if ($transcriptStart < $geneStart) {
         $geneStart = $transcriptStart;
         $updateGene=1;
@@ -298,61 +335,46 @@ foreach my $gene (@genes) {
     }
     if ($updateTranslation) {
       $update_translation_sth->execute($translationStart,$translationEnd,$translationID) if $update_translation_sth;
-      print STDERR "update translation $translationID $translationStart $translationEnd\n";
+      print STDERR "update translation $translationID $translationStart $translationEnd\n" if $debug;
+      $updates{translations}++;
     }
   }
   if ($updateGene) {
     $update_gene_sth->execute($geneStart,$geneEnd,$geneID) if $update_gene_sth;
-    print STDERR "update gene $geneID $geneStart $geneEnd\n";
+    print STDERR "update gene $geneID $geneStart $geneEnd\n" if $debug;
+    $updates{genes}++;
   }
 }
-# my @translations;
-# foreach my $translation (@translations) {
-#   my $trans = $translation->transcript;
-#   my $newCDSStartPos = $exonCheck{isNotFirst}{$trans->start_Exon->dbID} ? 0 : seekUpstream($trans);
-#   my $newCDSEndPos = $exonCheck{isNotLast}{$trans->end_Exon->dbID} ? 0 : seekDownstream($trans);
-#
-#   if ($newCDSStartPos or $newCDSEndPos) {
-#     my $ccs = $trans->cdna_coding_start();
-#     my $cce = $trans->cdna_coding_end();
-#     print "BEFORE:",$translation->stable_id," cdna_coding_start:$ccs cdna_coding_end:$cce translation:",$trans->translate->seq,"\n";
-#
-#     my @exons = @{$trans->get_all_Exons()};
-#     if ($newCDSStartPos) {
-#       $exons[0] = $exons[0]->adjust_start_end(0 - $newCDSStartPos - $prepend, 0);
-#       $trans->{_trans_exon_array} = \@exons;
-#       $translation->start_Exon($exons[0]);
-#       $ccs = $trans->cdna_coding_start($ccs + $prepend);
-#       $cce = $trans->cdna_coding_end($cce + $newCDSStartPos + $prepend);
-#     }
-#     if ($newCDSEndPos) {
-#       $exons[-1] = $exons[-1]->adjust_start_end(0, $newCDSEndPos + $append);
-#       $trans->{_trans_exon_array} = \@exons;
-#       $translation->end_Exon($exons[-1]);
-#       $cce = $trans->cdna_coding_end($cce + $newCDSEndPos);
-#     }
-#     print "AFTER:",$translation->stable_id," cdna_coding_start:$ccs cdna_coding_end:$cce translation:",$trans->translate->seq,"\n";
-#   }
-# }
 
 $update_translation_sth->finish if $update_translation_sth;
 $update_gene_sth->finish if $update_gene_sth;
 $update_transcript_sth->finish if $update_transcript_sth;
 $update_exon_sth->finish if $update_exon_sth;
 $dbh->disconnect;
+
+print STDERR "updated $updates{genes} genes $updates{transcripts} transcripts $updates{translations} translations $updates{exons} exons\n";
   
 ########################## subroutines ######################################
 sub seekUpstream {
   my $trans = shift;
   $trans->cdna_coding_start == 1 or return 0;
-  my $len = 2001;
+  my $len = $extend;
   my $seqToCheck;
   if ($trans->strand == 1) {
+    if ($trans->start < $len) {
+      $len = $trans->start - ($trans->start % 3) - 1;
+      print STDERR "WARNING: + transcript starts near start of seq_region. ",$trans->start," new len to scan is $len\n";
+    }
     my $crs = $trans->coding_region_start;
     $seqToCheck = $trans->slice->subseq($crs-$len, $crs-1, 1);
   }
   else {
     my $cre = $trans->coding_region_end;
+    if ($trans->end + $len > $trans->slice->end) {
+      $len = $trans->slice->end - $cre;
+      $len -= $len % 3;
+      print STDERR "WARNING: - transcript starts near end of seq_region. ",$trans->slice->end - $trans->end," new len to scan is $len\n";
+    }
     $seqToCheck = $trans->slice->subseq($cre+1, $cre+$len, -1);
   }
   return findEarliestStart($seqToCheck);
@@ -361,13 +383,22 @@ sub seekUpstream {
 sub seekDownstream {
   my $trans = shift;
   $trans->three_prime_utr and return 0;
-  my $len = 2001;
+  my $len = $extend;
   my $seqToCheck;
   if ($trans->strand == 1) {
     my $cre = $trans->coding_region_end;
+    if ($trans->end + $len > $trans->slice->end) {
+      $len = $trans->slice->end - $cre;
+      $len -= $len % 3;
+      print STDERR "WARNING: + transcript ends near end of seq_region. ",$trans->slice->end - $trans->end," new len to scan is $len\n";
+    }
     $seqToCheck = $trans->slice->subseq($cre-2, $cre+$len, 1);
   }
   else {
+    if ($trans->start < $len) {
+      $len = $trans->start - ($trans->start % 3) - 1;
+      print STDERR "WARNING: - transcript ends near start of seq_region. ",$trans->start," new len to scan is $len\n";
+    }
     my $crs = $trans->coding_region_start;
     $seqToCheck = $trans->slice->subseq($crs-$len, $crs+2, -1);
   }
@@ -427,7 +458,7 @@ __END__
 
 =head1 AUTHOR
 
-   Sharon Wei <weix@cshl.edu>
+   Andrew Olson <olson@cshl.edu>
 
    Gramene Project (www.gramene.org)
    Ware Lab
