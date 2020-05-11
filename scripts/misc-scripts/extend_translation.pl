@@ -192,6 +192,7 @@ foreach my $gene (@genes) {
   my (%adjustedStart, %adjustedEnd);
   for my $trans (@transcripts) {
     my $transID = $trans->dbID;
+    next unless $trans->biotype eq 'protein_coding';
     my $translation = $trans->translation;
     $translation or die "huh? I expected to get a translation of transcript " . $trans->stable_id;
     my $translationID = $translation->dbID;
