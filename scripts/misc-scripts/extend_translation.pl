@@ -196,7 +196,7 @@ foreach my $gene (@genes) {
     my $translation = $trans->translation;
     $translation or die "huh? I expected to get a translation of transcript " . $trans->stable_id;
     my $translationID = $translation->dbID;
-    next if (substr($translation->seq,0,1) eq 'M');
+    my $firstAA = substr($translation->seq,0,1);
     my @exons = @{$trans->get_all_Exons()};
     my $startExonID = $trans->start_Exon->dbID;
     my $updateFirstExon=0;
@@ -205,7 +205,7 @@ foreach my $gene (@genes) {
       if ($exonCheck{isNotFirst}{$startExonID}) {
         print STDERR "Do not adjust this start exon (not always first)\n";
       }
-      else {
+      elsif ($firstAA ne 'M') {
         my $newCDSStartPos = seekUpstream($trans);
         if ($newCDSStartPos) {
           $adjustedStart{$startExonID} = $newCDSStartPos;
@@ -248,7 +248,7 @@ foreach my $gene (@genes) {
       $update_exon_sth->execute($exons[0]->start,$exons[0]->end,$startExonID) if $update_exon_sth;
       print STDERR "update exon $startExonID ",$exons[0]->start," ",$exons[0]->end,"\n";
     }
-    if ($updateLastExon and @exons > 1) {
+    if ($updateLastExon and (not $updateFirstExon or @exons > 1)) {
       $update_exon_sth->execute($exons[-1]->start,$exons[-1]->end,$endExonID) if $update_exon_sth;
       print STDERR "update exon $endExonID ",$exons[-1]->start," ",$exons[-1]->end,"\n";
     }
