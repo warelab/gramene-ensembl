@@ -266,8 +266,8 @@ foreach my $gene (@genes) {
           print STDERR "extending $transStableId CDS downstream $newCDSEndPos\n" if $debug;
           $adjustedEnd{$endExonID} = $newCDSEndPos;
           # update the last exon end pos
-          my $exonStart = $exons[0]->start;
-          my $exonEnd = $exons[0]->end;
+          my $exonStart = $exons[-1]->start;
+          my $exonEnd = $exons[-1]->end;
           if ($trans->strand == 1) {
             $exonEnd = $exons[-1]->end($exonEnd + $newCDSEndPos + $append);
           }
