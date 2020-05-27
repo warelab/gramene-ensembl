@@ -325,6 +325,9 @@ foreach my $gene (@genes) {
         $translationStart += $prepend;
         $updateTranslation = 1;
       }
+      if ($updateTranslation == 1 and $startExonID == $endExonID) {
+        $translationEnd += $prepend + $adjustedStart{$startExonID};
+      }
       # definitely update start/end of transcript depending on strand
       $updateTranscript=1;
       if ($trans->strand == 1) {
