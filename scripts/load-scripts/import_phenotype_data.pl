@@ -100,7 +100,7 @@ my %SOURCES = (
     description => "QTLs from the legacy Gramene QTL Database",
     url => "http://archive.gramene.org/db/qtl/",
     type => "QTL",
-    somatic_status => "mixed",
+    status => "mixed",  #the hash key is status, the table field name is somatic_status, by default the script will assign germline
     data_types => "phenotype_feature",
     href_template => {
     	'name' => '<a href="http://archive.gramene.org/db/qtl/qtl_display?qtl_accession_id=$$$">$$$</a>',
@@ -113,7 +113,7 @@ my %SOURCES = (
   	description => "gramene markers",
   	url => "http://archive.gramene.org/markers",
   	type => "StructuralVariation",
-  	somatic_status => "mixed",
+  	status => "mixed", # used to be somatic_status
   	data_types   => "structural_variation, phenotype_feature",
   	href_template => {
   		'default' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$">$$$</a>',
@@ -124,13 +124,22 @@ my %SOURCES = (
     description => "QTLs from the Qtaro Database and remapped to IRGSPv1 assembly by keygen",
     url => "http://qtaro.abr.affrc.go.jp/qtab/table",
     type => "QTL",
-    somatic_status => "mixed",
+    status => "mixed", #used to be somatic_status
     data_types => "phenotype_feature",
     href_template => {
     	'name' => '<a href="http://qtaro.abr.affrc.go.jp/qtab/entry/show/$$$" target="_blank">$$$</a>',
     	'marker_accession_id' => '<a href="http://archive.gramene.org/db/markers/marker_view?marker_name=$$$" target="_blank">$$$</a>',
     },
   },
+
+  "Sorghum_QTL_Atlas" => {
+    description => "QTLs from the the Sorghum QTL Atlas Database developed by Emma Mace group",  #you cannot have ' in the value, otherwise the insertion sql will broken
+    url => "https://aussorgm.org.au/sorghum-qtl-atlas/",
+    type => "QTL",
+    status => "somatic", #according to Liya, it should be somatic
+    data_types => "phenotype_feature",
+  },
+
 
   "GIANT" => {
     description => "The Genetic Investigation of ANthropometric Traits (GIANT) consortium is an international collaboration that seeks to identify genetic loci that modulate human body size and shape, including height and measures of obesity",
@@ -363,6 +372,10 @@ elsif($source =~ /qtaro_qtl/i){
     $source_name = 'Qtaro_QTLdb';
     $result = parse_qtaro_qtl($infile, $db_adaptor);
     
+}
+elsif($source =~ /sorghum_qtl_atlas/i){
+    $result = parse_gramene_qtl($infile, $db_adaptor);
+    $source_name = 'Sorghum_QTL_Atlas';
 }
 elsif($source =~ /rgd_gene/i) {
   die("ERROR: No core DB parameters supplied (--chost, --cdbname, --cuser) or could not connect to core database") unless defined($core_db_adaptor);

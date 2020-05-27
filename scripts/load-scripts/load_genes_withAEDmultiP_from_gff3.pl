@@ -253,7 +253,10 @@ while( my $line = $GFF_HANDLE->getline ){
       $start, $end, $score, $strand, $frame, 
       $attribute ) = split( /\s+/, $line, 9 );
   $feature = uc($feature);
+  $seqname =~ s/^chromosome_?0*//i;
   $seqname =~ s/^chr0*//i;
+
+warn ("seqname is $seqname");
 
   my %attribs;
   foreach my $id( split( /;/, $attribute ) ){
@@ -288,7 +291,7 @@ while( my $line = $GFF_HANDLE->getline ){
     $gene_description = $attribs{DESCRIPTION} || $gene_name;
     $attribs{DESCRIPTION} ||= $gene_description;
     
-    #print "Gene $gene_id $gene_name $gene_description\n";#####
+    print "Gene $gene_id $gene_name $gene_description\n";#####
     unless( $GENES->{$gene_id} ){
       $GENES->{$gene_id}->{GENE_NAME} = $gene_name;
       $GENES->{$gene_id}->{DESCRIPTION} = $gene_description;
