@@ -282,11 +282,12 @@ foreach my $gene (@genes) {
           # update the last exon end pos
           my $exonStart = $exons[-1]->start;
           my $exonEnd = $exons[-1]->end;
+          my $utr_length = $trans->length - $trans->cdna_coding_end;
           if ($trans->strand == 1) {
-            $exonEnd = $exons[-1]->end($exonEnd + $newCDSEndPos + $append);
+            $exonEnd = $exons[-1]->end($exonEnd + $newCDSEndPos + $append - $utr_length);
           }
           else {
-            $exonStart = $exons[-1]->start($exonStart - $newCDSEndPos - $append);
+            $exonStart = $exons[-1]->start($exonStart - $newCDSEndPos - $append + $utr_length);
           }
           $updateLastExon=1;
         }
@@ -338,17 +339,16 @@ foreach my $gene (@genes) {
       }
     }
     if ($adjustedEnd{$endExonID}) {
-      if (not $trans->three_prime_utr) { # avoid theoretical edge case
-        $translationEnd += $adjustedEnd{$endExonID};
-        $updateTranslation = 1;
-      }
+      $translationEnd += $adjustedEnd{$endExonID};
+      $updateTranslation = 1;
+    
       # definitely update start/end of transcript depending on strand
       $updateTranscript=1;
       if ($trans->strand == 1) {
-        $transcriptEnd = $transcriptEnd + $adjustedEnd{$endExonID} + $append;
+        $transcriptEnd = $trans->coding_region_end + $adjustedEnd{$endExonID} + $append;
       }
       else {
-        $transcriptStart = $transcriptStart - $adjustedEnd{$endExonID} - $append;
+        $transcriptStart = $trans->coding_region_start - $adjustedEnd{$endExonID} - $append;
       }
     }
     if ($updateTranscript) {
@@ -415,24 +415,25 @@ sub seekUpstream {
 
 sub seekDownstream {
   my $trans = shift;
-  $trans->three_prime_utr and return 0;
+  my $utr_length = $trans->length - $trans->cdna_coding_end;
+  $utr_length < 3 or return 0;
   my $len = $extend;
   my $seqToCheck;
   if ($trans->strand == 1) {
     my $cre = $trans->coding_region_end;
-    if ($trans->end + $len > $trans->slice->end) {
+    if ($cre + $len > $trans->slice->end) {
       $len = $trans->slice->end - $cre;
       $len -= $len % 3;
-      print STDERR "WARNING: + transcript ends near end of seq_region. ",$trans->slice->end - $trans->end," new len to scan is $len\n";
+      print STDERR "WARNING: + transcript ends near end of seq_region. ",$trans->slice->end - $cre," new len to scan is $len\n";
     }
     $seqToCheck = $trans->slice->subseq($cre-2, $cre+$len, 1);
   }
   else {
-    if ($trans->start < $len) {
-      $len = $trans->start - ($trans->start % 3) - 1;
-      print STDERR "WARNING: - transcript ends near start of seq_region. ",$trans->start," new len to scan is $len\n";
-    }
     my $crs = $trans->coding_region_start;
+    if ($crs < $len) {
+      $len = $crs - ($crs % 3) - 1;
+      print STDERR "WARNING: - transcript ends near start of seq_region. ",$crs," new len to scan is $len\n";
+    }
     $seqToCheck = $trans->slice->subseq($crs-$len, $crs+2, -1);
   }
   return findFirstStop($seqToCheck);
