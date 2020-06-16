@@ -98,7 +98,7 @@ fix_internal_start_codon.pl  [options]
 =cut
 
 my ($species, $registry);
-my (%exclude_gene, $bylogicname, $debug, $nowrite, $guide_file);
+my (%exclude_gene, $bylogicname, $debug, $nowrite, $guide_file, $max_exon_idx);
 my $margin=undef;
 {  							#Argument Processing
   my $help=0;
@@ -113,13 +113,14 @@ my $margin=undef;
 	      ,"debug"=>\$debug
         ,"guide=s"=>\$guide_file
 	      ,"nowrite"=>\$nowrite
+        ,"maxexonidx=i"=>\$max_exon_idx
 	    )
     or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
   pod2usage(1) if $help;
   							#pod2usage(2) if $margin<0;
   %exclude_gene= map { $_,1 }  map { split /,/ } @exclude_gene;
- 
+  $max_exon_idx ||= 99;
 }
 
 
@@ -160,7 +161,6 @@ unless ($nowrite){
 
 #print "DBbase connected is ", $ENS_DBA->dbname, "\n" if $debug;
 
-print "@ARGV\n";
 my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 
 				#my @genes = ($gene_adaptor->fetch_by_stable_id('Opunc01g00010'));
@@ -186,7 +186,7 @@ print "found ". scalar @genes . " genes\n";
 #warn ( Dumper(\@genes) );
 
 foreach my $gene(@genes) {
-  #print "geneid = ", $gene->stable_id, "\n";
+  print "geneid = ", $gene->stable_id, "\n";
   
   $count{total_genes}++;
   
@@ -284,8 +284,9 @@ foreach my $gene(@genes) {
 		    my @ordered_Exons = $strand>0 ? @{$trans->get_all_Exons}:
 											sort {$b->seq_region_start <=> $a->seq_region_start} @{$trans->get_all_Exons};
 		    my $Exon;
+        my $exon_idx=0;
 		    while ( $Exon = shift @ordered_Exons){
-		    	
+          $exon_idx++;
 				my $exon_gstart = $Exon->seq_region_start;
 				my $exon_gend = $Exon->seq_region_end;
 				$exon_start_phase = $Exon->phase;
@@ -317,11 +318,11 @@ foreach my $gene(@genes) {
 	    	}
 	    	print "$update_exon_start_sql with [$start_exon_start_phase, $met_start_ExonID]\n" if $debug;	
 	    	print "$update_translation_sql for $met_start_ExonID, $start_exon_start, $translation_id\n" if $debug;
-	    
-	    	unless($nowrite){
+
+	    	unless($nowrite or $exon_idx > $max_exon_idx){
 				$update_exon_start_sth->execute($start_exon_start_phase, $met_start_ExonID); #this is needed to make the frame stay in place
 #				map{ $update_exon_sth->execute($_) }@fiveUTRexonIDs2update;
-				print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase)\n";
+				print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase) exon_idx $exon_idx\n";
 				$update_translation_sth->execute($met_start_ExonID, $start_exon_start, $translation_id) or die "cannot execute the sql for $met_start_ExonID, $start_exon_start, $translation_id";
 	    		$count{qualified_transcripts_withInternal_M_fixed}++;
 	    	}
