@@ -306,8 +306,6 @@ foreach my $gene (@genes) {
   }
   for my $trans (@transcripts) {
     my $transID = $trans->dbID;
-    my $startExonID = $trans->start_Exon->dbID;
-    my $endExonID = $trans->end_Exon->dbID;
     my $transcriptStart = $trans->start;
     my $transcriptEnd = $trans->end;
     next unless $trans->biotype eq 'protein_coding';
@@ -316,6 +314,8 @@ foreach my $gene (@genes) {
     my $translationID = $translation->dbID;
     my $translationStart = $translation->start;
     my $translationEnd = $translation->end;
+    my $startExonID = $translation->start_Exon->dbID;
+    my $endExonID = $translation->end_Exon->dbID;
     my ($updateTranscript, $updateTranslation);
     if ($adjustedStart{$startExonID}) {
       if ($translationStart > 3) { # some other translation was extended, but this one wasn't
