@@ -149,6 +149,22 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 @genes or  
     @genes = $bylogicname ? @{$gene_adaptor->fetch_all()}:
     @{$gene_adaptor->fetch_all_by_logic_name()};
+print STDERR "#INFO will process ",scalar @genes," genes\n";
+
+my $dbh = $ENS_DBA->dbc->db_handle;
+my %sql = (
+  delete_translation => "delete from translation where transcript_id=?",
+  update_transcript => "update transcript set biotype='non_coding' where transcript_id=?",
+  update_gene => "update gene set biotype='non_coding' where gene_id=?",
+  update_exon => "update exon set phase=?, end_phase=? where exon_id=?",
+  update_translation => "update translation set start_exon_id=?, seq_start=?, end_exon_id=?, seq_end=? where translation_id=?"
+);
+my %sth; 
+unless ($nowrite){
+  for my $statement (keys %sql) {
+    $sth{$statement} = $dbh->prepare($sql{$statement}) or die "cannot prepare $sql{$statement}\n";
+  }
+}
 
 my %count;
 my %transcript_with_internal_stop;
@@ -207,8 +223,11 @@ foreach my $gene(@genes) {
       $bad_translation=1;
       # remove translation from db
       print STDERR "delete from translation where transcript_id=",$transcript->dbID,";\n" if $debug;
+      $sth{delete_translation}->execute($transcript->dbID) unless $nowrite;
+      
       # change transcript from protein-coding to non-coding
       print STDERR "update transcript set biotype='non_coding' where transcript_id=",$transcript->dbID,";\n" if $debug;
+      $sth{update_transcript}->execute($transcript->dbID) unless $nowrite;
       next;
     }
     $good_translations = 1;
@@ -218,8 +237,16 @@ foreach my $gene(@genes) {
   if (not $good_translations) {
     # change gene->biotype to non-coding
     print STDERR "update gene set biotype='non_coding' where gene_id=",$gene->dbID,";\n" if $debug;
+    $sth{update_gene}->execute($gene->dbID) unless $nowrite;
   }
 }
+
+if ($nowrite) {
+  for my $handle (values %sth) {
+    $handle->finish
+  }
+}
+$dbh->disconnect;
 
   
 ########################## subroutines ######################################
@@ -290,9 +317,11 @@ sub update_translation {
     }
     # update exon
     print STDERR "update exon set phase=$phase, end_phase=$end_phase where exon_id=",$exon->dbID,";\n" if $debug;
+    $sth{update_exon}->execute($phase, $end_phase, $exon->dbID) unless $nowrite;
   }
   # update translation
   print STDERR "update translation set start_exon_id=$start_exon_id, seq_start=$seq_start, end_exon_id=$end_exon_id, seq_end=$seq_end where translation_id=",$translation->dbID,";\n" if $debug;
+  $sth{update_translation}->execute($start_exon_id, $seq_start, $end_exon_id, $seq_end, $translation->dbID) unless $nowrite;
 }
 
 __END__
