@@ -152,13 +152,35 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 print STDERR "#INFO will process ",scalar @genes," genes\n";
 
 my $dbh = $ENS_DBA->dbc->db_handle;
+
+my %exon_transcript_phase; # {exon}{transcript} = phase
+my $select_exon_transcript_sth = $dbh->prepare(qq{
+  select et.exon_id, et.transcript_id, e.phase from exon_transcript et, exon e
+  where et.exon_id = e.exon_id
+});
+$select_exon_transcript_sth->execute();
+while (my $row = $select_exon_transcript_sth->fetchrow_arrayref) {
+  my ($e,$t,$phase) = @$row;
+  $exon_transcript_phase{$e}{$t} = $phase;
+}
+$select_exon_transcript_sth->finish;
+print STDERR "read exon transcript phase\n" if $debug;
+my @exon_fields = qw(seq_region_id seq_region_start seq_region_end seq_region_strand phase end_phase is_current is_constitutive stable_id version);
+my $exon_fields_string = join(',',@exon_fields);
+my $question_marks = join(',', map {'?'} @exon_fields);
+my $select_exon_sth = $dbh->prepare("select $exon_fields_string from exon where exon_id=?");
+my $insert_exon_sth = $dbh->prepare("insert into exon ($exon_fields_string) VALUES ($question_marks)");
+my $update_exon_phase_sth = $dbh->prepare("update exon set phase=? where exon_id=?");
+my $update_exon_transcript_sth = $dbh->prepare("update exon_transcript set exon_id=?, transcript_id=? where exon_id=?");
+my $update_translation_start_sth = $dbh->prepare("update translation set start_exon_id=?, seq_start=? where translation_id=?");
+my $update_translation_end_sth = $dbh->prepare("update translation set end_exon_id=?, seq_end=? where translation_id=?");
+
 my %sql = (
   delete_translation => "delete from translation where transcript_id=?",
   update_transcript => "update transcript set biotype='non_coding' where transcript_id=?",
-  update_gene => "update gene set biotype='non_coding' where gene_id=?",
-  update_exon => "update exon set phase=?, end_phase=? where exon_id=?",
-  update_translation => "update translation set start_exon_id=?, seq_start=?, end_exon_id=?, seq_end=? where translation_id=?"
+  update_gene => "update gene set biotype='non_coding' where gene_id=?"
 );
+
 my %sth; 
 unless ($nowrite){
   for my $statement (keys %sql) {
@@ -180,6 +202,7 @@ foreach my $gene(@genes) {
   
   my @transcripts;
   @transcripts = @{$gene->get_all_Transcripts};
+  my %updates;
   my $good_translations=0;
   for my $transcript (@transcripts) {
     my $biotype = $transcript->biotype;
@@ -231,7 +254,7 @@ foreach my $gene(@genes) {
       next;
     }
     $good_translations = 1;
-    update_translation($transcript, $orfStart, $orfEnd-3);
+    update_translation($transcript, $orfStart, $orfEnd-3, \%updates);
     
   }
   if (not $good_translations) {
@@ -239,13 +262,76 @@ foreach my $gene(@genes) {
     print STDERR "update gene set biotype='non_coding' where gene_id=",$gene->dbID,";\n" if $debug;
     $sth{update_gene}->execute($gene->dbID) unless $nowrite;
   }
+  next if $nowrite;
+  for my $eid (keys %updates) {
+    # check if updates are consistent w.r.t. exon phase
+    # if not, create a new exon for the updated translation
+    my %phases;
+    my $orig_phase;
+    for my $tid (keys %{$exon_transcript_phase{$eid}}) {
+      $orig_phase = $exon_transcript_phase{$eid}{$tid};
+      if (exists $updates{$eid}{$tid}) {
+        $phases{$updates{$eid}{$tid}{phase}}{$tid} = 1;
+      }
+      else {
+        $phases{$orig_phase}{$tid} = 1;
+      }
+    }
+    if (keys %phases > 1) {
+      # create a new exon for each new phase
+      $select_exon_sth->execute($eid);
+      my ($eid2,$sr,$st,$en,$str,$ph,$ep,$cur,$con,$sid,$vers,@dates) = @{$select_exon_sth->fetchrow_arrayref};
+      for my $phase (keys %phases) {
+        $phase = $phase + 0; # hash keys are strings, but phase is an integer
+        next if $phase == $orig_phase;
+        print STDERR "creating new exon with phase $phase\n" if $debug;
+        $vers++;
+        $insert_exon_sth->execute($sr,$st,$en,$str,$phase,$ep,$cur,$con,$sid,$vers);
+        my $newExonId = $dbh->last_insert_id(undef, undef, undef, undef);
+        print STDERR "got new exon id $newExonId\n" if $debug;
+        # update exon_transcript table and startExon of translation (update happens after this if block)
+        for my $tid (keys %{$phases{$phase}}) {
+          print STDERR "updating exon_transcript $newExonId,$tid,$eid\n" if $debug;
+          $update_exon_transcript_sth->execute($newExonId,$tid,$eid);
+          $updates{$eid}{$tid}{exonID} = $newExonId;
+        }
+      }
+    }
+    else {
+      my ($phase) = keys %phases;
+      $phase = $phase + 0;
+      if ($phase != $orig_phase) {
+        print STDERR "updating exon phase $eid $phase\n" if $debug;
+        $update_exon_phase_sth->execute($phase, $eid);
+      }
+    }
+    # update the translations
+    for my $tid (keys %{$updates{$eid}}) {
+      my $u = $updates{$eid}{$tid};
+      if ($u->{seq_start}) {
+        print STDERR "updating translation start\n" if $debug;
+        $update_translation_start_sth->execute($u->{exonID}, $u->{seq_start}, $u->{translationID});
+      }
+      if ($u->{seq_end}) {
+        print STDERR "updating translation end\n" if $debug;
+        $update_translation_end_sth->execute($u->{exonID}, $u->{seq_end}, $u->{translationID});
+      }
+    }
+  }
 }
 
-if ($nowrite) {
+unless ($nowrite) {
   for my $handle (values %sth) {
     $handle->finish
   }
 }
+$select_exon_sth->finish;
+$insert_exon_sth->finish;
+$update_exon_phase_sth->finish;
+$update_exon_transcript_sth->finish;
+$update_translation_start_sth->finish;
+$update_translation_end_sth->finish;
+
 $dbh->disconnect;
 
   
@@ -293,7 +379,8 @@ sub find_orfs {
 }
 
 sub update_translation {
-  my ($transcript, $orfStart, $orfEnd) = @_;
+  my ($transcript, $orfStart, $orfEnd, $updatesRef) = @_;
+  my %updates = %$updatesRef;
   my $translation = $transcript->translation();
   my @exons = @{$transcript->get_all_Exons};
   my ($seq_start, $seq_end, $start_exon_id, $end_exon_id);
@@ -316,12 +403,24 @@ sub update_translation {
       $end_phase = ($posInTranscript - $orfStart) % 3;
     }
     # update exon
-    print STDERR "update exon set phase=$phase, end_phase=$end_phase where exon_id=",$exon->dbID,";\n" if $debug;
-    $sth{update_exon}->execute($phase, $end_phase, $exon->dbID) unless $nowrite;
+    # print STDERR "update exon set phase=$phase, end_phase=$end_phase where exon_id=",$exon->dbID,";\n" if $debug;
+    # $sth{update_exon}->execute($phase, $end_phase, $exon->dbID) unless $nowrite;
+
+    $updates{$exon->dbID}{$transcript->dbID} = {
+      exonID => $exon->dbID, # this could change if a new exon needs to be created
+      phase => $phase,
+      end_phase => $end_phase
+    };
   }
   # update translation
-  print STDERR "update translation set start_exon_id=$start_exon_id, seq_start=$seq_start, end_exon_id=$end_exon_id, seq_end=$seq_end where translation_id=",$translation->dbID,";\n" if $debug;
-  $sth{update_translation}->execute($start_exon_id, $seq_start, $end_exon_id, $seq_end, $translation->dbID) unless $nowrite;
+  # print STDERR "update translation set start_exon_id=$start_exon_id, seq_start=$seq_start, end_exon_id=$end_exon_id, seq_end=$seq_end where translation_id=",$translation->dbID,";\n" if $debug;
+  # $sth{update_translation}->execute($start_exon_id, $seq_start, $end_exon_id, $seq_end, $translation->dbID) unless $nowrite;
+  my $startUpdate = $updates{$start_exon_id}{$transcript->dbID};
+  $startUpdate->{translationID} = $translation->dbID;
+  $startUpdate->{seq_start} = $seq_start;
+  my $endUpdate = $updates{$end_exon_id}{$transcript->dbID};
+  $endUpdate->{translationID} = $translation->dbID;
+  $endUpdate->{seq_end} = $seq_end;
 }
 
 __END__
