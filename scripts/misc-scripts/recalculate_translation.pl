@@ -165,13 +165,13 @@ while (my $row = $select_exon_transcript_sth->fetchrow_arrayref) {
 }
 $select_exon_transcript_sth->finish;
 print STDERR "read exon transcript phase\n" if $debug;
-my @exon_fields = qw(seq_region_id seq_region_start seq_region_end seq_region_strand phase end_phase is_current is_constitutive stable_id version);
+my @exon_fields = qw(exon_id seq_region_id seq_region_start seq_region_end seq_region_strand phase end_phase is_current is_constitutive stable_id version);
 my $exon_fields_string = join(',',@exon_fields);
 my $question_marks = join(',', map {'?'} @exon_fields);
 my $select_exon_sth = $dbh->prepare("select $exon_fields_string from exon where exon_id=?");
 my $insert_exon_sth = $dbh->prepare("insert into exon ($exon_fields_string) VALUES ($question_marks)");
 my $update_exon_phase_sth = $dbh->prepare("update exon set phase=? where exon_id=?");
-my $update_exon_transcript_sth = $dbh->prepare("update exon_transcript set exon_id=?, transcript_id=? where exon_id=?");
+my $update_exon_transcript_sth = $dbh->prepare("update exon_transcript set exon_id=? where exon_id=? and transcript_id=?");
 my $update_translation_start_sth = $dbh->prepare("update translation set start_exon_id=?, seq_start=? where translation_id=?");
 my $update_translation_end_sth = $dbh->prepare("update translation set end_exon_id=?, seq_end=? where translation_id=?");
 
@@ -286,13 +286,13 @@ foreach my $gene(@genes) {
         next if $phase == $orig_phase;
         print STDERR "creating new exon with phase $phase\n" if $debug;
         $vers++;
-        $insert_exon_sth->execute($sr,$st,$en,$str,$phase,$ep,$cur,$con,$sid,$vers);
+        $insert_exon_sth->execute(undef,$sr,$st,$en,$str,$phase,$ep,$cur,$con,$sid,$vers);
         my $newExonId = $dbh->last_insert_id(undef, undef, undef, undef);
         print STDERR "got new exon id $newExonId\n" if $debug;
         # update exon_transcript table and startExon of translation (update happens after this if block)
         for my $tid (keys %{$phases{$phase}}) {
-          print STDERR "updating exon_transcript $newExonId,$tid,$eid\n" if $debug;
-          $update_exon_transcript_sth->execute($newExonId,$tid,$eid);
+          print STDERR "updating exon_transcript $newExonId,$eid,$tid\n" if $debug;
+          $update_exon_transcript_sth->execute($newExonId,$eid,$tid);
           $updates{$eid}{$tid}{exonID} = $newExonId;
         }
       }
