@@ -341,8 +341,8 @@ foreach my $gene(@genes) {
         print STDERR "got new exon id $newExonId\n" if $debug;
         # update exon_transcript table and startExon of translation (update happens after this if block)
         for my $tid (keys %{$phases{$phase}}) {
-          print STDERR "updating exon_transcript $eid,$tid,$newExonId\n" if $debug;
-          $update_exon_transcript_sth->execute($eid,$tid,$newExonId);
+          print STDERR "updating exon_transcript $newExonId,$tid,$eid\n" if $debug;
+          $update_exon_transcript_sth->execute($newExonId,$tid,$eid);
           $updates{$eid}{$tid}{startExon} = $newExonId;
         }
       }
