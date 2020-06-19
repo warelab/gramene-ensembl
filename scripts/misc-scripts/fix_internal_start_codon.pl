@@ -210,7 +210,10 @@ foreach my $gene(@genes) {
       print STDERR "No cDNA seq for :$comp_id\n";
       next;
     }
-
+    if ($biotype ne 'protein_coding') {
+      print STDERR "not protein_coding $comp_id\n" if $debug;
+      next;
+    }
     $count{qualified_transcripts}++;
 
     my $trmapper = $trans->get_TranscriptMapper;
