@@ -205,7 +205,7 @@ foreach my $gene(@genes) {
     my $logic_name = $trans->analysis->logic_name;
     my $strand = $trans->strand;
     my $comp_id = join "|", ($id, $stableid, $strand, $slice_name, $logic_name, $biotype);
-    			#print "processing transcript $comp_id\n";
+          print "processing transcript $comp_id\n";
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for :$comp_id\n";
       next;
@@ -239,13 +239,13 @@ foreach my $gene(@genes) {
         # print STDERR "matched\n" if $debug;
         $count{qualified_transcripts_withInternal_M}++;
 
-        # print STDERR "$comp_id: 1 based index of 1st M is $idxm\n" if $debug;
+        print STDERR "$comp_id: 1 based index of 1st M is $idxm\n" if $debug;
 
         my @genomic_coords = $trmapper->pep2genomic( $idxm, $idxm );
         my $Met_start_genomic;
         my $start_exon_start_phase;
 
-        # map{ print $_->start .", " . $_->end . "\n"} @genomic_coords if $debug;
+        map{ print STDERR $_->start .", " . $_->end . "\n"} @genomic_coords if $debug;
 
         if( scalar @genomic_coords == 0 ){
           warn("No genomic coord found for M at $idxm, skip\n");
@@ -260,7 +260,7 @@ foreach my $gene(@genes) {
           $Met_start_genomic = shift @ends;
 		    }
 
-        # print "Met start genomic coord is $Met_start_genomic (the genomic start fo 1st M may looks off by one codon for minus strand gene, but believe it it will end up giving the correct translation in the end)\n" if $debug;
+        print STDERR "Met start genomic coord is $Met_start_genomic (the genomic start fo 1st M may looks off by one codon for minus strand gene, but believe it it will end up giving the correct translation in the end)\n" if $debug;
 	
 		    my @fiveUTRexonIDs2update;
 		    my ($met_start_ExonID, $start_exon_start, $exon_start_phase);
@@ -275,7 +275,7 @@ foreach my $gene(@genes) {
           $exon_start_phase = $Exon->phase;
           my $exon_seq = $Exon->seq->seq;
 
-          # print "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
+          print STDERR "$Met_start_genomic ? [$exon_gstart, $exon_gend,  $exon_start_phase]\n$exon_seq\n" if $debug;
           if( $Met_start_genomic >= $exon_gstart && $Met_start_genomic <= $exon_gend) {
 				    $met_start_ExonID = $Exon->dbID;
 				    $start_exon_start = $strand>0 ? $Met_start_genomic-$exon_gstart+1:$exon_gend-$Met_start_genomic+1;
@@ -297,6 +297,7 @@ foreach my $gene(@genes) {
 				  next;
 	    	}
 
+        print STDERR "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase) exon_idx $exon_idx\n";
 	    	unless($nowrite or $exon_idx > $max_exon_idx){
           $updates{$met_start_ExonID}{$trans->dbID} = {
             startExon => $met_start_ExonID, # this could change if a new exon needs to be created
@@ -305,7 +306,6 @@ foreach my $gene(@genes) {
             endExon => $endExonID, # this could change if a new exon needs to be created
             translationID => $translation_id
           };
-        # print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase) exon_idx $exon_idx\n";
 	    		$count{qualified_transcripts_withInternal_M_fixed}++;
 	    	}
       } else {
@@ -348,7 +348,7 @@ foreach my $gene(@genes) {
         for my $tid (keys %{$phases{$phase}}) {
           print STDERR "updating exon_transcript $newExonId,$eid,$tid\n" if $debug;
           $update_exon_transcript_sth->execute($newExonId,$eid,$tid);
-          $updates{$eid}{$tid}{endExon} = $newExonId if ($updates{$eid}{$tid}{startExon} = $updates{$eid}{$tid}{endExon});
+          $updates{$eid}{$tid}{endExon} = $newExonId if ($updates{$eid}{$tid}{startExon} == $updates{$eid}{$tid}{endExon});
           $updates{$eid}{$tid}{startExon} = $newExonId;
         }
       }
