@@ -180,7 +180,7 @@ my $select_exon_sth = $dbh->prepare("select $exon_fields_string from exon where 
 my $insert_exon_sth = $dbh->prepare("insert into exon ($exon_fields_string) VALUES ($question_marks)");
 my $update_exon_phase_sth = $dbh->prepare("update exon set phase=? where exon_id=?");
 my $update_exon_transcript_sth = $dbh->prepare("update exon_transcript set exon_id=? where exon_id=? and transcript_id=?");
-my $update_translation_sth = $dbh->prepare("update translation set start_exon_id=?, seq_start=? where translation_id=?");
+my $update_translation_sth = $dbh->prepare("update translation set start_exon_id=?, seq_start=?, end_exon_id=? where translation_id=?");
 use Data::Dumper;
 #warn ( Dumper(\@genes) );
 
@@ -222,6 +222,7 @@ foreach my $gene(@genes) {
     my $translation_id= $translation->dbID;
     my $translation_stable_id= $translation->stable_id;
     my $translation_old_start= $translation->start;
+    my $endExonID = $translation->end_Exon->dbID;
     
     my $idxm = $guide{$translation_stable_id} || index( uc($aa), 'M', 1);
     $idxm += 1;
@@ -298,6 +299,7 @@ foreach my $gene(@genes) {
             startExon => $met_start_ExonID, # this could change if a new exon needs to be created
             phase => $start_exon_start_phase,
             seqStart => $start_exon_start,
+            endExon => $endExonID, # this could change if a new exon needs to be created
             translationID => $translation_id
           };
         # print "$translation_stable_id ($translation_id), old start $translation_old_start, startExonID $met_start_ExonID, Met start in startExon $start_exon_start, startPhase ($exon_start_phase -> $start_exon_start_phase) exon_idx $exon_idx\n";
@@ -343,6 +345,7 @@ foreach my $gene(@genes) {
         for my $tid (keys %{$phases{$phase}}) {
           print STDERR "updating exon_transcript $newExonId,$eid,$tid\n" if $debug;
           $update_exon_transcript_sth->execute($newExonId,$eid,$tid);
+          $updates{$eid}{$tid}{endExon} = $newExonId if ($updates{$eid}{$tid}{startExon} = $updates{$eid}{$tid}{endExon});
           $updates{$eid}{$tid}{startExon} = $newExonId;
         }
       }
@@ -358,8 +361,8 @@ foreach my $gene(@genes) {
     # update the translations
     for my $tid (keys %{$updates{$eid}}) {
       my $u = $updates{$eid}{$tid};
-      print STDERR "updating translation ",$u->{startExon},$u->{seqStart},$u->{translationID},"\n" if $debug;
-      $update_translation_sth->execute($u->{startExon}, $u->{seqStart}, $u->{translationID});
+      print STDERR "updating translation ",join(',',$u->{startExon},$u->{seqStart},$u->{endExon},$u->{translationID}),"\n" if $debug;
+      $update_translation_sth->execute($u->{startExon}, $u->{seqStart}, $u->{endExon}, $u->{translationID});
     }
   }
 }					#Gene
