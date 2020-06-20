@@ -205,7 +205,7 @@ foreach my $gene(@genes) {
     my $logic_name = $trans->analysis->logic_name;
     my $strand = $trans->strand;
     my $comp_id = join "|", ($id, $stableid, $strand, $slice_name, $logic_name, $biotype);
-          print "processing transcript $comp_id\n";
+    print STDERR "processing transcript $comp_id\n";
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for :$comp_id\n";
       next;
