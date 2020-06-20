@@ -148,7 +148,7 @@ my @genes = map{ $gene_adaptor->fetch_by_stable_id($_) } @ARGV;
 #my @genes = ($gene_adaptor->fetch_by_stable_id('Opunc01g00010'));
 @genes or  
     @genes = $bylogicname
-    ? @{$gene_adaptor->fetch_all_by_logic_name()}
+    ? @{$gene_adaptor->fetch_all_by_logic_name($bylogicname)}
     : @{$gene_adaptor->fetch_all()};
 print STDERR "#INFO will process ",scalar @genes," genes\n";
 
