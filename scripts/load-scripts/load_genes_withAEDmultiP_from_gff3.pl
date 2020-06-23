@@ -19,7 +19,7 @@ Options:
   -s|--species          Species key in Ensembl registry file.
   -l|--logic_name       the logic name for the gene track
   -n|--no_insert        Do not make changes to the database. For debug.
-  -c|--coding		nonCoding genes tRNA, miRNA ...
+  -c|--coding_ex		nonCoding genes tRNA, miRNA ...
   -b|--biotype		nonCoding biotyoe such as miRNA, tRNA, lincRNA
 
 =head1 OPTIONS
@@ -179,7 +179,7 @@ BEGIN{  #Argument Processing
         "ensembl_registry=s" => \$reg,
         "logic_name=s"       => \$logic_name,
         "no_insert"          => \$no_insert,
-	"coding"             => \$non_coding,
+	"coding_ex"             => \$non_coding,
 	"biotype=s"	     => \$biotype,
         )
       or pod2usage(2);
@@ -453,7 +453,7 @@ while( my $line = $GFF_HANDLE->getline ){
 
 # compute more features and store in the hash
 #
-foreach my $g( keys %$GENES ){
+GENEL: foreach my $g( keys %$GENES ){
   my $genedata = $GENES->{$g};
   $genedata->{TRANSCRIPT_COUNT} = keys %{$genedata->{TRANSCRIPTS}};
 
@@ -515,6 +515,11 @@ warn ("start codon coord=$start_codon, stop codon coord =$stop_codon\n");
     unless( $NONCODING ||  (defined $trptdata->{CDS_END_EXON} &&
           defined $trptdata->{CDS_START_EXON}) ){
       #warn Dumper( $trptdata );
+      if( $trptdata->{ATTRIBS}->{NOTE} =~ /tRNA/i){
+	warn ("gene $g, transcript $t is tRNA, skip gene $g");
+	delete $GENES->{$g};
+	next GENEL;
+	}
       die( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
     }
     
@@ -620,7 +625,7 @@ foreach my $gene_id( keys %$GENES ){
     my $transcript_stop  = $atrptdata->{STOP_CODON};
   
     if( $NONCODING ){
-        $BIOTYPE ||= 'nonCoding' ;
+        $BIOTYPE ||= 'non_coding' ;
         $eGene->biotype( $BIOTYPE );
     }else{ 
     	$transcript_start || die( "Trpt ${gene_id}-${trpt_id} has no start" );

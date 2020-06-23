@@ -280,7 +280,7 @@ while(my $infile=shift) {
 	       and print $trans->stable_id,"=$id translate failed: $@\n" 
 	       and die; #and next FASTA_SEQ;   #weix
 	    my $trpt_id=$trans->stable_id;
-
+#warn("DEBUG: trpt_id=$trpt_id");
 	    $gtt->[2]=$pep;
 	    $gtt->[3]=lc($pep->seq());
 	    #print "ens_seq=".$ens_seq{$trans->stable_id}."\n";

@@ -17,17 +17,19 @@ use lib "$Bin";
 use strict;
 use warnings;
 use ExportView::GFF3ExporterNAM;
+use ExportView::GFF3ExporterNAMnonCoding;
 use Bio::EnsEMBL::DBSQL::DBAdaptor;
 use Getopt::Long;
 use Bio::EnsEMBL::Registry;
 
 my @db_adaptors;
-my ($output_dir, $logicname);
+my ($output_dir, $logicname, $noncoding);
 
 GetOptions(
 	'dbname=s' => \@db_adaptors,
 	'output_dir=s' => \$output_dir,
 	'logicname=s' => \$logicname,
+	'noncoding!' => \$noncoding,
 );
 
 
@@ -77,17 +79,22 @@ foreach my $dbname (@db_adaptors) {
 
 	my $slices = $adaptor->fetch_all('toplevel');
 
-	my $output_file = $output_dir . '/' . $key . ".gff";
+	my $output_file =  $output_dir . '/' . $key . ( $noncoding ? ".nc.gff" : ".gff");
 
 	print STDERR "\tDumping $key ($dbname) to $output_file (" , scalar(@$slices), " slices)\n";
 my $gff;
 	open ( $gff, '>' . $output_file) or die "Cannot open $output_file\n";
 
     eval {
-	    my $exporter = ExportView::GFF3ExporterNAM->new('debug' => 1,
+	    my $exporter = $noncoding ? 
+			ExportView::GFF3ExporterNAMnonCoding->new('debug' => 1,
+                                                            'source' => 'NAM')
+			:
+			ExportView::GFF3ExporterNAM->new('debug' => 1,
 							    'source' => 'NAM');
+
 	    $exporter->header($gff, $adaptor->db->get_MetaContainer->get_common_name(), $adaptor->db->get_MetaContainer->get_genebuild());
-    	$exporter->export_genes_from_slices($gff, $slices, $logicname);
+	    $exporter->export_genes_from_slices($gff, $slices, $logicname);
     };
 
     close $gff;
