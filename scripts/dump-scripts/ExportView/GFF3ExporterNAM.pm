@@ -551,6 +551,8 @@ sub export_cdses {
 	$self->reset_id_counter;
 	my $translation_id = $transcript->translation->stable_id;
 
+  my @GFFPhase = (0,2,1,0); # because ensembl exon phase is not quite the same as what gff3 means by phase
+  # https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
 	foreach my $cds ( sort {$a->seq_region_start <=> $b->seq_region_start } @$cdses) {
 
 		my $cds_id = "CDS:$translation_id";
@@ -570,7 +572,7 @@ sub export_cdses {
 					'.',									#score
 				)),
 				$strand_map->{$cds->strand},			#strand
-				$cds->phase >= 0 ? $cds->phase : '.',	#phase
+				$GFFPhase[$cds->phase],       #phase
 				
 				"ID=".$self->escape_attribute($cds_id)
 				.";Parent=transcript:" . $self->escape_attribute($transcript_id)				#attributes
