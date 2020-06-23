@@ -551,7 +551,7 @@ sub export_cdses {
 	$self->reset_id_counter;
 	my $translation_id = $transcript->translation->stable_id;
 
-  my @GFFPhase = [0,2,1,0]; # because ensembl exon phase is not quite the same as what gff3 means by phase
+  my @GFFPhase = (0,2,1,0); # because ensembl exon phase is not quite the same as what gff3 means by phase
   # https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
 	foreach my $cds ( sort {$a->seq_region_start <=> $b->seq_region_start } @$cdses) {
 
