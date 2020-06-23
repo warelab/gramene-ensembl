@@ -381,7 +381,6 @@ sub find_orfs {
 
 sub update_translation {
   my ($transcript, $orfStart, $orfEnd, $updatesRef) = @_;
-  my %updates = %$updatesRef;
   my $translation = $transcript->translation();
   my @exons = @{$transcript->get_all_Exons};
   my ($seq_start, $seq_end, $start_exon_id, $end_exon_id);
@@ -407,7 +406,7 @@ sub update_translation {
     # print STDERR "update exon set phase=$phase, end_phase=$end_phase where exon_id=",$exon->dbID,";\n" if $debug;
     # $sth{update_exon}->execute($phase, $end_phase, $exon->dbID) unless $nowrite;
 
-    $updates{$exon->dbID}{$transcript->dbID} = {
+    $updatesRef->{$exon->dbID}{$transcript->dbID} = {
       exonID => $exon->dbID, # this could change if a new exon needs to be created
       phase => $phase,
       end_phase => $end_phase
@@ -416,10 +415,10 @@ sub update_translation {
   # update translation
   # print STDERR "update translation set start_exon_id=$start_exon_id, seq_start=$seq_start, end_exon_id=$end_exon_id, seq_end=$seq_end where translation_id=",$translation->dbID,";\n" if $debug;
   # $sth{update_translation}->execute($start_exon_id, $seq_start, $end_exon_id, $seq_end, $translation->dbID) unless $nowrite;
-  my $startUpdate = $updates{$start_exon_id}{$transcript->dbID};
+  my $startUpdate = $updatesRef->{$start_exon_id}{$transcript->dbID};
   $startUpdate->{translationID} = $translation->dbID;
   $startUpdate->{seq_start} = $seq_start;
-  my $endUpdate = $updates{$end_exon_id}{$transcript->dbID};
+  my $endUpdate = $updatesRef->{$end_exon_id}{$transcript->dbID};
   $endUpdate->{translationID} = $translation->dbID;
   $endUpdate->{seq_end} = $seq_end;
 }
