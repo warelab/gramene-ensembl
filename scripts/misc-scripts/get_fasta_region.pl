@@ -30,7 +30,7 @@ use Getopt::Long;
 use Pod::Usage;
 use File::Glob;
 
-use Gramene::Config;
+#use Gramene::Config;
 use DBI qw/:sql_types/;
 
 use Bio::SeqIO;
@@ -50,7 +50,7 @@ tidy_fasta.pl  [options] fasta1 fasta2 ...
     --help		help message
     --man		full documentation
     --start_coord       the start coordinate
-    --end_coord
+    -end_coord
     --seq_name          name of the sequence
 
 

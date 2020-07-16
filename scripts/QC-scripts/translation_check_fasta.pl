@@ -248,7 +248,7 @@ while(my $infile=shift) {
 		      @{$gene->get_all_Transcripts};
 	} elsif ($idwhat eq 'transcript') {
 	    my $transcript; #print "id = $id\n";
-	    $id =~ s/\_P/_T/; #protein id is 'Zm00001e019034_P004', transcript id is 'Zm00001e019034_T004'
+	    $id =~ s/\_P/_T/; print "nid = $id\n";#protein id is 'Zm00001e019034_P004', transcript id is 'Zm00001e019034_T004'
 	    eval {  $transcript=$transcript_adaptor->fetch_by_stable_id($id); };
 	    print STDERR "$@\n" and ++$count{'not found'} and next if $@;
 	    print STDERR "no transcript fetched by $id\n" and ++$count{'not found'} and next unless $transcript;
@@ -283,10 +283,10 @@ while(my $infile=shift) {
 #warn("DEBUG: trpt_id=$trpt_id");
 	    $gtt->[2]=$pep;
 	    $gtt->[3]=lc($pep->seq());
-	    #print "ens_seq=".$ens_seq{$trans->stable_id}."\n";
+	    print "pep_seq\n".$gtt->[3]."\n";
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	     if( $fa_seq  eq $gtt->[3] );
-	    #print "$fa_seq\n  eq\n $gtt->[3]\n";
+	    print "$fa_seq\n  eq\n $gtt->[3]\n";
 	   
 
 	    print "$trpt_id=> $gtt->[3] (ensembl_translation)\n";

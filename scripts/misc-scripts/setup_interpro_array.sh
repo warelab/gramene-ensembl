@@ -66,7 +66,7 @@ echo "
 #$ -N $PROJ 
 #$ -o test_log/
 #$ -e test_log/
-#$ -l m_mem_free=4G 
+#$ -l m_mem_free=12G 
 #$ -l h_vmem=15G
 
 echo "Task id is \$SGE_TASK_ID"
