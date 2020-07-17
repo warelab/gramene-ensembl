@@ -248,7 +248,10 @@ while(my $infile=shift) {
 		      @{$gene->get_all_Transcripts};
 	} elsif ($idwhat eq 'transcript') {
 	    my $transcript; #print "id = $id\n";
+
 	    $id =~ s/\_P/_T/; #protein id is 'Zm00001e019034_P004', transcript id is 'Zm00001e019034_T004'
+	    #$id =~ s/\.p$//; # JGI nomenclature protein format SbRio.K002500.1.p, transcript is SbRio.K002500.1
+
 	    eval {  $transcript=$transcript_adaptor->fetch_by_stable_id($id); };
 	    print STDERR "$@\n" and ++$count{'not found'} and next if $@;
 	    print STDERR "no transcript fetched by $id\n" and ++$count{'not found'} and next unless $transcript;
