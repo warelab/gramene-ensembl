@@ -4,19 +4,19 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'sorghum.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 61;
+  $SiteDefs::SITE_RELEASE_VERSION = 1;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'May 2019';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jul 2020';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
-  $SiteDefs::ENSEMBL_PORT       = 80;
+  $SiteDefs::ENSEMBL_PORT       = 88;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -25,7 +25,6 @@ sub update_conf {
   $SiteDefs::ENSEMBL_MAIL_SERVER            = 'localhost';
 
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
-  $SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
 
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
@@ -67,7 +66,7 @@ push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/loca
 
  
 $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
-    'host'        => 'colden',                                                                       # Database host (defaults to ensembldb.ensembl.org)
+    'host'        => 'cabot',                                                                       # Database host (defaults to ensembldb.ensembl.org)
     'user'        => 'weix',                                                                       # Defaults to 'anonymous'
     'password'    => 'warelab',                                                                       # Not used by default
     'port'        => 3306,                                                                       # Defaults to 5306
@@ -78,7 +77,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   # User database
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
-  $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
+  $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
   $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
 
@@ -98,10 +97,10 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   # Mart/Blast
   $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
   $SiteDefs::ENSEMBL_BLAST_BY_SEQID = 1; # blast on gene page sequence
-  $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
+  $SiteDefs::ENSEMBL_MART_ENABLED = 0; # And mart
 
-  $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
-  $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
+  $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
+  $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
   $SiteDefs::ENSEMBL_IDM_ENABLED    = 0;
   $SiteDefs::ENSEMBL_FC_ENABLED     = 0;
   $SiteDefs::ENSEMBL_LD_ENABLED     = 0;
@@ -140,7 +139,24 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
     # );
 #  push(@{$SiteDefs::__species_aliases{'Populus_trichocarpa'}},'poplar');
 
-$SiteDefs::ENSEMBL_TOOLS_LIST = [
+  $SiteDefs::ENSEMBL_DATASETS = [sort qw(
+      Arabidopsis_thaliana
+      Brachypodium_distachyon
+      Chlamydomonas_reinhardtii
+      Oryza_sativa
+      Selaginella_moellendorffii
+      Sorghum_bicolor
+      Sorghum_rio
+      Sorghum_tx2783pac
+      Sorghum_tx430nano
+      Sorghum_tx436pac
+      Sorghum_tx623cshl
+      Vitis_vinifera
+      Zea_mays
+    )
+    ];
+
+  $SiteDefs::ENSEMBL_TOOLS_LIST = [
     'Blast'             => 'BLAST/BLAT',
     'VEP'               => 'Variant Effect Predictor',
     #'FileChameleon'     => 'File Chameleon',
