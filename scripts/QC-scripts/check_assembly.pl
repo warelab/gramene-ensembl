@@ -149,20 +149,23 @@ for my $tigr_fasta (@ARGV) {
 	  
     #parse out the database chr name
     my $chr;
-    if( $acs =~ /chr/i){ 
+    if( $acs =~ /chr/i){ #>chromosome_1 
 
 	if(
 	 $tigrseq->display_id =~ m/ chr0*(\d+)$ /ixms || 
 	 $tigrseq->display_id =~ m/ ( chloroplast | mitochondrion ) /ixms 
 	 ){
 		$chr=$1;
-	}elsif( $tigrseq->display_id =~ m/ (chr)? \s*(\S+) /ixms) {
+	}elsif( $tigrseq->display_id =~ m/ (chr)? \s+(\S+) /ixms) {
       
     		 $chr=$2; 
 	}else{ $chr= $tigrseq->display_id;}
 
 	$chr    =~ s/chr(omosome)?_?0*//i;
+
+	$chr = 'U' if $chr eq '0';
 	print "chr = $chr\n";
+	
     } else {
       $chr=$tigrseq->display_id;
 

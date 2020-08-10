@@ -248,6 +248,7 @@ while(my $infile=shift) {
 		      @{$gene->get_all_Transcripts};
 	} elsif ($idwhat eq 'transcript') {
 	    my $transcript; #print "id = $id\n";
+	    $id =~ s/\_P/_T/; print "nid = $id\n";#protein id is 'Zm00001e019034_P004', transcript id is 'Zm00001e019034_T004'
 	    eval {  $transcript=$transcript_adaptor->fetch_by_stable_id($id); };
 	    print STDERR "$@\n" and ++$count{'not found'} and next if $@;
 	    print STDERR "no transcript fetched by $id\n" and ++$count{'not found'} and next unless $transcript;
@@ -264,10 +265,11 @@ while(my $infile=shift) {
 	my (%seq_regions,$strand,%ens_seq);
 	
 	my $fa_seq=lc($fasta_translation->seq);
-	$fa_seq=~ s/\*$//; #TIGR puts * at end for stop codon always,
+	#$fa_seq=~ s/\*$//; #TIGR puts * at end for stop codon always,
 			   #ensembl doesn't
-	$fa_seq=~ s/x$//; #JGI sometimes put X when the aa cannot be determined for
-			  #example: a hanning 'A'
+	$fa_seq =~ s/[.*x]+$//; #JGI sometimes put X when the aa cannot be determined for
+			  #example: a hanning 'A', or . or * for stop codon
+	$fa_seq =~ s/\./*/g; #internal stop codon, we want to unify them to be represented by *;
 	#print "fa_seq=$fa_seq\n";
 
 	foreach my $gtt (@GeneScriptLation) {
@@ -278,13 +280,13 @@ while(my $infile=shift) {
 	       and print $trans->stable_id,"=$id translate failed: $@\n" 
 	       and die; #and next FASTA_SEQ;   #weix
 	    my $trpt_id=$trans->stable_id;
-
+#warn("DEBUG: trpt_id=$trpt_id");
 	    $gtt->[2]=$pep;
 	    $gtt->[3]=lc($pep->seq());
-	    #print "ens_seq=".$ens_seq{$trans->stable_id}."\n";
+	    print "pep_seq\n".$gtt->[3]."\n";
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	     if( $fa_seq  eq $gtt->[3] );
-	    #print "$fa_seq\n  eq\n $gtt->[3]\n";
+	    print "$fa_seq\n  eq\n $gtt->[3]\n";
 	   
 
 	    print "$trpt_id=> $gtt->[3] (ensembl_translation)\n";
@@ -293,7 +295,7 @@ while(my $infile=shift) {
 	    my ($uniform_fa_seq, $uniform_ensembl) = ($fa_seq, $gtt->[3]);
 	    
 	    $uniform_ensembl =~ s=[*]+.*==;
-	    $uniform_fa_seq =~ s=[*]+.*==;
+	    $uniform_fa_seq =~ s=[*.]+.*==; #some file has * or . to indicate stop codon
 
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	      if( $uniform_fa_seq  eq $uniform_ensembl );

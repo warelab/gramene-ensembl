@@ -50,7 +50,6 @@ dump_transcripts.pl  [options]
     --analysispgm	this(these) analysispgm(s) only
     --exclude-analysispgm	skip this analysispgm
     --exclude-clone	skip this clone (when doing all genes)
-    --margin		margin for 3', 5'
     --coding            indicate we only want coding sequences
     --longest           only dump the longest transcript for each gene
 
@@ -77,10 +76,6 @@ The registry file for ensembl databases
 
 supply the species name whose transcripts are to be dumped
 
-=item B<--margin>
-
-size in basepairs of 3' and 5' regions to dump 
-default 500. 0=don't dump these.
 
 =item B<--coding>
 
@@ -110,7 +105,7 @@ None=All.
 
 my ($species, $registry, $coding, $longest);
 my (%exclude_gene,%exclude_analysispgm,%analysispgm,%exclude_clone,$bylogicname,$outfile);
-my $margin=undef;
+#my $margin=undef;
 {  #Argument Processing
   my $help=0;
   my $man=0;
@@ -126,7 +121,7 @@ my $margin=undef;
 	      ,"exclude-clone=s"=>\@exclude_clone
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
-	      ,"margin=i"=>\$margin
+	      #,"margin=i"=>\$margin
 	      ,"coding"=>\$coding
 	      ,"longest"=>\$longest
 	      ,"outfile=s"=> \$outfile
@@ -165,10 +160,10 @@ my $type = $coding ? 'cds' : $longest ? 'longestcdna' : 'cdna';
 			 );
 #}
 
-if($margin) {
-  $seqio5 = Bio::SeqIO->new(-file =>">5prime.fasta", '-format'=>'fasta');
-  $seqio3 = Bio::SeqIO->new(-file =>">3prime.fasta", '-format'=>'fasta');
-}
+#if($margin) {
+#  $seqio5 = Bio::SeqIO->new(-file =>">5prime.fasta", '-format'=>'fasta');
+#  $seqio3 = Bio::SeqIO->new(-file =>">3prime.fasta", '-format'=>'fasta');
+#}
 
 
 foreach my $geneid (@genes) {
@@ -235,7 +230,7 @@ foreach my $geneid (@genes) {
     my $slice_name = $trans->slice->name;
     my $biotype = $trans->biotype;
     my $logic_name = $trans->analysis->logic_name;
-    my $comp_id = join "|", ($id, $slice_name, $logic_name, $biotype);
+    my $comp_id = join "|", ($slice_name, $logic_name, $biotype);
     unless ( $cdna_seq ){
       print STDERR "No cDNA seq for $geneid:$comp_id\n";
       next;
@@ -250,7 +245,8 @@ foreach my $geneid (@genes) {
 	"|coding region $cdna_coding_start-$cdna_coding_end";
       print "DEBUG coding id $comp_id\n";
       $seq_obj = Bio::Seq->new(
-				      -display_id => $comp_id,
+				      -display_id => $id,
+				      -desc       => $comp_id,
 				      -seq => substr($cdna_seq, 
 						     $cdna_coding_start-1, 
 						     $cdna_coding_end-$cdna_coding_start+1)
@@ -260,7 +256,8 @@ foreach my $geneid (@genes) {
       
       $comp_id .=  "|CDNA";
       $seq_obj = Bio::Seq->new(
-				    -display_id => $comp_id,
+				    -display_id => $id,
+				    -desc      => $comp_id,
 				    -seq => $cdna_seq,
 				   );
       

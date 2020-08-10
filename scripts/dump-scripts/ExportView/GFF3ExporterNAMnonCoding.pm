@@ -1,4 +1,4 @@
-package ExportView::GFF3ExporterNAM;
+package ExportView::GFF3ExporterNAMnonCoding;
 
 =pod
 
@@ -28,6 +28,9 @@ $exporter->export_genes_from_slices(\*STDOUT, @$slices, $logicname);
 
 use strict;
 use warnings;
+use Readonly;
+
+Readonly my $NONCODING_TRPT => "noncoding_transcript"; #https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
 
 our %analysis2logicname;
 
@@ -230,6 +233,8 @@ sub export_genes_from_slice {
 	#foreach my $gene ( @{ $slice->get_all_Genes_by_type('avec_rnaseq_avec_sbi') } ) {
 	foreach my $gene ( @{ $slice->get_all_Genes($logicname)} ) {
 #print "Debug inside export_genes_from_slice\n";
+
+
 		my $analysis_obj = $gene->analysis;
 		my $analysis_id = $analysis_obj->dbID;
 		
@@ -242,7 +247,14 @@ sub export_genes_from_slice {
 		my $gene_id = $gene->stable_id;
 		my $gid = $gene->dbID;
 		my $gene_name = $gene_id || '';
-die "Not found geneID for $gid" unless $gene_id;		
+die "Not found geneID for $gid" unless $gene_id;
+
+		my $biotype = $gene->biotype ;
+		if( $biotype !~ /non[_-]coding/i ){
+                        warn ("[Warning] gene $gene_name  is not non_coding or non-coding, skip\n");
+                        next;
+                }
+		
 		if ($self->{'overlapping_id'}->{$gene_name}++) {
 			$gene_id .= '.gene';
 		}
@@ -291,7 +303,7 @@ die "Not found geneID for $gid" unless $gene_id;
 			$strand_map->{$gene->strand},	#strand
 			'.',							#phase
 			"ID=gene:" . $self->escape_attribute($gene_id)		#attributes
-			. ";biotype=" . $gene->biotype
+			. ";biotype=" . $biotype
 			. ";logic_name=" . $analysis2logicname{$analysis_id}
 			. $extra_attributes,
 			
@@ -347,6 +359,14 @@ sub export_transcripts {
 					';canonical_transcript=1':''
 					: '';
 		
+
+		my $biotype = $transcript->biotype;
+ 
+		if( $biotype !~ /non[_-]coding/i ){
+                        warn ("[Warning] gene $transcript_name  is not non_coding or non-coding, skip\n");
+                        next;
+                }
+
 		if ($self->{'overlapping_id'}->{$transcript_name}++) {
 			$transcript_id .= '.transcript';
 		}
@@ -366,7 +386,7 @@ sub export_transcripts {
 			(
 				$transcript_seqid,					#seqid
 				$source,						#source
-				'mRNA',								#type
+				$NONCODING_TRPT,								#type according to https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
 				$transcript->seq_region_start,		#start
 				$transcript->seq_region_end,		#end
 				'.',								#score
@@ -375,7 +395,7 @@ sub export_transcripts {
 			'.',								#phase
 			"ID=transcript:" . $self->escape_attribute($transcript_id)				#attributes
 			. ";Parent=gene:" . $self->escape_attribute($gene_id)
-			. ";biotype=" . $transcript->biotype
+			. ";biotype=" . $biotype
 			. ";transcript_id=" . $self->escape_attribute($transcript_id)
 			. $extra_attributes,
 			
@@ -389,16 +409,6 @@ sub export_transcripts {
 			$transcript->get_all_Introns
 		) if $self->{'export_introns'};
 
-#$transcript->get_all_five_prime_UTRs
-warn("DEBUG before export_Futrs, transcript_id=$transcript_id\n");
-	       $self->export_Futrs(
-                        $fh,
-                        $gene,
-                        $transcript,
-                        $transcript_id,
-                        $transcript->get_all_five_prime_UTRs,
-                        $source,
-                ) if $self->{'export_utrs'};
 
 		$self->export_exons(
 			$fh,
@@ -410,23 +420,6 @@ warn("DEBUG before export_Futrs, transcript_id=$transcript_id\n");
 		) if $self->{'export_exons'};
 
 		
-		$self->export_cdses(
-			$fh, 
-			$gene,
-			$transcript,
-			$transcript_id,
-			$transcript->get_all_Exons,
-			$source,
-		) if $self->{'export_cdses'};
-
-		$self->export_Tutrs(
-                        $fh,
-                        $gene,
-                        $transcript,
-                        $transcript_id,
-                        $transcript->get_all_three_prime_UTRs,
-			$source,
-                ) if $self->{'export_utrs'};
 	}
 
 }
@@ -539,128 +532,6 @@ Given a file handle, a gene, a transcript, the transcript's id (whatever it shou
 
 =cut
 
-sub export_cdses {
-	my $self			= shift;
-	my $fh				= shift;
-	my $gene			= shift;
-	my $transcript		= shift;
-	my $transcript_id	= shift;
-	my $cdses			= shift;
-	my $source = shift;
-
-	$self->reset_id_counter;
-	my $translation_id = $transcript->translation->stable_id;
-
-  my @GFFPhase = (0,2,1,0); # because ensembl exon phase is not quite the same as what gff3 means by phase
-  # https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
-	foreach my $cds ( sort {$a->seq_region_start <=> $b->seq_region_start } @$cdses) {
-
-		my $cds_id = "CDS:$translation_id";
-	
-		my $cds_seqid = (split(':', $gene->seqname))[2];
-		
-		if (defined $cds->coding_region_start($transcript) && defined $cds->coding_region_end($transcript)) {
-	
-			print $fh join("\t",
-				(map { $self->escape($_) }
-				(
-					$cds_seqid, 							#seqid
-					$source,							#source
-					'CDS',									#type
-					$cds->coding_region_start($transcript),	#start
-					$cds->coding_region_end($transcript),	#end
-					'.',									#score
-				)),
-				$strand_map->{$cds->strand},			#strand
-				$GFFPhase[$cds->phase],       #phase
-				
-				"ID=".$self->escape_attribute($cds_id)
-				.";Parent=transcript:" . $self->escape_attribute($transcript_id)				#attributes
-				. ";protein_id=" . $self->escape_attribute($translation_id),
-				
-			), "\n";
-		}
-	}
-
-}
-
-sub export_Futrs {
-        my $self                        = shift;
-        my $fh                          = shift;
-        my $gene                        = shift;
-        my $transcript          = shift;
-        my $transcript_id       = shift;
-        my $Futrs                       = shift;
-	my $source = shift;
-
-	$self->reset_id_counter;	
-        foreach my $Futr ( sort {$a->seq_region_start <=> $b->seq_region_start } @$Futrs) {
-
-                my $Futr_id = '5UTR.' . $self->id_counter;
-
-                my $Futr_seqid = (split(':', $gene->seqname))[2];
-
-                if (defined $Futr->seq_region_start && defined $Futr->seq_region_end) {
-
-                        print $fh join("\t",
-                                (map { $self->escape($_) }
-                                (
-                                        $Futr_seqid,                                                     #seqid
-                                        $source,                                                        #source
-                                        'five_prime_UTR',                                                                  #type
-                                        $Futr->seq_region_start, #start
-                                        $Futr->seq_region_end,   #end
-                                        '.',                                                                    #score
-                                )),
-                                $strand_map->{$Futr->strand},                    #strand
-				'.',                                                    #phase
-                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
-                               
-
-                        ), "\n";
-                }
-        }
-
-}
-
-sub export_Tutrs {
-        my $self                        = shift;
-        my $fh                          = shift;
-        my $gene                        = shift;
-        my $transcript          = shift;
-        my $transcript_id       = shift;
-        my $Tutrs                       = shift;
-        my $source = shift;
-	
-	$self->reset_id_counter;
-        foreach my $Tutr ( sort {$a->seq_region_start <=> $b->seq_region_start } @$Tutrs) {
-
-                my $Tutr_id = '3UTR.' . $self->id_counter;
-
-                my $Tutr_seqid = (split(':', $gene->seqname))[2];
-
-                if (defined $Tutr->seq_region_start && defined $Tutr->seq_region_end) {
-
-                        print $fh join("\t",
-                                (map { $self->escape($_) }
-                                (
-                                        $Tutr_seqid,                                                     #seqid
-                                        $source,                                                        #source
-                                        'three_prime_UTR',                                                                  #type
-                                        $Tutr->seq_region_start, #start
-                                        $Tutr->seq_region_end,   #end
-                                        '.',                                                                    #score
-                                )),
-                                $strand_map->{$Tutr->strand},                    #strand
-				'.',                                                    #phase
-                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
-                              
-
-                        ), "\n";
-                }
-        }
-
-}
 
 
 sub export_features_from_slices {

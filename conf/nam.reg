@@ -1,0 +1,251 @@
+use Bio::EnsEMBL::DBSQL::DBAdaptor; 
+use Bio::EnsEMBL::Compara::DBSQL::DBAdaptor;
+use Bio::EnsEMBL::Registry;
+
+Bio::EnsEMBL::Registry->no_version_check(1);
+Bio::EnsEMBL::Registry->no_cache_warnings(1);
+
+
+my $def_user = 'plensembl';
+my $def_pass = 'AudreyII';
+my $def_host1 = 'bhsqldw1';
+my $def_host  = 'bhsqldw1';
+my $def_host2 = 'bhsqldw2';
+my $def_port = 3306;
+
+my $ENSVER   = '87';
+my $GRMVER   = '3';
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'arabidopsis_thaliana',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "arabidopsis_thaliana_core_2_87_11", );
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'brachypodium_distachyon',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "brachypodium_distachyon_core_2_87_4", );
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'drosophila_melanogaster',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "drosophila_melanogaster_core_2_87_6", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'oryza_sativa',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "oryza_sativa_core_2_87_7", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'sorghum_bicolor',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "sorghum_bicolor_core_2_87_30", );
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'vitis_vinifera',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "vitis_vinifera_core_2_87_3", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'chlamydomonas_reinhardtii',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "chlamydomonas_reinhardtii_core_2_87_3", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'glycine_max',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "glycine_max_core_2_87_3", );
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'selaginella_moellendorffii',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "selaginella_moellendorffii_core_2_87_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysb73v4',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysb73v4_core_2_87_7", );
+
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysky21',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysky21_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysm162w',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysm162w_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysms71',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysms71_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_mayscml247',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_mayscml247_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_mayscml333',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_mayscml333_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_mayski3',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_mayski3_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_mayscml52',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_mayscml52_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysnc350',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysnc350_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_mayski11',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_mayski11_core_${GRMVER}_${ENSVER}_1", );
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'zea_maysb73',
+    '-group'   => 'core',
+    '-port'    => $def_port,
+    '-host'    => $def_host,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "zea_maysb73_core_${GRMVER}_${ENSVER}_1", );
+
+
+####################
+# compara
+####################
+
+Bio::EnsEMBL::Compara::DBSQL::DBAdaptor->new
+  ( '-species' => 'compara_wga',
+    '-group'   => 'compara',
+    '-port'    => $def_port,
+    '-host'    => $def_host2,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "weix_pairaligner_nam",);
+
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'multi',
+    '-group'   => 'production',
+    '-port'    => $def_port,
+    '-host'    => $def_host1,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "ensembl_production",);
+
+Bio::EnsEMBL::DBSQL::DBAdaptor->new
+  ( '-species' => 'wga',
+    '-group'   => 'compara',
+    '-port'    => $def_port,
+    '-host'    => $def_host2,
+    '-user'    => $def_user,
+    '-pass'    => $def_pass,
+    '-dbname'  => "weix_pairaligner_nam",);
+
+
+1;
+
+#weix_pairaligner_nam
