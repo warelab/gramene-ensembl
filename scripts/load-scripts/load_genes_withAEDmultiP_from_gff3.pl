@@ -21,6 +21,8 @@ Options:
   -n|--no_insert        Do not make changes to the database. For debug.
   -c|--coding_ex		nonCoding genes tRNA, miRNA ...
   -b|--biotype		nonCoding biotyoe such as miRNA, tRNA, lincRNA
+  -i|--ignore		ignore the gene if it is already in the database
+  -v|--verbose		be verbose and print more messages
 
 =head1 OPTIONS
 
@@ -163,14 +165,14 @@ use Bio::EnsEMBL::DBEntry;
 use Date::Calc;
 
 
-use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $NONCODING $BIOTYPE );
+use vars qw( $ENS_DBA $I $INSERT $GFF_HANDLE $ANALYSIS $NONCODING $BIOTYPE $IGNORE $V );
 
 my $date = time(); 
 
 BEGIN{  #Argument Processing
   my $help=0;
   my $man=0;
-  my( $species, $reg, $logic_name, $no_insert, $non_coding, $biotype );
+  my( $species, $reg, $logic_name, $no_insert, $non_coding, $biotype, $ignore, $verbose );
   GetOptions
       ( 
         "help|?"             => \$help,
@@ -181,6 +183,8 @@ BEGIN{  #Argument Processing
         "no_insert"          => \$no_insert,
 	"coding_ex"             => \$non_coding,
 	"biotype=s"	     => \$biotype,
+	"ignore"             => \$ignore,
+	"verbose"	     => \$verbose,
         )
       or pod2usage(2);
   pod2usage(-verbose => 2) if $man;
@@ -207,8 +211,11 @@ BEGIN{  #Argument Processing
   $NONCODING = $non_coding ? 1 : 0;
  
   $BIOTYPE = $biotype ? $biotype : undef;
+  $IGNORE = $ignore ? 1 : 0;
 
-warn ("noncoding flag is $NONCODING\n"); #exit;
+  $V = $verbose ? 1 : 0;
+
+warn ("noncoding flag is $NONCODING, ignore (new gene if a gene with the name is already in DB) is $IGNORE, verbose is $V\n"); #exit;
 
   # Load the ensembl file
   Bio::EnsEMBL::Registry->load_all( $reg );
@@ -256,7 +263,7 @@ while( my $line = $GFF_HANDLE->getline ){
   $seqname =~ s/^chromosome_?0*//i;
   $seqname =~ s/^chr0*//i;
 
-warn ("seqname is $seqname");
+#warn ("seqname is $seqname");
 
   my %attribs;
   foreach my $id( split( /;/, $attribute ) ){
@@ -457,10 +464,22 @@ warn ("seqname is $seqname");
 # compute more features and store in the hash
 #
 GENEL: foreach my $g( keys %$GENES ){
+ 
+  # if the IGNORE is set, we want to skip the genes if it is already in the database
+  #
+  if ( $IGNORE ){
+	if ( $ENS_DBA->get_GeneAdaptor->fetch_by_stable_id( $g ) ){
+		delete $GENES->{$g};
+		next;
+	}
+	warn ("Load new gene $g\n") if $V; 
+  }
+  
   my $genedata = $GENES->{$g};
-  $genedata->{TRANSCRIPT_COUNT} = keys %{$genedata->{TRANSCRIPTS}};
+ 
+   $genedata->{TRANSCRIPT_COUNT} = keys %{$genedata->{TRANSCRIPTS}};
 
-  foreach my $t( keys %{$genedata->{TRANSCRIPTS}} ){
+TRPTL:  foreach my $t( keys %{$genedata->{TRANSCRIPTS}} ){
 
     my $trptdata = $genedata->{TRANSCRIPTS}->{$t};
     #reconstruct exons and save in the hash
@@ -497,12 +516,15 @@ GENEL: foreach my $g( keys %$GENES ){
     my( $start_codon ) = sort{ $a<=>$b } @{$trptdata->{CDS_EXON_START} || []};
     my( $stop_codon )  = sort{ $b<=>$a } @{$trptdata->{CDS_EXON_END} || []};
     if( $trptdata->{STRAND} < 0 ){ #gene oriented
-      ($start_codon,$stop_codon) = ($stop_codon,$start_codon);
+      	my $t = $start_codon;
+	$start_codon = $stop_codon;
+	$stop_codon = $t;
+	#($start_codon,$stop_codon) = ($stop_codon,$start_codon);
     }
 
     $trptdata->{START_CODON} = $start_codon;
     $trptdata->{STOP_CODON}  = $stop_codon;
-warn ("start codon coord=$start_codon, stop codon coord =$stop_codon\n");
+warn ("start codon coord=$start_codon, stop codon coord =$stop_codon\n")  if $V;
 
     # Flag exons where coding start/stops
     for( my $i=0; $i<$trptdata->{EXON_COUNT}; $i++ ){
@@ -518,12 +540,21 @@ warn ("start codon coord=$start_codon, stop codon coord =$stop_codon\n");
     unless( $NONCODING ||  (defined $trptdata->{CDS_END_EXON} &&
           defined $trptdata->{CDS_START_EXON}) ){
       #warn Dumper( $trptdata );
-      if( $trptdata->{ATTRIBS}->{NOTE} =~ /tRNA/i){
-	warn ("gene $g, transcript $t is tRNA, skip gene $g");
-	delete $GENES->{$g};
-	next GENEL;
+      if( $trptdata->{ATTRIBS}->{NOTE} =~ /tRNA/i || $trptdata->{ATTRIBS}->{BIOTYPE} =~ /non[_\- ]*coding/i){
+		warn ("gene $g, transcript $t is tRNA or non_coding, skip gene $g, $t\n");
+		warn ("transcript count is ", $genedata->{TRANSCRIPT_COUNT}, "\n" ) if $V;
+		if( $genedata->{TRANSCRIPT_COUNT} > 1 ){
+			delete $GENES->{$g}->{TRANSCRIPTS}->{$t}    ; #$trptdata->{$t};
+			$genedata->{TRANSCRIPT_COUNT}--;
+			warn ("after remove $t, transcript count is ", $genedata->{TRANSCRIPT_COUNT}, "\n" ) if $V;
+			next TRPTL;
+		}else{
+			delete $GENES->{$g};
+			next GENEL;
+		}
 	}
-      die( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
+      #die( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
+      warn( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON and is not tRNA or non_coding, need investigating \n" );
     }
     
   }
@@ -542,7 +573,7 @@ my $number = scalar( keys %$GENES );
 foreach my $gene_id( keys %$GENES ){
 
   my $agenedata = $GENES->{$gene_id};
-  warn("Load gene stable_id ", $agenedata->{GENE_NAME}, "\n");
+  warn("Load gene stable_id ", $agenedata->{GENE_NAME}, "\n")  if $V;
 
   my $eGene = Bio::EnsEMBL::Gene->new();
   $eGene->analysis($ANALYSIS);
@@ -560,7 +591,7 @@ foreach my $gene_id( keys %$GENES ){
     my $atrptdata = $agenedata->{TRANSCRIPTS}->{$trpt_id};
     my $trpt_name =  $atrptdata->{TRPT_NAME};
 
-    warn("\tLoad transcript id $trpt_name\n");
+    warn("\tLoad transcript id $trpt_name\n")  if $V;
     my $eTranscript = Bio::EnsEMBL::Transcript->new();
     $eTranscript->stable_id( $trpt_name );
     $eTranscript->analysis( $ANALYSIS );
@@ -572,7 +603,7 @@ foreach my $gene_id( keys %$GENES ){
 
 	if(my $aed =$atrptdata->{ATTRIBS}->{'_AED'} ){
 		
-		warn ("aed=$aed\n");
+		warn ("aed=$aed\n")  if $V;
 		my $aed_attrib = Bio::EnsEMBL::Attribute->new
        		(-CODE => 'AED',
         	-VALUE => "$aed");
@@ -581,7 +612,7 @@ foreach my $gene_id( keys %$GENES ){
 	}
 	 if(my $aed =$atrptdata->{ATTRIBS}->{'_EAED'} ){
 
-                warn ("aed=$aed\n");
+                warn ("eaed=$aed\n")  if $V;
                 my $aed_attrib = Bio::EnsEMBL::Attribute->new
                 (-CODE => 'eAED',
                 -VALUE => "$aed");
@@ -591,7 +622,7 @@ foreach my $gene_id( keys %$GENES ){
 
 	 if(my $aed =$atrptdata->{ATTRIBS}->{'_QI'} ){
 
-                warn ("aed=$aed\n");
+                warn ("qi=$aed\n")  if $V;
                 my $aed_attrib = Bio::EnsEMBL::Attribute->new
                 (-CODE => 'QI',
                 -VALUE => "$aed");
@@ -643,7 +674,7 @@ foreach my $gene_id( keys %$GENES ){
       my $exon_start  = $atrptdata->{EXON_START}[$exon];
       my $exon_end    = $atrptdata->{EXON_END}[$exon];
 
-      warn("\t\tLoad exon $exon: $trpt_name.exon", $exon+1 , "\n");
+      warn("\t\tLoad exon $exon: $trpt_name.exon", $exon+1 , "\n")  if $V;
       my $eExon = new Bio::EnsEMBL::Exon;
       $eExon->start($exon_start);
       $eExon->end($exon_end);
