@@ -64,8 +64,8 @@ echo "
 #$ -V
 #$ -t 1-$CNT
 #$ -N $PROJ 
-#$ -o test_log/
-#$ -e test_log/
+#$ -o log/
+#$ -e log/
 #$ -l m_mem_free=12G 
 #$ -l h_vmem=15G
 

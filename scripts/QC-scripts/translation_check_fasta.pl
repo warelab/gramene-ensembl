@@ -283,7 +283,7 @@ while(my $infile=shift) {
 #warn("DEBUG: trpt_id=$trpt_id");
 	    $gtt->[2]=$pep;
 	    $gtt->[3]=lc($pep->seq());
-	    print "pep_seq\n".$gtt->[3]."\n";
+	    #print "pep_seq\n".$gtt->[3]."\n";
 	    ++$count{'ok'.scalar(@GeneScriptLation)} and next FASTA_SEQ
 	     if( $fa_seq  eq $gtt->[3] );
 	    print "$fa_seq\n  eq\n $gtt->[3]\n";
