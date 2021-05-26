@@ -1,3 +1,6 @@
+# Andrew added two index child_parent_idx, is_root_idx to speed up the query for ensembl browser gene page
+# He added them on cabot:ensembl_ontology_88
+
 CREATE TABLE `closure` (
   `closure_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `child_term_id` int(10) unsigned NOT NULL,
