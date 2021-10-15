@@ -30,12 +30,9 @@ fi
      ensembl-hive \
      ensembl-production \
      ensembl-io \
-<<<<<<< HEAD
-     ensembl-rest
-     ensembl-variation/VEP_plugins;
-=======
-     VEP_plugins;
->>>>>>> b7c6b6135e50605224278b077411719a1d42537e
+     ensembl-rest \
+     ensembl-variation/VEP_plugins \
+     VEP_plugins
  do
      if [ ! -d "$repo" ]; then
          echo "Checking out $repo (branch $branch_e)"
