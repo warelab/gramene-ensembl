@@ -1,0 +1,18 @@
+#
+# File for populating the analysis.description records in the ensembl core 
+# database.
+#
+# Follows the convention in 
+# ensembl/misc-scripts/analysis_description/analysis.descriptions
+#
+# Uploaded to the database using the script 
+# ensembl/misc-scripts/analysis_description/load_analysis_descriptions.pl
+#
+# Note fields in this file should be separated by *tabs* not spaces!
+# format: nr<TAB>logic_name<TAB>description<TAB>display_label<TAB>displayable<TAB>web_data
+#
+# 
+
+1	cshl_gene	Gene annotation by warelab in CSHL through an automated, evidence-based method combining 3rd party software including Mikado, BRAKER and PASA 	Gene (CSHL)	1	{label_key => [biotype], default => {contigviewbottom => transcript_label, contigviewtop => gene_label, cytoview => gene_nolabel}}
+2	cshl_noncoding_gene	Gene annotation by warelab in CSHL through an automated, evidence-based method combining 3rd party software including Mikado, BRAKER and PASA, classified as non_coding	Gene (CSHL non_coding)	1	{label_key => [biotype], default => {contigviewbottom => transcript_label, contigviewtop => gene_label, cytoview => gene_nolabel}}
+
