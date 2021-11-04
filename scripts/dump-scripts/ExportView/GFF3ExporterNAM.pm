@@ -229,86 +229,114 @@ sub export_genes_from_slice {
 
 	#foreach my $gene ( @{ $slice->get_all_Genes_by_type('avec_rnaseq_avec_sbi') } ) {
 	foreach my $gene ( @{ $slice->get_all_Genes($logicname)} ) {
-#print "Debug inside export_genes_from_slice\n";
-		my $analysis_obj = $gene->analysis;
-		my $analysis_id = $analysis_obj->dbID;
-		
-		next if ($logicname && (lc $analysis_obj->logic_name ne lc $logicname) );
-		unless($analysis2logicname{$analysis_id} ){	
+		#print "Debug inside export_genes_from_slice\n";
+		#
+ 		my $analysis_obj = $gene->analysis;
+         	my $analysis_id = $analysis_obj->dbID;
+
+	        next if ($logicname && (lc $analysis_obj->logic_name ne lc $logicname) );
+		unless($analysis2logicname{$analysis_id} ){
 			$analysis2logicname{$analysis_id} = $analysis_obj->logic_name;
 		}
-		my $extra_attributes = '';
 
-		my $gene_id = $gene->stable_id;
-		my $gid = $gene->dbID;
-		my $gene_name = $gene_id || '';
-die "Not found geneID for $gid" unless $gene_id;		
-		if ($self->{'overlapping_id'}->{$gene_name}++) {
-			$gene_id .= '.gene';
-		}
+		$self->export_gene( $fh, $gene, $analysis2logicname{$analysis_id} );
+
+	} #end of foreach
+
+
+}
+
+=pod
+
+export gff for one gene, given the gene obj
+
+=cut
+
+sub export_gene{
+	
+	my $self        = shift;
+	my $fh          = shift;
+	my $gene	= shift;
+	my $logic_name  = shift;
+
+	my $extra_attributes = '';
+
+	my $gene_id = $gene->stable_id;
+	my $gid = $gene->dbID;
+	my $gene_name = $gene_id || '';
+	
+	die "Not found geneID for $gid" unless $gene_id;		
+
+	if ($self->{'overlapping_id'}->{$gene_name}++) {
+		$gene_id .= '.gene';
+	}
 		
-		if ($self->{'duplicate_gene_id'}->{$gene_name}++) {
-			$gene_id .= '.' . $self->{'duplicate_gene_id'}->{$gene_name};
-			$extra_attributes =
+	if ($self->{'duplicate_gene_id'}->{$gene_name}++) {
+		$gene_id .= '.' . $self->{'duplicate_gene_id'}->{$gene_name};
+		$extra_attributes =
 				";Note=This feature has the same ID as another feature named "
 				. $self->escape_attribute($gene_name);
-		}
+	}
 
-		my $gene_seqid = (split(':', $gene->seqname))[2];
+	my $gene_seqid = (split(':', $gene->seqname))[2];
 		
-		unless ($self->{'duplicate_sequence_id'}->{$gene->seqname}++) {
-			print $fh join("\t",
-				(map { $self->escape($_) }
-				(
-					$gene_seqid,
-					'assembly', #$gene->source,
-					$slice->coord_system->name,
-					1,
-					$gene->seq_region_length,
-					'.',
-					'.',
-					'.',
-				)),
-				"ID=" . $self->escape_attribute($gene_seqid)
-				. ";Name=" . $self->escape_attribute($gene->seqname),
-			), "\n";
-		}
-		
-		my $src = $self->source ||        $analysis2logicname{$analysis_id};
-
-#print "DEBUG source=$src\n";
-
+	unless ($self->{'duplicate_sequence_id'}->{$gene->seqname}++) {
 		print $fh join("\t",
 			(map { $self->escape($_) }
 			(
-				$gene_seqid,					#seqid
-				$src,         #$gene->source,					#source
-				'gene', 						#type		
-				$gene->seq_region_start,		#start
-				$gene->seq_region_end,			#end
-				'.',							#score
+				$gene_seqid,
+				'assembly', #$gene->source,
+				$gene->slice->coord_system->name,
+				1,
+				$gene->seq_region_length,
+				'.',
+				'.',
+				'.',
 			)),
-			$strand_map->{$gene->strand},	#strand
-			'.',							#phase
-			"ID=gene:" . $self->escape_attribute($gene_id)		#attributes
-			. ";biotype=" . $gene->biotype
-			. ";logic_name=" . $analysis2logicname{$analysis_id}
-			. $extra_attributes,
+			"ID=" . $self->escape_attribute($gene_seqid)
+			. ";Name=" . $self->escape_attribute($gene->seqname),
+		), "\n";
+	}
+		
+	my $src = $self->source ||  $logic_name ;
+
+	print $fh join("\t",
+		(map { $self->escape($_) }
+		(
+			$gene_seqid,					#seqid
+			$src,         #$gene->source,					#source
+			'gene', 						#type		
+			$gene->seq_region_start,		#start
+			$gene->seq_region_end,			#end
+			'.',							#score
+		)),
+		$strand_map->{$gene->strand},	#strand
+		'.',							#phase
+		"ID=gene:" . $self->escape_attribute($gene_id)		#attributes
+		. ";biotype=" . $gene->biotype
+		. ";logic_name=$logic_name"
+		. $extra_attributes,
 			
 		), "\n";
 		
-		my $transcript_counter = 0;
-		my $num_transcripts = scalar(@{$gene->get_all_Transcripts});
-		print STDERR "Now retrieving $num_transcripts transcripts @ ", scalar(localtime), "\n" if $num_transcripts > 1 && $self->{'debug'};
+	my $transcript_counter = 0;
+	my $num_transcripts = scalar(@{$gene->get_all_Transcripts});
+	print STDERR "Now retrieving $num_transcripts transcripts @ ", scalar(localtime), "\n" if $num_transcripts > 1 && $self->{'debug'};
 		
-		$self->export_transcripts(
+	eval
+	{$self->export_transcripts(
 			$fh,
 			$gene,
 			$gene_id,
 			$gene->get_all_Transcripts,
 			$src,
-		) ;
-	}# end foreach genes
+		);
+	};
+
+	if ($@){
+		print STDERR "Error: $@, skip this transcript\n";
+	}
+
 
 }
 

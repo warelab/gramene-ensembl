@@ -156,7 +156,7 @@ for my $tigr_fasta (@ARGV) {
 	 $tigrseq->display_id =~ m/ ( chloroplast | mitochondrion ) /ixms 
 	 ){
 		$chr=$1;
-	}elsif( $tigrseq->display_id =~ m/ (chr)? \s+(\S+) /ixms) {
+	}elsif( $tigrseq->display_id =~ m/ (chr)? \s*(\S+) /ixms) {
       
     		 $chr=$2; 
 	}else{ $chr= $tigrseq->display_id;}
