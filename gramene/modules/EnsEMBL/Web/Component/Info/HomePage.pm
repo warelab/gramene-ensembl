@@ -370,7 +370,7 @@ sub _genebuild_text {
 
   my $im_url;
   if( $species =~ /Zea_mays/i ){  ###weix-start
-        $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
+        $im_url = "http://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
   }elsif( $species =~ /Sorghum_bicolor/i ){
         $im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
   }elsif($species =~ /Oryza_sativa/i ){
@@ -382,12 +382,12 @@ sub _genebuild_text {
   $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
-        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
+        my $func_url = "http://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
         $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
   }  ##weix-end
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
-        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/repeat_annotation/";
+        my $func_url = "http://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/repeat_annotation/";
         $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Transposon annotation download</a></p>) if $func_url;
   }  ##weix-end
 

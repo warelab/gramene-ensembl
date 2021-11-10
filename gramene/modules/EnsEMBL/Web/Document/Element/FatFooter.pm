@@ -32,12 +32,12 @@ sub content {
 
   $html .= qq(
               <div class="column-four left">
-                <h3>About Us</h3>
-                <p><a href="http://www.gramene.org/about-gramene">About us</a></p>
-                <p><a href="http://tools.gramene.org/feedback">Contact us</a></p>
-                <p><a href="http://www.gramene.org/cite">Citing Gramene</a></p>
+                <!--<h3>About Us</h3>-->
+                <!--<p><a href="http://www.sorghumbase.org/">About us</a></p>-->
+                <!--<p><a href="http://dev.sorghumbase.org/feedback">Contact us</a></p>-->
+                <!--<p><a href="http://www.sorghumbase.org/cite">Citing Sorghumbase</a></p>-->
                 <!--<p><a href="http://www.ebi.ac.uk/about/privacy">Privacy policy</a></p>-->
-                <p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>
+                <!--<p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>-->
                 <!--<p><a href="http://www.ebi.ac.uk/Information/termsofuse.html">EMBL-EBI Terms of use</a></p>-->
                 <!--<p><a href="http://ensemblgenomes.org/info/about/legal">Disclaimer</a></p>-->
               </div>
@@ -46,11 +46,11 @@ sub content {
 
  $html .= qq(
               <div class="column-four left">
-                <h3>Get help</h3>
-                <p><a href="/info/website/">Using this website</a></p>
-                <p><a href="http://ensemblgenomes.org/info">Documentation</a></p>
-                <p><a href="/info/website/upload">Adding custom tracks</a></p>
-                <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
+                <!--<h3>Get help</h3>-->
+                <!--<p><a href="/info/website/">Using this website</a></p>-->
+                <!--<p><a href="http://ensemblgenomes.org/info">Documentation</a></p>-->
+                <!--<p><a href="/info/website/upload">Adding custom tracks</a></p>-->
+                <!--<p><a href="/info/website/ftp/index.html">Downloading data</a></p>-->
               </div>
   );
 
@@ -58,25 +58,25 @@ sub content {
     #$sister_sites .= qq(<p><a href="http://$_.ensembl.org">Ensembl ${\ucfirst($_)}</a></p>) if $species_defs->EG_DIVISION ne $_;
   #}
 
-  $html .= qq(
-              <div class="column-four left">
-                <h3>Our sister sites</h3>
-                $sister_sites
-              </div>
-  );
+  #$html .= qq(
+  #            <div class="column-four left">
+  #              <h3>Our sister sites</h3>
+  #              $sister_sites
+  #            </div>
+  #);
 
 
-  $html .= qq(
-              <div class="column-four left">
-                <h3>Follow us</h3>
-                <p><a class="media-icon" href="http://www.gramene.org/blog">
-                  <img alt="[RSS logo]" title="Gramene blog" src="/i/rss_icon_16.png"></a>
-                  <a href="http://www.gramene.org/blog">Blog</a></p>
-                <p><a class="media-icon" href="https://twitter.com/ensemblgenomes">
-                  <img alt="[twitter logo]" title="Follow us on Twitter!" src="/i/twitter.png"></a>
-                    <a href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.gramene.org%2F&ref_src=twsrc%5Etfw&screen_name=GrameneDatabase&tw_p=followbutton">Twitter</a></p>
-              </div>
-  );
+  #$html .= qq(
+  #            <div class="column-four left">
+  #              <h3>Follow us</h3>
+  #              <p><a class="media-icon" href="http://www.gramene.org/blog">
+  #                <img alt="[RSS logo]" title="Gramene blog" src="/i/rss_icon_16.png"></a>
+  #                <a href="http://www.gramene.org/blog">Blog</a></p>
+  #              <p><a class="media-icon" href="https://twitter.com/ensemblgenomes">
+  #                <img alt="[twitter logo]" title="Follow us on Twitter!" src="/i/twitter.png"></a>
+  #                  <a href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.gramene.org%2F&ref_src=twsrc%5Etfw&screen_name=GrameneDatabase&tw_p=followbutton">Twitter</a></p>
+  #            </div>
+  #);
 
   $html .= '</div>';
 
