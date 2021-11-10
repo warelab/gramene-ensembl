@@ -1,324 +1,159 @@
 taxonTreeData = [
    {
-      "isFolder" : true,
+      "title" : "Viridiplantae (25)",
+      "key" : "Viridiplantae",
       "children" : [
          {
-            "title" : "Actinidia chinensis var. chinensis",
-            "key" : "Actinidia_chinensis"
+            "key" : "Chlamydomonas_reinhardtii",
+            "title" : "Chlamydomonas reinhardtii"
          },
          {
-            "title" : "Beta vulgaris subsp. vulgaris",
-            "key" : "Beta_vulgaris"
-         },
-         {
-            "isFolder" : true,
             "children" : [
                {
-                  "title" : "Arabidopsis halleri subsp. gemmifera",
-                  "key" : "Arabidopsis_halleri"
-               },
-               {
-                  "title" : "Arabidopsis lyrata subsp. lyrata",
-                  "key" : "Arabidopsis_lyrata"
-               },
-               {
-                  "title" : "Arabidopsis thaliana",
-                  "key" : "Arabidopsis_thaliana"
-               },
-               {
-                  "title" : "Brassica napus",
-                  "key" : "Brassica_napus"
-               },
-               {
-                  "title" : "Brassica oleracea var. oleracea",
-                  "key" : "Brassica_oleracea"
-               },
-               {
-                  "title" : "Brassica rapa",
-                  "key" : "Brassica_rapa"
-               }
-            ],
-            "title" : "Brassicaceae (6)",
-            "key" : "Brassicaceae"
-         },
-         {
-            "title" : "Corchorus capsularis",
-            "key" : "Corchorus_capsularis"
-         },
-         {
-            "title" : "Cucumis sativus",
-            "key" : "Cucumis_sativus"
-         },
-         {
-            "title" : "Daucus carota subsp. sativus",
-            "key" : "Daucus_carota"
-         },
-         {
-            "isFolder" : true,
-            "children" : [
-               {
-                  "title" : "Glycine max",
-                  "key" : "Glycine_max"
-               },
-               {
-                  "title" : "Lupinus angustifolius",
-                  "key" : "Lupinus_angustifolius"
-               },
-               {
-                  "title" : "Medicago truncatula",
-                  "key" : "Medicago_truncatula"
-               },
-               {
-                  "title" : "Phaseolus vulgaris",
-                  "key" : "Phaseolus_vulgaris"
-               },
-               {
-                  "title" : "Trifolium pratense",
-                  "key" : "Trifolium_pratense"
-               },
-               {
-                  "title" : "Vigna angularis",
-                  "key" : "Vigna_angularis"
-               },
-               {
-                  "title" : "Vigna radiata var. radiata",
-                  "key" : "Vigna_radiata"
-               }
-            ],
-            "title" : "Fabaceae (7)",
-            "key" : "Fabaceae"
-         },
-         {
-            "title" : "Gossypium raimondii",
-            "key" : "Gossypium_raimondii"
-         },
-         {
-            "title" : "Helianthus annuus",
-            "key" : "Helianthus_annuus"
-         },
-         {
-            "title" : "Manihot esculenta",
-            "key" : "Manihot_esculenta"
-         },
-         {
-            "title" : "Populus trichocarpa",
-            "key" : "Populus_trichocarpa"
-         },
-         {
-            "title" : "Prunus persica",
-            "key" : "Prunus_persica"
-         },
-         {
-            "isFolder" : true,
-            "children" : [
-               {
-                  "title" : "Nicotiana attenuata",
-                  "key" : "Nicotiana_attenuata"
-               },
-               {
-                  "title" : "Solanum lycopersicum",
-                  "key" : "Solanum_lycopersicum"
-               },
-               {
-                  "title" : "Solanum tuberosum",
-                  "key" : "Solanum_tuberosum"
-               }
-            ],
-            "title" : "Solanaceae (3)",
-            "key" : "Solanaceae"
-         },
-         {
-            "title" : "Theobroma cacao",
-            "key" : "Theobroma_cacao"
-         },
-         {
-            "title" : "Vitis vinifera",
-            "key" : "Vitis_vinifera"
-         }
-      ],
-      "title" : "Dicots (28)",
-      "key" : "Dicots"
-   },
-   {
-      "isFolder" : true,
-      "children" : [
-         {
-            "title" : "Dioscorea rotundata",
-            "key" : "Dioscorea_rotundata"
-         },
-         {
-            "isFolder" : true,
-            "children" : [
-               {
-                  "title" : "Brachypodium distachyon",
-                  "key" : "Brachypodium_distachyon"
-               },
-               {
-                  "title" : "Leersia perrieri",
-                  "key" : "Leersia_perrieri"
-               },
-               {
+                  "title" : "Magnoliophyta (23)",
+                  "key" : "Magnoliophyta",
                   "isFolder" : true,
                   "children" : [
                      {
-                        "title" : "Oryza barthii",
-                        "key" : "Oryza_barthii"
-                     },
-                     {
-                        "title" : "Oryza brachyantha",
-                        "key" : "Oryza_brachyantha"
-                     },
-                     {
-                        "title" : "Oryza glaberrima",
-                        "key" : "Oryza_glaberrima"
-                     },
-                     {
-                        "title" : "Oryza glumipatula",
-                        "key" : "Oryza_glumipatula"
-                     },
-                     {
-                        "title" : "Oryza longistaminata",
-                        "key" : "Oryza_longistaminata"
-                     },
-                     {
-                        "title" : "Oryza meridionalis",
-                        "key" : "Oryza_meridionalis"
-                     },
-                     {
-                        "title" : "Oryza punctata",
-                        "key" : "Oryza_punctata"
-                     },
-                     {
-                        "title" : "Oryza rufipogon",
-                        "key" : "Oryza_rufipogon"
-                     },
-                     {
-                        "title" : "Oryza sativa Indica Group",
-                        "key" : "Oryza_indica"
-                     },
-                     {
-                        "title" : "Oryza sativa Japonica Group",
-                        "key" : "Oryza_sativa"
-                     },
-                     {
-                        "title" : "Oryza nivara",
-                        "key" : "Oryza_nivara"
-                     }
-                  ],
-                  "title" : "Rices (11)",
-                  "key" : "Rices"
-               },
-               {
-                  "isFolder" : true,
-                  "children" : [
-                     {
-                        "title" : "Aegilops tauschii subsp. strangulata",
-                        "key" : "Aegilops_tauschii"
-                     },
-                     {
-                        "title" : "Hordeum vulgare subsp. vulgare",
-                        "key" : "Hordeum_vulgare"
-                     },
-                     {
-                        "title" : "Triticum aestivum",
-                        "key" : "Triticum_aestivum"
-                     },
-                     {
-                        "title" : "Triticum dicoccoides",
-                        "key" : "Triticum_dicoccoides"
-                     },
-                     {
-                        "title" : "Triticum urartu",
-                        "key" : "Triticum_urartu"
-                     }
-                  ],
-                  "title" : "Triticeae (5)",
-                  "key" : "Triticeae"
-               },
-               {
-                  "isFolder" : true,
-                  "children" : [
-                     {
-                        "title" : "Panicum hallii",
-                        "key" : "Panicum_hallii_fil2"
-                     },
-                     {
-                        "isFolder" : true,
                         "children" : [
                            {
-                              "title" : "Panicum hallii var. hallii",
-                              "key" : "Panicum_hallii_hal2"
+                              "isFolder" : true,
+                              "children" : [
+                                 {
+                                    "children" : [
+                                       {
+                                          "key" : "Sorghum_353",
+                                          "title" : "Sorghum 353"
+                                       },
+                                       {
+                                          "key" : "Sorghum_austrcf317961",
+                                          "title" : "Sorghum austrcf317961"
+                                       },
+                                       {
+                                          "title" : "Sorghum bicolor",
+                                          "key" : "Sorghum_bicolor"
+                                       },
+                                       {
+                                          "title" : "Sorghum is12661",
+                                          "key" : "Sorghum_is12661"
+                                       },
+                                       {
+                                          "key" : "Sorghum_is19953",
+                                          "title" : "Sorghum is19953"
+                                       },
+                                       {
+                                          "key" : "Sorghum_is36143",
+                                          "title" : "Sorghum is36143"
+                                       },
+                                       {
+                                          "title" : "Sorghum is8525",
+                                          "key" : "Sorghum_is8525"
+                                       },
+                                       {
+                                          "key" : "Sorghum_is929",
+                                          "title" : "Sorghum is929"
+                                       },
+                                       {
+                                          "title" : "Sorghum ji2731",
+                                          "key" : "Sorghum_ji2731"
+                                       },
+                                       {
+                                          "key" : "Sorghum_pi525695",
+                                          "title" : "Sorghum pi525695"
+                                       },
+                                       {
+                                          "key" : "Sorghum_pi532566",
+                                          "title" : "Sorghum pi532566"
+                                       },
+                                       {
+                                          "title" : "Sorghum pi536008",
+                                          "key" : "Sorghum_pi536008"
+                                       },
+                                       {
+                                          "key" : "Sorghum_r93194522",
+                                          "title" : "Sorghum r93194522"
+                                       },
+                                       {
+                                          "key" : "Sorghum_rio",
+                                          "title" : "Sorghum rio"
+                                       },
+                                       {
+                                          "key" : "Sorghum_s3691",
+                                          "title" : "Sorghum s3691"
+                                       },
+                                       {
+                                          "key" : "Sorghum_tx2783pac",
+                                          "title" : "Sorghum tx2783pac"
+                                       },
+                                       {
+                                          "title" : "Sorghum tx430nano",
+                                          "key" : "Sorghum_tx430nano"
+                                       },
+                                       {
+                                          "key" : "Sorghum_tx436pac",
+                                          "title" : "Sorghum tx436pac"
+                                       }
+                                    ],
+                                    "isFolder" : true,
+                                    "key" : "Sorghum",
+                                    "title" : "Sorghum (18)"
+                                 },
+                                 {
+                                    "title" : "Zea (2)",
+                                    "key" : "Zea",
+                                    "children" : [
+                                       {
+                                          "key" : "Zea_maysb73",
+                                          "title" : "Zea maysB73"
+                                       },
+                                       {
+                                          "title" : "Zea maysB73v4",
+                                          "key" : "Zea_maysb73v4"
+                                       }
+                                    ],
+                                    "isFolder" : true
+                                 }
+                              ],
+                              "title" : "Andropogoneae (20)",
+                              "key" : "Andropogoneae"
+                           },
+                           {
+                              "key" : "Oryza_sativa",
+                              "title" : "Oryza sativa Japonica Group"
                            }
                         ],
-                        "title" : "Panicum hallii (2)",
-                        "key" : "Panicum hallii"
+                        "isFolder" : true,
+                        "key" : "Poaceae",
+                        "title" : "Poaceae (21)"
                      },
                      {
-                        "title" : "Setaria italica",
-                        "key" : "Setaria_italica"
-                     },
-                     {
-                        "title" : "Sorghum bicolor",
-                        "key" : "Sorghum_bicolor"
-                     },
-                     {
-                        "title" : "Zea mays",
-                        "key" : "Zea_mays"
+                        "children" : [
+                           {
+                              "title" : "Arabidopsis thaliana",
+                              "key" : "Arabidopsis_thaliana"
+                           },
+                           {
+                              "key" : "Vitis_vinifera",
+                              "title" : "Vitis vinifera"
+                           }
+                        ],
+                        "isFolder" : true,
+                        "key" : "rosids",
+                        "title" : "rosids (2)"
                      }
-                  ],
-                  "title" : "Warm season grasses (C4) (5)",
-                  "key" : "Warm season grasses (C4)"
+                  ]
+               },
+               {
+                  "title" : "Selaginella moellendorffii",
+                  "key" : "Selaginella_moellendorffii"
                }
             ],
-            "title" : "Grasses (23)",
-            "key" : "Grasses"
-         },
-         {
-            "title" : "Musa acuminata subsp. malaccensis",
-            "key" : "Musa_acuminata"
+            "isFolder" : true,
+            "key" : "Tracheophyta",
+            "title" : "Tracheophyta (24)"
          }
       ],
-      "title" : "Monocots (25)",
-      "key" : "Monocots"
-   },
-   {
-      "isFolder" : true,
-      "children" : [
-         {
-            "title" : "Cyanidioschyzon merolae strain 10D",
-            "key" : "Cyanidioschyzon_merolae"
-         },
-         {
-            "title" : "Galdieria sulphuraria",
-            "key" : "Galdieria_sulphuraria"
-         },
-         {
-            "title" : "Chondrus crispus",
-            "key" : "Chondrus_crispus"
-         },
-         {
-            "title" : "Ostreococcus lucimarinus CCE9901",
-            "key" : "Ostreococcus_lucimarinus"
-         },
-         {
-            "title" : "Chlamydomonas reinhardtii",
-            "key" : "Chlamydomonas_reinhardtii"
-         },
-         {
-            "title" : "Physcomitrella patens",
-            "key" : "Physcomitrella_patens"
-         },
-         {
-            "title" : "Amborella trichopoda",
-            "key" : "Amborella_trichopoda"
-         },
-         {
-            "title" : "Selaginella moellendorffii",
-            "key" : "Selaginella_moellendorffii"
-         }
-      ],
-      "title" : "Other (8)",
-      "key" : "Other"
+      "isFolder" : true
    }
 ]
 ;
