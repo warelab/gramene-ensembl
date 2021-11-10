@@ -63,6 +63,7 @@ $SiteDefs::EG_DIVISION      = 'plants';
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
 
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables

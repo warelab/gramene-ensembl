@@ -53,7 +53,7 @@ fi
 
 
 #ftp://ftp.ensemblgenomes.org/pub/release-39/pan_ensembl/mysql/
-echo "The ftp url for ensembl plants is ${EG_FTP}/.release-${eg}/pan_ensembl/mysql, continue? [Y/N]"
+echo "The ftp url for ensembl plants is ${EG_FTP}/release-${eg}/pan_ensembl/mysql, continue? [Y/N]"
 
 read reply
 
@@ -66,10 +66,11 @@ then
 else
 	mkdir eg_dbs
         cd eg_dbs
-	for db in  ensembl_compara_pan_homology_${eg}_$e ensemblgenomes_stable_ids_${eg}_$e ensembl_metadata ensembl_ontology_$e ensembl_production_$e ensembl_website_$e ontology_mart_$e 
-		do echo "donwload $db"
-		wget -r -nH --cut-dir=4 ${EG_FTP}/.release-${eg}/pan_ensembl/mysql/$db
-	done
+	#for db in  ensembl_compara_pan_homology_${eg}_$e ensemblgenomes_stable_ids_${eg}_$e ensembl_metadata ensembl_ontology_$e ensembl_production_$e ensembl_website_$e ontology_mart_$e 
+	#	do echo "donwload $db"
+	#	wget -r -nH --cut-dir=4 ${EG_FTP}/release-${eg}/pan_ensembl/mysql/$db
+	#done
+	wget -r -nH --cut-dir=4 ${EG_FTP}/release-${eg}/pan_ensembl/mysql/*
 	~/scripts/phh-file-rename s/${eg}/${g}/ mysql/* 
 	cd ../
 fi
