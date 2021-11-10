@@ -1,0 +1,103 @@
+taxonTreeData = [
+   {
+      "children" : [
+         {
+            "key" : "Chlamydomonas_reinhardtii",
+            "title" : "Chlamydomonas reinhardtii"
+         },
+         {
+            "isFolder" : true,
+            "title" : "Tracheophyta (10)",
+            "children" : [
+               {
+                  "key" : "Magnoliophyta",
+                  "children" : [
+                     {
+                        "children" : [
+                           {
+                              "isFolder" : true,
+                              "title" : "Andropogoneae (6)",
+                              "key" : "Andropogoneae",
+                              "children" : [
+                                 {
+                                    "title" : "Sorghum (5)",
+                                    "isFolder" : true,
+                                    "key" : "Sorghum",
+                                    "children" : [
+                                       {
+                                          "title" : "Sorghum BTx623",
+                                          "key" : "Sorghum_bicolor"
+                                       },
+                                       {
+                                          "key" : "Sorghum_rio",
+                                          "title" : "Sorghum Rio"
+                                       },
+                                       {
+                                          "title" : "Sorghum Tx2783",
+                                          "key" : "Sorghum_tx2783pac"
+                                       },
+                                       {
+                                          "title" : "Sorghum RTx430",
+                                          "key" : "Sorghum_tx430nano"
+                                       },
+                                       {
+                                          "key" : "Sorghum_tx436pac",
+                                          "title" : "Sorghum RTx436"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "title" : "Zea (1)",
+                                    "isFolder" : true,
+                                    "children" : [
+                                       {
+                                          "key" : "Zea_maysb73v4",
+                                          "title" : "Zea mays B73 v4"
+                                       }
+                                    ],
+                                    "key" : "Zea"
+                                 }
+                              ]
+                           },
+                           {
+                              "title" : "Oryza sativa Japonica Group",
+                              "key" : "Oryza_sativa"
+                           }
+                        ],
+                        "key" : "Poaceae",
+                        "isFolder" : true,
+                        "title" : "Poaceae (7)"
+                     },
+                     {
+                        "children" : [
+                           {
+                              "key" : "Arabidopsis_thaliana",
+                              "title" : "Arabidopsis thaliana"
+                           },
+                           {
+                              "title" : "Vitis vinifera",
+                              "key" : "Vitis_vinifera"
+                           }
+                        ],
+                        "key" : "rosids",
+                        "title" : "rosids (2)",
+                        "isFolder" : true
+                     }
+                  ],
+                  "title" : "Magnoliophyta (9)",
+                  "isFolder" : true
+               },
+               {
+                  "key" : "Selaginella_moellendorffii",
+                  "title" : "Selaginella moellendorffii"
+               }
+            ],
+            "key" : "Tracheophyta"
+         }
+      ],
+      "key" : "Viridiplantae",
+      "isFolder" : true,
+      "title" : "Viridiplantae (11)"
+   }
+]
+;
