@@ -33,6 +33,7 @@ sub args {
   GetOptions(
     $opts, qw/
       dry
+			overwrite
 			registry|reg|r=s
       out_dir=s
       verbose 
@@ -128,6 +129,9 @@ sub _process_dba {
 		my $target_dir = join("/",$species_path,$type);
 		my $suffix = $type eq 'dna' ? 'toplevel' : 'all';
 		my $file_name = ucfirst(join(".",$species,$assembly,$type,$suffix));
+		if ($type eq 'ncrna') {
+			$file_name = ucfirst(join(".",$species,$assembly,$type));
+		}
 		$self->_ensure_fasta($dba, $file_name, $target_dir, $type);
 		$self->_ensure_blast($file_name, $species_path, $type, $dbName);
 	}
@@ -148,9 +152,8 @@ sub _ensure_fasta {
     }
   }
 
-	
 	my $file_path = join("/",$target_dir, $datafile . ".fa");
-	if (-e $file_path or -e "$file_path.gz") {
+	if (not $self->opts->{overwrite} and (-e $file_path or -e "$file_path.gz")) {
 		$self->v("skipping $file_path");
 		return;
 	}
@@ -168,9 +171,12 @@ sub _dump_fasta {
 		
 		my $outfile_sm = $outfile;
 		$outfile_sm =~ s/dna\.toplevel/dna_sm.toplevel/;
+		my $outfile_rm = $outfile;
+		$outfile_rm =~ s/dna\.toplevel/dna_rm.toplevel/;
 
 		my $seqio_unmasked = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile");
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
+		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
 		my $slice_adaptor = $dba->get_SliceAdaptor;
 		my $slices = $slice_adaptor->fetch_all('toplevel');
@@ -182,6 +188,13 @@ sub _dump_fasta {
 				-seq => $seqstr
 			);
 			$seqio_sm->write_seq($seq);
+			$seqstr = $slice->get_repeatmasked_seq(['RepeatMask'],0)->seq;
+			$seqstr ||= $slice->seq;
+			$seq = Bio::Seq->new(
+				-display_id => $slice->seq_region_name,
+				-seq => $seqstr
+			);
+			$seqio_rm->write_seq($seq);
 			$seqstr = $slice->seq;
 			$seq = Bio::Seq->new(
 				-display_id => $slice->seq_region_name,
@@ -237,15 +250,20 @@ sub _dump_fasta {
 }
 
 sub _ensure_blast {
-  my ($self, $datafile, $target_dir, $type, $dbName) = @_;
+  my ($self, $datafile, $target_dir, $type, $dbName, $masked) = @_;
 
 	# use the softmasked version if dna
-	if ($type eq 'dna') {
-		$datafile =~ s/\.dna\./.dna_sm./;
+	if ($type eq 'dna' and not $masked) {
+		my $sm_file = $datafile;
+		$sm_file =~ s/\.dna\./.dna_sm./;
+		my $rm_file = $datafile;
+		$rm_file =~ s/\.dna\./.dna_rm./;
+		$self->_ensure_blast($sm_file, $target_dir, $type, $dbName . ' softmasked', 1);
+		$self->_ensure_blast($rm_file, $target_dir, $type, $dbName . ' hardmasked', 1);
 	}
 	
 	my $file_path = join("/",$target_dir, "$datafile");
-	if (-e "$file_path.nhr" or -e "$file_path.phr") {
+	if (not $self->opts->{overwrite} and (-e "$file_path.nhr" or -e "$file_path.phr")) {
 		$self->v("skipping BLAST $file_path");
 		return;
 	}
@@ -352,6 +370,10 @@ the program is silent.
 
 If specified the script will inform of the types of commands and actions it 
 would have performed.
+
+=item B<--overwrite>
+
+If specified the script will overwrite files that are already present in the output directory.
 
 =item B<--help>
 
