@@ -207,8 +207,9 @@ while (my ($dbname) = $sth->fetchrow_array){
 	$analysis->displayable($displayable);
 	$analysis->display_label($display_label);
 	#$web_data ? $analysis->{_web_data}=$web_data : $analysis->{_web_data} = undef;
-	#my $tidied_web_data=$aa->get_dumped_data($web_data) if $web_data;
-	my $tidied_web_data = ''.$web_data if $web_data;
+	my $tidied_web_data=$aa->get_dumped_data($web_data) if $web_data;
+	#my $tidied_web_data = $web_data if $web_data;
+	#$tidied_web_data =~ s/'/\'/g unless $tidied_web_data =~ /\//;
 	$analysis->web_data($tidied_web_data) if $web_data;
 
 	print "tided_web_data is $tidied_web_data\n";

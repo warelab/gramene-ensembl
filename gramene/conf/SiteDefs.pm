@@ -35,6 +35,7 @@ sub update_conf {
 
   $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables

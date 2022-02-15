@@ -507,8 +507,8 @@ TRPTL:  foreach my $t( keys %{$genedata->{TRANSCRIPTS}} ){
     $trptdata->{EXON_END}   = $trpt_exon_ends;
         
     # Get exons into gene-order
-    my $f = $trptdata->{STRAND} > 0 ? 1 : 0;
-    foreach my $key qw( EXON_START EXON_END CDS_EXON_START CDS_EXON_END ){
+    my $f = $trptdata->{STRAND} > 0 ? 1: 0;
+    foreach my $key( qw( EXON_START EXON_END CDS_EXON_START CDS_EXON_END ) ) {
       $trptdata->{$key} = [ sort{ $f ?$a<=>$b :$b<=>$a} @{$trptdata->{$key}} ] if defined $trptdata->{$key};
     }
 
