@@ -59,19 +59,23 @@ sub links {
   	#push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>',  if $sd->ENSEMBL_BLAST_ENABLED;
   }
 
-  push @links, 'biomart',       '<a class="constant" href="/biomart/martview">BioMart</a>';
-  push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
-  push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
+#  push @links, 'biomart',       '<a class="constant" href="/biomart/martview">BioMart</a>';
+#  push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
+#  push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
 #  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
-  push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
-
+  push @links, 'feedback',      '<a class="constant" href="http://www.sorghumbase.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
+  push @links, 'genomes',         '<a class="constant" href="/">Genome Browser</a>'; 
+  
 # test upload link
 # UserData/SelectFile?db=core
 	
-  my $upload_link = $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 });
+  #my $upload_link = $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 });
 
-  push @links, 'uploadData',  sprintf '<a href="%s" class="modal_link nodeco" rel="modal_user_data">UploadData</a>', $upload_link;  
+  #push @links, 'uploadData',  sprintf '<a href="%s" class="modal_link nodeco" rel="modal_user_data">UploadData</a>', $upload_link;  
+ 
+    
+#warn ("DEBUG weix: in ToolLinks before return links", (join "\n", @links), "\n");
   return \@links;
 }
 

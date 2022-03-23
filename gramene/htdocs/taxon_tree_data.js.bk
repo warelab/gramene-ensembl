@@ -3,6 +3,10 @@ taxonTreeData = [
       "isFolder" : true,
       "children" : [
          {
+            "title" : "Actinidia chinensis var. chinensis",
+            "key" : "Actinidia_chinensis"
+         },
+         {
             "title" : "Beta vulgaris subsp. vulgaris",
             "key" : "Beta_vulgaris"
          },
@@ -132,7 +136,7 @@ taxonTreeData = [
             "key" : "Vitis_vinifera"
          }
       ],
-      "title" : "Dicots (27)",
+      "title" : "Dicots (28)",
       "key" : "Dicots"
    },
    {
@@ -197,7 +201,7 @@ taxonTreeData = [
                         "key" : "Oryza_sativa"
                      },
                      {
-                        "title" : "Oryza sativa f. spontanea",
+                        "title" : "Oryza nivara",
                         "key" : "Oryza_nivara"
                      }
                   ],
@@ -235,23 +239,61 @@ taxonTreeData = [
                   "isFolder" : true,
                   "children" : [
                      {
+                        "title" : "Panicum hallii",
+                        "key" : "Panicum_hallii_fil2"
+                     },
+                     {
+                        "isFolder" : true,
+                        "children" : [
+                           {
+                              "title" : "Panicum hallii var. hallii",
+                              "key" : "Panicum_hallii_hal2"
+                           }
+                        ],
+                        "title" : "Panicum hallii (2)",
+                        "key" : "Panicum hallii"
+                     },
+                     {
                         "title" : "Setaria italica",
                         "key" : "Setaria_italica"
                      },
                      {
-                        "title" : "Sorghum bicolor",
-                        "key" : "Sorghum_bicolor"
+			"isFolder" : true,
+                        "children" : [
+			   {
+                                "title" : "Sorghum BTx623",
+                                "key" : "Sorghum_bicolor"
+                           },
+			   {
+                                "title" : "Sorghum Tx2783",
+                                "key" : "Sorghum_tx2783pac"
+                           },
+			   {
+                                "title" : "Sorghum Tx436",
+                                "key" : "Sorghum_tx436pac"
+                           },
+			   {
+                                "title" : "Sorghum Tx430",
+                                "key" : "Sorghum_tx430nano"
+                           },
+			   {
+				"title" : "Sorghum Rio",
+				"key" : "Sorghum_rio"
+			   }
+			],
+                        "title" : "Sorghum bicolor (5)",
+                        "key" : "Sorghum pangenome"
                      },
                      {
                         "title" : "Zea mays",
                         "key" : "Zea_mays"
                      }
                   ],
-                  "title" : "Warm season grasses (C4) (3)",
+                  "title" : "Warm season grasses (C4) (5)",
                   "key" : "Warm season grasses (C4)"
                }
             ],
-            "title" : "Grasses (21)",
+            "title" : "Grasses (23)",
             "key" : "Grasses"
          },
          {
@@ -259,7 +301,7 @@ taxonTreeData = [
             "key" : "Musa_acuminata"
          }
       ],
-      "title" : "Monocots (23)",
+      "title" : "Monocots (25)",
       "key" : "Monocots"
    },
    {

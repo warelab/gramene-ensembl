@@ -1,0 +1,440 @@
+<!-- Output copied to clipboard! -->
+
+<!-----
+NEW: Check the "Suppress top comment" option to remove this info from the output.
+
+Conversion time: 4.175 seconds.
+
+
+Using this Markdown file:
+
+1. Paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* Docs to Markdown version 1.0β29
+* Thu May 06 2021 09:55:44 GMT-0700 (PDT)
+* Source doc: Modified copy of Sorghum bicolor BTx623 blog
+* Tables are currently converted to HTML tables.
+* This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
+
+----->
+
+
+<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 1.</p>
+<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
+
+<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
+
+<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
+
+
+
+## **About _Sorghum bicolor_ BTx623**
+
+_Sorghum bicolor_ (L.) Moench subsp. _bicolor_, is a widely grown cereal crop, particularly in Africa, ranking 5<sup>th</sup> in global cereal production (FAOSTAT 2008; http://www.fao.org/in-action/inpho/crop-compendium/cereals-grains/).  It is a C4 grass also used for sugar production, brewing, feedstock, and as a biofuel crop. Its diploid genome (~730 Mbp) has a haploid chromosome number of 10. The inbred variety ‘BTx623’ is the current reference genome for sorghum. It has short stature and an early maturing genotype used primarily to produce grain sorghum hybrids. It is a line susceptible to sugarcane aphid and sensitive to low nitrogen, and therefore often used in functional comparative studies.
+
+BTx623 (GRIN: [PI 564163](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1459134)) is part of the following population panels: 
+
+
+
+*   [Sorghum Association Panel (SAP)](https://npgsweb.ars-grin.gov/gringlobal/methodaccession?id1=69097&id2=494091) - 407 accessions [(Casa et al. 2008)](https://paperpile.com/c/H8kp7d/9fn8y) 
+*   [Sorghum Bioenergy Association Panel (BAP)](https://npgsweb.ars-grin.gov/gringlobal/methodaccession?id1=310665&id2=496343) - 386 accessions [(Brenton et al. 2016)](https://paperpile.com/c/H8kp7d/o6nM)
+
+
+## **Assembly**
+
+The genome assembly of _Sorghum bicolor_ cv. Moench was published in 2009 [(Paterson et al. 2009)](https://paperpile.com/c/H8kp7d/5g7D). The present assembly corresponds to v3.1.1 at the US Department of Energy Joint Genome Institute (JGI) described in [(McCormick et al. 2018)](https://paperpile.com/c/H8kp7d/Vv7a), and is also known as the NCBIv3 assembly. Sequencing by the JGI's[ Community Sequencing Program](http://www.jgi.doe.gov/user-programs/program-info/csp-overview/) in collaboration with the Plant Genome Mapping Laboratory at the University of Georgia, followed a whole-genome shotgun strategy reaching 8X coverage with scaffolds -where possible- being assigned to the genetic map. JGI did two additional rounds of improvements. The most recent update of release v3.0 included ~351 Mb of finished sorghum sequence. A total of 349 clones were manually inspected, then finished and validated using a variety of technologies including Sanger, 454 and Illumina. They were integrated into chromosomes by aligning to v1.0 assembly. As a result, 4,426 gaps were closed, and a total of 4.96 Mb of sequence was added to the assembly. Overall contiguity (contig N50) increased by a factor of 5.8X from 204.5 Kb to 1.2 Mb. For more details, see[ Phytozome](https://phytozome-next.jgi.doe.gov/info/Sbicolor_v3_1_1).
+
+
+## **Annotation**
+
+
+#### **Method**
+
+Gene predictions resulted from combining homology-based and _ab initio_ methods with expressed sequences from sorghum, maize and sugarcane, using the JGI annotation pipeline [(Goodstein et al. 2012)](https://paperpile.com/c/H8kp7d/OkGO). The SorghumBase browser presents data from the current JGI v3.1.1 release, which comprises the v3.0.1 assembly and v3.1.1 gene set (Feb 2017). Read more at[ Phytozome](http://www.phytozome.net/sorghum).
+
+This is a modern annotation using resources used in the original v1.0 release (Sbi1 assembly and Sbi1.4 gene set) and geneAtlas RNA-seq data. The main genome is in 10 chromosomes with small unmapped pieces, some of which contain annotated genes. The NCBIv3 release (Phytozome v3.1.1) is essentially the same as Phytozome v3.1 except for 82 genes/loci that were inactivated due to 4 scaffolds entirely present in chromosome(s) that were removed.
+
+
+<table>
+  <tr>
+   <td>Assembly information
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly name
+   </td>
+   <td> 
+   </td>
+   <td>Sorghum_bicolor_NCBIv3
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly date
+   </td>
+   <td> 
+   </td>
+   <td>June 2017
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly accession
+   </td>
+   <td> 
+   </td>
+   <td>GCA_000003195.3
+   </td>
+  </tr>
+  <tr>
+   <td>WGS accession
+   </td>
+   <td> 
+   </td>
+   <td>ABXC00000000
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly provider
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Sequencing description
+   </td>
+   <td>Sequencing technologies:
+   </td>
+   <td>Sanger; Illumina
+   </td>
+  </tr>
+  <tr>
+   <td> 
+   </td>
+   <td>Sequencing method
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td> 
+   </td>
+   <td>Genome coverage:
+   </td>
+   <td>8x
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly description
+   </td>
+   <td>Assembly methods:
+   </td>
+   <td>ARACHNE_modified v. 200721016
+   </td>
+  </tr>
+  <tr>
+   <td> 
+   </td>
+   <td>Construction of pseudomolecules
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Finishing strategy
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>NCBI submission
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Publication:
+   </td>
+   <td> 
+   </td>
+   <td>Paterson et al (2009); McCormick et al (2018)
+   </td>
+  </tr>
+  <tr>
+   <td> 
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Assembly statistics
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Number of contigs
+   </td>
+   <td> 
+   </td>
+   <td>2,688
+   </td>
+  </tr>
+  <tr>
+   <td>Total assembly length (Mb)
+   </td>
+   <td> 
+   </td>
+   <td>732
+   </td>
+  </tr>
+  <tr>
+   <td>Contig N50 (Mb)
+   </td>
+   <td> 
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td> 
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Annotations stats
+   </td>
+   <td> 
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Total number of genes
+   </td>
+   <td> 
+   </td>
+   <td>34,118
+   </td>
+  </tr>
+  <tr>
+   <td>Total number of transcripts
+   </td>
+   <td> 
+   </td>
+   <td>47,110
+   </td>
+  </tr>
+  <tr>
+   <td>Average gene length
+   </td>
+   <td> 
+   </td>
+   <td>3,714
+   </td>
+  </tr>
+  <tr>
+   <td>Exons per transcript
+   </td>
+   <td> 
+   </td>
+   <td>5
+   </td>
+  </tr>
+</table>
+
+
+
+#### **Repeats**
+
+Repeats were annotated with the Ensembl Genomes repeat feature pipeline [(Aken et al. 2016)](https://paperpile.com/c/H8kp7d/D11I), which uses six classes of repeats loaded from ENA. 
+
+
+<table>
+  <tr>
+   <td><strong>Repeat feature</strong>
+   </td>
+   <td><strong>Frequency</strong>
+   </td>
+   <td><strong>Coverage (Mb)</strong>
+   </td>
+   <td><strong>% of the genome covered</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Low complexity (Dust) features
+   </td>
+   <td>685,783
+   </td>
+   <td>29
+   </td>
+   <td>4
+   </td>
+  </tr>
+  <tr>
+   <td>RepeatMasker (with RepBase library)
+   </td>
+   <td>455,749
+   </td>
+   <td>451
+   </td>
+   <td>62.1
+   </td>
+  </tr>
+  <tr>
+   <td>RepeatMasker (with REdat library)
+   </td>
+   <td>392,778
+   </td>
+   <td>409
+   </td>
+   <td>56.2
+   </td>
+  </tr>
+  <tr>
+   <td>Tandem repeats (TRF) features
+   </td>
+   <td>245,654
+   </td>
+   <td>41
+   </td>
+   <td>5.7
+   </td>
+  </tr>
+</table>
+
+
+
+## 
+    **Regulation**
+
+
+#### **Epigenomics**
+
+Genomewide epigenetic marks related to root system morphology and architecture in sorghum BTx623 deposited under BioProject [PRJNA454504](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA454504/) (Gladman et al, manuscript in prep.). Three repetitions available for each of seven samples: leaf lower (vegetative whorl), leaf upper (growing anthesis), panicle (upper anthesis), root bottom (anthesis), root top (vegetative), stem 1 cm (vegetative) and stem mid internode (anthesis).
+
+Click [here for an example](https://ensembl.sorghumbase.org/Sorghum_bicolor/Location/View?db=core;g=SORBI_3006G095600;r=6:46566240-46571064) of two samples with very similar patterns of epigenetic variation for the msd2 gene region.
+
+
+#### 
+    **Baseline Gene Expression (Atlas)**
+
+Baseline gene expression data from seven sorghum BTx623 datasets curated and processed by the [EMBL-EBI Expression Atlas](https://www.ebi.ac.uk/gxa/) [(Emms et al. 2016; Makita et al. 2015; Davidson et al. 2012; Turco et al. 2017; Wang et al. 2018; Olson et al. 2014) and BioProject [PRJNA293229](https://www.ncbi.nlm.nih.gov//bioproject/PRJNA293229)/[SRP062564](https://trace.ncbi.nlm.nih.gov/Traces/sra?study=SRP062564) by Thurber et al (2015)].
+
+Click [here for an example of baseline gene expression](https://ensembl.sorghumbase.org/Sorghum_bicolor/Gene/ExpressionAtlas?db=core;g=SORBI_3004G141800;r=4:41625307-41663480;t=OQU84910;v=S4_41077528;vdb=variation;vf=112207) for the msd2 gene. 
+
+
+## **Variation**
+
+
+#### Variation in SorghumBase is available for short variants (genetic variation, which in turn may be naturally occurring or chemically induced), longer than 50 nucleotides (structural variants) and QTL variants associated with physical traits. 
+
+
+### 
+    **Genetic Variation**
+
+Genetic variation data for a sorghum gene is available graphically and in tabular form, and for each variant, a Variant page provides more detailed information. Below are provided examples of each of these data representations.
+
+
+
+*   Click [here for a Variation image](https://ensembl.sorghumbase.org/Sorghum_bicolor/Transcript/Variation_Transcript/Image?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47486074_T_C;vdb=variation;vf=3821694) of all the genetic variants mapping to the smaller transcript of the msd2 gene.
+*   Click [here for a Table of all the genetic variants](https://ensembl.sorghumbase.org/Sorghum_bicolor/Transcript/Variation_Transcript/Table?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47486074_T_C;vdb=variation;vf=3821694) mapping to the smaller transcript of the msd2 gene.
+*   Click [here for a Variant summary page](https://ensembl.sorghumbase.org/Sorghum_bicolor/Variation/Explore?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47487513_G_A;vdb=variation;vf=7758800) for a chemically induced variant (tmp_6_47487513_G_A).
+
+#### 
+    **Naturally occurring genetic variation**
+
+
+    Single Nucleotide Polymorphisms (SNPs). Currently in SorghumBase, there are two SNPs data sets for sorghum BTx623: 
+
+*   The Morris SNP dataset (Morris et al. 2013) consists of ~265,000 SNPs genotyped in 378 accessions from the US sorghum association panel (SAP).
+*   The Mace SNP dataset (Mace et al. 2013) includes almost 6.5 million SNPs genotyped in 45 _Sorghum bicolor_ lines including the BTx623 reference genome plus 2 _S. propinquum_ lines reported by Mace and colleagues (Mace et al. 2013). The data was obtained by resequencing the genomes of the 44 _S. bicolor_ lines representing the primary gene pool and spanning dimensions of geographic origin, end-use and taxonomic group (i.e., major races of cultivated _S. bicolor_, landraces, improved inbreds, progenitors, wild and weedy), and the first resequenced genome of _S. propinquum_, all of which were mapped to the BTx623 S. _bicolor_ reference genome.
+
+#### 
+    **Chemically induced variation**
+
+
+Ethyl methanesulfonate (EMS)-induced mutations. Currently in SorghumBase, there is one collection of EMS-induced mutant lines. EMS is a chemical commonly used to cause point mutations, that is, to change single nucleotides in the DNA of a plant seed. 
+
+
+
+*   The Xin EMS dataset [(Jiao et al. 2016)](https://paperpile.com/c/H8kp7d/13nP) includes almost 1.5 million EMS-induced G/C to A/T transition mutations annotated from 252 M3 families selected from the 6,400 sorghum mutant library in BTx623 background described by Xin and colleagues (Xin et al. 2008). Genomic DNA used for sequencing was pooled from 20 M3 plants per M2 family (Jiao et al. 2016). 
+
+### 
+    **Structural Variation**
+
+
+
+#### Data for structural variation for the sorghum BTx623 reference has been imported from the[ Database of Genomic Variants Archive](http://www.ebi.ac.uk/dgva/) (dGVA) from a single study containing around 28 thousand structural variations described by (Zheng et al. 2011). [Here is an example](https://ensembl.sorghumbase.org/Sorghum_bicolor/StructuralVariation/Explore?db=core;r=1:96756-143685;sv=nsv838266;svf=32426;vdb=variation).
+
+
+### 
+    **Phenotypic Variation**
+
+Quantitative Trait Locus (QTLs)**. **Data corresponding to 5,843 QTL features for 220 sorghum traits were imported from[ Sorghum QTL Atlas](https://aussorgm.org.au/sorghum-qtl-atlas/) and are provided with predicted syntenic locations in maize and rice.
+
+[Example region](https://ensembl.sorghumbase.org/Sorghum_bicolor/Location/View?db=core;g=SORBI_3006G095600;r=7:61190510-61277060;sv=nsv856002;svf=54084;t=OQU81659;vdb=variation) with QTLs associated with multiple traits including greenbug resistance, fresh biomass, and flag leaf height. Hint: For additional regions with QTL data in the current sorghum assembly (v.3), use the[ physical or genetic (cM) coordinates](http://aussorgm.org.au/dev/wp-content/uploads/2018/08/Consensus-Map_cM-and-bp-coordinates.xlsx) kindly provided by the Sorghum QTL Atlas team.
+
+
+## 
+    **References**
+
+
+    Aken, Bronwen L., Sarah Ayling, Daniel Barrell, Laura Clarke, Valery Curwen, Susan Fairley, Julio Fernandez Banet, et al. 2016. “The Ensembl Gene Annotation System.” _Database: The Journal of Biological Databases and Curation_ 2016 (June). https://doi.org/10.1093/database/baw093.
+
+
+    Brenton, Zachary W., Elizabeth A. Cooper, Mathew T. Myers, Richard E. Boyles, Nadia Shakoor, Kelsey J. Zielinski, Bradley L. Rauh, William C. Bridges, Geoffrey P. Morris, and Stephen Kresovich. 2016. “A Genomic Resource for the Development, Improvement, and Exploitation of Sorghum for Bioenergy.” _Genetics_ 204 (1): 21–33.
+
+
+    Casa, Alexandra M., Gael Pressoir, Patrick J. Brown, Sharon E. Mitchell, William L. Rooney, Mitchell R. Tuinstra, Cleve D. Franks, and Stephen Kresovich. 2008. “Community Resources and Strategies for Association Mapping in Sorghum.” _Crop Science_ 48 (1): 30–40.
+
+
+    Goodstein, David M., Shengqiang Shu, Russell Howson, Rochak Neupane, Richard D. Hayes, Joni Fazo, Therese Mitros, et al. 2012. “Phytozome: A Comparative Platform for Green Plant Genomics.” _Nucleic Acids Research_ 40 (Database issue): D1178–86.
+
+
+    McCormick, Ryan F., Sandra K. Truong, Avinash Sreedasyam, Jerry Jenkins, Shengqiang Shu, David Sims, Megan Kennedy, et al. 2018. “The Sorghum Bicolor Reference Genome: Improved Assembly, Gene Annotations, a Transcriptome Atlas, and Signatures of Genome Organization.” _The Plant Journal: For Cell and Molecular Biology_ 93 (2): 338–54.
+
+
+    Paterson, A. H., J. E. Bowers, R. Bruggmann, I. Dubchak, J. Grimwood, H. Gundlach, G. Haberer, et al. 2009. “The Sorghum Bicolor Genome and the Diversification of Grasses.” _Nature_ 457 (7229): 551–56.
+
+
+## **Links**
+
+
+
+*   [U.S. National Plant Germpl](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1459134)a[sm System (GRIN - Global)](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1459134): [PI 564163](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1459134)
+
+
+## **Image **
+
+
+
+<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+
+![alt_text](images/image1.png "image_tooltip")
+
+
+
+### Image source: The GRIN database, https://npgsweb.ars-grin.gov/gringlobal/ImgDisplay?id=1459134
+

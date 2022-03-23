@@ -379,7 +379,7 @@ sub _genebuild_text {
         $im_url = undef;
   }    ###weix-end
 
-  $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
+  #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
         my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
@@ -419,11 +419,14 @@ sub _compara_text {
   
   my $tree_text = $sample_data->{'GENE_TEXT'};
   my $tree_url  = $species_defs->species_path . '/Gene/Compara_Tree?g=' . $sample_data->{'GENE_PARAM'};
-
+  my $sb_url    = 'https://sorghumbase.org/genes?idList=' . $sample_data->{'GENE_PARAM'};
   # EG genetree
-  $html .= qq(
-    <a class="nodeco _ht" href="$tree_url" title="Go to gene tree for $tree_text"><img src="${img_url}96/compara.png" class="bordered" /><span>Example gene tree</span></a>
-  ) if $self->has_compara('GeneTree');
+  if ($self->has_compara('GeneTree')) {
+    $html .= qq(
+      <a class="nodeco _ht" href="$sb_url" title="Go to Sorghumbase gene tree for $tree_text"><img src="${img_url}96/sb_compara.png" class="bordered" /><span>Example gene tree (Sorghumbase)</span></a>
+      <a class="nodeco _ht" href="$tree_url" title="Go to Ensembl gene tree for $tree_text"><img src="${img_url}96/compara.png" class="bordered" /><span>Example gene tree (Ensembl)</span></a>
+    );
+  }
 
   # EG family
   if ($self->is_bacteria) {
@@ -473,14 +476,15 @@ sub _compara_text {
   else {
     $html .= '<p><strong>What can I find?</strong>  Homologues, gene trees, and whole genome alignments across multiple species.</p>';
   }
-  $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/comparative_genomics" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analyses</a></p>);
+  #$html .= qq(<p><a href="http://plants.ensembl.org/info/genome/compara/index.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analyses</a></p>);
   $html .= qq(<p><a href="/prot_tree_stats.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />Phylogenetic overview of gene families</a></p>);
+ $html .= qq(<p><a href="/info/genome/compara/index.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analyses</a></p>);   
 
-  if ($species_defs->ENSEMBL_FTP_URL) {
-    my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
-    $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
-      unless $self->is_bacteria;
-  }
+  #if ($species_defs->ENSEMBL_FTP_URL) {
+  #  my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
+  #  $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
+  #    unless $self->is_bacteria;
+  #}
 
   $html .= $compara_table;
 
@@ -537,14 +541,14 @@ sub _variation_text {
     }
 
     my $site = $species_defs->ENSEMBL_SITETYPE;
-    $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
+    $html .= qq(<p><a href="/info/genome/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
 
     if ($species_defs->ENSEMBL_FTP_URL) {
       my @links;
-      foreach my $format (qw/gvf vcf/){
+      foreach my $format (qw/ vcf/){ #we removed gvf, used to be qw/ gvf vcf/
         push(@links, sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
       }
-      push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
+      #push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
       my $links = join(" - ", @links);
       $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];
     }

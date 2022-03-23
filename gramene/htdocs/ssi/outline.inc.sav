@@ -1,0 +1,19 @@
+<div class="plain-box"><h2>What's in this release</h2>
+<ul><li>Four Maize NAM genomes
+	<ul><li><a href="/Zea_mayscml333"><em>Zea mays CML333</em></a></li>
+		<li><a href="/Zea_mayshp301"><em>Zea mays HP301</em></a></li>
+		<li><a href="/Zea_maysil14h"><em>Zea mays IL14H</em></a></li>
+		<li><a href="/Zea_maysky21"><em>Zea mays KY21</em></a></li>
+</ul></li>
+<li>Repeat feature analysis were performed with Maize specific repeat libraries for Zea mays CML333, HP301 and KY21</li>
+<li>Protein annotation with InterpScan were performed for all the genomes</li>
+<li>Comparative analyses
+    <ul><li>A total of 28,417 GeneTree families were constructed comprising 626,539 individual genes (689,413 input proteins). See stats <a href=/prot_tree_stats.html>here</a></li>
+	<li>Pairwise wholes genome alignments were constructed tween the following genomes</li>
+	<ul><li>Zea mays B73 v.s. Zea mays CML333</li>
+	    <li>Zea mays B73 v.s. Zea mays HP301</li>
+            <li>Zea mays B73 v.s. Zea mays KY21</li>
+</li>
+
+</ul>
+</div>

@@ -1,21 +1,28 @@
 package EnsEMBL::Gramene::SiteDefs;
+
 use strict;
 
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
+
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'sorghum.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 1;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+#  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
+	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
+  $SiteDefs::SITE_RELEASE_VERSION = 3;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Jul 2020';
-  $SiteDefs::SITE_NAME            = 'Gramene';
-  $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
-  $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
-  $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Feb 2022';
+
+  $SiteDefs::LARGE_SPECIES_SET = 1;
+  $SiteDefs::SITE_NAME            = 'Sorghumbase';
+  $SiteDefs::ENSEMBL_SITETYPE = 'Sorghumbase';
+	#$SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
+  $SiteDefs::SITE_FTP             = 'https://ftp.sorghumbase.org';
+  $SiteDefs::PE_URL             = 'https://'.$SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::ENSEMBL_PORT       = 88;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
@@ -26,14 +33,37 @@ sub update_conf {
 
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
 
+# start of copy of eg plants
+
+$SiteDefs::EG_DIVISION      = 'plants';
+
+    @SiteDefs::ENSEMBL_PERL_DIRS =
+      ( $SiteDefs::ENSEMBL_WEBROOT.'/perl',
+        $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-common/perl',
+        $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/perl',
+      );
+
+ #  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, $SiteDefs::ENSEMBL_SERVERROOT. '/../biomarts/plants/biomart-perl/htdocs';
+
+    $SiteDefs::DOCSEARCH_INDEX_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/data/docsearch';
+
+    $SiteDefs::ENA_COLLECTION_ID = 224;
+
+    $SiteDefs::ENA_SAMPLE_SEQ = "MDDCRFETSELQASVMISTPLFTDSWSSCNTANCNGSIKIHDIAGITYVAIPAVSMIQLGNLVGLPVTGDVLFPGLSSDEPLPMVDAAILKLFLQLKIKEGLELELLGKKLVVITGHSTGGALAAFTALWLLSQSSPPSFRVFCITFGSPLLGNQSLSTSISRSRLAHNFCHVVSIHDLVPRSSNEQFWPFGTYLFCSDKGGVCLDNAGSVRLMFNILNTTATQNTEEHQRYGHYVFTLSHMFLKSRSFLGGSIPDNSYQAGVALAVEALGFSNDDTSGVLVKECIETATRIVRAPILRSAELANELASVLPARLEIQWYKDRCDASEEQLGYYDFFKRYSLKRDFKVNMSRIRLAKFWDTVIKMVETNELPFDFHLGKKWIYASQFYQLLAEPLDIANFYKNRDIKTGGHYLEGNRPKRYEVIDKWQKGVKVPEECVRSRYASTTQDTCFWAKLEQAKEWLDEARKESSDPQRRSLLREKIVPFESYANTLVTKKEVSLDVKAKNSSYSVWEANLKEFKCKMGYENEIEMVVDESDAMET";
+
+    $SiteDefs::GXA = 1;
+
+    $SiteDefs::ENSEMBL_HMMER_ENABLED  = 1;
+
+#end of eg-plant conf
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables
@@ -76,10 +106,10 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   #----------
   # User database
   $SiteDefs::ENSEMBL_USERDB_NAME = 'ensembl_accounts';  #changed to ensembl_accounts lately
-  $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
+  $SiteDefs::ENSEMBL_USERDB_USER = 'weix';
   $SiteDefs::ENSEMBL_USERDB_HOST = 'cabot.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
-  $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
+  $SiteDefs::ENSEMBL_USERDB_PASS = 'warelab';
 
   #----------
   # Logging
@@ -107,8 +137,15 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_VP_ENABLED     = 0;
   $SiteDefs::ENSEMBL_DS_ENABLED     = 0;
 
-  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
-    $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
+#'http://brie:5202';
+#'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
+#  $SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.gramene.org/ebeye65' ;
+#'http://www.ebi.ac.uk/ebisearch/ws/rest';
+$SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.sorghumbase.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+
+#  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
+    #$SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
 
   #----------
   # Temp files
@@ -141,7 +178,6 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   $SiteDefs::ENSEMBL_DATASETS = [sort qw(
       Arabidopsis_thaliana
-      Brachypodium_distachyon
       Chlamydomonas_reinhardtii
       Oryza_sativa
       Selaginella_moellendorffii
@@ -150,11 +186,33 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
       Sorghum_tx2783pac
       Sorghum_tx430nano
       Sorghum_tx436pac
-      Sorghum_tx623cshl
       Vitis_vinifera
-      Zea_mays
+      Zea_maysb73v4
+    ), 
+	qw(
+	Sorghum_austrcf317961
+	Sorghum_is12661
+	Sorghum_is19953
+	Sorghum_is36143
+	Sorghum_is8525
+	Sorghum_is929
+	Sorghum_pi525695
+	Sorghum_pi532566
+	Sorghum_pi536008
+	Sorghum_r93194522
+	Sorghum_s3691
+	Zea_maysb73
+    ),
+	qw(
+	Sorghum_ji2731
+	Sorghum_353
     )
     ];
+#  Brachy was removed
+
+#	removed the following two genomes for SIGNA release
+#      Zea_maysb73
+#	Sorghum_tx623cshl 
 
   $SiteDefs::ENSEMBL_TOOLS_LIST = [
     'Blast'             => 'BLAST/BLAT',
@@ -168,6 +226,13 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
     #'VariationPattern'  => 'Variation Pattern Finder',
     #'LD'                => 'Linkage Disequilibrium Calculator',
   ];
+
+
+# The actually configuration for the expressionAtlas restful API end point 'GXA_REST_URL' is hard-coded
+# in public-plugins/widgets/htdocs/widgets/95_GXA.js 
+# Not in the public-plugins/widgets/conf/SiteDefs.pm 
+#  $SiteDefs::GXA_REST_URL = 'https://www.ebi.ac.uk/gxa/json/expressionData?geneId=';#'http://wwwdev.ebi.ac.uk/gxa/json/expressionData?geneId=';
+#  $SiteDefs::GXA_EBI_URL  = 'https://www.ebi.ac.uk/gxa/resources';#'http://wwwdev.ebi.ac.uk/gxa/resources'; #dev  environment for GXA for pre testing their release
 
 
 }

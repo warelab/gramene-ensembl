@@ -13,14 +13,13 @@ sub content {
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-1624628-5', 'gramene.org');
+      ga('create', 'UA-1624628-14', 'sorghumbase.org');
       ga('send', 'pageview');
 
     </script>
     <div class="twocol-right right unpadded">
-      <a href="http://www.gramene.org/about-gramene">About&nbsp;Gramene</a> | 
-      <a href="http://www.ensemblgenomes.org">About&nbsp;EnsemblGenomes</a> | 
-      <a href="http://tools.gramene.org/feedback">Contact&nbsp;Us</a> | 
+      <a href="https://www.sorghumbase.org/">About&nbsp;Sorghumbase</a> | 
+      <a href="https://www.sorghumbase.org/contact">Contact&nbsp;Us</a> | 
       <a href="/info/website/index.html">Help</a>
     </div>) 
   ;
