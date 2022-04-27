@@ -1,15 +1,34 @@
-<div class="plain-box"><h2>Polyploid View Enabled</h2>
+<div class="plain-box"><h2>What's New in Release 3</h2>
+<ul><li>New Oryza genomes
+<ul>		
+<li><a href="/Oryza_indicair8"><em>Oryza sativa indica</em> XI-1B1 var. IR8</a></li>
+<li><a href="/Oryza_sativair64"><em>Oryza sativa indica </em>XI-1B1 var. OsIR64</em></a></li>
+<li><a href="/Oryza_sativa127742"><em>Oryza sativa indica</em> XI-1B2 var. Os127742</a></li>
+<li><a href="/Oryza_sativa132424"><em>Oryza sativa indica</em> XI-2A var. Os132424</a></li>
+<li><a href="/Oryza_sativa125619"><em>Oryza sativa indica</em> XI-2B var. Os125619</a></li>
+<li><a href="/Oryza_sativa127564"><em>Oryza sativa indica</em> XI-3A var. Os127564</a></li>
+<li><a href="/Oryza_sativa127518"><em>Oryza sativa indica</em> XI-3B1 var. Os127518</a></li>
+<li><a href="/Oryza_sativa125827"><em>Oryza sativa indica</em> XI-3B2 var. Os125827</a></li>
+<li><a href="/Oryza_sativa128077"><em>Oryza sativa japonica</em> GJ-trop2 var. Os128077</a></li>
+<li><a href="/Oryza_sativa132278"><em>Oryza sativa japonica</em> GJ-subtrp var. Os132278</a></li>
+<li><a href="/Oryza_sativaazucena"><em>Oryza sativa japonica</em> GJ-trop1 var. Azucena</a></li>
+<li><a href="/Oryza_aus"><em>Oryza sativa aus</em> cA1 var. N22</em></a></li>
+<li><a href="/Oryza_sativa127652"><em>Oryza sativa aus </em>cA2 var. Os127652</a></li>
+<li><a href="/Oryza_sativa117425"><em>Oryza sativa indica</em> cB var. Os117425</a></li>
+<li><a href="/Oryza_carolina"><em>Oryza sativa japonica</em> var. Carolina</a></li>
+</ul>
+</li>
 
-<p>Polyploid view for<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Info/Index">wheat</a><!--nbsp--> <!--nbsp-->has been enabled, allowing users to view alignments between all 3 wheat components<!--nbsp--> <!--nbsp--><a href="http://ensembl.gramene.org/Triticum_aestivum/Location/MultiPolyploid?db=core;g=TRIAE_CS42_6DL_TGACv1_526338_AA1679880;r=TGACv1_scaffold_526338_6DL:198278-201729;r1=TGACv1_scaffold_500260_6BL:98835-102286:-1;r2=TGACv1_scaffold_472311_6AL:52247-55698:1;s1=Triticum_aestivum--TGACv1_scaffold_500260_6BL;s2=Triticum_aestivum--TGACv1_scaffold_472311_6AL;t=TRIAE_CS42_6DL_TGACv1_526338_AA1679880.1">simultaneously</a>.</p>
+<li>Updated Oryza genomes
+	<ul> 
+	<li><a href="/Oryza_indica"><em>Oryza sativa indica</em></a></li>
+	</ul>
+</li>
+<li>New & updated data
+<ul><li>Updated InterPro scan protein features.</li>
+ <li>Updated Compara gene tree analysis, ortholog and paralog predictions. A total of 37,423 GeneTree families were constructed comprising 1,134,514 individual genes (1,187,461 input proteins). See more stats <a href=/prot_tree_stats.html> here</a>.	
+</li>
+</ul>
+</div>
 
-<h2>Functional Genomics</h2>
-
-<p>26 new and updated functional genomic databases (<a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Transcript/Oligos?db=core;g=AT1G01030;r=1:8001-18000;t=AT1G01030.2">example</a> for Arabidopsis).</p>
-
-<h2>Arabidopsis variation data from the 1001 Genomes Project</h2>
-
-<p>The representation of genetic variation of <a href="http://ensembl.gramene.org/Arabidopsis_thaliana" title="Arabidopsis thaliana in Gramene">Arabidopsis thaliana</a> incorporates the full data set from the <a href="http://1001genomes.org/" title="1001genomes.org">1001 Genomes Project</a>, covering more than 10 million variant loci across 1,135 samples (<a href="http://europepmc.org/abstract/MED/27293186" title="Europe PMC">Cell 2016</a>).</p>
-
-<h2>Ensembl Plants Archive Site</h2>
-
-<p>Alongside release 32, Ensembl Plants launched a new <a href="http://archive.plants.ensembl.org/">archive site</a>, where selected previous releases of Ensembl Plants are being kept publicly available. The first release available on the archive site is release 31, and includes the previous assemblies for wheat and maize.</p></div>
+<--A total of 37,315 GeneTree families were constructed comprising 1,131,828 individual genes (1,184,741 input proteins).--> 

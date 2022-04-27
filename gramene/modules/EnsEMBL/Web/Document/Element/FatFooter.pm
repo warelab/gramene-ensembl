@@ -26,18 +26,21 @@ use base qw(EnsEMBL::Web::Document::Element);
 
 sub content {
   my $species_defs = shift->species_defs;
-  my $sister_sites = qq(<p><a href="http://oge.gramene.org">OGE Browser</a></p>
-			<p><a href="http://maizev4.gramene.org">Maize B73_RefGen_v4 PreRelease Browser</a></p>);
+  #my $sister_sites = qq(<p><a href="http://oge.gramene.org">OGE Browser</a></p>
+  #			<p><a href="http://maizev4.gramene.org">Maize B73_RefGen_v4 PreRelease Browser</a></p>);
+  
+  my $sister_sites = qq(<p><a href="https://vitis.gramene.org">VitisGramene Browser</a></p>
+                        <p><a href="https://maize-pangenome.gramene.org/">ZeaGramene Browser</a></p>);
   my $html = '<hr /><div id="fat-footer">';
 
   $html .= qq(
               <div class="column-four left">
                 <h3>About Us</h3>
                 <p><a href="http://www.gramene.org/about-gramene">About us</a></p>
-                <p><a href="http://tools.gramene.org/feedback">Contact us</a></p>
+                <p><a href="http://oryza.gramene.org/feedback">Contact us</a></p>
                 <p><a href="http://www.gramene.org/cite">Citing Gramene</a></p>
                 <!--<p><a href="http://www.ebi.ac.uk/about/privacy">Privacy policy</a></p>-->
-                <p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>
+                <!--<p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>-->
                 <!--<p><a href="http://www.ebi.ac.uk/Information/termsofuse.html">EMBL-EBI Terms of use</a></p>-->
                 <!--<p><a href="http://ensemblgenomes.org/info/about/legal">Disclaimer</a></p>-->
               </div>

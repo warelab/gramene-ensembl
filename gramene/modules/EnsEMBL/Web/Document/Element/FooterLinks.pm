@@ -19,8 +19,7 @@ sub content {
     </script>
     <div class="twocol-right right unpadded">
       <a href="http://www.gramene.org/about-gramene">About&nbsp;Gramene</a> | 
-      <a href="http://www.ensemblgenomes.org">About&nbsp;EnsemblGenomes</a> | 
-      <a href="http://tools.gramene.org/feedback">Contact&nbsp;Us</a> | 
+      <a href="http://oryza.gramene.org/feedback">Contact&nbsp;Us</a> | 
       <a href="/info/website/index.html">Help</a>
     </div>) 
   ;
