@@ -10,8 +10,8 @@ sub update_conf {
     $SiteDefs::ENSEMBL_SECONDARY_SPECIES = 'Arabidopsis_thaliana';
 
     $SiteDefs::ENSEMBL_BASE_URL          =  $SiteDefs::ENSEMBL_SERVERNAME;
-    $SiteDefs::SITE_RELEASE_VERSION = 3.1;
-    $SiteDefs::SITE_RELEASE_DATE    = 'Mar 2022';
+    $SiteDefs::SITE_RELEASE_VERSION = 4;
+    $SiteDefs::SITE_RELEASE_DATE    = 'May 2022';
 	#'Nov 2021';
 
 
@@ -33,31 +33,34 @@ sub update_conf {
 
 
     $SiteDefs::ENSEMBL_DATASETS = [sort qw(
-      Oryza_brachyantha
-      Oryza_glaberrima
-      Oryza_indica
-      Oryza_indicair8
-      Oryza_sativa
-      Oryza_aus
-      Oryza_carolina
-      Oryza_barthii
-      Oryza_glumaepatula
-      Oryza_meridionalis
-      Oryza_nivara
-      Oryza_punctata
-      Oryza_rufipogon
-      Oryza_sativa117425
-      Oryza_sativa125619
-      Oryza_sativa125827
-      Oryza_sativa127518
-      Oryza_sativa127564
-      Oryza_sativa127652
-      Oryza_sativa127742
-      Oryza_sativa128077
-      Oryza_sativa132278
-      Oryza_sativa132424
-      Oryza_sativaazucena
-      Oryza_sativair64
+     Oryza_aus
+     Oryza_barthii
+     Oryza_brachyantha
+     Oryza_carolina
+     Oryza_glaberrima
+     Oryza_glumaepatula
+     Oryza_indica
+     Oryza_indicair8
+     Oryza_meridionalis
+     Oryza_nivara
+     Oryza_punctata
+     Oryza_rufipogon
+     Oryza_sativa
+     Oryza_sativa117425
+     Oryza_sativa125619
+     Oryza_sativa125827
+     Oryza_sativa127518
+     Oryza_sativa127564
+     Oryza_sativa127652
+     Oryza_sativa127742
+     Oryza_sativa128077
+     Oryza_sativa132278
+     Oryza_sativa132424
+     Oryza_sativaazucena
+     Oryza_sativair64
+     Oryza_sativakitaake
+     Oryza_sativamh63
+     Oryza_sativazs97
       Leersia_perrieri
       Arabidopsis_thaliana
       Chlamydomonas_reinhardtii

@@ -206,18 +206,19 @@ while (my ($dbname) = $sth->fetchrow_array){
 	$analysis->description($description);
 	$analysis->displayable($displayable);
 	$analysis->display_label($display_label);
-	#$web_data ? $analysis->{_web_data}=$web_data : $analysis->{_web_data} = undef;
-	my $tidied_web_data=$aa->get_dumped_data($web_data) if $web_data;
-	$analysis->web_data($tidied_web_data) if $web_data;
+	
+	print "web_data=$web_data\n";
+	
+	#warn("Error: web_data format wrong, need to look like {'type' => 'domain', 'default' => { }}") unless $web_data =~ /'\w+'\s*=>\s*['{]/; 
+	$analysis->web_data($web_data) if $web_data;
 
-	print "tided_web_data is $tidied_web_data\n";
-#	$web_data ? $analysis->web_data($tidied_web_data) : 
-#	    $analysis->{_web_data} = undef;
-
-#	print Dumper  $analysis->web_data();
+	print  $analysis->web_data();
 	      
+
 	unless ( $noupdate ) {
+		print "before update analysis\n";
 	  $aa->update($analysis) ; 
+		print "after update analysis\n";
 	}
 	      
 	delete $hash{lc($logic_name)};

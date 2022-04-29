@@ -282,7 +282,7 @@ sub _assembly_text {
     else {
       $ftp_url = sprintf '%s/release-%s/fasta/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
     }
-    $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download DNA sequence</a> (FASTA)</p>);
+    #$html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download DNA sequence</a> (FASTA)</p>);
   }
 
   # Link to assembly mapper
@@ -362,7 +362,7 @@ sub _genebuild_text {
     my $dataset = $species_defs->SPECIES_DATASET;
     my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
     my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
-    $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
+    #$html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
   }
   
   #my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
@@ -379,7 +379,7 @@ sub _genebuild_text {
         $im_url = undef;
   }    ###weix-end
 
-  $html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
+  #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
 
   if( $species =~ /Zea_mays/i ){  ##weix-start
         my $func_url = "http://ftp.gramene.org/CURRENT_RELEASE/gff3/zea_mays/gene_function";
@@ -477,9 +477,9 @@ sub _compara_text {
   $html .= qq(<p><a href="/prot_tree_stats.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />Phylogenetic overview of gene families</a></p>);
 
   if ($species_defs->ENSEMBL_FTP_URL) {
-    my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
-    $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
-      unless $self->is_bacteria;
+    #my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
+    #$html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
+     # unless $self->is_bacteria;
   }
 
   $html .= $compara_table;
@@ -542,11 +542,11 @@ sub _variation_text {
     if ($species_defs->ENSEMBL_FTP_URL) {
       my @links;
       foreach my $format (qw/gvf vcf/){
-        push(@links, sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
+        #push(@links, sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
       }
-      push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
-      my $links = join(" - ", @links);
-      $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];
+      #push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
+      #my $links = join(" - ", @links);
+      #$html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];
     }
   }
   else {
@@ -595,7 +595,7 @@ sub _funcgen_text {
 
     if ($species_defs->ENSEMBL_FTP_URL) {
       my $ftp_url = sprintf '%s/release-%s/regulation/%s/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
-      $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all regulatory features</a> (GFF)</p>);
+      #$html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all regulatory features</a> (GFF)</p>);
     }
   }
   else {

@@ -129,9 +129,21 @@ taxonTreeData = [
                      {
                         "title" : "oryza sativair64",
                         "key" : "Oryza_sativair64"
+                     },
+		     {
+                        "title" : "oryza sativamh63",
+                        "key" : "Oryza_sativamh63"
+                     },
+		     {
+                        "title" : "oryza sativazs97",
+                        "key" : "Oryza_sativazs97"
+                     },
+		     {
+                        "title" : "oryza sativakitaake",
+                        "key" : "Oryza_sativakitaake"
                      }
                   ],
-                  "title" : "Rices (24)",
+                  "title" : "Rices (27)",
                   "key" : "Rices"
                },
                {
@@ -154,11 +166,11 @@ taxonTreeData = [
                   "key" : "Warm season grasses (C4)"
                }
             ],
-            "title" : "Grasses (28)",
+            "title" : "Grasses (31)",
             "key" : "Grasses"
          }
       ],
-      "title" : "Monocots (28)",
+      "title" : "Monocots (31)",
       "key" : "Monocots"
    },
    {
