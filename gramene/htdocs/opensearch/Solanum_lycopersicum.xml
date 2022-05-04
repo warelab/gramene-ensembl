@@ -2,10 +2,10 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Solan)</ShortName>
- <Description>Search Ensembl Genomes - Solanum lycopersicum - Solanum lycopersicum str. Heinz 1706</Description>
+ <Description>Search Ensembl Genomes - Solanum lycopersicum - Solanum lycopersicum</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Solanum lycopersicum Solanum lycopersicum str. Heinz 1706</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Solanum lycopersicum Solanum lycopersicum</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://panvitis.gramene.org/Solanum_lycopersicum/Psychic?q={searchTerms};site=ensembl"/>
+      template="http://vitis-ensembl.gramene.org/Solanum_lycopersicum/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes All species</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://panvitis.gramene.org/common/Psychic?q={searchTerms};site=ensembl_all"/>
+      template="http://vitis-ensembl.gramene.org/common/Psychic?q={searchTerms};site=ensembl_all"/>
 </OpenSearchDescription>

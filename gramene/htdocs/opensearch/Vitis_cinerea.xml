@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Vitis cinerea Vitis cinerea</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://panvitis.gramene.org/Vitis_cinerea/Psychic?q={searchTerms};site=ensembl"/>
+      template="http://vitis.gramene.org//Vitis_cinerea/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

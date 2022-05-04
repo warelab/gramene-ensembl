@@ -1,20 +1,35 @@
-<div class="plain-box"><h2>What's New in Release 50</h2>
-<div class="info-box embedded-box float-right"><h3>Did you know...?</h3><p><a href="http://ensemblgenomes.org/info/data/rfam_alignment"><img alt="Read more" src="/img/9796ea51.png" style="float:right; height:50px; margin:1px 5px; width:50px" title="" /></a></p>
+<div class="plain-box"><h2>What's in Pan-grape pilot Release</h2>
 
-<p>We have performed <a href="http://ensemblgenomes.org/info/data/rfam_alignment">ncRNA alignments</a><!--nbsp--> <!--nbsp-->across<!--nbsp--> <!--nbsp-->all plant species?</p></div>
-<ul><li>New data
-        <ul><li>New <a href="http://ensembl.gramene.org/Oryza_sativa/Info/Annotation#variation">variation data for rice</a>.</li>
-                <li>New <a href="http://plantreactome.gramene.org/">Plant Reactome</a> cross references added to all species.</li>
-                <li>New <a href="http://ensemblgenomes.org/info/data/rfam_alignment">ncRNA alignment</a> across all plant species.</li>
-                <li>New <a href="http://ensembl.gramene.org/Arabidopsis_thaliana/Info/Index#modal_user_data-Track_Hub_Registry_Search">track hubs</a> for more than 900 public RNA-Seq studies, totalling more than 16,000 tracks across 35 plant species.</li></ul>
+<ul>
+<li>Vitis genomes
+        <ul>
+	<li>Vitis pinot IGGP 12x assembly and 2012-07-CRIBI community annotation <a href="/Vitis_vinifera" title="community pinot in Gramene"><em>Vitis vinifera pinot PN40024</em></a></li>
+<!--	<li>Vitis pinot IGGP 12x assembly and MAKER-P wareLab annotation <a href="/Vitis_pinot" title="wareLab pinot in Gramene"><em>Vitis vinifera pinot PN40024</em></a></li> -->
+	<li>Vitis cabernet PacBio assembly and MAKER-P wareLab annotation <a href="/Vitis_cabernetpac" title="wareLab cabernet in Gramene"><em>Vitis vinifera cabernet</em></a></li>
+	<li>Vitis flame PacBio assembly and MAKER-P wareLab annotation <a href="/Vitis_flamepac" title="wareLab flame in Gramene"><em>Vitis vinifera flame</em></a></li>
+	<li>Vitis flame Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_flame10x" title="wareLab flame in Gramene"><em>Vitis vinifera flame</em></a></li>
+	<li>Vitis concord Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_concord10x" title="wareLab concord in Gramene"><em>Vitis vinifera concord</em></a></li>
+<!--	<li>Vitis cinerea Chromium10X assembly and MAKER-P wareLab annotation <a href="/Vitis_cinerea10x" title="wareLab cinerea10x in Gramene"><em>Vitis vinifera cinerea10x</em></a></li> -->
+<!--	<li>Vitis cinerea PacBio assembly and MAKER-P wareLab annotation <a href="/Vitis_cinereapac" title="wareLab cinerea in Gramene"><em>Vitis vinifera cinerea</em></a></li> -->
+	</ul>
         </li>
-        <li>Updated data
-        <ul><li>Updated <a href="ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/data/split_genes">putative split gene annotation artifacts</a>.</li>
-                <li>Updated protein domain information based on latest InterProScan.</li>
-		<li>Updated BioMarts.</li>
-		<li>Updated to <a href="http://ensembl.org/info/website/news.html?id=84">Ensembl 84 software</a>.</li></ul>
-		</li>
-	<li>Updated features
-		<ul><li>Searches within ensembl.gramene.org are now being served by our new search API hosted at <a href="http://www.gramene.org/web-services">data.gramene.org</a>.</li>
-		<li>New <a href="http://ensembl.gramene.org/hmmer/index.html">HMMER tool</a> for fast protein sequence search using Hidden Markov Models.</li></ul>
+<li>Other genomes as out group
+	<ul>
+	<li><a href="/Glycine_max">Glycine_max (soybean)</a></li>
+	<li><a href="/Arabidopsis_thaliana">Arabidopsis_thaliana</a></li>
+	<li><a href="/Solanum_lycopersicum">Solanum_lycopersicum (tomato)</a></li>
+	<li><a href="/Oryza_sativa">Oryza_sativa (rice)</a></li>
+	<li><a href="/Brachypodium_distachyon">Brachypodium_distachyon</a></li>
+	<li><a href="/Sorghum_bicolor">Sorghum_bicolor v1.4</a></li>
+	</ul>
+</li>
+<li>Featured data
+	<ul>
+	<li>peptide comparative genomics: gene tree and ortholog/paralogs <a href="/Vitis_vinifera/Gene/Compara_Tree?g=VIT_01s0010g03900">example</a></li>
+ 	<li>synteny <a href="/Vitis_vinifera/Location/Synteny?r=7:318001-328000">example</a></li>
+
+	<li>protein domains predicted by InterProScan <a href="/Vitis_cabernetpac/Transcript/Domains?g=Vitvi_ca.a.000000F.g00020;r=000000F:138802-139251;t=Vitvi_ca.a.000000F.g00020.m01">example</a></li>
+<!--        <li>protein domains predicted by InterProScan <a href="/Vitis_cabernetpac/Transcript/ProteinSummary?db=core;g=CASF_010137;r=000020F%7Cquiver:2717301-2734973;t=CASF_010137-RA">example</a></li> http://vitis-ensembl.gramene.org/Vitis_cabernetpac/Transcript/Domains?g=Vitvi_ca.a.000000F.g00020;r=000000F:138802-139251;t=Vitvi_ca.a.000000F.g00020.m01 -->
+	</ul>
+</li>
 </div>

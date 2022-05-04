@@ -4,16 +4,17 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'panvitis.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'vitis-ensembl.gramene.org';
 #  $SiteDefs::ENSEMBL_SERVERNAME             = 'dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 53; 
+  $SiteDefs::SITE_RELEASE_VERSION = 4; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2017';
-  $SiteDefs::SITE_NAME            = 'Gramene';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jun 2021';  #'Dec 2017';
+  $SiteDefs::SITE_NAME            = 'GrameneVits';
+  $SiteDefs::ENSEMBL_SITETYPE           = 'GrameneVitis';
  # $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
@@ -34,7 +35,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/vitis-ebeye53';
+#'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
   $SiteDefs::ENSEMBL_TOOLS_PERL_BIN         = '/usr/local/bin/perl';
   $SiteDefs::ENSEMBL_TMP_DIR_BLAST          = $SiteDefs::ENSEMBL_SERVERROOT."/blastqueue";
@@ -112,19 +114,27 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   #----------
   # Species stuff
 
-  $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
+  $SiteDefs::ENSEMBL_DATASETS           = [];
+  $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Vitis_vinifera'; # Default
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cabernet';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cinerea';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cinerea10x'; 
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_pinot';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_flame';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_concord';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cabsauvignon';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_carmenere';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_chardonnay'; 
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_merlot';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_flamepac';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_syldvit3351';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_concord10x';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_sylc12';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_zinfandel';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_vinifera';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Brachypodium_distachyon';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_viniferapn40024'; 
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Arabidopsis_thaliana';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Chlamydomonas_reinhardtii';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Sorghum_bicolor';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Glycine_max';
-  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Solanum_lycopersicum';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysb73v4';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Selaginella_moellendorffii';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Drosophila_melanogaster';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Oryza_sativa';
 }
 
 1;
