@@ -16,3 +16,4 @@
 1	cshl_gene	Gene annotation by warelab in CSHL through an automated, evidence-based method combining 3rd party software including Mikado, BRAKER and PASA 	Gene (CSHL)	1	{label_key => [biotype], default => {contigviewbottom => transcript_label, contigviewtop => gene_label, cytoview => gene_nolabel}}
 2	cshl_noncoding_gene	Gene annotation by warelab in CSHL through an automated, evidence-based method combining 3rd party software including Mikado, BRAKER and PASA, classified as non_coding	Gene (CSHL non_coding)	1	{label_key => [biotype], default => {contigviewbottom => transcript_label, contigviewtop => gene_label, cytoview => gene_nolabel}}
 
+3	vitis_cshl	Gene annotation by warelab in CSHL through an automated, evidence-based method combining 3rd party software including Mikado, BRAKER and PASA 	Gene (CSHL)	1	{ "label_key" => "[biotype]", "default" => { "contigviewbottom" => "transcript_label", "contigviewtop" => "gene_label", "cytoview" => "gene_nolabel"}}
