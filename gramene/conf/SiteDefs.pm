@@ -63,7 +63,6 @@ $SiteDefs::EG_DIVISION      = 'plants';
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
 
-  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables
@@ -137,7 +136,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_VP_ENABLED     = 0;
   $SiteDefs::ENSEMBL_DS_ENABLED     = 0;
 
-  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; #brie:5202';
 #'http://brie:5202';
 #'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
 #  $SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.gramene.org/ebeye65' ;
