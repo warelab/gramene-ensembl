@@ -7,15 +7,15 @@ use strict;
 sub update_conf {
 
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
-#  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 3;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 4;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Feb 2022';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jul 2022';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
@@ -139,9 +139,10 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; #brie:5202';
 #'http://brie:5202';
 #'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
-#  $SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.gramene.org/ebeye65' ;
+  $SiteDefs::EBEYE_REST_ENDPOINT     =  'http://brie8:9804';
+#'https://data.sorghumbase.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 #'http://www.ebi.ac.uk/ebisearch/ws/rest';
-$SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.sorghumbase.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+#$SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/sorghum-ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
 #  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     #$SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
@@ -205,6 +206,7 @@ $SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.sorghumbase.org/ebeye' . $Sit
 	qw(
 	Sorghum_ji2731
 	Sorghum_353
+    	Populus_trichocarpa
     )
     ];
 #  Brachy was removed
