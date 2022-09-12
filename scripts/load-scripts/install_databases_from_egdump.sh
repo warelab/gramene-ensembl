@@ -37,12 +37,12 @@ mysqlparam=" -u $USER -p$DBPASSWD -h $DBHOST "
 echo "mysqlparam is $mysqlparam"
 
 
-for k in core funcgen variation otherfeature compara mart 
+for k in core funcgen variation otherfeature compara ancestral mart 
 	do echo $k
 	ls -d *$k* > ../Epl$k
 done
 
-for k in core funcgen variation otherfeature compara mart 
+for k in core funcgen variation otherfeature compara ancestral mart 
 #for k in mart 
         do echo Epl$k 
 	for db in `cat ../Epl$k `

@@ -200,14 +200,17 @@ while( my $seq = $SEQ_IO->next_seq ){
   my $seq_id     = $seq->id; # TODO - use filename if ID is missing
 
   if($CS_NAME =~ /chromosome/i){
+warn("cs is chromosome, seq_id=$seq_id\n");
+      next unless ($seq_id =~ /^chr/i); 
       $seq_id =~ s/.*chr(omosome)?_?0*//i ;
       $seq_id =~ s/Obarthii.*/OB_3S/i ;
       $seq_id =~ s/^Bd(\d+)\s*$/$1/i;
       
       $seq_id =~ s/\|.*//;
+warn("cs is chromosome, seq_id=$seq_id\n");
     
   }else{
-    #next if ($seq_id =~ /chr(omosome)?_?0*/i || $seq_id =~ /^Bd\d+\s*$/i);
+    next if ($seq_id =~ /^chr/i);
   }
   #$seq_id =~ s/chr(omosome)?_?0*//i; # Strip 'chromsome' prefix from ID
 

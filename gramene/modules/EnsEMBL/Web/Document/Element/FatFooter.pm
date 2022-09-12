@@ -26,8 +26,11 @@ use base qw(EnsEMBL::Web::Document::Element);
 
 sub content {
   my $species_defs = shift->species_defs;
-  my $sister_sites = qq(<p><a href="http://oge.gramene.org">OGE Browser</a></p>
-			<p><a href="http://maizev4.gramene.org">Maize B73_RefGen_v4 PreRelease Browser</a></p>);
+  my $sister_sites = qq(
+			<p><a href="https://maize-pangenome.gramene.org">Maize Browser</a></p>
+                        <p><a href="https://vitis.gramene.org">Grapevine Browser</a></p>
+                        <p><a href="https://sorghumbase.org">SorghumBase</a></p>
+                       );
   my $html = '<hr /><div id="fat-footer">';
 
   $html .= qq(

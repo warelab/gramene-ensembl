@@ -143,6 +143,7 @@ Readonly my $UTR_REGEX   => qr{UTR}xmsi;
 Readonly my $GRAPE_REGEX => qr{ obsolete }xmsi;  #No need to deal with grape differently
 Readonly my $GRAPE_FEATURE_NAME_REGEX => qr{ obsolete }xmsi;
 
+Readonly my @FEATURES => qw( EXON_START EXON_END CDS_EXON_START CDS_EXON_END );
 use vars qw( $BASEDIR );
 
 BEGIN{
@@ -369,6 +370,21 @@ while( my $line = $GFF_HANDLE->getline ){
   elsif( $feature eq 'EXON'){
     #redundant
     #we can figure out the exon boundry from UTR and CDs
+    $transcript_id = $attribs_ref->{'PARENT'} || $attribs_ref->{ID};
+    $gene_id       = $TRPT2GENE{$transcript_id};
+    print"EXON for $transcript_id, $gene_id\n";#####
+    unless ( $gene_id ){
+      die("cannot find gene for transcript $transcript_id at " .
+	                $GFF_HANDLE->input_line_number );
+    }
+    $GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{EXON_COUNT} ++;
+    $GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{EXON_START} ||= [];
+    $GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{EXON_END}   ||= [];
+    push @{$GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{EXON_START}},
+	          $start;
+    push @{$GENES->{$gene_id}->{TRANSCRIPTS}->{$transcript_id}->{EXON_END}},
+	            $end;
+
   }
   else{
     die( "Unrecognized feature $feature" );
@@ -393,13 +409,26 @@ foreach my $g( keys %$GENES ){
     #reconstruct exons and save in the hash
     ## now we need to compute exons using CDS and UTRS
 
-    my @trpt_ex_starts = sort{ $a<=>$b } (@{$trptdata->{CDS_EXON_START}}, 
-					  @{$trptdata->{UTR_EXON_START} || []} 
-					 );
-    my @trpt_ex_ends   = sort{ $a<=>$b } (@{$trptdata->{CDS_EXON_END}},
-				       @{$trptdata->{UTR_EXON_END} || []}
-					 );
-	
+    my @trpt_ex_starts = ();
+    my @trpt_ex_ends = ();
+
+    if( defined $trptdata->{UTR_EXON_START} && defined $trptdata->{CDS_EXON_START}){
+    	@trpt_ex_starts  = sort{ $a<=>$b } (@{$trptdata->{CDS_EXON_START}}, @{$trptdata->{UTR_EXON_START}});
+    }else{
+	    @trpt_ex_starts  = sort{ $a<=>$b }   defined $trptdata->{EXON_START} ? 
+	    		@{$trptdata->{EXON_START}} : defined $trptdata->{CDS_EXON_START} ? 
+		        $trptdata->{CDS_EXON_START} : ();	
+    }
+
+   if( defined $trptdata->{UTR_EXON_END} && defined $trptdata->{CDS_EXON_END}){ 
+    	@trpt_ex_ends   = sort{ $a<=>$b } (@{$trptdata->{CDS_EXON_END}}, @{$trptdata->{UTR_EXON_END}} );
+   }else{
+	@trpt_ex_ends  = sort{ $a<=>$b }   defined $trptdata->{EXON_END} ? 
+	                        @{$trptdata->{EXON_END}} : defined $trptdata->{CDS_EXON_END} ?
+				$trptdata->{CDS_EXON_END} : ();
+
+   }
+
     my ($trpt_exon_starts, $trpt_exon_ends) = compute_exons(\@trpt_ex_starts,
 							    \@trpt_ex_ends);
     
@@ -416,15 +445,15 @@ foreach my $g( keys %$GENES ){
         
     # Get exons into gene-order
     my $f = $trptdata->{STRAND} > 0 ? 1 : 0;
-    foreach my $key qw( EXON_START EXON_END CDS_EXON_START CDS_EXON_END ){
+    foreach my $key ( @FEATURES ) {
       $trptdata->{$key} = [ sort{ $f ?$a<=>$b :$b<=>$a} @{$trptdata->{$key}} ];
     }
     
 
 
     # Find the translation start/stop
-    my( $start_codon ) = sort{ $a<=>$b } @{$trptdata->{CDS_EXON_START} || []};
-    my( $stop_codon )  = sort{ $b<=>$a } @{$trptdata->{CDS_EXON_END} || []};
+    my( $start_codon ) = sort{ $a<=>$b } @{$trptdata->{CDS_EXON_START}} || @{$trptdata->{EXON_START}} ;#
+    my( $stop_codon )  = sort{ $b<=>$a } @{$trptdata->{CDS_EXON_END}} || @{$trptdata->{EXON_END}} ;
     if( $trptdata->{STRAND} < 0 ){ #gene oriented
       ($start_codon,$stop_codon) = ($stop_codon,$start_codon);
     }
@@ -437,18 +466,18 @@ foreach my $g( keys %$GENES ){
       my $start = $trptdata->{EXON_START}->[$i];
       my $end   = $trptdata->{EXON_END}->[$i];
       if( $start_codon >= $start and $start_codon <= $end ){
-	$trptdata->{CDS_START_EXON} = $i;
+    	$trptdata->{CDS_START_EXON} = $i;
       }
       if( $stop_codon >= $start and $stop_codon <= $end ){
-	$trptdata->{CDS_END_EXON} = $i;
+    	$trptdata->{CDS_END_EXON} = $i;
       }
     }
     unless( defined $trptdata->{CDS_END_EXON} &&
           defined $trptdata->{CDS_START_EXON} ){
-      warn Dumper( $trptdata );
-      die( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
+	  #warn Dumper( $trptdata );
+      warn( "Gene-Transcript ${g}-${t} has no CDS_END_EXON/CDS_START_EXON" );
     }
-    
+   
   }
 }
 
@@ -476,9 +505,9 @@ foreach my $gene_id( keys %$GENES ){
     my $trpt_name =  $atrptdata->{TRPT_NAME};
     
     my $seq_region_name = $atrptdata->{SEQ_NAME};
-                              #print "seq_region_name=$seq_region_name\n";
-    $seq_region_name =~ s/chr//i;
-                              #print "seq_region_name=$seq_region_name\n";
+    #print "seq_region_name=$seq_region_name\n";
+    $seq_region_name =~ s/(chr)*0*//i;
+    #                         print "seq_region_name=$seq_region_name\n";
     my $slice = $sa->fetch_by_region( undef, $seq_region_name );
 
     print "created slice for $seq_region_name\n";
@@ -524,8 +553,8 @@ foreach my $gene_id( keys %$GENES ){
     my $transcript_start = $atrptdata->{START_CODON};
     my $transcript_stop  = $atrptdata->{STOP_CODON};
     
-    $transcript_start || die( "Trpt ${gene_id}-${trpt_id} has no start" );
-    $transcript_stop  || die( "Trpt ${gene_id}-${trpt_id} has no stop" );
+    #$transcript_start || die( "Trpt ${gene_id}-${trpt_id} has no start" );
+    #$transcript_stop  || die( "Trpt ${gene_id}-${trpt_id} has no stop" );
     
     #########
     # EXONS #

@@ -30,7 +30,7 @@ use Getopt::Long;
 use Pod::Usage;
 use File::Glob;
 
-use Gramene::Config;
+#use Gramene::Config;
 use DBI qw/:sql_types/;
 
 use Bio::SeqIO;

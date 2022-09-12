@@ -49,11 +49,10 @@ use Pod::Usage;
 
 use Readonly;
 
-Readonly my $STAT_TMPL               => "\%-40s\t\%9d\n";
-Readonly my $STAT_TMPL_RATIO         => "\%-40s\t\%9d\t\%6.2f\%\%\n";
-Readonly my $CHROM_STAT_TMPL         => "%-15s %9d %9d %6.2f%%\n";
+Readonly my $CHROM_STAT_TMPL         => "%-15s %9d %9d %9d %6.2f%%\n";
 Readonly my $TOTAL_DNA               => 'Total DNA';
 Readonly my $MASKED_DNA              => 'Masked DNA';
+Readonly my $NATIVE_NS              => 'Native Ns';
 Readonly my $CHROMOSOME_COORD_SYSTEM => 'chromosome';
 
 our $ENS_DBA;
@@ -118,23 +117,25 @@ MAIN: {
 	print "total_Ns=$total_Ns, nativeNs=$n_count\n" if $detail;
 	my $repeat_ns = $total_Ns - $n_count;
 	$chrom_sums{ $chrom->seq_region_name }
-	= { length => $chrom->length, masked => $repeat_ns };
+	= { length => $chrom->length, masked => $repeat_ns, native_ns => $n_count };
 	$sums{$MASKED_DNA} += $repeat_ns;
+	$sums{$NATIVE_NS} += $n_count;
     
     }
 
     for my $chrom_name (sort keys %chrom_sums) {
 	my $length = $chrom_sums{$chrom_name}->{length};
 	my $masked = $chrom_sums{$chrom_name}->{masked};
+	my $native_ns = $chrom_sums{$chrom_name}->{native_ns};
 	print (
 	       sprintf($CHROM_STAT_TMPL,
-		       $chrom_name, $length, $masked, 100.0 * ($masked / $length))
+		       $chrom_name, $length, $masked, $native_ns, 100.0 * ($masked / ($length-$native_ns)))
 	       ) if $detail;
     }
-    print (
+    print 
             sprintf($CHROM_STAT_TMPL,
-                "$species-Total", $sums{$TOTAL_DNA}, $sums{$MASKED_DNA},
-                100.0 * ($sums{$MASKED_DNA} / $sums{$TOTAL_DNA}))
+                "$species-Total", $sums{$TOTAL_DNA}, $sums{$MASKED_DNA}, $sums{$NATIVE_NS},
+                100.0 * ($sums{$MASKED_DNA} / ($sums{$TOTAL_DNA}-$sums{$NATIVE_NS}))
         );
 
 }
