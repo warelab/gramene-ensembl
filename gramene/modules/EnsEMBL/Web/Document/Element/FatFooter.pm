@@ -29,7 +29,7 @@ sub content {
   my $sister_sites = qq(
 			<p><a href="https://maize-pangenome.gramene.org">Maize Browser</a></p>
                         <p><a href="https://vitis.gramene.org">Grapevine Browser</a></p>
-                        <p><a href="https://sorghumbase.org">SorghumBase</a></p>
+                        <p><a href="https://oge.gramene.org">Oryza Browser</a></p>
                        );
   my $html = '<hr /><div id="fat-footer">';
 
