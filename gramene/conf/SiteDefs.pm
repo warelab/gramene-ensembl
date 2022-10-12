@@ -11,7 +11,6 @@ sub update_conf {
     $SiteDefs::SITE_RELEASE_VERSION = 5;
     $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2022';
 	#'May 2022';
-	#'Nov 2021';
 
 
 $SiteDefs::DIVISION         = 'plants';
