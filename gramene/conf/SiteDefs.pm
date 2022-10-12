@@ -4,35 +4,59 @@ use strict;
 
 sub update_conf {
     $SiteDefs::ENSEMBL_PORT           = 8888;
+    #$SiteDefs::ENSEMBL_PROXY_PORT     = 80;
     $SiteDefs::ENSEMBL_SERVERNAME     = 'oryza-ensembl.gramene.org';
-
-    $SiteDefs::ENSEMBL_PRIMARY_SPECIES   = 'Oryza_sativa';
-    $SiteDefs::ENSEMBL_SECONDARY_SPECIES = 'Arabidopsis_thaliana';
-
-    $SiteDefs::ENSEMBL_BASE_URL          =  $SiteDefs::ENSEMBL_SERVERNAME;
+    #$SiteDefs::ENSEMBL_PROTOCOL          = 'https';
+    $SiteDefs::ENSEMBL_BASE_URL          =  'https://oryza-ensembl.gramene.org/';
     $SiteDefs::SITE_RELEASE_VERSION = 5;
     $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2022';
-	#'Nov 2021';
+	#'May 2022';
 
 
+$SiteDefs::DIVISION         = 'plants';
     $SiteDefs::EG_DIVISION      = 'plants';
-    $SiteDefs::ENSEMBL_SITETYPE = 'GrameneOryza';
+$SiteDefs::SUBDOMAIN_DIR    = 'plants';
+    $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
     $SiteDefs::SITE_NAME        = 'GrameneOryza';
     $SiteDefs::SITE_FTP         = 'http://ftp.gramene.org/oge';
+ $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
 
     $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);
     $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));
     $SiteDefs::ENSEMBL_SERVERADMIN            = 'weix@cshl.edu';
     $SiteDefs::ENSEMBL_MAIL_SERVER       = 'localhost';
 
-    @SiteDefs::ENSEMBL_PERL_DIRS =
-      ( $SiteDefs::ENSEMBL_WEBROOT.'/perl',
-        $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-common/perl',
-        $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/perl',
-      );
+ $SiteDefs::MAX_PROCESS_SIZE = 2000000;
+ # this is defined in default.ini
+ #$SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
 
 
-    $SiteDefs::ENSEMBL_DATASETS = [sort qw(
+  $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools';
+
+  $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
+  $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
+
+
+  $SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
+  $SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
+
+$SiteDefs::EBEYE_REST_ENDPOINT = 'https://data.gramene.org/oryza-ebeye4';
+
+# This should be set by the plugin, but not working. Need to hard code!
+    #@SiteDefs::ENSEMBL_PERL_DIRS =
+    #  ( $SiteDefs::ENSEMBL_WEBROOT.'/perl',
+    #    $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-common/perl',
+    #    $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/perl',
+    #  );
+
+$SiteDefs::ENSEMBL_PRIMARY_SPECIES   = 'Oryza_sativa';
+$SiteDefs::ENSEMBL_SECONDARY_SPECIES = 'Arabidopsis_thaliana';
+
+#    $SiteDefs::ENSEMBL_DATASETS 
+
+#$SiteDefs::PRODUCTION_NAMES = ['Oryza_sativa'];
+
+$SiteDefs::ENSEMBL_DATASETS = [sort qw(
      Oryza_aus
      Oryza_barthii
      Oryza_brachyantha
@@ -88,7 +112,7 @@ sub update_conf {
      $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
      $SiteDefs::ENSEMBL_BLAST_BY_SEQID = 1; # blast on gene page sequence
 
-     $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
+     $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; #brie:5202';
 
      $SiteDefs::ENSEMBL_TOOLS_LIST = [
     	'Blast'             => 'BLAST/BLAT',
@@ -103,10 +127,8 @@ sub update_conf {
     #'LD'                => 'Linkage Disequilibrium Calculator',
   	];
 
- our $VCF_LIB = $SiteDefs::ENSEMBL_SERVERROOT.'/vcftools/perl';
- push @SiteDefs::ENSEMBL_LIB_DIRS, $VCF_LIB;
-
- $SiteDefs::EBEYE_REST_ENDPOINT = 'https://data.gramene.org/oryza-ebeye3';
+# our $VCF_LIB = $SiteDefs::ENSEMBL_SERVERROOT.'/vcftools/perl';
+# push @SiteDefs::ENSEMBL_LIB_DIRS, $VCF_LIB;
 
 }
 
