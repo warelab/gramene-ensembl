@@ -10,8 +10,8 @@ sub update_conf {
     $SiteDefs::ENSEMBL_SECONDARY_SPECIES = 'Arabidopsis_thaliana';
 
     $SiteDefs::ENSEMBL_BASE_URL          =  $SiteDefs::ENSEMBL_SERVERNAME;
-    $SiteDefs::SITE_RELEASE_VERSION = 4;
-    $SiteDefs::SITE_RELEASE_DATE    = 'May 2022';
+    $SiteDefs::SITE_RELEASE_VERSION = 5;
+    $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2022';
 	#'Nov 2021';
 
 
