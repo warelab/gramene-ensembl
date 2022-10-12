@@ -30,14 +30,15 @@ sub content {
   #			<p><a href="http://maizev4.gramene.org">Maize B73_RefGen_v4 PreRelease Browser</a></p>);
   
   my $sister_sites = qq(<p><a href="https://vitis.gramene.org">VitisGramene Browser</a></p>
-                        <p><a href="https://maize-pangenome.gramene.org/">ZeaGramene Browser</a></p>);
+                        <p><a href="https://maize-pangenome.gramene.org/">ZeaGramene Browser</a></p>
+			<p><a href="https://www.sorghumbase.org/">Sorghumebase Browser</a></p>);
   my $html = '<hr /><div id="fat-footer">';
 
   $html .= qq(
-              <div class="column-four left">
+              <div class="column-three left">
                 <h3>About Us</h3>
-                <p><a href="http://www.gramene.org/about-gramene">About us</a></p>
-                <p><a href="http://oryza.gramene.org/feedback">Contact us</a></p>
+                <p><a href="http://www.gramene.org/about-gramene">About Gramene</a></p>
+	        <p><a href="http://oryza.gramene.org/feedback">Contact us</a></p>
                 <p><a href="http://www.gramene.org/cite">Citing Gramene</a></p>
                 <!--<p><a href="http://www.ebi.ac.uk/about/privacy">Privacy policy</a></p>-->
                 <!--<p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>-->
@@ -47,22 +48,22 @@ sub content {
   );
 
 
- $html .= qq(
-              <div class="column-four left">
-                <h3>Get help</h3>
-                <p><a href="/info/website/">Using this website</a></p>
-                <p><a href="http://ensemblgenomes.org/info">Documentation</a></p>
-                <p><a href="/info/website/upload">Adding custom tracks</a></p>
-                <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
-              </div>
-  );
+ #$html .= qq(
+ #             <div class="column-four left">
+ #               <h3>Get help</h3>
+ #               <p><a href="/info/website/">Using this website</a></p>
+ #               <p><a href="http://ensemblgenomes.org/info">Documentation</a></p>
+ #               <p><a href="/info/website/upload">Adding custom tracks</a></p>
+ #               <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
+ #             </div>
+ # );
 
   #foreach("bacteria","fungi","plants","protists","metazoa"){
     #$sister_sites .= qq(<p><a href="http://$_.ensembl.org">Ensembl ${\ucfirst($_)}</a></p>) if $species_defs->EG_DIVISION ne $_;
   #}
 
   $html .= qq(
-              <div class="column-four left">
+              <div class="column-three left">
                 <h3>Our sister sites</h3>
                 $sister_sites
               </div>
@@ -70,7 +71,7 @@ sub content {
 
 
   $html .= qq(
-              <div class="column-four left">
+              <div class="column-three left">
                 <h3>Follow us</h3>
                 <p><a class="media-icon" href="http://www.gramene.org/blog">
                   <img alt="[RSS logo]" title="Gramene blog" src="/i/rss_icon_16.png"></a>

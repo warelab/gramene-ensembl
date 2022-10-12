@@ -1,0 +1,42 @@
+=head1 LICENSE
+
+Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+Copyright [2016] EMBL-European Bioinformatics Institute
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+=cut
+
+package EnsEMBL::Web::Component::Gene::GeneSummary;
+
+use strict;
+
+#use previous qw(content);
+
+sub content {
+  my $self = shift;
+  my $html = $self->PREV::content(@_);
+
+  # remove 'Ensembl version' row table row
+  $html =~ s|<div[^<>]*><div[^<>]*>Ensembl version</div><div[^<>]*><p>[^<>]+</p></div></div>||;
+
+my $gene_stable_id = $self->object->gene->stable_id;
+my $sbase_link = '<a href="https://oryza.gramene.org/genes?idList=' . $gene_stable_id . '">OryzaGramene Genes search</a>';
+   $html .= "<div><strong>$sbase_link <strong></div><p>"; 
+ 
+#  $html .= qq{<div class="row"><div class="lhs">OryzaGramene</div><div class="rhs"><p>$sbase_link</p></div></div>};
+
+  return $html;
+}
+
+1;

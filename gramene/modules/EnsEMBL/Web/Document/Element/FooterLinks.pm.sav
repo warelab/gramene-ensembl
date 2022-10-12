@@ -13,11 +13,15 @@ sub content {
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-1624628-12', 'oryza.gramene.org');
+      ga('create', 'UA-1624628-5', 'gramene.org');
       ga('send', 'pageview');
 
     </script>
-   );
+    <div class="twocol-right right unpadded">
+      <a href="http://www.gramene.org/about-gramene">About&nbsp;Gramene</a> | 
+      <a href="http://oryza.gramene.org/feedback">Contact&nbsp;Us</a> 
+    </div>) 
+  ;
 }
 
 1;
