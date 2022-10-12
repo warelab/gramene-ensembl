@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Oryza sativa indica 93-11 Oryza indica</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://oryza-ensembl.gramene.org:8888/Oryza_indica/Psychic?q={searchTerms};site=ensembl"/>
+      template="https://oryza-ensembl.gramene.org//Oryza_indica/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

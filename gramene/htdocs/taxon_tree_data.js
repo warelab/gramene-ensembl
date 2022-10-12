@@ -67,11 +67,11 @@ taxonTreeData = [
                         "key" : "Oryza_rufipogon"
                      },
                      {
-                        "title" : "Oryza sativa Indica Group",
+                        "title" : "Oryza sativa Indica Group 93-11",
                         "key" : "Oryza_indica"
                      },
                      {
-                        "title" : "Oryza sativa Indica Group",
+                        "title" : "Oryza sativa Indica Group IR8",
                         "key" : "Oryza_indicair8"
                      },
                      {

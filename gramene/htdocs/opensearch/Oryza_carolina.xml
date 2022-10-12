@@ -7,5 +7,5 @@
  <Tags>Ensembl genome browser Ensembl Genomes Oryza sativa japonica var. Carolina Oryza sativa japonica var. Carolina</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://oryza-ensembl.gramene.org:8888/Oryza_carolina/Psychic?q={searchTerms};site=ensembl"/>
+      template="https://oryza-ensembl.gramene.org//Oryza_carolina/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>

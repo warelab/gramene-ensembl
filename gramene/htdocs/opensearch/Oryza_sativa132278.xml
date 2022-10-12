@@ -2,10 +2,10 @@
 <OpenSearchDescription
       xmlns="http://a9.com/-/spec/opensearch/1.1/">
  <ShortName>Ensembl (Oryza)</ShortName>
- <Description>Search Ensembl Genomes - Oryza sativa japonica GJ-subtrp var. Os132278 - Oryza sativa japonica GJ-subtrp var. Os132278</Description>
+ <Description>Search Ensembl Genomes - Oryza sativa (Geng/Japonica-sbtrp var. Chao Meo) - Oryza sativa japonica GJ-subtrp var. Os132278</Description>
  <InputEncoding>UTF-8</InputEncoding>
- <Tags>Ensembl genome browser Ensembl Genomes Oryza sativa japonica GJ-subtrp var. Os132278 Oryza sativa japonica GJ-subtrp var. Os132278</Tags>
+ <Tags>Ensembl genome browser Ensembl Genomes Oryza sativa (Geng/Japonica-sbtrp var. Chao Meo) Oryza sativa japonica GJ-subtrp var. Os132278</Tags>
  <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
  <Url type="text/html"
-      template="http://oryza-ensembl.gramene.org:8888/Oryza_sativa132278/Psychic?q={searchTerms};site=ensembl"/>
+      template="https://oryza-ensembl.gramene.org//Oryza_sativa132278/Psychic?q={searchTerms};site=ensembl"/>
 </OpenSearchDescription>
