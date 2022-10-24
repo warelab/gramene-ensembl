@@ -1,26 +1,29 @@
 taxonTreeData = [
    {
+      "key" : "Viridiplantae",
+      "title" : "Viridiplantae (36)",
       "children" : [
          {
             "title" : "Chlamydomonas reinhardtii",
             "key" : "Chlamydomonas_reinhardtii"
          },
          {
-            "title" : "Tracheophyta (25)",
+            "title" : "Tracheophyta (35)",
+            "key" : "Tracheophyta",
+            "isFolder" : true,
             "children" : [
                {
-                  "isFolder" : true,
+                  "title" : "Magnoliophyta (34)",
                   "key" : "Magnoliophyta",
                   "children" : [
                      {
-                        "key" : "Poaceae",
-                        "isFolder" : true,
-                        "title" : "Poaceae (21)",
                         "children" : [
                            {
-                              "title" : "Andropogoneae (20)",
                               "children" : [
                                  {
+                                    "title" : "Sorghum (28)",
+                                    "key" : "Sorghum",
+                                    "isFolder" : true,
                                     "children" : [
                                        {
                                           "key" : "Sorghum_353",
@@ -35,56 +38,96 @@ taxonTreeData = [
                                           "key" : "Sorghum_bicolor"
                                        },
                                        {
-                                          "key" : "Sorghum_is12661",
-                                          "title" : "Sorghum is12661"
+                                          "key" : "Sorghum_chineseamber",
+                                          "title" : "Sorghum chineSeamber"
                                        },
                                        {
-                                          "key" : "Sorghum_is19953",
-                                          "title" : "Sorghum is19953"
+                                          "key" : "Sorghum_grassl",
+                                          "title" : "Sorghum graSSl"
                                        },
                                        {
-                                          "key" : "Sorghum_is36143",
-                                          "title" : "Sorghum is36143"
+                                          "title" : "Sorghum is12661",
+                                          "key" : "Sorghum_is12661"
+                                       },
+                                       {
+                                          "title" : "Sorghum is19953",
+                                          "key" : "Sorghum_is19953"
+                                       },
+                                       {
+                                          "title" : "Sorghum is36143",
+                                          "key" : "Sorghum_is36143"
                                        },
                                        {
                                           "key" : "Sorghum_is8525",
                                           "title" : "Sorghum is8525"
                                        },
                                        {
-                                          "title" : "Sorghum is929",
-                                          "key" : "Sorghum_is929"
+                                          "key" : "Sorghum_is929",
+                                          "title" : "Sorghum is929"
                                        },
                                        {
-                                          "key" : "Sorghum_ji2731",
-                                          "title" : "Sorghum ji2731"
+                                          "title" : "Sorghum ji2731",
+                                          "key" : "Sorghum_ji2731"
                                        },
                                        {
-                                          "title" : "Sorghum pi525695",
-                                          "key" : "Sorghum_pi525695"
+                                          "title" : "Sorghum leoti",
+                                          "key" : "Sorghum_leoti"
+                                       },
+                                       {
+                                          "title" : "Sorghum pi229841",
+                                          "key" : "Sorghum_pi229841"
+                                       },
+                                       {
+                                          "key" : "Sorghum_pi297155",
+                                          "title" : "Sorghum pi297155"
+                                       },
+                                       {
+                                          "key" : "Sorghum_pi329311",
+                                          "title" : "Sorghum pi329311"
+                                       },
+                                       {
+                                          "title" : "Sorghum pi506069",
+                                          "key" : "Sorghum_pi506069"
+                                       },
+                                       {
+                                          "title" : "Sorghum pi510757",
+                                          "key" : "Sorghum_pi510757"
+                                       },
+                                       {
+                                          "key" : "Sorghum_pi525695",
+                                          "title" : "Sorghum pi525695"
                                        },
                                        {
                                           "title" : "Sorghum pi532566",
                                           "key" : "Sorghum_pi532566"
                                        },
                                        {
-                                          "key" : "Sorghum_pi536008",
-                                          "title" : "Sorghum pi536008"
+                                          "title" : "Sorghum pi536008",
+                                          "key" : "Sorghum_pi536008"
+                                       },
+                                       {
+                                          "title" : "Sorghum pi655972",
+                                          "key" : "Sorghum_pi655972"
                                        },
                                        {
                                           "key" : "Sorghum_r93194522",
                                           "title" : "Sorghum r93194522"
                                        },
                                        {
-                                          "key" : "Sorghum_rio",
-                                          "title" : "Sorghum rio"
+                                          "title" : "Sorghum rio",
+                                          "key" : "Sorghum_rio"
                                        },
                                        {
-                                          "title" : "Sorghum s3691",
-                                          "key" : "Sorghum_s3691"
+                                          "title" : "Sorghum riouncc",
+                                          "key" : "Sorghum_riouncc"
                                        },
                                        {
-                                          "key" : "Sorghum_tx2783pac",
-                                          "title" : "Sorghum tx2783pac"
+                                          "key" : "Sorghum_s3691",
+                                          "title" : "Sorghum s3691"
+                                       },
+                                       {
+                                          "title" : "Sorghum tx2783pac",
+                                          "key" : "Sorghum_tx2783pac"
                                        },
                                        {
                                           "title" : "Sorghum tx430nano",
@@ -94,12 +137,10 @@ taxonTreeData = [
                                           "title" : "Sorghum tx436pac",
                                           "key" : "Sorghum_tx436pac"
                                        }
-                                    ],
-                                    "title" : "Sorghum (18)",
-                                    "isFolder" : true,
-                                    "key" : "Sorghum"
+                                    ]
                                  },
                                  {
+                                    "key" : "Zea",
                                     "title" : "Zea (2)",
                                     "children" : [
                                        {
@@ -111,22 +152,24 @@ taxonTreeData = [
                                           "title" : "Zea maysB73v4"
                                        }
                                     ],
-                                    "key" : "Zea",
                                     "isFolder" : true
                                  }
                               ],
-                              "key" : "Andropogoneae",
-                              "isFolder" : true
+                              "isFolder" : true,
+                              "title" : "Andropogoneae (30)",
+                              "key" : "Andropogoneae"
                            },
                            {
                               "key" : "Oryza_sativa",
                               "title" : "Oryza sativa Japonica Group"
                            }
-                        ]
+                        ],
+                        "isFolder" : true,
+                        "key" : "Poaceae",
+                        "title" : "Poaceae (31)"
                      },
                      {
                         "isFolder" : true,
-                        "key" : "rosids",
                         "children" : [
                            {
                               "key" : "Arabidopsis_thaliana",
@@ -137,27 +180,24 @@ taxonTreeData = [
                               "key" : "Populus_trichocarpa"
                            },
                            {
-                              "title" : "Vitis vinifera",
-                              "key" : "Vitis_vinifera"
+                              "key" : "Vitis_vinifera",
+                              "title" : "Vitis vinifera"
                            }
                         ],
-                        "title" : "rosids (3)"
+                        "title" : "rosids (3)",
+                        "key" : "rosids"
                      }
                   ],
-                  "title" : "Magnoliophyta (24)"
+                  "isFolder" : true
                },
                {
-                  "key" : "Selaginella_moellendorffii",
-                  "title" : "Selaginella moellendorffii"
+                  "title" : "Selaginella moellendorffii",
+                  "key" : "Selaginella_moellendorffii"
                }
-            ],
-            "key" : "Tracheophyta",
-            "isFolder" : true
+            ]
          }
       ],
-      "title" : "Viridiplantae (26)",
-      "isFolder" : true,
-      "key" : "Viridiplantae"
+      "isFolder" : true
    }
 ]
 ;
