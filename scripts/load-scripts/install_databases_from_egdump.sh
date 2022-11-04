@@ -4,6 +4,9 @@
 DBDIR=$1
 DBHOST=$2
 
+mysql="/usr/bin/mysql"
+mysqlimport="/usr/bin/mysqlimport"
+
 if [[ -z $DBDIR ]]
 then
 
@@ -47,11 +50,11 @@ for k in core funcgen variation otherfeature compara ancestral mart
         do echo Epl$k 
 	for db in `cat ../Epl$k `
 		do echo $db  >> ../Epl$k.log
-		/usr/local/mysql/bin/mysql $mysqlparam -e "drop database if exists $db; create database $db"  2>&1 >> ../Epl$k.log 
+		$mysql $mysqlparam -e "drop database if exists $db; create database $db"  2>&1 >> ../Epl$k.log 
 		cd $db 2>&1 >> ../../Epl$k.log
-		gunzip -c *.sql.gz | /usr/local/mysql/bin/mysql $mysqlparam $db 2>&1 >> ../../Epl$k.log
+		gunzip -c *.sql.gz | $mysql $mysqlparam $db 2>&1 >> ../../Epl$k.log
 		gunzip *.txt.gz 2>&1 >> ../../Epl$k.log
-		ls *.txt | xargs /usr/local/mysql/bin/mysqlimport $mysqlparam -L -l $db 2>&1 >> ../../Epl$k.log
+		ls *.txt | xargs $mysqlimport $mysqlparam -L -l $db 2>&1 >> ../../Epl$k.log
 		cd ../ 2>&1 >> ../../Epl$k.log
 	done
 done

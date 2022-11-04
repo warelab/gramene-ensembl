@@ -1,0 +1,18 @@
+#
+# File for populating the analysis.description records in the ensembl core 
+# database.
+#
+# Follows the convention in 
+# ensembl/misc-scripts/analysis_description/analysis.descriptions
+#
+# Uploaded to the database using the script 
+# ensembl/misc-scripts/analysis_description/load_analysis_descriptions.pl
+#
+# Note fields in this file should be separated by *tabs* not spaces!
+# format: nr<TAB>logic_name<TAB>description<TAB>display_label<TAB>displayable<TAB>web_data
+#
+# 
+
+1	sorghum_cshl	Gene annotation by warelab in CSHL using a pan-gene working set from reference genomes as source and propagated to new assembly using Liftoff tool, the projected gene structure were further updated using PASA tool	Gene (CSHL)	1	{"label_key" => "[biotype]", "default" => {"contigviewbottom" => "transcript_label", "contigviewtop" => "gene_label", "cytoview" => "gene_nolabel"}}
+2	cshl_noncoding_gene	Gene annotation by warelab in CSHL using a pan-gene working set from reference genomes as source and propagated to new assembly using Liftoff tool, the projected gene structure were further updated using PASA tool, those models that have no evidence and less than 55 aa in translation were classified as non_coding	Gene (CSHL non_coding)	1	{"label_key" => "[biotype]", "default" => {"contigviewbottom" => "transcript_label", "contigviewtop" => "gene_label", "cytoview" => "gene_nolabel"}}
+

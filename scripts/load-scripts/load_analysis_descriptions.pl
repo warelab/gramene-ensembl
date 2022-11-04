@@ -117,6 +117,11 @@ if($help){
   usage();
 }
 
+my $sqll = 'update analysis_description set web_data = replace(web_data, "\'{", "{" )';
+
+my $sqlr = 'update analysis_description set web_data = replace(web_data, "}\'", "}")';
+
+
 #connect to database
 $dsn = "DBI:mysql:host=" . $dbhost . ";port=" . $dbport;
 
@@ -151,6 +156,11 @@ while (my ($dbname) = $sth->fetchrow_array){
     -port   => $dbport
   );
 
+
+  my $dbc = $db->dbc;
+  my $sthl = $dbc->prepare( $sqll);
+  #my $sthr = $dbc->prepare( $sqlr);
+ 
   # Pre-fetch all analyses in the database
   my $aa = $db->get_AnalysisAdaptor();
   my $analyses = $aa->fetch_all();
@@ -209,7 +219,7 @@ while (my ($dbname) = $sth->fetchrow_array){
 	
 	print "web_data=$web_data\n";
 	
-	warn("Error: web_data format wrong, need to look like {'type' => 'domain', 'default' => { }}") unless $web_data =~ /'\w+'\s*=>\s*['{]/; 
+	#warn("Error: web_data format wrong, need to look like {'type' => 'domain', 'default' => { }}") unless $web_data =~ /'\w+'\s*=>\s*['{]/; 
 	$analysis->web_data($web_data) if $web_data;
 
 	print  $analysis->web_data();
@@ -219,14 +229,19 @@ while (my ($dbname) = $sth->fetchrow_array){
 		print "before update analysis\n";
 	  $aa->update($analysis) ; 
 		print "after update analysis\n";
+	  my $analysis_id = $analysis->dbID;
 	}
-	      
+	     
+	 
 	delete $hash{lc($logic_name)};
       }
     }
     close(FH) or throw("Failed to close $file $@");
   }
-    
+   
+  $sthl->execute;
+  #$sthr->execute;
+ 
   if ( scalar(keys %hash)==0) {
     unless  ($noupdate) {
       print STDERR "\nAll analysis descriptions have been updated, every analysis has a description now\n";
