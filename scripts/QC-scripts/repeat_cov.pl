@@ -119,7 +119,7 @@ MAIN: {
 	$chrom_sums{ $chrom->seq_region_name }
 	= { length => $chrom->length, masked => $repeat_ns, native_ns => $n_count };
 	$sums{$MASKED_DNA} += $repeat_ns;
-	$sum{$NATIVE_NS} += $n_count;
+	$sums{$NATIVE_NS} += $n_count;
     
     }
 
@@ -132,10 +132,10 @@ MAIN: {
 		       $chrom_name, $length, $masked, $native_ns, 100.0 * ($masked / ($length-$native_ns)))
 	       ) if $detail;
     }
-    print (
+    print 
             sprintf($CHROM_STAT_TMPL,
                 "$species-Total", $sums{$TOTAL_DNA}, $sums{$MASKED_DNA}, $sums{$NATIVE_NS},
-                100.0 * ($sums{$MASKED_DNA} / ($sums{$TOTAL_DNA})-$sums{$NATIVE_NS}))
+                100.0 * ($sums{$MASKED_DNA} / ($sums{$TOTAL_DNA}-$sums{$NATIVE_NS}))
         );
 
 }
