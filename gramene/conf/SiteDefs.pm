@@ -5,17 +5,17 @@ use strict;
 sub update_conf {
 
    $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  # $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 64;
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 51;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2021';
+  $SiteDefs::SITE_RELEASE_VERSION = 66;
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 55;
+  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2022';
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
-  $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
-  $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
+  $SiteDefs::SITE_FTP             = 'https://ftp.gramene.org/pub';  #the one that's used for download link on species page is ENSEMBL_FTP_URL in DEFAULT.ini
+  $SiteDefs::PE_URL             = 'https://plants.ensembl.org';
   $SiteDefs::ENSEMBL_PORT       = 80;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
@@ -33,9 +33,14 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+  $SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
+  $SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
 
-  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
+
+  $SiteDefs::EBEYE_REST_ENDPOINT  = 'https://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
+   #'https://data.gramene.org/ebeye66';
+
+  #$SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables
@@ -103,7 +108,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 1;
-  $SiteDefs::ENSEMBL_IDM_ENABLED    = 0;
+  $SiteDefs::ENSEMBL_IDM_ENABLED    = 1;
   $SiteDefs::ENSEMBL_FC_ENABLED     = 0;
   $SiteDefs::ENSEMBL_LD_ENABLED     = 0;
   $SiteDefs::ENSEMBL_VP_ENABLED     = 0;
@@ -146,7 +151,7 @@ $SiteDefs::ENSEMBL_TOOLS_LIST = [
     'VEP'               => 'Variant Effect Predictor',
     #'FileChameleon'     => 'File Chameleon',
     'AssemblyConverter' => 'Assembly Converter',
-    #'IDMapper'          => 'ID History Converter',
+    'IDMapper'          => 'ID History Converter',
     #'AlleleFrequency'   => 'Allele Frequency Calculator',
     #'VcftoPed'          => 'VCF to PED Converter',
     #'DataSlicer'        => 'Data Slicer',

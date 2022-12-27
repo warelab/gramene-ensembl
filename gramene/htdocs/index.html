@@ -1,7 +1,47 @@
-<!--#set var="decor" value="none"-->
 <html>
-<meta http-equiv="refresh" content="0;url=/genome_browser">
+
+<head>
+<title>[[SPECIESDEFS::SITE_NAME]]</title>           
+</head>
+
 <body>
- Redirecting <a href="/genome_browser">[here]</a>
+
+<div class="column-wrapper">
+
+<div class="column-two">
+<div class="column-padding no-left-margin">
+
+	<div class="tinted-box no-top-margin">
+	[[SCRIPT::EnsEMBL::Web::Document::HTML::HomeSearch]]
+	</div>
+
+	<div class="plain-box">
+	<div class="js_panel">
+	<input type="hidden" class="panel_type" value="SpeciesList" />
+	[[SCRIPT::EnsEMBL::Web::Document::HTML::GenomeList]]
+	</div>
+	</div>
+
+	[[INCLUDE::/ssi/outline.inc]]
+</div>
+</div>
+
+<div class="column-two">
+<div class="column-padding no-right-margin">
+	[[INCLUDE::/ssi/right_2.inc]]
+	[[INCLUDE::/ssi/collaborators.inc]]
+</div>
+</div>
+
+<div class="plain-box">
+    <h2 class="first">Organelle Annotation</h2>
+    <p>For annotations relating to Organelles, see the <a href="/organelles">
+  organelles page </a></p>
+</div>
+
+</div>
+
 </body>
+
 </html>
+
