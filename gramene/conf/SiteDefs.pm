@@ -8,8 +8,8 @@ sub update_conf {
     $SiteDefs::ENSEMBL_SERVERNAME     = 'oryza-ensembl.gramene.org';
     #$SiteDefs::ENSEMBL_PROTOCOL          = 'https';
     $SiteDefs::ENSEMBL_BASE_URL          =  'https://oryza-ensembl.gramene.org/';
-    $SiteDefs::SITE_RELEASE_VERSION = 5;
-    $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2022';
+    $SiteDefs::SITE_RELEASE_VERSION = 6;
+    $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2023';
 	#'May 2022';
 
 
