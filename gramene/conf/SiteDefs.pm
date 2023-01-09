@@ -97,6 +97,8 @@ $SiteDefs::ENSEMBL_DATASETS = [sort qw(
     ), qw(
     )];
 
+push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/local/BioPerl-1.6.922', '/usr/local/ensembl-live/ensembl-io/modules', '/usr/local/ensembl-live/ensembl-funcgen/modules', '/usr/local/ensembl-live/ensembl-variation/modules';
+
     #push @SiteDefs::ENSEMBL_HTDOCS_DIRS, $SiteDefs::ENSEMBL_SERVERROOT. '/../biomarts/plants/biomart-perl/htdocs';
       
     #$SiteDefs::DOCSEARCH_INDEX_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/data/docsearch';

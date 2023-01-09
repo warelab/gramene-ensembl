@@ -1,0 +1,73 @@
+<!-- {about} --><a name="about"></a>
+<h2 id="about">About <em>Brachypodium distachyon</em></h2>
+
+<p><em>Brachypodium distachyon</em>, like <em><a href="/Arabidopsis_thaliana" title="Arabidopsis thaliana in Ensembl Plants">Arabidopsis thaliana</a></em>, has several features that recommend it as a model plant for functional genomic studies, especially in the grasses. It has a small, diploid genome (~355 Mbp), small physical size, a short life-cycle and few growth requirements. Brachypodium is related to the major cereal grain species but is understood to be more closely related to the Triticeae (<a href="/Triticum_aestivum" title="Triticum aestivum in Ensembl Plants">wheat</a> and <a href="/Hordeum_vulgare" title="Hordeum vulgare in Ensembl Plants">barley</a>) than to the other cereals.</p>
+
+<!-- {about} -->
+<!-- {assembly} --><a name="assembly"></a>
+<h3 id="assembly">Assembly</h3>
+
+<p>This release represents the second improved Brachypodium distachyon (Bd21) genome including ~270 Mb of improved Brachypodium sequence. These regions were improved by dividing the gene space into ~2Mb overlapping pieces. Each region was manually inspected and then finished using a variety of technologies including Sanger (primer walks on subclones and fosmid templates, transposon sequencing on subclone templates), Illumina (small insert shatter libraries) and clone-based shotgun sequencing using both Sanger and Illumina libraries. 1,496 gaps were closed, and a total of 1.43 MB of base pairs was added to the assembly. Overall contiguity (contig N50) increased by a factor of 63 from 347.8Kb to 22 Mb.[1]</p>
+
+<!-- {assembly} -->
+<!-- {annotation} --><a name="annotation"></a>
+<h3 id="genebuild">Annotation</h3>
+
+<p>74,756 transcript assemblies were constructed from 160M paired-end Illumina RNA-seq reads, 17,647 transcript assemblies from ~1.9M 454 reads. The transcript assemblies from RNA-seq reads were made using PERTRAN. 76,209 transcript assemblies were constructed using PASA from 314,866 sequences in total, consisting of the RNA-seq transcript assemblies above, as well as Sanger ESTs. Loci were determined by transcript assembly alignments and/or EXONERATE alignments of proteins from arabidopsis (Arabidopsis thaliana), rice, sorghum, foxtail, grape, soybean and Swiss-Prot eukaryote proteins to soft-repeatmasked Brachypodium distachyon Bd21 genome using RepeatMasker with up to 2K BP extension on both ends unless extending into another locus on the same strand. Gene models were predicted by homology-based predictors, FGENESH+, FGENESH_EST (similar to FGENESH+, EST as splice site and intron input instead of protein/translated ORF), and GenomeScan.</p>
+
+<p>The end result was 34,310 loci containing protein-coding transcripts and 52,972 protein-coding transcripts</p>
+
+<!-- {annotation} -->
+<!-- {regulation} --><a name="regulation"></a>
+<h3 id="regulation">Sequence alignments</h3>
+
+<h4><em>Brachypodium sylvaticum</em> transcriptome</h4>
+
+<p>De novo gene models from the RNA-Seq analysis of three <em>Brachypodium sylvaticum</em> populations [2] were mapped to the <em>B. distachyon</em> reference genome. <a href="http://plants.ensembl.org/Brachypodium_distachyon/Location/View?db=core;r=5:230439-232669;contigviewbottom=dna_align_core_brasy-cor=normal,dna_align_core_brasy-esp=normal,dna_align_core_brasy-gre,variation_feature_variation_Jaiswal_lab_OSU=normal">Click here for example</a>. Assembled data is available from the <a href="http://jaiswallab.cgrb.oregonstate.edu/genomics/brasy">Jaiswal lab</a> and raw reads are available from INSDC project <a href="http://www.ebi.ac.uk/ena/data/view/PRJNA182761">PRJNA182761</a>.</p>
+
+<h4><em>Triticum aestivum</em> transcriptome</h4>
+
+<p>Wheat RNA-Seq, EST and UniGene datasets have been aligned to the <em>Brachypodium distachyon</em> genome:</p>
+
+<ul><li>454 Wheat RNA-seq data, from the study, <a href="http://www.ebi.ac.uk/ena/data/view/ERP001415">ERP001415</a>, were aligned using <a href="http://www.molecularevolution.org/software/genomics/gmap">GMAP</a>. <a href="http://plants.ensembl.org/Brachypodium_distachyon/Location/View?db=core;r=1:21899572-21905500;contigviewbottom=Gmap_Wheat_ERR125556=normal,Gmap_Wheat_ERR125557=normal">Click here for example.</a></li>
+	<li>All publicly available Wheat EST data were aligned using <a href="http://www.ebi.ac.uk/%7Eguy/exonerate/">Exonerate</a>, following the standard Ensembl pipeline. <a href="http://plants.ensembl.org/Brachypodium_distachyon/Location/View?db=core;r=1:21899572-21905500;contigviewbottom=dna_align_otherfeatures_wheat_est_exonerate=normal">Click here for example.</a></li>
+	<li>Wheat UniGene cluster sequence data were aligned using <a href="http://www.ebi.ac.uk/%7Eguy/exonerate/">Exonerate</a>, following the standard Ensembl pipeline. <a href="http://plants.ensembl.org/Brachypodium_distachyon/Location/View?db=core;r=1:21899572-21905500;contigviewbottom=dna_align_otherfeatures_wheat_unigene_exonerate=normal">Click here for example.</a></li>
+</ul>
+<!-- {regulation} -->
+<!-- {variation} --><a name="variation"></a>
+<h3 id="variation">Variation</h3>
+
+<h4><em>Brachypodium</em> variation data</h4>
+
+<p>Approximately 394,000 genetic variations have been identified by the alignment of transcriptome assemblies from three slender false brome (<em>Brachypodium sylvaticum</em>) populations [2]. Two populations come from <em>B. sylvaticum</em>'s native range (Greece and Spain) and one comes from its invasive range (Oregon). Both the transciptome alignments and variation data are available in Ensembl Plants. <a href="../../../Brachypodium_distachyon/Location/View?db=core;r=5:230439-232669;contigviewbottom=dna_align_core_brasy-cor=normal,dna_align_core_brasy-esp=normal,dna_align_core_brasy-gre,variation_feature_variation_Jaiswal_lab_OSU=normal">Click here for example</a>.</p>
+
+<h4>Wheat inter-homoeologous variants</h4>
+
+<p>As part of the wheat genome analysis, we have aligned a set of <a href="/triticum_aestivum" title="Triticum aestivum in Ensembl Plants"><em>Triticum aestivum</em></a> (bread wheat) homoeologous SNPs (SNPs between the component A, B, and D genomes of wheat) against the <em>Brachypodium distachyon</em> genome. SNPs have been classified into two groups, 1) SNPs that differ between the A and D genomes (where the B genome is unknown) and, 2) SNPs that are the same between the A and D genomes, but differ in B [3].</p>
+
+<p>The wheat sequence alignments and the projected homoeologous SNPs are available as tracks under the "Wheat SNPs and alignments" section of the "Configure This page" menu. <a href="http://plants.ensembl.org/Brachypodium_distachyon/Location/View?db=core;r=5:2580560-2583709;contigviewbottom=Lastz_Wheat_A_subsequences_alignments=normal,Lastz_Wheat_B_subsequences_alignments=normal,Lastz_Wheat_D_subsequences_alignments=normal,Lastz_Wheat_X_subsequences_alignments=normal,simple_core_wheat_snp_a=normal,simple_core_wheat_snp_b=normal" title="Example wheat gene alignments and homoeologous SNPs">Click here for example.</a></p>
+
+<!-- {variation} -->
+<!-- {other} --><a name="other"></a>
+<h3 id="other">Links</h3>
+
+<h4>Links (<em>Brachypodium distachyon</em>)</h4>
+
+<ul><li><a href="http://www.gramene.org/Brachypodium_distachyon/Info/Index">Gramene species page for Brachypodium</a></li>
+	<li><a href="http://www.brachypodium.org">The International Brachypodium Initiative (IBI) community portal</a></li>
+	<li><a href="http://www.modelcrop.org">The John Innes Centre ModelCrop.org</a></li>
+	<li><a href="http://mips.helmholtz-muenchen.de/plant/brachypodium/">MIPS Brachypodium genome database</a></li>
+	<li><a href="http://www.phytozome.net/brachy.php">Phytozome entry page for <em>Brachypodium distachyon</em></a></li>
+	<li><a href="http://jaiswallab.cgrb.oregonstate.edu/genomics/brasy">Jaiswal Lab at Oregon State University</a></li>
+	<li><a href="http://www.ebi.ac.uk/ena/data/view/PRJNA182761">INSDC project PRJNA182761</a></li>
+</ul><h4>Links (<em>Triticum aestivum</em>)</h4>
+
+<ul><li><a href="http://mips.helmholtz-muenchen.de/plant/wheat/uk454survey/index.jsp">MIPS Wheat Genome Database</a></li>
+	<li>ENA study <a href="http://www.ebi.ac.uk/ena/data/view/ERP000319">ERP000319</a>: 454 pyrosequencing of the <em>Triticum aestivum</em> (bread wheat) genome to 5X coverage</li>
+	<li>ENA study <a href="http://www.ebi.ac.uk/ena/data/view/ERP001415">ERP001415</a>: 454 sequencing of <em>Triticum aestivum</em> (bread wheat) cv. Chinese spring cDNA samples from a pool of tissues, from plants under drought stress and from circadian-sampled leaves</li>
+	<li><em>Triticum aestivum</em> ESTs at <a href="http://www.ebi.ac.uk/ena/data/warehouse/search?query=%22dataclass=%22EST%22%20AND%20tax_eq%284565%29%22&domain=sequence">ENA</a></li>
+	<li><em>Triticum aestivum</em> UniGene cluster sequences at <a href="http://www.ncbi.nlm.nih.gov/unigene/?term=txid4565[Organism%3Anoexp]">NCBI</a></li>
+</ul>
+<!-- {other} -->
+<h3>References</h3><ol><li><a id="ref-01"></a><a href="http://europepmc.org/abstract/MED/20148030">Genome sequencing and analysis of the model grass Brachypodium distachyon</a>.<br>The International Brachypodium Initiative. 2010. Nature. 463:763-768.</li>
+<li><a id="ref-02"></a><a href="http://dx.doi.org/http://dx.doi.org/10.3732/apps.1200011">Sequencing and De Novo Transcriptome Assembly of Brachypodium sylvaticum (Poaceae)</a>.<br>Samuel E. Fox, Justin Preece, Jeffrey A. Kimbrel, Gina L. Marchini, Abigail Sage, Ken Youens-Clark, Mitchell B. Cruzan, and Pankaj Jaiswal. 2013. Applications in Plant Sciences. 1(3):1200011.</li></ol>
