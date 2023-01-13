@@ -9,10 +9,10 @@
 
 <li>New SNPs called by Dr.Wing's group for 4 genomes in <a href="https://www.nature.com/articles/s41597-020-0438-2">the Magic16 collection</a> with <a href="https://pubmed.ncbi.nlm.nih.gov/24872877/">the 3000 rice genome project</a> resequencing reads using GATK4. About 19M SNPs called per genome.</li>
 <ul>
-<li>Oryza sativa (Geng/Japonica-temp var. Nipponbare)</li>
-<li>Oryza sativa (Xian/Indica-adm var. Minghui 63)</li>
-<li>Oryza sativa (Xian/Indica-1B1 var. IR64)</li>
-<li>Oryza sativa (Geng/Japonica-trop1 var. Azucena)</li>
+<li><a href="https://oryza-ensembl.gramene.org/Oryza_sativa/Info/Index">Oryza sativa (Geng/Japonica-temp var. Nipponbare)</a></li>
+<li><a href="https://oryza-ensembl.gramene.org/Oryza_sativamh63/Info/Index">Oryza sativa (Xian/Indica-adm var. Minghui 63)</a></li>
+<li><a href="https://oryza-ensembl.gramene.org/Oryza_sativair64/Info/Index">Oryza sativa (Xian/Indica-1B1 var. IR64)</a></li>
+<li><a href="https://oryza-ensembl.gramene.org/Oryza_sativaazucena/Info/Index">Oryza sativa (Geng/Japonica-trop1 var. Azucena)</a></li>
 </ul>
 </ul>
 </li>
