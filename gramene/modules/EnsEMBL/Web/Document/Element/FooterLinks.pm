@@ -20,10 +20,13 @@ sub content {
     <div class="twocol-right right unpadded">
       <a href="https://www.sorghumbase.org/">About&nbsp;Sorghumbase</a> | 
       <a href="https://www.sorghumbase.org/contact">Contact&nbsp;Us</a> | 
-      <a href="/info/website/index.html">Help</a>
+      <a href="/index.html">Help</a>
     </div>) 
   ;
 }
 
 1;
+
+#|
+#      <a href="/info/website/index.html">Help</a>
 
