@@ -282,7 +282,7 @@ sub _assembly_text {
     else {
       $ftp_url = sprintf '%s/release-%s/fasta/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
     }
-    #$html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download DNA sequence</a> (FASTA)</p>);
+    $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download DNA sequence</a> (FASTA)</p>);
   }
 
   # Link to assembly mapper
@@ -360,9 +360,15 @@ sub _genebuild_text {
 
   if ($species_defs->ENSEMBL_FTP_URL) {
     my $dataset = $species_defs->SPECIES_DATASET;
-    my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
-    my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
-    #$html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
+    #my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+    #my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+
+      my $fasta_url = sprintf '%s/release-%s/fasta/%s/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
+#$hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$eg_version, FORMAT=>'fasta', SPECIES=> $self->is_bacteria ? $species_defs->SPECIES_DATASET . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+
+      my $gff3_url  = sprintf '%s/release-%s/gff3/%s/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
+
+    $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
   }
   
   #my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
@@ -537,7 +543,7 @@ sub _variation_text {
     }
 
     my $site = $species_defs->ENSEMBL_SITETYPE;
-    $html .= qq(<p><a href="http://ensemblgenomes.org/info/data/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
+    $html .= qq(<p><a href="https://plants.ensembl.org/info/genome/variation/index.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
 
     if ($species_defs->ENSEMBL_FTP_URL) {
       my @links;

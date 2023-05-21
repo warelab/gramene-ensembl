@@ -18,7 +18,7 @@ $SiteDefs::DIVISION         = 'plants';
 $SiteDefs::SUBDOMAIN_DIR    = 'plants';
     $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
     $SiteDefs::SITE_NAME        = 'GrameneOryza';
-    $SiteDefs::SITE_FTP         = 'http://ftp.gramene.org/oge';
+    $SiteDefs::SITE_FTP         = 'http://ftp.gramene.org/oryza';
  $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
 
     $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);

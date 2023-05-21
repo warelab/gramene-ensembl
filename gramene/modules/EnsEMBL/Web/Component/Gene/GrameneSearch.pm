@@ -52,7 +52,11 @@ sub content {
 
 #  $table->add_row('Gramene Search', $sbase_link);
 
-  my $html = '<a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '"><img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150"></a>'; 
+  #my $html = '<a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '"><img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150"></a>'; 
+
+  my $html = '<img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150">';
+  $html .= '<p><a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '">' . $gene_stable_id . '</a></p>';
+
 
   return $html;
 
