@@ -51,8 +51,8 @@ sub add_body {
   
   $page->add_body_elements(qw(
     logo             EnsEMBL::Web::Document::Element::Logo
-    tools            EnsEMBL::Web::Document::Element::ToolLinks 
     search_box       EnsEMBL::Web::Document::Element::SearchBox
+    tools            EnsEMBL::Web::Document::Element::ToolLinks
     tabs             EnsEMBL::Web::Document::Element::Tabs
     navigation       EnsEMBL::Web::Document::Element::Navigation
     tool_buttons     EnsEMBL::Web::Document::Element::ToolButtons
@@ -74,6 +74,7 @@ sub render {
   my $HTML;
 
   $HTML .= $self->render_masthead($elements);
+  $HTML .= $self->render_google_analytics();
   $HTML .= $self->render_content($elements);
   $HTML .= $self->render_footer($elements);
   $HTML .= $self->render_page_end($elements);
@@ -98,6 +99,21 @@ sub render_masthead {
           <div class="search_holder print_hide">$elements->{'search_box'}</div>
         </div>
   );
+}
+
+sub render_google_analytics {
+    my ($self) = @_;
+
+    return qq(<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5KXDCCZ16"></script>
+	<script>
+  	window.dataLayer = window.dataLayer || [];
+  	function gtag(){dataLayer.push(arguments);}
+  	gtag('js', new Date());
+
+  	gtag('config', 'G-L5KXDCCZ16');
+	</script>
+	);
 }
 
 sub render_content {
