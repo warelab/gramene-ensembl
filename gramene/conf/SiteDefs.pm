@@ -6,10 +6,10 @@ use strict;
 
 sub update_conf {
 
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
   
-  $SiteDefs::GRM_SERVERNAME = 'dev.sorghumbase.org';
+  $SiteDefs::GRM_SERVERNAME = 'sorghumbase.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 4000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
@@ -17,7 +17,7 @@ sub update_conf {
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
   $SiteDefs::SITE_RELEASE_VERSION = 6;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'May 2023';
+  $SiteDefs::SITE_RELEASE_DATE    = 'June 2023';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';

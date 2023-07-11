@@ -1,0 +1,79 @@
+<h2 id="entry"><a href="/Sorghum_bicolorv5/Info/Index">Genome Browser Entry Page</a></h2>
+
+<h2><strong>About <em>Sorghum bicolor</em> BTx623 v5.1 (JGI)</strong></h2>
+
+
+<p>
+<em>Sorghum bicolor</em> (L.) Moench subsp. <em>bicolor</em>, is a widely grown cereal crop, particularly in Africa, ranking 5<sup>th</sup> in global cereal production (FAOSTAT 2008; http://www.fao.org/in-action/inpho/crop-compendium/cereals-grains/).  It is a C4 grass also used for sugar production, brewing, feedstock, and as a biofuel crop. Its diploid genome (~730 Mbp) has a haploid chromosome number of 10. The inbred variety ‘BTx623’ is the current reference genome for sorghum. It has short stature and an early maturing genotype used primarily to produce grain sorghum hybrids. It is a line susceptible to sugarcane aphid and sensitive to low nitrogen, and therefore often used in functional comparative studies. It is used as a biofuel crop and potential cellulosic feedstock.
+</p>
+<p>
+The Department of Energy Joint Genome Institute (JGI)'s <i>Sorghum bicolor</i> BTx623 assembly version 5.1 is a wholly resequenced genome applying PacBio long-read data. The annotation is an update that uses all the v3.1 resources, but with additional RNA-seq from JGI projects and full-length transcripts included to further improve the completeness of the gene set. Additional details in <a href="https://phytozome-next.jgi.doe.gov/info/Sbicolor_v5_1">JGI Phytozome</a>.  
+</p>
+<p>
+The v5.1 assembly was released before scientific publication according to the <a href="https://www.sanger.ac.uk/wp-content/uploads/fortlauderdalereport.pdf">Fort Lauderdale Accord</a>. The accord restricts publication of articles containing analyses of genes or genomic data on this chromosome-scale assembly prior to publication of a comprehensive genome analysis by JGI and/or its collaborators. Therefore, we are only providing a basic genome browser for the new v5.1 assembly. 
+
+</p>
+
+<h3>
+    <strong>Germplasm</strong></h3>
+<p>
+
+U.S. National Plant Germplasm System (GRIN - Global) identifier for <strong>BTx623</strong>: <a href="https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1459134">PI 564163</a>. 
+</p>
+<p>
+This germplasm is part of the following population panels: 
+</p>
+<ul>
+
+<li><a href="https://npgsweb.ars-grin.gov/gringlobal/methodaccession?id1=69097&id2=494091">Sorghum Association Panel (SAP)</a> - 407 accessions <a href="https://www.sorghumbase.org/paper/community-resources-and-strategies-for-association-mapping-in-sorghum">(Casa <em>et al</em>, 2008)</a></li> 
+
+<li><a href="https://npgsweb.ars-grin.gov/gringlobal/methodaccession?id1=310665&id2=496343">Sorghum Bioenergy Association Panel (BAP)</a> - 386 accessions <a href="https://www.sorghumbase.org/paper/a-genomic-resource-for-the-development-improvement-and-exploitation-of-sorghum-for-bioenergy">(Brenton <em>et al</em>, 2016)</a></li>
+</ul>
+<p>
+
+
+<h2><strong>Image</strong></h2>
+
+
+<p>
+<img src="https://content.sorghumbase.org/wordpress/wp-content/uploads/2021/04/PI564163-173x300.jpg">
+</p>
+<p>Image source: <a href="https://npgsweb.ars-grin.gov/gringlobal/ImgDisplay?id=1459134">The GRIN database</a></p>
+
+
+<p>
+<h2><strong>Assembly</strong></h2>
+
+
+<p>
+The main assembly consisted of 122.94x of PACBIO coverage (11,008 bp average read size), and was assembled using MECAT. The resulting sequence was polished using RACON. A combination of syntenic markers from BTx642 and primary annotated genes from BTx623 were used to identify misjoins in the assembly. Syntenic markers consisted of a total of 32,400 unique, non-repetitive, non-overlapping 1 KB sequences that were generated using the version 1.0 S. bicolor BTx642 genome release. The gene set consisted of 12,641 uniquely aligned BTx642 annotated primary genes. Both the syntenic markers and the primary gene set were aligned to the polished assembly. Misjoins were identified as an abrupt change in linkage group. A total of 9 breaks were made. The broken contigs were then ordered, oriented, and assembled into 10 chromosomes using combined syntenic markers and genes from version 1.0 S. bicolor BTx642. A total of 32 joins were made during this process. Adjacent alternative haplotypes were identified on the joined contig set. Althap regions were collapsed using the longest common substring between the two haplotypes. A total of 8 adjacent altHaps were collapsed. Care was taken to ensure that contigs terminating in telomere were properly oriented in the chromosomes, and the resulting sequence was screened for retained vector and/or contaminants. Finally, Homozygous SNPs and INDELs were corrected in the release sequence using ~53.3x of Illumina reads (2x150, 400bp insert). 
+For more details, see <a href="https://phytozome-next.jgi.doe.gov/info/Sbicolor_v5_1">Phytozome</a>.
+</p>
+
+<h2><strong>Annotation</strong></h2>
+
+<p>
+ Illumina RNA-seq reads were used to construct transcript assemblies using PERTRAN, which conducts genome-guided transcriptome short read assembly via GSNAP, and builds splice alignment graphs after alignment validation, realignment and correction. To obtain 748K putative full-length transcripts, 12M PacBio Iso-Seq CCSs were corrected and collapsed by a genome guided correction pipeline, which aligns CCS reads to genome with GMAP, and clusters alignments when all introns are the same or 95% overlap for single exon. Subsequently, 581,006 transcript assemblies were constructed using PASA from ESTs, corrected CCS, and RNA-seq transcript assemblies above.
+
+Version 3.1 gene models on assembly v3.0 were lifted over to assembly v5.0 and improved with JGI's in-house gene model improvement (GMI) pipeline. The final gene model proteins were assigned PFAM and PANTHER domains, and gene models were further filtered for transposable element domains.
+
+Locus model name was assigned by mapping forwad v3.1 locus models if using JGI's locus name mapping pipeline, otherwise, a new name was given using the locus naming convention used in JGI v3.1 locus model naming. In summary, the model names of approximately 96% of non-TE associated v3.1 models were mapped forward to v5.1. 
+
+For more details, see <a href="https://phytozome-next.jgi.doe.gov/info/Sbicolor_v5_1">Phytozome</a>.
+</p>
+
+<h3>
+    <strong>Genetic and Phenotypic Variation, Gene Expression & Pathways</strong></h3>
+
+
+<p>
+Due to JGI's restriction for using the v5.1 assembly in comprehensive genome analyses, genetic and phenotypic variation, gene expression and pathways data for BTx623 genes is only available on <a href="https://ensembl.sorghumbase.org/Sorghum_bicolor/Info/Annotation/">assembly version 3.1</a>. 
+</p>
+<h2>
+    <strong>References</strong></h2>
+
+    <p>Brenton, Zachary W., Elizabeth A. Cooper, Mathew T. Myers, Richard E. Boyles, Nadia Shakoor, Kelsey J. Zielinski, Bradley L. Rauh, William C. Bridges, Geoffrey P. Morris, and Stephen Kresovich. 2016. “A Genomic Resource for the Development, Improvement, and Exploitation of Sorghum for Bioenergy.” <em>Genetics</em> 204 (1): 21–33. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/27356613/">27356613</a>. doi: <a href="https://doi.org/10.1534/genetics.115.183947">10.1534/genetics.115.183947</a>.
+</p>
+<p>
+    Casa, Alexandra M., Gael Pressoir, Patrick J. Brown, Sharon E. Mitchell, William L. Rooney, Mitchell R. Tuinstra, Cleve D. Franks, and Stephen Kresovich. 2008. “Community Resources and Strategies for Association Mapping in Sorghum.” <em>Crop Science</em> 48 (1): 30–40. doi: <a href="https://doi.org/10.2135/cropsci2007.02.0080">10.2135/cropsci2007.02.0080</a>.
+</p>
