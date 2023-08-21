@@ -6,8 +6,8 @@ use strict;
 
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
   
   $SiteDefs::GRM_SERVERNAME = 'sorghumbase.org';
 
@@ -15,9 +15,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 6;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 7;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'June 2023';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2023';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
@@ -35,6 +35,12 @@ sub update_conf {
 
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
 
+  $SiteDefs::VCFTOOLS_PERL_LIB    = $SiteDefs::ENSEMBL_SERVERROOT . "/vcftools/src/perl/";
+
+  $SiteDefs::GRAPHIC_TTF_PATH = '/usr/share/fonts/msttcore/';
+
+  $SiteDefs::SPECIES_IMAGE_DIR  = $SiteDefs::ENSEMBL_SERVERROOT . '/gramene-live/gramene/htdocs/i/species/48/';
+
 # start of copy of eg plants
 
 $SiteDefs::EG_DIVISION      = 'plants';
@@ -45,7 +51,6 @@ $SiteDefs::EG_DIVISION      = 'plants';
         $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/perl',
       );
 
- #  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, $SiteDefs::ENSEMBL_SERVERROOT. '/../biomarts/plants/biomart-perl/htdocs';
 
     $SiteDefs::DOCSEARCH_INDEX_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/data/docsearch';
 
@@ -61,7 +66,7 @@ $SiteDefs::EG_DIVISION      = 'plants';
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
 
-  $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
+  $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
 
@@ -119,11 +124,6 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_PIDFILE   = "$SiteDefs::ENSEMBL_LOGDIR/httpd.pid";
   $SiteDefs::ENSEMBL_ERRORLOG  = "$SiteDefs::ENSEMBL_LOGDIR/error.log";
   $SiteDefs::ENSEMBL_CUSTOMLOG = "$SiteDefs::ENSEMBL_LOGDIR/access.log combined";
-#our $ENSEMBL_LOGDIR               = defer { $SiteDefs::ENSEMBL_SERVERROOT."/logs" };              # Path for log files, used to be $ENSEMBL_SYS_DIR/logs/$ENSEMBL_SERVER_SIGNATURE
-#our $ENSEMBL_PIDFILE              = defer { "$ENSEMBL_LOGDIR/httpd.pid" };                                    # httpd process id
-#our $ENSEMBL_ERRORLOG             = defer { "$ENSEMBL_LOGDIR/error_log" };                                    # Error log file
-#our $ENSEMBL_CUSTOMLOG            = defer { "$ENSEMBL_LOGDIR/access_log ensembl_extended" };    
-
 
   #----------
   # Mart/Blast
@@ -147,98 +147,73 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 #'http://www.ebi.ac.uk/ebisearch/ws/rest';
 #$SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/sorghum-ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
-#  push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
-    #$SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
-
-  #----------
-  # Temp files
-  #$SiteDefs::ENSEMBL_TMP_URL = "/ens-tmp";
 
   #----------
   #GeoLiteCity database file
   $SiteDefs::GEOCITY_DAT = $SiteDefs::ENSEMBL_SERVERROOT.'/geocity/GeoLiteCity.dat';
 
-  #----------
-  # Paths and so on
-  # This should be set by the plugin, but not working. Need to hard code!
-#  push @SiteDefs::ENSEMBL_PERL_DIRS, $SiteDefs::ENSEMBL_SERVERROOT 
-#      .'/gramene-live/ensembl-plugins/gramene/perl';
 
   #----------
   # Species stuff
 
   $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
   $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
-  #%SiteDefs::__species_aliases =
-   # (
-     # These are supplimental species to EnsemblGenomes
-    # %SiteDefs::__species_aliases,
-    # 'Zea_mays'             => [('zea_mays', 'zm','maize')],
-    # 'Physcomitrella_patens' => [('physcomitrella_patens', 'pp','physcomitrella')],
-    # 'Arabidopsis_thaliana'  => [('arabidopsis_thaliana')],
-    # );
-#  push(@{$SiteDefs::__species_aliases{'Populus_trichocarpa'}},'poplar');
 
-  $SiteDefs::ENSEMBL_DATASETS = [sort qw(
-      Arabidopsis_thaliana
-      Chlamydomonas_reinhardtii
-      Oryza_sativa
-      Selaginella_moellendorffii
-      Sorghum_bicolor
-      Sorghum_rio
-      Sorghum_tx2783pac
-      Sorghum_tx430nano
-      Sorghum_tx436pac
-      Vitis_vinifera
-      Zea_maysb73v4
-    ), 
-	qw(
-	Sorghum_austrcf317961
-	Sorghum_is12661
-	Sorghum_is19953
-	Sorghum_is36143
-	Sorghum_is8525
-	Sorghum_is929
-	Sorghum_pi525695
-	Sorghum_pi532566
-	Sorghum_pi536008
-	Sorghum_r93194522
-	Sorghum_s3691
-	Zea_maysb73
+$SiteDefs::PRODUCTION_NAMES = [sort qw(
+      arabidopsis_thaliana
+      chlamydomonas_reinhardtii
+      oryza_sativa
+      selaginella_moellendorffii
+      sorghum_bicolor
+      sorghum_rio
+      sorghum_tx2783pac
+      sorghum_tx430nano
+      sorghum_tx436pac
+      vitis_vinifera
+      zea_maysb73v4
     ),
-	qw(
-	Sorghum_ji2731
-	Sorghum_353
-    	Populus_trichocarpa
+        qw(
+        sorghum_austrcf317961
+        sorghum_is12661
+        sorghum_is19953
+        sorghum_is36143
+        sorghum_is8525
+        sorghum_is929
+        sorghum_pi525695
+        sorghum_pi532566
+        sorghum_pi536008
+        sorghum_r93194522
+        sorghum_s3691
+        zea_maysb73
     ),
-	qw(
-	Sorghum_chineseamber
-	Sorghum_grassl
-	Sorghum_leoti
-	Sorghum_pi229841
-	Sorghum_pi297155
-	Sorghum_pi329311
-	Sorghum_pi506069
-	Sorghum_pi510757
-	Sorghum_pi655972
-	Sorghum_riouncc	
+        qw(
+        sorghum_ji2731
+        sorghum_353
+        populus_trichocarpa
+    ),
+        qw(
+        sorghum_chineseamber
+        sorghum_grassl
+        sorghum_leoti
+        sorghum_pi229841
+        sorghum_pi297155
+        sorghum_pi329311
+        sorghum_pi506069
+        sorghum_pi510757
+        sorghum_pi655972
+        sorghum_riouncc 
     ),
 
-	qw(
-	Sorghum_bicolorv5
+        qw(
+        sorghum_bicolorv5
     )
     ];
-#  Brachy was removed
-
-#	removed the following two genomes for SIGNA release
-#      Zea_maysb73
-#	Sorghum_tx623cshl 
 
   $SiteDefs::ENSEMBL_TOOLS_LIST = [
     'Blast'             => 'BLAST/BLAT',
-    'VEP'               => 'Variant Effect Predictor',
+    #'VEP'               => 'Variant Effect Predictor',
     #'FileChameleon'     => 'File Chameleon',
-    'AssemblyConverter' => 'Assembly Converter',
+    #'AssemblyConverter' => 'Assembly Converter',
     #'IDMapper'          => 'ID History Converter',
     #'AlleleFrequency'   => 'Allele Frequency Calculator',
     #'VcftoPed'          => 'VCF to PED Converter',

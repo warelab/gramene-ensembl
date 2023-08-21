@@ -1,7 +1,7 @@
 =head1 LICENSE
 
 Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
-Copyright [2016] EMBL-European Bioinformatics Institute
+Copyright [2016-2022] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ sub init {
     $self->{'tabs'}           = 0;
   }
 
+  ## Elixir banner on home page
+  $self->{'show_banner'} = 1 if ($here eq '/index.html');
+
   $self->add_head;
   $self->add_body;
 }
@@ -67,8 +70,8 @@ sub add_body {
   
   $page->add_body_elements(qw(
     logo             EnsEMBL::Web::Document::Element::Logo
-    tools            EnsEMBL::Web::Document::Element::ToolLinks
     search_box       EnsEMBL::Web::Document::Element::SearchBox
+    tools            EnsEMBL::Web::Document::Element::ToolLinks
   ));
 
   if ($self->{'tabs'}) {
@@ -89,6 +92,15 @@ sub add_body {
     modal            EnsEMBL::Web::Document::Element::Modal
     copyright        EnsEMBL::Web::Document::Element::Copyright
     footerlinks      EnsEMBL::Web::Document::Element::FooterLinks
+  ));
+
+  if ($self->{'show_banner'}) {
+    $page->add_body_elements(qw(
+      bottom_banner  EnsEMBL::Web::Document::Element::BottomBanner
+    ));
+  }
+
+  $page->add_body_elements(qw(
     tmp_message      EnsEMBL::Web::Document::Element::TmpMessage
     body_javascript  EnsEMBL::Web::Document::Element::BodyJavascript
   ));

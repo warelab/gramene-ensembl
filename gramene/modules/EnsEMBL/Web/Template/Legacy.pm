@@ -1,7 +1,7 @@
 =head1 LICENSE
 
 Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
-Copyright [2016] EMBL-European Bioinformatics Institute
+Copyright [2016-2022] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -20,13 +20,16 @@ limitations under the License.
 package EnsEMBL::Web::Template::Legacy;
 
 ### Legacy page template, used by standard HTML pages
-
 use parent qw(EnsEMBL::Web::Template);
+
+use HTML::Entities qw(encode_entities);
 
 sub init {
   my $self = shift;
-  $self->{'main_class'}     = 'main';
-  $self->{'lefthand_menu'}  = 1;
+  $self->{'main_class'}       = 'main';
+  $self->{'lefthand_menu'}    = 1;
+  $self->{'has_species_bar'}  = $self->hub->species && $self->hub->species !~ /^(multi|common)$/i ? 1 : 0;
+  $self->{'has_tabs'}         = $self->hub->controller->configuration->has_tabs;
   $self->add_head;
   $self->add_body;
 }
@@ -53,14 +56,27 @@ sub add_body {
     logo             EnsEMBL::Web::Document::Element::Logo
     search_box       EnsEMBL::Web::Document::Element::SearchBox
     tools            EnsEMBL::Web::Document::Element::ToolLinks
-    tabs             EnsEMBL::Web::Document::Element::Tabs
+  ));
+
+  if ($self->{'has_species_bar'}) { 
+    $page->add_body_elements(qw(
+      species_bar      EnsEMBL::Web::Document::Element::SpeciesBar
+    ));
+  }
+  
+  if ($self->{'has_tabs'}) { 
+    $page->add_body_elements(qw(
+      tabs            EnsEMBL::Web::Document::Element::Tabs
+    ));
+  }
+  
+  $page->add_body_elements(qw(
     navigation       EnsEMBL::Web::Document::Element::Navigation
     tool_buttons     EnsEMBL::Web::Document::Element::ToolButtons
     summary          EnsEMBL::Web::Document::Element::Summary
     content          EnsEMBL::Web::Document::Element::Content
     modal            EnsEMBL::Web::Document::Element::Modal
     acknowledgements EnsEMBL::Web::Document::Element::Acknowledgements
-    mobile_nav       EnsEMBL::Web::Document::Element::MobileNavigation
     copyright        EnsEMBL::Web::Document::Element::Copyright
     footerlinks      EnsEMBL::Web::Document::Element::FooterLinks
     tmp_message      EnsEMBL::Web::Document::Element::TmpMessage
@@ -74,10 +90,11 @@ sub render {
   my $HTML;
 
   $HTML .= $self->render_masthead($elements);
-  $HTML .= $self->render_google_analytics();
   $HTML .= $self->render_content($elements);
   $HTML .= $self->render_footer($elements);
   $HTML .= $self->render_page_end($elements);
+
+$HTML .= $self->render_google_analytics();
 
   return $HTML;
 }
@@ -87,10 +104,23 @@ sub render_masthead {
   my ($self, $elements) = @_;
 
   ## MASTHEAD & GLOBAL NAVIGATION
+  my $masthead_class = '';
+  if ($self->{'has_species_bar'}) {
+    $masthead_class = $self->{'has_tabs'} ? ' bar_and_tabs' : ' bar_only';
+  }
+  elsif ($self->{'has_tabs'}) {
+    $masthead_class = ' tabs_only';
+  }
+
   return qq(
   <div id="min_width_container">
     <div id="min_width_holder">
-      <div id="masthead" class="js_panel">
+    
+    <!-- Announcement Banner -->    
+        $elements->{'tmp_message'}->{'announcement_banner_message'}
+    <!-- /Announcement Banner -->
+
+      <div id="masthead" class="js_panel$masthead_class">
         <input type="hidden" class="panel_type" value="Masthead" />
         <div class="logo_holder">$elements->{'logo'}</div>
         <div class="mh print_hide">
@@ -101,27 +131,13 @@ sub render_masthead {
   );
 }
 
-sub render_google_analytics {
-    my ($self) = @_;
-
-    return qq(<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5KXDCCZ16"></script>
-	<script>
-  	window.dataLayer = window.dataLayer || [];
-  	function gtag(){dataLayer.push(arguments);}
-  	gtag('js', new Date());
-
-  	gtag('config', 'G-L5KXDCCZ16');
-	</script>
-	);
-}
-
 sub render_content {
   my ($self, $elements) = @_;
   my $hub = $self->hub;
   my $page = $self->page;
 
   ## LOCAL NAVIGATION & MAIN CONTENT
+  my $sp_bar      = $elements->{'species_bar'} ? qq(<div class="spbar_holder">$elements->{'species_bar'}</div>) : '';
   my $tabs        = $elements->{'tabs'} ? qq(<div class="tabs_holder print_hide">$elements->{'tabs'}</div>) : '';
 
   my $icons       = $page->icon_bar if $page->can('icon_bar');  
@@ -145,6 +161,7 @@ sub render_content {
   }
 
   return qq(
+        $sp_bar
         $tabs
         $icons
       </div>
@@ -156,7 +173,6 @@ sub render_content {
           $elements->{'breadcrumbs'}
           $elements->{'message'}
           $elements->{'content'}
-          $elements->{'mobile_nav'}
       </div>
   );
 }
@@ -167,7 +183,7 @@ sub render_footer {
   my $page = $self->page;
 
   my $footer_id = $self->{'lefthand_menu'} ? 'footer' : 'wide-footer';
-  return qq(
+  my $html = qq(
         <div id="$footer_id">
           <div class="column-wrapper">$elements->{'copyright'}$elements->{'footerlinks'}
             <p class="invisible">.</p>
@@ -177,6 +193,11 @@ sub render_footer {
           </div>
         </div>
   );
+
+  if ($self->{'show_banner'}) {
+    $html .= $elements->{'bottom_banner'};
+  }
+  return $html;
 }
 
 sub render_page_end {
@@ -190,11 +211,15 @@ sub render_page_end {
   my $gdpr_policy_url     = $hub->species_defs->GDPR_POLICY_URL;
   my $gdpr_terms_url      = $hub->species_defs->GDPR_TERMS_URL;
   my $gdpr_cookie_name    = $hub->species_defs->GDPR_COOKIE_NAME;
-  my $species_common_name = $hub->species_defs->SPECIES_COMMON_NAME;
+  my $species_display_name = $hub->species_defs->SPECIES_DISPLAY_NAME;
   my $max_region_length   = 1000100 * ($hub->species_defs->ENSEMBL_GENOME_SIZE || 1);
+  my $ensembl_image_root  = $hub->species_defs->ENSEMBL_IMAGE_ROOT;
+  my $ensembl_species_image  = '/i/species/' . $hub->species_defs->SPECIES_IMAGE . '.png';
   my $core_params         = $hub->core_params || {};
-  my $core_params_html    = join '',   map qq(<input type="hidden" name="$_" value="$core_params->{$_}" />), keys %$core_params;
-
+  my $core_params_html = join('',map {
+      $v = encode_entities($core_params->{$_});
+      qq(<input type="hidden" name="$_" value="$v" />)
+    } keys %$core_params);
   return qq(
       </div>
     </div>
@@ -207,13 +232,30 @@ sub render_page_end {
   <input type="hidden" id="gdpr_policy_url" name="gdpr_policy_url" value="$gdpr_policy_url" />
   <input type="hidden" id="gdpr_terms_url" name="gdpr_terms_url" value="$gdpr_terms_url" />
   <input type="hidden" id="gdpr_cookie_name" name="gdpr_cookie_name" value="$gdpr_cookie_name" />
-  <input type="hidden" id="species_common_name" name="species_common_name" value="$species_common_name" />
+  <input type="hidden" id="species_common_name" name="species_common_name" value="$species_display_name" />
+  <input type="hidden" id="ensembl_image_root" name="ensembl_image_root" value="$ensembl_image_root" />
   <input type="hidden" id="max_region_length" name="max_region_length" value="$max_region_length" />
+  <input type="hidden" id="ensembl_species_image" name="ensembl_species_image" value="$ensembl_species_image" />
     $elements->{'modal'}
-    $elements->{'tmp_message'}
+    $elements->{'tmp_message'}->{'popup_message'}
     $elements->{'body_javascript'}
   );
   
+}
+
+sub render_google_analytics {
+     my ($self) = @_;
+ 
+     return qq(<!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-L5KXDCCZ16"></script>
+       <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+ 
+       gtag('config', 'G-L5KXDCCZ16');
+       </script>
+       );
 }
 
 1;

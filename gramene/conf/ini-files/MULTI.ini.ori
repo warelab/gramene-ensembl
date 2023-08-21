@@ -22,8 +22,7 @@ PASS = gram3n3
 [databases]
 DATABASE_CORE = 
 DATABASE_WEBSITE = ensembl_website_88
-DATABASE_COMPARA = ensembl_compara_7_108_sorghum00423v2
-#ensembl_compara_6_87_sorghum00423v2
+DATABASE_COMPARA = ensembl_compara_6_87_sorghum00423v2
 #ensembl_compara_4_87_sorghum0422 
 #ensembl_compara_1_87_sorghumsicna
 #ensembl_compara_1_87_sorghumpan 
@@ -36,8 +35,7 @@ DATABASE_WEB_HIVE = ensembl_web_hive_sbase
 #DATABASE_PRODUCTION = 
 #ensembl_production_%
 #DATABASE_ARCHIVE    = ensembl_archive_%
-DATABASE_METADATA = ensembl_metadata_subsite108
-#ensemblgenomes_info_49
+DATABASE_METADATA = ensemblgenomes_info_49
 #ensembl_metadata
 #DATABASE_ACCOUNTS = ensembl_accounts
 DATABASE_SESSION  = ensembl_accounts
