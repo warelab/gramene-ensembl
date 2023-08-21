@@ -167,6 +167,8 @@ sub _dump_fasta {
 	my ($self, $dba, $outfile, $type) = @_;
 	my $seqio_fh = new Bio::SeqIO(-format => 'fasta', -file => ">$outfile");
 
+	my $slice_adaptor = $dba->get_SliceAdaptor;
+	my $slices = $slice_adaptor->fetch_all('toplevel');
 	if ($type eq 'dna') {
 		
 		my $outfile_sm = $outfile;
@@ -178,8 +180,6 @@ sub _dump_fasta {
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
-		my $slice_adaptor = $dba->get_SliceAdaptor;
-		my $slices = $slice_adaptor->fetch_all('toplevel');
 		foreach my $slice (@$slices) {
 			my $seqstr = $slice->get_repeatmasked_seq(['RepeatMask'],1)->seq;
 			$seqstr ||= $slice->seq;
@@ -204,47 +204,48 @@ sub _dump_fasta {
 		}
 	}
 	else {
-		my $gene_adaptor = $dba->get_GeneAdaptor;
-		my $gs = $gene_adaptor->fetch_all();
-		for my $gene (@$gs) {
-			next if ($type eq 'ncrna' and $gene->biotype eq 'protein_coding');
-			next if ($type ne 'ncrna' and $gene->biotype ne 'protein_coding');
-			my @transcripts;
-	    eval { @transcripts = @{ $gene->get_all_Transcripts } };
-	    print STDERR "$@" && next if $@;
+		foreach my $slice (@$slices) {
+            my $gs = $slice->get_all_Genes();
+            for my $gene (@$gs) {
+			    next if ($type eq 'ncrna' and $gene->biotype eq 'protein_coding');
+			    next if ($type ne 'ncrna' and $gene->biotype ne 'protein_coding');
+			    my @transcripts;
+	            eval { @transcripts = @{ $gene->get_all_Transcripts } };
+	            print STDERR "$@" && next if $@;
 
-	    foreach my $trans (@transcripts) {
-				my $id = $trans->stable_id;
-				next if ($type eq 'ncrna' and $trans->biotype eq 'protein_coding');
-				next if ($type ne 'ncrna' and $trans->biotype ne 'protein_coding');
+	            foreach my $trans (@transcripts) {
+				    my $id = $trans->stable_id;
+				    next if ($type eq 'ncrna' and $trans->biotype eq 'protein_coding');
+				    next if ($type ne 'ncrna' and $trans->biotype ne 'protein_coding');
 
-        my $cdna_seq = $trans->spliced_seq;
+                    my $cdna_seq = $trans->spliced_seq;
 				
-				if ($type eq 'cdna' or $type eq 'ncrna') {
-					$seqio_fh->write_seq(Bio::Seq->new(
-						-display_id => $id,
-						-seq => $cdna_seq
-					));
-				}
-				if ($type eq 'cds') {
-          my $cdna_coding_start = $trans->cdna_coding_start;
-          my $cdna_coding_end   = $trans->cdna_coding_end;
-          my $seq_obj_cds       = Bio::Seq->new(
-              -display_id => $id,
-              -seq        => substr(
-                  $cdna_seq,
-                  $cdna_coding_start - 1,
-                  $cdna_coding_end - $cdna_coding_start + 1
-              )
-          );
+			        if ($type eq 'cdna' or $type eq 'ncrna') {
+				        $seqio_fh->write_seq(Bio::Seq->new(
+						    -display_id => $id,
+						    -seq => $cdna_seq
+					        ));
+				    }
+				    if ($type eq 'cds') {
+                        my $cdna_coding_start = $trans->cdna_coding_start;
+                        my $cdna_coding_end   = $trans->cdna_coding_end;
+                        my $seq_obj_cds       = Bio::Seq->new(
+                            -display_id => $id,
+                            -seq        => substr(
+                                $cdna_seq,
+                                $cdna_coding_start - 1,
+                                $cdna_coding_end - $cdna_coding_start + 1
+                                )
+                                );
 
-          $seqio_fh->write_seq($seq_obj_cds);
-				}
-				if ($type eq 'pep') {
-					my $aa_obj = $trans->translate;
-					$seqio_fh->write_seq($aa_obj);
-				}
-			}
+                        $seqio_fh->write_seq($seq_obj_cds);
+				    }
+				    if ($type eq 'pep') {
+					    my $aa_obj = $trans->translate;
+					    $seqio_fh->write_seq($aa_obj);
+				    }
+			    }
+            }
 		}
 	}
 }
