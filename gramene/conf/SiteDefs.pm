@@ -11,7 +11,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 66;
   $SiteDefs::SITE_RELEASE_VERSION_EG = 55;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2022';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2023';  #G66 is 'Dec 2022'
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.gramene.org/pub';  #the one that's used for download link on species page is ENSEMBL_FTP_URL in DEFAULT.ini
