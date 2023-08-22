@@ -4,12 +4,14 @@
 
 <ul>
 
-There are no changes on ensemble genome databases or browser software from release66. All changes are at Gramene including CLIMtools, pathway and search interface. 
+There are no changes on ensemble genome databases or browser software from release66. All changes are at Gramene and involve CLIMtools, gene expression, pathways, and search interface. 
 
 <ul>
 <li>
-The new Oryza CLIMtools portal brings interactive web-based views of environment x genome associations, RiboSNitch prediction, and correlations between the local environment and a pool of curated phenotypes in rice, in addition to Arabidopsis (see the CLIMtools portal).
+The new Oryza CLIMtools portal brings interactive web-based views of environment by genome associations, RiboSNitch prediction, and correlations between the local environment and a pool of curated phenotypes in rice, in addition to Arabidopsis (see the <a href="https://www.gramene.org/CLIMtools/"CLIMtools portal</a>).
 </li>
+
+<li>Expression data from 25 plant studies was curated in collaboration with <a href="https://www.ebi.ac.uk/gxa/plant/experiments">Expression Atlas</a>.</li>
 
 <p>
 <li>
@@ -29,7 +31,7 @@ Added homology-based pathway projections for 10 new species, adding up to a tota
 </ul>
 </li>
 <li>
-Two newly curated pathways and one "container" pathway for response to gravitopism stimuli. This adds to a total of 309 reference rice pathways.
+Two newly curated pathways and one "container" pathway for response to gravitropism stimuli. This adds to a total of 309 reference rice pathways.
 <ul>
 <li>Top level pathway: Response to stimuli: abiotic stresses and stimuli</li>
 <li>Container pathway: Gravitropism under normal or artificial gravity environments</li>
@@ -38,7 +40,6 @@ Two newly curated pathways and one "container" pathway for response to gravitopi
 </ul>
 </li>
 
-<li>Expression data from 25 plant studies was curated in collaboration with <a href="https://www.ebi.ac.uk/gxa/plant/experiments">Expression Atlas</a>.</li>
 
 </ul>
 
