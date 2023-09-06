@@ -7,31 +7,39 @@
 
 <div class="column-wrapper">
 	<div class="tinted-box no-top-margin">
+ 	[[SCRIPT::EnsEMBL::Web::Document::HTML::Bioschema]]
 	[[SCRIPT::EnsEMBL::Web::Document::HTML::HomeSearch]]
 	</div>
-
+<div class="column-two">
+<div class="column-padding no-left-margin">
 	<div class="plain-box">
 	<div class="js_panel">
 	<input type="hidden" class="panel_type" value="SpeciesList" />
 	[[SCRIPT::EnsEMBL::Web::Document::HTML::GenomeList]]
+	</div>
+        </div>	
 	
-	<br/>
+</div>
+</div>
+
+<div class="column-two">
+<div class="column-padding no-right-margin">
 	<div>
 	<h2>Gene Tree Statistics</h2>
 	<div style="float:left; padding:20px">
 	<img src="/i/96/compara.png" class="bordered">
 	</div>
-	</div>
 
 	<div>
-	<p><a href="/prot_tree_stats.html">Overview</a></p>
-	<p><a href="/prot_tree_stats.html?page=coverage">Gene tree coverage and Gene QC</a></p>
-	<p><a href="/prot_tree_stats.html?page=sizes">Size of gene trees</a></p>
-	<p><a href="/prot_tree_stats.html?page=nodes">Gene tree nodes</a></p>
+	<p><a href="/info/genome/compara/prot_tree_stats.html">Overview</a></p>
+	<p><a href="/info/genome/compara/prot_tree_stats.html?page=coverage">Gene tree coverage and Gene QC</a></p>
+	<p><a href="/info/genome/compara/prot_tree_stats.html?page=sizes">Size of gene trees</a></p>
+	<p><a href="/info/genome/compara/prot_tree_stats.html?page=nodes">Gene tree nodes</a></p>
 	</div>
+</div>
+</div>
 
-	</div>
-	</div>
+</div>
 </div>
 
 </body>
