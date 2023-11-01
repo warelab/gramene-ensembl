@@ -32,7 +32,6 @@ fi
 sudo mkdir $ENSEMBLROOT
 sudo git clone https://weix-cshl@github.com/warelab/gramene-ensembl ${GRM_VERSION} 
 
-sudo chown -R weix:gramene $ENSEMBLROOT ${GRM_VERSION}
 
 cd $ENSEMBLROOT
 
@@ -41,10 +40,13 @@ ln -s ../${GRM_VERSION} gramene-live
 echo "Set enviroment variable branch_e (such as release/91)"
 read branch_e
 echo "set branch_e to be $branch_e"
+export branch_e=${branch_e}
 
 echo "Set enviroment variable branch_eg (such as release/eg/38)"
 read branch_eg
 echo "set branch_eg to be $branch_eg"
+
+export branch_eg=${branch_eg}
 
 gramene-live/scripts/misc-scripts/fetch_ensembl_packages.sh
 gramene-live/scripts/misc-scripts/fetch_eg_packages.sh
@@ -73,5 +75,7 @@ cd ensembl-webcode/
 ln -s ../biomart-perl biomart-perl    
 #ln -s /usr/local/biomart-perl biomart-perl
 cd ../
+sudo chown -R weix:gramene *
+
 sudo chown -R nobody:nobody tmp 
 sudo chown -R nobody:nobody ensembl-webcode/cbuild

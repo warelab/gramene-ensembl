@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription
+      xmlns="http://a9.com/-/spec/opensearch/1.1/">
+ <ShortName>Ensembl (Musca)</ShortName>
+ <Description>Search Ensembl Genomes - Muscadinia rotundifolia cv. Trayshed - Muscadinia rotundifolia cv. Trayshed</Description>
+ <InputEncoding>UTF-8</InputEncoding>
+ <Tags>Ensembl genome browser Ensembl Genomes Muscadinia rotundifolia cv. Trayshed Muscadinia rotundifolia cv. Trayshed</Tags>
+ <Image width="16" height="16" type="image/png">/i/ensembl-favicon.png</Image>
+ <Url type="text/html"
+      template="http://vitis-ensembl.gramene.org/Vitis_rotundifolia/Psychic?q={searchTerms};site=ensembl"/>
+</OpenSearchDescription>

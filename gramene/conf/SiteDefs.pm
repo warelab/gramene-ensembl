@@ -9,16 +9,16 @@ sub update_conf {
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 4; 
+  $SiteDefs::SITE_RELEASE_VERSION = 3; 
   $SiteDefs::SITE_RELEASE_VERSION_EG = 32;
   #$SiteDefs::ENSEMBL_VERSION = 65;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Jun 2021';  #'Dec 2017';
+  $SiteDefs::SITE_RELEASE_DATE    = 'May 2022';  #'Dec 2017';
   $SiteDefs::SITE_NAME            = 'GrameneVits';
   $SiteDefs::ENSEMBL_SITETYPE           = 'GrameneVitis';
  # $SiteDefs::SITE_FTP             = 'ftp://ftp.gramene.org/pub';
 #  $SiteDefs::OGE_FTP_URL          = 'ftp://ftp.gramene.org/pub/gramene/oge/release-current'
   $SiteDefs::PE_URL             = 'http://plants.ensembl.org';
-  $SiteDefs::ENSEMBL_PORT       = 8889;
+  $SiteDefs::ENSEMBL_PORT       = 86;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -27,7 +27,6 @@ sub update_conf {
   $SiteDefs::ENSEMBL_MAIL_SERVER            = 'localhost';
 
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
-  $SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
 
 
   $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
@@ -35,7 +34,8 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/vitis-ebeye53';
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'http://leffe:8803';
+#'http://data.gramene.org/vitis-ebeye53';
 #'http://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
   $SiteDefs::ENSEMBL_TOOLS_PERL_BIN         = '/usr/local/bin/perl';
@@ -88,7 +88,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
 
   #----------
   # Mart/Blast
-  $SiteDefs::ENSEMBL_BLAST_ENABLED = 0; # Creates header link for blast
+  $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
   $SiteDefs::ENSEMBL_MART_ENABLED = 0; # And mart
 
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
@@ -97,19 +97,11 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   push @SiteDefs::ENSEMBL_HTDOCS_DIRS, # Needed due to EG plugin
     $SiteDefs::ENSEMBL_SERVERROOT.'/biomart-perl/htdocs';
 
-  #----------
-  # Temp files
-  #$SiteDefs::ENSEMBL_TMP_URL = "/ens-tmp";
 
-  #----------
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; 
+
   #GeoLiteCity database file
   $SiteDefs::GEOCITY_DAT = $SiteDefs::ENSEMBL_SERVERROOT.'/geocity/GeoLiteCity.dat';
-
-  #----------
-  # Paths and so on
-  # This should be set by the plugin, but not working. Need to hard code!
-#  push @SiteDefs::ENSEMBL_PERL_DIRS, $SiteDefs::ENSEMBL_SERVERROOT 
-#      .'/gramene-live/ensembl-plugins/gramene/perl';
 
   #----------
   # Species stuff
@@ -128,13 +120,35 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_zinfandel';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_vinifera';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_viniferapn40024'; 
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_corinthseedless';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_corinthseeded';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_cabfranc';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_nebbiolo';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_riesling';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_arizonica';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Vitis_rotundifolia';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Arabidopsis_thaliana';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Chlamydomonas_reinhardtii';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Sorghum_bicolor';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysb73v4';
+  push @{$SiteDefs::ENSEMBL_DATASETS}, 'Zea_maysb73';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Selaginella_moellendorffii';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Drosophila_melanogaster';
   push @{$SiteDefs::ENSEMBL_DATASETS}, 'Oryza_sativa';
 }
+
+$SiteDefs::ENSEMBL_TOOLS_LIST = [
+    'Blast'             => 'BLAST/BLAT',
+    #'VEP'               => 'Variant Effect Predictor',
+    #'FileChameleon'     => 'File Chameleon',
+    #'AssemblyConverter' => 'Assembly Converter',
+    #'IDMapper'          => 'ID History Converter',
+    #'AlleleFrequency'   => 'Allele Frequency Calculator',
+    #'VcftoPed'          => 'VCF to PED Converter',
+    #'DataSlicer'        => 'Data Slicer',
+    #'VariationPattern'  => 'Variation Pattern Finder',
+    #'LD'                => 'Linkage Disequilibrium Calculator',
+  ];
+
 
 1;
