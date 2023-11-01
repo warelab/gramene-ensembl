@@ -2,8 +2,15 @@
 
 ENSEMBLROOT=$1
 GRM_VERSION=$2
+GRAPE_BRANCH=$3
 
 cd /usr/local/
+
+if [[ ! $GRAPE_BRANCH ]]
+then
+   echo "GRAPE_BRANCH not defined, enter brach name such as pangrape-v3, quit"
+   exit
+fi
 
 if [[ ! $ENSEMBLROOT ]]
 then
@@ -30,7 +37,7 @@ then
 fi
 
 sudo mkdir $ENSEMBLROOT
-sudo git clone https://weix-cshl@github.com/warelab/gramene-ensembl ${GRM_VERSION} 
+sudo git clone -b $GRAPE_BRANCH https://weix-cshl@github.com/warelab/gramene-ensembl ${GRM_VERSION} 
 
 
 cd $ENSEMBLROOT
@@ -51,12 +58,13 @@ export branch_eg=${branch_eg}
 gramene-live/scripts/misc-scripts/fetch_ensembl_packages.sh
 gramene-live/scripts/misc-scripts/fetch_eg_packages.sh
 
-ln -s ../biomart-perl biomart-perl
-ln -s ../samtools samtools            
-ln -s ../BioPerl-1.6.922 bioperl-live
+#ln -s ../biomart-perl biomart-perl
+ln -s /usr/local/src/samtools-1.8 samtools            
+ln -s /usr/local/src/BioPerl-1.6.924 bioperl-live
 ln -s /usr/local/apache2 apache2
-ln -s ../tools_data tools_data
-ln -s ../vcftools vcftools
+#ln -s ../tools_data tools_data
+ln -s /usr/local/src/vcftools vcftools
+ln -s ../src/htslib htslib
 
 mkdir -p ensembl-webcode/conf/packed
 mkdir -p ensembl-webcode/htdocs/minified
