@@ -4,8 +4,10 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-   #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+
+  $SiteDefs::GRM_SERVERNAME = 'gramene.org'; #dev.gramene.org won't work
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
@@ -33,9 +35,10 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
-  $SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
-
+  #$SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
+  #$SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
+  # BY DEFAULT IT is ENSEMBL_SERVERROOT/data_files, you need to make a dir under serverroot, could be a symlink 
+  # ln -s ../tools_data data_files
 
   $SiteDefs::EBEYE_REST_ENDPOINT  = 'https://data.gramene.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
    #'https://data.gramene.org/ebeye66';

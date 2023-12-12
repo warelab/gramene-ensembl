@@ -17,20 +17,20 @@ then
    exit
 fi
 
-if [[  -d $ENSEMBLROOT ]]
+if [[ ! -d $ENSEMBLROOT ]]
 then  
-   echo "/usr/local/$ENSEMBLROOT already exists, quit"
+   echo "Need to mkdir /usr/local/$ENSEMBLROOT, quit"
    exit
 fi
  
-if [[  -d ${GRM_VERSION} ]]
+if [[ ! -d ${GRM_VERSION} ]]
 then
-   echo "/usr/local/${GRM_VERSION} already exists, quit"
+   echo "Need to git clone /usr/local/${GRM_VERSION}, quit"
    exit
 fi
 
-sudo mkdir $ENSEMBLROOT
-sudo git clone https://weix-cshl@github.com/warelab/gramene-ensembl ${GRM_VERSION} 
+#sudo mkdir $ENSEMBLROOT
+#sudo git clone https://weix-cshl@github.com/warelab/gramene-ensembl ${GRM_VERSION} 
 
 
 cd $ENSEMBLROOT

@@ -32,7 +32,6 @@ fi
      ensembl-production \
      ensembl-io \
      ensembl-metadata \
-     ensembl-taxonomy \
      VEP_plugins;
  do
      if [ ! -d "$repo" ]; then
@@ -50,3 +49,4 @@ fi
      echo
  done
 
+ git clone  https://github.com/Ensembl/ensembl-taxonomy 
