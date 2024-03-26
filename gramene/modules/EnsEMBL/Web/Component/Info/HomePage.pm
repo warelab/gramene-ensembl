@@ -1,6 +1,6 @@
 =head1 LICENSE
 
-Copyright [2009-2014] EMBL-European Bioinformatics Institute
+Copyright [2009-2022] EMBL-European Bioinformatics Institute
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ use strict;
 use EnsEMBL::Web::Document::HTML::HomeSearch;
 use EnsEMBL::Web::Document::HTML::Compara;
 use EnsEMBL::Web::Component::GenomicAlignments;
+use EnsEMBL::Web::Controller::SSI;
 
 use LWP::UserAgent;
 use JSON;
@@ -144,8 +145,8 @@ sub content {
   my $img_url      = $self->img_url;
   my $provider_link = '';
 
-  if ($species_defs->PROVIDER_NAME) {
-    my ($name, $url) = ($species_defs->PROVIDER_NAME, $species_defs->PROVIDER_URL);
+  if ($species_defs->ASSEMBLY_PROVIDER_NAME) {
+    my ($name, $url) = ($species_defs->ASSEMBLY_PROVIDER_NAME, $species_defs->ASSEMBLY_PROVIDER_URL);
     $name = [$name] unless ref $name eq 'ARRAY';
     $url  = [$url]  unless ref $url  eq 'ARRAY';
     my @providers = map { $hub->make_link_tag(text => $name->[$_], url => $url->[$_]) } 0 .. scalar @{$name} - 1;
@@ -162,13 +163,13 @@ sub content {
   $html .= '</div>'; #box-left
   
   $html .= '<div class="box-right">';
-  if (my $ack_text = $self->_other_text('acknowledgement', $species)) {
-    $html .= $ack_text;
+  if (my $ack_text = $self->_fragment('acknowledgement', $species, 1)) {
+    $html .= '<div class="info-box embedded-box">'.$ack_text.'</div>';
   }
   $html .= '</div>'; # box-right
   $html .= '</div>'; # column-wrapper
 
-  my $about_text = $self->_other_text('about', $species);
+  my $about_text = $self->_fragment('about', $species, 1);
   if ($about_text) {
     $html .= '<div class="column-wrapper"><div class="round-box tinted-box unbordered">'; 
     $html .= $about_text;
@@ -182,32 +183,20 @@ sub content {
   
 
   push(@sections, $self->_assembly_text);
-# $html .= '<div class="box-left"><div class="round-box tinted-box unbordered">' . $self->_assembly_text . '</div></div>';
   push(@sections, $self->_genebuild_text) if $species_defs->SAMPLE_DATA->{GENE_PARAM};
- #$html .= '<div class="box-right"><div class="round-box tinted-box unbordered">' . $self->_genebuild_text . '</div></div>' if $species_defs->SAMPLE_DATA->{GENE_PARAM};
 
-# my @box_class = ('box-left', 'box-right');
-# my $side = 0;
-  
   if ($self->has_compara or $self->has_pan_compara) {
     push(@sections, $self->_compara_text);
- #  $html .= '<div class="' . $box_class[$side % 2] . '"><div class="round-box tinted-box unbordered">' . $self->_compara_text . '</div></div>';
- #  $side++;
   }
 
   push(@sections, $self->_variation_text);
- #$html .= '<div class="' . $box_class[$side % 2] . '"><div class="round-box tinted-box unbordered">' . $self->_variation_text . '</div></div>';
- #$side++;
 
   if ($hub->database('funcgen')) {
     push(@sections, $self->_funcgen_text);
-  # $html .= '<div class="' . $box_class[$side % 2] . '"><div class="round-box tinted-box unbordered">' . $self->_funcgen_text . '</div></div>';
-  # $side++;
   }
 
-  my $other_text = $self->_other_text('other', $species);
+  my $other_text = $self->_fragment('other', $species, 1);
   push(@sections, $other_text) if $other_text =~ /\w/;
- #$html .= '<div class="' . $box_class[$side % 2] . '"><div class="round-box tinted-box unbordered">' . $other_text . '</div></div>' if $other_text =~ /\w/;
   
   my @box_class = ('box-left', 'box-right');
   my $side = 0;
@@ -228,14 +217,22 @@ sub _site_release {
   return $self->hub->species_defs->SITE_RELEASE_VERSION;
 }
 
+sub pluralise {
+  my ($arg) = @_;
+
+  return $arg if $arg =~ s/([^aeiou])y$/$1ies/g;
+  return "${arg}s";
+}
+
 sub _assembly_text {
   my $self             = shift;
   my $hub              = $self->hub;
   my $species_defs     = $hub->species_defs;
   my $species          = $hub->species;
-  my $name             = $species_defs->SPECIES_COMMON_NAME;
+  my $name             = $species_defs->SPECIES_DISPLAY_NAME;
   my $img_url          = $self->img_url;
   my $sample_data      = $species_defs->SAMPLE_DATA;
+  my $prod_name        = $species_defs->SPECIES_PRODUCTION_NAME;
   my $ensembl_version  = $self->_site_release;
   my $current_assembly = $species_defs->ASSEMBLY_NAME;
   my $accession        = $species_defs->ASSEMBLY_ACCESSION;
@@ -276,11 +273,11 @@ sub _assembly_text {
   # Link to FTP site
   if ($species_defs->ENSEMBL_FTP_URL) {
     my $ftp_url;
-    if ($species_defs->SPECIES_DATASET ne $species) {
-      $ftp_url = sprintf '%s/release-%s/fasta/%s_collection/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species_defs->SPECIES_DATASET, lc $species;
+    if ($species_defs->SPECIES_DATASET && $species_defs->SPECIES_DATASET ne $species) {
+      $ftp_url = sprintf '%s/release-%s/fasta/%s_collection/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species_defs->SPECIES_DATASET, $prod_name;
     }
     else {
-      $ftp_url = sprintf '%s/release-%s/fasta/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
+      $ftp_url = sprintf '%s/release-%s/fasta/%s/dna/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $prod_name;
     }
     $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download DNA sequence</a> (FASTA)</p>);
   }
@@ -293,41 +290,21 @@ sub _assembly_text {
   $html .= sprintf '<p><a href="%s" class="modal_link nodeco" rel="modal_user_data">%sDisplay your data in %s</a></p>',
     $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 }), qq|<img src="${img_url}24/page-user.png" class="homepage-link" />|, $species_defs->ENSEMBL_SITETYPE;
 
-#EG no old assemblies
- ## PREVIOUS ASSEMBLIES
- #my @old_archives;
- #
- ## Insert dropdown list of old assemblies
- #foreach my $release (reverse sort keys %archive) {
- #  next if $release == $ensembl_version;
- #  next if $assemblies{$release} eq $previous;
+  my $strains = $species_defs->ALL_STRAINS;
 
- #  push @old_archives, {
- #    url      => sprintf('http://%s.archive.ensembl.org/%s/', lc $archive{$release},           $species),
- #    assembly => "$assemblies{$release}",
- #    release  => (sprintf '(%s release %s)',                  $species_defs->ENSEMBL_SITETYPE, $release),
- #  };
+  ## Insert link to strains page 
+  if ($strains) {
+    my $strain_text = pluralise($species_defs->STRAIN_TYPE);
+    $html .= sprintf '<h3 class="light top-margin">Other %s</h3><p>This species has data on %s additional %s. <a href="%s">View list of %s</a></p>',
+                            $strain_text,
+                            scalar @$strains,
+                            $strain_text,
+                            $hub->url({'action' => ucfirst $strain_text}),
+                            $strain_text,
+  }
 
- #  $previous = $assemblies{$release};
- #}
-
- ## Combine archives and pre
- #my $other_assemblies;
- #if (@old_archives) {
- #  $other_assemblies .= join '', map qq(<li><a href="$_->{'url'}" class="nodeco">$_->{'assembly'}</a> $_->{'release'}</li>), @old_archives;
- #}
-
- #my $pre_species = $species_defs->get_config('MULTI', 'PRE_SPECIES');
- #if ($pre_species->{$species}) {
- #  $other_assemblies .= sprintf('<li><a href="http://pre.ensembl.org/%s/" class="nodeco">%s</a> (Ensembl pre)</li>', $species, $pre_species->{$species}[1]);
- #}
-
- #if ($other_assemblies) {
- #  $html .= qq(
- #    <h3 style="color:#808080;padding-top:8px">Other assemblies</h3>
- #    <ul>$other_assemblies</ul>
- #  );
- #}
+  ## BIOSCHEMAS MARKUP
+  $html .= $self->include_bioschema_datasets; 
 
   return $html;
 }
@@ -337,6 +314,7 @@ sub _genebuild_text {
   my $hub             = $self->hub;
   my $species_defs    = $hub->species_defs;
   my $species         = $hub->species;
+  my $prod_name        = $species_defs->SPECIES_PRODUCTION_NAME;
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
   my $ensembl_version = $self->_site_release;
@@ -360,38 +338,13 @@ sub _genebuild_text {
 
   if ($species_defs->ENSEMBL_FTP_URL) {
     my $dataset = $species_defs->SPECIES_DATASET;
-    my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
-    my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset ne $species) ? lc($dataset) . "_collection/" . lc $species : lc $species},{class=>'nodeco'});
+    my $fasta_url = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'fasta', SPECIES=> ($dataset && $dataset ne $species) ? lc($dataset) . "_collection/" . $prod_name : $prod_name},{class=>'nodeco'});
+    my $gff3_url  = $hub->get_ExtURL('SPECIES_FTP_URL',{GENOMIC_UNIT=>$species_defs->GENOMIC_UNIT,VERSION=>$ensembl_version, FORMAT=>'gff3', SPECIES=> ($dataset && $dataset ne $species) ? lc($dataset) . "_collection/" . $prod_name : $prod_name},{class=>'nodeco'});
     $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download genes, cDNAs, ncRNA, proteins - <span class="center"><a href="$fasta_url" class="nodeco">FASTA</a> - <a href="$gff3_url" class="nodeco">GFF3</a></span></p>];
   }
   
   #my $im_url = $hub->url({'type' => 'Tools', 'action' => 'IDMapper'});
   #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/tool.png" class="homepage-link" />Update your old Ensembl IDs</a></p>);
-
-  my $im_url;
-  if( $species =~ /Zea_mays/i ){  ###weix-start
-        $im_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_id_mapping_v3_to_v4/";
-  }elsif( $species =~ /Sorghum_bicolor/i ){
-        $im_url = "http://genome.jgi.doe.gov/Phytozome/download/_JAMO/55fca1de0d8785306f968fa1/Sbicolor_255_v2.1.locus_transcript_name_map.txt";
-  }elsif($species =~ /Oryza_sativa/i ){
-        $im_url = "http://rapdb.dna.affrc.go.jp/download/archive/RAP-MSU_2017-04-14.txt.gz";
-  }else{
-        $im_url = undef;
-  }    ###weix-end
-
-  #$html .= qq(<p><a href="$im_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Update your old Ensembl IDs</a></p>) if $im_url; #weix
-
-  if( $species =~ /Zea_mays/i ){  ##weix-start
-        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/gene_function";
-        $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Gene function summary</a></p>) if $func_url;
-  }  ##weix-end
-
-  if( $species =~ /Zea_mays/i ){  ##weix-start
-        my $func_url = "ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/gff3/zea_mays/repeat_annotation/";
-        $html .= qq(<p><a href="$func_url" class="nodeco"><img src="${img_url}24/download.png" class="homepage-link" />Transposon annotation download</a></p>) if $func_url;
-  }  ##weix-end
-
-
 
   if ($has_vega) {
     $html .= qq(
@@ -419,14 +372,11 @@ sub _compara_text {
   
   my $tree_text = $sample_data->{'GENE_TEXT'};
   my $tree_url  = $species_defs->species_path . '/Gene/Compara_Tree?g=' . $sample_data->{'GENE_PARAM'};
-  my $sb_url    = 'https://sorghumbase.org/genes?idList=' . $sample_data->{'GENE_PARAM'};
+
   # EG genetree
-  if ($self->has_compara('GeneTree')) {
-    $html .= qq(
-      <a class="nodeco _ht" href="$sb_url" title="Go to Sorghumbase gene tree for $tree_text"><img src="${img_url}96/sb_compara.png" class="bordered" /><span>Example gene tree (Sorghumbase)</span></a>
-      <a class="nodeco _ht" href="$tree_url" title="Go to Ensembl gene tree for $tree_text"><img src="${img_url}96/compara.png" class="bordered" /><span>Example gene tree (Ensembl)</span></a>
-    );
-  }
+  $html .= qq(
+    <a class="nodeco _ht" href="$tree_url" title="Go to gene tree for $tree_text"><img src="${img_url}96/compara.png" class="bordered" /><span>Example gene tree</span></a>
+  ) if $self->has_compara('GeneTree');
 
   # EG family
   if ($self->is_bacteria) {
@@ -438,7 +388,7 @@ sub _compara_text {
   #
 
   # EG pan tree
-  $tree_url = $species_defs->species_path . '/Gene/Compara_Tree/pan_compara?g=' . $sample_data->{'GENE_PARAM'};
+  $tree_url = $species_defs->species_path . '/Gene/PanComparaTree?g=' . $sample_data->{'GENE_PARAM'};
   if ($self->has_pan_compara('GeneTree')) {
     $html .=
       $self->is_bacteria
@@ -476,14 +426,14 @@ sub _compara_text {
   else {
     $html .= '<p><strong>What can I find?</strong>  Homologues, gene trees, and whole genome alignments across multiple species.</p>';
   }
-  $html .= qq(<p><a href="/prot_tree_stats.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />Phylogenetic overview of gene families</a></p>);
- $html .= qq(<p><a href="/info/genome/compara/index.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analyses</a></p>);   
+  $html .= qq(<p><a href="/info/genome/compara/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about comparative analyses</a></p>);
+  $html .= qq(<p><a href="/info/genome/compara/prot_tree_stats.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />Phylogenetic overview of gene families</a></p>);
 
-  #if ($species_defs->ENSEMBL_FTP_URL) {
-  #  my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
-  #  $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
-  #    unless $self->is_bacteria;
-  #}
+ # if ($species_defs->ENSEMBL_FTP_URL) {
+ #   my $ftp_url = sprintf '%s/release-%s/emf/ensembl-compara/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version;
+ #   $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download alignments</a> (EMF)</p>) 
+ #     unless $self->is_bacteria;
+ # }
 
   $html .= $compara_table;
 
@@ -499,6 +449,7 @@ sub _variation_text {
   my $sample_data  = $species_defs->SAMPLE_DATA;
   my $ensembl_version = $species_defs->SITE_RELEASE_VERSION;
   my $display_name    = $species_defs->SPECIES_SCIENTIFIC_NAME;
+  my $prod_name    = $species_defs->SPECIES_PRODUCTION_NAME;
   my $html;
 
   if ($hub->database('variation')) {
@@ -535,19 +486,23 @@ sub _variation_text {
     }
     $html .= '.</p>';
 
-    if ($self->_other_text('variation', $species)) {
+    if ($self->_fragment('variation', $species)) {
       $html .= qq(<p><a href="/$species/Info/Annotation#variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $display_name</a></p>);
     }
 
     my $site = $species_defs->ENSEMBL_SITETYPE;
-    $html .= qq(<p><a href="/info/genome/variation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
+    $html .= qq(<p><a href="/info/genome/variation/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about variation in $site</a></p>);
 
-    if ($species_defs->ENSEMBL_FTP_URL) {
+    ## Is this species VCF-driven?
+    my $meta_info = $species_defs->databases->{'DATABASE_VARIATION'}{'meta_info'}->{1};
+    my $vcf_only  = $meta_info && $meta_info->{'variation_source.database'}->[0] eq '0';
+
+    if ($species_defs->ENSEMBL_FTP_URL && !$vcf_only) {
       my @links;
-      foreach my $format (qw/ vcf/){ #we removed gvf, used to be qw/ gvf vcf/
-        push(@links, sprintf('<a href="%s/release-%s/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, lc $species, $display_name, uc $format,uc $format));
+      foreach my $format (qw/vcf/){ #remove gvf
+        push(@links, sprintf('<a href="%s/release-%s/variation/%s/%s/" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in %s format">%s</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $format, $prod_name, $display_name, uc $format,uc $format));
       }
-      #push(@links, sprintf('<a href="%s/release-%s/vep/%s_vep_%s_%s.tar.gz" class="nodeco _ht" title="Download (via FTP) all <em>%s</em> variants in VEP format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species, $ensembl_version, $species_defs->ASSEMBLY_NAME, $display_name));
+      push(@links, sprintf('<a href="%s/release-%s/variation/vep" class="nodeco _ht" title="Download (via FTP) Loss of Function <em>%s</em> variants in table format">VEP</a>', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $prod_name ));
       my $links = join(" - ", @links);
       $html .= qq[<p><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all variants - $links</p>];
     }
@@ -572,6 +527,7 @@ sub _funcgen_text {
   my $hub             = $self->hub;
   my $species_defs    = $hub->species_defs;
   my $species         = $hub->species;
+  my $prod_name       = $species_defs->SPECIES_PRODUCTION_NAME;
   my $img_url         = $self->img_url;
   my $sample_data     = $species_defs->SAMPLE_DATA;
   my $ensembl_version = $species_defs->ENSEMBL_VERSION;
@@ -590,14 +546,14 @@ sub _funcgen_text {
 
     # EG add a link to about_[spp]#regulation
     my $display_name = $species_defs->SPECIES_SCIENTIFIC_NAME;
-    if ($self->_other_text('regulation', $species)) {
+    if ($self->_fragment('regulation', $species)) {
       $html .= qq(<p><a href="/$species/Info/Annotation#regulation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about regulation in $display_name</a></p>);
     }
 
-    $html .= qq(<p><a href="/info/genome/funcgen/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about the $site regulatory build</a> and <a href="/info/genome/dna_align/microarray_mapping.html" class="nodeco">microarray annotation</a></p>);
+    $html .= qq(<p><a href="/info/docs/funcgen/" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about the $site regulatory build</a> and <a href="/info/docs/microarray_probe_set_mapping.html" class="nodeco">microarray annotation</a></p>);
 
     if ($species_defs->ENSEMBL_FTP_URL) {
-      my $ftp_url = sprintf '%s/release-%s/regulation/%s/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, lc $species;
+      my $ftp_url = sprintf '%s/release-%s/regulation/%s/', $species_defs->ENSEMBL_FTP_URL, $ensembl_version, $prod_name;
       $html .= qq(<p><a href="$ftp_url" class="nodeco"><img src="${img_url}24/download.png" alt="" class="homepage-link" />Download all regulatory features</a> (GFF)</p>);
     }
   }
@@ -606,7 +562,7 @@ sub _funcgen_text {
 
     # EG add a link to about_[spp]#regulation
     my $display_name = $species_defs->SPECIES_SCIENTIFIC_NAME;
-    if ($self->_other_text('regulation', $species)) {
+    if ($self->_fragment('regulation', $species)) {
       $html .= qq(<p><a href="/$species/Info/Annotation#regulation" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about regulation in $display_name</a></p>);
     }
     $html .= qq(<p><a href="/info/genome/dna_align/microarray_mapping.html" class="nodeco"><img src="${img_url}24/info.png" alt="" class="homepage-link" />More about the $site microarray annotation strategy</a></p>);
@@ -618,22 +574,20 @@ sub _funcgen_text {
 
 # EG
 
-=head2 _other_text
+=head2 _fragment
 
   Arg[1] : tag name to seek
   Arg[2] : species internal name e.g. Caenorhabditis_elegans
-  Return : text from htdocs/ssi/species/about_[species].html bounded by the string: <!-- {tag} -->
+  Arg[3] : whether to return file content or file existence
+  Return : HTML fragment or Boolean 
 
 =cut
 
-sub _other_text {
-  my ($self, $tag, $species) = @_;
-  my $file = "/ssi/species/about_${species}.html";
-  my $content = EnsEMBL::Web::Controller::SSI::template_INCLUDE($self, $file);
-  my ($other_text) = $content =~ /^.*?<!--\s*\{$tag\}\s*-->(.*)<!--\s*\{$tag\}\s*-->.*$/ms;
-  #ENSEMBL-2535 strip subs
-  $other_text =~ s/(\{\{sub_[^\}]*\}\})//mg;
-  return $other_text;
+sub _fragment {
+  my ($self, $tag, $species, $flag) = @_;
+  my $ext = $tag eq 'acknowledgement' ? 'html' : 'md';
+  my $file = sprintf '/ssi/species/%s_%s.%s', $species, $tag, $ext;
+  return $flag ? EnsEMBL::Web::Controller::SSI::template_INCLUDE($self, $file, 1) : -e $file;
 }
 
 =head2 _has_compara

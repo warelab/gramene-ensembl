@@ -42,7 +42,7 @@ sub content {
   my @CCDS          = @{$object->Obj->get_all_DBLinks('CCDS')};
   my @Uniprot       = @{$object->Obj->get_all_DBLinks('Uniprot/SWISSPROT')};
   my $db            = $object->get_db;
-  my $alt_genes     = $self->_matches('alternative_genes', 'Alternative Genes', 'ALT_GENE', 'show_version'); #gets all xrefs, sorts them and stores them on the object. Returns HTML only for ALT_GENES
+  my $alt_genes     = $self->get_matches('alternative_genes', 'Alternative Genes', 'ALT_GENE', 'show_version'); #gets all xrefs, sorts them and stores them on the object. Returns HTML only for ALT_GENES
   my @RefSeqMatches = @{$gene->get_all_Attributes('refseq_compare')};
   my $display_xref  = $gene->display_xref;
   my ($link_url)    = $display_xref ? $self->get_gene_display_link($gene, $display_xref) : ();

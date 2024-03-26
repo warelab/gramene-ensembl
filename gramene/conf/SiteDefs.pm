@@ -21,8 +21,8 @@ sub update_conf {
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
-  $SiteDefs::ENSEMBL_SITETYPE = 'Sorghumbase';
-	#$SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
+  #$SiteDefs::ENSEMBL_SITETYPE = 'Sorghumbase'; #the species.html need division of Ensembl Plants, won't get right data for each genome in metadata database if not 
+  $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.sorghumbase.org';
   $SiteDefs::PE_URL             = 'https://'.$SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::ENSEMBL_PORT       = 88;

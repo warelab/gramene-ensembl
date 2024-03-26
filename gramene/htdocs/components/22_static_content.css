@@ -1,0 +1,204 @@
+/*
+ * Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+ * Copyright [2016-2022] EMBL-European Bioinformatics Institute
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/***********************************************************************
+**
+** "TEMPLATE" for static content, plus specific styles for top-level pages 
+**
+***********************************************************************/
+
+body.static li { line-height: 16px; padding: 0; margin: 8px 0; }
+
+body.static pre { line-height: 16px; margin: 0 0 16px; }
+
+body.static dl  { margin: 0 0 16px; }
+
+body.static dl.twocol dt  { width: 284px; float: left; clear: left; margin-bottom: -100px; padding: 0 16px 0 0; }
+body.static dl.twocol dd  { padding-left: 300px; line-height: 16px; margin: 0; }
+
+body.static dl.striped     { border: [[PALE_GREY]] solid 1px; }
+body.static dl.striped dt  { padding: 8px; }
+body.static dl.striped dd  { padding: 8px 8px 8px 300px; }
+body.static dl.striped dd p { margin: 0; }
+
+body.static h1     { color: [[V_DARK_GREY]];  }
+body.static h2     { color: [[DARK_GREY]]; }
+body.static h3     { color: [[DARK_GREY]]; }
+body.static h4     { color: [[DARK_GREY]]; }
+
+body.static form   { margin-bottom:16px; }
+
+ul.static_context li    { margin-left:2px; }
+ul.static_context li a  { text-decoration:none; }
+
+.nav div.subheader      { font-weight: bold; padding: 2px;
+                          border-width: 1px 0; border-style: solid;
+                          border-color: [[PALE_GREY]]; }
+
+div#doc_search          { margin-left:4px; }
+div#doc_search .header  { border:none; }
+div#doc_search .button  { vertical-align:middle; }
+
+/***********************************************************************
+**
+** Page specific styles
+**
+***********************************************************************/
+
+/*----------------------------------------------------------------------
+  Ensembl homepage
+----------------------------------------------------------------------*/
+
+/* Species thumbnail images */
+
+div.species-news p.headline { margin:0; padding:4px 0; font-size:110%; min-height:40px; }
+h2.news-category { margin-top:1em; color:[[MAIN_V_DARK]]!important; }
+h3.news-subcategory { color:[[MAIN_V_DARK]]!important; }
+div.news-item { margin-bottom:3em; }
+
+ul#favourites_list li, ul#species_list li { cursor:move; }
+
+div.species-list.faded { opacity: 0.3; }
+body.ie67 div.species-list div.species-box a    { cursor: pointer; }
+
+/*----------------------------------------------------------------------
+species page
+----------------------------------------------------------------------*/
+
+div.species-box     { margin: 0 0 16px; overflow: hidden; }
+img.species-img,
+div.species-box img { display: block; height: 48px; width: 48px; border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px; }
+.species-box span.sp-img { float: left; padding: 0; margin-right: 8px; border: [[PANEL_BORDER]] solid 1px; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; background-color: [[PANEL_BORDER]]; }
+
+div.annotation-stats  { margin-left:16px; }
+
+/*----------------------------------------------------------------------
+  Species homepages
+----------------------------------------------------------------------*/
+
+div.species-badge img { border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; float: left; height: 64px; width: 64px; margin: 0 16px 16px 0; }
+div.species-badge h1  { font-size: 24px; margin-bottom: 0; }
+div.species-badge p   { font-style: italic; }
+
+table.species-stats td.data {  font-weight:bold; width:25%; }
+table.species-stats td.value { text-align:left; }
+
+img.species-entry { float:left; margin-right:4px; clear:left; }
+
+table.img-table { width: 80%;margin: auto; border-collapse: collapse }
+table.img-table th { background-color: [[PALE_GREY]]; color: [[V_LIGHT_GREY]] }
+table.img-table td { vertical-align: top }
+table.img-table .img-1 td { background-color: [[IMAGE_BG1]] }
+table.img-table .img-2 td { background-color: [[IMAGE_BG2]] }
+
+ul.breadcrumbs                   { position: relative; left: 0; top: -13px; 
+                                   margin: 0 0 3px 12px; padding: 0 0 0 1em; 
+                                   height: 20px; border-width: 1px 0 1px 1px;
+                                   border-style: solid; border-color: [[PALE_GREY]]; 
+                                   font-weight: bold; overflow: hidden; }
+ul.breadcrumbs li                { float: left; list-style: none; margin:0 8px 0 0; padding: 0 16px 0 0; font-size: 0.9em; line-height: 1.8em; height: 100%; background: url(/i/chevron.gif) no-repeat right 50%; }
+ul.breadcrumbs li.last           { background-image: none; }
+ul.breadcrumbs li a              { text-decoration: none; outline: none; }
+ul.breadcrumbs li a:hover        { color: [[CONTRAST_MEDIUM]]; }
+ul.breadcrumbs li a.home         { background: url(/i/home.png) no-repeat left 0; width: 10px; height: 10px; display: block; text-indent: -20em; position:relative; top: 5px; }
+ul.breadcrumbs li a.home:visited { background-position: left -15px; }
+ul.breadcrumbs li a.home:hover   { background-position: left -30px; }
+
+body.ie6 ul.breadcrumbs          { height: 22px; }
+
+#pdoc_iframe,
+iframe#doxygen { border: #ccc 1px solid; }
+
+/*----------------------------------------------------------------------
+search-form on home page and species home page
+----------------------------------------------------------------------*/
+form.search-form div.form-field { margin: 0; }
+
+form.search-form          label.ff-label { line-height: 20px; font-weight: normal; width: auto;}
+form.search-form          div.ff-right,
+form.search-form          div.ff-notes { padding-left: 0px; }
+form.search-form          div.ff-notes p.search-example { margin: 0; }
+form.homepage-search-form div.ff-right,
+form.homepage-search-form div.ff-notes { padding-left: 50px; text-align: left; }
+form.homepage-search-form div.ff-notes p.search-example { margin: 0 0 16px; }
+
+form.homepage-search-form fieldset { display: inline; }
+
+form.homepage-search-form span.inp-group { white-space: nowrap; }
+
+form.search-form          input.ftext          
+form.homepage-search-form input.ftext { padding: 2px 3px; }
+form.search-form input.inactive       { color: [[DARK_GREY]]; font-style: italic; }
+form.search-form input.inactive:focus { color: [[PALE_GREY]]; }
+form.search-form div.ff-right label   { margin-right: 6px; margin-left: 0; line-height: 20px; }
+form.search-form div.ff-right .submit { margin-top: 9px; }
+form.search-form div.ff-notes a       { font-weight: bold; text-decoration: none; }
+form.homepage-search-form             { text-align: center; margin: 0 !important; }
+form.homepage-search-form.unisearch   { text-align: left !important; }
+
+/* did you know column on home page */
+div.new-to-ensembl p      { background: url("/i/e-quest.gif") no-repeat scroll left -2px transparent; padding-left: 32px; }
+div.new-to-ensembl p a    { font-weight: bold; font-size: 108%; }
+div.new-to-ensembl p span { display: block; }
+
+div.homepage-twitter        { margin: 16px -6px 7px; }
+div.homepage-twitter iframe { width: 100% !important;}
+
+/*-----------------------------------------------------------------------
+contact link on help and faq page 
+-------------------------------------------------------------------------*/
+
+div.help-contact img { padding-top: 0; height: 42px; width: 45px; }
+div.help-contact p   { padding: 0; }
+
+/*-----------------------------------------------------------------------
+floating archive box on help page
+-------------------------------------------------------------------------*/
+.archive-box { min-width: 400px; }
+
+/*-----------------------------------------------------------------------
+gallery page
+-------------------------------------------------------------------------*/
+#gallery-toc        { height:120px; width:95%; margin:0 auto; background-color:[[WHITE]];
+                      z-index:1000; }
+#gallery-toc.stick  { position: fixed; top: 5px; }
+.anchor-offset      { position:relative; top:-150px; display: block; margin:0; padding:0; float:left; }
+div.gallery-nav     { display:inline-block; padding: 4px; height: 100px; width:15%; 
+                      vertical-align:middle; border:1px solid [[MAIN_LIGHT]]; }
+.gallery-navlabel   { font-size: 150%; font-weight:bold; }
+
+div.gallery-group   { width: 800px; margin:0 auto; }
+div.gallery-preview { display:block; margin:0 12px 1em 12px; padding: 6px; height: 120px; 
+                      position: relative; vertical-align:top; border: 1px solid [[PALE_GREY]]; }
+div.gallery-preview h3.disabled { color:[[MEDIUM_GREY]]; }
+div.gallery-preview .page-preview { position: absolute; top: 4px; left: 620px; }
+div.gallery-preview .page-preview img { width:150px; height:100px; 
+                      border: 1px solid [[PALE_GREY]]; 
+                      z-index: 1; position: absolute; top: 0; left: 0; }
+div.gallery-preview .page-preview img.zoom { width:300px; height: 200px; cursor: pointer;
+                                              z-index:10; top: -50px; left: -75px; }
+.gallery-navlabel.disabled,
+div.gallery-nav img.disabled,
+div.gallery-preview img.disabled { opacity: 0.3; filter: alpha(opacity=30); } 
+p.preview-caption   { display:inline-block; margin: 8px 0; width: 610px; }
+div.popup-form      { z-index:1000; background-color:[[WHITE]];
+                      position: relative; 
+                      padding: 20px; border:1px solid [[PALE_GREY]]; }
+div.popup-form span.close { background: url("/i/close.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); 
+                            cursor: pointer; height: 20px; position: absolute; 
+                            right: -10px; top: -10px; width: 20px; }
+

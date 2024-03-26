@@ -123,7 +123,9 @@ sub process_data {
 
     my $goslim      = $hash->{'goslim'} || {};
     my $row         = {};
-    my $go_evidence = [ split /\s*,\s*/, $hash->{'evidence'} || '' ];
+    # my $go_evidence = [ split /\s*,\s*/, $hash->{'evidence'} || '' ];
+    my $go_evidence = $hash->{'evidence'} || '';
+#warn("DEBUG go_evidence=$go_evidence\n");
    (my $trans       = $hash->{transcript_id}) =~ s/^,/ /; # GO terms with multiple transcripts
     my %all_trans   = map{$_ => $hub->url({type => 'Transcript', action => 'Summary',t => $_,})} split(/,/,$trans) if($hash->{transcript_id} =~ /,/);
     
@@ -158,8 +160,9 @@ sub process_data {
     if($hash->{'term'}) {
       $row->{'go'}               = $go_link;
       $row->{'description'}      = $hash->{'term'};
-      $row->{'evidence'}         = join ', ', map $self->helptip($_, $description_hash->{$_} // 'No description available'), @$go_evidence;
-      $row->{'desc'}             = join ', ', grep $_, ($desc, $hash->{'source'});
+      #$row->{'evidence'}         = join ', ', map $self->helptip($_, $description_hash->{$_} // 'No description available'), @$go_evidence;
+      $row->{'evidence'}         = $go_evidence;
+	$row->{'desc'}             = join ', ', grep $_, ($desc, $hash->{'source'});
       $row->{'transcript_id'}    = %all_trans ? join("<br>", map { qq{<a href="$all_trans{$_}">$_</a>} } keys %all_trans) : '<a href="'.$hub->url({type => 'Transcript', action => 'Summary',t => $_,}).'">'.$hash->{transcript_id}.'</a>';
       $row->{'extra_link'}       = $mart_link || $loc_link ? qq{<ul class="compact">$mart_link$loc_link</ul>} : "";
       
