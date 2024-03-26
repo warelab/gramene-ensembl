@@ -171,9 +171,9 @@ while (my ($dbname) = $sth->fetchrow_array){
 		next if $meta_smaples{'sample.location_param'};
                 $sth_loc = $dbc->prepare($loc_sql);
                 $sth_loc->execute();;
-                my @names =  $sth_gene->fetchrow_array ;
-                $meta_smaples{'sample.location_param'} = "$stable_ids[0]:8001-18000";
-                $meta_smaples{'sample.location_text'} = "$stable_ids[0]:8001-18000";
+                my @names =  $sth_loc->fetchrow_array ;
+                $meta_smaples{'sample.location_param'} = "$names[0]:8001-18000";
+                $meta_smaples{'sample.location_text'} = "$names[0]:8001-18000";
 	} 
 	if ($mk =~ /sample\.gene/ ){
 		next if $meta_smaples{'sample.gene_param'};
@@ -202,9 +202,9 @@ while (my ($dbname) = $sth->fetchrow_array){
   }
 
   $sth_insert->finish;
+#  $dbc->disconnect;
 }
 
-$dbc->disconnect;
 
 sub usage{
   exec('perldoc', $0);
