@@ -133,20 +133,7 @@ sub init_cacheable {
          'density_outline', 'Bar chart - outline',
        ],
      }] : (),
-     $self->hub->species_defs->databases->{'DATABASE_VARIATION'} ? [ 'snpsT', 'Variations(GWAS_traits)', 'Tdensity_features', {
-       same_scale => 1,
-       display    => 'density_outline',
-       colourset  => 'densities',
-       maxmin     => 1,
-       keys       => [ 'snptraitdensity' ],
-       renderers  => [
-         'off',             'Off',
-         'density_line',    'Line graph',
-         'density_bar',     'Bar chart - filled',
-         'density_outline', 'Bar chart - outline',
-       ],
-     }] : (),
-     $self->hub->species_defs->databases->{'DATABASE_VARIATION'} ? [ 'Tsnps', 'Variations(GWAS_snps)', 'Sdensity_features', {
+     $self->hub->species_defs->databases->{'DATABASE_VARIATION'} ? [ 'Tsnps', 'Variations(GWAS_traitSNPs)', 'Tdensity_features', {
        same_scale => 1,
        display    => 'density_outline',
        colourset  => 'densities',
@@ -159,33 +146,6 @@ sub init_cacheable {
          'density_outline', 'Bar chart - outline',
        ],
      }] : (),
-     $self->hub->species_defs->databases->{'DATABASE_VARIATION'} ? [ 'Qsnps', 'Variations(QTL)', 'Qdensity_features', {
-       same_scale => 1,
-       display    => 'density_outline',
-       colourset  => 'densities',
-       maxmin     => 1,
-       keys       => [ 'qtldensity' ],
-       renderers  => [
-         'off',             'Off',
-         'density_line',    'Line graph',
-         'density_bar',     'Bar chart - filled',
-         'density_outline', 'Bar chart - outline',
-       ],
-     }] : (),
-     $self->hub->species_defs->databases->{'DATABASE_VARIATION'} ? [ 'Qtsnps', 'Variations(QTL_traits)', 'Qtdensity_features', {
-       same_scale => 1,
-       display    => 'density_outline',
-       colourset  => 'densities',
-       maxmin     => 1,
-       keys       => [ 'qtltraitdensity' ],
-       renderers  => [
-         'off',             'Off',
-         'density_line',    'Line graph',
-         'density_bar',     'Bar chart - filled',
-         'density_outline', 'Bar chart - outline',
-       ],
-     }] : (),
-
     [ 'drag_right', '', 'Vdraggable', { display => 'normal', part => 1, menu => 'no' }],
   );
 

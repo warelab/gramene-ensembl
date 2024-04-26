@@ -1,0 +1,205 @@
+<html><body><h2 id="aboutzeamays">About <em>Zea mays</em></h2>
+
+<h2 id="entry"><a href="/Zea_maysb73/Info/Index">Genome Browser Entry Page</a></h2>
+
+<p>Maize or <em>Zea mays</em> had the highest world-wide production 
+of all grain crops in <a href="http://faostat.fao.org" rel="external">2019</a>.
+Although a food staple in many regions of the world, most is used for
+animal feed and ethanol fuel. Maize was domesticated from wild teosinte
+in Central America and its cultivation spread throughout the Americas by
+Pre-Columbian civilisations. In addition to its economic value, maize is
+an important model organism for studies in plant genetics, physiology,
+and development. It has a large genome of about 2.4 gigabases with a
+haploid chromosome number of 10 (2n=2x=20) [2-4]. Maize is
+distinguished from other grasses in that its genome arose from an
+ancient tetraploidy event unique to its lineage.
+This sequence corresponds to inbred line B73.</p>
+<h3 id="assembly">Assembly</h3>
+
+<p>The B73 genome was sequenced to high depth using PacBio long-read technology 
+together with 25 founder inbred lines strategically selected to represent the 
+breadth of maize diversity including lines from temperate, tropical, sweet corn, 
+and popcorn germplasm. All lines were assembled into contigs using a hybrid approach, 
+corrected with long-read and Illumina short-read data, scaffolded using Bionano optical maps
+and ordered into pseudomolecules using linkage data from the NAM recombinant inbred lines 
+and maize pan-genome anchor markers. The 26 lines were also annotated with a common pipeline.</p>
+
+<p>The current assembly is named Zm-B73-REFERENCE-NAM-5.0 and was aligned to the previous 
+B73_RefGen_v4 version with software ATAC/A2Amapper [5], obtaining 96.76% mapped positions. 
+Those mappings can be used to translate coordinates across with the 
+<a href="http://plants.ensembl.org/Oryza_sativa/Tools/AssemblyConverter">Assembly Converter</a>.</p>
+<h3 id="annotation">Annotation</h3>
+
+<p>The gene annotations were produced with the CSHL gene pipeline developed under the <a href="https://nam-genomes.org" rel="external">NAM project</a>. 
+In summary, it is an automated, evidence-based method combining third-party software including Mikado, BRAKER and PASA. 
+Gene models were filtered by conservation and Maker Annotation Edit Distance (AED) score, 
+and then classified into protein_coding and misc_non-coding sets.</p>
+
+<p>Gene models from version B73_RefGen_v4 have been mapped to the current Zm-B73-REFERENCE-NAM-5.0 and can be retrieved with the
+<a href="http://plants.ensembl.org/Oryza_sativa/Tools/IDMapper">ID History Converter</a></p>
+
+<p>Evidence-based predictions were directly inferred from assembled transcripts, which were generated using five different genome-guided transcript assembly programs and processed using Mikado to pick the optimal set of transcripts for each locus. To generate assembled transcripts, quality inspected RNA-seq reads were mapped to the genome. In order to pick the final transcripts, Mikado uses assembled transcripts combined with high-confidence splice junctions with the mapped reads as input, predicted ORFs for the assembled transcripts generated and homology results of transcripts to SwissProt (Viridiplantae) sequences.</p>
+
+<p>Ab initio predictions were performed using BRAKER with both evidence-based predicted proteins and mapped RNA-seq reads as input. </p>
+
+<p>A working set (WS) of models was generated to capture the complete gene space by combining evidence based and non-overlapping BRAKER gene models using BEDtools. Additional structural improvements on the WS models were completed using the software PASA. Transposable element related genes were filtered from the evidence and non-overlapping BRAKER sets using the TEsorter tool, which uses the REXdb database of TEs.</p>
+
+<p>The TE filtered WS models were given AED scores using MAKER-P (v.3.0). Only models with AED &lt; 0.75 passed to the high-confidence set (HCS). The HCS gene models were further classified based on homology to related species, and assigned coding and non-coding biotypes. The HCS gene models were checked for missing start and stop codons. The CDS boundaries of the transcripts were modified based on conserved start codon positions or extended to a start or stop codon whenever possible. All conserved genes in addition to lineage-specific genes that had a complete CDS were marked as protein-coding. The remaining lineage-specific genes were marked as non-coding. HCS gene models were checked and potentially split or merged using the GFF3toolkit. Gene ID assignment was made as per <a href="https://www.maizegdb.org/nomenclature" rel="external">MaizeGDB nomenclature schema</a>. </p>
+
+<h4 id="repeats">Repeats</h4>
+
+<p>Repeat features were annotated with the RepeatMasker pipeline with 
+RepBase and wessler-bennetzen-2015/TE_12-Feb-2015_15-35 libraries.</p>
+<h3 id="regulation">Regulation</h3>
+
+<p><strong>Gene expression probes</strong></p>
+
+<p>Oligo probes from the <a href="https://www.thermofisher.com/order/catalog/product/900614?SID=srch-hj-900614" rel="external">GeneChip Maize Genome Array</a>
+have been aligned using the standard Ensembl 2-step <a href="http://plants.ensembl.org/info/genome/dna_align/microarray_mapping.html">mapping procedure</a>.</p>
+<h3 id="variation">Variation</h3>
+
+<p>The following variation datasets were remapped from assembly B73_RefGen_v4 to Zm-B73-REFERENCE-NAM-5.0</p>
+
+<h4 id="hapmap2dataset">HapMap2 dataset</h4>
+
+<p>A variation set which comprises the maize HapMap2 data (Chia <em>et al.</em>,
+2012). This dataset incorporates approximately 55 million SNPs and
+InDels identified in a collection of 103 pre-domesticated and
+domesticated <em>Zea mays</em> varieties, including a representative from the
+sister genus, <em>Tripsacum dactyloides</em> (Eastern gamagrass). Each line was
+sequenced to an average of 4.5-fold coverage using the Illumina GAIIx
+platform. The reads can be accessed from the SRA, with accession ID:
+SRA051245. Reads were initially mapped to the B73 RefGen_v3 reference
+genome using a combination of Bowtie, Novoalign and SOAP, then remapped
+to the most recent B73 RefGen_v4 reference genome. The variations were
+scored by taking into account identity-by-descent blocks that are shared
+among the lines.</p>
+
+<h4 id="thepanzea2.7https:www.panzea.orggenotypesgenotyped-by-sequencinggbsdataset">The <a href="https://www.panzea.org/genotypes" rel="external">Panzea 2.7</a> genotyped-by-sequencing (GBS) dataset</h4>
+
+<p>This variation data set consists of 719,472 SNPs (excluding 332 SNPs
+that were removed for mapping to scaffolds) typed in 16,718 maize and
+teosinte lines, and grouped in 14 overlapping populations according to
+the germplasm set in the corresponding <a href="http://www.panzea.org/dynamic/derivative_data/genotypes/AllZeaGBSv2.7_publicSamples_metadata20140411.xlsx" rel="external">metadata
+table</a>.</p>
+<h3 id="mainreferences">Main references</h3>
+
+<ol>
+<li><p>PPR266733</p></li>
+<li><p>MED/28605751 </p></li>
+<li><p>MED/19965430    </p></li>
+<li><p>MED/19936061</p></li>
+</ol>
+
+<p>Other references:</p>
+
+<ol>
+<li><p>MED/14769938</p></li>
+<li><p><a href="http://europepmc.org/abstract/MED/19936050" rel="external">A genome-wide characterization of microRNA genes in
+maize</a>.<br>
+Zhang L, Chia JM, Kumari S, Stein JC, Liu Z, Narechania A, Maher CA,
+Guill K, McMullen MD, Ware D. 2009. PLoS Genet. 5:e1000716.</p></li>
+<li><a href="http://europepmc.org/abstract/MED/24682209" rel="external">A near complete snapshot of the Zea mays seedling transcriptome
+revealed from ultra-deep
+sequencing</a>.<br>
+Martin JA, Johnson NV, Gross SM, Schnable J, Meng X, Wang M,
+Coleman-Derr D, Lindquist E, Wei CL, Kaeppler S et al. 2014. Sci
+Rep. 4:4519.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/21216780" rel="external">A novel hybrid gene prediction method employing protein multiple
+sequence alignments</a>.<br>
+Keller O, Kollmar M, Stanke M, Waack S. 2011. Bioinformatics.
+27:757-763.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/10779491" rel="external">Ab initio gene finding in Drosophila genomic
+DNA</a>.<br>
+Salamov AA, Solovyev VV. 2000. Genome Res.. 10:516-522.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/25384563" rel="external">Automated update, revision, and quality control of the maize genome
+annotations using MAKER-P improves the B73 RefGen_v3 gene models
+and identifies new
+genes</a>.<br>
+Law M, Childs KL, Campbell MS, Stein JC, Olson AJ, Holt C, Panchy N,
+Lei J, Jiao D, Andorf CM et al. 2015. Plant Physiol.. 167:25-39.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/24576388" rel="external">Genome-wide discovery and characterization of maize long non-coding
+RNAs</a>.<br>
+Li L, Eichten SR, Shimizu R, Petsch K, Yeh CT, Wu W, Chettoor AM,
+Givan SA, Cole RA, Fowler JE et al. 2014. Genome Biol.. 15:R40.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/18937034" rel="external">Insights into corn genes derived from large-scale cDNA
+sequencing</a>.<br>
+Alexandrov NN, Brover VV, Freidin S, Troukhan ME, Tatarinova TV,
+Zhang H, Swaller TJ, Lu YP, Bouck J, Flavell RB et al. 2009. Plant
+Mol. Biol.. 69:179-194.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/22660545" rel="external">Maize HapMap2 identifies extant variation from a genome in
+flux</a>.<br>
+Chia JM, Song C, Bradbury PJ, Costich D, de Leon N, Doebley J,
+Elshire RJ, Gaut B, Geller L, Glaubitz JC et al. 2012. Nat. Genet..
+44:803-807.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/24306534" rel="external">MAKER-P: a tool kit for the rapid creation, management, and quality
+control of plant genome
+annotations</a>.<br>
+Campbell MS, Law M, Holt C, Stein JC, Moghe GD, Hufnagel DE, Lei J,
+Achawanantakun R, Jiao D, Lawrence CJ et al. 2014. Plant Physiol..
+164:513-524.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/24275495" rel="external">miRBase: annotating high confidence microRNAs using deep sequencing
+data</a>.<br>
+Kozomara A, Griffiths-Jones S. 2014. Nucleic Acids Res.. 42:D68-73.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/19936069" rel="external">Sequencing, mapping, and analysis of 27,455 maize full-length
+cDNAs</a>.<br>
+Soderlund C, Descour A, Kudrna D, Bomhoff M, Boyd L, Currie J,
+Angelova A, Collura K, Wissotski M, Ashley E et al. 2009. PLoS
+Genet.. 5:e1000740.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/27339440" rel="external">Unveiling the complexity of the maize transcriptome by
+single-molecule long-read
+sequencing</a>.<br>
+Wang B, Tseng E, Regulski M, Clark TA, Hon T, Jiao Y, Lu Z, Olson A,
+Stein JC, Ware D. 2016. Nat Commun. 7:11708.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/22660546" rel="external">Comparative population genomics of maize domestication and
+improvement</a>.<br>
+Hufford MB, Xu X, van Heerwaarden J, Pyhjrvi T, Chia JM, Cartwright
+RA, Elshire RJ, Glaubitz JC, Guill KE, Kaeppler SM et al. 2012. Nat.
+Genet.. 44:808-811.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/19965431" rel="external">A first-generation haplotype map of
+maize</a>.<br>
+Gore MA, Chia JM, Elshire RJ, Sun Q, Ersoz ES, Hurwitz BL, Peiffer
+JA, McMullen MD, Grills GS, Ross-Ibarra J et al. 2009. Science.
+326:1115-1117.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/19936048" rel="external">Detailed analysis of a contiguous 22-Mb region of the maize
+genome</a>.<br>
+Wei F, Stein JC, Liang C, Zhang J, Fulton RS, Baucom RS, De Paoli E,
+Zhou S, Yang L, Han Y et al. 2009. PLoS Genet.. 5:e1000728.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/19936062" rel="external">A single molecule scaffold for the maize
+genome</a>.<br>
+Zhou S, Wei F, Nguyen J, Bechner M, Potamousis K, Goldstein S, Pape
+L, Mehan MR, Churas C, Pasternak S et al. 2009. PLoS Genet..
+5:e1000711.
+</li>
+<li><a href="http://europepmc.org/abstract/MED/19541913" rel="external">Evidence-based gene predictions in plant
+genomes</a>.<br>
+Liang C, Mao L, Ware D, Stein L. 2009. Genome Res.. 19:1912-1923.
+</li>
+</ol>
+
+<p>Picture credit: Nicolle Rager Fuller, National Science Foundation.</p>
+<h3 id="links">Links</h3>
+
+<ul>
+<li>MaizeSequence.org <a href="ftp://ftp.gramene.org/pub/gramene/maizesequence.org">FTP site</a>
+</li>
+<li><a href="https://maizegdb.org/genome/assembly/Zm-B73-REFERENCE-NAM-5.0" rel="external">MaizeGDB</a>
+</li>
+</ul>
+
+</body>
+</html>
