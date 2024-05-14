@@ -143,11 +143,13 @@ my %library2logic_name = (
 	COILS => 'NCOILS',
 	PANTHER => 'HMMPANTHER',
 	PFAM => 'PFAM',
+        GENE3D => 'GENE3D',
 	PRINTS => 'PRINTS',
 	PROSITE_PROFILES => 'PFSCAN',
+        SMART => 'SMART',
 	SUPERFAMILY => 'SUPERFAMILY'
 );
-my @needed_analyses = qw(interpro2go pfam cdd ncoils hmmpanther superfamily prints pfscan);
+my @needed_analyses = qw(interpro2go pfam cdd ncoils hmmpanther superfamily prints pfscan smart gene3d);
 my @missing_analyses;
 for my $ln (@needed_analyses) {
 	push @missing_analyses, $ln unless exists $analysisIdLUT{uc($ln)};
@@ -185,7 +187,15 @@ my %analysis_fields = (
 		db => 'PRINTS',
 		db_version => '42.0'
 	},
-	pfscan => {
+        smart => {
+                db => 'SMART',
+                db_version => '7.1'
+        },
+        gene3d => {
+                db => 'GENE3D',
+                db_version => '4.3.0'
+        },
+        pfscan => {
 		db => 'Prosite_profiles',
 		db_version => '2021_01'
 	}	
@@ -226,6 +236,16 @@ my %analysis_description_fields = (
 		display_label => 'Prints',
 		web_data => '{"type":"domain"}'
 	},
+        smart => {
+                description => 'Protein domains and motifs in the <a rel="external" href="http://smart.embl-heidelberg.de">SMART</a> database.',
+                display_label => 'SMART',
+                web_data => '{"type":"domain"}'
+        },
+        gene3d => {
+                description => '<a href="http://www.cathdb.info/">CATH/Gene3D</a> families.',
+                display_label => 'GENE3D',
+                web_data => '{"type":"domain"}'
+        },
 	pfscan => {
 		description => 'Protein domains and motifs from the <a rel="external" href="http://prosite.expasy.org">PROSITE</a> profiles database.',
 		display_label => 'PROSITE profiles',
@@ -286,6 +306,7 @@ $sth = $dbh->prepare($sql) or die "Error:" . $dbh->errstr . "\n";
 $sth->execute or die "Error:" . $sth->errstr . "\n";
 while (my $row = $sth->fetchrow_arrayref) {
   my ($tid,$stable_id) = @$row;
+  $stable_id =~ s/transcript://;
   $translationIdLUT{$stable_id} = $tid;
 }
 $sth->finish;
@@ -345,12 +366,20 @@ for my $jsonfile (@ARGV) {
   print STDERR "Process $jsonfile\n";
   open(my $fh, "<", $jsonfile);
   my $file_content = do {local $/; <$fh> };
-  $file_content =~ s/}{/},{/g;
+  $file_content =~ s/\}\{/},{/g;
   my $ipr = decode_json $file_content;
   for my $res (@{$ipr->{results}}) {
     for my $xref (@{$res->{xref}}) {
       my $tid = $translationIdLUT{$xref->{id}};
-      $tid or die "failed to get translation id for xref " . Dumper($xref);
+      if (!$tid) {
+        my $tryThis = $xref->{id};
+        $tryThis =~ s/chr0?//;
+        $tryThis =~ s/\.p(\d+)/.t$1/;
+        $tryThis =~ s/transcript://;
+        $tid = $translationIdLUT{$tryThis};
+      }
+      $tid or warn "failed to get translation id for xref " . Dumper($xref);
+      $tid or next;
       for my $match (@{$res->{matches}}) {
 				# skip matches that have no interpro entry
 				my $entry = $match->{signature}{entry};
