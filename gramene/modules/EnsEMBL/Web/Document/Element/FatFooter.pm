@@ -29,9 +29,9 @@ sub content {
   #my $sister_sites = qq(<p><a href="http://oge.gramene.org">OGE Browser</a></p>
   #			<p><a href="http://maizev4.gramene.org">Maize B73_RefGen_v4 PreRelease Browser</a></p>);
   
-  my $sister_sites = qq(<p><a href="https://vitis.gramene.org">VitisGramene Browser</a></p>
-                        <p><a href="https://maize-pangenome.gramene.org/">ZeaGramene Browser</a></p>
-			<p><a href="https://www.sorghumbase.org/">Sorghumebase Browser</a></p>);
+  my $sister_sites = qq(<p><a href="https://vitis.gramene.org">Grapevine Gramene Browser</a></p>
+                        <p><a href="https://maize-pangenome.gramene.org/">Maize Gramene Browser</a></p>
+			<p><a href="https://www.sorghumbase.org/">Sorghumbase Browser</a></p>);
   my $html = '<hr /><div id="fat-footer">';
 
   $html .= qq(

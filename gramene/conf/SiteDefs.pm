@@ -8,8 +8,8 @@ sub update_conf {
     $SiteDefs::ENSEMBL_SERVERNAME     = 'oryza-ensembl.gramene.org';
     #$SiteDefs::ENSEMBL_PROTOCOL          = 'https';
     $SiteDefs::ENSEMBL_BASE_URL          =  'https://oryza-ensembl.gramene.org/';
-    $SiteDefs::SITE_RELEASE_VERSION = 6;
-    $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2023';
+    $SiteDefs::SITE_RELEASE_VERSION = 7;
+    $SiteDefs::SITE_RELEASE_DATE    = 'Jul 2023';
 	#'May 2022';
 
 
@@ -40,7 +40,8 @@ $SiteDefs::SUBDOMAIN_DIR    = 'plants';
   $SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
   $SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
 
-$SiteDefs::EBEYE_REST_ENDPOINT = 'https://data.gramene.org/oryza-ebeye4';
+#$SiteDefs::EBEYE_REST_ENDPOINT = 'https://data.gramene.org/oryza-ebeye4';
+$SiteDefs::EBEYE_REST_ENDPOINT = 'http://squam:21007';
 
 # This should be set by the plugin, but not working. Need to hard code!
     #@SiteDefs::ENSEMBL_PERL_DIRS =

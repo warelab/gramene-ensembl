@@ -6,8 +6,13 @@
 
 <h3>References</h3>
 
-<ol><li>Youens-Clark, K., et al., Gramene database in 2010: updates and extensions. Nucleic Acids Res. 2010. 39:D1085-94<br /><a href="http://europepmc.org/abstract/MED/21076153">PubMed ID: 21076153</a></li>
-	<li>Monaco MK., et al., Gramene 2013: comparative plant genomics resources. Nucleic Acids Res. 2014. 42:D1193-9.<br /><a href="http://europepmc.org/abstract/MED/24217918">PubMed ID: 24217918</a></li>
-	<li>Hubbard, T., et al., The Ensembl genome database project. Nucleic Acids Res. 2002. 30:38-41<br /><a href="http://europepmc.org/abstract/MED/11752248">PubMed ID: 11752248</a></li>
-	<li>Kersey PJ., et al., Ensembl Genomes 2013: scaling up access to genome-wide data. Nucleic Acids Res. 2014. 42:D546-52.<br /><a href="http://europepmc.org/abstract/MED/24163254">PubMed ID: 24163254</a></li></ol>
+<ol><li>Tello-Ruiz MK, Jaiswal P, Ware D. (2022). Gramene: A Resource for Comparative Analysis of Plants Genomes and Pathways. Methods Mol Biol. 2443:101-131. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/35037202">35037202</a>. doi: <a href="https://doi.org/10.1007/978-1-0716-2067-0_5">10.1007/978-1-0716-2067-0_5</a>. Free PDF</li>
+
+<li>Tello-Ruiz MK, Naithani S, Gupta P, Olson A, Wei S, Preece J, Jiao Y, Wang B, Chougule K, Garg P, Elser J, Kumari S, Kumar V, Contreras-Moreira B, Naamati G, George N, Cook J. Bolser DM, D'Eustachio P, Stein LD, Gupta A, Xu W, Regala J, Papatheodorou I, Kersey PJ, Flicek P, Taylor C, Jaiswal P, Ware D. (2021). Gramene 2021: Harnessing the power of comparative genomics and pathways for plant research. Nucleic Acids Res. 49(D1):D1452-D1463. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/33170273">33170273</a>. doi: <a href="https://doi.org/10.1093/nar/gkaa979">10.1093/nar/gkaa979</a>. Free PDF.
+</li>
+
+<li>Tello-Ruiz MK, Naithani S, Stein JC, Gupta P, Campbell M, Olson A, Wei S, Preece J, Geniza MJ, Jiao Y, Lee YK, Wang B, Mulvaney J, Chougule K, Elser J, Al-Bader N, Kumari S, Thomason J, Kumar V, Bolser DM, Naamati G, Tapanari E, Fonseca N, Huerta L, Iqbal H, Keays M, Munoz-Pomer Fuentes A, Tang A, Fabregat A, D'Eustachio P, Weiser J, Stein LD, Petryszak R, Papatheodorou I, Kersey PJ, Lockhart P, Taylor C, Jaiswal P, Ware D. (2018). Gramene 2018: unifying comparative genomics and pathway resources for plant research. Nucleic Acids Res. 46(D1):D1181-D1189. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/29165610">29165610</a>. doi: <a href="https://doi.org/10.1093/nar/gkx1111">10.1093/nar/gkx1111</a>. Free PDF.
+</li>
+</ol>
+
 </div>

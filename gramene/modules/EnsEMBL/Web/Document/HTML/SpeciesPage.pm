@@ -36,13 +36,13 @@ sub render {
   my @valid_species = $species_defs->valid_species;
   my %species;
 
-  foreach my $sp (@valid_species) {
+  foreach my $sp ( grep { /oryza/i } @valid_species) {
     $species{$sp} = {
       'dir'        => $sp,
       'common'     => $species_defs->get_config($sp, 'SPECIES_COMMON_NAME'),
       'assembly'   => $species_defs->get_config($sp, 'ASSEMBLY_NAME'),
       'accession'  => $species_defs->get_config($sp, 'ASSEMBLY_ACCESSION'),
-      'taxon_id'   => $species_defs->get_config($sp, 'TAXONOMY_ID'),
+      'taxon_id'   => $species_defs->get_config($sp, 'SPECIES_TAXONOMY_ID'),
       'group'      => $species_defs->get_config($sp, 'SPECIES_GROUP'),
       'variation'  => $species_defs->get_config($sp, 'databases')->{'DATABASE_VARIATION'},
       'regulation' => $species_defs->get_config($sp, 'databases')->{'DATABASE_FUNCGEN'},
@@ -75,7 +75,7 @@ sub render {
     { key => 'thumbnail',    title => '',                         width => '2%',  align => 'left', sort => 'none' },
     { key => 'common',       title => 'Name',                     width => '47%', align => 'left', sort => 'string' },
     { key => 'group',        title => 'Classification',           width => '8%', align => 'left', sort => 'string' },
-    { key => 'taxon_id',     title => 'Taxon ID',                 width => '8%', align => 'left', sort => 'integer', hidden => 1 },
+    { key => 'taxon_id',     title => 'Taxon ID',                 width => '8%', align => 'left', sort => 'integer' },
     { key => 'assembly',     title => 'Assembly',                 width => '8%', align => 'left' },
     { key => 'accession',    title => 'Accession',                width => '8%', align => 'left' },
     { key => 'variation',    title => 'Variation database',       width => '3%',  align => 'center', sort => 'string' },
