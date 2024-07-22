@@ -1,0 +1,2 @@
+### About Sorghum IS19953
+IS19953 is a landrace of *Sorghum bicolor* collected at Namari (15.029999, -13.779999) in the province of Ferlo in Senegal. Its name is Nieniko and alternate identifiers are PI 514293 (USDA) and Sg. 1678 (IBPGR). It is considered to belong to the *margaritiferum* group, previously considered a sub-race of the guinea race. It was re-sequenced to broaden the sampling of the *margaritiferum* group to include an accession from Senegal.

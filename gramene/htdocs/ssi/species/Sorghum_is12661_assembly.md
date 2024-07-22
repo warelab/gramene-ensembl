@@ -1,0 +1,2 @@
+### Assembly
+The genome assembly of Sorghum IS12661 was reported in [Tao *et al* (2021)](https://www.sorghumbase.org/paper/19802). Sequencing was conducted by the Australia Sorghum breeding team in collaboration with BGI-Shenzhen using Illumina HiSeq 4000 platform and the PacBio Sequel platform to achieve 171X and 36X coverage, respectively. The assembly effort generated a genome of 622.1Mb with contigs N50 of 163.7kb.
