@@ -1,0 +1,3 @@
+About *Oryza sativa* Kitaake v3.1
+---------------------
+Asian cultivated rice is a staple food for half of the world population. With a genome size of ~390 Mb (n=12), rice has the smallest genome among the domesticated cereals, making it particularly amenable to genomic studies. In addition, rice is used as a model when studying monocotyledonous species such as switchgrass, which is being investigated as a potential biofuel. Kitaake is a Japonica variety of rice and is particularly useful for research because it is neutral to photoperiod changes and has a life cycle of only 10 weeks, which allows for more rapid breeding and genetic studies.
