@@ -6,26 +6,26 @@ use strict;
 
 sub update_conf {
 
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'oryza-ensembl.gramene.org';
   #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
   
-  $SiteDefs::GRM_SERVERNAME = 'sorghumbase.org';
+  $SiteDefs::GRM_SERVERNAME = 'oryza.gramene.org';
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 4000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 7;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 8;  
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Apr 2024';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2024';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
-  $SiteDefs::SITE_NAME            = 'Sorghumbase';
+  $SiteDefs::SITE_NAME            = 'Grameneoryza';
   #$SiteDefs::ENSEMBL_SITETYPE = 'Sorghumbase'; #the species.html need division of Ensembl Plants, won't get right data for each genome in metadata database if not 
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
-  $SiteDefs::SITE_FTP             = 'https://ftp.sorghumbase.org';
+  $SiteDefs::SITE_FTP             = 'https://ftp.gramene.org/oryza';
   $SiteDefs::PE_URL             = 'https://'.$SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::ENSEMBL_PORT       = 88;
+  $SiteDefs::ENSEMBL_PORT       = 8889;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -37,26 +37,26 @@ sub update_conf {
 
   $SiteDefs::VCFTOOLS_PERL_LIB    = $SiteDefs::ENSEMBL_SERVERROOT . "/vcftools/src/perl/";
 
-  $SiteDefs::GRAPHIC_TTF_PATH = '/usr/share/fonts/msttcore/';
+  $SiteDefs::GRAPHIC_TTF_PATH = '/usr/share/fonts/msttcorefonts/';
 
-  $SiteDefs::SPECIES_IMAGE_DIR  = $SiteDefs::ENSEMBL_SERVERROOT . '/gramene-live/gramene/htdocs/i/species/48/';
+  $SiteDefs::SPECIES_IMAGE_DIR  = $SiteDefs::ENSEMBL_SERVERROOT . '/gramene-live/gramene/htdocs/i/species/';
 
 # start of copy of eg plants
 
-$SiteDefs::EG_DIVISION      = 'plants';
+  $SiteDefs::EG_DIVISION      = 'plants';
 
-    @SiteDefs::ENSEMBL_PERL_DIRS =
+  @SiteDefs::ENSEMBL_PERL_DIRS =
       ( $SiteDefs::ENSEMBL_WEBROOT.'/perl',
         $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-common/perl',
         $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/perl',
       );
 
 
-    $SiteDefs::DOCSEARCH_INDEX_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/data/docsearch';
+  $SiteDefs::DOCSEARCH_INDEX_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/eg-web-plants/data/docsearch';
 
-    $SiteDefs::ENA_COLLECTION_ID = 224;
+  $SiteDefs::ENA_COLLECTION_ID = 224;
 
-    $SiteDefs::ENA_SAMPLE_SEQ = "MDDCRFETSELQASVMISTPLFTDSWSSCNTANCNGSIKIHDIAGITYVAIPAVSMIQLGNLVGLPVTGDVLFPGLSSDEPLPMVDAAILKLFLQLKIKEGLELELLGKKLVVITGHSTGGALAAFTALWLLSQSSPPSFRVFCITFGSPLLGNQSLSTSISRSRLAHNFCHVVSIHDLVPRSSNEQFWPFGTYLFCSDKGGVCLDNAGSVRLMFNILNTTATQNTEEHQRYGHYVFTLSHMFLKSRSFLGGSIPDNSYQAGVALAVEALGFSNDDTSGVLVKECIETATRIVRAPILRSAELANELASVLPARLEIQWYKDRCDASEEQLGYYDFFKRYSLKRDFKVNMSRIRLAKFWDTVIKMVETNELPFDFHLGKKWIYASQFYQLLAEPLDIANFYKNRDIKTGGHYLEGNRPKRYEVIDKWQKGVKVPEECVRSRYASTTQDTCFWAKLEQAKEWLDEARKESSDPQRRSLLREKIVPFESYANTLVTKKEVSLDVKAKNSSYSVWEANLKEFKCKMGYENEIEMVVDESDAMET";
+  $SiteDefs::ENA_SAMPLE_SEQ = "MDDCRFETSELQASVMISTPLFTDSWSSCNTANCNGSIKIHDIAGITYVAIPAVSMIQLGNLVGLPVTGDVLFPGLSSDEPLPMVDAAILKLFLQLKIKEGLELELLGKKLVVITGHSTGGALAAFTALWLLSQSSPPSFRVFCITFGSPLLGNQSLSTSISRSRLAHNFCHVVSIHDLVPRSSNEQFWPFGTYLFCSDKGGVCLDNAGSVRLMFNILNTTATQNTEEHQRYGHYVFTLSHMFLKSRSFLGGSIPDNSYQAGVALAVEALGFSNDDTSGVLVKECIETATRIVRAPILRSAELANELASVLPARLEIQWYKDRCDASEEQLGYYDFFKRYSLKRDFKVNMSRIRLAKFWDTVIKMVETNELPFDFHLGKKWIYASQFYQLLAEPLDIANFYKNRDIKTGGHYLEGNRPKRYEVIDKWQKGVKVPEECVRSRYASTTQDTCFWAKLEQAKEWLDEARKESSDPQRRSLLREKIVPFESYANTLVTKKEVSLDVKAKNSSYSVWEANLKEFKCKMGYENEIEMVVDESDAMET";
 
     $SiteDefs::GXA = 1;
 
@@ -70,7 +70,6 @@ $SiteDefs::EG_DIVISION      = 'plants';
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
 
-  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables
@@ -140,11 +139,8 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_DS_ENABLED     = 0;
 
   $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; #brie:5202';
-#'http://brie:5202';
-#'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
-  $SiteDefs::EBEYE_REST_ENDPOINT     =  'http://localhost:9806'; #'http://brie8:9804';
-#'https://data.sorghumbase.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
-#'http://www.ebi.ac.uk/ebisearch/ws/rest';
+  $SiteDefs::EBEYE_REST_ENDPOINT     = 'https://data.gramene.org/oryza-ebeye8'; 
+ #'http://squam:21007'; 
 #$SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/sorghum-ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 
 
@@ -156,58 +152,51 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   #----------
   # Species stuff
 
-  $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'Oryza_sativa'; # Default
-  $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'Arabidopsis_thaliana';
+  $SiteDefs::ENSEMBL_PRIMARY_SPECIES    = 'oryza_sativa'; # Default
+  $SiteDefs::ENSEMBL_SECONDARY_SPECIES  = 'arabidopsis_thaliana';
 
 $SiteDefs::PRODUCTION_NAMES = [sort qw(
+     oryza_aus
+     oryza_barthii
+     oryza_brachyantha
+     oryza_carolina
+     oryza_glaberrima
+     oryza_glumaepatula
+     oryza_indica
+     oryza_indicair8
+     oryza_meridionalis
+     oryza_nivara
+     oryza_punctata
+     oryza_rufipogon
+     oryza_sativa
+     oryza_sativa117425
+     oryza_sativa125619
+     oryza_sativa125827
+     oryza_sativa127518
+     oryza_sativa127564
+     oryza_sativa127652
+     oryza_sativa127742
+     oryza_sativa128077
+     oryza_sativa132278
+     oryza_sativa132424
+     oryza_sativaazucena
+     oryza_sativair64
+     oryza_sativakitaake
+     oryza_sativamh63
+     oryza_sativazs97
+      leersia_perrieri
       arabidopsis_thaliana
       chlamydomonas_reinhardtii
-      oryza_sativa
+      drosophila_melanogaster
       selaginella_moellendorffii
       sorghum_bicolor
-      sorghum_rio
-      sorghum_tx2783pac
-      sorghum_tx430nano
-      sorghum_tx436pac
       vitis_vinifera
+      zea_maysb73
       zea_maysb73v4
-    ),
-        qw(
-        sorghum_austrcf317961
-        sorghum_is12661
-        sorghum_is19953
-        sorghum_is36143
-        sorghum_is8525
-        sorghum_is929
-        sorghum_pi525695
-        sorghum_pi532566
-        sorghum_pi536008
-        sorghum_r93194522
-        sorghum_s3691
-        zea_maysb73
-    ),
-        qw(
-        sorghum_ji2731
-        sorghum_353
-        populus_trichocarpa
-    ),
-        qw(
-        sorghum_chineseamber
-        sorghum_grassl
-        sorghum_leoti
-        sorghum_pi229841
-        sorghum_pi297155
-        sorghum_pi329311
-        sorghum_pi506069
-        sorghum_pi510757
-        sorghum_pi655972
-        sorghum_riouncc 
-    ),
-
-        qw(
-        sorghum_bicolorv5
+    ), qw(
     )
     ];
+
 
   $SiteDefs::ENSEMBL_TOOLS_LIST = [
     'Blast'             => 'BLAST/BLAT',
