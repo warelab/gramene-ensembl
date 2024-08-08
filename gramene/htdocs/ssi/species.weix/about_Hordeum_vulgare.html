@@ -1,0 +1,45 @@
+<!-- {about} --><a name="about"></a>
+<h2 id="about">About <em>Hordeum vulgare</em></h2>
+
+<p><em>Hordeum vulgare</em> (barley) is the world's fourth most important cereal crop and an important model for ecological adaptation, having been cultivated in all temperate regions from the Arctic Circle to the tropics. It was one of the first domesticated cereal grains originating in the Fertile Crescent over 10,000 years ago. About two-thirds of the global barley crop is used for animal feed, while the remaining third underpins the malting, brewing, and distilling industries. Although the human diet is not a primary use, barley offers potential health benefits, and is still the major calorie source in several parts of the world. Barley is a diploid member of the grass family, making it a natural model for the genetics and genomics of the Triticeae tribe, including polyploid <a href="http://plants.ensembl.org/Triticum_aestivum" title="Triticum aestivum in Ensembl Plants">wheat</a> and rye. With a haploid genome size of ~5.3 Gbp in 7 chromosomes, it is one of the largest diploid genomes sequenced to date.</p>
+
+<!-- {about} -->
+<!-- {assembly} --><a name="assembly"></a>
+<h3 id="assembly">Assembly</h3>
+
+<p>The barley genome assembly presented here was produced by the <a href="http://barleygenome.org/" title="IBSC homepage">International Barley Genome Sequencing Consortium</a> (IBSC) [1] using a hierarchical approach. Initially multiplexed short read BAC by BAC contig assemblies (N50: 79 kbp) were scaffolded using physical, genetic and optical maps (N50: 1.9 Mbp) and were assigned to chromosomes using a POPSEQ genetic map. Finally, the linear order and orientation of scaffold sequences was determined using <a href="http://wikipedia.org/wiki/Chromosome_conformation_capture" title="From Wikipedia">chromosome-conformation capture sequencing</a> (Hi-C) [2].</p>
+
+<p>The final chromosome-scale assembly consisted of 6,347 ordered super-scaffolds composed of merged assemblies of individual BACs, representing 4.79 Gbp (~95%) of the genomic sequence content, of which 4.54 Gbp have been assigned to precise chromosomal locations in the Hi-C map.</p>
+
+<p>The chloroplast genome component and its gene annotation are also present (<a href="http://www.ebi.ac.uk/ena/data/view/JQ754651" title="Aegilops tauschii chloroplast, complete genome in the European Nucleotide Archive">KC912687</a>).</p>
+
+<!-- {assembly} -->
+<!-- {annotation} --><a name="annotation"></a>
+<h3 id="genebuild">Annotation</h3>
+
+<p>Mapping of transcriptome data and reference protein sequences from other plant species identified 83,105 putative gene loci including protein coding genes, non-coding RNAs, pseudogenes and transcribed transposons. These loci were filtered and divided into 39,734 high-confidence and 41,949 low-confidence genes based on sequence homology. Additionally 19,908 long non-coding RNAs and 792 microRNA precursor loci were predicted. Using a set of conserved eukaryotic core genes (<a href="http://busco.ezlab.org/" title="Benchmarking Universal Single-Copy Orthologs">BUSCO</a>), it was estimated that the predicted gene models represent 98% of the cv. Morex barley gene complement.</p>
+
+<!-- {annotation} -->
+<!-- {regulation} --><a name="regulation"></a>
+<h3 id="regulation">Regulation</h3>
+
+<p>Mappings for probes from the <a href="http://www.ebi.ac.uk/arrayexpress/experiments/E-GEOD-33391/?array=A-AFFY-31">Barley1 GeneChip array</a>, the <a href="http://www.ebi.ac.uk/arrayexpress/arrays/A-GEOD-16130/">Agilent barley full-length cDNA array</a>, and the barley PGRC1 10k <a href="http://www.ebi.ac.uk/arrayexpress/arrays/A-IPKG-2/">A</a> and <a href="http://www.ebi.ac.uk/arrayexpress/arrays/A-IPKG-3/">B</a> array set can be viewed in the browser. For example, see the results for <a href="http://plants.ensembl.org/Hordeum_vulgare/Location/Genome?db=core;fdb=funcgen;ftype=ProbeFeature;g=MLOC_66074;id=Contig2083_s_at;ptype=pset;r=5:507102502-507103895">Contig2083_s_at</a>.</p>
+
+<!-- {regulation} -->
+<!-- {variation} --><a name="variation"></a>
+<h3 id="variation">Variation</h3>
+
+<p>Five sources of barley variation data are shown:</p>
+
+<ol><li>Variation data from WGS survey sequencing of four cultivars, Barke, Bowman, Igri, Haruna Nijo and a wild barley (H. spontaneum). The data was collected as described in [3].</li>
+	<li>SNPs discovered from RNA-Seq performed on the embryo tissues of 9 spring barley varieties (Barke, Betzes, Bowman, Derkado, Intro, Optic, Quench, Sergeant and Tocada) and Morex using Illumina HiSeq 2000 [3].</li>
+	<li>Approximately five million variations from population sequencing of 90 Morex x Barke individuals [4].</li>
+	<li>Approximately six million variations from population sequencing of 84 Oregon Wolfe barley individuals [4].</li>
+	<li>SNPs from the <a href="http://bioinf.hutton.ac.uk/iselect/app/index.pl">Illumina iSelect 9k barley SNP chip</a>[6]. ~2,600 mapped genetic markers associated with these SNPs [5] are also displayed.</li>
+</ol>
+<!-- {variation} -->
+<h3>References</h3><ol><li><a id="ref-01"></a><a href="http://europepmc.org/abstract/MED/28447635">A chromosome conformation capture ordered sequence of the barley genome</a>.<br>Mascher M, Gundlach H, Himmelbach A, Beier S, Twardziok SO, Wicker T, Radchuk  V, Dockter C, Hedley PE, Russell J et al. 2017. Nature. 544:427-433.</li>
+<li><a id="ref-02"></a><a href="http://europepmc.org/abstract/MED/19815776">Comprehensive mapping of long-range interactions reveals folding principles of the human genome</a>.<br>Lieberman-Aiden E, van Berkum NL, Williams L, Imakaev M, Ragoczy T, Telling A, Amit I, Lajoie BR, Sabo PJ, Dorschner MO et al. 2009. Science. 326:289-93.</li>
+<li><a id="ref-03"></a><a href="http://europepmc.org/abstract/MED/23075845">A physical, genetic and functional sequence assembly of the barley genome</a>.<br>International Barley Genome Sequencing Consortium, Mayer KF, Waugh R, Brown JW, Schulman A, Langridge P, Platzer M, Fincher GB, Muehlbauer GJ, Sato K et al. 2012. Nature. 491:711-716.</li>
+<li><a id="ref-04"></a><a href="http://europepmc.org/abstract/MED/24243933">A sequence-ready physical map of barley anchored genetically by two million single-nucleotide polymorphisms</a>.<br>Ariyadasa R, Mascher M, Nussbaumer T, Schulte D, Frenkel Z, Poursarebani N, Zhou R, Steuernagel B, Gundlach H, Taudien S et al. 2014. Plant Physiol.. 164</li>
+<li><a id="ref-05"></a><a href="http://europepmc.org/abstract/MED/23998490">Anchoring and ordering NGS contig assemblies by population sequencing (POPSEQ)</a>.<br>Mascher M, Muehlbauer GJ, Rokhsar DS, Chapman J, Schmutz J, Barry K, Muoz-Amatrian M, Close TJ, Wise RP, Schulman AH et al. 2013. Plant J.. 76:718-727.</li></ol><p>Picture credit: Lucash (Own work) [CC-BY-SA-3.0 (<a href="http://creativecommons.org/licenses/by-sa/3.0">http://creativecommons.org/licenses/by-sa/3.0</a>) or GFDL (<a href="http://www.gnu.org/copyleft/fdl.html">http://www.gnu.org/copyleft/fdl.html</a>)], via Wikimedia Commons</p>

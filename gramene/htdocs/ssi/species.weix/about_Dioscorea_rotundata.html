@@ -1,0 +1,23 @@
+<!-- {about} --><a name="about"></a>
+<h2 id="about">About <em>Dioscorea rotundata</em></h2>
+
+<p>White Guinea yam (<em>Dioscorea rotundata</em> Poir.) is a common staple food that has contributed enormously to the subsistence and socio-cultural life of millions of people principally in West and Central Africa. Belonging to the monocotyledon the Dioscorea genus, under the family Dioscoreaceae, there are about 450 known species mainly distributed in tropical and subtropical regions of the world. The entire genus is characterised by the occurrence of separate male and female plants (dioecy), a rare trait in angiosperms that has limited efficient breeding. The reference for D. rotundata comes from a diploid individual with an assembled genome size of 594 Mb.</p>
+
+<!-- {about} -->
+<!-- {assembly} --><a name="assembly"></a>
+<h3 id="assembly">Assembly</h3>
+
+<p>The TDr96_F1 line used for whole genome sequencing was selected from F1 progeny obtained from an open-pollinated D. rotundata breeding line (TDr96/00629) grown under field conditions on the experimental fields of the International Institute of Tropical Agriculture (IITA) in Nigeria. Total DNA from leaf tissue was used for construction of paired-end and mate-pair libraries (2, 3, 4, 5, 6, 8, 20, and 40 Kb insert). These were sequenced using the Illumina MiSeq and HiSeq2500 platforms. In addition, 30,750 BAC clones corresponding to 3,072 Mb of sequence and 5.4× genome coverage were constructed. Of these, 9984 clones were used for BAC-end sequencing, with paired-end reads. A total of 85.14 Gb of sequence data was generated, representing ~149.4x coverage of the 570 Mb genome size estimated by flow cytometry [1].</p>
+
+<p>Reads were assembled following the ALLPATHS-LG pipeline, using paired-end and mate-pair data, with additional scaffolding carried out using SSPACE and the BAC-end reads. Scaffolds were anchored and ordered into 21 pseudo-chromosomes using a genetic map generated from 150 F1 individuals, obtained from a cross between TDr97/02627 (P1:Female) and TDr99/02627 (P2:Male) breeding lines using RAD-tags as linkage markers. The 21 pseudo-chromosomes represent 76.5 % of the total scaffolds, with a size of ~454 Mb [1].</p>
+
+<!-- {assembly} -->
+<!-- {annotation} --><a name="annotation"></a>
+<h3 id="genebuild">Annotation</h3>
+
+<p>Gene models were generated using MAKER, with publicly available homologous EST and protein sequences from related species, and assembled transcripts generated using RNA-seq from 18 different D. rotundata tissues. An initial MAKER set of gene models was combined with a legacy AUGUSTUS annotation using JIGSAW to produce 26,198 gene models. These were functionally annotated using BLAST2GO and InterProSCAN [1].</p>
+
+<p>Repeats were annotated with the <a href="http://ensemblgenomes.org/info/data/repeat_features">Ensembl Genomes repeat feature pipeline</a>. There are: 8,371 RepeatMasker features (with the RepBase library), covering 1 Mb (0.2% of the genome); 918,128 Low complexity (Dust) features, covering 83 Mb (18.2% of the genome); 193,894 RepeatMasker features (with the <a href="http://pgsb.helmholtz-muenchen.de/plant/recat/">reDAT library</a>), covering 58 Mb (12.8% of the genome);  281,939 Tandem repeats (TRF) features, covering 22 Mb (4.9% of the genome).</p>
+
+<!-- {annotation} -->
+<h3>References</h3><ol><li><a id="ref-01"></a><a href="http://europepmc.org/abstract/MED/28927400">Genome sequencing of the staple food crop white Guinea yam enables the development of a molecular marker for sex determination</a>.<br>Tamiru M, Natsume S, Takagi H, White B, Yaegashi H, Shimizu M, Yoshida K, Uemura A, Oikawa K, Abe A et al. 2017. BMC Biol.. 15:86.</li></ol>

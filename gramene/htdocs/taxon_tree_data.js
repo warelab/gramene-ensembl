@@ -3,201 +3,199 @@ taxonTreeData = [
       "key" : "Viridiplantae",
       "children" : [
          {
-            "title" : "Chlamydomonas reinhardtii",
-            "key" : "Chlamydomonas_reinhardtii"
+            "isFolder" : true,
+            "children" : [
+               {
+                  "title" : "Arabidopsis thaliana",
+                  "key" : "Arabidopsis_thaliana"
+               }
+            ],
+            "title" : "Brassicaceae (1)",
+            "key" : "Brassicaceae"
          },
          {
+            "title" : "Vitis vinifera",
+            "key" : "Vitis_vinifera"
+         }
+      ],
+      "title" : "Dicots (2)",
+      "key" : "Dicots"
+   },
+   {
+      "isFolder" : true,
+      "children" : [
+         {
+            "isFolder" : true,
             "children" : [
+               {
+                  "title" : "Leersia perrieri",
+                  "key" : "Leersia_perrieri"
+               },
                {
                   "isFolder" : true,
                   "title" : "Magnoliophyta (34)",
                   "children" : [
                      {
-                        "title" : "Poaceae (31)",
-                        "isFolder" : true,
-                        "children" : [
-                           {
-                              "isFolder" : true,
-                              "title" : "Andropogoneae (30)",
-                              "children" : [
-                                 {
-                                    "title" : "Sorghum (29)",
-                                    "isFolder" : true,
-                                    "children" : [
-                                       {
-                                          "title" : "Sorghum BTx623 v5",
-                                          "key" : "Sorghum_bicolorv5"
-                                       },
-                                       {
-                                          "key" : "Sorghum_is19953",
-                                          "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) IS19953"
-                                       },
-                                       {
-                                          "key" : "Sorghum_pi525695",
-                                          "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) PI525695"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. bicolor BTx623",
-                                          "key" : "Sorghum_bicolor"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. bicolor IS12661",
-                                          "key" : "Sorghum_is12661"
-                                       },
-                                       {
-                                          "key" : "Sorghum_is36143",
-                                          "title" : "Sorghum bicolor ssp. bicolor IS3614-3"
-                                       },
-                                       {
-                                          "key" : "Sorghum_is8525",
-                                          "title" : "Sorghum bicolor ssp. bicolor IS8525"
-                                       },
-                                       {
-                                          "key" : "Sorghum_is929",
-                                          "title" : "Sorghum bicolor ssp. bicolor IS929"
-                                       },
-                                       {
-                                          "key" : "Sorghum_ji2731",
-                                          "title" : "Sorghum bicolor ssp. bicolor Ji2731"
-                                       },
-                                       {
-                                          "key" : "Sorghum_r93194522",
-                                          "title" : "Sorghum bicolor ssp. bicolor R931945-2-2"
-                                       },
-                                       {
-                                          "key" : "Sorghum_rio",
-                                          "title" : "Sorghum bicolor ssp. bicolor Rio"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. bicolor Tx2783",
-                                          "key" : "Sorghum_tx2783pac"
-                                       },
-                                       {
-                                          "key" : "Sorghum_tx430nano",
-                                          "title" : "Sorghum bicolor ssp. bicolor Tx430"
-                                       },
-                                       {
-                                          "key" : "Sorghum_tx436pac",
-                                          "title" : "Sorghum bicolor ssp. bicolor Tx436"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. drummondii PI532566",
-                                          "key" : "Sorghum_pi532566"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. verticilliflorum 353",
-                                          "key" : "Sorghum_353"
-                                       },
-                                       {
-                                          "title" : "Sorghum bicolor ssp. verticilliflorum AusTRCF317961",
-                                          "key" : "Sorghum_austrcf317961"
-                                       },
-                                       {
-                                          "key" : "Sorghum_pi536008",
-                                          "title" : "Sorghum bicolor ssp. verticilliflorum PI536008"
-                                       },
-                                       {
-                                          "key" : "Sorghum_chineseamber",
-                                          "title" : "Sorghum chineseamber"
-                                       },
-                                       {
-                                          "key" : "Sorghum_grassl",
-                                          "title" : "Sorghum grassl"
-                                       },
-                                       {
-                                          "title" : "Sorghum leoti",
-                                          "key" : "Sorghum_leoti"
-                                       },
-                                       {
-                                          "key" : "Sorghum_pi229841",
-                                          "title" : "Sorghum pi229841"
-                                       },
-                                       {
-                                          "title" : "Sorghum pi297155",
-                                          "key" : "Sorghum_pi297155"
-                                       },
-                                       {
-                                          "title" : "Sorghum pi329311",
-                                          "key" : "Sorghum_pi329311"
-                                       },
-                                       {
-                                          "key" : "Sorghum_pi506069",
-                                          "title" : "Sorghum pi506069"
-                                       },
-                                       {
-                                          "title" : "Sorghum pi510757",
-                                          "key" : "Sorghum_pi510757"
-                                       },
-                                       {
-                                          "key" : "Sorghum_pi655972",
-                                          "title" : "Sorghum pi655972"
-                                       },
-                                       {
-                                          "title" : "Sorghum propinquum ssp. S369-1",
-                                          "key" : "Sorghum_s3691"
-                                       },
-                                       {
-                                          "title" : "Sorghum riouncc",
-                                          "key" : "Sorghum_riouncc"
-                                       }
-                                    ],
-                                    "key" : "Sorghum"
-                                 },
-                                 {
-                                    "children" : [
-                                       {
-                                          "key" : "Zea_maysb73v4",
-                                          "title" : "Zea mays B73 v4"
-                                       }
-                                    ],
-                                    "key" : "Zea",
-                                    "isFolder" : true,
-                                    "title" : "Zea (1)"
-                                 }
-                              ],
-                              "key" : "Andropogoneae"
-                           },
-                           {
-                              "key" : "Oryza_sativa",
-                              "title" : "Oryza sativa Japonica Nipponbare"
-                           }
-                        ],
-                        "key" : "Poaceae"
+                        "title" : "Oryza barthii",
+                        "key" : "Oryza_barthii"
                      },
                      {
-                        "title" : "rosids (3)",
-                        "isFolder" : true,
-                        "children" : [
-                           {
-                              "title" : "Arabidopsis thaliana",
-                              "key" : "Arabidopsis_thaliana"
-                           },
-                           {
-                              "title" : "Populus trichocarpa",
-                              "key" : "Populus trichocarpa"
-                           },
-                           {
-                              "title" : "Vitis vinifera",
-                              "key" : "Vitis_vinifera"
-                           }
-                        ],
-                        "key" : "rosids"
+                        "title" : "Oryza brachyantha",
+                        "key" : "Oryza_brachyantha"
+                     },
+                     {
+                        "title" : "Oryza glaberrima",
+                        "key" : "Oryza_glaberrima"
+                     },
+                     {
+                        "title" : "Oryza glumipatula",
+                        "key" : "Oryza_glumaepatula"
+                     },
+                     {
+                        "title" : "Oryza meridionalis",
+                        "key" : "Oryza_meridionalis"
+                     },
+                     {
+                        "title" : "Oryza nivara",
+                        "key" : "Oryza_nivara"
+                     },
+                     {
+                        "title" : "Oryza punctata",
+                        "key" : "Oryza_punctata"
+                     },
+                     {
+                        "title" : "Oryza rufipogon",
+                        "key" : "Oryza_rufipogon"
+                     },
+                     {
+                        "title" : "Oryza sativa Indica Group 93-11",
+                        "key" : "Oryza_indica"
+                     },
+                     {
+                        "title" : "Oryza sativa Indica Group IR8",
+                        "key" : "Oryza_indicair8"
+                     },
+                     {
+                        "title" : "Oryza sativa Japonica Group",
+                        "key" : "Oryza_sativa"
+                     },
+                     {
+                        "title" : "oryza carolina",
+                        "key" : "Oryza_carolina"
+                     },
+                     {
+                        "title" : "oryza sativa117425",
+                        "key" : "Oryza_sativa117425"
+                     },
+                     {
+                        "title" : "oryza sativa125619",
+                        "key" : "Oryza_sativa125619"
+                     },
+                     {
+                        "title" : "oryza sativa125827",
+                        "key" : "Oryza_sativa125827"
+                     },
+                     {
+                        "title" : "oryza sativa127518",
+                        "key" : "Oryza_sativa127518"
+                     },
+                     {
+                        "title" : "oryza sativa127564",
+                        "key" : "Oryza_sativa127564"
+                     },
+                     {
+                        "title" : "oryza sativa127652",
+                        "key" : "Oryza_sativa127652"
+                     },
+                     {
+                        "title" : "oryza sativa127742",
+                        "key" : "Oryza_sativa127742"
+                     },
+                     {
+                        "title" : "oryza sativa128077",
+                        "key" : "Oryza_sativa128077"
+                     },
+                     {
+                        "title" : "oryza sativa132278",
+                        "key" : "Oryza_sativa132278"
+                     },
+                     {
+                        "title" : "oryza sativa132424",
+                        "key" : "Oryza_sativa132424"
+                     },
+                     {
+                        "title" : "oryza sativaazucena",
+                        "key" : "Oryza_sativaazucena"
+                     },
+                     {
+                        "title" : "oryza sativair64",
+                        "key" : "Oryza_sativair64"
+                     },
+		     {
+                        "title" : "oryza sativamh63",
+                        "key" : "Oryza_sativamh63"
+                     },
+		     {
+                        "title" : "oryza sativazs97",
+                        "key" : "Oryza_sativazs97"
+                     },
+		     {
+                        "title" : "oryza sativakitaake",
+                        "key" : "Oryza_sativakitaake"
                      }
                   ],
-                  "key" : "Magnoliophyta"
+                  "title" : "Rices (27)",
+                  "key" : "Rices"
                },
                {
-                  "title" : "Selaginella moellendorffii",
-                  "key" : "Selaginella_moellendorffii"
+                  "isFolder" : true,
+                  "children" : [
+                     {
+                        "title" : "Sorghum bicolor",
+                        "key" : "Sorghum_bicolor"
+                     },
+                     {
+                        "title" : "Zea maysB73",
+                        "key" : "Zea_maysb73"
+                     },
+                     {
+                        "title" : "Zea maysB73v4",
+                        "key" : "Zea_maysb73v4"
+                     }
+                  ],
+                  "title" : "Warm season grasses (C4) (3)",
+                  "key" : "Warm season grasses (C4)"
                }
             ],
-            "key" : "Tracheophyta",
-            "isFolder" : true,
-            "title" : "Tracheophyta (35)"
+            "title" : "Grasses (31)",
+            "key" : "Grasses"
          }
       ],
+      "title" : "Monocots (31)",
+      "key" : "Monocots"
+   },
+   {
       "isFolder" : true,
-      "title" : "Viridiplantae (36)"
+      "children" : [
+         {
+            "title" : "Selaginella moellendorffii",
+            "key" : "Selaginella_moellendorffii"
+         },
+         {
+            "title" : "Chlamydomonas reinhardtii",
+            "key" : "Chlamydomonas_reinhardtii"
+         },
+         {
+            "title" : "Drosophila melanogaster",
+            "key" : "Drosophila_melanogaster"
+         },
+         {
+            "title" : "Oryza sativa aus subgroup",
+            "key" : "Oryza_aus"
+         }
+      ],
+      "title" : "Other (4)",
+      "key" : "Other"
    }
 ]
 ;

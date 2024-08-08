@@ -1,0 +1,3 @@
+<div class="plain-box"><p><a href="http://ensemblgenomes.org/">Ensembl Genomes</a> is developed by <a href="http://www.ebi.ac.uk">EMBL-EBI</a> and is powered by the <a href="http://www.ensembl.org">Ensembl</a> software system for the analysis and visualisation of genomic data. Click to see <a href="http://www.ensemblgenomes.org/info/about/collaborations">details of our funding</a>.</p>
+
+<p class="rtecenter"><a href="http://www.ebi.ac.uk/"><img alt="EMBL-EBI logo" src="/img/ebi_logo.png" style="height:30px; vertical-align:middle" /></a><a href="http://www.ensembl.org" style="padding-left: 20px;"><img alt="Ensembl logo" src="/img/empowered.png" style="height:20px; vertical-align:middle" /></a></p></div>

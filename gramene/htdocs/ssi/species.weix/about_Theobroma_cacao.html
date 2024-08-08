@@ -1,0 +1,67 @@
+<!-- {acknowledgement} --><a name="acknowledgement"></a>
+<div class="info-box embedded-box"><p>This Cacao Genome Project is a collaboration among MARS, USDA-ARS, IBM, NCGR, Clemson University, HudsonAlpha Institute for Biotechnology, Indiana University and Washington State University with funding from MARS, USDA-ARS, and NSF, and contributions in effort from cacao breeders around the world.</p>
+</div>
+<!-- {acknowledgement} -->
+<!-- {about} --><a name="about"></a>
+<h2 id="about">About <em>Theobroma cacao</em></h2>
+
+<p><em>Theobroma cacao</em> (cacao or chocolate tree) is a neotropical plant native to Amazonian rainforests. It is now cultivated in over 50 countries. A member of Malvaceae family, its beans are harvested from pods for use as the food chocolate, in confections and cosmetics. This is the genome assembly and annotation of the Matina 1-6 cultivar, which belongs to the most cultivated cacao type worldwide.</p>
+
+<!-- {about} -->
+<!-- {assembly} --><a name="assembly"></a>
+<h3 id="assembly">Assembly</h3>
+
+<p>The 445 Mbp chromosome-level assembly of this cacao genome has scaffolds anchored and oriented to 10 chromosomes with BAC end sequencing and FISH karyotyping-based chromosome assignment, for 94.6% of total assembly, with 4.4% gap sequence, and the remainder in unlinked scaffolds. This assembly is primarily composed of Roche 454 Titanium STD reads, augmented by 6 recombination paired Titanium libraries, 3 fosmid packaged Sanger sequenced libraries, and 3 Sanger sequenced BAC Ends libraries. This genome assembly is produced by Jeremy Schmutz (Hudson Alpha, 2011-08-01).</p>
+
+<p>The genome sequence of the most widely cultivated cacao type and</p>
+
+<p>its use to identify candidate genes regulating pod color.</p>
+
+<p><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4053823/">http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4053823/</a></p>
+
+<p><a href="http://www.ncbi.nlm.nih.gov/nuccore/CM001879.1">http://www.ncbi.nlm.nih.gov/nuccore/CM001879.1</a></p>
+
+<!-- {assembly} -->
+<!-- {annotation} --><a name="annotation"></a>
+<h3 id="genebuild">Annotation</h3>
+
+<p>Illumina and 454 RNA-Seq reads totaling 62 Gigabases were collected from leaf, pistil and bean tissues, assembled with de-novo RNA assemblers Velvet/Oases [VELO], SOAPdenovo-Trans [SOAP], Roche Newbler, and genome-guided assembler Cufflinks [CUFF]. From this over-assembly of 1.2 million transcripts, the 48,404 most accurate cacao gene assemblies are selected with homology and genome map evidence scoring.</p>
+
+<p>Proteins from 297,061 genes of 8 plants, arabidopsis, poplar, castorbean, grape, strawberry, potato, soybean, and sorhgum are used for homology evidence. Transposons are annotated as class I retrotransposon and II DNA transposon with subcategories, totaling 8,542 intact transposons with 122,552 copies, covering 137 Mbases or 42% of genome assembly.</p>
+
+<p>Gene evidence from RNA mapped introns, plant species protein homology, expressed RNA alignments, transposons, is mapped to genome with GMAP/GSNAP [GMAP], tBLASTn, and exonerate [EXNR]. Several genome gene prediction sets were produced with AUGUSTUS [AUG], following HMM training of this predictor on cacao transcripts, by varying proportions of this gene evidence and parameters.</p>
+
+<p>EvidentialGene software [EVG] is used to annotate, score and classify gene assemblies and models with weighted evidence scores. This includes hueristics to identify and reduce gene-joins and fragment models.</p>
+
+<p>Highest evidence-scored models or assemblies are selected per locus for a primary transcript. Alternate transcripts are selected from remaining transcript assemblies (but not predictions) that vary from primary transcript in exon-intron structure. The resulting gene set is annotated with recripocal best blastp to several plant gene sets, clustered to gene families with OrthoMCL [OMCL], and annotated with family consensus function names, homology scores and references, and other gene quality scores.</p>
+
+<p>This gene annotation includes 29,408 protein coding loci, with 14,806 alternate transcripts. Gene evidence recovered in this cacao gene set includes 91% of 161333 RNA-introns, 67% of 48404 RNA assemblies, and 76% of 36Mb of plant protein alignments. This gene set construction and annotation is produced by Don Gilbert (Indiana Univ., 2012-03-08) [EVG]</p>
+
+<p>Annotation refs</p>
+
+<p>[EVG] EvidentialGene: Perfect Genes Constructed from Gigabases of RNA <a href="http://arthropods.eugenes.org/EvidentialGene/">http://arthropods.eugenes.org/EvidentialGene/</a></p>
+
+<p>[AUG] Stanke M, Schoffmann O, Morgenstern B, Waack S: Gene prediction in eukaryotes with a generalized hidden Markov model that uses hints from external sources. BMC Bioinformatics 2006, 7:62.</p>
+
+<p>[OMCL] Li L, Stoeckert CJ, Jr., Roos DS: OrthoMCL: identification of ortholog groups for eukaryotic genomes. Genome Res 2003, 13:2178-2189.</p>
+
+<p>[GMAP] Wu TD, Watanabe CK: GMAP: a genomic mapping and alignment program for mRNA and EST sequences. Bioinformatics 2005, 21:1859-1875.</p>
+
+<p>[EXNR] Slater GSC, Birney E: Automated generation of heuristics for biological sequence comparison. Bmc Bioinformatics 2005, 6:31.</p>
+
+<p>[VELO] Schulz, M.H., et al. (2012) Oases: robust de novo RNA-seq assembly across the dynamic range of expression levels, Bioinformatics, 28, 1086-1092.</p>
+
+<p>[SOAP] Y. Xie, et al. (2014) SOAPdenovo-Trans: De novo transcriptome assembly with short RNA-Seq reads. Bioinformatics, Epub ahead of print.</p>
+
+<p>[CUFF] Trapnell, C., et al. (2010) Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation, Nature Biotechnology, 28, 511-515.</p>
+
+<!-- {annotation} -->
+<!-- {other} --><a name="other"></a>
+<h3 id="other">Links</h3>
+
+<ul><li><a href="http://www.cacaogenomedb.org/">http://www.cacaogenomedb.org/</a></li>
+	<li><a href="http://www.phytozome.net/cacao.php">http://www.phytozome.net/cacao.php</a></li>
+	<li><a href="http://www.ars.usda.gov/is/pr/2010/100915.htm">http://www.ars.usda.gov/is/pr/2010/100915.htm</a></li>
+	<li><a href="http://cocoagendb.cirad.fr/">http://cocoagendb.cirad.fr/</a> : Another cacao genome project, Criollo cultivar</li>
+</ul>
+<!-- {other} -->

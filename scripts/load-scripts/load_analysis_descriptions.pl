@@ -209,7 +209,7 @@ while (my ($dbname) = $sth->fetchrow_array){
 	
 	print "web_data=$web_data\n";
 	
-	warn("Error: web_data format wrong, need to look like {'type' => 'domain', 'default' => { }}") unless $web_data =~ /'\w+'\s*=>\s*['{]/; 
+	#warn("Error: web_data format wrong, need to look like {'type' => 'domain', 'default' => { }}") unless $web_data =~ /'\w+'\s*=>\s*['{]/; 
 	$analysis->web_data($web_data) if $web_data;
 
 	print  $analysis->web_data();
