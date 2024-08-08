@@ -54,7 +54,7 @@ sub content {
 
   $html .= sprintf '<span class="mobile-only species-header">%s</span>',
               $species ? $self->species_defs->SPECIES_COMMON_NAME 
-                       : $self->species_defs->ENSEMBL_SITETYPE; 
+                       : ''; #$self->species_defs->ENSEMBL_SITETYPE; 
 
   $html .= $self->logo_print;
 

@@ -64,9 +64,9 @@ sub links {
 #  push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
 #  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
-  push @links, 'feedback',      '<a class="constant" href="http://www.sorghumbase.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
+  push @links, 'feedback',      '<a class="constant" href="https://oryza.gramene.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback
   push @links, 'genomes',         '<a class="constant" href="/">Genome Browser</a>'; 
-  push @links, 'relnotes',         '<a class="constant" href="https://www.sorghumbase.org/relnotes">Release Notes</a>';  
+  push @links, 'relnotes',         '<a class="constant" href="https://oryza.gramene.org/News">Release Notes</a>';  
 # test upload link
 # UserData/SelectFile?db=core
 	

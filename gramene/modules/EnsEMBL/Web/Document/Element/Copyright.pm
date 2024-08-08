@@ -31,8 +31,8 @@ sub content {
   <div class="column-two left">
 		  <p>
       %s release %d - %s
-		  &copy; <span class="print_hide"><a href="%s" style="white-space:nowrap">SORGHUMBASE</a></span>
-      <span class="screen_hide_inline">SORGHUMBASE</span>
+		  &copy; <span class="print_hide"><a href="%s" style="white-space:nowrap">GRAMENE</a></span>
+      <span class="screen_hide_inline">GRAMENE</span>
       </p>
   </div>),     $sd->SITE_NAME, $sd->SITE_RELEASE_VERSION, $sd->SITE_RELEASE_DATE, $sd->SITE_LOGO_HREF
 	       );

@@ -50,17 +50,16 @@ sub content {
   my $gene_stable_id = $gene->stable_id;
   #my $sbase_link = '<a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '"><strong>OryzaGramene Genes search</strong></a>';
 
-#  $table->add_row('Gramene Search', $sbase_link);
+  #$table->add_row('Gramene Search', $sbase_link);
 
   #my $html = '<a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '"><img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150"></a>'; 
 
   my $grm_server = $species_defs->GRM_SERVERNAME;
-  #my $html = '<img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150">';
-  my $html .= '<br><p><a href="https://'.$grm_server. '/genes?idList=' . $gene_stable_id . '">' . $gene_stable_id . '</a></p>';
+  my $html = '<img alt="GrameneSearchExample" src="/i/96/grmsearch.png" width="100" hight="100">';
+  $html .= '<br><p><a href="https://'.$grm_server. '/?idList=' . $gene_stable_id . '">' . $gene_stable_id . '</a></p>';
 
 
   return $html;
-
 }
 
 

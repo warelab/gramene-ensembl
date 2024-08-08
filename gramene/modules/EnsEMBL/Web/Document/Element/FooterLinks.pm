@@ -18,8 +18,8 @@ sub content {
 
     </script>
     <div class="twocol-right right unpadded">
-      <a href="https://www.sorghumbase.org/">About&nbsp;Sorghumbase</a> | 
-      <a href="https://www.sorghumbase.org/contact">Contact&nbsp;Us</a> | 
+      <a href="https://oryza.gramene.org/guides">About&nbsp;GrameneOryza</a> | 
+      <a href="https://oryza.gramene.org/feedback">Contact&nbsp;Us</a> | 
       <a href="/info/website/index.html">Help</a>
     </div>) 
   ;
