@@ -62,5 +62,35 @@ sub content {
   return $html;
 }
 
+## hacked to avoid using the v.slow $gene->get_all_DBLinks()
+sub get_gene_display_link {
+  ## @param Gene object
+  ## @param Gene xref object or description string
+  my ($self, $gene, $xref) = @_;
+
+  my $hub = $self->hub;
+  my $dbname;
+  my $primary_id;
+
+  if ($xref && !ref $xref) {
+    # description string
+    my $details = { map { split ':', $_, 2 } split ';', $xref =~ s/^.+\[|\]$//gr }; #/
+    if ($details->{'Source'} and $details->{'Acc'}) {
+      my $dbh     = $hub->database($self->object->get_db)->dbc->db_handle;
+      $dbname     = $dbh->selectrow_array('SELECT db_name FROM external_db WHERE db_display_name = ?', undef, $details->{'Source'});
+      $primary_id = $details->{'Acc'};
+    }
+  } else {
+    # xref object
+    if ($xref->info_type ne 'PROJECTION') {;
+      $dbname     = $xref->dbname;
+      $primary_id = $xref->primary_id;
+    }
+  }
+
+  my $url = $hub->get_ExtURL($dbname, $primary_id) if $dbname and $primary_id;
+
+  return $url ? ($url, $primary_id) : ()
+}
 
 1;
