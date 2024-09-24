@@ -276,6 +276,10 @@ sub _ensure_blast {
 			$self->v("fasta file for blast db missing $fa_file");
 			return
 		}
+        if (-z $fa_file) {
+            $self->v("skipping BLAST : empty fasta file $fa_file");
+            return
+        }
 		my $dbtype = $type eq 'pep' ? 'prot' : 'nucl';
 		my $title = "$dbName $type";
 		my $cmd = -e $fa_file
