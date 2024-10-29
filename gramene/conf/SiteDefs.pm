@@ -4,10 +4,10 @@ use strict;
 
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 
-sub update_conf {
+	sub update_conf {
 
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
+  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
   
   $SiteDefs::GRM_SERVERNAME = 'sorghumbase.org';
 
@@ -15,9 +15,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 7;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 8;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2023';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2024';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
@@ -25,7 +25,7 @@ sub update_conf {
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.sorghumbase.org';
   $SiteDefs::PE_URL             = 'https://'.$SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::ENSEMBL_PORT       = 88;
+  $SiteDefs::ENSEMBL_PORT       = 89;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -36,6 +36,8 @@ sub update_conf {
   $SiteDefs::MAX_PROCESS_SIZE = 2000000;
 
   $SiteDefs::VCFTOOLS_PERL_LIB    = $SiteDefs::ENSEMBL_SERVERROOT . "/vcftools/src/perl/";
+  #$SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
+  # use the default path defined in ensembl-web/conf/SiteDefs.pm $SERVER_ROOT/data_files/
 
   $SiteDefs::GRAPHIC_TTF_PATH = '/usr/share/fonts/msttcore/';
 
@@ -206,6 +208,58 @@ $SiteDefs::PRODUCTION_NAMES = [sort qw(
 
         qw(
         sorghum_bicolorv5
+    ),
+
+	qw(
+	sorghum_pi543243ph256
+    ),
+	qw(
+	sorghum_pi543243ph256
+	sorghum_pi543246phb279
+	sorghum_pi543247phb349
+	sorghum_pi544069ph352
+	sorghum_pi554646ph288
+	sorghum_pi554647ph355
+	sorghum_pi554648ph356
+	sorghum_pi554649ph410
+	sorghum_pi554650ph449
+	sorghum_pi554652phb429
+	sorghum_pi554654phb432
+	sorghum_pi555457phb331
+	sorghum_pi561926r160
+	sorghum_pi562621ph538
+	sorghum_pi562622phb122
+	sorghum_pi562623phb118
+	sorghum_pi562624pha118
+	sorghum_pi562625pha122
+	sorghum_pi564085wkmiii
+	sorghum_pi574398pha651
+	sorghum_pi574406pha151
+	sorghum_pi574407phb151
+	sorghum_pi594354phwiabqe
+	sorghum_pi594355phb1cgqf
+	sorghum_pi595221excels235
+	sorghum_pi596332ph387lm
+	sorghum_pi596567ph4knye
+	sorghum_pi601264ph227
+	sorghum_pi601415ph232
+	sorghum_pi601552a8087c
+	sorghum_pi601553ph257
+	sorghum_pi601554ph289
+	sorghum_pi601555ph308
+	sorghum_pi601556ph309
+	sorghum_pi601557ph310
+	sorghum_pi601716ph328
+	sorghum_pi601717ph333
+	sorghum_pi601718pha82
+	sorghum_pi601719pha86
+	sorghum_pi601720phb82
+	sorghum_pi601721phb86
+	sorghum_pi601743hp150
+	sorghum_pi601744r159
+	sorghum_pi601756r145
+	sorghum_pi602599phbcwnl
+	sorghum_pi602600phbepoyj
     )
     ];
 

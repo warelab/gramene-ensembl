@@ -1,37 +1,32 @@
 ### Variation
+Variation in SorghumBase is available for short variants (genetic variation, which in turn may be naturally occurring or chemically induced) and QTL variants associated with physical traits.
 
--   [The **Morris *et al***.
-    set](http://europepmc.org/abstract/MED/23267105) is from a 2013
-    study of agroclimatic traits in *Sorghum*. In this study,
-    approximately 265,000 single nucleotide polymorphisms (SNPs) were
-    characterised from 971 worldwide accessions, combining three
-    previously defined sorghum diversity panels. They are: the US
-    sorghum association panel (SAP), the sorghum mini core
-    collection (MCC) and the Generation Challenge Program sorghum
-    reference set (RS). GWAS studies were subsequently performed on
-    plant height components and inflorescence architecture using 336 SAP
-    lines. The data presented here represents the genotype information
-    of the 378 SAP lines provided by the author.
--   [The **Mace *et al*.** SNPs
-    set](http://europepmc.org/abstract/MED/23982223) corresponds to
-    6,578,420 SNPs (SNPs mapping to supercontigs were removed) genotyped
-    in 45 *Sorghum bicolor* lines including the BTx623 reference genome
-    plus 2 *S. propinquum* lines. The data was obtained by resequencing
-    the genomes of the 44 *Sorghum bicolor* lines representing the
-    primary gene pool and spanning dimensions of geographic origin,
-    end-use and taxonomic group (i.e., major races of cultivated *S.
-    bicolor*, landraces, improved inbreds, progenitors, wild and weedy),
-    and the first resequenced genome of *S. propinquum*, all of which
-    were mapped to the BTx623 S. *bicolor* reference genome.
--   The [Jiao EMS dataset](http://europepmc.org/abstract/MED/27354556)
-    includes \~1.8 millions ethyl methane sulphonate (EMS)-induced G/C
-    to A/T transition mutations annotated from 252 M3 families selected
-    from the 6,400 sorghum mutant library in BTx623 background. Genomic
-    DNA used for sequencing was pooled from 20 M3 plants per M2 family.
+#### Genetic Variation
+Genetic variation data for a sorghum gene is available graphically and in tabular form, and for each variant, a Variant page provides more detailed information. Below are examples of each of these data representations.
 
-### Structural Variation
+* Click here for an [image of the genetic variants](https://ensembl.sorghumbase.org/Sorghum_bicolor/Transcript/Variation_Transcript/Image?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47486074_T_C;vdb=variation;vf=3821694) mapping to the smaller transcript of the msd2 gene.
+* Click here for a [table of the genetic variants](https://ensembl.sorghumbase.org/Sorghum_bicolor/Transcript/Variation_Transcript/Table?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47486074_T_C;vdb=variation;vf=3821694) mapping to the smaller transcript of the msd2 gene.
+* Click here for a [summary page of a chemically induced variant](https://ensembl.sorghumbase.org/Sorghum_bicolor/Variation/Explore?db=core;g=SORBI_3006G095600;r=6:46566240-46571064;t=OQU81659;v=tmp_6_47487513_G_A;vdb=variation;vf=7758800) (tmp_6_47487513_G_A).
+##### Naturally occurring genetic variation
+Single Nucleotide Polymorphisms (SNPs). Currently in SorghumBase, there are 46 million SNPs (of which 41 million have standard rsIDs assigend by the European Variation Archive, EVA) from two SNP data sets mapped to sorghum BTx623:
 
-Data for structural variation in sorghum has been imported from the
-[Database of Genomic Variants archive](http://www.ebi.ac.uk/dgva/)
-(dGVA) from a single study containing around [32 thousand structural
-variations](http://europepmc.org/abstract/MED/22104744).
+* The [Lozano *et al* (2021)](https://sorghumbase.org/paper/comparative-evolutionary-genetics-of-deleterious-load-in-sorghum-and-maize) data set includes early 13 million naturally occurring SNPs in 499 sorghum accessions (including 14 duplicate samples). Included are accessions from the TERRA-MEPP and TERRA-REF population panels, and lines previously genotyped by Emma Mace and collaborators in 2013.
+* The [Boatwright *et al* (2022)](https://www.sorghumbase.org/post/whole-genome-sequencing-of-400-sorghum-association-panel-sap-accessions-establishes-a-crucial-resource-for-dissecting-genomic-diversity-in-sorghum) includes nearly 44 million genetic variants including about 38 million SNPs and 5 million indels determined in the 400 Sorghum Association Panel (SAP) accessions via whole-genome sequencing (WGS).
+##### Chemically induced variation
+Ethyl methanesulfonate (EMS)-induced mutations. Currently in SorghumBase, there are three collections of EMS-induced mutant lines. EMS is a chemical commonly used to cause point mutations, that is, to change single nucleotides in the DNA of a plant seed. Variants in the Jiao dataset were recalled and added back in release 5, and a new dataset by Dr. Xin is being added in release 6.
+
+* The [Addo-Quaye *et al* (2018)](https://sorghumbase.org/paper/19942) data set includes over 2.6 million point mutations identified in 486 sorghum accessions corresponding to the M3 generation of an EMS-mutagenized sorghum population.
+* The Xin EMS dataset ([Jiao *et al*, 2016](https://sorghumbase.org/paper/a-sorghum-mutant-resource-as-an-efficient-platform-for-gene-discovery-in-grasses)) features over 1.7 million variants recalled from the original EMS-induced G/C to A/T transition mutations data set annotated from 252 M3 families selected from the 6,400 sorghum mutant library in BTx623 background described by Xin and colleagues (Xin *et al*, 2008). Genomic DNA used for sequencing was pooled from 20 M3 plants per M2 family (Jiao *et al*, 2016).
+* About 13.8 million new EMS-induced mutations were recently released by Dr. Zhanguo Xin and collaborators (manuscript in preparation).
+##### Loss of function mutations
+Loss-of-function (LOF) mutations are those in which the altered gene product lacks the molecular function of the wild type gene. In SorghumBase, the following seven functional consequences in a genetic variant are predicted to result in LOF of a protein coding gene: splice acceptor variant, splice donor variant, stop gained, frameshift variant, stop gained, start lost, and missense variant. In the present release, for each of the above mentioned BTx623 genetic variation studies ([Boatwright *et al* (2022)](https://www.sorghumbase.org/post/whole-genome-sequencing-of-400-sorghum-association-panel-sap-accessions-establishes-a-crucial-resource-for-dissecting-genomic-diversity-in-sorghu), [Lozano *et al* (2021)](https://sorghumbase.org/paper/comparative-evolutionary-genetics-of-deleterious-load-in-sorghum-and-maize); Xin et al, manuscript in preparation; [Addo-Quaye *et al* (2018)](https://www.sorghumbase.org/post/an-improved-high-resolution-method-for-the-in-silico-detection-of-ems-induced-mutations-in-sorghum-mutant-populations-2), and [Jiao *et al* (2016)](https://www.sorghumbase.org/paper/a-genomic-resource-for-the-development-improvement-and-exploitation-of-sorghum-for-bioenergy)), we are making available a list of LOF mutations including +/- 250 nt flanking sequences for each variant. This data may be downloaded in bulk from [SorghumBase's FTP](https://ftp.sorghumbase.org/release-6/LossOfFunction_mutations/).
+
+#### Phenotypic Variation
+**Genome-wide association studies (GWAS)**. GWAs hits from a meta-analysis of 234 phenotypic trait datasets of 40 studies (25 qualified for inclusion) on 406 SAP accessions performed by [Mural et al (2021)](https://sorghumbase.org/paper/19798).
+
+[Example of SNP associated with nutritional traits](https://ensembl.sorghumbase.org/Sorghum_bicolor/Variation/Phenotype?db=core;r=2:57664706-57664706;source=EVA;v=rs872512714;vdb=variation;vf=32471764) (e.g, protein/starch/fat content).
+
+**Quantitative Trait Locus (QTLs)**. Data corresponding to 5,843 QTL features for 220 sorghum traits were imported from [Sorghum QTL Atlas](https://aussorgm.org.au/sorghum-qtl-atlas/) and are provided with predicted syntenic locations in maize and rice.
+
+[Example region](https://ensembl.sorghumbase.org/Sorghum_bicolor/Location/View?db=core;g=SORBI_3006G095600;r=7:61190510-61277060;sv=nsv856002;svf=54084;t=OQU81659;vdb=variation) with QTLs associated with multiple traits including greenbug resistance, fresh biomass, and flag leaf height. Hint: For additional regions with QTL data in the current sorghum assembly (v.3), use the [physical or genetic (cM) coordinates](http://aussorgm.org.au/dev/wp-content/uploads/2018/08/Consensus-Map_cM-and-bp-coordinates.xlsx) kindly provided by the Sorghum QTL Atlas team.
+

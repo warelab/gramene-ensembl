@@ -1,7 +1,2 @@
 ### Assembly
-
-<!-- The current genome assembly of *Arabidopsis thaliana* is
-[TAIR10](http://europepmc.org/abstract/MED/17986450), produced by NCBI
-using data provided by TAIR, based in the Col-0 ecotype. It was
-determined by a BAC-by-BAC sequencing strategy anchored to chromosomes
-using a variety of genetic and physical maps. -->
+The genome assembly of sorghum Tx436 has been submitted for publication (Wang *et al*, 2021). Sequencing was done by the [Ware Lab](https://www.warelab.org/) (USDA at CSHL) in collaboration with [Corteva Agriscience](https://www.corteva.com/) using PacBio CLR technology to achieve 76X (reads N50=23.1 kb) coverage. The assembly effort generated contigs with N50 length of 25.6 Mb. In addition, Bionano molecules for Tx2783 yielded a genome map of 721.504 Mb with N50 lengths of 36.987 Mb. The chromosomes of the genome were constructed with hybrid scaffolds generated from BioNano genome maps. Most of the chromosomes were composed of two scaffolds.

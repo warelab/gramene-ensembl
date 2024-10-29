@@ -169,7 +169,7 @@ Repeats were annotated with the Ensembl Genomes repeat feature pipeline (Aken *e
   </tr>
 </table>
 
-#### Baseline Gene Expression (Atlas)
+##### Baseline Gene Expression (Atlas)
 
 Baseline gene expression data from seven sorghum BTx623 datasets curated and processed by the [EMBL-EBI Expression Atlas](https://www.ebi.ac.uk/gxa/) Team.
 

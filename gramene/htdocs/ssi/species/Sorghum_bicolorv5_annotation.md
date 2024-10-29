@@ -1,18 +1,5 @@
 ### Annotation
+Illumina RNA-seq reads were used to construct transcript assemblies using PERTRAN, which conducts genome-guided transcriptome short read assembly via GSNAP, and builds splice alignment graphs after alignment validation, realignment and correction. To obtain 748K putative full-length transcripts, 12M PacBio Iso-Seq CCSs were corrected and collapsed by a genome guided correction pipeline, which aligns CCS reads to genome with GMAP, and clusters alignments when all introns are the same or 95% overlap for single exon. Subsequently, 581,006 transcript assemblies were constructed using PASA from ESTs, corrected CCS, and RNA-seq transcript assemblies above. Version 3.1 gene models on assembly v3.0 were lifted over to assembly v5.0 and improved with JGI's in-house gene model improvement (GMI) pipeline. The final gene model proteins were assigned PFAM and PANTHER domains, and gene models were further filtered for transposable element domains. Locus model name was assigned by mapping forwad v3.1 locus models if using JGI's locus name mapping pipeline, otherwise, a new name was given using the locus naming convention used in JGI v3.1 locus model naming. In summary, the model names of approximately 96% of non-TE associated v3.1 models were mapped forward to v5.1. For more details, see [Phytozome](https://phytozome-next.jgi.doe.gov/info/Sbicolor_v5_1).
 
-<!-- This browser is based on data from
-[Araport11](https://www.araport.org/data/araport11) gene annotation, a
-comprehensive reannotation of the TAIR10 genome, released June, 2016.
-Details of the structural and functional annotation steps to generate the Araport11
-protein-coding gene set as well as consolidation and annotation of
-non-coding RNAs are described in <https://doi.org/10.1111/tpj.13415>.
-
-Repeats were annotated with the [Ensembl Genomes repeat feature
-pipeline](http://ensemblgenomes.org/info/data/repeat_features). There
-are: 429457 Low complexity (Dust) features, covering 17 Mb (7.3% of the
-genome); 74964 Repeats (ENA) features, covering 107 Mb (47.2% of the
-genome); 70178 RepeatMasker features (with the REdat library), covering
-21 Mb (9.2% of the genome); 2198 RepeatMasker features (with the RepBase
-library), covering 0 Mb (0.1% of the genome); 147273 Tandem repeats
-(TRF) features, covering 13 Mb (5.6% of the genome). -->
-
+#### Genetic and Phenotypic Variation, Gene Expression & Pathways
+Due to JGI's restriction for using the v5.1 assembly in comprehensive genome analyses, genetic and phenotypic variation, gene expression and pathways data for BTx623 genes is only available on [assembly version 3.1](https://ensembl.sorghumbase.org/Sorghum_bicolor/Info/Annotation/).

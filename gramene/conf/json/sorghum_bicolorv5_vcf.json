@@ -1,0 +1,53 @@
+{
+
+    "collections": [
+
+        {
+            "id": "EVA2024_rsID_mapped",
+	    "source_name" : "EVA2024rsID_PRJEB51985",
+            "species": "sorghum_bicolorv5",
+            "assembly": "Sb-BTX623-REFERENCE-JGI-5.1",
+            "type": "local",
+            "filename_template": "/sorghum_bicolorv5/Sb-BTX623-REFERENCE-JGI-5.1/eva_remap2sbv5_rsids.vcf.gz",
+            "use_as_source" : 1,
+	    "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
+            ],
+            "strict_name_match": 0,
+	    "sample_prefix": ""
+        },
+        {   
+            "id": "EVA2024_rsID_mapped_nra",
+            "source_name" : "EVA2024rsID_nra_PRJEB51985",
+            "species": "sorghum_bicolorv5",
+            "assembly": "Sb-BTX623-REFERENCE-JGI-5.1",
+            "type": "local",
+            "filename_template": "/sorghum_bicolorv5/Sb-BTX623-REFERENCE-JGI-5.1/eva_remap2sbv5_nra_rsids.vcf.gz",
+            "use_as_source" : 1,
+            "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
+            ],
+            "strict_name_match": 0,
+            "sample_prefix": ""
+        },
+	{   
+            "id": "Sorghum Genomics Toolbox Panel",
+            "source_name" : "SGT_Panel",
+            "species": "sorghum_bicolorv5",
+            "assembly": "Sb-BTX623-REFERENCE-JGI-5.1",
+            "type": "local",
+            "filename_template": "/sorghum_bicolorv5/Sb-BTX623-REFERENCE-JGI-5.1/Gates_sample/Gates_sample_JGI.vcf.gz",
+            "use_as_source" : 1,
+            "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9","10"
+            ],
+            "strict_name_match": 0,
+            "sample_prefix": ""
+        }
+
+    ]
+
+}

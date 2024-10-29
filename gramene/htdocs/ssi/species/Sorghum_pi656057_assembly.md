@@ -1,0 +1,3 @@
+### Assembly
+
+The preliminary assembly was constructed using Hifiasm* (v0.19.8) using ~50x coverage of HiFi long reads (Q>20) from a PacBio Revio platform. Resulting contigs were scaffolded using the RagTag* program (v2.1.0) against the BTx623 v5 genome. The resulting assembly was assessed for completeness and quality with the BUSCO* and QUAST*. Contiguity and synteny to BTx623 v5 was checked using the D-Genies dot plot program (https://dgenies.toulouse.inrae.fr/)*.

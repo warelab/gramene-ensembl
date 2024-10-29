@@ -1,0 +1,38 @@
+{
+
+    "collections": [
+
+        {
+            "id": "EVA2024_rsID_mapped",
+	    "source_name" : "EVA2024rsID_PRJEB51985",
+            "species": "sorghum_pi602599phbcwnl",
+            "assembly": "pi602599phbcwnl",
+            "type": "local",
+            "filename_template": "/sorghum_pi602599phbcwnl/sorghum_pi602599phbcwnl.vcf.gz",
+            "use_as_source" : 1,
+	    "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
+            ],
+            "strict_name_match": 0,
+	    "sample_prefix": ""
+        },
+        {   
+            "id": "EVA2024_rsID_mapped_nra",
+            "source_name" : "EVA2024rsID_nra_PRJEB51985",
+            "species": "sorghum_pi602599phbcwnl",
+            "assembly": "pi602599phbcwnl",
+            "type": "local",
+            "filename_template": "/sorghum_pi602599phbcwnl/sorghum_pi602599phbcwnl_nra.vcf.gz",
+            "use_as_source" : 1,
+            "use_seq_region_synonyms": 1,
+            "chromosomes": [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
+            ],
+            "strict_name_match": 0,
+            "sample_prefix": ""
+        }
+
+    ]
+
+}
