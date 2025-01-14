@@ -124,7 +124,8 @@ sub _process_dba {
 	my $species_path = join('/',$o->{'out_dir'},'fasta',$species);
   $self->v('Working with prod_name: %s assembly: %s', $species, $assembly);
 	$self->v('path for fasta files: %s', $species_path);
-	my @file_types = qw/cdna cds dna ncrna pep/;
+    # my @file_types = qw/cdna cds dna ncrna pep/;
+	my @file_types = qw/cdna cds dna pep/;
 	for my $type (@file_types) {
 		my $target_dir = join("/",$species_path,$type);
 		my $suffix = $type eq 'dna' ? 'toplevel' : 'all';
@@ -153,7 +154,7 @@ sub _ensure_fasta {
   }
 
 	my $file_path = join("/",$target_dir, $datafile . ".fa");
-	if (not $self->opts->{overwrite} and (-e $file_path or -e "$file_path.gz")) {
+	if (not $self->opts->{overwrite} and ((-e $file_path and not -z $file_path) or (-e "$file_path.gz" and not -z "$file_path.gz"))) {
 		$self->v("skipping $file_path");
 		return;
 	}
@@ -242,7 +243,11 @@ sub _dump_fasta {
 				    }
 				    if ($type eq 'pep') {
 					    my $aa_obj = $trans->translate;
-					    $seqio_fh->write_seq($aa_obj);
+                        if ($aa_obj) {
+                            $seqio_fh->write_seq($aa_obj);
+                        } else {
+                            $self->v("no translation for transcript $id");
+                        }
 				    }
 			    }
             }
