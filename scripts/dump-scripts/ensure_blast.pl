@@ -124,7 +124,8 @@ sub _process_dba {
 	my $species_path = join('/',$o->{'out_dir'},'fasta',$species);
   $self->v('Working with prod_name: %s assembly: %s', $species, $assembly);
 	$self->v('path for fasta files: %s', $species_path);
-	my @file_types = qw/cdna cds dna ncrna pep/;
+    # my @file_types = qw/cdna cds dna ncrna pep/;
+	my @file_types = qw/cdna cds dna pep/;
 	for my $type (@file_types) {
 		my $target_dir = join("/",$species_path,$type);
 		my $suffix = $type eq 'dna' ? 'toplevel' : 'all';
@@ -153,7 +154,7 @@ sub _ensure_fasta {
   }
 
 	my $file_path = join("/",$target_dir, $datafile . ".fa");
-	if (not $self->opts->{overwrite} and (-e $file_path or -e "$file_path.gz")) {
+	if (not $self->opts->{overwrite} and ((-e $file_path and not -z $file_path) or (-e "$file_path.gz" and not -z "$file_path.gz"))) {
 		$self->v("skipping $file_path");
 		return;
 	}
@@ -167,6 +168,8 @@ sub _dump_fasta {
 	my ($self, $dba, $outfile, $type) = @_;
 	my $seqio_fh = new Bio::SeqIO(-format => 'fasta', -file => ">$outfile");
 
+	my $slice_adaptor = $dba->get_SliceAdaptor;
+	my $slices = $slice_adaptor->fetch_all('toplevel');
 	if ($type eq 'dna') {
 		
 		my $outfile_sm = $outfile;
@@ -178,8 +181,6 @@ sub _dump_fasta {
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
-		my $slice_adaptor = $dba->get_SliceAdaptor;
-		my $slices = $slice_adaptor->fetch_all('toplevel');
 		foreach my $slice (@$slices) {
 			my $seqstr = $slice->get_repeatmasked_seq(['RepeatMask'],1)->seq;
 			$seqstr ||= $slice->seq;
@@ -204,47 +205,52 @@ sub _dump_fasta {
 		}
 	}
 	else {
-		my $gene_adaptor = $dba->get_GeneAdaptor;
-		my $gs = $gene_adaptor->fetch_all();
-		for my $gene (@$gs) {
-			next if ($type eq 'ncrna' and $gene->biotype eq 'protein_coding');
-			next if ($type ne 'ncrna' and $gene->biotype ne 'protein_coding');
-			my @transcripts;
-	    eval { @transcripts = @{ $gene->get_all_Transcripts } };
-	    print STDERR "$@" && next if $@;
+		foreach my $slice (@$slices) {
+            my $gs = $slice->get_all_Genes();
+            for my $gene (@$gs) {
+			    next if ($type eq 'ncrna' and $gene->biotype eq 'protein_coding');
+			    next if ($type ne 'ncrna' and $gene->biotype ne 'protein_coding');
+			    my @transcripts;
+	            eval { @transcripts = @{ $gene->get_all_Transcripts } };
+	            print STDERR "$@" && next if $@;
 
-	    foreach my $trans (@transcripts) {
-				my $id = $trans->stable_id;
-				next if ($type eq 'ncrna' and $trans->biotype eq 'protein_coding');
-				next if ($type ne 'ncrna' and $trans->biotype ne 'protein_coding');
+	            foreach my $trans (@transcripts) {
+				    my $id = $trans->stable_id;
+				    next if ($type eq 'ncrna' and $trans->biotype eq 'protein_coding');
+				    next if ($type ne 'ncrna' and $trans->biotype ne 'protein_coding');
 
-        my $cdna_seq = $trans->spliced_seq;
+                    my $cdna_seq = $trans->spliced_seq;
 				
-				if ($type eq 'cdna' or $type eq 'ncrna') {
-					$seqio_fh->write_seq(Bio::Seq->new(
-						-display_id => $id,
-						-seq => $cdna_seq
-					));
-				}
-				if ($type eq 'cds') {
-          my $cdna_coding_start = $trans->cdna_coding_start;
-          my $cdna_coding_end   = $trans->cdna_coding_end;
-          my $seq_obj_cds       = Bio::Seq->new(
-              -display_id => $id,
-              -seq        => substr(
-                  $cdna_seq,
-                  $cdna_coding_start - 1,
-                  $cdna_coding_end - $cdna_coding_start + 1
-              )
-          );
+			        if ($type eq 'cdna' or $type eq 'ncrna') {
+				        $seqio_fh->write_seq(Bio::Seq->new(
+						    -display_id => $id,
+						    -seq => $cdna_seq
+					        ));
+				    }
+				    if ($type eq 'cds') {
+                        my $cdna_coding_start = $trans->cdna_coding_start;
+                        my $cdna_coding_end   = $trans->cdna_coding_end;
+                        my $seq_obj_cds       = Bio::Seq->new(
+                            -display_id => $id,
+                            -seq        => substr(
+                                $cdna_seq,
+                                $cdna_coding_start - 1,
+                                $cdna_coding_end - $cdna_coding_start + 1
+                                )
+                                );
 
-          $seqio_fh->write_seq($seq_obj_cds);
-				}
-				if ($type eq 'pep') {
-					my $aa_obj = $trans->translate;
-					$seqio_fh->write_seq($aa_obj);
-				}
-			}
+                        $seqio_fh->write_seq($seq_obj_cds);
+				    }
+				    if ($type eq 'pep') {
+					    my $aa_obj = $trans->translate;
+                        if ($aa_obj) {
+                            $seqio_fh->write_seq($aa_obj);
+                        } else {
+                            $self->v("no translation for transcript $id");
+                        }
+				    }
+			    }
+            }
 		}
 	}
 }
@@ -275,6 +281,10 @@ sub _ensure_blast {
 			$self->v("fasta file for blast db missing $fa_file");
 			return
 		}
+        if (-z $fa_file) {
+            $self->v("skipping BLAST : empty fasta file $fa_file");
+            return
+        }
 		my $dbtype = $type eq 'pep' ? 'prot' : 'nucl';
 		my $title = "$dbName $type";
 		my $cmd = -e $fa_file

@@ -26,7 +26,7 @@ use base qw(EnsEMBL::Web::Document::Element);
 
 sub content {
   my $species_defs = shift->species_defs;
-  my $sister_sites = qq(
+  my $sister_sites = qq(<p><a href="https://oryza.gramene.org">Oryza Browser</a></p>
 			<p><a href="https://maize-pangenome.gramene.org">Maize Browser</a></p>
                         <p><a href="https://vitis.gramene.org">Grapevine Browser</a></p>
                         <p><a href="https://sorghumbase.org">SorghumBase</a></p>

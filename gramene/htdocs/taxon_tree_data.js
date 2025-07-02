@@ -30,6 +30,10 @@ taxonTreeData = [
                   "key" : "Arabis_alpina"
                },
                {
+                  "title" : "Brassica juncea",
+                  "key" : "Brassica_juncea"
+               },
+               {
                   "title" : "Brassica napus",
                   "key" : "Brassica_napus"
                },
@@ -42,6 +46,17 @@ taxonTreeData = [
                   "key" : "Brassica_rapa"
                },
                {
+                  "isFolder" : true,
+                  "children" : [
+                     {
+                        "title" : "Brassica rapa R-o-18",
+                        "key" : "Brassica_rapa_ro18"
+                     }
+                  ],
+                  "title" : "Brassica rapa (2)",
+                  "key" : "Brassica rapa"
+               },
+               {
                   "title" : "Camelina sativa",
                   "key" : "Camelina_sativa"
                },
@@ -50,7 +65,7 @@ taxonTreeData = [
                   "key" : "Eutrema_salsugineum"
                }
             ],
-            "title" : "Brassicaceae (9)",
+            "title" : "Brassicaceae (11)",
             "key" : "Brassicaceae"
          },
          {
@@ -76,6 +91,14 @@ taxonTreeData = [
          {
             "title" : "Corchorus capsularis",
             "key" : "Corchorus_capsularis"
+         },
+         {
+            "title" : "Corylus avellana",
+            "key" : "Corylus_avellana"
+         },
+         {
+            "title" : "Corymbia citriodora",
+            "key" : "Corymbia_citriodora"
          },
          {
             "title" : "Cucumis melo",
@@ -117,6 +140,10 @@ taxonTreeData = [
                   "key" : "Phaseolus_vulgaris"
                },
                {
+                  "title" : "Pisum sativum",
+                  "key" : "Pisum_sativum"
+               },
+               {
                   "title" : "Trifolium pratense",
                   "key" : "Trifolium_pratense"
                },
@@ -127,10 +154,18 @@ taxonTreeData = [
                {
                   "title" : "Vigna radiata",
                   "key" : "Vigna_radiata"
+               },
+               {
+                  "title" : "Vigna unguiculata",
+                  "key" : "Vigna_unguiculata"
                }
             ],
-            "title" : "Fabaceae (7)",
+            "title" : "Fabaceae (9)",
             "key" : "Fabaceae"
+         },
+         {
+            "title" : "Ficus carica",
+            "key" : "Ficus_carica"
          },
          {
             "title" : "Gossypium raimondii",
@@ -153,6 +188,10 @@ taxonTreeData = [
             "key" : "Kalanchoe_fedtschenkoi"
          },
          {
+            "title" : "Lactuca sativa",
+            "key" : "Lactuca_sativa"
+         },
+         {
             "title" : "Malus domestica Golden",
             "key" : "Malus_domestica_golden"
          },
@@ -161,12 +200,19 @@ taxonTreeData = [
             "key" : "Manihot_esculenta"
          },
          {
-            "title" : "Olea europaea var. sylvestris",
-            "key" : "Olea_europaea_sylvestris"
+            "title" : "Olea europaea",
+            "key" : "Olea_europaea"
          },
          {
-            "title" : "Papaver somniferum",
-            "key" : "Papaver_somniferum"
+            "isFolder" : true,
+            "children" : [
+               {
+                  "title" : "Olea europaea var. sylvestris",
+                  "key" : "Olea_europaea_sylvestris"
+               }
+            ],
+            "title" : "Olea europaea subsp. europaea (2)",
+            "key" : "Olea europaea subsp. europaea"
          },
          {
             "title" : "Pistacia vera",
@@ -191,6 +237,10 @@ taxonTreeData = [
          {
             "title" : "Quercus lobata",
             "key" : "Quercus_lobata"
+         },
+         {
+            "title" : "Quercus suber",
+            "key" : "Quercus_suber"
          },
          {
             "title" : "Rosa chinensis",
@@ -221,7 +271,7 @@ taxonTreeData = [
                },
                {
                   "title" : "Solanum tuberosum RH89-039-16",
-                  "key" : "Solanum_tuberosum_rh8903916"
+                  "key" : "Solanum_tuberosum_RH8903916"
                }
             ],
             "title" : "Solanaceae (5)",
@@ -240,7 +290,7 @@ taxonTreeData = [
             "key" : "Vitis_vinifera"
          }
       ],
-      "title" : "Dicots (54)",
+      "title" : "Dicots (63)",
       "key" : "Dicots"
    },
    {
@@ -268,6 +318,10 @@ taxonTreeData = [
                {
                   "title" : "Leersia perrieri",
                   "key" : "Leersia_perrieri"
+               },
+               {
+                  "title" : "Lolium perenne",
+                  "key" : "Lolium_perenne"
                },
                {
                   "isFolder" : true,
@@ -337,7 +391,11 @@ taxonTreeData = [
                      },
                      {
                         "title" : "Hordeum vulgare TRITEX",
-                        "key" : "Hordeum_vulgare_tritex"
+                        "key" : "Hordeum_vulgare_TRITEX"
+                     },
+                     {
+                        "title" : "Secale cereale",
+                        "key" : "Secale_cereale"
                      },
                      {
                         "title" : "Triticum aestivum",
@@ -416,12 +474,20 @@ taxonTreeData = [
                         "key" : "Triticum_urartu"
                      }
                   ],
-                  "title" : "Triticeae (23)",
+                  "title" : "Triticeae (24)",
                   "key" : "Triticeae"
                },
                {
                   "isFolder" : true,
                   "children" : [
+                     {
+                        "title" : "Digitaria exilis",
+                        "key" : "Digitaria_exilis"
+                     },
+                     {
+                        "title" : "Echinochloa crus-galli",
+                        "key" : "Echinochloa_crusgalli"
+                     },
                      {
                         "title" : "Eragrostis curvula",
                         "key" : "Eragrostis_curvula"
@@ -466,11 +532,11 @@ taxonTreeData = [
                         "key" : "Zea_mays"
                      }
                   ],
-                  "title" : "Warm season grasses (C4) (9)",
+                  "title" : "Warm season grasses (C4) (11)",
                   "key" : "Warm season grasses (C4)"
                }
             ],
-            "title" : "Grasses (45)",
+            "title" : "Grasses (49)",
             "key" : "Grasses"
          },
          {
@@ -478,7 +544,7 @@ taxonTreeData = [
             "key" : "Musa_acuminata"
          }
       ],
-      "title" : "Monocots (49)",
+      "title" : "Monocots (53)",
       "key" : "Monocots"
    },
    {
@@ -521,6 +587,10 @@ taxonTreeData = [
             "key" : "Amborella_trichopoda"
          },
          {
+            "title" : "Papaver somniferum",
+            "key" : "Papaver_somniferum"
+         },
+         {
             "title" : "Selaginella moellendorffii",
             "key" : "Selaginella_moellendorffii"
          },
@@ -529,7 +599,7 @@ taxonTreeData = [
             "key" : "Chara_braunii"
          }
       ],
-      "title" : "Other (11)",
+      "title" : "Other (12)",
       "key" : "Other"
    }
 ]
