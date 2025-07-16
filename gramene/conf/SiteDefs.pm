@@ -105,7 +105,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   # Mart/Blast
   $SiteDefs::ENSEMBL_BLAST_ENABLED = 1; # Creates header link for blast
   $SiteDefs::ENSEMBL_BLAST_BY_SEQID = 1; # blast on gene page sequence
-  $SiteDefs::ENSEMBL_MART_ENABLED = 1; # And mart
+  $SiteDefs::ENSEMBL_MART_ENABLED = 0; # And mart
 
   $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 1;

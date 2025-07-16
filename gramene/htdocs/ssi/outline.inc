@@ -1,10 +1,10 @@
 <div class="plain-box">
 
-<h2>What's New in Release 67</h2>
+<h2>What's New in Release 69</h2>
 
 <ul>
 
-There are no changes on ensemble genome databases or browser software from release66. All changes are at Gramene including CLIMtools, pathway and search interface. 
+The database are synced with ensemble genome release61, the web code is customized from ensembl browser software version 114. 
 
 <ul>
 <li>
