@@ -51,24 +51,13 @@ dump_transcripts.pl  [options]
     --registry          the registry file for database connections
     --speceis 		which species to dump
     --debug		debug
-    --format		two types, trp or var
+    --format		two types, 1 (default) or 2 (dump actual src:sample_name)
     --chr		dump by chr
  
 =head1 OPTIONS
 
 =over 4
 
-
-=item B<--exclude>
-
-    Genes to ignore.  
-
-
-=item B<--exclude-clone>
-    
-    Clones to ignore 
-    This may be a comma-separated list.
-    
 =item B<--registry>
 
 The registry file for ensembl databases
@@ -77,7 +66,6 @@ The registry file for ensembl databases
 
 supply the species name whose transcripts are to be dumped
 
-
 =item B<--chr>
 
 only dump varaiation for this chr. 
@@ -85,8 +73,10 @@ only dump varaiation for this chr.
 =item B<--format>
 
 reporting format
-var:VariantID	Chr:bp	vf_allele	Alleles	ConseqType	Transcript
-trp:Transcript(strand)	Allele(transcript_allele)	ConseqType	PositionInTranscript	PositionInCDS	PositionInProt	AminoAcid	Codons
+gt_sum: print out the count of samples for each genotype
+	Transcript(strand)	Allele(transcript_allele)	ConseqType	PositionInTranscript	PositionInCDS	PositionInProt	AminoAcid	Codons
+gt_lines print out the actaul sample for each genotype in the form of GT1:source:sample|source:sample|...|source:sample,GT2:source:sample|source:sample|...|source:sample
+
 =item B<--help> 
 
 print a help message and exit
@@ -121,16 +111,17 @@ our $LOF_EXP = lc (join '|', sort @LOF);
 #format 2
 #Variant ID	Chr: bp	vf_allele	Alleles	Conseq. Type	Transcript
 
-our ($species, $registry, $idfile, $debug,  $CHR);
+our ($species, $registry, $format, $debug,  $CHR);
 
 {  #Argument Processing
   my $help=0;
   my $man=0;
+  $format = 1;
 
   GetOptions( "help|?"=>\$help,"man"=>\$man
 	      ,"species=s"=>\$species
 	      ,"registry=s"=>\$registry
-	      ,"id_file=s"=>\$idfile
+	      ,"format=i"=>\$format
 	      ,"debug"=>\$debug
 	      ,"chr=s" => \$CHR
 	    )
@@ -157,13 +148,13 @@ our $sgta =  $VAR_DBA->get_adaptor('samplegenotype');
 
 my %count;
 my $slices = $slice_adaptor->fetch_all('toplevel');
-
+our $cnt = 0;
 	
 for ( @$slices ){ 
 	my @transcripts;
 	my @print_out;
 	my $seq_name = $_->seq_region_name ;
-	warn ("CHR=$CHR and seq_name=$seq_name\n");
+#	warn ("CHR=$CHR and seq_name=$seq_name\n");
 	next if ( (defined $CHR) and (lc ($CHR) ne lc ($seq_name)) );
 	warn("Process chr $seq_name\n"); 
 	my $outfile = "TrptVar.$seq_name.report";
@@ -171,9 +162,12 @@ for ( @$slices ){
 
 	map{
            		my $id = $_->stable_id;
-             		print "! $id\n" if $debug;
-              		push @print_out, map{join "\t", @{$_}} @{get_transcript_variations($_)};
+             		#print "! $id\n" if $debug;
+              		push @print_out, map{join "\t", @{$_}}
+				 @{get_transcript_variations($_)};
               		$count{trpt}{$seq_name}++;
+			map{ print "$_\n";} @print_out and exit if ($debug && $cnt > 5);
+
 	}@{$_->get_all_Transcripts};
 
 	warn("About to print to $outfile\n");	
@@ -210,6 +204,9 @@ sub get_transcript_variations {
 	for my $tv ( @tvs ){
                 my $vf = $tv->variation_feature();
        
+		my $variation_name = $vf->variation_name;
+		next unless $variation_name =~ /^rs/i;
+
 		my $transcript_stable_id = $tv->transcript_stable_id;
 		my $gene_id = get_gene_id($transcript_stable_id); 
 		my $conseq = $tv->display_consequence; 
@@ -217,7 +214,6 @@ sub get_transcript_variations {
 		my $seq_region_start = $vf->seq_region_start;
 		my $seq_region_end   = $vf->seq_region_end;
 		my $seq_region_strand   = $vf->seq_region_strand;
-		my $variation_name = $vf->variation_name;
 		my @alt_alleles = @{$vf->alt_alleles};
 		my $allele_string = $vf->allele_string;
 		my $alt_alleles_str = join "|", @alt_alleles;
@@ -254,8 +250,7 @@ sub get_transcript_variations {
 
 #Osmh63.01G000010_02     Chr01_11742_C_G 1(1):11742-11742        C/G     ARRAY(0x4343f60)        ARRAY(0x4340df0)        missense_variant 790     415     139     P/A     Cca/Gca       
 	        
-		if( $conseq =~ /^($LOF_EXP)$/){
-
+		if( $conseq =~ /^($LOF_EXP)$/i){
 			#find samples with deleterious alle
 
 			my %genotype2samples;
@@ -275,34 +270,41 @@ sub get_transcript_variations {
 
 
 			#get 500bp flanking seq
-			my ($upstream_flank_start, $upstream_flank_end) = ($seq_region_start-250, $seq_region_start-1);
-			my ($downstream_flank_start, $downstream_flank_end) = ($seq_region_end+1, $seq_region_end+250);
+			#my ($upstream_flank_start, $upstream_flank_end) = ($seq_region_start-250, $seq_region_start-1);
+			#my ($downstream_flank_start, $downstream_flank_end) = ($seq_region_end+1, $seq_region_end+250);
+			#
+			#my ($upstream_seq, $downstream_seq);
+			#
+			#if( $seq_region_strand == 1 ){
+			#	$upstream_seq = $slice_adaptor->fetch_by_location("$chr:$upstream_flank_start-$upstream_flank_end", 'toplevel')->seq;
+			#	$downstream_seq = $slice_adaptor->fetch_by_location("$chr:$downstream_flank_start-$downstream_flank_end", 'toplevel')->seq; 				
+			#}else{
+			#	 warn("[WARN] There are variations on - strand\n");
+			#
+			#}
 
-			my ($upstream_seq, $downstream_seq);
 
-			if( $seq_region_strand == 1 ){
-				$upstream_seq = $slice_adaptor->fetch_by_location("$chr:$upstream_flank_start-$upstream_flank_end", 'toplevel')->seq;
-				$downstream_seq = $slice_adaptor->fetch_by_location("$chr:$downstream_flank_start-$downstream_flank_end", 'toplevel')->seq; 				
-			}else{
-
-			}	warn("[WARN] There are variations on - strand\n");		
-
-
-			#my @gt_samples = map{ $_ . ':' . join '|', @{$genotype2samples{$_}} } 
-			#	sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} } 
-			#	(keys %genotype2samples);
-
-			my @sorted_samples = sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} }
+			my @sorted_gt_by_samplecnt = sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} }
                                (keys %genotype2samples);
-			my $mutant_gt = shift @sorted_samples;
-			my @gt_samples = $mutant_gt . ':' . join '|', @{$genotype2samples{$mutant_gt}};
+			my @gt_samples; 
+			if( $format == 1){
+				warn("DEBUG format is $format\n") && $cnt++ if $debug;
+				push @gt_samples, map { $_ . ':' . scalar @{$genotype2samples{$_}} } @sorted_gt_by_samplecnt;
+			
+			}elsif( $format == 2 ){
+				push @gt_samples, map { $_ . ':' . join '|', @{$genotype2samples{$_}} } @sorted_gt_by_samplecnt;
+			}else{ warn "format $format does not exist";}
 
-			push @tvs_report,['LOF', @common_fields, $sift_scores, @gt_samples, $upstream_seq, $downstream_seq];
+			push @tvs_report,[@common_fields, $sift_scores, 
+						(join ',', @gt_samples), 
+					];
 
 
 		}else{
-			push @tvs_report,[@common_fields];
+#print "Not LOF\n" if $debug;
+#			push @tvs_report,[@common_fields];
         	}
+
      	}
 
   	return \@tvs_report;

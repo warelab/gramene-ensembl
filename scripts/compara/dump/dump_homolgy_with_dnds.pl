@@ -213,6 +213,9 @@ MAIN:{
   my %genetree_uniq_seqids = &get_genetree_members;
   	#warn Dumper( \%genetree_uniq_seqids );
 
+  print $FH_HOMO join "\t", map{uc} @header;
+  print $FH_HOMO "\n";
+
   # Loop through each gene tree by root_id 
   foreach my $rid( keys %genetree_uniq_seqids ){
    
@@ -227,11 +230,9 @@ MAIN:{
 		map{ warn "inspect:$_\n"; warn "Not in homology:$_\n" if !$homology_seqid_pairs{$_} } @{$seqid_pairs};
 		map{ warn "homolgy pair:$_\n" } keys %homology_seqid_pairs;
 	}
-	my %seqid_pairs;
+	#my %seqid_pairs;
 
 	warn "[INFO] report homologies \n";
-	print $FH_HOMO join "\t", map{uc} @header;
-	print $FH_HOMO "\n"; 
 	map{ print $FH_HOMO join "\t", @{$homology_seqid_pairs{$_}{report}}; print $FH_HOMO "\t$rid\n" } 
 				keys %homology_seqid_pairs;
 
@@ -323,6 +324,13 @@ sub get_homology_pairs_by_rid{
   my $query =shift or return;
   my $subject =shift or return;
 
+	#select hm1.seq_member_id,0 hm2.seq_member_id,1 h.homology_id,2
+        #        g1.name,3 g2.name,4 sm1.stable_id,5 d1.name,6 sm1.dnafrag_start,7 sm1.dnafrag_end,8 sm1.dnafrag_strand,9
+        #        sm2.stable_id,10 d2.name,11 sm2.dnafrag_start,12 sm2.dnafrag_end,13 sm2.dnafrag_strand,14 h.description,15
+        #        h.wga_coverage,16 h.is_tree_compliant,17 h.is_high_confidence,18
+        #        hm1.perc_id,19 hm1.perc_cov,20 hm2.perc_id,21 hm2.perc_cov,22 h.dn,23 h.ds,24 h.n,25 h.s,26 h.lnl27
+
+
   my $rv = $sths{homology_pairs}->execute( $rid, $query, $subject, $query, $subject) || die( $sths{homology_pairs}->errstr );
   my %homology;
   while( my $row = $sths{homology_pairs}->fetchrow_arrayref ){
@@ -333,7 +341,20 @@ sub get_homology_pairs_by_rid{
 	#wga_coverage, is_tree_compliant, query_percent_identity, query_percent_coverage,
 	#other_percent_identify,  other_percent_coverage,  confidence
 
-	$homology{$seq_id_pair}{report} = [
+	if( lc $qspecies ne lc ($row->[3]) ){
+		$homology{$seq_id_pair}{report} = [
+		$row->[4] || 'NA', 
+                $row->[10] || 'NA', "$row->[11]:$row->[12]-$row->[13]:$row->[14]",
+		$row->[3] || 'NA', $row->[5] || 'NA', "$row->[6]:$row->[7]-$row->[8]:$row->[9]",
+                $row->[15] || 'NA',
+                $row->[16] || 'NA', $row->[17] || 'NA', $row->[21] || 'NA', $row->[22] || 'NA',
+                $row->[19] || 'NA', $row->[20] || 'NA', $row->[18] || 'NA',
+                $row->[23] || 'NA', $row->[24] || 'NA', $row->[25] || 'NA',
+                $row->[26] || 'NA', $row->[27] || 'NA',
+                ];
+	}else{
+
+		$homology{$seq_id_pair}{report} = [
 		$row->[3] || 'NA', $row->[5] || 'NA', "$row->[6]:$row->[7]-$row->[8]:$row->[9]",
 		$row->[4] || 'NA', 
 		$row->[10] || 'NA', "$row->[11]:$row->[12]-$row->[13]:$row->[14]",
@@ -344,6 +365,7 @@ sub get_homology_pairs_by_rid{
 		$row->[26] || 'NA', $row->[27] || 'NA', 
 		];
  
+	}
   }
   return %homology;
 }

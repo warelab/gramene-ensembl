@@ -1,0 +1,17 @@
+#
+# File for populating the analysis.description records in the ensembl core 
+# database.
+#
+# Follows the convention in 
+# ensembl/misc-scripts/analysis_description/analysis.descriptions
+#
+# Uploaded to the database using the script 
+# ensembl/misc-scripts/analysis_description/load_analysis_descriptions.pl
+#
+# Note fields in this file should be separated by *tabs* not spaces!
+# format: nr<TAB>logic_name<TAB>description<TAB>display_label<TAB>displayable<TAB>web_data
+#
+# 
+
+1	CAAS_gene	Gene annotation CAAS, published in <a href="https://www.nature.com/articles/s41588-022-01283-w">Nat Genetics</a>	Gene (CAAS)	1	{"label_key" : "[biotype]", "default" : {"contigviewbottom" : "transcript_label", "contigviewtop" : "gene_label", "cytoview" : "gene_nolabel"}}
+2	PanAnd_gene	Gene annotation-PanAnd-1.0	Gene (PanAnd)	1	{"label_key" : "[biotype]", "default" : {"contigviewbottom" : "transcript_label", "contigviewtop" : "gene_label", "cytoview" : "gene_nolabel"}}
