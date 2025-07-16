@@ -1,5 +1,7 @@
 #!/bin/sh
 
+branch_eg=release/eg/60
+
 if [ ! ${branch_eg} ]
    then 
       	echo "please set branch_eg, for example release/eg/26"

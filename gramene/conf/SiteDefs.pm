@@ -4,14 +4,15 @@ use strict;
 # These are the gramene-specific edits to the main Ensembl SiteDefs.pm file
 sub update_conf {
 
-   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+   #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
+  $SiteDefs::GRM_SERVERNAME = 'gramene.org'; #dev.gramene.org won't work
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 66;
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 55;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2023';  #G66 is 'Dec 2022'
+  $SiteDefs::SITE_RELEASE_VERSION = 69;
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 69;
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jul 2025';  #G66 is 'Dec 2022'
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.gramene.org/pub';  #the one that's used for download link on species page is ENSEMBL_FTP_URL in DEFAULT.ini
@@ -69,7 +70,7 @@ $SiteDefs::GDPR_COOKIE_NAME             = 'gdpr';
 $SiteDefs::ENSEMBL_VEP_CACHE_DIR              = "/usr/local/ensembl-live/tools_data/vep/";
 $SiteDefs::ENSEMBL_VEP_PLUGIN_DATA_DIR        = "/usr/local/ensembl-live/tools_data/vep/Plugins";                       # path to vep plugin data files on the LSF host (or local machine if job running locally) 
  
-push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/local/BioPerl-1.6.922', '/usr/local/ensembl-live/ensembl-io/modules', '/usr/local/ensembl-live/ensembl-funcgen/modules', '/usr/local/ensembl-live/ensembl-variation/modules';
+push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/local/BioPerl-1.6.922', '/usr/local/ensembl-live/ensembl-io/modules', '/usr/local/ensembl-live/ensembl-funcgen/modules', '/usr/local/ensembl-live/ensembl-variation/modules', '/usr/local/ensembl-live/ensembl-compara/modules';
 
  
 $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
