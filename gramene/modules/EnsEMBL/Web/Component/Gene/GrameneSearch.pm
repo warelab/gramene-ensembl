@@ -56,7 +56,7 @@ sub content {
 
   my $grm_server = $species_defs->GRM_SERVERNAME;
   #my $html = '<img alt="GrameneSearchExample" src="/i/48/grmsearch.png" width="150" hight="150">';
-  my $html .= '<br><p><a href="https://'.$grm_server. '/genes?idList=' . $gene_stable_id . '">' . $gene_stable_id . '</a></p>';
+  my $html .= '<br><p><a href="https://'.$grm_server. '/?idList=' . $gene_stable_id . '">' . $gene_stable_id . '</a></p>';
 
 
   return $html;
