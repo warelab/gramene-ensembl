@@ -1,0 +1,3 @@
+### Annotation
+
+**Repeats & Gene Models:** The genome contains **66.50% repetitive elements**, including retrotransposons and DNA transposons. A total of **35,695 protein-coding genes** were annotated using RNA-seq data and homology-based methods, with the majority of gene models supported by experimental data. The BTx623-T2T genome includes **36.25 Mb** of newly assembled sequences, most of which are repetitive elements such as retrotransposons and satellite repeats. Structural errors from previous assemblies, particularly in centromeric regions, were corrected. The T2T assembly enables higher accuracy in gene mapping and variant detection, enhancing the precision of genetic studies and improving the understanding of sorghum genome structure.

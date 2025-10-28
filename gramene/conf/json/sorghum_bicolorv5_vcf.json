@@ -33,7 +33,7 @@
             "sample_prefix": ""
         },
 	{   
-            "id": "Sorghum Genomics Toolbox Panel",
+            "id": "SorghumGenomicsToolboxPanel",
             "source_name" : "SGT_Panel",
             "species": "sorghum_bicolorv5",
             "assembly": "Sb-BTX623-REFERENCE-JGI-5.1",

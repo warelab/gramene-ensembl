@@ -1,0 +1,3 @@
+About *Sorghum BTx623*
+---------------------
+**BTx623**, a widely used reference genome for *Sorghum bicolor*, is known for its compact genome size of approximately 719 Mb. This diploid cereal crop has 10 haploid chromosomes and plays a crucial role in functional genomics studies of C4 plants. Originally released in 2005, BTx623 has undergone multiple updates, with the latest **telomere-to-telomere (T2T) assembly** providing a gap-free, highly contiguous genome (*Yuan et al., 2024*). It is primarily used in studies focused on sorghum’s adaptation to semi-arid environments and its potential as a biofuel source.

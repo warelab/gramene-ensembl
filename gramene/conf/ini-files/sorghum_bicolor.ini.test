@@ -1,0 +1,48 @@
+[general]
+
+SPECIES_RELEASE_VERSION = 30 
+
+[databases]
+DATABASE_CORE = %_core_%_%
+DATABASE_VARIATION =  sorghum_bicolor_variation_8_108_30
+
+[ENSEMBL_STYLE]
+
+[EXTERNAL_GENOME_BROWSERS]
+EGB_PHY = Phytozome
+
+####################
+# Configure External URLs
+# These are mainly for (1) External Genome Browse  {EGB_ }
+#                      (2) DAS tracks              {DAS_ }
+####################
+
+[ENSEMBL_EXTERNAL_URLS]
+GRAMENE_PATHWAY = http://pathway.gramene.org/SORGHUM/NEW-IMAGE?type=REACTION&object=###ID###
+EGB_PHY = https://phytozome-next.jgi.doe.gov/jbrowse/index.html?data=genomes%2FSbicolor_v3_1_1&loc=Chr###CHR###%3A###START###..###END###
+#https://phytozome.jgi.doe.gov/jbrowse/index.html?data=genomes%2FSbicolor&loc=Chr###CHR###%3A###START###..###END###
+#https://phytozome.jgi.doe.gov/jbrowse/index.html?data=genomes%2FSbicolor&loc=Chr02%3A7700669..7703390
+#http://www.phytozome.net/cgi-bin/gbrowse/sorghum/?name=chromosome_###CHR###%3A###START###..###END###
+#http://pathway.gramene.org/SORGHUM/NEW-IMAGE?type=REACTION&object=###ID###
+#GSM3674689_ChIP_Sorghum_7days_leaf_H3K27me3.bw
+
+[ENSEMBL_INTERNAL_BIGWIG_SOURCES]
+ChIPseqH3K27me3 = functional
+
+[ChIPseqH3K27me3]
+source_name = ChIPseq-H3K27me3_leaf7days_Schmitz
+description = Rice 7 days leaf ChIPseq-H3K27me3 mapping from publication <a href="https://www.nature.com/articles/s41477-019-0548-z#Sec9">The prevalence, evolution and chromatin signatures of plant regulatory elements</a>
+source_url = /usr/local/tracks/Schmitz/Chip-seq/GSM3674681_ChIP_Rice_7days_leaf_H3K27me3.bw
+source_type = bigwig
+display = off
+
+[ENSEMBL_INTERNAL_BIGBED_SOURCES]
+ACR = functional
+
+[ACR]
+source_name = ACRs_leaf7days_Schmitz
+description = Sorghum 7 days leaf ACRs (accessible chromatin regions) from publication <a href="https://www.nature.com/articles/s41477-019-0548-z#Sec9">The prevalence, evolution and chromatin signatures of plant regulatory elements</a>
+source_url = /usr/local/tracks/Schmitz/Sorghum_7days_leaf_ACRs.bb
+source_type = bigbed
+display = on
+ 

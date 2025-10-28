@@ -1,0 +1,3 @@
+### Assembly
+* **DNA Extraction & Sequencing:** High molecular weight (HMW) DNA was extracted from young leaves, and sequencing was performed using **Oxford Nanopore Technology (ONT) ultra-long reads**, **PacBio HiFi reads**, **Illumina short reads**, and **Hi-C data**. The assembly was constructed using **Hifiasm** for contig generation, with Hi-C data for scaffolding, and gaps were filled with ONT and HiFi reads.
+* **Genome Assembly:** The final **T2T assembly** resulted in a **719.90 Mb** genome, with near-perfect accuracy and completeness. Only four gaps remained initially, but these were closed manually, resulting in a gap-free genome. The genome achieved a base accuracy of 99.99%.

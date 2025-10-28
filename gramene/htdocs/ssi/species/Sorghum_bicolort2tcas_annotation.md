@@ -1,0 +1,2 @@
+### Annotation
+**Repeats & Gene Models:** 72.4% of the genome consists of repetitive elements, including transposable elements (TEs) and tandem repeats. **Gene annotation** identified 36,950 protein-coding genes, including 3565 newly annotated genes. Compared to earlier versions, BTx623-T2T fills centromeric and telomeric gaps, with **43.6 Mb** of new sequence, enhancing gene content and structural accuracy. The genome offers improved accuracy for genome-wide association studies (GWAS) and variant analysis, particularly in repetitive and centromeric regions.

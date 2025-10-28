@@ -275,7 +275,7 @@ sub populate_tree {
   );
 
 
-  my $grmsrch_menu = $self->create_node('GrameneSearch', 'Gramene Search',
+  my $grmsrch_menu = $self->create_node('GrameneSearch', 'Sorghumbase Search',
     [qw(
       gramene_search  EnsEMBL::Web::Component::Gene::GrameneSearch
     )],

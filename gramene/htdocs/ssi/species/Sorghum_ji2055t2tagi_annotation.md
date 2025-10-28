@@ -1,0 +1,2 @@
+### Annotation
+**Repeats & Gene Models:** The genome contains **65.22% repetitive elements**, primarily retroelements and DNA transposons. A total of **36,950 protein-coding genes** were annotated, with the majority of gene models supported by RNA-seq data.Compared to BTx623, the Ji2055 genome captures distinct sequence variations, especially in centromeric regions, offering insights into sorghum's genetic diversity. Ji2055-T2T improves the understanding of sequence composition and gene function in complex, repetitive regions.

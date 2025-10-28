@@ -15,9 +15,9 @@ use strict;
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 8;  #this is sorghumbase version1, but the outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 9;  #this is sorghumbase version1, but the outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Oct 2024';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2025';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
@@ -25,7 +25,7 @@ use strict;
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.sorghumbase.org';
   $SiteDefs::PE_URL             = 'https://'.$SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::ENSEMBL_PORT       = 89;
+  $SiteDefs::ENSEMBL_PORT       = 88;
   $SiteDefs::ENSEMBL_PROXY_PORT = 80; # Port used for self-referential URLs
   $SiteDefs::ENSEMBL_USER       = 'nobody';#getpwuid($>);          
   $SiteDefs::ENSEMBL_GROUP      = 'nobody';#getgrgid($));           
@@ -144,7 +144,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502'; #brie:5202';
 #'http://brie:5202';
 #'http://www.ebi.ac.uk/Tools/services/rest/ncbiblast';
-  $SiteDefs::EBEYE_REST_ENDPOINT     =  'http://localhost:9806'; #'http://brie8:9804';
+  $SiteDefs::EBEYE_REST_ENDPOINT     =  'https://data.sorghumbase.org/ebeye9'; #'http://localhost:9806'; #'http://brie8:9804';
 #'https://data.sorghumbase.org/ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
 #'http://www.ebi.ac.uk/ebisearch/ws/rest';
 #$SiteDefs::EBEYE_REST_ENDPOINT     = 'http://data.gramene.org/sorghum-ebeye' . $SiteDefs::SITE_RELEASE_VERSION;
@@ -209,10 +209,6 @@ $SiteDefs::PRODUCTION_NAMES = [sort qw(
         qw(
         sorghum_bicolorv5
     ),
-
-	qw(
-	sorghum_pi543243ph256
-    ),
 	qw(
 	sorghum_pi543243ph256
 	sorghum_pi543246phb279
@@ -260,7 +256,22 @@ $SiteDefs::PRODUCTION_NAMES = [sort qw(
 	sorghum_pi601756r145
 	sorghum_pi602599phbcwnl
 	sorghum_pi602600phbepoyj
-    )
+    ),
+	qw(
+	sorghum_grif16309
+	sorghum_pi329250
+	sorghum_pi534133
+	sorghum_pi552861
+	sorghum_pi561072
+	sorghum_pi561073
+	sorghum_pi576434
+	sorghum_pi655993
+	sorghum_pi656057
+	sorghum_pi656068
+	sorghum_bicolort2tagi
+	sorghum_ji2055t2tagi
+	sorghum_bicolort2tcas
+)
     ];
 
   $SiteDefs::ENSEMBL_TOOLS_LIST = [
