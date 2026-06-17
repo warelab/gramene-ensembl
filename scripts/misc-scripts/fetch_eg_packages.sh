@@ -1,6 +1,6 @@
 #!/bin/sh
 
-branch_eg=release/eg/60
+#branch_eg=release/eg/60
 
 if [ ! ${branch_eg} ]
    then 
