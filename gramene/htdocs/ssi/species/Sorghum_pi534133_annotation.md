@@ -1,2 +1,6 @@
 ### Annotation
-Gene annotations were built by the Ware Lab in CSHL using a pan-gene index from reference gene models and propagated to representative assemblies using the Liftoff tool and further updating their structure using PASA tool.
+Gene annotation for Sorghum bicolor PI_534133 was performed as part of a two-round pan-genome annotation strategy.
+
+In the first round, transcript assemblies derived from Illumina RNA-seq data were generated using PERTRAN and PASA. Homology-based gene prediction methods included FGENESH, FGENESH_EST, EXONERATE, AUGUSTUS, and PASA-derived ORFs. Predictions were filtered based on transcript support, protein homology, repeat overlap, and domain composition.
+
+In the second round, high-confidence gene models were propagated across the pan-genome using homology-based predictions from other sorghum genomes. Low-confidence, repetitive, or weakly supported models were removed to generate a refined gene set.

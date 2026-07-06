@@ -1,21 +1,20 @@
 taxonTreeData = [
    {
-      "isFolder" : true,
       "children" : [
          {
-            "key" : "Brassicaceae",
-            "title" : "Brassicaceae (1)",
             "children" : [
                {
                   "title" : "Arabidopsis thaliana",
                   "key" : "Arabidopsis_thaliana"
                }
             ],
+            "title" : "Brassicaceae (1)",
+            "key" : "Brassicaceae",
             "isFolder" : true
          },
          {
-            "key" : "Populus_trichocarpa",
-            "title" : "Populus trichocarpa"
+            "title" : "Populus trichocarpa",
+            "key" : "Populus_trichocarpa"
          },
          {
             "key" : "Vitis_vinifera",
@@ -23,52 +22,83 @@ taxonTreeData = [
          }
       ],
       "key" : "Dicots",
+      "isFolder" : true,
       "title" : "Dicots (3)"
    },
    {
+      "isFolder" : true,
+      "key" : "Monocots",
+      "title" : "Monocots (119)",
       "children" : [
          {
-            "key" : "Grasses",
-            "title" : "Grasses (91)",
             "children" : [
                {
-                  "key" : "Rices",
-                  "title" : "Rices (1)",
                   "children" : [
                      {
                         "key" : "Oryza_sativa",
                         "title" : "Oryza sativa Japonica Nipponbare"
                      }
                   ],
-                  "isFolder" : true
+                  "title" : "Rices (1)",
+                  "isFolder" : true,
+                  "key" : "Rices"
                },
                {
+                  "title" : "Warm season grasses (C4) (118)",
+                  "isFolder" : true,
                   "key" : "Warm season grasses (C4)",
-                  "title" : "Warm season grasses (C4) (90)",
                   "children" : [
                      {
-                        "title" : "Sorghum BTx623 v5",
-                        "key" : "Sorghum_bicolorv5"
+                        "title" : "Sorghum bicolor ssp. bicolor PI513676",
+                        "key" : "Sorghum_pi513676"
                      },
                      {
-                        "key" : "Sorghum_is19953",
-                        "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) IS19953"
+                        "key" : "Sorghum bicolor ssp. bicolor PI533869",
+                        "title" : "Sorghum_pi533869"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) PI525695",
-                        "key" : "Sorghum_pi525695"
+                        "key" : "Sorghum bicolor ssp. bicolor PI565121",
+                        "title" : "Sorghum_pi565121"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor BTx623",
-                        "key" : "Sorghum_bicolor"
+                        "title" : "Sorghum bicolor ssp. bicolor PI569459",
+                        "key" : "Sorghum_pi569459"
                      },
                      {
-                        "key" : "Sorghum_bicolort2tagi",
-                        "title" : "Sorghum bicolor ssp. bicolor BTx623 AGI T2T"
+                        "title" : "Sorghum bicolor ssp. bicolor PI585966",
+                        "key" : "Sorghum_pi585966"
                      },
                      {
-                        "key" : "Sorghum_bicolort2tcas",
-                        "title" : "Sorghum bicolor ssp. bicolor BTx623 CAS T2T"
+                        "title" : "Sorghum bicolor ssp. bicolor PI656050",
+                        "key" : "Sorghum_pi656050"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI597980",
+                        "key" : "Sorghum_pi597980"
+                     },
+                     {
+                        "key" : "Sorghum_bicolorv5",
+                        "title" : "Sorghum BTx623 v5"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) IS19953",
+                        "key" : "Sorghum_is19953"
+                     },
+                     {
+                        "key" : "Sorghum_pi525695",
+                        "title" : "Sorghum bicolor ssp. bicolor (margaritiferum) PI525695"
+                     },
+                     {
+                        "key" : "Sorghum_bicolor",
+                        "title" : "Sorghum bicolor ssp. bicolor BTx623"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor BTx623 AGI T2T",
+                        "key" : "Sorghum_bicolort2tagi"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor BTx623 CAS T2T",
+                        "key" : "Sorghum_bicolort2tcas"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor Grif16309",
@@ -83,56 +113,88 @@ taxonTreeData = [
                         "title" : "Sorghum bicolor ssp. bicolor IS3614-3"
                      },
                      {
-                        "key" : "Sorghum_is8525",
-                        "title" : "Sorghum bicolor ssp. bicolor IS8525"
+                        "title" : "Sorghum bicolor ssp. bicolor IS8525",
+                        "key" : "Sorghum_is8525"
                      },
                      {
                         "key" : "Sorghum_is929",
                         "title" : "Sorghum bicolor ssp. bicolor IS929"
                      },
                      {
-                        "key" : "Sorghum_ji2055t2tagi",
-                        "title" : "Sorghum bicolor ssp. bicolor Ji2055 AGI T2T "
+                        "title" : "Sorghum bicolor ssp. bicolor Ji2055 AGI T2T ",
+                        "key" : "Sorghum_ji2055t2tagi"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor Ji2731",
-                        "key" : "Sorghum_ji2731"
+                        "key" : "Sorghum_ji2731",
+                        "title" : "Sorghum bicolor ssp. bicolor Ji2731"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI154844",
+                        "key" : "Sorghum_pi154844"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI156178",
+                        "key" : "Sorghum_pi156178"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI180348",
+                        "key" : "Sorghum_pi180348"
+                     },
+                     {
+                        "key" : "Sorghum_pi276816",
+                        "title" : "Sorghum bicolor ssp. bicolor PI276816"
+                     },
+                     {
+                        "key" : "Sorghum_pi276837",
+                        "title" : "Sorghum bicolor ssp. bicolor PI276837"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI329250",
                         "key" : "Sorghum_pi329250"
                      },
                      {
-                        "key" : "Sorghum_pi534133",
-                        "title" : "Sorghum bicolor ssp. bicolor PI534133"
+                        "title" : "Sorghum bicolor ssp. bicolor PI329301",
+                        "key" : "Sorghum_pi329301"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI329501",
+                        "key" : "Sorghum_pi329501"
+                     },
+                     {
+                        "key" : "Sorghum_pi533766",
+                        "title" : "Sorghum bicolor ssp. bicolor PI533766"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI534133",
+                        "key" : "Sorghum_pi534133"
                      },
                      {
                         "key" : "Sorghum_pi543243ph256",
                         "title" : "Sorghum bicolor ssp. bicolor PI543243_PH256"
                      },
                      {
-                        "key" : "Sorghum_pi543246phb279",
-                        "title" : "Sorghum bicolor ssp. bicolor PI543246_PHB279"
+                        "title" : "Sorghum bicolor ssp. bicolor PI543246_PHB279",
+                        "key" : "Sorghum_pi543246phb279"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI543247_PHB349",
-                        "key" : "Sorghum_pi543247phb349"
+                        "key" : "Sorghum_pi543247phb349",
+                        "title" : "Sorghum bicolor ssp. bicolor PI543247_PHB349"
                      },
                      {
                         "key" : "Sorghum_pi544069ph352",
                         "title" : "Sorghum bicolor ssp. bicolor PI544069_PH352"
                      },
                      {
-                        "key" : "Sorghum_pi552861",
-                        "title" : "Sorghum bicolor ssp. bicolor PI552861"
+                        "title" : "Sorghum bicolor ssp. bicolor PI552861",
+                        "key" : "Sorghum_pi552861"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI554646_PH288",
                         "key" : "Sorghum_pi554646ph288"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI554647_PH355",
-                        "key" : "Sorghum_pi554647ph355"
+                        "key" : "Sorghum_pi554647ph355",
+                        "title" : "Sorghum bicolor ssp. bicolor PI554647_PH355"
                      },
                      {
                         "key" : "Sorghum_pi554648ph356",
@@ -175,8 +237,8 @@ taxonTreeData = [
                         "key" : "Sorghum_pi562621ph538"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI562622_PHB122",
-                        "key" : "Sorghum_pi562622phb122"
+                        "key" : "Sorghum_pi562622phb122",
+                        "title" : "Sorghum bicolor ssp. bicolor PI562622_PHB122"
                      },
                      {
                         "key" : "Sorghum_pi562623phb118",
@@ -187,48 +249,52 @@ taxonTreeData = [
                         "key" : "Sorghum_pi562624pha118"
                      },
                      {
-                        "key" : "Sorghum_pi562625pha122",
-                        "title" : "Sorghum bicolor ssp. bicolor PI562625_PHA122"
+                        "title" : "Sorghum bicolor ssp. bicolor PI562625_PHA122",
+                        "key" : "Sorghum_pi562625pha122"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI574398_PHA651",
-                        "key" : "Sorghum_pi574398pha651"
+                        "title" : "Sorghum bicolor ssp. bicolor PI570071",
+                        "key" : "Sorghum_pi570071"
                      },
                      {
-                        "key" : "Sorghum_pi574406pha151",
-                        "title" : "Sorghum bicolor ssp. bicolor PI574406_PHA151"
+                        "key" : "Sorghum_pi574398pha651",
+                        "title" : "Sorghum bicolor ssp. bicolor PI574398_PHA651"
                      },
                      {
-                        "key" : "Sorghum_pi574407phb151",
-                        "title" : "Sorghum bicolor ssp. bicolor PI574407_PHB151"
+                        "title" : "Sorghum bicolor ssp. bicolor PI574406_PHA151",
+                        "key" : "Sorghum_pi574406pha151"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI576434",
-                        "key" : "Sorghum_pi576434"
+                        "title" : "Sorghum bicolor ssp. bicolor PI574407_PHB151",
+                        "key" : "Sorghum_pi574407phb151"
+                     },
+                     {
+                        "key" : "Sorghum_pi576434",
+                        "title" : "Sorghum bicolor ssp. bicolor PI576434"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI594354_PHWIABQE",
                         "key" : "Sorghum_pi594354phwiabqe"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI594355_PHB1CGQF",
-                        "key" : "Sorghum_pi594355phb1cgqf"
+                        "key" : "Sorghum_pi594355phb1cgqf",
+                        "title" : "Sorghum bicolor ssp. bicolor PI594355_PHB1CGQF"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI596332_PH387LM",
-                        "key" : "Sorghum_pi596332ph387lm"
+                        "key" : "Sorghum_pi596332ph387lm",
+                        "title" : "Sorghum bicolor ssp. bicolor PI596332_PH387LM"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI596567_PH4KNYE",
-                        "key" : "Sorghum_pi596567ph4knye"
+                        "key" : "Sorghum_pi596567ph4knye",
+                        "title" : "Sorghum bicolor ssp. bicolor PI596567_PH4KNYE"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI601264_PH227",
                         "key" : "Sorghum_pi601264ph227"
                      },
                      {
-                        "key" : "Sorghum_pi601415ph232",
-                        "title" : "Sorghum bicolor ssp. bicolor PI601415_PH232"
+                        "title" : "Sorghum bicolor ssp. bicolor PI601415_PH232",
+                        "key" : "Sorghum_pi601415ph232"
                      },
                      {
                         "key" : "Sorghum_pi601552a8087c",
@@ -243,8 +309,8 @@ taxonTreeData = [
                         "title" : "Sorghum bicolor ssp. bicolor PI601554_PH289"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI601555_PH308",
-                        "key" : "Sorghum_pi601555ph308"
+                        "key" : "Sorghum_pi601555ph308",
+                        "title" : "Sorghum bicolor ssp. bicolor PI601555_PH308"
                      },
                      {
                         "key" : "Sorghum_pi601556ph309",
@@ -263,76 +329,120 @@ taxonTreeData = [
                         "title" : "Sorghum bicolor ssp. bicolor PI601717_PH333"
                      },
                      {
-                        "key" : "Sorghum_pi601718pha82",
-                        "title" : "Sorghum bicolor ssp. bicolor PI601718_PHA82"
+                        "title" : "Sorghum bicolor ssp. bicolor PI601718_PHA82",
+                        "key" : "Sorghum_pi601718pha82"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI601719_PHA86",
-                        "key" : "Sorghum_pi601719pha86"
+                        "key" : "Sorghum_pi601719pha86",
+                        "title" : "Sorghum bicolor ssp. bicolor PI601719_PHA86"
                      },
                      {
-                        "key" : "Sorghum_pi601720phb82",
-                        "title" : "Sorghum bicolor ssp. bicolor PI601720_PHB82"
+                        "title" : "Sorghum bicolor ssp. bicolor PI601720_PHB82",
+                        "key" : "Sorghum_pi601720phb82"
                      },
                      {
                         "key" : "Sorghum_pi601721phb86",
                         "title" : "Sorghum bicolor ssp. bicolor PI601721_PHB86"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI601743_HP150",
-                        "key" : "Sorghum_pi601743hp150"
+                        "key" : "Sorghum_pi601743hp150",
+                        "title" : "Sorghum bicolor ssp. bicolor PI601743_HP150"
                      },
                      {
-                        "key" : "Sorghum_pi601744r159",
-                        "title" : "Sorghum bicolor ssp. bicolor PI601744_R159"
+                        "title" : "Sorghum bicolor ssp. bicolor PI601744_R159",
+                        "key" : "Sorghum_pi601744r159"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI601756_R145",
-                        "key" : "Sorghum_pi601756r145"
+                        "key" : "Sorghum_pi601756r145",
+                        "title" : "Sorghum bicolor ssp. bicolor PI601756_R145"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI602599_PHBCWNL",
-                        "key" : "Sorghum_pi602599phbcwnl"
+                        "key" : "Sorghum_pi602599phbcwnl",
+                        "title" : "Sorghum bicolor ssp. bicolor PI602599_PHBCWNL"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI602600_PHBEPOYJ",
                         "key" : "Sorghum_pi602600phbepoyj"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI655993",
-                        "key" : "Sorghum_pi655993"
+                        "key" : "Sorghum_pi655981",
+                        "title" : "Sorghum bicolor ssp. bicolor PI655981"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor PI656057",
-                        "key" : "Sorghum_pi656057"
+                        "key" : "Sorghum_pi655988",
+                        "title" : "Sorghum bicolor ssp. bicolor PI655988"
+                     },
+                     {
+                        "key" : "Sorghum_pi655993",
+                        "title" : "Sorghum bicolor ssp. bicolor PI655993"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI656015",
+                        "key" : "Sorghum_pi656015"
+                     },
+                     {
+                        "key" : "Sorghum_pi656023",
+                        "title" : "Sorghum bicolor ssp. bicolor PI656023"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI656027",
+                        "key" : "Sorghum_pi656027"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI656031",
+                        "key" : "Sorghum_pi656031"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI656044",
+                        "key" : "Sorghum_pi656044"
+                     },
+                     {
+                        "key" : "Sorghum_pi656057",
+                        "title" : "Sorghum bicolor ssp. bicolor PI656057"
                      },
                      {
                         "title" : "Sorghum bicolor ssp. bicolor PI656068",
                         "key" : "Sorghum_pi656068"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor R931945-2-2",
-                        "key" : "Sorghum_r93194522"
+                        "title" : "Sorghum bicolor ssp. bicolor PI656111",
+                        "key" : "Sorghum_pi656111"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI660557",
+                        "key" : "Sorghum_pi660557"
+                     },
+                     {
+                        "title" : "Sorghum bicolor ssp. bicolor PI660563",
+                        "key" : "Sorghum_pi660563"
+                     },
+                     {
+                        "key" : "Sorghum_pi660565",
+                        "title" : "Sorghum bicolor ssp. bicolor PI660565"
+                     },
+                     {
+                        "key" : "Sorghum_r93194522",
+                        "title" : "Sorghum bicolor ssp. bicolor R931945-2-2"
                      },
                      {
                         "key" : "Sorghum_rio",
                         "title" : "Sorghum bicolor ssp. bicolor Rio"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. bicolor Tx2783",
-                        "key" : "Sorghum_tx2783pac"
+                        "key" : "Sorghum_tx2783pac",
+                        "title" : "Sorghum bicolor ssp. bicolor Tx2783"
                      },
                      {
-                        "key" : "Sorghum_tx430nano",
-                        "title" : "Sorghum bicolor ssp. bicolor Tx430"
+                        "title" : "Sorghum bicolor ssp. bicolor Tx430",
+                        "key" : "Sorghum_tx430nano"
                      },
                      {
                         "key" : "Sorghum_tx436pac",
                         "title" : "Sorghum bicolor ssp. bicolor Tx436"
                      },
                      {
-                        "title" : "Sorghum bicolor ssp. drummondii PI532566",
-                        "key" : "Sorghum_pi532566"
+                        "key" : "Sorghum_pi532566",
+                        "title" : "Sorghum bicolor ssp. drummondii PI532566"
                      },
                      {
                         "key" : "Sorghum_pi564085wkmiii",
@@ -355,16 +465,16 @@ taxonTreeData = [
                         "title" : "Sorghum bicolor ssp. verticilliflorum PI536008"
                      },
                      {
-                        "key" : "Sorghum_chineseamber",
-                        "title" : "Sorghum chineseamber"
+                        "title" : "Sorghum chineseamber",
+                        "key" : "Sorghum_chineseamber"
                      },
                      {
                         "title" : "Sorghum grassl",
                         "key" : "Sorghum_grassl"
                      },
                      {
-                        "key" : "Sorghum_leoti",
-                        "title" : "Sorghum leoti"
+                        "title" : "Sorghum leoti",
+                        "key" : "Sorghum_leoti"
                      },
                      {
                         "key" : "Sorghum_pi229841",
@@ -379,16 +489,16 @@ taxonTreeData = [
                         "key" : "Sorghum_pi329311"
                      },
                      {
-                        "key" : "Sorghum_pi506069",
-                        "title" : "Sorghum pi506069"
+                        "title" : "Sorghum pi506069",
+                        "key" : "Sorghum_pi506069"
                      },
                      {
-                        "key" : "Sorghum_pi510757",
-                        "title" : "Sorghum pi510757"
+                        "title" : "Sorghum pi510757",
+                        "key" : "Sorghum_pi510757"
                      },
                      {
-                        "title" : "Sorghum pi655972",
-                        "key" : "Sorghum_pi655972"
+                        "key" : "Sorghum_pi655972",
+                        "title" : "Sorghum pi655972"
                      },
                      {
                         "key" : "Sorghum_s3691",
@@ -406,19 +516,16 @@ taxonTreeData = [
                         "title" : "Zea mays B73 v5",
                         "key" : "Zea_maysb73"
                      }
-                  ],
-                  "isFolder" : true
+                  ]
                }
             ],
+            "title" : "Grasses (119)",
+            "key" : "Grasses",
             "isFolder" : true
          }
-      ],
-      "key" : "Monocots",
-      "title" : "Monocots (91)",
-      "isFolder" : true
+      ]
    },
    {
-      "isFolder" : true,
       "children" : [
          {
             "title" : "Selaginella moellendorffii",
@@ -430,7 +537,8 @@ taxonTreeData = [
          }
       ],
       "title" : "Other (2)",
-      "key" : "Other"
+      "key" : "Other",
+      "isFolder" : true
    }
 ]
 ;
