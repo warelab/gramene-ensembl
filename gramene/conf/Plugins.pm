@@ -16,7 +16,7 @@ $SiteDefs::ENSEMBL_PLUGINS = [
   'EnsEMBL::Tools'         => $ENSROOT.'/public-plugins/tools',
   'EnsEMBL::Users'         => $ENSROOT.'/public-plugins/users',
   'EnsEMBL::Memcached'     => $ENSROOT.'/public-plugins/memcached',
-  'EnsEMBL::Doc'           => $ENSROOT.'/public-plugins/docs',
+  'EnsEMBL::Docs'           => $ENSROOT.'/public-plugins/docs',
 ];
 
 1;
