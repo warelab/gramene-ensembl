@@ -6,6 +6,8 @@ use strict;
 
 	sub update_conf {
 
+  $SiteDefs::ENSEMBL_MINIFIED_JS = 0;  #DEBUG
+
   $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.sorghumbase.org';
   #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.sorghumbase.org';
   
@@ -133,7 +135,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_BLAST_BY_SEQID = 1; # blast on gene page sequence
   $SiteDefs::ENSEMBL_MART_ENABLED = 0; # And mart
 
-  $SiteDefs::ENSEMBL_VEP_ENABLED    = 0;
+  $SiteDefs::ENSEMBL_VEP_ENABLED    = 1;
   $SiteDefs::ENSEMBL_AC_ENABLED     = 0;
   $SiteDefs::ENSEMBL_IDM_ENABLED    = 0;
   $SiteDefs::ENSEMBL_FC_ENABLED     = 0;
