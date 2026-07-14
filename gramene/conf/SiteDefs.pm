@@ -17,9 +17,9 @@ use strict;
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
 #  $SiteDefs::ENSEMBL_STATIC_SERVER  = $SiteDefs::ENSEMBL_SERVERNAME; 
 	#the ensembl-webcode/modules/Image/Minifier.pm in v87 uses ENSEMBL_STATIC_SERVER, but it was not defined anywhere, maybe a bug in that module, define it here
-  $SiteDefs::SITE_RELEASE_VERSION = 10;  # outgroup db cores are _2_87
+  $SiteDefs::SITE_RELEASE_VERSION = 11;  # outgroup db cores are _2_87
   $SiteDefs::SITE_RELEASE_VERSION_EG = 43;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Jan 2026';
+  $SiteDefs::SITE_RELEASE_DATE    = 'Aug 2026';
 
   $SiteDefs::LARGE_SPECIES_SET = 1;
   $SiteDefs::SITE_NAME            = 'Sorghumbase';
@@ -305,6 +305,12 @@ $SiteDefs::PRODUCTION_NAMES = [sort qw(
 	sorghum_pi660563
 	sorghum_pi660565
 	sorghum_pi154987
+   ),
+
+	qw(
+	sorghum_pi533831
+	sorghum_pi533991
+	sorghum_pi533794
    )
     ];
 
