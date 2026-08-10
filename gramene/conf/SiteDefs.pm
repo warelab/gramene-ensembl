@@ -311,6 +311,7 @@ $SiteDefs::PRODUCTION_NAMES = [sort qw(
 	sorghum_pi533831
 	sorghum_pi533991
 	sorghum_pi533794
+	sorghum_pi656029
    )
     ];
 
