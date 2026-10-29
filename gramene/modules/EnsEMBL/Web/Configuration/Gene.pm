@@ -193,6 +193,37 @@ sub modify_tree {
     { 'availability' => 'gene' }
   );
 
+  # SorghumBase link only for Sorghum bicolor BTx623 v3 (Sorghum_bicolor_NCBIv3)
+  if ($self->species eq 'Sorghum_bicolor' && $self->hub->species_defs->ASSEMBLY_VERSION eq 'Sorghum_bicolor_NCBIv3') {
+    # create_node appends to the end of the menu, i.e. right after Gramene Search
+    $self->create_node('SorghumbaseSearch', 'Sorghumbase Search',
+      [qw(
+        sorghumbase_search  EnsEMBL::Web::Component::Gene::SorghumbaseSearch
+      )],
+      { 'availability' => 'gene' }
+    );
+  }
+
+  # Oryza Gramene link only for Oryza sativa Japonica (IRGSP-1.0)
+  if ($self->species eq 'Oryza_sativa' && $self->hub->species_defs->ASSEMBLY_VERSION eq 'IRGSP-1.0') {
+    $self->create_node('GrameneOryzaSearch', 'GrameneOryza',
+      [qw(
+        grameneoryza_search  EnsEMBL::Web::Component::Gene::GrameneOryzaSearch
+      )],
+      { 'availability' => 'gene' }
+    );
+  }
+
+  # Gramene Maize pangenome link only for Zea mays B73 (Zm-B73-REFERENCE-NAM-5.0)
+  if ($self->species eq 'Zea_mays' && $self->hub->species_defs->ASSEMBLY_VERSION eq 'Zm-B73-REFERENCE-NAM-5.0') {
+    $self->create_node('GrameneMaizeSearch', 'GrameneMaize Search',
+      [qw(
+        gramenemaize_search  EnsEMBL::Web::Component::Gene::GrameneMaizeSearch
+      )],
+      { 'availability' => 'gene' }
+    );
+  }
+
 
 }
 
