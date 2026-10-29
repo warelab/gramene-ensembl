@@ -5,14 +5,14 @@ use strict;
 sub update_conf {
 
    #$SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
-  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl.gramene.org';
+  $SiteDefs::ENSEMBL_SERVERNAME             = 'ensembl-dev.gramene.org';
   $SiteDefs::GRM_SERVERNAME = 'gramene.org'; #dev.gramene.org won't work
 
   $SiteDefs::ENSEMBL_MAX_PROCESS_SIZE     = 2000000; 
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
-  $SiteDefs::SITE_RELEASE_VERSION = 69;
-  $SiteDefs::SITE_RELEASE_VERSION_EG = 69;
-  $SiteDefs::SITE_RELEASE_DATE    = 'Sep 2025';  #G66 is 'Dec 2022'
+  $SiteDefs::SITE_RELEASE_VERSION = 70;
+  $SiteDefs::SITE_RELEASE_VERSION_EG = 70;
+  $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2026';  #G66 is 'Dec 2022'
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
   $SiteDefs::SITE_FTP             = 'https://ftp.gramene.org/pub';  #the one that's used for download link on species page is ENSEMBL_FTP_URL in DEFAULT.ini
@@ -76,7 +76,7 @@ push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/loca
 $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
     'host'        => 'colden',                                                                       # Database host (defaults to ensembldb.ensembl.org)
     'user'        => 'weix',                                                                       # Defaults to 'anonymous'
-    'password'    => 'warelab',                                                                       # Not used by default
+    'password'    => undef,   # set in gramene-private/conf/SiteDefs.pm (not in git)                                                                       # Not used by default
     'port'        => 3306,                                                                       # Defaults to 5306
     'fork'        => 4,                                                                           # Enable forking, using 4 forks
   };
@@ -87,7 +87,7 @@ $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                               
   $SiteDefs::ENSEMBL_USERDB_USER = 'gramene_web';
   $SiteDefs::ENSEMBL_USERDB_HOST = 'colden.cshl.edu';
   $SiteDefs::ENSEMBL_USERDB_PORT =  3306;
-  $SiteDefs::ENSEMBL_USERDB_PASS = 'gram3n3';
+  $SiteDefs::ENSEMBL_USERDB_PASS = ''; # set in gramene-private/conf/SiteDefs.pm (not in git)
 
   #----------
   # Logging

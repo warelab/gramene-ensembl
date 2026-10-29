@@ -5,6 +5,8 @@
 my $ENSROOT = $SiteDefs::ENSEMBL_SERVERROOT;
 my $GRMROOT = $SiteDefs::ENSEMBL_SERVERROOT.'/gramene-live';
 $SiteDefs::ENSEMBL_PLUGINS = [
+  # untracked plugin holding DB passwords; listed first so it overrides gramene-live
+  (-d $ENSROOT.'/gramene-private' ? ('EnsEMBL::GramenePrivate' => $ENSROOT.'/gramene-private') : ()),
   'EnsEMBL::Gramene'       => $GRMROOT.'/gramene',
   'EnsEMBL::Mart'          => $ENSROOT.'/public-plugins/mart',
   'EG::EBEyeSearch'        => $ENSROOT.'/eg-web-search/',
