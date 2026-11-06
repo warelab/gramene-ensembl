@@ -36,6 +36,7 @@ sub args {
       dry
 			overwrite
 			registry|reg|r=s
+			repeat_logic=s
       out_dir=s
       verbose 
       help
@@ -44,6 +45,7 @@ sub args {
   ) or pod2usage(-verbose => 1, -exitval => 1);
   pod2usage(-verbose => 1, -exitval => 0) if $opts->{help};
   pod2usage(-verbose => 2, -exitval => 0) if $opts->{man};
+  $opts->{repeat_logic} //= '^(repeatmask|dust|trf)';
   $self->{opts} = $opts;
   return;
 }
@@ -166,8 +168,16 @@ sub _ensure_fasta {
 	$self->v("dump $type into $file_path");
 	$self->_dump_fasta($dba, $file_path, $type) unless ($self->opts->{dry});
     
-    $self->v("index $file_path");
-    $self->_index_fasta($file_path) unless ($self->opts->{dry});
+    my @to_index = ($file_path);
+    if ($type eq 'dna') {
+        (my $sm = $file_path) =~ s/dna\.toplevel/dna_sm.toplevel/;
+        (my $rm = $file_path) =~ s/dna\.toplevel/dna_rm.toplevel/;
+        push @to_index, $sm, $rm;
+    }
+    for my $f (@to_index) {
+        $self->v("index $f");
+        $self->_index_fasta($f) unless ($self->opts->{dry});
+    }
 	return;
 }
 
@@ -178,7 +188,21 @@ sub _dump_fasta {
 	my $slice_adaptor = $dba->get_SliceAdaptor;
 	my $slices = $slice_adaptor->fetch_all('toplevel');
 	if ($type eq 'dna') {
-		
+		# Mask with every repeat analysis whose logic_name matches -repeat_logic. The old
+		# hardcoded ['RepeatMask'] matches no analysis in current cores (they have
+		# repeatmask_redat, repeatmask_repbase, dust, trf, ...), so the masked files came out
+		# as byte-identical unmasked copies without any warning.
+		my $logic_re = $self->opts->{repeat_logic};
+		my @logic_names = grep { /$logic_re/i }
+			map { $_->logic_name } @{ $dba->get_AnalysisAdaptor->fetch_all_by_feature_class('RepeatFeature') };
+		if (@logic_names) {
+			$self->v("\trepeat masking with: %s", join(', ', @logic_names));
+		}
+		else {
+			$self->v("\tWARNING no repeat analyses match /%s/: dna_sm and dna_rm will be UNMASKED copies", $logic_re);
+			@logic_names = ('__no_such_analysis__');
+		}
+
 		my $outfile_sm = $outfile;
 		$outfile_sm =~ s/dna\.toplevel/dna_sm.toplevel/;
 		my $outfile_rm = $outfile;
@@ -189,14 +213,14 @@ sub _dump_fasta {
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
 		foreach my $slice (@$slices) {
-			my $seqstr = $slice->get_repeatmasked_seq(['RepeatMask'],1)->seq;
+			my $seqstr = $slice->get_repeatmasked_seq(\@logic_names,1)->seq;
 			$seqstr ||= $slice->seq;
 			my $seq = Bio::Seq->new(
 				-display_id => $slice->seq_region_name,
 				-seq => $seqstr
 			);
 			$seqio_sm->write_seq($seq);
-			$seqstr = $slice->get_repeatmasked_seq(['RepeatMask'],0)->seq;
+			$seqstr = $slice->get_repeatmasked_seq(\@logic_names,0)->seq;
 			$seqstr ||= $slice->seq;
 			$seq = Bio::Seq->new(
 				-display_id => $slice->seq_region_name,
@@ -440,6 +464,12 @@ the program is silent.
 
 If specified the script will inform of the types of commands and actions it 
 would have performed.
+
+=item B<--repeat_logic>
+
+Case-insensitive regex selecting the repeat analyses (by logic_name) used to build
+dna_sm and dna_rm. Default C<^(repeatmask|dust|trf)>, i.e. RepeatMasker libraries plus
+low-complexity (dust) and tandem repeats (trf); excludes e.g. tallymer and repeatdetector.
 
 =item B<--overwrite>
 
