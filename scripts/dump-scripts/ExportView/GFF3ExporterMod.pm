@@ -110,9 +110,10 @@ sub initialize {
 		'duplicate_sequence_id'		=> {},
 		'debug'						=> $init{'debug'} || 0,
 		'export_transcripts'		=> defined $init{'export_transcripts'} ? $init{'export_transcripts'} : 1,
-		'export_introns'			=> defined $init{'export_introns'} ? $init{'export_introns'} : 1,
+		'export_introns'			=> defined $init{'export_introns'} ? $init{'export_introns'} : 0,
 		'export_exons'				=> defined $init{'export_exons'} ? $init{'export_exons'} : 1,
 		'export_cdses'				=> defined $init{'export_cdses'} ? $init{'export_cdses'} : 1,
+		'export_utrs'				=> defined $init{'export_utrs'} ? $init{'export_utrs'} : 1,
 	};
 	
 	@{$self}{keys %$default} = values %$default;
@@ -156,6 +157,11 @@ sub id_counter {
 	my $self = shift;
 	return ++$self->{'id_counter'};
 }
+sub reset_id_counter{
+	my $self = shift;
+	$self->{'id_counter'} = 0;
+}
+
 
 =pod
 
@@ -305,8 +311,10 @@ sub export_transcripts {
 	my $gene_id 	= shift;
 	my $transcripts	= shift;
 
+    my $cano_trpt = $gene->canonical_transcript;
+    my $cano_trpt_name = $cano_trpt->stable_id if $cano_trpt;
+    
 	foreach my $transcript (@$transcripts) {
-		my $extra_attributes = '';
 	
 		my $transcript_id = $transcript->stable_id;
 		
@@ -316,6 +324,8 @@ sub export_transcripts {
 			$transcript_id .= '.transcript';
 		}
 		
+		my $extra_attributes = $cano_trpt_name ? $cano_trpt_name eq $transcript_name ? ';canonical_transcript=1':'':'';
+
 		if ($self->{'duplicate_transcript_id'}->{$transcript_name}++) {
 			$transcript_id .= '.' . $self->{'duplicate_transcript_id'}->{$transcript_name};
 			$extra_attributes =
@@ -353,6 +363,13 @@ sub export_transcripts {
 			$transcript_id,
 			$transcript->get_all_Introns
 		) if $self->{'export_introns'};
+       $self->export_Futrs(
+                     $fh,
+                     $gene,
+                     $transcript,
+                     $transcript_id,
+                     $transcript->get_all_five_prime_UTRs,
+             ) if $self->{'export_utrs'};
 
 		$self->export_exons(
 			$fh,
@@ -370,6 +387,21 @@ sub export_transcripts {
 			$transcript_id,
 			$transcript->get_all_Exons
 		) if $self->{'export_cdses'};
+		$self->export_Tutrs(
+                        $fh,
+                        $gene,
+                        $transcript,
+                        $transcript_id,
+                        $transcript->get_all_three_prime_UTRs,
+                ) if $self->{'export_utrs'};
+
+        # $self->export_utrs(
+        #     $fh,
+        #     $gene,
+        #     $transcript,
+        #     $transcript_id,
+        #     $transcript->get_all_Exons
+        # ) if $self->{'export_utrs'};
 	}
 
 }
@@ -438,7 +470,8 @@ sub export_exons {
 	my $transcript_id	= shift;
 	my $exons			= shift;
 	
-	foreach my $exon (@$exons) {
+	$self->reset_id_counter;	
+	foreach my $exon ( sort {$a->seq_region_start <=> $b->seq_region_start } @$exons) {
 
 
 		my $exon_id = 'exon.' . $self->id_counter;
@@ -483,7 +516,8 @@ sub export_cdses {
 	my $transcript_id	= shift;
 	my $cdses			= shift;
 	
-	foreach my $cds (@$cdses) {
+	$self->reset_id_counter;
+	foreach my $cds ( sort {$a->seq_region_start <=> $b->seq_region_start } @$cdses) {
 
 		my $cds_id = 'CDS.' . $self->id_counter;
 	
@@ -510,6 +544,165 @@ sub export_cdses {
 			), "\n";
 		}
 	}
+
+}
+
+=pod
+
+=item export_utrs(FILEHANDLE, $gene, $transcript, $transcript_id, $exons);
+
+Mainly used internally by export_transcripts.
+
+Given a file handle, a gene, a transcript, the transcript's id (whatever it should be), and an arrayref of exons, exports utrs to the file handle
+
+=cut
+
+sub export_utrs {
+	my $self			= shift;
+	my $fh				= shift;
+	my $gene			= shift;
+	my $transcript		= shift;
+	my $transcript_id	= shift;
+	my $exons			= shift;
+	my $strand = $strand_map->{$gene->strand};
+    my $utr_type = $strand eq '+' ? "five_prime_UTR" : "three_prime_UTR";
+	foreach my $exon (@$exons) {
+		my $utr_id = 'UTR.' . $self->id_counter;
+	
+		my $utr_seqid = (split(':', $gene->seqname))[2];
+		if (defined $exon->coding_region_start($transcript) && defined $exon->coding_region_end($transcript)) {
+	        # check if this exon starts with UTR or ends with UTR
+            if (defined $exon->coding_region_start($transcript) and $exon->coding_region_start($transcript) > $exon->seq_region_start) {
+                # utr ends in this exon
+                print $fh join("\t",
+                (map { $self->escape($_) }
+                (
+                    $utr_seqid,
+                    $gene->source,
+                    $utr_type,
+                    $exon->seq_region_start,
+                    $exon->coding_region_start($transcript) - 1,
+                    '.',
+                )),
+                $strand,
+                '.',
+                "Parent=" . $self->escape_attribute($transcript_id)
+                . ";Name=" . $self->escape_attribute($utr_id),
+                ), "\n";
+            }
+            if (defined $exon->coding_region_end($transcript) and $exon->coding_region_end($transcript) < $exon->seq_region_end) {
+                # we're now in the other UTR
+                $utr_type = $strand eq '-' ? "five_prime_UTR" : "three_prime_UTR";
+                print $fh join("\t",
+                (map { $self->escape($_) }
+                (
+                    $utr_seqid,
+                    $gene->source,
+                    $utr_type,
+                    $exon->coding_region_end($transcript) + 1,
+                    $exon->seq_region_end,
+                    '.',
+                )),
+                $strand,
+                '.',
+                "Parent=" . $self->escape_attribute($transcript_id)
+                . ";Name=" . $self->escape_attribute($utr_id),
+                ), "\n";
+            }
+		}
+        else {
+    		print $fh join("\t",
+    			(map { $self->escape($_) }
+    			(
+    				$utr_seqid,					#seqid
+    				$gene->source,					#source
+    				$utr_type,							#type
+    				$exon->seq_region_start,		#start
+    				$exon->seq_region_end,			#end
+    				'.',							#score
+    			)),
+    			$strand,	#strand
+    			'.',							#phase
+    			"Parent=" . $self->escape_attribute($transcript_id)		#attributes
+    			. ";Name=" . $self->escape_attribute($utr_id),
+			
+    		), "\n";
+        }
+	}
+}
+sub export_Futrs {
+        my $self                        = shift;
+        my $fh                          = shift;
+        my $gene                        = shift;
+        my $transcript          = shift;
+        my $transcript_id       = shift;
+        my $Futrs                       = shift;
+
+	$self->reset_id_counter;	
+        foreach my $Futr ( sort {$a->seq_region_start <=> $b->seq_region_start } @$Futrs) {
+
+                my $Futr_id = '5UTR.' . $self->id_counter;
+
+                my $Futr_seqid = (split(':', $gene->seqname))[2];
+
+                if (defined $Futr->seq_region_start && defined $Futr->seq_region_end) {
+
+                        print $fh join("\t",
+                                (map { $self->escape($_) }
+                                (
+                                        $Futr_seqid,                                                     #seqid
+                                        $gene->source,                                                        #source
+                                        'five_prime_UTR',                                                                  #type
+                                        $Futr->seq_region_start, #start
+                                        $Futr->seq_region_end,   #end
+                                        '.',                                                                    #score
+                                )),
+                                $strand_map->{$Futr->strand},                    #strand
+				'.',                                                    #phase
+                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
+                               
+
+                        ), "\n";
+                }
+        }
+
+}
+
+sub export_Tutrs {
+        my $self                        = shift;
+        my $fh                          = shift;
+        my $gene                        = shift;
+        my $transcript          = shift;
+        my $transcript_id       = shift;
+        my $Tutrs                       = shift;
+	
+	$self->reset_id_counter;
+        foreach my $Tutr ( sort {$a->seq_region_start <=> $b->seq_region_start } @$Tutrs) {
+
+                my $Tutr_id = '3UTR.' . $self->id_counter;
+
+                my $Tutr_seqid = (split(':', $gene->seqname))[2];
+
+                if (defined $Tutr->seq_region_start && defined $Tutr->seq_region_end) {
+
+                        print $fh join("\t",
+                                (map { $self->escape($_) }
+                                (
+                                        $Tutr_seqid,                                                     #seqid
+                                        $gene->source,                                                        #source
+                                        'three_prime_UTR',                                                                  #type
+                                        $Tutr->seq_region_start, #start
+                                        $Tutr->seq_region_end,   #end
+                                        '.',                                                                    #score
+                                )),
+                                $strand_map->{$Tutr->strand},                    #strand
+				'.',                                                    #phase
+                                "Parent=transcript:" . $self->escape_attribute($transcript_id),                             #attributes
+                              
+
+                        ), "\n";
+                }
+        }
 
 }
 
