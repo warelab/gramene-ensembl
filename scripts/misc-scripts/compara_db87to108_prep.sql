@@ -1,0 +1,12 @@
+ALTER TABLE homology_member drop FOREIGN KEY homology_member_ibfk_1;
+ALTER TABLE ortholog_goc_metric drop FOREIGN KEY ortholog_goc_metric_ibfk_2;
+ALTER TABLE CAFE_gene_family drop FOREIGN KEY CAFE_gene_family_ibfk_2;
+ALTER TABLE CAFE_species_gene drop FOREIGN KEY CAFE_species_gene_ibfk_2;
+ALTER TABLE gene_tree_node_attr drop FOREIGN KEY gene_tree_node_attr_ibfk_1;
+ALTER TABLE gene_tree_root_attr drop FOREIGN KEY gene_tree_root_attr_ibfk_2;
+ALTER TABLE species_tree_node_attr drop FOREIGN KEY species_tree_node_attr_ibfk_1;
+ALTER TABLE species_tree_node_tag drop FOREIGN KEY species_tree_node_tag_ibfk_1;
+ALTER TABLE species_tree_root drop FOREIGN KEY species_tree_root_ibfk_1;
+ALTER TABLE homology drop FOREIGN KEY homology_ibfk_2;
+ALTER TABLE CAFE_gene_family drop FOREIGN KEY CAFE_gene_family_ibfk_1;
+ALTER TABLE gene_tree_root drop FOREIGN KEY gene_tree_root_ibfk_5

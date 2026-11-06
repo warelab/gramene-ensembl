@@ -59,9 +59,9 @@ sub links {
   	#push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>',  if $sd->ENSEMBL_BLAST_ENABLED;
   }
 
-  push @links, 'biomart',       '<a class="constant" href="/biomart/martview">BioMart</a>';
+  push @links, 'biomart',       '<a class="constant"  target=_blank href="https://plants.ensembl.org/biomart/martview">BioMart</a>';
   push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
-  push @links, 'downloads',     '<a class="constant" href="/downloads.html">Downloads</a>';
+  push @links, 'downloads',     '<a class="constant" href="https://ftp.gramene.org/CURRENT_RELEASE/">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
 #  push @links, 'docs',          '<a class="constant" href="http://www.ensemblgenomes.org/info">Documentation</a>';
   push @links, 'feedback',      '<a class="constant" href="http://www.gramene.org/feedback">Feedback</a>'; #http://tools.gramene.org/feedback

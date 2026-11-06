@@ -35,6 +35,10 @@ use Bio::EnsEMBL::Variation::Utils::VariationEffect;
 use Getopt::Long;
 use Pod::Usage;
 
+use Bio::EnsEMBL::Variation::TranscriptVariationAllele;
+#$tva->sift_prediction
+#$tva->sift_score
+
 #use List::Compare;
 
 =head1 SYNOPSIS
@@ -207,6 +211,7 @@ sub get_transcript_variations {
                 my $vf = $tv->variation_feature();
        
 		my $transcript_stable_id = $tv->transcript_stable_id;
+		my $gene_id = get_gene_id($transcript_stable_id); 
 		my $conseq = $tv->display_consequence; 
 		my $chr    = $vf->seq_region_name;
 		my $seq_region_start = $vf->seq_region_start;
@@ -231,6 +236,7 @@ sub get_transcript_variations {
 
 
 		my @common_fields = (
+			$gene_id,
 			$transcript_stable_id,
 			$variation_name,		
 			$source,
@@ -263,13 +269,35 @@ sub get_transcript_variations {
 			}
 			
 			#calculate sift score if possible
+			# get TranscriptVariationAlleles for sift score
+                        my $tva = $tv->get_all_TranscriptVariationAlleles();
+                        my $sift_scores = join ',', (map{ $_->sift_score } @$tva);
+
+
 			#get 500bp flanking seq
+			my ($upstream_flank_start, $upstream_flank_end) = ($seq_region_start-250, $seq_region_start-1);
+			my ($downstream_flank_start, $downstream_flank_end) = ($seq_region_end+1, $seq_region_end+250);
 
-			my @gt_samples = map{ $_ . ':' . join '|', @{$genotype2samples{$_}} } 
-				sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} } 
-				(keys %genotype2samples);
+			my ($upstream_seq, $downstream_seq);
 
-			push @tvs_report,['LOF', @common_fields, @gt_samples];
+			if( $seq_region_strand == 1 ){
+				$upstream_seq = $slice_adaptor->fetch_by_location("$chr:$upstream_flank_start-$upstream_flank_end", 'toplevel')->seq;
+				$downstream_seq = $slice_adaptor->fetch_by_location("$chr:$downstream_flank_start-$downstream_flank_end", 'toplevel')->seq; 				
+			}else{
+
+			}	warn("[WARN] There are variations on - strand\n");		
+
+
+			#my @gt_samples = map{ $_ . ':' . join '|', @{$genotype2samples{$_}} } 
+			#	sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} } 
+			#	(keys %genotype2samples);
+
+			my @sorted_samples = sort { scalar @{$genotype2samples{$a}} <=> scalar @{$genotype2samples{$b}} }
+                               (keys %genotype2samples);
+			my $mutant_gt = shift @sorted_samples;
+			my @gt_samples = $mutant_gt . ':' . join '|', @{$genotype2samples{$mutant_gt}};
+
+			push @tvs_report,['LOF', @common_fields, $sift_scores, @gt_samples, $upstream_seq, $downstream_seq];
 
 
 		}else{
@@ -299,7 +327,7 @@ sub get_variation_features {
                                 $vf->seq_region_strand,
                                 #(join "|", @{$_->consequence_type}),
                                 $_->display_consequence,
-				$_->transcript_stable_id,
+				get_gene_id($_->transcript_stable_id).':'.$_->transcript_stable_id,
 				$_->pep_allele_string, 
 				$_->translation_start,
 				]
@@ -311,8 +339,21 @@ sub get_variation_features {
 }
 
 
+sub get_gene_id {
+
+	my $trpd_id= shift;
+	my $gene_stable_id = $trpt_adaptor->fetch_by_stable_id($trpd_id)
+				->get_Gene()->stable_id;
+	
+	return $gene_stable_id; 
+
+
+}
+
+
   
 ########################## subroutines ######################################
+
 
 __END__
 

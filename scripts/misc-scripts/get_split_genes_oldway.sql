@@ -1,0 +1,2 @@
+select h.is_tree_compliant as TreeCompliant, hm.homology_id as HomologyID, m.stable_id as GeneStableID, sm.stable_id as TranscriptStableID, h.description as description, m.taxon_id as TaxonID, d.name as Chr, m.dnafrag_start as ChrStart, m.dnafrag_end as ChrEnd, m.dnafrag_strand as ChrStrand from gene_member m, seq_member sm, homology_member hm, homology h, dnafrag d where sm.seq_member_id=hm.seq_member_id and m.gene_member_id=hm.gene_member_id and m.dnafrag_id=d.dnafrag_id and hm.homology_id=h.homology_id and h.description like '%gene_split';
+
