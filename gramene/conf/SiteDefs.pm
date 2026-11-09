@@ -12,6 +12,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_BASE_URL     = $SiteDefs::ENSEMBL_SERVERNAME;
   $SiteDefs::SITE_RELEASE_VERSION = 70;
   $SiteDefs::SITE_RELEASE_VERSION_EG = 70;
+  # species home page download links go to the EnsemblPlants FTP archive of the release this build is based on
+  $SiteDefs::EG_FTP_RELEASE_VERSION  = 63;
+  $SiteDefs::EG_FTP_URL              = 'https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants';
   $SiteDefs::SITE_RELEASE_DATE    = 'Dec 2026';  #G66 is 'Dec 2022'
   $SiteDefs::SITE_NAME            = 'Gramene';
   $SiteDefs::ENSEMBL_SITETYPE = 'Ensembl Plants';
