@@ -166,13 +166,20 @@ sub _ensure_fasta {
 	}
 
 	$self->v("dump $type into $file_path");
-	$self->_dump_fasta($dba, $file_path, $type) unless ($self->opts->{dry});
-    
     my @to_index = ($file_path);
     if ($type eq 'dna') {
         (my $sm = $file_path) =~ s/dna\.toplevel/dna_sm.toplevel/;
         (my $rm = $file_path) =~ s/dna\.toplevel/dna_rm.toplevel/;
         push @to_index, $sm, $rm;
+    }
+    # Dump to <name>.part and rename only once complete: the skip test above treats any
+    # non-empty file as done, so a dump killed part-way (e.g. the DB server restarting)
+    # must never leave a file under its final name.
+    if (not $self->opts->{dry}) {
+        $self->_dump_fasta($dba, "$file_path.part", $type);
+        for my $f (@to_index) {
+            rename("$f.part", $f) or die "cannot rename $f.part -> $f: $!";
+        }
     }
     for my $f (@to_index) {
         $self->v("index $f");
@@ -300,7 +307,11 @@ sub _ensure_blast {
 	}
 	
 	my $file_path = join("/",$target_dir, "$datafile");
-	if (not $self->opts->{overwrite} and (-e "$file_path.nhr" or -e "$file_path.phr")) {
+	# A DB over makeblastdb's 3 GB volume limit is written as .00.nhr, .01.nhr, ... plus a .nal
+	# (.pal) alias and has no plain .nhr, so test the alias too; otherwise every large genome is
+	# rebuilt on every run. A build that was interrupted leaves its .inprogress marker behind.
+	my $built = grep { -e "$file_path.$_" } qw/nhr phr nal pal/;
+	if (not $self->opts->{overwrite} and $built and not -e "$file_path.inprogress") {
 		$self->v("skipping BLAST $file_path");
 		return;
 	}
@@ -322,7 +333,13 @@ sub _ensure_blast {
 		? "makeblastdb -out $file_path -title \"$title\" -in $fa_file -dbtype $dbtype"
 		: "gzip -cd $fa_file.gz | makeblastdb -out $file_path -title \"$title\" -in - -dbtype $dbtype";
 		$self->v($cmd);
-		system($cmd);
+		if (open(my $mark, '>', "$file_path.inprogress")) { close($mark); }
+		if (system("set -o pipefail; $cmd") == 0) {
+			unlink "$file_path.inprogress";
+		}
+		else {
+			$self->v("WARNING makeblastdb failed for $file_path; left $file_path.inprogress so it is rebuilt next run");
+		}
 	}
 	return;
 }
@@ -361,20 +378,25 @@ sub _ensure_gff3 {
     	my $slice_adaptor = $dba->get_SliceAdaptor;
         $slice_adaptor or die "failed to get SlickAdaptor\n";
     	my $slices = $slice_adaptor->fetch_all('toplevel');
-	    open (my $gff, "| sort -k1,1 -k4,4n | bgzip -c > $file_path.gz");
+	    open (my $gff, "| sort -k1,1 -k4,4n | bgzip -c > $file_path.gz.part");
         eval {
             my $exporter = ExportView::GFF3ExporterMod->new('debug' => 0);
             $exporter->header($gff, $slice_adaptor->db->get_MetaContainer->get_common_name(), $slice_adaptor->db->get_MetaContainer->get_genebuild());
             $exporter->export_genes_from_slices($gff, @$slices);
         };
+        my $err = $@;
         close $gff;
-        if ($@) {
-            unlink "$file_path.gz";
-            $self->v("BLAMMO! DUMP FAILED: $@\n");
+        if ($err) {
+            unlink "$file_path.gz.part";
+            $self->v("BLAMMO! DUMP FAILED: $err\n");
+            die $err;    # let the driver retry this genome rather than silently moving on
         }
-        else {
-            my $cmd = "tabix -p gff $file_path.gz";
-            system($cmd);
+        rename("$file_path.gz.part", "$file_path.gz") or die "cannot rename $file_path.gz.part: $!";
+        # TBI cannot hold sequences > 512 Mb (most wheat chromosomes); fall back to CSI.
+        if (system("tabix -p gff $file_path.gz") != 0) {
+            $self->v("tbi index failed, trying csi for $file_path.gz");
+            system("tabix -C -p gff $file_path.gz") == 0
+                or $self->v("WARNING could not index $file_path.gz (e.g. a feature spanning a circular origin)");
         }
 	}
 	return;
