@@ -7,6 +7,8 @@ use warnings;
 use lib '.';
 use ExportView::GFF3ExporterMod;
 use Bio::EnsEMBL::Registry;
+use Bio::EnsEMBL::DBSQL::SequenceAdaptor;
+use Bio::DB::HTS::Faidx;
 use Bio::SeqIO;
 use Bio::Seq;
 use File::Find;
@@ -14,6 +16,38 @@ use File::Spec;
 use File::Path qw/mkpath/;
 use Getopt::Long qw/:config no_ignore_case auto_version bundling_override/;
 use Pod::Usage;
+
+# Serve genomic sequence from the bgzipped dna.toplevel FASTA this script has just written,
+# instead of from the core's dna table. The API reads sequence 256 kb at a time with
+# SUBSTR() on one LONGTEXT row per seq_region, and MyISAM reads the WHOLE row to do that:
+# 84 s per chunk on a 640 Mb wheat chromosome, so cdna/cds/pep for a large genome took days
+# per file and loaded the server for every other client. See _use_local_dna.
+{
+  no warnings 'redefine';
+  my $db_fetch = \&Bio::EnsEMBL::DBSQL::SequenceAdaptor::_fetch_raw_seq;
+  *Bio::EnsEMBL::DBSQL::SequenceAdaptor::_fetch_raw_seq = sub {
+    my ($sa, $id, $start, $length) = @_;
+    my $loc = $sa->{_gramene_local_dna};
+    my $map = $loc ? $loc->{map}{$id} : undef;
+    return $db_fetch->(@_) unless $map;
+    # $map: [toplevel name, region length, toplevel start of region pos 1, ori]
+    my ($name, $len, $off, $ori) = @$map;
+    my $end = $start + $length - 1;
+    $end = $len if $end > $len;
+    my $seq = '';
+    if ($start <= $end) {    # SUBSTR() past the end returns '', so do the same
+      my ($s, $e) = $ori == 1
+        ? ($off + $start - 1, $off + $end - 1)
+        : ($off - $end + 1, $off - $start + 1);    # $off is then the toplevel END of pos 1
+      $seq = $loc->{fai}->get_sequence2_no_length($name, $s - 1, $e - 1);    # htslib: 0-based, inclusive
+      defined $seq and length($seq) == $e - $s + 1
+        or die "local dna fetch failed for $name:$s-$e from $loc->{file}\n";
+      $seq = uc $seq;
+      if ($ori == -1) { $seq = reverse $seq; $seq =~ tr/ACGTRYKMBVDH/TGCAYRMKVBHD/; }
+    }
+    return \$seq;
+  };
+}
 
 my $rcsid = '$Revision$';
 our ($VERSION) = $rcsid =~ /(\d+\.\d+)/;
@@ -128,7 +162,8 @@ sub _process_dba {
     $self->v('Working with prod_name: %s assembly: %s', $species, $assembly);
 	$self->v('path for fasta files: %s', $species_path);
     # my @file_types = qw/cdna cds dna ncrna pep/;
-	my @file_types = qw/cdna cds dna pep/;
+	# dna first: once it is on disk, cdna/cds/pep read their sequence from it (_use_local_dna).
+	my @file_types = qw/dna cdna cds pep/;
 	for my $type (@file_types) {
 		my $target_dir = join("/",$species_path,$type);
 		my $suffix = $type eq 'dna' ? 'toplevel' : 'all';
@@ -138,11 +173,86 @@ sub _process_dba {
 		}
 		$self->_ensure_fasta($dba, $file_name, $target_dir, $type);
 		$self->_ensure_blast($file_name, $species_path, $type, $dbName);
+		$self->_use_local_dna($dba, "$target_dir/$file_name.fa.gz")
+			if ($type eq 'dna' and not $self->opts->{dry});
 	}
     $species_path = join('/',$o->{'out_dir'},'gff3',$species);
     my $gff_name = ucfirst(join(".",$species,$assembly,"gff3"));
     $self->_ensure_gff3($dba, $gff_name, $species_path);
+    delete $dba->get_SequenceAdaptor->{_gramene_local_dna};
     $dba->dbc()->disconnect_if_idle();
+    return;
+}
+
+# Point this core's SequenceAdaptor at the finished dna.toplevel FASTA. A sequence-level
+# region is served from it when it either is a toplevel region itself, or is placed whole
+# (one assembly row covering it end to end) into a toplevel region; e.g. a contig that makes
+# up a supercontig. The toplevel region must have the same name and length in the FASTA.
+# Anything else (multi-level assemblies, partial placements) still comes from the database.
+sub _use_local_dna {
+    my ($self, $dba, $fa) = @_;
+    my $sa = $dba->get_SequenceAdaptor;
+    delete $sa->{_gramene_local_dna};
+    unless (-s $fa and -s "$fa.fai" and -s "$fa.gzi") {
+        $self->v("\tno indexed $fa; cdna/cds/pep sequence will come from the database");
+        return;
+    }
+    my $fai = Bio::DB::HTS::Faidx->new($fa);
+    my %fa_len = map { $_ => $fai->length($_) } $fai->get_all_sequence_ids;
+    my $h = $dba->dbc->sql_helper;
+    my $seqlevel = q{
+        FROM seq_region c
+        JOIN coord_system ccs ON ccs.coord_system_id = c.coord_system_id
+             AND ccs.species_id = ? AND FIND_IN_SET('sequence_level', ccs.attrib)};
+    my $is_top = q{
+        JOIN seq_region_attrib ta ON ta.seq_region_id = t.seq_region_id
+        JOIN attrib_type tt ON tt.attrib_type_id = ta.attrib_type_id AND tt.code = 'toplevel'};
+    my %map;
+    my $all = $h->execute_single_result(-SQL => "SELECT COUNT(*), IFNULL(SUM(c.length),0) $seqlevel",
+        -PARAMS => [ $dba->species_id ], -CALLBACK => sub { [ @{$_[0]} ] });
+    # 1. sequence-level regions that are toplevel themselves
+    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.name, c.length $seqlevel
+            JOIN seq_region t ON t.seq_region_id = c.seq_region_id $is_top", -PARAMS => [ $dba->species_id ]) }) {
+        my ($id, $name, $l) = @$r;
+        $map{$id} = [ $name, $l, 1, 1 ] if defined $fa_len{$name} and $fa_len{$name} == $l;
+    }
+    # 2. sequence-level regions placed whole into a toplevel region
+    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.length, t.name, t.length,
+                a.asm_start, a.asm_end, a.cmp_start, a.cmp_end, a.ori $seqlevel
+            JOIN assembly a ON a.cmp_seq_region_id = c.seq_region_id
+            JOIN seq_region t ON t.seq_region_id = a.asm_seq_region_id $is_top", -PARAMS => [ $dba->species_id ]) }) {
+        my ($id, $clen, $tname, $tlen, $as, $ae, $cs, $ce, $ori) = @$r;
+        next if $map{$id};
+        next unless $cs == 1 and $ce == $clen and $ae - $as == $ce - $cs and abs($ori) == 1;
+        next unless defined $fa_len{$tname} and $fa_len{$tname} == $tlen and $ae <= $tlen;
+        $map{$id} = [ $tname, $clen, ($ori == 1 ? $as : $ae), $ori ];
+    }
+    # Self-check: 1 kb from the FASTA must equal 1 kb from the dna table, for one region of
+    # each orientation. On any mismatch use the database for the whole genome.
+    my %probe;
+    for my $id (sort { $a <=> $b } keys %map) {
+        $probe{ $map{$id}[3] } //= $id;    # one forward, one reverse (if any)
+    }
+    $sa->{_gramene_local_dna} = { fai => $fai, map => \%map, file => $fa };
+    for my $id (values %probe) {
+        my $len = $map{$id}[1];
+        my $st = $len > 2000 ? int($len / 2) : 1;
+        my $n = $len - $st + 1 < 1000 ? $len - $st + 1 : 1000;
+        my $local = ${ $sa->_fetch_raw_seq($id, $st, $n) };
+        delete local $sa->{_gramene_local_dna};
+        my $db = ${ $sa->_fetch_raw_seq($id, $st, $n) };
+        next if defined $db and $local eq uc $db;
+        $self->v("\tWARNING local dna differs from the dna table for seq_region_id %d at %d; using the database", $id, $st);
+        delete $sa->{_gramene_local_dna};
+        return;
+    }
+    delete $sa->{_gramene_local_dna};
+    my $bp = 0; $bp += $_->[1] for values %map;
+    $self->v("\tlocal dna: %d of %d sequence-level regions (%.1f of %.1f Mb) served from %s",
+        scalar(keys %map), $all->[0], $bp / 1e6, $all->[1] / 1e6, $fa);
+    return unless %map;
+    $sa->clear_cache;
+    $sa->{_gramene_local_dna} = { fai => $fai, map => \%map, file => $fa };
     return;
 }
 
@@ -207,7 +317,6 @@ sub _dump_fasta {
 		}
 		else {
 			$self->v("\tWARNING no repeat analyses match /%s/: dna_sm and dna_rm will be UNMASKED copies", $logic_re);
-			@logic_names = ('__no_such_analysis__');
 		}
 
 		my $outfile_sm = $outfile;
@@ -219,27 +328,18 @@ sub _dump_fasta {
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
+		# Read each region's sequence once and mask it in memory. get_repeatmasked_seq()->seq
+		# re-reads the sequence from the database every time, i.e. three reads per region.
+		# Same masking as RepeatMaskedSlice::seq (repeats from each logic name, _mask_features).
 		foreach my $slice (@$slices) {
-			my $seqstr = $slice->get_repeatmasked_seq(\@logic_names,1)->seq;
-			$seqstr ||= $slice->seq;
-			my $seq = Bio::Seq->new(
-				-display_id => $slice->seq_region_name,
-				-seq => $seqstr
-			);
-			$seqio_sm->write_seq($seq);
-			$seqstr = $slice->get_repeatmasked_seq(\@logic_names,0)->seq;
-			$seqstr ||= $slice->seq;
-			$seq = Bio::Seq->new(
-				-display_id => $slice->seq_region_name,
-				-seq => $seqstr
-			);
-			$seqio_rm->write_seq($seq);
-			$seqstr = $slice->seq;
-			$seq = Bio::Seq->new(
-				-display_id => $slice->seq_region_name,
-				-seq => $seqstr
-			);
-			$seqio_unmasked->write_seq($seq);
+			my $plain = $slice->seq;
+			my @repeats = map { @{ $slice->get_all_RepeatFeatures($_) } } @logic_names;
+			for my $m ([$seqio_sm, 1], [$seqio_rm, 0]) {
+				my $masked = $plain;
+				$slice->_mask_features(\$masked, \@repeats, $m->[1], {}) if @repeats;
+				$m->[0]->write_seq(Bio::Seq->new(-display_id => $slice->seq_region_name, -seq => $masked));
+			}
+			$seqio_unmasked->write_seq(Bio::Seq->new(-display_id => $slice->seq_region_name, -seq => $plain));
 		}
 	}
 	else {
