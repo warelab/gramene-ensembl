@@ -1,5 +1,7 @@
 taxonTreeData = [
    {
+      "title" : "Dicots (74)",
+      "isFolder" : true,
       "key" : "Dicots",
       "children" : [
          {
@@ -7,29 +9,26 @@ taxonTreeData = [
             "key" : "Actinidia_chinensis"
          },
          {
-            "key" : "Beta_vulgaris",
-            "title" : "Beta vulgaris"
+            "title" : "Beta vulgaris",
+            "key" : "Beta_vulgaris"
          },
          {
-            "isFolder" : true,
-            "title" : "Brassicaceae (12)",
-            "key" : "Brassicaceae",
             "children" : [
                {
-                  "title" : "Arabidopsis halleri",
-                  "key" : "Arabidopsis_halleri"
+                  "key" : "Arabidopsis_halleri",
+                  "title" : "Arabidopsis halleri"
                },
                {
                   "title" : "Arabidopsis lyrata",
                   "key" : "Arabidopsis_lyrata"
                },
                {
-                  "key" : "Arabidopsis_thaliana",
-                  "title" : "Arabidopsis thaliana"
+                  "title" : "Arabidopsis thaliana",
+                  "key" : "Arabidopsis_thaliana"
                },
                {
-                  "title" : "Arabis alpina",
-                  "key" : "Arabis_alpina"
+                  "key" : "Arabis_alpina",
+                  "title" : "Arabis alpina"
                },
                {
                   "key" : "Brassica_juncea",
@@ -40,37 +39,40 @@ taxonTreeData = [
                   "title" : "Brassica napus"
                },
                {
-                  "key" : "Brassica_oleracea",
-                  "title" : "Brassica oleracea"
+                  "title" : "Brassica oleracea",
+                  "key" : "Brassica_oleracea"
                },
                {
                   "key" : "Brassica_rapa",
                   "title" : "Brassica rapa"
                },
                {
+                  "title" : "Brassica rapa (3)",
+                  "isFolder" : true,
+                  "key" : "Brassica rapa",
                   "children" : [
                      {
                         "key" : "Brassica_rapa_ro18",
                         "title" : "Brassica rapa R-o-18"
                      }
-                  ],
-                  "key" : "Brassica rapa",
-                  "isFolder" : true,
-                  "title" : "Brassica rapa (3)"
+                  ]
                },
                {
-                  "key" : "Brassica_rapa_z1",
-                  "title" : "Brassica rapa Z1"
+                  "title" : "Brassica rapa Z1",
+                  "key" : "Brassica_rapa_z1"
                },
                {
-                  "title" : "Camelina sativa",
-                  "key" : "Camelina_sativa"
+                  "key" : "Camelina_sativa",
+                  "title" : "Camelina sativa"
                },
                {
                   "title" : "Eutrema salsugineum",
                   "key" : "Eutrema_salsugineum"
                }
-            ]
+            ],
+            "key" : "Brassicaceae",
+            "isFolder" : true,
+            "title" : "Brassicaceae (12)"
          },
          {
             "title" : "Cannabis sativa female",
@@ -85,24 +87,24 @@ taxonTreeData = [
             "title" : "Citrullus lanatus"
          },
          {
-            "title" : "Citrus clementina",
-            "key" : "Citrus_clementina"
+            "key" : "Citrus_clementina",
+            "title" : "Citrus clementina"
          },
          {
-            "key" : "Coffea_canephora",
-            "title" : "Coffea canephora"
+            "title" : "Coffea canephora",
+            "key" : "Coffea_canephora"
          },
          {
-            "title" : "Corchorus capsularis",
-            "key" : "Corchorus_capsularis"
+            "key" : "Corchorus_capsularis",
+            "title" : "Corchorus capsularis"
          },
          {
             "title" : "Corylus avellana",
             "key" : "Corylus_avellana"
          },
          {
-            "title" : "Corymbia citriodora",
-            "key" : "Corymbia_citriodora"
+            "key" : "Corymbia_citriodora",
+            "title" : "Corymbia citriodora"
          },
          {
             "title" : "Cucumis melo",
@@ -113,20 +115,20 @@ taxonTreeData = [
             "title" : "Cucumis sativus"
          },
          {
-            "key" : "Cynara_cardunculus",
-            "title" : "Cynara cardunculus"
+            "title" : "Cynara cardunculus Scolymus ",
+            "key" : "Cynara_cardunculus_GCA_001531365.2gb"
          },
          {
             "key" : "Daucus_carota",
             "title" : "Daucus carota"
          },
          {
-            "title" : "Eucalyptus grandis",
-            "key" : "Eucalyptus_grandis"
+            "key" : "Eucalyptus_grandis",
+            "title" : "Eucalyptus grandis"
          },
          {
             "isFolder" : true,
-            "title" : "Fabaceae (14)",
+            "title" : "Fabaceae (18)",
             "key" : "Fabaceae",
             "children" : [
                {
@@ -134,8 +136,8 @@ taxonTreeData = [
                   "key" : "Arachis_hypogaea"
                },
                {
-                  "title" : "Cajanus cajan (pigeon pea) - GCA_000340665.1",
-                  "key" : "Cajanus_cajan"
+                  "key" : "Cajanus_cajan_GCA_000340665.2gb",
+                  "title" : "Cajanus cajan"
                },
                {
                   "key" : "Glycine_max",
@@ -146,8 +148,12 @@ taxonTreeData = [
                   "key" : "Glycine_soja"
                },
                {
-                  "title" : "Lathyrus sativus",
-                  "key" : "Lathyrus_sativus"
+                  "title" : "Lablab purpureus Natoba",
+                  "key" : "Lablab_purpureus_GCA_030347555.1cm"
+               },
+               {
+                  "key" : "Lathyrus_sativus",
+                  "title" : "Lathyrus sativus"
                },
                {
                   "title" : "Lupinus angustifolius",
@@ -158,12 +164,24 @@ taxonTreeData = [
                   "key" : "Medicago_truncatula"
                },
                {
-                  "title" : "Phaseolus vulgaris",
-                  "key" : "Phaseolus_vulgaris"
+                  "key" : "Phaseolus_vulgaris",
+                  "title" : "Phaseolus vulgaris"
                },
                {
                   "title" : "Pisum sativum",
                   "key" : "Pisum_sativum"
+               },
+               {
+                  "key" : "Pisum_sativum_GCA_024323335.2gb",
+                  "title" : "Pisum sativum Garden pea"
+               },
+               {
+                  "title" : "Pisum sativum JI2822",
+                  "key" : "Pisum_sativum_GCA_964186695.1gb"
+               },
+               {
+                  "key" : "Sphenostylis_stenocarpa",
+                  "title" : "Sphenostylis stenocarpa"
                },
                {
                   "title" : "Trifolium pratense",
@@ -182,22 +200,22 @@ taxonTreeData = [
                   "key" : "Vigna_radiata"
                },
                {
-                  "title" : "Vigna unguiculata",
-                  "key" : "Vigna_unguiculata"
+                  "key" : "Vigna_unguiculata_GCA_004118075.2rs",
+                  "title" : "Vigna unguiculata IT97K-499-35"
                }
             ]
          },
          {
-            "title" : "Ficus carica",
-            "key" : "Ficus_carica"
+            "key" : "Ficus_carica",
+            "title" : "Ficus carica"
          },
          {
             "title" : "Fraxinus excelsior",
             "key" : "Fraxinus_excelsior"
          },
          {
-            "title" : "Gossypium raimondii",
-            "key" : "Gossypium_raimondii"
+            "title" : "Gossypium raimondii GPD5lz",
+            "key" : "Gossypium_raimondii_GCA_025698545.1rs"
          },
          {
             "key" : "Helianthus_annuus",
@@ -216,22 +234,23 @@ taxonTreeData = [
             "key" : "Kalanchoe_fedtschenkoi"
          },
          {
-            "key" : "Lactuca_sativa",
-            "title" : "Lactuca sativa"
+            "key" : "Lactuca_sativa_GCA_002870075.4gb",
+            "title" : "Lactuca sativa Salinas"
          },
          {
-            "key" : "Malus_domestica_golden",
-            "title" : "Malus domestica Golden"
+            "title" : "Malus domestica Golden",
+            "key" : "Malus_domestica_golden"
          },
          {
             "key" : "Manihot_esculenta",
             "title" : "Manihot esculenta"
          },
          {
-            "title" : "Olea europaea",
-            "key" : "Olea_europaea"
+            "key" : "Olea_europaea",
+            "title" : "Olea europaea"
          },
          {
+            "key" : "Olea europaea subsp. europaea",
             "title" : "Olea europaea subsp. europaea (2)",
             "isFolder" : true,
             "children" : [
@@ -239,24 +258,23 @@ taxonTreeData = [
                   "title" : "Olea europaea var. sylvestris",
                   "key" : "Olea_europaea_sylvestris"
                }
-            ],
-            "key" : "Olea europaea subsp. europaea"
+            ]
          },
          {
-            "key" : "Pistacia_vera",
-            "title" : "Pistacia vera"
+            "title" : "Pistacia vera",
+            "key" : "Pistacia_vera"
          },
          {
-            "title" : "Populus trichocarpa",
-            "key" : "Populus_trichocarpa"
+            "key" : "Populus_trichocarpa",
+            "title" : "Populus trichocarpa"
          },
          {
             "key" : "Prunus_avium",
             "title" : "Prunus avium"
          },
          {
-            "title" : "Prunus dulcis",
-            "key" : "Prunus_dulcis"
+            "key" : "Prunus_dulcis",
+            "title" : "Prunus dulcis"
          },
          {
             "title" : "Prunus persica",
@@ -267,47 +285,47 @@ taxonTreeData = [
             "key" : "Quercus_lobata"
          },
          {
-            "key" : "Quercus_suber",
-            "title" : "Quercus suber"
+            "key" : "Quercus_suber_gcf002906115v3rs",
+            "title" : "Quercus suber HL8"
          },
          {
-            "title" : "Rosa chinensis",
-            "key" : "Rosa_chinensis"
+            "key" : "Rosa_chinensis",
+            "title" : "Rosa chinensis"
          },
          {
-            "title" : "Sesamum indicum",
-            "key" : "Sesamum_indicum"
+            "key" : "Sesamum_indicum",
+            "title" : "Sesamum indicum"
          },
          {
-            "title" : "Solanaceae (5)",
-            "isFolder" : true,
             "children" : [
                {
-                  "title" : "Capsicum annuum",
-                  "key" : "Capsicum_annuum"
+                  "key" : "Capsicum_annuum",
+                  "title" : "Capsicum annuum"
                },
                {
                   "key" : "Nicotiana_attenuata",
                   "title" : "Nicotiana attenuata"
                },
                {
-                  "title" : "Solanum lycopersicum",
-                  "key" : "Solanum_lycopersicum"
+                  "key" : "Solanum_lycopersicum_GCA_000188115.5cm",
+                  "title" : "Solanum lycopersicum Heinz1706"
                },
                {
-                  "key" : "Solanum_tuberosum",
-                  "title" : "Solanum tuberosum"
+                  "title" : "Solanum tuberosum",
+                  "key" : "Solanum_tuberosum"
                },
                {
                   "key" : "Solanum_tuberosum_RH8903916",
                   "title" : "Solanum tuberosum RH89-039-16"
                }
             ],
-            "key" : "Solanaceae"
+            "key" : "Solanaceae",
+            "title" : "Solanaceae (5)",
+            "isFolder" : true
          },
          {
-            "title" : "Theobroma cacao Belizian Criollo B97-61/B2",
-            "key" : "Theobroma_cacao_criollo"
+            "key" : "Theobroma_cacao_criollo",
+            "title" : "Theobroma cacao Belizian Criollo B97-61/B2"
          },
          {
             "key" : "Theobroma_cacao",
@@ -317,17 +335,13 @@ taxonTreeData = [
             "title" : "Vitis vinifera",
             "key" : "Vitis_vinifera"
          }
-      ],
-      "title" : "Dicots (70)",
-      "isFolder" : true
+      ]
    },
    {
-      "isFolder" : true,
-      "title" : "Monocots (75)",
       "children" : [
          {
-            "title" : "Ananas comosus",
-            "key" : "Ananas_comosus"
+            "key" : "Ananas_comosus",
+            "title" : "Ananas comosus"
          },
          {
             "key" : "Asparagus_officinalis",
@@ -340,12 +354,143 @@ taxonTreeData = [
          {
             "children" : [
                {
-                  "key" : "Avena_sativa_OT3098",
-                  "title" : "Avena sativa OT3098"
+                  "children" : [
+                     {
+                        "title" : "Avena atlantica CC7277",
+                        "key" : "Avena_atlantica_cc7277"
+                     },
+                     {
+                        "title" : "Avena byzantina PI258586",
+                        "key" : "Avena_byzantina_pi258586"
+                     },
+                     {
+                        "title" : "Avena eriantha BYU132",
+                        "key" : "Avena_eriantha_byu132"
+                     },
+                     {
+                        "title" : "Avena insularis BYU209",
+                        "key" : "Avena_insularis_byu209"
+                     },
+                     {
+                        "title" : "Avena longiglumis CN58138",
+                        "key" : "Avena_longiglumis_cn58138"
+                     },
+                     {
+                        "title" : "Avena occidentalis CN25955",
+                        "key" : "Avena_occidentalis_cn25955"
+                     },
+                     {
+                        "key" : "Avena_sativa_aslak",
+                        "title" : "Avena sativa Aslak"
+                     },
+                     {
+                        "key" : "Avena_sativa_bannister",
+                        "title" : "Avena sativa Bannister"
+                     },
+                     {
+                        "title" : "Avena sativa Bilby",
+                        "key" : "Avena_sativa_bilby"
+                     },
+                     {
+                        "key" : "Avena_sativa_bingo",
+                        "title" : "Avena sativa Bingo"
+                     },
+                     {
+                        "title" : "Avena sativa Clintland60",
+                        "key" : "Avena_sativa_clintland60"
+                     },
+                     {
+                        "title" : "Avena sativa Delfin",
+                        "key" : "Avena_sativa_delfin"
+                     },
+                     {
+                        "key" : "Avena_sativa_fm13",
+                        "title" : "Avena sativa Fm13"
+                     },
+                     {
+                        "title" : "Avena sativa Gehl",
+                        "key" : "Avena_sativa_gehl"
+                     },
+                     {
+                        "key" : "Avena_sativa_gmi423",
+                        "title" : "Avena sativa Gmi423"
+                     },
+                     {
+                        "title" : "Avena sativa Gs7",
+                        "key" : "Avena_sativa_gs7"
+                     },
+                     {
+                        "title" : "Avena sativa HativesdesAlpes",
+                        "key" : "Avena_sativa_hativesdesalpes"
+                     },
+                     {
+                        "title" : "Avena sativa Hifi",
+                        "key" : "Avena_sativa_hifi"
+                     },
+                     {
+                        "title" : "Avena sativa Leggett",
+                        "key" : "Avena_sativa_leggett"
+                     },
+                     {
+                        "title" : "Avena sativa Lion",
+                        "key" : "Avena_sativa_lion"
+                     },
+                     {
+                        "title" : "Avena sativa Morgan",
+                        "key" : "Avena_sativa_morgan"
+                     },
+                     {
+                        "key" : "Avena_sativa_nicolas",
+                        "title" : "Avena sativa Nicolas"
+                     },
+                     {
+                        "key" : "Avena_sativa_OT3098",
+                        "title" : "Avena sativa OT3098"
+                     },
+                     {
+                        "key" : "Avena_sativa_ot380",
+                        "title" : "Avena sativa Ot380"
+                     },
+                     {
+                        "title" : "Avena sativa Park",
+                        "key" : "Avena_sativa_park"
+                     },
+                     {
+                        "key" : "Avena_sativa_pi182478",
+                        "title" : "Avena sativa Pi182478"
+                     },
+                     {
+                        "title" : "Avena sativa Rhapsody",
+                        "key" : "Avena_sativa_rhapsody"
+                     },
+                     {
+                        "title" : "Avena sativa Sang",
+                        "key" : "Avena_sativa_Sang"
+                     },
+                     {
+                        "title" : "Avena sativa Victoria",
+                        "key" : "Avena_sativa_victoria"
+                     },
+                     {
+                        "key" : "Avena_sativa_williams",
+                        "title" : "Avena sativa Williams"
+                     },
+                     {
+                        "title" : "Avena sterilis TN1",
+                        "key" : "Avena_sterilis_tn1"
+                     },
+                     {
+                        "title" : "Avena sterilis TN4",
+                        "key" : "Avena_sterilis_tn4"
+                     }
+                  ],
+                  "key" : "Avena",
+                  "title" : "Avena (33)",
+                  "isFolder" : true
                },
                {
-                  "key" : "Avena_sativa_Sang",
-                  "title" : "Avena sativa Sang"
+                  "key" : "Avena_magna_avena_longiglumis_gca947310255v1cm",
+                  "title" : "Avena magna x Avena longiglumis"
                },
                {
                   "key" : "Brachypodium_distachyon",
@@ -356,89 +501,86 @@ taxonTreeData = [
                   "key" : "Leersia_perrieri"
                },
                {
-                  "title" : "Lolium perenne",
-                  "key" : "Lolium_perenne"
+                  "key" : "Lolium_perenne",
+                  "title" : "Lolium perenne"
                },
                {
-                  "title" : "Rices (26)",
-                  "isFolder" : true,
-                  "key" : "Rices",
                   "children" : [
                      {
-                        "title" : "Oryza barthii",
-                        "key" : "Oryza_barthii"
+                        "key" : "Oryza_barthii",
+                        "title" : "Oryza barthii"
                      },
                      {
-                        "title" : "Oryza brachyantha",
-                        "key" : "Oryza_brachyantha"
+                        "key" : "Oryza_brachyantha",
+                        "title" : "Oryza brachyantha"
                      },
                      {
-                        "key" : "Oryza_glaberrima",
-                        "title" : "Oryza glaberrima"
+                        "title" : "Oryza glaberrima",
+                        "key" : "Oryza_glaberrima"
                      },
                      {
                         "title" : "Oryza glumipatula",
                         "key" : "Oryza_glumipatula"
                      },
                      {
-                        "key" : "Oryza_longistaminata",
-                        "title" : "Oryza longistaminata"
+                        "title" : "Oryza longistaminata",
+                        "key" : "Oryza_longistaminata"
                      },
                      {
-                        "key" : "Oryza_meridionalis",
-                        "title" : "Oryza meridionalis"
+                        "title" : "Oryza meridionalis",
+                        "key" : "Oryza_meridionalis"
                      },
                      {
-                        "title" : "Oryza nivara",
-                        "key" : "Oryza_nivara"
+                        "key" : "Oryza_nivara",
+                        "title" : "Oryza nivara"
                      },
                      {
                         "key" : "Oryza_punctata",
                         "title" : "Oryza punctata"
                      },
                      {
-                        "key" : "Oryza_rufipogon",
-                        "title" : "Oryza rufipogon"
+                        "title" : "Oryza rufipogon",
+                        "key" : "Oryza_rufipogon"
                      },
                      {
-                        "title" : "Oryza sativa (Xian/Indica-1A var. Zhenshan 97)",
-                        "key" : "Oryza_sativa_zs97"
+                        "key" : "Oryza_sativa_zs97",
+                        "title" : "Oryza sativa (Xian/Indica-1A var. Zhenshan 97)"
                      },
                      {
                         "title" : "Oryza sativa (Xian/Indica-1B1 var. IR64)",
                         "key" : "Oryza_sativa_ir64"
                      },
                      {
-                        "key" : "Oryza_sativa_pr106",
-                        "title" : "Oryza sativa (Xian/Indica-1B2 var. PR106)"
+                        "title" : "Oryza sativa (Xian/Indica-1B2 var. PR106)",
+                        "key" : "Oryza_sativa_pr106"
                      },
                      {
                         "title" : "Oryza sativa (Xian/Indica-2A var. Gobol Sail)",
                         "key" : "Oryza_sativa_gobolsailbalam"
                      },
                      {
-                        "key" : "Oryza_sativa_larhamugad",
-                        "title" : "Oryza sativa (Xian/Indica-2B var. Larha Mugad)"
+                        "title" : "Oryza sativa (Xian/Indica-2B var. Larha Mugad)",
+                        "key" : "Oryza_sativa_larhamugad"
                      },
                      {
                         "title" : "Oryza sativa (Xian/Indica-3A var. Lima)",
                         "key" : "Oryza_sativa_lima"
                      },
                      {
-                        "title" : "Oryza sativa (Xian/Indica-3B1 var. Khao Yai Guang)",
-                        "key" : "Oryza_sativa_khaoyaiguang"
+                        "key" : "Oryza_sativa_khaoyaiguang",
+                        "title" : "Oryza sativa (Xian/Indica-3B1 var. Khao Yai Guang)"
                      },
                      {
                         "key" : "Oryza_sativa_liuxu",
                         "title" : "Oryza sativa (Xian/Indica-3B2 var. Liu Xu)"
                      },
                      {
-                        "title" : "Oryza sativa (Xian/Indica-adm var. Minghui 63)",
-                        "key" : "Oryza_sativa_mh63"
+                        "key" : "Oryza_sativa_mh63",
+                        "title" : "Oryza sativa (Xian/Indica-adm var. Minghui 63)"
                      },
                      {
-                        "key" : "Oryza_indica",
-                        "title" : "Oryza sativa Indica Group"
+                        "title" : "Oryza sativa Indica Group",
+                        "key" : "Oryza_indica"
                      },
                      {
                         "title" : "Oryza sativa Indica Group (12)",
@@ -446,22 +588,23 @@ taxonTreeData = [
                         "key" : "Oryza sativa Indica Group",
                         "children" : [
                            {
-                              "key" : "Oryza_sativa_n22",
-                              "title" : "Oryza sativa (circum-Aus1 var. N22)"
+                              "title" : "Oryza sativa (circum-Aus1 var. N22)",
+                              "key" : "Oryza_sativa_n22"
                            },
                            {
-                              "title" : "Oryza sativa (circum-Aus2 var. Natel Boro)",
-                              "key" : "Oryza_sativa_natelboro"
+                              "key" : "Oryza_sativa_natelboro",
+                              "title" : "Oryza sativa (circum-Aus2 var. Natel Boro)"
                            }
                         ]
                      },
                      {
-                        "key" : "Oryza_sativa",
-                        "title" : "Oryza sativa Japonica Group"
+                        "title" : "Oryza sativa Japonica Group",
+                        "key" : "Oryza_sativa"
                      },
                      {
                         "title" : "Oryza sativa Japonica Group (5)",
                         "isFolder" : true,
+                        "key" : "Oryza sativa Japonica Group",
                         "children" : [
                            {
                               "key" : "Oryza_sativa_chaomeo",
@@ -479,63 +622,375 @@ taxonTreeData = [
                               "title" : "Oryza sativa (circum-Basmati var. ARC 10497)",
                               "key" : "Oryza_sativa_arc"
                            }
-                        ],
-                        "key" : "Oryza sativa Japonica Group"
+                        ]
                      }
-                  ]
+                  ],
+                  "key" : "Rices",
+                  "isFolder" : true,
+                  "title" : "Rices (26)"
                },
                {
+                  "key" : "Triticeae",
+                  "title" : "Triticeae (104)",
+                  "isFolder" : true,
                   "children" : [
                      {
-                        "title" : "Aegilops tauschii",
-                        "key" : "Aegilops_tauschii"
+                        "key" : "Aegilops_tauschii",
+                        "title" : "Aegilops tauschii"
                      },
                      {
-                        "title" : "Aegilops umbellulata",
-                        "key" : "Aegilops_umbellulata"
+                        "key" : "Aegilops_umbellulata",
+                        "title" : "Aegilops umbellulata"
                      },
                      {
-                        "isFolder" : true,
-                        "title" : "Hordeum vulgare (3)",
                         "children" : [
                            {
                               "key" : "Hordeum_vulgare",
                               "title" : "Hordeum vulgare"
                            },
                            {
+                              "key" : "Hordeum_vulgare_barke",
+                              "title" : "Hordeum vulgare Barke"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT11",
+                              "key" : "Hordeum_vulgare_ft11"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_ft144",
+                              "title" : "Hordeum vulgare FT144"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_ft262",
+                              "title" : "Hordeum vulgare FT262"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT286",
+                              "key" : "Hordeum_vulgare_ft286"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT333",
+                              "key" : "Hordeum_vulgare_ft333"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT628",
+                              "key" : "Hordeum_vulgare_ft628"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT67",
+                              "key" : "Hordeum_vulgare_ft67"
+                           },
+                           {
+                              "title" : "Hordeum vulgare FT880",
+                              "key" : "Hordeum_vulgare_ft880"
+                           },
+                           {
+                              "title" : "Hordeum vulgare GoldenPromise",
+                              "key" : "Hordeum_vulgare_goldenpromise"
+                           },
+                           {
+                              "title" : "Hordeum vulgare HID055",
+                              "key" : "Hordeum_vulgare_hid055"
+                           },
+                           {
+                              "title" : "Hordeum vulgare HID101",
+                              "key" : "Hordeum_vulgare_hid101"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_hid249",
+                              "title" : "Hordeum vulgare HID249"
+                           },
+                           {
+                              "title" : "Hordeum vulgare HID357",
+                              "key" : "Hordeum_vulgare_hid357"
+                           },
+                           {
+                              "title" : "Hordeum vulgare Hockett",
+                              "key" : "Hordeum_vulgare_hockett"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_igri",
+                              "title" : "Hordeum vulgare Igri"
+                           },
+                           {
+                              "title" : "Hordeum vulgare RGTPlanet",
+                              "key" : "Hordeum_vulgare_rgtplanet"
+                           },
+                           {
                               "key" : "Hordeum_vulgare_TRITEX",
                               "title" : "Hordeum vulgare TRITEX"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_wbdc078",
+                              "title" : "Hordeum vulgare WBDC078"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC103",
+                              "key" : "Hordeum_vulgare_wbdc103"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC133",
+                              "key" : "Hordeum_vulgare_wbdc133"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC184",
+                              "key" : "Hordeum_vulgare_wbdc184"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC199",
+                              "key" : "Hordeum_vulgare_wbdc199"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC207",
+                              "key" : "Hordeum_vulgare_wbdc207"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC237",
+                              "key" : "Hordeum_vulgare_wbdc237"
+                           },
+                           {
+                              "key" : "Hordeum_vulgare_wbdc348",
+                              "title" : "Hordeum vulgare WBDC348"
+                           },
+                           {
+                              "title" : "Hordeum vulgare WBDC349",
+                              "key" : "Hordeum_vulgare_wbdc349"
+                           },
+                           {
+                              "key" : "Hordeum vulgare subsp. vulgare",
+                              "isFolder" : true,
+                              "title" : "Hordeum vulgare subsp. vulgare (8)",
+                              "children" : [
+                                 {
+                                    "title" : "Hordeum vulgare HID380",
+                                    "key" : "Hordeum_vulgare_hid380"
+                                 }
+                              ]
                            }
                         ],
+                        "title" : "Hordeum vulgare (77)",
+                        "isFolder" : true,
                         "key" : "Hordeum vulgare"
                      },
                      {
-                        "title" : "Hordeum vulgare GoldenPromise",
-                        "key" : "Hordeum_vulgare_goldenpromise"
+                        "title" : "Hordeum vulgare 10TJ18",
+                        "key" : "Hordeum_vulgare_10tj18"
                      },
                      {
-                        "key" : "Secale_cereale",
-                        "title" : "Secale cereale"
+                        "title" : "Hordeum vulgare Aizu6",
+                        "key" : "Hordeum_vulgare_aizu6"
+                     },
+                     {
+                        "title" : "Hordeum vulgare Akashinriki",
+                        "key" : "Hordeum_vulgare_akashinriki"
+                     },
+                     {
+                        "title" : "Hordeum vulgare Bonus",
+                        "key" : "Hordeum_vulgare_bonus"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_bowman",
+                        "title" : "Hordeum vulgare Bowman"
+                     },
+                     {
+                        "title" : "Hordeum vulgare ChikurinIbaraki",
+                        "key" : "Hordeum_vulgare_chikurinibaraki1"
+                     },
+                     {
+                        "title" : "Hordeum vulgare Foma",
+                        "key" : "Hordeum_vulgare_foma"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_goldenmelon",
+                        "title" : "Hordeum vulgare Goldenmelon"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor10096",
+                        "title" : "Hordeum vulgare HOR10096"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor10350",
+                        "title" : "Hordeum vulgare HOR10350"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR10892",
+                        "key" : "Hordeum_vulgare_hor10892"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor1168",
+                        "title" : "Hordeum vulgare HOR1168"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor12184",
+                        "title" : "Hordeum vulgare HOR12184"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor12541",
+                        "title" : "Hordeum vulgare HOR12541"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR13594",
+                        "key" : "Hordeum_vulgare_hor13594"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor13663",
+                        "title" : "Hordeum vulgare HOR13663"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR13821",
+                        "key" : "Hordeum_vulgare_hor13821"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor13942",
+                        "title" : "Hordeum vulgare HOR13942"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR14061",
+                        "key" : "Hordeum_vulgare_hor14061"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR14121",
+                        "key" : "Hordeum_vulgare_hor14121"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor14273",
+                        "title" : "Hordeum vulgare HOR14273"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor1702",
+                        "title" : "Hordeum vulgare HOR1702"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor18321",
+                        "title" : "Hordeum vulgare HOR18321"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor19184",
+                        "title" : "Hordeum vulgare HOR19184"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR21256",
+                        "key" : "Hordeum_vulgare_hor21256"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR21322",
+                        "key" : "Hordeum_vulgare_hor21322"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor21595",
+                        "title" : "Hordeum vulgare HOR21595"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor21599",
+                        "title" : "Hordeum vulgare HOR21599"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor2180",
+                        "title" : "Hordeum vulgare HOR2180"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor2779",
+                        "title" : "Hordeum vulgare HOR2779"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor2830",
+                        "title" : "Hordeum vulgare HOR2830"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor3081",
+                        "title" : "Hordeum vulgare HOR3081"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor3365",
+                        "title" : "Hordeum vulgare HOR3365"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor3474",
+                        "title" : "Hordeum vulgare HOR3474"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR4224",
+                        "key" : "Hordeum_vulgare_hor4224"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor495",
+                        "title" : "Hordeum vulgare HOR495"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor6220",
+                        "title" : "Hordeum vulgare HOR6220"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor7172",
+                        "title" : "Hordeum vulgare HOR7172"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR7385",
+                        "key" : "Hordeum_vulgare_hor7385"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor7552",
+                        "title" : "Hordeum vulgare HOR7552"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_hor8117",
+                        "title" : "Hordeum vulgare HOR8117"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR8148",
+                        "key" : "Hordeum_vulgare_hor8148"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR9043",
+                        "key" : "Hordeum_vulgare_hor9043"
+                     },
+                     {
+                        "title" : "Hordeum vulgare HOR9972",
+                        "key" : "Hordeum_vulgare_hor9972"
+                     },
+                     {
+                        "title" : "Hordeum vulgare Maximus",
+                        "key" : "Hordeum_vulgare_maximus"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_oun333",
+                        "title" : "Hordeum vulgare OUN333"
+                     },
+                     {
+                        "key" : "Hordeum_vulgare_zdm01467",
+                        "title" : "Hordeum vulgare ZDM01467"
+                     },
+                     {
+                        "title" : "Hordeum vulgare ZDM02064",
+                        "key" : "Hordeum_vulgare_zdm02064"
+                     },
+                     {
+                        "title" : "Secale cereale",
+                        "key" : "Secale_cereale"
                      },
                      {
                         "title" : "Triticum aestivum",
                         "key" : "Triticum_aestivum"
                      },
                      {
-                        "title" : "Triticum aestivum Arinalrfor",
-                        "key" : "Triticum_aestivum_arinalrfor"
+                        "title" : "Triticum aestivum Alchemy",
+                        "key" : "Triticum_aestivum_alchemy"
                      },
                      {
-                        "title" : "Triticum aestivum Cadenza",
-                        "key" : "Triticum_aestivum_cadenza"
+                        "key" : "Triticum_aestivum_arinalrfor",
+                        "title" : "Triticum aestivum Arinalrfor"
+                     },
+                     {
+                        "key" : "Triticum_aestivum_cadenza",
+                        "title" : "Triticum aestivum Cadenza"
                      },
                      {
                         "title" : "Triticum aestivum Claire",
                         "key" : "Triticum_aestivum_claire"
                      },
                      {
-                        "title" : "Triticum aestivum Jagger",
-                        "key" : "Triticum_aestivum_jagger"
+                        "key" : "Triticum_aestivum_jagger",
+                        "title" : "Triticum aestivum Jagger"
                      },
                      {
                         "title" : "Triticum aestivum Julius",
@@ -546,16 +1001,16 @@ taxonTreeData = [
                         "key" : "Triticum_aestivum_kariega"
                      },
                      {
-                        "title" : "Triticum aestivum Lancer",
-                        "key" : "Triticum_aestivum_lancer"
+                        "key" : "Triticum_aestivum_lancer",
+                        "title" : "Triticum aestivum Lancer"
                      },
                      {
                         "title" : "Triticum aestivum Landmark",
                         "key" : "Triticum_aestivum_landmark"
                      },
                      {
-                        "key" : "Triticum_aestivum_mace",
-                        "title" : "Triticum aestivum Mace"
+                        "title" : "Triticum aestivum Mace",
+                        "key" : "Triticum_aestivum_mace"
                      },
                      {
                         "key" : "Triticum_aestivum_norin61",
@@ -566,24 +1021,24 @@ taxonTreeData = [
                         "key" : "Triticum_aestivum_paragon"
                      },
                      {
-                        "key" : "Triticum_aestivum_refseqv2",
-                        "title" : "Triticum aestivum Refseqv2"
+                        "title" : "Triticum aestivum Refseqv2",
+                        "key" : "Triticum_aestivum_refseqv2"
                      },
                      {
                         "title" : "Triticum aestivum Renan",
                         "key" : "Triticum_aestivum_renan"
                      },
                      {
-                        "key" : "Triticum_aestivum_robigus",
-                        "title" : "Triticum aestivum Robigus"
+                        "title" : "Triticum aestivum Robigus",
+                        "key" : "Triticum_aestivum_robigus"
                      },
                      {
-                        "key" : "Triticum_aestivum_stanley",
-                        "title" : "Triticum aestivum Stanley"
+                        "title" : "Triticum aestivum Stanley",
+                        "key" : "Triticum_aestivum_stanley"
                      },
                      {
-                        "title" : "Triticum aestivum Sy Mattis",
-                        "key" : "Triticum_aestivum_mattis"
+                        "key" : "Triticum_aestivum_mattis",
+                        "title" : "Triticum aestivum Sy Mattis"
                      },
                      {
                         "key" : "Triticum_aestivum_weebil",
@@ -594,40 +1049,39 @@ taxonTreeData = [
                         "key" : "Triticum_dicoccoides"
                      },
                      {
-                        "key" : "Triticum_spelta",
-                        "title" : "Triticum spelta"
+                        "title" : "Triticum spelta",
+                        "key" : "Triticum_spelta"
                      },
                      {
-                        "title" : "Triticum timopheevii",
-                        "key" : "Triticum_timopheevii"
+                        "key" : "Triticum_timopheevii",
+                        "title" : "Triticum timopheevii"
                      },
                      {
-                        "key" : "Triticum_turgidum",
-                        "title" : "Triticum turgidum"
+                        "title" : "Triticum turgidum",
+                        "key" : "Triticum_turgidum"
                      },
                      {
                         "key" : "Triticum_urartu",
                         "title" : "Triticum urartu"
                      }
-                  ],
-                  "key" : "Triticeae",
-                  "title" : "Triticeae (29)",
-                  "isFolder" : true
+                  ]
                },
                {
                   "key" : "Warm season grasses (C4)",
+                  "isFolder" : true,
+                  "title" : "Warm season grasses (C4) (11)",
                   "children" : [
                      {
-                        "title" : "Digitaria exilis",
-                        "key" : "Digitaria_exilis"
+                        "key" : "Digitaria_exilis",
+                        "title" : "Digitaria exilis"
                      },
                      {
-                        "key" : "Echinochloa_crusgalli",
-                        "title" : "Echinochloa crus-galli"
+                        "title" : "Echinochloa crus-galli",
+                        "key" : "Echinochloa_crusgalli"
                      },
                      {
-                        "title" : "Eragrostis curvula",
-                        "key" : "Eragrostis_curvula"
+                        "key" : "Eragrostis_curvula",
+                        "title" : "Eragrostis curvula"
                      },
                      {
                         "title" : "Eragrostis tef",
@@ -641,16 +1095,16 @@ taxonTreeData = [
                            }
                         ],
                         "key" : "Panicum hallii",
-                        "title" : "Panicum hallii (2)",
-                        "isFolder" : true
+                        "isFolder" : true,
+                        "title" : "Panicum hallii (2)"
                      },
                      {
                         "key" : "Panicum_hallii_fil2",
                         "title" : "Panicum hallii FIL2"
                      },
                      {
-                        "key" : "Saccharum_spontaneum",
-                        "title" : "Saccharum spontaneum"
+                        "title" : "Saccharum spontaneum",
+                        "key" : "Saccharum_spontaneum"
                      },
                      {
                         "key" : "Setaria_italica",
@@ -661,41 +1115,41 @@ taxonTreeData = [
                         "key" : "Setaria_viridis"
                      },
                      {
-                        "key" : "Sorghum_bicolor",
-                        "title" : "Sorghum bicolor"
+                        "title" : "Sorghum bicolor",
+                        "key" : "Sorghum_bicolor"
                      },
                      {
-                        "key" : "Zea_mays",
-                        "title" : "Zea mays"
+                        "title" : "Zea mays",
+                        "key" : "Zea_mays"
                      }
-                  ],
-                  "isFolder" : true,
-                  "title" : "Warm season grasses (C4) (11)"
+                  ]
                }
             ],
-            "key" : "Grasses",
+            "title" : "Grasses (177)",
             "isFolder" : true,
-            "title" : "Grasses (71)"
+            "key" : "Grasses"
          },
          {
             "key" : "Musa_acuminata",
             "title" : "Musa acuminata"
          }
       ],
-      "key" : "Monocots"
+      "key" : "Monocots",
+      "title" : "Monocots (181)",
+      "isFolder" : true
    },
    {
-      "title" : "Other (12)",
       "isFolder" : true,
+      "title" : "Other (12)",
       "key" : "Other",
       "children" : [
          {
-            "title" : "Cyanidioschyzon merolae",
-            "key" : "Cyanidioschyzon_merolae"
+            "key" : "Cyanidioschyzon_merolae",
+            "title" : "Cyanidioschyzon merolae"
          },
          {
-            "title" : "Galdieria sulphuraria",
-            "key" : "Galdieria_sulphuraria"
+            "key" : "Galdieria_sulphuraria",
+            "title" : "Galdieria sulphuraria"
          },
          {
             "title" : "Chondrus crispus",
@@ -718,8 +1172,8 @@ taxonTreeData = [
             "key" : "Physcomitrium_patens"
          },
          {
-            "key" : "Nymphaea_colorata",
-            "title" : "Nymphaea colorata"
+            "title" : "Nymphaea colorata Beijing-Zhang1983",
+            "key" : "Nymphaea_colorata_GCA_008831285.2rs"
          },
          {
             "title" : "Amborella trichopoda",
@@ -734,8 +1188,8 @@ taxonTreeData = [
             "title" : "Selaginella moellendorffii"
          },
          {
-            "key" : "Chara_braunii",
-            "title" : "Chara braunii"
+            "title" : "Chara braunii",
+            "key" : "Chara_braunii"
          }
       ]
    }
