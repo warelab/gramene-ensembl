@@ -21,8 +21,6 @@ package EnsEMBL::Web::Component::Gene::GrameneSearch;
 
 use strict;
 
-use EnsEMBL::Web::Document::Image::R2R;
-
 use base qw(EnsEMBL::Web::Component::Gene);
 
 sub _init {
@@ -33,19 +31,11 @@ sub _init {
 
 sub content {
   my $self          = shift;
-  my $hub           = $self->hub;
-  my $object        = $self->object;
-  my $gene          = $object->gene;
-  my $species_defs  = $hub->species_defs;
-  my $table         = $self->new_twocol;
-  my $site_type     = $species_defs->ENSEMBL_SITETYPE;
-  my @CCDS          = @{$object->Obj->get_all_DBLinks('CCDS')};
-  my @Uniprot       = @{$object->Obj->get_all_DBLinks('Uniprot/SWISSPROT')};
-  my $db            = $object->get_db;
-  my $alt_genes     = $self->get_matches('alternative_genes', 'Alternative Genes', 'ALT_GENE', 'show_version'); #gets all xrefs, sorts them and stores them on the object. Returns HTML only for ALT_GENES
-  my @RefSeqMatches = @{$gene->get_all_Attributes('refseq_compare')};
-  my $display_xref  = $gene->display_xref;
-  my ($link_url)    = $display_xref ? $self->get_gene_display_link($gene, $display_xref) : ();
+  my $species_defs  = $self->hub->species_defs;
+  my $gene          = $self->object->gene;
+
+  # only the stable id is needed; the xref lookups copied from Gene::Summary called
+  # get_gene_display_link, which Component::Gene doesn't have (died on genes with a display xref)
 
   my $gene_stable_id = $gene->stable_id;
   #my $sbase_link = '<a href="https://oryza.gramene.org/?idList=' . $gene_stable_id . '"><strong>OryzaGramene Genes search</strong></a>';
