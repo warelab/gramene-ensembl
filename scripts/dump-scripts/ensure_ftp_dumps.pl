@@ -145,10 +145,18 @@ sub process {
   foreach my $schema_type(keys %{$dbas}){
   
     while (my $dba = shift @{$dbas->{$schema_type}}) {
-      $self->_process_dba($dba, $schema_type);
+      # One bad core must not strand the rest of the list: log it, carry on, fail at the end.
+      next if eval { $self->_process_dba($dba, $schema_type); 1 };
+      my $err = $@ || 'unknown error';
+      my $db = eval { $dba->dbc->dbname } || '?';
+      $self->v("GENOME FAILED %s: %s", $db, $err);
+      push @{ $self->{failed} }, $db;
+      eval { $dba->dbc->disconnect_if_idle };
     }
   }
-  
+  if (my @f = @{ $self->{failed} || [] }) {
+    die sprintf("%d genome(s) failed: %s\n", scalar(@f), join(' ', @f));
+  }
   return;
 }
 
@@ -161,6 +169,15 @@ sub _process_dba {
 	my $species_path = join('/',$o->{'out_dir'},'fasta',$species);
     $self->v('Working with prod_name: %s assembly: %s', $species, $assembly);
 	$self->v('path for fasta files: %s', $species_path);
+	# Every sequence-level region needs a dna row, or the dna dump dies part-way (after
+	# writing what it could) and no cdna/cds/pep can be made for genes on the missing regions.
+	my $h = $dba->dbc->sql_helper;
+	my $n_seq = $h->execute_single_result(-SQL => q{SELECT COUNT(*) FROM seq_region sr
+		JOIN coord_system cs USING (coord_system_id)
+		WHERE cs.species_id = ? AND FIND_IN_SET('sequence_level', cs.attrib)}, -PARAMS => [ $dba->species_id ]);
+	my $n_dna = $h->execute_single_result(-SQL => q{SELECT COUNT(*) FROM dna});
+	die "dna table has $n_dna rows for $n_seq sequence-level regions; this core is missing sequence\n"
+		if $n_dna < $n_seq;
     # my @file_types = qw/cdna cds dna ncrna pep/;
 	# dna first: once it is on disk, cdna/cds/pep read their sequence from it (_use_local_dna).
 	my @file_types = qw/dna cdna cds pep/;
@@ -328,18 +345,43 @@ sub _dump_fasta {
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
-		# Read each region's sequence once and mask it in memory. get_repeatmasked_seq()->seq
-		# re-reads the sequence from the database every time, i.e. three reads per region.
-		# Same masking as RepeatMaskedSlice::seq (repeats from each logic name, _mask_features).
+		# Repeats come straight from SQL (no Perl object per feature) as toplevel intervals,
+		# also kept as <name>.repeats.toplevel.bed.gz. Each region's sequence is read once and
+		# both masked copies are made from it in memory, the same way as
+		# Slice::_mask_features (clip to the region; soft = lowercase, hard = N).
+		(my $bed = $outfile) =~ s/dna\.toplevel\.fa\.part$/repeats.toplevel.bed/;
+		my $iv = @logic_names ? $self->_repeat_intervals($dba, \@logic_names, $bed) : {};
 		foreach my $slice (@$slices) {
 			my $plain = $slice->seq;
-			my @repeats = map { @{ $slice->get_all_RepeatFeatures($_) } } @logic_names;
+			my $name = $slice->seq_region_name;
+			my @iv;
+			if ($iv) {
+				@iv = unpack('N*', $iv->{$name} // '');
+			}
+			else {    # repeats that SQL cannot place: let the API project them
+				for my $f (map { @{ $slice->get_all_RepeatFeatures($_) } } @logic_names) {
+					push @iv, $f->start, $f->end;
+				}
+			}
+			my $len = length $plain;
 			for my $m ([$seqio_sm, 1], [$seqio_rm, 0]) {
 				my $masked = $plain;
-				$slice->_mask_features(\$masked, \@repeats, $m->[1], {}) if @repeats;
-				$m->[0]->write_seq(Bio::Seq->new(-display_id => $slice->seq_region_name, -seq => $masked));
+				for (my $k = 0; $k < @iv; $k += 2) {
+					my ($fs, $fe) = @iv[$k, $k + 1];
+					next if $fe < 1 or $fs > $len;
+					$fs = 1 if $fs < 1;
+					$fe = $len if $fe > $len;
+					my $l = $fe - $fs + 1;
+					next if $l < 1;
+					if ($m->[1]) { substr($masked, $fs - 1, $l) = lc substr($masked, $fs - 1, $l) }
+					else         { substr($masked, $fs - 1, $l, 'N' x $l) }
+				}
+				$m->[0]->write_seq(Bio::Seq->new(-display_id => $name, -seq => $masked));
 			}
-			$seqio_unmasked->write_seq(Bio::Seq->new(-display_id => $slice->seq_region_name, -seq => $plain));
+			$seqio_unmasked->write_seq(Bio::Seq->new(-display_id => $name, -seq => $plain));
+		}
+		if ($iv and -e "$bed.gz.part") {
+			rename("$bed.gz.part", "$bed.gz") or die "cannot rename $bed.gz.part: $!";
 		}
 	}
 	else {
@@ -391,6 +433,72 @@ sub _dump_fasta {
             }
 		}
 	}
+}
+
+# Repeat features of the given analyses as 1-based toplevel intervals, packed per toplevel
+# region name (pack 'N2' per interval), streamed from SQL. Same rows as
+# RepeatFeatureAdaptor::fetch_all_by_Slice (inner join to repeat_consensus). A feature is placed
+# if its seq_region is toplevel, or is placed whole (one assembly row, end to end) into a
+# toplevel region. If any feature cannot be placed that way, returns undef and the caller
+# masks with the API instead. Also writes a sorted, bgzipped BED to "$bed.gz.part".
+sub _repeat_intervals {
+    my ($self, $dba, $logic_names, $bed) = @_;
+    my $h = $dba->dbc->sql_helper;
+    my $top = q{
+        JOIN seq_region_attrib ta ON ta.seq_region_id = t.seq_region_id
+        JOIN attrib_type tt ON tt.attrib_type_id = ta.attrib_type_id AND tt.code = 'toplevel'
+        JOIN coord_system tcs ON tcs.coord_system_id = t.coord_system_id AND tcs.species_id = ?};
+    my %map;    # seq_region_id => [toplevel name, region length, offset, ori, toplevel length, is toplevel]
+    for my $r (@{ $h->execute(-SQL => "SELECT t.seq_region_id, t.name, t.length FROM seq_region t $top",
+            -PARAMS => [ $dba->species_id ]) }) {
+        $map{ $r->[0] } = [ $r->[1], $r->[2], 1, 1, $r->[2], 1 ];
+    }
+    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.length, t.name, t.length,
+                a.asm_start, a.asm_end, a.cmp_start, a.cmp_end, a.ori
+            FROM assembly a
+            JOIN seq_region c ON c.seq_region_id = a.cmp_seq_region_id
+            JOIN seq_region t ON t.seq_region_id = a.asm_seq_region_id $top",
+            -PARAMS => [ $dba->species_id ]) }) {
+        my ($id, $clen, $tname, $tlen, $as, $ae, $cs, $ce, $ori) = @$r;
+        next if $map{$id};
+        next unless $cs == 1 and $ce == $clen and $ae - $as == $ce - $cs and abs($ori) == 1 and $ae <= $tlen;
+        $map{$id} = [ $tname, $clen, ($ori == 1 ? $as : $ae), $ori, $tlen, 0 ];
+    }
+
+    my $dbh = $dba->dbc->db_handle;
+    my $ph = join(',', ('?') x @$logic_names);
+    my $sth = $dbh->prepare(qq{SELECT r.seq_region_id, r.seq_region_start, r.seq_region_end
+        FROM repeat_feature r
+        JOIN repeat_consensus rc ON rc.repeat_consensus_id = r.repeat_consensus_id
+        JOIN analysis a ON a.analysis_id = r.analysis_id
+        WHERE a.logic_name IN ($ph)}, { mysql_use_result => 1 });
+    $sth->execute(@$logic_names);
+    open(my $out, '>', "$bed.unsorted") or die "cannot write $bed.unsorted: $!";
+    my (%iv, $n, $bad);
+    while (my ($id, $fs, $fe) = $sth->fetchrow_array) {
+        my $m = $map{$id};
+        if (not $m or $fs > $fe or (not $m->[5] and ($fs < 1 or $fe > $m->[1]))) { $bad++; next; }
+        my ($tname, undef, $off, $ori, $tlen) = @$m;
+        my ($ts, $te) = $ori == 1 ? ($off + $fs - 1, $off + $fe - 1) : ($off - $fe + 1, $off - $fs + 1);
+        next if $te < 1 or $ts > $tlen;    # outside the region: the API skips these
+        $ts = 1 if $ts < 1;
+        $te = $tlen if $te > $tlen;
+        $iv{$tname} .= pack('N2', $ts, $te);
+        print $out "$tname\t", $ts - 1, "\t$te\n";
+        $n++;
+    }
+    $sth->finish;
+    close($out) or die "cannot write $bed.unsorted: $!";
+    if ($bad) {
+        $self->v("\tWARNING %d repeat features are not on a toplevel region or a whole placement; masking via the API", $bad);
+        unlink "$bed.unsorted";
+        return;
+    }
+    system("set -o pipefail; LC_ALL=C sort -S 2G -k1,1 -k2,2n -k3,3n $bed.unsorted | bgzip -c > $bed.gz.part") == 0
+        or die "cannot sort/bgzip $bed.unsorted\n";
+    unlink "$bed.unsorted";
+    $self->v("\t%d repeat intervals on %d toplevel regions from SQL", $n // 0, scalar(keys %iv));
+    return \%iv;
 }
 
 sub _ensure_blast {
