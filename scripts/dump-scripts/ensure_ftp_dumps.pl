@@ -72,6 +72,7 @@ sub args {
 			registry|reg|r=s
 			repeat_logic=s
 			bgzip_threads=i
+			remask
       out_dir=s
       verbose 
       help
@@ -147,7 +148,10 @@ sub process {
   
     while (my $dba = shift @{$dbas->{$schema_type}}) {
       # One bad core must not strand the rest of the list: log it, carry on, fail at the end.
-      next if eval { $self->_process_dba($dba, $schema_type); 1 };
+      next if eval {
+        $self->opts->{remask} ? $self->_remask_dba($dba) : $self->_process_dba($dba, $schema_type);
+        1;
+      };
       my $err = $@ || 'unknown error';
       my $db = eval { $dba->dbc->dbname } || '?';
       $self->v("GENOME FAILED %s: %s", $db, $err);
@@ -274,6 +278,70 @@ sub _use_local_dna {
     return;
 }
 
+# --remask: rebuild dna_sm/dna_rm (and their BLAST DBs) for a genome whose dna.toplevel FASTA
+# already exists, e.g. one dumped before masking used the right repeat analyses. The sequence
+# is read from that FASTA, which must hold exactly the core's toplevel regions (name and
+# length) and pass _use_local_dna's spot check against the dna table. The repeats come from
+# the core via _repeat_intervals (or the API). <name>.repeats.toplevel.bed.gz is written last
+# and marks the genome as done; a rerun skips it unless --overwrite.
+sub _remask_dba {
+    my ($self, $dba) = @_;
+    my $species = $dba->get_MetaContainer->get_production_name;
+    my $assembly = $dba->get_MetaContainer->single_value_by_key('assembly.default');
+    my $dbName = $dba->get_MetaContainer->single_value_by_key('species.display_name');
+    my $species_path = join('/', $self->opts->{out_dir}, 'fasta', $species);
+    my $name = ucfirst(join('.', $species, $assembly, 'dna', 'toplevel'));
+    my $fa = "$species_path/dna/$name.fa";
+    (my $bed = $fa) =~ s/dna\.toplevel\.fa$/repeats.toplevel.bed/;
+    $self->v('Re-masking %s assembly: %s', $species, $assembly);
+    if (-s "$bed.gz" and not $self->opts->{overwrite}) {
+        $self->v("skipping re-mask, already done: $bed.gz");
+        return;
+    }
+    for my $f ("$fa.gz", "$fa.gz.fai", "$fa.gz.gzi") {
+        -s $f or die "no indexed dna FASTA to re-mask: missing $f\n";
+    }
+    my %fai;
+    open(my $fh, '<', "$fa.gz.fai") or die "cannot read $fa.gz.fai: $!";
+    while (<$fh>) { my ($n, $l) = split /\t/; $fai{$n} = $l; }
+    close $fh;
+    my $slices = $dba->get_SliceAdaptor->fetch_all('toplevel');
+    my @bad = grep { ($fai{ $_->seq_region_name } // -1) != $_->seq_region_length } @$slices;
+    die sprintf("%s does not match the core's toplevel: %d of %d regions missing or a different length (e.g. %s); FASTA has %d\n",
+        $fa, scalar(@bad), scalar(@$slices), $bad[0]->seq_region_name, scalar(keys %fai)) if @bad;
+    die sprintf("%s has %d sequences but the core has %d toplevel regions\n", $fa, scalar(keys %fai), scalar(@$slices))
+        if keys(%fai) != @$slices;
+    return if $self->opts->{dry};
+    $self->_use_local_dna($dba, "$fa.gz");
+    $dba->get_SequenceAdaptor->{_gramene_local_dna}
+        or die "local dna FASTA not usable for $species (see the local dna line above)\n";
+
+    my @masked = map { (my $m = $fa) =~ s/dna\.toplevel/$_.toplevel/; $m } qw/dna_sm dna_rm/;
+    $self->_dump_fasta($dba, "$fa.part", 'dna', 1);
+    unlink "$fa.part";    # _dump_fasta's unused handle on the plain file
+    for my $f (@masked) {
+        rename("$f.part", $f) or die "cannot rename $f.part -> $f: $!";
+        $self->v("index $f");
+        $self->_index_fasta($f);    # bgzip -f replaces the old .fa.gz
+    }
+    {
+        local $self->opts->{overwrite} = 1;
+        (my $sm = $name) =~ s/\.dna\./.dna_sm./;
+        (my $rm = $name) =~ s/\.dna\./.dna_rm./;
+        $self->_ensure_blast($sm, $species_path, 'dna', "$dbName softmasked", 1);
+        $self->_ensure_blast($rm, $species_path, 'dna', "$dbName hardmasked", 1);
+    }
+    if (-e "$bed.gz.part") {
+        rename("$bed.gz.part", "$bed.gz") or die "cannot rename $bed.gz.part: $!";
+    }
+    else {    # API-masked genome: leave an (empty) marker so it counts as done
+        if (open(my $m, '>', "$bed.gz")) { close($m); }
+    }
+    delete $dba->get_SequenceAdaptor->{_gramene_local_dna};
+    $dba->dbc->disconnect_if_idle;
+    return;
+}
+
 sub _ensure_fasta {
   my ($self, $dba, $datafile, $target_dir, $type) = @_;
 
@@ -333,7 +401,7 @@ sub _ensure_fasta {
 }
 
 sub _dump_fasta {
-	my ($self, $dba, $outfile, $type) = @_;
+	my ($self, $dba, $outfile, $type, $masked_only) = @_;    # $masked_only: dna_sm/dna_rm only (--remask)
 	my $seqio_fh = new Bio::SeqIO(-format => 'fasta', -file => ">$outfile");
 
 	my $slice_adaptor = $dba->get_SliceAdaptor;
@@ -358,7 +426,7 @@ sub _dump_fasta {
 		my $outfile_rm = $outfile;
 		$outfile_rm =~ s/dna\.toplevel/dna_rm.toplevel/;
 
-		my $seqio_unmasked = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile");
+		my $seqio_unmasked = Bio::SeqIO->new(-format => 'fasta', -file => ($masked_only ? '>/dev/null' : ">$outfile"));
 		my $seqio_sm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_sm");
 		my $seqio_rm = Bio::SeqIO->new(-format => 'fasta', -file => ">$outfile_rm");
 
@@ -397,7 +465,7 @@ sub _dump_fasta {
 			}
 			$seqio_unmasked->write_seq(Bio::Seq->new(-display_id => $name, -seq => $plain));
 		}
-		if ($iv and -e "$bed.gz.part") {
+		if ($iv and -e "$bed.gz.part" and not $masked_only) {    # --remask renames it last, as its done marker
 			rename("$bed.gz.part", "$bed.gz") or die "cannot rename $bed.gz.part: $!";
 		}
 	}
@@ -572,6 +640,7 @@ sub _ensure_blast {
 sub _index_fasta {
     my ($self, $fa_file) = @_;
     # -@: single-threaded bgzip takes ~55 min per 14.7 GB wheat file, three files per genome.
+    unlink "$fa_file.gz.fai", "$fa_file.gz.gzi";    # stale if this replaces an older .fa.gz
     my $cmd = "bgzip -f -@ " . ($self->opts->{bgzip_threads} || 8) . " $fa_file";
     $self->v($cmd);
     system($cmd) == 0 or die "$cmd failed\n";
@@ -718,6 +787,12 @@ would have performed.
 Case-insensitive regex selecting the repeat analyses (by logic_name) used to build
 dna_sm and dna_rm. Default C<^(repeatmask|dust|trf)>, i.e. RepeatMasker libraries plus
 low-complexity (dust) and tandem repeats (trf); excludes e.g. tallymer and repeatdetector.
+
+=item B<--remask>
+
+Only rebuild dna_sm/dna_rm and their BLAST DBs from each genome's existing dna.toplevel FASTA,
+masked with the core's repeats. Writes <name>.repeats.toplevel.bed.gz last; genomes that have it
+are skipped unless --overwrite.
 
 =item B<--bgzip_threads>
 
