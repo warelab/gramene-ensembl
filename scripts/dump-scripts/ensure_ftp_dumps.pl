@@ -71,6 +71,7 @@ sub args {
 			overwrite
 			registry|reg|r=s
 			repeat_logic=s
+			bgzip_threads=i
       out_dir=s
       verbose 
       help
@@ -287,18 +288,34 @@ sub _ensure_fasta {
   }
 
 	my $file_path = join("/",$target_dir, $datafile . ".fa");
-	if (not $self->opts->{overwrite} and ((-e $file_path and not -z $file_path) or (-e "$file_path.gz" and not -z "$file_path.gz"))) {
-		$self->v("skipping $file_path");
-		return;
-	}
-
-	$self->v("dump $type into $file_path");
     my @to_index = ($file_path);
     if ($type eq 'dna') {
         (my $sm = $file_path) =~ s/dna\.toplevel/dna_sm.toplevel/;
         (my $rm = $file_path) =~ s/dna\.toplevel/dna_rm.toplevel/;
         push @to_index, $sm, $rm;
     }
+	# Finish indexing that was interrupted: a renamed .fa is complete, but if the run died during
+	# bgzip/faidx it is still uncompressed (perhaps beside a partial .fa.gz), or the .fai is missing.
+	if (not $self->opts->{overwrite} and not $self->opts->{dry}
+		and grep { -s $_ or (-s "$_.gz" and not -s "$_.gz.fai") } @to_index) {
+		for my $f (@to_index) {
+			if (-s $f) {
+				unlink "$f.gz", "$f.gz.fai", "$f.gz.gzi";
+				$self->v("finishing interrupted index of $f");
+				$self->_index_fasta($f);
+			}
+			elsif (-s "$f.gz" and not -s "$f.gz.fai") {
+				$self->v("finishing interrupted faidx of $f.gz");
+				system("samtools faidx $f.gz") == 0 or die "samtools faidx $f.gz failed\n";
+			}
+		}
+	}
+	if (not $self->opts->{overwrite} and ((-e $file_path and not -z $file_path) or (-e "$file_path.gz" and not -z "$file_path.gz"))) {
+		$self->v("skipping $file_path");
+		return;
+	}
+
+	$self->v("dump $type into $file_path");
     # Dump to <name>.part and rename only once complete: the skip test above treats any
     # non-empty file as done, so a dump killed part-way (e.g. the DB server restarting)
     # must never leave a file under its final name.
@@ -554,12 +571,13 @@ sub _ensure_blast {
 
 sub _index_fasta {
     my ($self, $fa_file) = @_;
-    my $cmd = "bgzip $fa_file";
+    # -@: single-threaded bgzip takes ~55 min per 14.7 GB wheat file, three files per genome.
+    my $cmd = "bgzip -f -@ " . ($self->opts->{bgzip_threads} || 8) . " $fa_file";
     $self->v($cmd);
-    system($cmd);
+    system($cmd) == 0 or die "$cmd failed\n";
     $cmd = "samtools faidx $fa_file.gz";
     $self->v($cmd);
-    system($cmd);
+    system($cmd) == 0 or die "$cmd failed\n";
 }
 
 sub _ensure_gff3 {
@@ -700,6 +718,10 @@ would have performed.
 Case-insensitive regex selecting the repeat analyses (by logic_name) used to build
 dna_sm and dna_rm. Default C<^(repeatmask|dust|trf)>, i.e. RepeatMasker libraries plus
 low-complexity (dust) and tandem repeats (trf); excludes e.g. tallymer and repeatdetector.
+
+=item B<--bgzip_threads>
+
+Threads for each bgzip of a FASTA file (bgzip -@). Default 8.
 
 =item B<--overwrite>
 
