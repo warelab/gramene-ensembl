@@ -78,8 +78,8 @@ push @$SiteDefs::ENSEMBL_EXTRA_INC, '/usr/local/ensembl-live/htslib', '/usr/loca
  
 $SiteDefs::ENSEMBL_VEP_SCRIPT_DEFAULT_OPTIONS = {                                                 # Default options for command line vep script (keys with value undef get ignored)
     'host'        => 'colden',                                                                       # Database host (defaults to ensembldb.ensembl.org)
-    'user'        => 'weix',                                                                       # Defaults to 'anonymous'
-    'password'    => undef,   # set in gramene-private/conf/SiteDefs.pm (not in git)                                                                       # Not used by default
+    'user'        => 'vep_ro',  # read-only, no password: VEP writes its full command line into each job's stats.txt
+    'password'    => undef,     # keep undef, and don't set it in gramene-private either
     'port'        => 3306,                                                                       # Defaults to 5306
     'fork'        => 4,                                                                           # Enable forking, using 4 forks
   };
