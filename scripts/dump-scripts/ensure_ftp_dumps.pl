@@ -30,15 +30,18 @@ use Pod::Usage;
     my $loc = $sa->{_gramene_local_dna};
     my $map = $loc ? $loc->{map}{$id} : undef;
     return $db_fetch->(@_) unless $map;
-    # $map: [toplevel name, region length, toplevel start of region pos 1, ori]
-    my ($name, $len, $off, $ori) = @$map;
+    # $map: { len => region length, seg => pieces from _toplevel_segments }
+    my $len = $map->{len};
     my $end = $start + $length - 1;
     $end = $len if $end > $len;
     my $seq = '';
     if ($start <= $end) {    # SUBSTR() past the end returns '', so do the same
+      my $g = _segment_for($map->{seg}, $start, $end);
+      return $db_fetch->(@_) unless $g;    # spans a gap or piece boundary: rare, and correct from the db
+      my ($cs, undef, $name, $toff, $ori) = @$g;
       my ($s, $e) = $ori == 1
-        ? ($off + $start - 1, $off + $end - 1)
-        : ($off - $end + 1, $off - $start + 1);    # $off is then the toplevel END of pos 1
+        ? ($toff + $start - $cs, $toff + $end - $cs)
+        : ($toff - ($end - $cs), $toff - ($start - $cs));
       $seq = $loc->{fai}->get_sequence2_no_length($name, $s - 1, $e - 1);    # htslib: 0-based, inclusive
       defined $seq and length($seq) == $e - $s + 1
         or die "local dna fetch failed for $name:$s-$e from $loc->{file}\n";
@@ -206,11 +209,76 @@ sub _process_dba {
     return;
 }
 
+# Where each seq_region lies on the toplevel: seq_region_id => { len => length, seg => [piece,
+# ...] }, pieces sorted by start, each [start, end, toplevel name, toplevel position of start,
+# ori, toplevel length]. Built down from the toplevel regions through the assembly table one
+# level at a time, so multi-level assemblies (solanum: superscaffold -> split -> chromosome)
+# and partial placements are covered. A region reached at an upper level is not re-entered
+# from a lower one. Rows whose two sides differ in length (never in our cores) are skipped.
+sub _toplevel_segments {
+    my ($self, $dba) = @_;
+    my $h = $dba->dbc->sql_helper;
+    my (%map, %rows);
+    for my $r (@{ $h->execute(-SQL => q{SELECT t.seq_region_id, t.name, t.length FROM seq_region t
+            JOIN coord_system cs ON cs.coord_system_id = t.coord_system_id AND cs.species_id = ?
+            JOIN seq_region_attrib ta ON ta.seq_region_id = t.seq_region_id
+            JOIN attrib_type tt ON tt.attrib_type_id = ta.attrib_type_id AND tt.code = 'toplevel'},
+            -PARAMS => [ $dba->species_id ]) }) {
+        $map{ $r->[0] } = { len => $r->[2], top => 1, seg => [ [ 1, $r->[2], $r->[1], 1, 1, $r->[2] ] ] };
+    }
+    for my $r (@{ $h->execute(-SQL => q{SELECT a.asm_seq_region_id, a.cmp_seq_region_id, c.length,
+                a.asm_start, a.asm_end, a.cmp_start, a.cmp_end, a.ori
+            FROM assembly a JOIN seq_region c ON c.seq_region_id = a.cmp_seq_region_id
+            JOIN coord_system cs ON cs.coord_system_id = c.coord_system_id AND cs.species_id = ?},
+            -PARAMS => [ $dba->species_id ]) }) {
+        push @{ $rows{ $r->[0] } }, $r;
+    }
+    my @frontier = keys %map;
+    while (@frontier) {
+        my %new;
+        for my $asm (@frontier) {
+            my $up = $map{$asm}{seg};
+            for my $r (@{ $rows{$asm} || [] }) {
+                my (undef, $cmp, $clen, $as, $ae, $cs, $ce, $ori) = @$r;
+                next if $map{$cmp} and not $new{$cmp};
+                next unless $ae - $as == $ce - $cs and abs($ori) == 1;
+                for my $u (@$up) {
+                    my ($us, $ue, $tname, $toff, $uori, $tlen) = @$u;
+                    my ($lo, $hi) = ($as > $us ? $as : $us, $ae < $ue ? $ae : $ue);
+                    next if $lo > $hi;
+                    # asm position a -> cmp position; a -> toplevel = toff + uori*(a - us)
+                    my ($c1, $c2, $a_at_c1) = $ori == 1
+                        ? ($cs + $lo - $as, $cs + $hi - $as, $lo)
+                        : ($ce - ($hi - $as), $ce - ($lo - $as), $hi);
+                    $new{$cmp} = 1;
+                    $map{$cmp} //= { len => $clen, seg => [] };
+                    push @{ $map{$cmp}{seg} }, [ $c1, $c2, $tname, $toff + $uori * ($a_at_c1 - $us), $uori * $ori, $tlen ];
+                }
+            }
+        }
+        for my $id (keys %new) { @{ $map{$id}{seg} } = sort { $a->[0] <=> $b->[0] } @{ $map{$id}{seg} }; }
+        @frontier = keys %new;
+    }
+    return \%map;
+}
+
+# The piece of a _toplevel_segments list that holds all of [$s, $e], or undef.
+sub _segment_for {
+    my ($seg, $s, $e) = @_;
+    my ($lo, $hi) = (0, $#$seg);
+    while ($lo <= $hi) {
+        my $mid = int(($lo + $hi) / 2);
+        if ($seg->[$mid][0] > $s) { $hi = $mid - 1; }
+        elsif ($seg->[$mid][1] < $s) { $lo = $mid + 1; }
+        else { return $e <= $seg->[$mid][1] ? $seg->[$mid] : undef; }
+    }
+    return;
+}
+
 # Point this core's SequenceAdaptor at the finished dna.toplevel FASTA. A sequence-level
-# region is served from it when it either is a toplevel region itself, or is placed whole
-# (one assembly row covering it end to end) into a toplevel region; e.g. a contig that makes
-# up a supercontig. The toplevel region must have the same name and length in the FASTA.
-# Anything else (multi-level assemblies, partial placements) still comes from the database.
+# region is served from it wherever _toplevel_segments places it on a toplevel region that
+# has the same name and length in the FASTA; a fetch that falls in a gap or across a piece
+# boundary still comes from the database.
 sub _use_local_dna {
     my ($self, $dba, $fa) = @_;
     my $sa = $dba->get_SequenceAdaptor;
@@ -226,40 +294,29 @@ sub _use_local_dna {
         FROM seq_region c
         JOIN coord_system ccs ON ccs.coord_system_id = c.coord_system_id
              AND ccs.species_id = ? AND FIND_IN_SET('sequence_level', ccs.attrib)};
-    my $is_top = q{
-        JOIN seq_region_attrib ta ON ta.seq_region_id = t.seq_region_id
-        JOIN attrib_type tt ON tt.attrib_type_id = ta.attrib_type_id AND tt.code = 'toplevel'};
-    my %map;
     my $all = $h->execute_single_result(-SQL => "SELECT COUNT(*), IFNULL(SUM(c.length),0) $seqlevel",
         -PARAMS => [ $dba->species_id ], -CALLBACK => sub { [ @{$_[0]} ] });
-    # 1. sequence-level regions that are toplevel themselves
-    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.name, c.length $seqlevel
-            JOIN seq_region t ON t.seq_region_id = c.seq_region_id $is_top", -PARAMS => [ $dba->species_id ]) }) {
-        my ($id, $name, $l) = @$r;
-        $map{$id} = [ $name, $l, 1, 1 ] if defined $fa_len{$name} and $fa_len{$name} == $l;
+    my $top = $self->_toplevel_segments($dba);
+    my (%map, $bp);
+    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id $seqlevel", -PARAMS => [ $dba->species_id ]) }) {
+        my $m = $top->{ $r->[0] } or next;
+        my @seg = grep { ($fa_len{ $_->[2] } // -1) == $_->[5] } @{ $m->{seg} };
+        next unless @seg;
+        $map{ $r->[0] } = { len => $m->{len}, seg => \@seg };
+        $bp += $_->[1] - $_->[0] + 1 for @seg;
     }
-    # 2. sequence-level regions placed whole into a toplevel region
-    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.length, t.name, t.length,
-                a.asm_start, a.asm_end, a.cmp_start, a.cmp_end, a.ori $seqlevel
-            JOIN assembly a ON a.cmp_seq_region_id = c.seq_region_id
-            JOIN seq_region t ON t.seq_region_id = a.asm_seq_region_id $is_top", -PARAMS => [ $dba->species_id ]) }) {
-        my ($id, $clen, $tname, $tlen, $as, $ae, $cs, $ce, $ori) = @$r;
-        next if $map{$id};
-        next unless $cs == 1 and $ce == $clen and $ae - $as == $ce - $cs and abs($ori) == 1;
-        next unless defined $fa_len{$tname} and $fa_len{$tname} == $tlen and $ae <= $tlen;
-        $map{$id} = [ $tname, $clen, ($ori == 1 ? $as : $ae), $ori ];
-    }
-    # Self-check: 1 kb from the FASTA must equal 1 kb from the dna table, for one region of
+    # Self-check: 1 kb from the FASTA must equal 1 kb from the dna table, for one piece of
     # each orientation. On any mismatch use the database for the whole genome.
     my %probe;
     for my $id (sort { $a <=> $b } keys %map) {
-        $probe{ $map{$id}[3] } //= $id;    # one forward, one reverse (if any)
+        $probe{ $_->[4] } //= [ $id, $_ ] for @{ $map{$id}{seg} };    # one forward, one reverse (if any)
     }
     $sa->{_gramene_local_dna} = { fai => $fai, map => \%map, file => $fa };
-    for my $id (values %probe) {
-        my $len = $map{$id}[1];
-        my $st = $len > 2000 ? int($len / 2) : 1;
-        my $n = $len - $st + 1 < 1000 ? $len - $st + 1 : 1000;
+    for my $p (values %probe) {
+        my ($id, $g) = @$p;
+        my $plen = $g->[1] - $g->[0] + 1;
+        my $st = $g->[0] + ($plen > 2000 ? int($plen / 2) : 0);
+        my $n = $g->[1] - $st + 1 < 1000 ? $g->[1] - $st + 1 : 1000;
         my $local = ${ $sa->_fetch_raw_seq($id, $st, $n) };
         delete local $sa->{_gramene_local_dna};
         my $db = ${ $sa->_fetch_raw_seq($id, $st, $n) };
@@ -269,9 +326,8 @@ sub _use_local_dna {
         return;
     }
     delete $sa->{_gramene_local_dna};
-    my $bp = 0; $bp += $_->[1] for values %map;
     $self->v("\tlocal dna: %d of %d sequence-level regions (%.1f of %.1f Mb) served from %s",
-        scalar(keys %map), $all->[0], $bp / 1e6, $all->[1] / 1e6, $fa);
+        scalar(keys %map), $all->[0], ($bp // 0) / 1e6, $all->[1] / 1e6, $fa);
     return unless %map;
     $sa->clear_cache;
     $sa->{_gramene_local_dna} = { fai => $fai, map => \%map, file => $fa };
@@ -528,27 +584,7 @@ sub _dump_fasta {
 # masks with the API instead. Also writes a sorted, bgzipped BED to "$bed.gz.part".
 sub _repeat_intervals {
     my ($self, $dba, $logic_names, $bed) = @_;
-    my $h = $dba->dbc->sql_helper;
-    my $top = q{
-        JOIN seq_region_attrib ta ON ta.seq_region_id = t.seq_region_id
-        JOIN attrib_type tt ON tt.attrib_type_id = ta.attrib_type_id AND tt.code = 'toplevel'
-        JOIN coord_system tcs ON tcs.coord_system_id = t.coord_system_id AND tcs.species_id = ?};
-    my %map;    # seq_region_id => [toplevel name, region length, offset, ori, toplevel length, is toplevel]
-    for my $r (@{ $h->execute(-SQL => "SELECT t.seq_region_id, t.name, t.length FROM seq_region t $top",
-            -PARAMS => [ $dba->species_id ]) }) {
-        $map{ $r->[0] } = [ $r->[1], $r->[2], 1, 1, $r->[2], 1 ];
-    }
-    for my $r (@{ $h->execute(-SQL => "SELECT c.seq_region_id, c.length, t.name, t.length,
-                a.asm_start, a.asm_end, a.cmp_start, a.cmp_end, a.ori
-            FROM assembly a
-            JOIN seq_region c ON c.seq_region_id = a.cmp_seq_region_id
-            JOIN seq_region t ON t.seq_region_id = a.asm_seq_region_id $top",
-            -PARAMS => [ $dba->species_id ]) }) {
-        my ($id, $clen, $tname, $tlen, $as, $ae, $cs, $ce, $ori) = @$r;
-        next if $map{$id};
-        next unless $cs == 1 and $ce == $clen and $ae - $as == $ce - $cs and abs($ori) == 1 and $ae <= $tlen;
-        $map{$id} = [ $tname, $clen, ($ori == 1 ? $as : $ae), $ori, $tlen, 0 ];
-    }
+    my $map = $self->_toplevel_segments($dba);
 
     my $dbh = $dba->dbc->db_handle;
     my $ph = join(',', ('?') x @$logic_names);
@@ -561,10 +597,13 @@ sub _repeat_intervals {
     open(my $out, '>', "$bed.unsorted") or die "cannot write $bed.unsorted: $!";
     my (%iv, $n, $bad);
     while (my ($id, $fs, $fe) = $sth->fetchrow_array) {
-        my $m = $map{$id};
-        if (not $m or $fs > $fe or (not $m->[5] and ($fs < 1 or $fe > $m->[1]))) { $bad++; next; }
-        my ($tname, undef, $off, $ori, $tlen) = @$m;
-        my ($ts, $te) = $ori == 1 ? ($off + $fs - 1, $off + $fe - 1) : ($off - $fe + 1, $off - $fs + 1);
+        my $m = $map->{$id};
+        if (not $m or $fs > $fe) { $bad++; next; }
+        # On a toplevel region a feature may run off either end; the API clips it (below).
+        my $g = $m->{top} ? $m->{seg}[0] : _segment_for($m->{seg}, $fs, $fe);
+        unless ($g) { $bad++; next; }    # in a gap or across pieces: leave it to the API
+        my ($cs, undef, $tname, $toff, $ori, $tlen) = @$g;
+        my ($ts, $te) = $ori == 1 ? ($toff + $fs - $cs, $toff + $fe - $cs) : ($toff - ($fe - $cs), $toff - ($fs - $cs));
         next if $te < 1 or $ts > $tlen;    # outside the region: the API skips these
         $ts = 1 if $ts < 1;
         $te = $tlen if $te > $tlen;
@@ -575,7 +614,7 @@ sub _repeat_intervals {
     $sth->finish;
     close($out) or die "cannot write $bed.unsorted: $!";
     if ($bad) {
-        $self->v("\tWARNING %d repeat features are not on a toplevel region or a whole placement; masking via the API", $bad);
+        $self->v("\tWARNING %d repeat features do not fall inside one toplevel piece; masking via the API", $bad);
         unlink "$bed.unsorted";
         return;
     }
