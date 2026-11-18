@@ -262,6 +262,15 @@ sub _toplevel_segments {
     return \%map;
 }
 
+# True if $file starts with a BGZF block header (gzip with FEXTRA and a 'BC' subfield).
+sub _is_bgzf {
+    my ($file) = @_;
+    open(my $fh, '<:raw', $file) or return 0;
+    my $n = read($fh, my $h, 14);
+    close $fh;
+    return ($n == 14 and substr($h, 0, 4) eq "\x1f\x8b\x08\x04" and substr($h, 12, 2) eq 'BC') ? 1 : 0;
+}
+
 # The piece of a _toplevel_segments list that holds all of [$s, $e], or undef.
 sub _segment_for {
     my ($seg, $s, $e) = @_;
@@ -420,15 +429,18 @@ sub _ensure_fasta {
     }
 	# Finish indexing that was interrupted: a renamed .fa is complete, but if the run died during
 	# bgzip/faidx it is still uncompressed (perhaps beside a partial .fa.gz), or the .fai is missing.
+	# Only a BGZF .fa.gz can be ours: older releases left plain-gzip files with no .fai, which
+	# are skipped as before (samtools cannot index them).
+	my $needs_fai = sub { -s "$_[0].gz" and not -s "$_[0].gz.fai" and _is_bgzf("$_[0].gz") };
 	if (not $self->opts->{overwrite} and not $self->opts->{dry}
-		and grep { -s $_ or (-s "$_.gz" and not -s "$_.gz.fai") } @to_index) {
+		and grep { -s $_ or $needs_fai->($_) } @to_index) {
 		for my $f (@to_index) {
 			if (-s $f) {
 				unlink "$f.gz", "$f.gz.fai", "$f.gz.gzi";
 				$self->v("finishing interrupted index of $f");
 				$self->_index_fasta($f);
 			}
-			elsif (-s "$f.gz" and not -s "$f.gz.fai") {
+			elsif ($needs_fai->($f)) {
 				$self->v("finishing interrupted faidx of $f.gz");
 				system("samtools faidx $f.gz") == 0 or die "samtools faidx $f.gz failed\n";
 			}
