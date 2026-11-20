@@ -55,11 +55,12 @@ sub links {
   if( $sd->ENSEMBL_BLAST_ENABLED ){
 	my $blast_link = $self->hub->url({'species' => '', 'type' => 'Tools', 'action' => 'Blast'});
 	$blast_link =~ s/genome_browser//i; # but genome_browser is not embedded here, it is in the base url
+	$blast_link = "/$blast_link" unless $blast_link =~ m{^(/|https?:)}; # no species on /info/ pages gives a relative link
 	push @links, 'blast', sprintf '<a class="constant" href="%s">BLAST</a>', $blast_link;
   	#push @links, 'blast', sprintf '<a class="constant" href="/%s">BLAST</a>',  if $sd->ENSEMBL_BLAST_ENABLED;
   }
 
-  push @links, 'biomart',       '<a class="constant"  target=_blank href="https://plants.ensembl.org/biomart/martview">BioMart</a>';
+  push @links, 'biomart',       '<a class="constant"  target=_blank href="https://plants.ensembl.org/biomart/martview">EnsemblPlants BioMart</a>';
   push @links, 'tools',         '<a class="constant" href="/tools.html">Tools</a>';
   push @links, 'downloads',     '<a class="constant" href="/info/data/ftp/index.html">Downloads</a>';
   push @links, 'help',          '<a class="constant" href="/info/website/index.html">Help</a>';
@@ -70,6 +71,7 @@ sub links {
 # UserData/SelectFile?db=core
 	
   my $upload_link = $hub->url({ type => 'UserData', action => 'SelectFile', __clear => 1 });
+  $upload_link    = "/$upload_link" unless $upload_link =~ m{^(/|https?:)};
 
   push @links, 'uploadData',  sprintf '<a href="%s" class="modal_link nodeco" rel="modal_user_data">UploadData</a>', $upload_link;  
   return \@links;

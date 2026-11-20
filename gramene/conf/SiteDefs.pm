@@ -37,7 +37,9 @@ sub update_conf {
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
 
-  $SiteDefs::DATAFILE_ROOT        = '/usr/local';                                  ## Base path for ro data files
+  # only used by GlyphSet::_alignment_multiple, which looks for HAL files in DATAFILE_ROOT/SUBDOMAIN_DIR
+  # (/usr/local/vcf/plants/multi -> ../multi); everything else uses COMPARA_HAL_DIR = DATAFILE_BASE_PATH
+  $SiteDefs::DATAFILE_ROOT        = '/usr/local/vcf';
   $SiteDefs::DATAFILE_BASE_PATH   = '/usr/local/vcf';
 
 
@@ -45,6 +47,7 @@ sub update_conf {
    #'https://data.gramene.org/ebeye66';
 
   #$SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://brie:5202';
+  $SiteDefs::NCBIBLAST_REST_ENDPOINT = 'http://squam:2502';  # local v70 blast databases
 ###############################################################################
 # this section copied over from ensembl-webcode/conf/SiteDef.pm
 ## GDPR variables
