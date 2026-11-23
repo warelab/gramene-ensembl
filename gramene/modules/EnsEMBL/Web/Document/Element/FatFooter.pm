@@ -40,7 +40,7 @@ sub content {
                 <p><a href="http://tools.gramene.org/feedback">Contact us</a></p>
                 <p><a href="http://www.gramene.org/cite">Citing Gramene</a></p>
                 <!--<p><a href="http://www.ebi.ac.uk/about/privacy">Privacy policy</a></p>-->
-                <p><a href="http://www.ensemblgenomes.org/info/about/cookies">Cookies</a></p>
+                <p><a href="https://www.cshl.edu/about-us/privacy-policy/">Privacy &amp; cookies</a></p>
                 <!--<p><a href="http://www.ebi.ac.uk/Information/termsofuse.html">EMBL-EBI Terms of use</a></p>-->
                 <!--<p><a href="http://ensemblgenomes.org/info/about/legal">Disclaimer</a></p>-->
               </div>
@@ -51,9 +51,9 @@ sub content {
               <div class="column-four left">
                 <h3>Get help</h3>
                 <p><a href="/info/website/">Using this website</a></p>
-                <p><a href="http://ensemblgenomes.org/info">Documentation</a></p>
+                <p><a href="/info/">Documentation</a></p>
                 <p><a href="/info/website/upload">Adding custom tracks</a></p>
-                <p><a href="/info/website/ftp/index.html">Downloading data</a></p>
+                <p><a href="/info/data/ftp/index.html">Downloading data</a></p>
               </div>
   );
 

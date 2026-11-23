@@ -171,11 +171,12 @@ sub render {
   }
 
   ## PERL API 
-  my $ftp = $sd->ENSEMBL_FTP_URL;
+  # ENSEMBL_FTP_URL is ftp.gramene.org, which has no API tarball; use the one for the Ensembl release this site runs
+  my $ens_version = $sd->ENSEMBL_VERSION;
   $table->add_row({
     'name' => '<b>Ensembl Perl API</b>',
     'desc' => 'Programmatic access to all Ensembl data using simple Perl scripts',
-    'from' => qq(<a href="https://github.com/Ensembl">GitHub</a> or <a href="$ftp/ensembl-api.tar.gz" rel="external">FTP download</a> (current release only)),
+    'from' => qq(<a href="https://github.com/Ensembl">GitHub</a> or <a href="https://ftp.ensembl.org/pub/release-$ens_version/ensembl-api.tar.gz" rel="external">FTP download</a> (Ensembl release $ens_version)),
     'docs' => sprintf('<a href="/info/docs/api/"><img src="%s16/info.png" alt="Documentation" /></a>', $img_url)
   });
 

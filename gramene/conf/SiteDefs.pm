@@ -60,6 +60,10 @@ sub update_conf {
 ###############################################################################
 $SiteDefs::GDPR_VERSION                 = 1;
 $SiteDefs::GDPR_COOKIE_NAME             = 'gdpr';
+# cookie banner: Gramene is hosted at CSHL, so link its privacy policy instead of EMBL-EBI's;
+# no terms URL, so htdocs/components/99_gdpr_banner.js drops the "Terms of Use" link
+$SiteDefs::GDPR_POLICY_URL              = 'https://www.cshl.edu/about-us/privacy-policy/';
+$SiteDefs::GDPR_TERMS_URL               = '';
 #our $GDPR_POLICY_URL              = 'https://www.ebi.ac.uk/data-protection/ensembl/privacy-notice';
 #our $GDPR_TERMS_URL               = 'https://www.ebi.ac.uk/about/terms-of-use';
 
