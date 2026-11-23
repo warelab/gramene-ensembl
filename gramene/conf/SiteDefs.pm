@@ -32,7 +32,12 @@ sub update_conf {
   $SiteDefs::GRAPHIC_TTF_PATH     = "/usr/share/fonts/msttcorefonts/";
 
 
-  $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools'; 
+  $SiteDefs::SAMTOOLS_DIR = $SiteDefs::ENSEMBL_SERVERROOT.'/samtools';
+
+  # remote CRAM tracks (e.g. ENA RNA-seq hubs) fetch the reference from EBI on every render unless
+  # htslib can cache it; nobody has no writable HOME, so give it a cache (1:2421089-2422066 on an
+  # Arabidopsis CRAM: 69s uncached, 15s cached; the track gives up at 30s)
+  $ENV{'REF_CACHE'} = $SiteDefs::ENSEMBL_SERVERROOT.'/tmp/hts-ref/%2s/%2s/%s';
 
   $SiteDefs::ENSEMBL_DEBUG_FLAGS             = 0; # 24;
   $SiteDefs::ENSEMBL_LONGPROCESS_MINTIME     = 10;
